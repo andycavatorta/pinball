@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+        <style type="text/css">
+            body {
+                font-family: "Courier New", sans-serif;
+                text-align: center;
+            }
+            .buttons {
+                font-size: 4em;
+                display: flex;
+                justify-content: center;
+            }
+            .button, .value {
+                line-height: 1;
+                padding: 2rem;
+                margin: 2rem;
+                border: medium solid;
+                min-height: 1em;
+                min-width: 1em;
+            }
+            .button {
+                cursor: pointer;
+                user-select: none;
+            }
+            .minus {
+                color: red;
+            }
+            .plus {
+                color: green;
+            }
+            .value {
+                min-width: 2em;
+            }
+            .state {
+                font-size: 2em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="buttons">
+            <div class="minus button">-</div>
+            <div class="value">?</div>
+            <div class="plus button">+</div>
+        </div>
+        <div class="state">
+            <span class="users">?</span> online
+        </div>
+        <script type="module" src="thirtybirds.js"></script>
+        <!--
+        <script>
+            var minus = document.querySelector('.minus'),
+                plus = document.querySelector('.plus'),
+                value = document.querySelector('.value'),
+                users = document.querySelector('.users'),
+                websocket = new WebSocket("ws://127.0.0.1:6789/");
+            minus.onclick = function (event) {
+                websocket.send(JSON.stringify({action: 'minus'}));
+            }
+            plus.onclick = function (event) {
+                websocket.send(JSON.stringify({action: 'plus'}));
+            }
+            function network_event_handler(topic, message){
+                console.log(topic, message)
+            }
+
+            function Network(hostname, port, event_handler_callback){
+                this.auth_token = ""
+                var event_handler_callback = event_handler_callback
+
+                this.websocket_url = "".concat("ws://", hostname, ":", port, "/")
+                this.websocket = new WebSocket(this.websocket_url);
+                this.websocket.onmessage = function(event){
+                    var event_data = JSON.parse(event.data)
+                    console.log(event.data)
+                    var topic = event_data.type
+                    var message = event_data.value
+                    console.log(typeof event_data, event_data, topic, message)
+                    switch (event_data.type) {
+                        case 'state':
+                            value.textContent = event_data.value;
+                            break;
+                        case 'users':
+                            users.textContent = (
+                                event_data.value.toString() + " user" +
+                                (event_data.value == 1 ? "" : "s"));
+                            break;
+                        default:
+                            console.error(
+                                "unsupported event", event_data);
+                    }
+                    if(topic=="tb.web.authenticate"){
+                        this.auth_token = message
+                    }else{
+                        event_handler_callback(topic, message) 
+                    }
+                }
+                this.publish_to_topic = function(_topic_, _message_){
+                    var message = {topic:_topic_,message:_message_}
+                    var message_json = JSON.stringify(message)
+                    this.websocket.send(message_json)
+                }
+                this.subscribe_to_topic = function(topic){
+                    this.publish_to_topic("tb.web.subscribe_to_topic", topic)
+                }
+            }
+            var network = new Network("127.0.0.1", 6789, network_event_handler)
+            //var u_p = network.prompt_user_for_credentials()
+            //network.authenticate("user 1", "pass 1")
+        </script>
+        -->
+    </body>
+</html>
