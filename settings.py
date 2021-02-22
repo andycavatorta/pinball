@@ -15,12 +15,26 @@ class Roles():
     controller_hostname="feral"
     hosts={
         "feral":"controller",
-        "transport":"sliders",
-        "horsewheel":"horsewheel"
+        "pinball1lights":"pinball1lights",
+        "pinball1game":"pinball1game",
+        "pinball1display":"pinball1display",
+        "pinball2lights":"pinball2lights",
+        "pinball2game":"pinball2game",
+        "pinball2display":"pinball2display",
+        "pinball3lights":"pinball3lights",
+        "pinball3game":"pinball3game",
+        "pinball3display":"pinball3display",
+        "pinball4lights":"pinball4lights",
+        "pinball4game":"pinball4game",
+        "pinball4display":"pinball4display",
+        "pinball5lights":"pinball5lights",
+        "pinball5game":"pinball5game",
+        "pinball5display":"pinball5display",
+        "pinballmatrix":"pinballmatrix"
     }
 
 class Reporting():
-    app_name = "amygdala"
+    app_name = "pinball"
     #level = "ERROR" #[DEBUG | INFO | WARNING | ERROR | CRITICAL]
     #log_to_file = True
     #print_to_stdout = True
@@ -38,7 +52,7 @@ class Reporting():
 class Version_Control():
     update_on_start = False
     github_repo_owner = "andycavatorta"
-    github_repo_name = "amygdala"
+    github_repo_name = "pinball"
     branch = "master"
 
 class Roboteq:
