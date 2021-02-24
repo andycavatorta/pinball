@@ -66,6 +66,11 @@ class Roboteq:
             "mcu_id":"300:1058:2031663:1429493506:540422710",
             "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
+        },
+        "carousel5and6":{
+            "mcu_id":"100:1042:107544628:876103217:1124155412",
+            "serial_data_watchdog":0, #miliseconds
+            "serial_echo":0, #0 = enabled, 1 is disabled
         }
     }
     MOTORS = {
@@ -115,6 +120,30 @@ class Roboteq:
             # todo: more variable names will be added as needed
         },
         "carousel_4":{
+            "mcu_id":"300:1058:2031663:1429493506:540422710",
+            "channel":"2",
+            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            "pid_differential_gain":1, # 0-255
+            "pid_integral_gain":10, # 0-255
+            "pid_proportional_gain":5, # 0-255
+            "encoder_ppr_value":4000,
+            # todo: more variable names will be added as needed
+        }
+        "carousel_5":{
+            "mcu_id":"300:1058:2031663:1429493506:540422710",
+            "channel":"1",
+            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            "pid_differential_gain":1, # 0-255
+            "pid_integral_gain":10, # 0-255
+            "pid_proportional_gain":5, # 0-255
+            "encoder_ppr_value":4000,
+            # todo: more variable names will be added as needed
+        }
+        "carousel_6":{
             "mcu_id":"300:1058:2031663:1429493506:540422710",
             "channel":"2",
             "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s

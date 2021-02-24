@@ -57,10 +57,18 @@ class Main(threading.Thread):
             roboteq_data_receiver.add_to_queue, 
             self.status_receiver, 
             self.network_status_change_handler, 
-            {"carousel1and2":settings.Roboteq.BOARDS["carousel1and2"]},
+            {
+                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"]
+                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"]
+                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"]
+            },
             {
                 "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
                 "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
+                "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
+                "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
+                "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
+                "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
             }
         )
         self.tb.subscribe_to_topic("connected")
@@ -85,6 +93,10 @@ class Main(threading.Thread):
             time.sleep(1)
             print(self.controllers.motors["carousel_1"].get_encoder_counter_absolute(True))
             print(self.controllers.motors["carousel_2"].get_encoder_counter_absolute(True))
+            print(self.controllers.motors["carousel_3"].get_encoder_counter_absolute(True))
+            print(self.controllers.motors["carousel_4"].get_encoder_counter_absolute(True))
+            print(self.controllers.motors["carousel_5"].get_encoder_counter_absolute(True))
+            print(self.controllers.motors["carousel_6"].get_encoder_counter_absolute(True))
             #get_encoder_counter_absolute
             """
             try:
