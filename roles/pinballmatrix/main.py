@@ -69,6 +69,8 @@ class Main(threading.Thread):
         self.controllers.macros["carousel_2"].set_speed(50)
         self.start()
 
+    def status_receiver(self, msg):
+        print("status_receiver", msg)
     def network_message_handler(self, topic, message):
         self.add_to_queue(topic, message)
     def exception_handler(self, exception):
