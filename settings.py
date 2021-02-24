@@ -142,7 +142,7 @@ class Roboteq:
             "pid_proportional_gain":5, # 0-255
             "encoder_ppr_value":4000,
             # todo: more variable names will be added as needed
-        }
+        },
         "carousel_6":{
             "mcu_id":"300:1058:2031663:1429493506:540422710",
             "channel":"2",
