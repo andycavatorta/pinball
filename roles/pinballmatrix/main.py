@@ -1,4 +1,5 @@
 import importlib
+import mido
 import os
 import queue
 import sys
@@ -11,11 +12,12 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-"""
+
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.queue = queue.Queue()
+        self.queue = que
+        ue.Queue()
         self.start()
 
     def add_to_queue(self, message):
@@ -27,12 +29,15 @@ class Roboteq_Data_Receiver(threading.Thread):
             print("data",message)
             #if "internal_event" in message:
             #    pass
-
 roboteq_data_receiver = Roboteq_Data_Receiver()
-"""
+
+# Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
+        class States:
+            WAITING_FOR_CONNECTIONS = "waiting_for_connections"
+        self.states =States()
         self.tb = thirtybirds.Thirtybirds(
             settings, 
             app_path,
@@ -40,57 +45,54 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.queue = queue.Queue()
         """
+        self.transport_connected = False
+        self.horsewheel_connected = False
+        self.pitch_slider_home = False
+        self.horsewheel_slider_home = False
+        self.horsewheel_lifter_home = False
+        """
+        self.state = self.states.WAITING_FOR_CONNECTIONS
+        self.queue = queue.Queue()
         self.controllers = roboteq_command_wrapper.Controllers(
             roboteq_data_receiver.add_to_queue, 
             self.status_receiver, 
             self.network_status_change_handler, 
-            {"sliders":settings.Roboteq.BOARDS["sliders"]},
+            {"carousel1and2":settings.Roboteq.BOARDS["carousel1and2"]},
             {
-                "pitch_slider":settings.Roboteq.MOTORS["pitch_slider"],
-                "bow_position_slider":settings.Roboteq.MOTORS["bow_position_slider"],
+                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
+                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
             }
         )
-        """
-        self.tb.subscribe_to_topic("test_rotation")
-        self.tb.subscribe_to_topic("test_lights")
+        self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        self.tb.subscribe_to_topic("pass_ball")
-
-        self.tb.publish("connected", True)
+        self.controllers.macros["carousel_1"].set_speed(50)
+        self.controllers.macros["carousel_2"].set_speed(50)
         self.start()
-    """
-    def macro_callback(self, motor_name, action, status):
-        print("macro_callback",motor_name, action, status)
-        if motor_name == "pitch_slider":
-            if action == 'go_to_limit_switch':
-                self.tb.publish("pitch_slider_home", False)
 
-        if motor_name == "bow_position_slider":
-            if action == 'go_to_limit_switch':
-                self.tb.publish("horsewheel_slider_home", False)
-    """
-    def status_receiver(self, msg):
-        print("status_receiver", msg)
-    def network_message_handler(self,topic, message):
-        print("network_message_handler",topic, message)
+    def network_message_handler(self, topic, message):
         self.add_to_queue(topic, message)
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
+
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
-
     def run(self):
         while True:
+            time.sleep(1)
+            print(self.controllers.motors["carousel_1"].get_encoder_counter_absolute(True))
+            print(self.controllers.motors["carousel_2"].get_encoder_counter_absolute(True))
+            #get_encoder_counter_absolute
+            """
             try:
                 topic, message = self.queue.get(True)
-                print(topic, message)
+                print(">>>",topic, message)
+
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
+            """
 main = Main()
 

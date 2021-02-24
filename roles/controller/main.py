@@ -11,25 +11,6 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-
-class Roboteq_Data_Receiver(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.queue = que
-        ue.Queue()
-        self.start()
-
-    def add_to_queue(self, message):
-        self.queue.put(message)
-
-    def run(self):
-        while True:
-            message = self.queue.get(True)
-            print("data",message)
-            #if "internal_event" in message:
-            #    pass
-roboteq_data_receiver = Roboteq_Data_Receiver()
 
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
@@ -54,20 +35,8 @@ class Main(threading.Thread):
         """
         self.state = self.states.WAITING_FOR_CONNECTIONS
         self.queue = queue.Queue()
-        self.controllers = roboteq_command_wrapper.Controllers(
-            roboteq_data_receiver.add_to_queue, 
-            self.status_receiver, 
-            self.network_status_change_handler, 
-            {"carousel1and2":settings.Roboteq.BOARDS["carousel1and2"]},
-            {
-                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
-                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
-            }
-        )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        self.controllers.macros["carousel_1"].set_speed(50)
-        self.controllers.macros["carousel_2"].set_speed(50)
         self.start()
 
     def network_message_handler(self, topic, message):
@@ -81,11 +50,6 @@ class Main(threading.Thread):
         self.queue.put((topic, message))
     def run(self):
         while True:
-            time.sleep(1)
-            print(self.controllers.motors["carousel_1"].get_encoder_counter_absolute(True))
-            print(self.controllers.motors["carousel_2"].get_encoder_counter_absolute(True))
-            #get_encoder_counter_absolute
-            """
             try:
                 topic, message = self.queue.get(True)
                 print(">>>",topic, message)
@@ -93,6 +57,5 @@ class Main(threading.Thread):
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-            """
 main = Main()
 
