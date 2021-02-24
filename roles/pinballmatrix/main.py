@@ -73,12 +73,12 @@ class Main(threading.Thread):
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        self.controllers.macros["carousel_1"].set_speed(10)
-        self.controllers.macros["carousel_2"].set_speed(10)
-        self.controllers.macros["carousel_3"].set_speed(10)
-        self.controllers.macros["carousel_4"].set_speed(10)
-        self.controllers.macros["carousel_5"].set_speed(10)
-        self.controllers.macros["carousel_6"].set_speed(10)
+        self.controllers.macros["carousel_1"].set_speed(20)
+        self.controllers.macros["carousel_2"].set_speed(20)
+        self.controllers.macros["carousel_3"].set_speed(30)
+        self.controllers.macros["carousel_4"].set_speed(40)
+        self.controllers.macros["carousel_5"].set_speed(50)
+        self.controllers.macros["carousel_6"].set_speed(60)
         self.start()
 
     def status_receiver(self, msg):
@@ -95,11 +95,17 @@ class Main(threading.Thread):
     def run(self):
         while True:
             time.sleep(1)
+            print("carousel_1")
             print(self.controllers.motors["carousel_1"].get_encoder_counter_absolute(True))
+            print("carousel_2")
             print(self.controllers.motors["carousel_2"].get_encoder_counter_absolute(True))
+            print("carousel_3")
             print(self.controllers.motors["carousel_3"].get_encoder_counter_absolute(True))
+            print("carousel_4")
             print(self.controllers.motors["carousel_4"].get_encoder_counter_absolute(True))
+            print("carousel_5")
             print(self.controllers.motors["carousel_5"].get_encoder_counter_absolute(True))
+            print("carousel_6")
             print(self.controllers.motors["carousel_6"].get_encoder_counter_absolute(True))
             #get_encoder_counter_absolute
             """
