@@ -73,8 +73,12 @@ class Main(threading.Thread):
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        #self.controllers.macros["carousel_1"].set_speed(5)
-        #self.controllers.macros["carousel_2"].set_speed(5)
+        self.controllers.macros["carousel_1"].set_speed(10)
+        self.controllers.macros["carousel_2"].set_speed(10)
+        self.controllers.macros["carousel_3"].set_speed(10)
+        self.controllers.macros["carousel_4"].set_speed(10)
+        self.controllers.macros["carousel_5"].set_speed(10)
+        self.controllers.macros["carousel_6"].set_speed(10)
         self.start()
 
     def status_receiver(self, msg):
