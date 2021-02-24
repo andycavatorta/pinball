@@ -66,8 +66,8 @@ class Main(threading.Thread):
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        #self.controllers.macros["carousel_1"].set_speed(20)
-        #self.controllers.macros["carousel_2"].set_speed(20)
+        self.controllers.macros["carousel_1"].set_speed(50)
+        self.controllers.macros["carousel_2"].set_speed(50)
         self.start()
 
     def network_message_handler(self, topic, message):
