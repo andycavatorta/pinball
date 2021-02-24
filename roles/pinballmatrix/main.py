@@ -58,9 +58,9 @@ class Main(threading.Thread):
             self.status_receiver, 
             self.network_status_change_handler, 
             {
-                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"]
-                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"]
-                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"]
+                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
+                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
+                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"],
             },
             {
                 "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
