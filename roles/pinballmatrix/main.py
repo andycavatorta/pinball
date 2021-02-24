@@ -95,6 +95,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             time.sleep(1)
+            """
             print("carousel_1")
             print(self.controllers.motors["carousel_1"].get_encoder_counter_absolute(True))
             print("carousel_2")
@@ -107,7 +108,7 @@ class Main(threading.Thread):
             print(self.controllers.motors["carousel_5"].get_encoder_counter_absolute(True))
             print("carousel_6")
             print(self.controllers.motors["carousel_6"].get_encoder_counter_absolute(True))
-            #get_encoder_counter_absolute
+            """
             """
             try:
                 topic, message = self.queue.get(True)

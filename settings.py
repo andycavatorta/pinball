@@ -132,7 +132,7 @@ class Roboteq:
             # todo: more variable names will be added as needed
         },
         "carousel_5":{
-            "mcu_id":"300:1058:2031663:1429493506:540422710",
+            "mcu_id":"100:1042:107544628:876103217:1124155412",
             "channel":"1",
             "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
@@ -144,7 +144,7 @@ class Roboteq:
             # todo: more variable names will be added as needed
         },
         "carousel_6":{
-            "mcu_id":"300:1058:2031663:1429493506:540422710",
+            "mcu_id":"100:1042:107544628:876103217:1124155412",
             "channel":"2",
             "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
