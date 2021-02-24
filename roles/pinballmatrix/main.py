@@ -16,8 +16,7 @@ from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.queue = que
-        ue.Queue()
+        self.queue = queue.Queue()
         self.start()
 
     def add_to_queue(self, message):
