@@ -12,6 +12,7 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
+from thirtybirds3.adapters.sensors import AMT203_absolute_encoder
 
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
@@ -73,12 +74,12 @@ class Main(threading.Thread):
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        #self.controllers.macros["carousel_1"].set_speed(20)
-        #self.controllers.macros["carousel_2"].set_speed(20)
-        #self.controllers.macros["carousel_3"].set_speed(30)
-        #self.controllers.macros["carousel_4"].set_speed(40)
-        #self.controllers.macros["carousel_5"].set_speed(50)
-        #self.controllers.macros["carousel_6"].set_speed(60)
+        self.controllers.macros["carousel_1"].set_speed(20)
+        self.controllers.macros["carousel_2"].set_speed(20)
+        self.controllers.macros["carousel_3"].set_speed(30)
+        self.controllers.macros["carousel_4"].set_speed(40)
+        self.controllers.macros["carousel_5"].set_speed(50)
+        self.controllers.macros["carousel_6"].set_speed(60)
         self.start()
 
     def status_receiver(self, msg):
