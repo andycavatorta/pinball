@@ -59,25 +59,25 @@ class Main(threading.Thread):
             self.status_receiver, 
             self.network_status_change_handler, 
             {
-                #"carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
-                #"carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
+                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
+                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
                 "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"],
             },
             {
-                #"carousel_1":settings.Roboteq.MOTORS["carousel_1"],
-                #"carousel_2":settings.Roboteq.MOTORS["carousel_2"],
-                #"carousel_3":settings.Roboteq.MOTORS["carousel_3"],
-                #"carousel_4":settings.Roboteq.MOTORS["carousel_4"],
+                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
+                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
+                "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
+                "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
                 "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
                 "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
             }
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
-        #self.controllers.macros["carousel_1"].set_speed(0)
-        #self.controllers.macros["carousel_2"].set_speed(0)
-        #self.controllers.macros["carousel_3"].set_speed(0)
-        #self.controllers.macros["carousel_4"].set_speed(0)
+        self.controllers.macros["carousel_1"].set_speed(0)
+        self.controllers.macros["carousel_2"].set_speed(0)
+        self.controllers.macros["carousel_3"].set_speed(0)
+        self.controllers.macros["carousel_4"].set_speed(0)
         self.controllers.macros["carousel_5"].set_speed(60)
         self.controllers.macros["carousel_6"].set_speed(60)
         self.controllers.macros["carousel_5"].set_speed(60)
@@ -107,11 +107,11 @@ class Main(threading.Thread):
             print(self.controllers.motors["carousel_3"].get_encoder_counter_absolute(True))
             print("carousel_4")
             print(self.controllers.motors["carousel_4"].get_encoder_counter_absolute(True))
+            """
             print("carousel_5")
             print(self.controllers.motors["carousel_5"].get_encoder_counter_absolute(True))
             print("carousel_6")
             print(self.controllers.motors["carousel_6"].get_encoder_counter_absolute(True))
-            """
             """
             try:
                 topic, message = self.queue.get(True)
