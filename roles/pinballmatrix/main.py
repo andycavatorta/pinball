@@ -78,8 +78,8 @@ class Main(threading.Thread):
             AMT203_absolute_encoder.AMT203(cs=16),
             AMT203_absolute_encoder.AMT203(cs=5),
         ]
-        for encoder in encoders:
-            print(encoder.get_position())
+        #for encoder in encoders:
+        #    print(encoder.get_position())
 
         self.controllers.macros["carousel_1"].set_speed(0)
         self.controllers.macros["carousel_2"].set_speed(0)
