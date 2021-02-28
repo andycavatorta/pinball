@@ -68,7 +68,6 @@ class Roboteq:
             "serial_echo":0, #0 = enabled, 1 is disabled
         },
         "carousel5and6":{
-                      100:1042:107610164:876103217:1124222537
             "mcu_id":"100:1042:107610164:876103217:1124222537",
             "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
