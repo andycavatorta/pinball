@@ -68,6 +68,7 @@ class Roboteq:
             "serial_echo":0, #0 = enabled, 1 is disabled
         },
         "carousel5and6":{
+                      100:1042:107610164:876103217:1124222537
             "mcu_id":"100:1042:107610164:876103217:1124222537",
             "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
@@ -86,7 +87,7 @@ class Roboteq:
             "pid_differential_gain":1, # 0-255
             "pid_integral_gain":1, # 0-255
             "pid_proportional_gain":2, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_2":{
@@ -101,7 +102,7 @@ class Roboteq:
             "pid_differential_gain":2, # 0-255
             "pid_integral_gain":1, # 0-255
             "pid_proportional_gain":1, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_3":{
@@ -116,7 +117,7 @@ class Roboteq:
             "pid_differential_gain":2, # 0-255
             "pid_integral_gain":1, # 0-255
             "pid_proportional_gain":1, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_4":{
@@ -125,10 +126,10 @@ class Roboteq:
             "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
+            "pid_differential_gain":, # 0-255
             "pid_integral_gain":10, # 0-255
             "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_5":{
@@ -140,7 +141,7 @@ class Roboteq:
             "pid_differential_gain":2, # 0-255
             "pid_integral_gain":10, # 0-255
             "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_6":{
@@ -152,7 +153,7 @@ class Roboteq:
             "pid_differential_gain":2, # 0-255
             "pid_integral_gain":10, # 0-255
             "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4000,
+            "encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         }
     }

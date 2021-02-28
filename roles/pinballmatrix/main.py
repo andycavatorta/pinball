@@ -38,6 +38,9 @@ class Main(threading.Thread):
         class States:
             WAITING_FOR_CONNECTIONS = "waiting_for_connections"
         self.states =States()
+        self.state = self.states.WAITING_FOR_CONNECTIONS
+        self.queue = queue.Queue()
+        # SET UP TB
         self.tb = thirtybirds.Thirtybirds(
             settings, 
             app_path,
@@ -45,15 +48,9 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        """
-        self.transport_connected = False
-        self.horsewheel_connected = False
-        self.pitch_slider_home = False
-        self.horsewheel_slider_home = False
-        self.horsewheel_lifter_home = False
-        """
-        self.state = self.states.WAITING_FOR_CONNECTIONS
-        self.queue = queue.Queue()
+        self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("home")
+        # SET UP BOARDS AND MOTORS
         self.controllers = roboteq_command_wrapper.Controllers(
             roboteq_data_receiver.add_to_queue, 
             self.status_receiver, 
@@ -72,8 +69,18 @@ class Main(threading.Thread):
                 "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
             }
         )
-        self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("home")
+        #SET UP ABSOLUTE ENCODERS
+        encoders = [
+            AMT203_absolute_encoder.AMT203(cs=8),
+            AMT203_absolute_encoder.AMT203(cs=7),
+            AMT203_absolute_encoder.AMT203(cs=18),
+            AMT203_absolute_encoder.AMT203(cs=17),
+            AMT203_absolute_encoder.AMT203(cs=16),
+            AMT203_absolute_encoder.AMT203(cs=5),
+        ]
+        for encoder in encoders:
+            print(encoder.get_position())
+
         self.controllers.macros["carousel_1"].set_speed(0)
         self.controllers.macros["carousel_2"].set_speed(0)
         self.controllers.macros["carousel_3"].set_speed(0)
