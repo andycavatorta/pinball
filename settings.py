@@ -68,7 +68,7 @@ class Roboteq:
             "serial_echo":0, #0 = enabled, 1 is disabled
         },
         "carousel5and6":{
-            "mcu_id":"100:1042:107610164:876103217:1124222517",
+            "mcu_id":"100:1042:107610164:876103217:1124222537",
             "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
         }
@@ -132,7 +132,7 @@ class Roboteq:
             # todo: more variable names will be added as needed
         },
         "carousel_5":{
-            "mcu_id":"100:1042:107610164:876103217:1124222517",
+            "mcu_id":"100:1042:107610164:876103217:1124222537",
             "channel":"1",
             "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
