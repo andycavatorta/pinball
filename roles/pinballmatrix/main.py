@@ -95,6 +95,7 @@ class Main(threading.Thread):
         self.queue.put((topic, message))
     def run(self):
         while True:
+            print("hihi")
             time.sleep(1)
             self.controllers.macros["carousel_1"].set_speed(30)
             time.sleep(1)
