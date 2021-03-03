@@ -77,82 +77,73 @@ class Roboteq:
         "carousel_1":{
             "mcu_id":"300:1058:3014688:1429493507:540422710",
             "channel":"1",
-            "limit_switch_pin":14,
-            "limit_switch_direction":-1,
-            "limit_end_position":3300000,
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":1, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":2, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":1, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":2, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_2":{
             "mcu_id":"300:1058:3014688:1429493507:540422710",
             "channel":"2",
-            "limit_switch_pin":15,
-            "limit_switch_direction":-1,
-            "limit_end_position":2500000,
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":1, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":2, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":1, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_3":{
             "mcu_id":"300:1058:2031663:1429493506:540422710",
             "channel":"1",
-            "limit_switch_pin":14,
-            "limit_switch_direction":1,
-            "limit_end_position":400000,
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":1, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":2, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":1, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_4":{
             "mcu_id":"300:1058:2031663:1429493506:540422710",
             "channel":"2",
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":2, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":5, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_5":{
             "mcu_id":"100:1042:107610164:876103217:1124222537",
             "channel":"1",
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":2, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":5, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
         "carousel_6":{
             "mcu_id":"100:1042:107610164:876103217:1124222537",
             "channel":"2",
-            "motor_acceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "motor_deceleration_rate":500, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":0, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
-            "pid_differential_gain":2, # 0-255
-            "pid_integral_gain":1, # 0-255
-            "pid_proportional_gain":5, # 0-255
-            "encoder_ppr_value":4096,
+            #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
+            "operating_mode":2, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"pid_differential_gain":2, # 0-255
+            #"pid_integral_gain":1, # 0-255
+            #"pid_proportional_gain":5, # 0-255
+            #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         }
     }
