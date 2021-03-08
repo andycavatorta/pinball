@@ -39,8 +39,13 @@ class Main(threading.Thread):
             WAITING_FOR_CONNECTIONS = "waiting_for_connections"
         self.states =States()
         self.state = self.states.WAITING_FOR_CONNECTIONS
-        self.queue = queue.Queue()
+        self.controller_names = ["carousel1and2", "carousel3and4","carousel5and6"]
+        self.motor_names = ["carousel1","carousel2","carousel3","carousel4","carousel5","carousel6"]
+        self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
+
+
         # SET UP TB
+        self.queue = queue.Queue()
         self.tb = thirtybirds.Thirtybirds(
             settings, 
             app_path,
@@ -50,6 +55,45 @@ class Main(threading.Thread):
         )
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
+
+        self.create_controllers_and_motors()
+        self.set_rel_encoder_position_to_abs_encoder_position()
+
+    def create_controllers_and_motors(self):
+        self.controllers = roboteq_command_wrapper.Controllers(
+            roboteq_data_receiver.add_to_queue, 
+            self.status_receiver, 
+            self.network_status_change_handler, 
+            {
+                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
+                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
+                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"],
+            },
+            {
+                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
+                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
+                "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
+                "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
+                "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
+                "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
+            }
+        )
+        for motor_name_ordinal in self.motor_names:
+            self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(motor_name_ordinal[1])
+
+
+    def set_rel_encoder_position_to_abs_encoder_position(self):
+        for motor_name in self.motor_names:
+            abs_pos = self.controllers.motors[motor_name].absolute_encoder.get_position()
+            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute()
+            print(motor_name,abs_pos,rel_pos)
+        
+        # are all controllers are responding?
+
+        # are all abs encoders responding?
+
+        # homing
+        """
         # SET UP BOARDS AND MOTORS
         self.controllers = roboteq_command_wrapper.Controllers(
             roboteq_data_receiver.add_to_queue, 
@@ -81,6 +125,8 @@ class Main(threading.Thread):
         for encoder in encoders:
             print(encoder.get_position())
         self.start()
+        """
+
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -96,7 +142,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             """
-            self.controllers.motors["carousel_1"].go_to_speed_or_relative_position(0)
+            v.motors["carousel_1"].go_to_speed_or_relative_position(0)
             time.sleep(1)
             self.controllers.motors["carousel_2"].go_to_speed_or_relative_position(0)
             time.sleep(1)
