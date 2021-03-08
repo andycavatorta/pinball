@@ -78,7 +78,7 @@ class Main(threading.Thread):
                 "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
             }
         )
-        for motor_name_ordinal in self.motor_names:
+        for motor_name_ordinal in enumerate(self.motor_names):
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(motor_name_ordinal[1])
 
 
