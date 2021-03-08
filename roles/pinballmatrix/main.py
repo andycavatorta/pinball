@@ -71,12 +71,12 @@ class Main(threading.Thread):
         )
         #SET UP ABSOLUTE ENCODERS
         encoders = [
-            AMT203_encoder.AMT203(cs=8),
-            AMT203_encoder.AMT203(cs=7),
-            AMT203_encoder.AMT203(cs=18),
-            AMT203_encoder.AMT203(cs=17),
-            AMT203_encoder.AMT203(cs=16),
-            AMT203_encoder.AMT203(cs=5),
+            AMT203_encoder.AMT203_absolute_encoder(cs=8),
+            AMT203_encoder.AMT203_absolute_encoder(cs=7),
+            AMT203_encoder.AMT203_absolute_encoder(cs=18),
+            AMT203_encoder.AMT203_absolute_encoder(cs=17),
+            AMT203_encoder.AMT203_absolute_encoder(cs=16),
+            AMT203_encoder.AMT203_absolute_encoder(cs=5),
         ]
         for encoder in encoders:
             print(encoder.get_position())
