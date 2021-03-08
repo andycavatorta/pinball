@@ -40,7 +40,7 @@ class Main(threading.Thread):
         self.states =States()
         self.state = self.states.WAITING_FOR_CONNECTIONS
         self.controller_names = ["carousel1and2", "carousel3and4","carousel5and6"]
-        self.motor_names = ["carousel1","carousel2","carousel3","carousel4","carousel5","carousel6"]
+        self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
         self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
 
 
