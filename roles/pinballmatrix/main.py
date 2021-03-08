@@ -57,9 +57,9 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("home")
 
         self.create_controllers_and_motors()
-        sleep(3)
+        time.sleep(3)
         self.set_rel_encoder_position_to_abs_encoder_position()
-        sleep(1)
+        time.sleep(1)
         self.home()
 
 
