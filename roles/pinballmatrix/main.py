@@ -70,7 +70,6 @@ class Main(threading.Thread):
             }
         )
         #SET UP ABSOLUTE ENCODERS
-        """
         encoders = [
             AMT203_encoder.AMT203(cs=8),
             AMT203_encoder.AMT203(cs=7),
@@ -81,7 +80,6 @@ class Main(threading.Thread):
         ]
         for encoder in encoders:
             print(encoder.get_position())
-        """
         self.start()
 
     def status_receiver(self, msg):
@@ -97,7 +95,7 @@ class Main(threading.Thread):
         self.queue.put((topic, message))
     def run(self):
         while True:
-
+            """
             self.controllers.motors["carousel_1"].go_to_speed_or_relative_position(0)
             time.sleep(1)
             self.controllers.motors["carousel_2"].go_to_speed_or_relative_position(0)
@@ -122,6 +120,7 @@ class Main(threading.Thread):
             self.controllers.motors["carousel_5"].go_to_speed_or_relative_position(2048)
             time.sleep(1)
             self.controllers.motors["carousel_6"].go_to_speed_or_relative_position(2048)
+            """
             time.sleep(3)
             """
             try:
