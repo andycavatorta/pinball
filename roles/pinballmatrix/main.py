@@ -12,7 +12,7 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-from thirtybirds3.adapters.sensors import AMT203_encoder
+from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
@@ -71,12 +71,12 @@ class Main(threading.Thread):
         )
         #SET UP ABSOLUTE ENCODERS
         encoders = [
-            AMT203_encoder.AMT203_absolute_encoder(cs=8),
-            AMT203_encoder.AMT203_absolute_encoder(cs=7),
-            AMT203_encoder.AMT203_absolute_encoder(cs=18),
-            AMT203_encoder.AMT203_absolute_encoder(cs=17),
-            AMT203_encoder.AMT203_absolute_encoder(cs=16),
-            AMT203_encoder.AMT203_absolute_encoder(cs=5),
+            AMT203_absolute_encoder.AMT203(cs=8),
+            AMT203_absolute_encoder.AMT203(cs=7),
+            AMT203_absolute_encoder.AMT203(cs=18),
+            AMT203_absolute_encoder.AMT203(cs=17),
+            AMT203_absolute_encoder.AMT203(cs=16),
+            AMT203_absolute_encoder.AMT203(cs=5),
         ]
         for encoder in encoders:
             print(encoder.get_position())
