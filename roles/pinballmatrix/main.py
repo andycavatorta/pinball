@@ -57,7 +57,11 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("home")
 
         self.create_controllers_and_motors()
+        sleep(3)
         self.set_rel_encoder_position_to_abs_encoder_position()
+        sleep(1)
+        self.home()
+
 
     def create_controllers_and_motors(self):
         self.controllers = roboteq_command_wrapper.Controllers(
@@ -91,8 +95,10 @@ class Main(threading.Thread):
             self.controllers.motors[motor_name].set_encoder_counter(abs_pos)
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
             print(motor_name,abs_pos,rel_pos)
-            
-        
+
+    def home(self):
+        for motor_name in self.motor_names:
+            go_to_speed_or_relative_position(0)
         # are all controllers are responding?
 
         # are all abs encoders responding?
