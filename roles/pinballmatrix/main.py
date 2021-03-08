@@ -79,15 +79,19 @@ class Main(threading.Thread):
             }
         )
         for motor_name_ordinal in enumerate(self.motor_names):
-            print("xxxxx",motor_name_ordinal[0], motor_name_ordinal[1], self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(cs=self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
 
 
     def set_rel_encoder_position_to_abs_encoder_position(self):
         for motor_name in self.motor_names:
             abs_pos = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute()
+            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
+
             print(motor_name,abs_pos,rel_pos)
+            self.controllers.motors[motor_name].set_encoder_counter(abs_pos)
+            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
+            print(motor_name,abs_pos,rel_pos)
+            
         
         # are all controllers are responding?
 
