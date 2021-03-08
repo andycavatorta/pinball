@@ -98,7 +98,7 @@ class Main(threading.Thread):
 
     def home(self):
         for motor_name in self.motor_names:
-            go_to_speed_or_relative_position(0)
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
         # are all controllers are responding?
 
         # are all abs encoders responding?
