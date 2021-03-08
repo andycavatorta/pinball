@@ -79,7 +79,7 @@ class Main(threading.Thread):
             }
         )
         for motor_name_ordinal in enumerate(self.motor_names):
-            print("xxxxx",motor_name_ordinal[0], motor_name_ordinal[1])
+            print("xxxxx",motor_name_ordinal[0], motor_name_ordinal[1], self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
 
 
