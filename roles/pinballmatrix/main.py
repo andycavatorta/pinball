@@ -102,10 +102,12 @@ class Main(threading.Thread):
             #print(motor_name,abs_pos,rel_pos)
 
     def ppr_to_mils(self, ppr):
-        return int((float(ppr)/float(self.ppr))*2000)
+        return int(((ppr-2048)/2048*1000))
+
 
     def mils_to_ppr(self, mils):
-        return ((float(mils)/2000.0)*float(self.ppr))
+        return int(((float(mils)/1000.0)*2048.0)+2048.0)
+
 
     def home(self):
         for motor_name in self.motor_names:
