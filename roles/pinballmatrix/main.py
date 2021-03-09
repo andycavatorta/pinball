@@ -62,6 +62,7 @@ class Main(threading.Thread):
         self.set_rel_encoder_position_to_abs_encoder_position()
         #time.sleep(1)
         #self.home()
+        self.start()
 
 
     def create_controllers_and_motors(self):
@@ -92,10 +93,10 @@ class Main(threading.Thread):
             abs_pos = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
 
-            print(motor_name,abs_pos,rel_pos)
+            #print(motor_name,abs_pos,rel_pos)
             self.controllers.motors[motor_name].set_encoder_counter(abs_pos)
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
-            print(motor_name,abs_pos,rel_pos)
+            #print(motor_name,abs_pos,rel_pos)
 
     def ppr_to_mils(self, ppr):
         return int((float(ppr)/float(self.ppr))*1000)
