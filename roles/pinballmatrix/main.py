@@ -103,6 +103,12 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(4096)
         time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(4096)
+        time.sleep(3)
         # are all controllers are responding?
 
         # are all abs encoders responding?
