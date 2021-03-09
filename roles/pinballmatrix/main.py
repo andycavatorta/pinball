@@ -101,13 +101,34 @@ class Main(threading.Thread):
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
         time.sleep(3)
         for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(4096)
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(200)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(400)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(600)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(800)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(1000)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(800)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(600)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(400)
+        time.sleep(3)
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(200)
         time.sleep(3)
         for motor_name in self.motor_names:
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(4096)
         time.sleep(3)
         # are all controllers are responding?
 
