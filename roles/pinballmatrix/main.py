@@ -42,6 +42,7 @@ class Main(threading.Thread):
         self.controller_names = ["carousel1and2", "carousel3and4","carousel5and6"]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
         self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
+        self.ppr = 4096
 
 
         # SET UP TB
@@ -59,8 +60,8 @@ class Main(threading.Thread):
         self.create_controllers_and_motors()
         time.sleep(3)
         self.set_rel_encoder_position_to_abs_encoder_position()
-        time.sleep(1)
-        self.home()
+        #time.sleep(1)
+        #self.home()
 
 
     def create_controllers_and_motors(self):
@@ -96,7 +97,18 @@ class Main(threading.Thread):
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
             print(motor_name,abs_pos,rel_pos)
 
+    def ppr_to_mils(self, ppr):
+        return int((float(ppr)/float(self.ppr))*1000)
+
+    def mils_to_ppr(self, mils):
+        return ((float(mils)/1000.0)*float(self.ppr))
+
     def home(self):
+        for motor_name in self.motor_names:
+            abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
+            print(motor_name,abs_position, self.ppr_to_mils(abs_position))
+
+        """
         for motor_name in self.motor_names:
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
         time.sleep(3)
@@ -130,6 +142,7 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
         time.sleep(3)
+        """
         # are all controllers are responding?
 
         # are all abs encoders responding?
@@ -210,6 +223,7 @@ class Main(threading.Thread):
             self.controllers.motors["carousel_6"].go_to_speed_or_relative_position(2048)
             """
             time.sleep(3)
+            self.home()
             """
             try:
                 topic, message = self.queue.get(True)
