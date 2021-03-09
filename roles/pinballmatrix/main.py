@@ -110,7 +110,7 @@ class Main(threading.Thread):
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
             print("===",motor_name,abs_position, rel_pos)
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(self.ppr_to_mils(0))
             time.sleep(2)
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
