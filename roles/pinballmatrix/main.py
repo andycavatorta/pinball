@@ -96,7 +96,6 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             abs_pos = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
-
             #print(motor_name,abs_pos,rel_pos)
             self.controllers.motors[motor_name].set_encoder_counter(abs_pos)
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
@@ -112,7 +111,7 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
-            print(">>>",abs_position, rel_pos)
+            print("===",motor_name,abs_position, rel_pos)
             #self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
             time.sleep(2)
             #abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
