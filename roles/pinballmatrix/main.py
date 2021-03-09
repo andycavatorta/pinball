@@ -109,7 +109,8 @@ class Main(threading.Thread):
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             distance_to_home = 0-self.ppr_to_mils(abs_position)
             print("before",motor_name,abs_position, self.ppr_to_mils(abs_position),distance_to_home)
-            #self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
+            self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
+            time.sleep(2)
             #abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             #print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
 
