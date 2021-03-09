@@ -108,10 +108,10 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             print("before",motor_name,abs_position, self.ppr_to_mils(abs_position))
-            distance_to_home = 0-self.ppr_to_mils(abs_position)
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
-            abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
+            #distance_to_home = 0-self.ppr_to_mils(abs_position)
+            #self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
+            #abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
+            #print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
 
         """
         for motor_name in self.motor_names:
