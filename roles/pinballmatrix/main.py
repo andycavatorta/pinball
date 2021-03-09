@@ -59,7 +59,11 @@ class Main(threading.Thread):
 
         self.create_controllers_and_motors()
         time.sleep(3)
-        self.set_rel_encoder_position_to_abs_encoder_position()
+        #self.set_rel_encoder_position_to_abs_encoder_position()
+
+        for motor_name in self.motor_names:
+            self.controllers.motors[motor_name].absolute_encoder.set_zero()
+            self.controllers.motors[motor_name].set_encoder_counter(0)
         #time.sleep(1)
         #self.home()
         self.start()
@@ -107,9 +111,9 @@ class Main(threading.Thread):
     def home(self):
         for motor_name in self.motor_names:
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            distance_to_home = 0-self.ppr_to_mils(abs_position)
-            print("before",motor_name,abs_position, self.ppr_to_mils(abs_position),distance_to_home)
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
+            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
+            print(">>>",abs_position, rel_pos)
+            #self.controllers.motors[motor_name].go_to_speed_or_relative_position(distance_to_home)
             time.sleep(2)
             #abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             #print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
