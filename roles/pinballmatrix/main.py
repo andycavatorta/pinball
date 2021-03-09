@@ -59,13 +59,9 @@ class Main(threading.Thread):
 
         self.create_controllers_and_motors()
         time.sleep(3)
-        #self.set_rel_encoder_position_to_abs_encoder_position()
-
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].absolute_encoder.set_zero()
-            self.controllers.motors[motor_name].set_encoder_counter(0)
-        #time.sleep(1)
-        #self.home()
+        self.set_rel_encoder_position_to_abs_encoder_position()
+        time.sleep(1)
+        self.home()
         self.start()
 
 
@@ -95,10 +91,10 @@ class Main(threading.Thread):
     def set_rel_encoder_position_to_abs_encoder_position(self):
         for motor_name in self.motor_names:
             abs_pos = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
+            #rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
             #print(motor_name,abs_pos,rel_pos)
             self.controllers.motors[motor_name].set_encoder_counter(abs_pos)
-            rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
+            #rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
             #print(motor_name,abs_pos,rel_pos)
 
     def ppr_to_mils(self, ppr):
@@ -113,11 +109,11 @@ class Main(threading.Thread):
         for motor_name in self.motor_names:
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
-            #print("===",motor_name,abs_position, rel_pos)
+            print("===",motor_name,abs_position, rel_pos)
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
             time.sleep(2)
-            #abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            #print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
+            abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
+            print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
 
         """
         for motor_name in self.motor_names:
@@ -234,7 +230,7 @@ class Main(threading.Thread):
             self.controllers.motors["carousel_6"].go_to_speed_or_relative_position(2048)
             """
             time.sleep(3)
-            self.home()
+            #self.home()
             """
             try:
                 topic, message = self.queue.get(True)
