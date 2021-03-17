@@ -1,0 +1,139 @@
+2021-03-17 16:09:14,143 : INFO : root : Loading config.
+2021-03-17 16:09:14,152 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-17 16:09:14,155 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\thirtybirds_2_0\MPF\noahgame_02\config\config.yaml
+2021-03-17 16:09:14,155 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-17 16:09:14,298 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-17 16:09:14,299 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\thirtybirds_2_0\MPF\noahgame_02\config\config.yaml.
+2021-03-17 16:09:14,319 : INFO : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\thirtybirds_2_0\MPF\noahgame_02\config\config.yaml
+2021-03-17 16:09:14,321 : INFO : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\1565ad5cc4a86baa475043faad25ebb6.mpf_cache
+2021-03-17 16:09:14,471 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-17 16:09:14,473 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-17 16:09:14,475 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-17 16:09:14,475 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-17-16-09-14-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-17 16:09:14,475 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-17 16:09:14,475 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\thirtybirds_2_0\MPF\noahgame_02
+2021-03-17 16:09:14,475 : INFO : Machine : Platform: win32
+2021-03-17 16:09:14,475 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-17 16:09:14,476 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-17 16:09:14,480 : INFO : Machine : Initialise MPF.
+2021-03-17 16:09:14,650 : INFO : P-Roc : Connecting to P-ROC
+2021-03-17 16:09:15,067 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-17 16:09:15,067 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-17 16:09:15,136 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,137 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,137 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,137 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,254 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,254 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,254 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-17 16:09:15,255 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-17 16:09:15,299 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-17 16:09:15,325 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-17 16:09:15,327 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-17 16:09:17,353 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-17 16:09:17,354 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-17 16:09:17,369 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-17 16:09:17,372 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,372 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,376 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,377 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-17 16:09:17,379 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,379 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slignshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,380 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,380 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 16:09:17,381 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-17 16:09:17,382 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-17 16:09:17,383 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-17 16:09:17,416 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-17 16:09:17,417 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-17 16:09:17,422 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-17 16:09:17,423 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-17 16:09:17,424 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-17 16:09:17,424 : INFO : Mode.attract : Started. Priority: 10
+2021-03-17 16:09:17,424 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-17 16:09:17,424 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-17 16:09:17,424 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-17 16:09:17,425 : INFO : Machine : Starting the main run loop.
+2021-03-17 16:09:21,803 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:22,180 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:22,428 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:22,526 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:22,720 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:22,764 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:22,883 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:22,896 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:23,486 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:23,637 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:23,790 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:23,887 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:24,502 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:24,546 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:24,654 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:24,719 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:24,773 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:24,838 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:24,926 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:24,959 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:24,992 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:25,057 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:25,185 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:25,237 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:25,367 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:25,389 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:25,518 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:25,540 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:25,810 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:25,875 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:26,080 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:26,146 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:26,286 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:26,310 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:26,311 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 16:09:26,547 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:26,547 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 16:09:26,548 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:26,548 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 16:09:28,016 : INFO : SwitchController : <<<<<<< 's_right_slignshot' active >>>>>>>
+2021-03-17 16:09:28,113 : INFO : SwitchController : <<<<<<< 's_right_slignshot' inactive >>>>>>>
+2021-03-17 16:09:28,211 : INFO : SwitchController : <<<<<<< 's_right_slignshot' active >>>>>>>
+2021-03-17 16:09:28,319 : INFO : SwitchController : <<<<<<< 's_right_slignshot' inactive >>>>>>>
+2021-03-17 16:09:28,417 : INFO : SwitchController : <<<<<<< 's_right_slignshot' active >>>>>>>
+2021-03-17 16:09:28,482 : INFO : SwitchController : <<<<<<< 's_right_slignshot' inactive >>>>>>>
+2021-03-17 16:09:29,224 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:29,365 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:09:29,462 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:29,538 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:09:29,625 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:29,680 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:09:33,083 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:33,298 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:33,298 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 16:09:33,493 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:33,494 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 16:09:33,837 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:33,837 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 16:09:34,407 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 16:09:34,548 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 16:09:34,549 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 16:09:34,731 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 16:09:34,732 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 16:09:35,044 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 16:09:35,045 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 16:09:38,158 : INFO : SwitchController : <<<<<<< 's_right_slignshot' active >>>>>>>
+2021-03-17 16:09:38,363 : INFO : SwitchController : <<<<<<< 's_right_slignshot' inactive >>>>>>>
+2021-03-17 16:09:38,600 : INFO : SwitchController : <<<<<<< 's_right_slignshot' active >>>>>>>
+2021-03-17 16:09:38,697 : INFO : SwitchController : <<<<<<< 's_right_slignshot' inactive >>>>>>>
+2021-03-17 16:09:39,480 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:39,567 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:09:39,675 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:39,752 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:09:39,850 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-17 16:09:39,916 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-17 16:10:12,076 : INFO : Machine : Shutting down...
+2021-03-17 16:10:12,076 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-17 16:10:12,080 : INFO : root : MPF run loop ended.

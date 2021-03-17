@@ -1,0 +1,120 @@
+2021-03-17 18:00:55,894 : INFO : root : Loading config.
+2021-03-17 18:00:55,903 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-17 18:00:55,906 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\1565ad5cc4a86baa475043faad25ebb6.mpf_cache
+2021-03-17 18:00:56,126 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-17 18:00:56,128 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-17 18:00:56,130 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-17 18:00:56,130 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-17-18-00-55-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-17 18:00:56,130 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-17 18:00:56,131 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\thirtybirds_2_0\MPF\noahgame_02
+2021-03-17 18:00:56,131 : INFO : Machine : Platform: win32
+2021-03-17 18:00:56,131 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-17 18:00:56,131 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-17 18:00:56,137 : INFO : Machine : Initialise MPF.
+2021-03-17 18:00:56,340 : INFO : P-Roc : Connecting to P-ROC
+2021-03-17 18:00:56,764 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-17 18:00:56,764 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-17 18:00:56,838 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,838 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,838 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,839 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,958 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,958 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,958 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,959 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,960 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,960 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,960 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,961 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-17 18:00:56,961 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-17 18:00:57,000 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-17 18:00:57,024 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-17 18:00:57,026 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-17 18:00:59,046 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-17 18:00:59,046 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-17 18:00:59,057 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-17 18:00:59,060 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-17 18:00:59,061 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,061 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,064 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,071 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,072 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slignshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,072 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,072 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-17 18:00:59,073 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-17 18:00:59,074 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-17 18:00:59,075 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-17 18:00:59,100 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-17 18:00:59,100 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-17 18:00:59,105 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-17 18:00:59,106 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-17 18:00:59,106 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-17 18:00:59,106 : INFO : Mode.attract : Started. Priority: 10
+2021-03-17 18:00:59,106 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-17 18:00:59,106 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-17 18:00:59,107 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-17 18:00:59,107 : INFO : Machine : Starting the main run loop.
+2021-03-17 18:01:05,763 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 18:01:08,772 : INFO : EventManager : Event: ======'flipper_cradle'====== Args={}
+2021-03-17 18:01:08,905 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 18:01:08,906 : INFO : EventManager : Event: ======'flipper_cradle_release'====== Args={}
+2021-03-17 18:01:10,119 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 18:01:12,235 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 18:01:12,236 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 18:01:13,111 : INFO : EventManager : Event: ======'flipper_cradle'====== Args={}
+2021-03-17 18:01:14,758 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 18:01:14,759 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 18:01:14,813 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 18:01:14,814 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 18:01:14,814 : INFO : EventManager : Event: ======'flipper_cradle_release'====== Args={}
+2021-03-17 18:01:16,208 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-17 18:01:17,850 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-17 18:01:17,851 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 18:01:19,214 : INFO : EventManager : Event: ======'flipper_cradle'====== Args={}
+2021-03-17 18:01:20,513 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-17 18:01:20,514 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-17 18:01:20,526 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-17 18:01:20,526 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-17 18:01:20,526 : INFO : EventManager : Event: ======'flipper_cradle_release'====== Args={}
+2021-03-17 18:04:21,377 : ERROR : asyncio : Exception in callback Util.raise_exceptions(<Task finishe...wer supply.')>) at c:\users\noah\mpfenv\lib\site-packages\mpf\core\utility_functions.py:726
+handle: <Handle Util.raise_exceptions(<Task finishe...wer supply.')>) at c:\users\noah\mpfenv\lib\site-packages\mpf\core\utility_functions.py:726>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 143, in read_events_and_watchdog
+    self.proc.flush()
+OSError: Error in WriteData: wrote 0 of 8 bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\utility_functions.py", line 734, in raise_exceptions
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 302, in _poll_events
+    loop=self.machine.clock.loop)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 152, in read_events_and_watchdog
+    self.log.name) from error
+mpf.exceptions.runtime_error.MpfRuntimeError: Runtime Error in P-Roc: Communication with P/P3-Roc broke down. Check USB cable and power supply. Error Code: RE-P-Roc-2 (https://docs.missionpinball.org/en/0.54/logs/RE-P-Roc-2.html)
+2021-03-17 18:04:21,383 : INFO : Machine : Shutting down...
+2021-03-17 18:04:21,383 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-17 18:04:21,392 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 143, in read_events_and_watchdog
+    self.proc.flush()
+OSError: Error in WriteData: wrote 0 of 8 bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 745, in _run_loop
+    raise self._exception['exception']
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\utility_functions.py", line 734, in raise_exceptions
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 302, in _poll_events
+    loop=self.machine.clock.loop)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 152, in read_events_and_watchdog
+    self.log.name) from error
+mpf.exceptions.runtime_error.MpfRuntimeError: Runtime Error in P-Roc: Communication with P/P3-Roc broke down. Check USB cable and power supply. Error Code: RE-P-Roc-2 (https://docs.missionpinball.org/en/0.54/logs/RE-P-Roc-2.html)
+2021-03-17 18:04:21,396 : INFO : root : MPF run loop ended.
