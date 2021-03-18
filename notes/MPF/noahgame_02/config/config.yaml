@@ -1,5 +1,7 @@
 #config_version=5
 
+# Noah's test file for driving Andy Cavatorta's: Individual, Money, and Society
+
 hardware:
     platform: p3_roc
     driverboards: pdb
@@ -8,7 +10,7 @@ switches:
     s_left_slingshot:
         number: A0-B0-0
         tags: left_flipper
-    s_right_slignshot:
+    s_right_slingshot:
         number: A0-B0-2
         tags: right_flipper
 
@@ -19,25 +21,34 @@ switches:
         number: A0-B0-3
         tags: right_flipper
 
+    s_drop_target:
+        number: A0-B0-4
+
 coils:
     c_flipper_left_main:
         number: A0-B0-6
         default_pulse_ms: 5
+        default_pulse_power: 1.0
     c_flipper_left_hold:
         number: A0-B0-4
+        default_hold_power: 1.0
         allow_enable: true
         
     c_flipper_right_main:
         number: A0-B0-7
         default_pulse_ms: 5
+        default_pulse_power: 1.0
     c_flipper_right_hold:
+        default_hold_power: 1.0
         number: A0-B0-5
         allow_enable: true
         
     c_slingshot_left_main:
         number: A0-B0-2
+        default_pulse_ms: 5
     c_slingshot_right_main:
         number: A0-B0-3
+        default_pulse_ms: 5
 
 playfields:
     playfield:
@@ -56,9 +67,66 @@ flippers:
         activation_switch: s_right_flipper
         enable_events: machine_reset_phase_3
 
+autofire_coils:
+    left_slingshot:
+        coil: c_slingshot_right_main
+        switch: s_left_slingshot
+        enable_events: machine_reset_phase_3
+    right_slingshot:
+        coil: c_slingshot_left_main
+        switch: s_right_slingshot
+        enable_events: machine_reset_phase_3
+
+
 keyboard:
     z: 
         switch: s_left_flipper
     '/':
         switch: s_right_flipper
+    a:
+        switch: s_left_slingshot
+    ';':
+        switch: s_right_slingshot
+        
 
+displays:
+    window:
+        width: 800
+        height: 600
+
+
+slides:
+  welcome_slide:
+    widgets:
+      - type: text
+        text: PINBALL!
+        font_size: 90
+        color: yellow
+
+      - type: rectangle
+        width: 600
+        height: 120
+        color: green
+
+  attract_started:
+    widgets:
+        - text: waitin for a signal
+          type: text
+        
+slide_player:
+  init_done: welcome_slide
+  mode_attract_started: attract_started
+
+
+
+
+#coils:
+#  c_reset_drop_target:
+#    number:
+#  c_knock_down_coil:
+#    number:
+#drop_targets:
+#  d_drop_target:
+#    switch: s_drop_target
+#    reset_coil: c_reset_drop_target
+#    knockdown_coil: c_knock_down_coil
