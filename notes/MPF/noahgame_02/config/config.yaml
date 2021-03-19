@@ -76,8 +76,8 @@ coils:
 
 playfields:
     playfield:
+        default_source_device: bd_trough  # use None in steps before 8
         tags: default
-        default_source_device: None  # use None in steps before 8
 
 flippers:
     left_flipper:
@@ -122,9 +122,12 @@ ball_devices:
     ball_switches: s_trough1
     eject_coil: c_trough_eject
     tags: trough, home, drain
+    #eject_targets: bd_plunger
     #jam_switch: s_trough_jam
     #eject_coil_jam_pulse: 15ms
     debug: true
+
+#eject_targets: bd_plunger
 
 keyboard:
     z: 
@@ -162,17 +165,18 @@ slides:
 
   attract_started:
     widgets:
-        - text: waitin for a signal
+        - text: ATTRACT MODE
           type: text
         
 slide_player:
   init_done: welcome_slide
   mode_attract_started: attract_started
-  ball_started:
-    widgets:
-        type: text
-        text: PLAYER (number) BALL (ball)
+##! test
+#advance_time_and_run .1
         
+modes:
+  - base
+  
 
 
 
