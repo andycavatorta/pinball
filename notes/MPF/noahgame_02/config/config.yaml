@@ -162,15 +162,9 @@ slides:
         width: 600
         height: 120
         color: green
-
-  attract_started:
-    widgets:
-        - text: ATTRACT MODE
-          type: text
         
 slide_player:
   init_done: welcome_slide
-  mode_attract_started: attract_started
 ##! test
 #advance_time_and_run .1
         

@@ -28,3 +28,11 @@ slide_player:
         anchor_y: bottom
         font_size: 50
         
+        
+variable_player:
+  s_right_lane_active:
+    score: 100
+  s_left_flipper_active:
+    score: 1000
+
+
