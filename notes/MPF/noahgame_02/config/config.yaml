@@ -70,6 +70,8 @@ coils:
     # Drop Targets
     c_reset_drop_target:
         number: A0-B0-1
+        default_pulse_ms: 15
+        default_pulse_power: 1.0
     c_knock_down_coil:
         number: A0-B1-7
 
@@ -111,11 +113,17 @@ drop_targets:
 drop_target_banks:
   noah:
     drop_targets: d_drop_target
-    reset_events: machine_reset_phase_3
+    reset_events: 
+        machine_reset_phase_3: 0 
+        ball_started.1: 0
+        ball_started.2: 1s
+        ball_started.3: 2s
+    reset_on_complete: 1s
+
 
 lights:
   l_led0:
-    number: 0-0-1-2
+    number: 8-0-1-2
 
 ball_devices:
   bd_trough:
