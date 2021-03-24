@@ -1,0 +1,98 @@
+2021-03-23 20:59:20,140 : INFO : root : Loading config.
+2021-03-23 20:59:20,147 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-23 20:59:20,148 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml
+2021-03-23 20:59:20,148 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-23 20:59:20,362 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-23 20:59:20,365 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml.
+2021-03-23 20:59:20,445 : INFO : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml
+2021-03-23 20:59:20,448 : INFO : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-23 20:59:20,571 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-23 20:59:20,572 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-23 20:59:20,574 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-23 20:59:20,577 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-23 20:59:20,578 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-23 20:59:20,579 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-23 20:59:20,579 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-23-20-59-20-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-23 20:59:20,580 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-23 20:59:20,580 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-23 20:59:20,580 : INFO : Machine : Platform: win32
+2021-03-23 20:59:20,580 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-23 20:59:20,580 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-23 20:59:20,584 : INFO : Machine : Initialise MPF.
+2021-03-23 20:59:20,708 : INFO : P-Roc : Connecting to P-ROC
+2021-03-23 20:59:20,918 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-23 20:59:20,918 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-23 20:59:20,992 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-23 20:59:20,992 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-23 20:59:20,992 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-23 20:59:20,993 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,088 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,088 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,088 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,089 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,089 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,089 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,090 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,090 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-23 20:59:21,090 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-23 20:59:21,145 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-23 20:59:21,158 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-23 20:59:21,190 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-23 20:59:21,192 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-23 20:59:23,212 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-23 20:59:23,212 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-23 20:59:23,213 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<BallDevice._initialize_async() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\ball_device.py:195> exception=ConfigFileError('Config validation error: Entry ball_device_counter_ball_switches:ball_device_counter_ball_switches:ball_switches = "s_trough1" is not valid. Device "s_trough1" not found in "switches:" section in your config.')>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\ball_device.py", line 197, in _initialize_async
+    await self.ball_count_handler.initialise()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\ball_count_handler.py", line 92, in initialise
+    self.counter = counter_class(self.ball_device, self.ball_device.config.get("counter", {}))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\switch_counter.py", line 27, in __init__
+    self.config = self.machine.config_validator.validate_config("ball_device_counter_ball_switches", self.config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 176, in validate_config
+    validation_failure_info=validation_failure_info)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 218, in _validate_config
+    validation_failure_info=ValidationPath(validation_failure_info, k))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 266, in validate_config_item
+    new_list.append(self.validate_item(i, validation, validation_failure_info))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 699, in validate_item
+    return self.validator_list[validator](item, validation_failure_info=validation_failure_info, param=param)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 415, in _validate_type_machine
+    6)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 718, in validation_error
+    item, msg), 5 if code is None else code, self.log.name)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in ConfigValidator: Config validation error: Entry ball_device_counter_ball_switches:ball_device_counter_ball_switches:ball_switches = "s_trough1" is not valid. Device "s_trough1" not found in "switches:" section in your config. Error Code: CFE-ConfigValidator-6 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-6.html)
+2021-03-23 20:59:23,257 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-23 20:59:23,265 : INFO : Machine : Starting the main run loop.
+2021-03-23 20:59:23,266 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-23 20:59:23,266 : INFO : Machine : Shutting down...
+2021-03-23 20:59:23,266 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-23 20:59:23,268 : ERROR : asyncio : Task was destroyed but it is pending!
+task: <Task pending coro=<wait() running at C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\tasks.py:361> cb=[Bcp._setup_bcp_servers.<locals>.<lambda>() at c:\users\noah\mpfenv\lib\site-packages\mpf\core\bcp\bcp.py:111]>
+2021-03-23 20:59:23,292 : ERROR : asyncio : Task was destroyed but it is pending!
+task: <Task pending coro=<BcpServer.start() running at c:\users\noah\mpfenv\lib\site-packages\mpf\core\bcp\bcp_server.py:22> cb=[Bcp._setup_bcp_servers.<locals>.<lambda>() at c:\users\noah\mpfenv\lib\site-packages\mpf\core\bcp\bcp.py:103]>
+2021-03-23 20:59:23,295 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 745, in _run_loop
+    raise self._exception['exception']
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\ball_device.py", line 197, in _initialize_async
+    await self.ball_count_handler.initialise()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\ball_count_handler.py", line 92, in initialise
+    self.counter = counter_class(self.ball_device, self.ball_device.config.get("counter", {}))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\ball_device\switch_counter.py", line 27, in __init__
+    self.config = self.machine.config_validator.validate_config("ball_device_counter_ball_switches", self.config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 176, in validate_config
+    validation_failure_info=validation_failure_info)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 218, in _validate_config
+    validation_failure_info=ValidationPath(validation_failure_info, k))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 266, in validate_config_item
+    new_list.append(self.validate_item(i, validation, validation_failure_info))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 699, in validate_item
+    return self.validator_list[validator](item, validation_failure_info=validation_failure_info, param=param)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 415, in _validate_type_machine
+    6)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 718, in validation_error
+    item, msg), 5 if code is None else code, self.log.name)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in ConfigValidator: Config validation error: Entry ball_device_counter_ball_switches:ball_device_counter_ball_switches:ball_switches = "s_trough1" is not valid. Device "s_trough1" not found in "switches:" section in your config. Error Code: CFE-ConfigValidator-6 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-6.html)
+2021-03-23 20:59:23,321 : INFO : root : MPF run loop ended.
