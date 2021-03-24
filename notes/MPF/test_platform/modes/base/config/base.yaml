@@ -34,5 +34,23 @@ variable_player:
     score: 100
   s_left_flipper_active:
     score: 1000
-
+  s_drop_target_1:
+    score: 1000
+  s_drop_target_2:
+    score: 1000
+  s_pop_bumper_1:
+    score: 5000
+  s_pop_bumper_2:
+    score: 5000
+  s_pop_bumper_3:
+    score: 20000
+  s_left_slingshot_main:
+    score: 500
+  s_right_slingshot_main:
+    score: 500
+  s_left_slingshot_mid:
+    score: 2000
+  s_right_slingshot_mid:
+    score: 2000
+  
 

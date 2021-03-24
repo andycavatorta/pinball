@@ -1,7 +1,7 @@
 #show_version=5
 ##! show: attract_display_loop
 
-- duration: 3s
+- duration: 60s
   slides:
     awesome_slide:
       widgets:
@@ -13,7 +13,7 @@
         duration: 1s
         direction: left
 
-- duration: 3s
+- duration: 60s
   slides:
     press_start:
       widgets:
@@ -38,7 +38,7 @@
         duration: 1s
         direction: right
 
-- duration: 3
+- duration: 60
   slides:
     mission_pinball:
       widgets:
@@ -50,7 +50,7 @@
         duration: 1s
         direction: top
 
-- duration: 3
+- duration: 60
   slides:
     last_game_score_slide:
       widgets:

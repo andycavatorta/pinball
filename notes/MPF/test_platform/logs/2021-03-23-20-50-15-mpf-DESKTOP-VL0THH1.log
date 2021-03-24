@@ -1,5 +1,0 @@
-2021-03-23 20:50:15,124 : INFO : root : Loading config.
-2021-03-23 20:50:15,133 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
-2021-03-23 20:50:15,134 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
-2021-03-23 20:50:15,290 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
-2021-03-23 20:50:15,291 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
