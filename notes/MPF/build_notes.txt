@@ -1,0 +1,349 @@
+
+The following are my notes building mpf on Ubuntu20 on RPi.
+
+basic instructions are at https://developer.missionpinball.org/en/dev/overview/installation.html
+
+but these shows you the real, low-down highlights of the command line process I have been banging my way through... to save YOU time!
+
+If you follow the current build instructoins for pypinproc on Ubuntu20,
+you may encounter two build errors:
+1.unknown reloc mode = 0x3
+2. undefined symbol: ftdi_read_data_set_chunksize
+
+note: 1 you absolustely must use the flags to build with -fPIC
+if you don't, you'll see sth like:
+unknown reloc mode = 0x3
+
+note 2: you must reorder the libraries on the final link when building pypinproc
+e.g. 
+2a. you run: python setup.up build
+2b. before sudo python install, copy the final g++ command with ends with -o.  Notice the -lftd1 is not the last library in the list.  you must copy this command, edit it so that -lftdi1 is last in the list of -l targets, then run it by hand from the command line.
+2c. run sudo python install
+The problem here is not pypinproc specific, but classic linux development:  apparently when it makes the .so, it doesn't automatically sort out dependencies, so you hav eto do it yourself.
+some notes here:
+https://stackoverflow.com/questions/11643666/python-importerror-undefined-symbol-for-custom-c-module
+note their use of "nm -g".  note that it has refs to the ftdi library shown in the error message when attempting to import the library...
+we also found it useful to run ldd on the .so file creatd in step 2a above.  note the absence of a libftdi .so !  This is fixed when you re-order the libs in setup 2b above.
+Many thanks to Kerry Kurian for helping me debug this.
+
+
+
+  639  git clone https://github.com/missionpinball/mpf
+  640  ls
+  641  cd mpf
+  642  ls
+  643  more README.md
+  644  ls
+  645  git status
+  646  bit branch -a
+  647  git branch -a
+  648  ls
+  649  python -v
+  650  ls -lart install
+  651  ls
+  652  python setup.py
+  653  sudo apt install setuptools
+  654  sudo apt search setuptools
+  655  sudo apt install python-setuptools
+  656  sudo apt search cython
+  657  sudo apt install cython3
+  658  python setup.py .
+  659  python setup.py
+  660  python setup.py --help
+  661  ls
+  662  pip
+  663  python setup.py install
+  664  python setup.py build
+  665  sudo python setup.py install
+  666  mpf
+  667  pwd
+  668  cd ..
+  669  ls
+  670  cd ..
+  671  ls
+  672  cd pinball
+  673  ls
+  674  cd notes/
+  675  ls
+  676  git status
+  677  git pull
+  678  ls
+  679  cd MPF/
+  680  ls
+  681  cd test_platform/
+  682  ls
+  683  mpf both -t
+  684  ls
+  685  git pull
+  686  ls
+  687  cd
+  688  cd noah
+  689  ls
+  690  cd mpf/
+  691  ls
+  692  cd ..
+  693  ls
+  694  git clone https://github.com/missionpinball/mpf-mc
+  695  ls
+  696  cd mpf-mc/
+  697  ls
+  698  more RE
+  699  more README.md
+  700  ls
+  701  python setup build
+  702  python setup.py build_scripts/
+  703  python setup.py build
+  704  apt search gstreamer | more
+  705  sudo apt install gstreamer
+  706  apt search gstreamer | grep gstreamer
+  707  sudo apt install gst123
+  708  python setup.py build
+  709  sudo apt install gstreamer-1.0
+  710  echo $PKG_CONFIG_PATH
+  711  sudo apt-get install libgstreamer1.0-dev
+  712  python setup.py build
+  713  apt search sdl
+  714  sudo apt install libsdl1.2-dev
+  715  python setup.py build
+  716  sudo apt install libsdl2-dev
+  717  python setup.py build
+  718  sudo apt install libsdl1.2-dev
+  719  ls
+  720  python setup.py clean
+  721  python setup.py build
+  722  apt search libsdl
+  723  sudo apt install libsdl-mixer1.2
+  724  python setup.py build
+  725  sudo apt install libsdl-image1.2-dev
+  726  python setup.py build
+  727  sudo apt install libsdl-mixer1.2-dev
+  728  cd noah/mpf-mc/
+  729  ls
+  730  python setup.py clean
+  731  python setup.py build
+  732  apt search libsdl2-mixer
+  733  sudo apt install libsdl-mixer-dev
+  734  sudo apt install libsdl2-mixer-dev
+  735  python setup.py clean
+  736  sudo apt install libsdl2-image-dev
+  737  python setup.py clean
+  738  python setup.py build
+  739  history
+  740  fg
+  741  pushd .
+  742  python setup.py build
+  743  pushd
+  744  pushd .
+  745  cd ..
+  746  cd pinball
+  747  ls
+  748  cd notes/
+  749  ls
+  750  cd MPF/
+  751  ls
+  752  cd test_platform/
+  753  ls
+  754  mpf
+  755  history
+
+
+ 756  cmake
+  757  sudo apt install -y cmake
+  758  ls
+  759  popd
+  760  ls
+  761  cd ..
+  762  ls
+  763  git clone https://github.com/preble/libpinproc
+  764  ls
+  765  cd libpinproc/
+  766  ls
+  767  apt search libusb
+  768  sudo apt install libusb-1.0-0
+  769  apt search libftdi
+  770  sudo apt install libftdi
+  771  sudo apt install libftdi1-2
+  772  ls
+  773  mkdir bin
+  774  cd bin
+  775  ls
+  776  cmake ..
+  777  make
+  778  sudo apt install libftdi1
+  779  make
+  780  apt search libftdi
+  781  sudo apt install libftdi1-dev
+  782  make
+  783  pushd .
+  784  cd
+  785  cd pinball/notes/MPF/
+  786  ls
+  787  cd test_platform/
+  788  mpf
+  789  ls
+  790  pip install pinproc
+  791  pip3 install pinproc
+  792  pip3 list
+  793  pip3 install pypinproc
+  794  sudo pip3 install pypinproc
+  795  popd
+  796  cd ..
+  797  git clone https://github.com/preble/pypinproc.git
+  798  ls
+  799  cd pypinproc/
+  800  ls
+  801  python setup.py
+  802  python setup.py  build
+  803  python setup.py install
+  804  python setup.py clean
+  805  python setup.py install
+  806  python setup.py install | more
+  807  python setup.py install &|more
+  808  python setup.py install |& more
+  809  ls ../libpinproc/include/
+  810  python setup.py install |& more
+  811  git branch -a
+  812  git checkout dev
+  813  ls
+  814  python setup.py install |& more
+  815  git checkout master
+  816  git branch -a
+  817  git checkout master
+  818  python setup.py clean
+  819  python setup.py install |& more
+  820  more ../libpinproc/include/pinproc.h
+  821  jmacs ../libpinproc/include/pinproc.h
+  822  python setup.py install |& more
+  823  fg
+  824  ls
+  825  ls buid
+  826  ls build/
+  827  python setup.py clean
+  828  ls build/
+  829  l
+  830  python setup.py clean
+  831  python setup.py buil
+  832  python setup.py build
+  833  python setup.py build | head
+  834  python setup.py build |& more
+  835  cd ..
+  836  rm -fr pypinproc
+  837  gi clone https://github.com/missionpinball/pypinproc.git
+  838  git clone https://github.com/missionpinball/pypinproc.git
+  839  ls
+  840  cd pypinproc/
+  841  ls
+  842  python setup.py build
+  843  history |grep libusb
+  844  sudo apt install libusb-1.0-0-dev
+  845  python setup.py build
+  846  history |grep libusb
+  847  apt search libusb
+  848  sudo apt install libusb-dev
+  849  python setup.py build
+  850  ls
+  851  cd noah
+  852  ls
+  853  history
+
+ 854  ls
+  855  cd pypinproc/
+  856  git remote -v
+  857  ls
+  858  more setup.py
+  859  python setup.py  build
+  860  ls ..
+  861  cd ..
+  862  cd libpinproc/
+  863  ls
+  864  more README.markdown
+  865  ls
+  866  ls bin
+  867  bin/pinproctest
+  868  bin/pinproctest  pdb
+  869  ls
+  870  cd noah
+  871  ls
+  872  cd libpinproc/
+  873  ls
+  874  cd bin
+  875  ls
+  876  ./pinproc pdb
+  877  stty reset
+  878  stty --help
+  879  stty --reset
+  880  stty sane
+  881  dsaf
+  882  python -i
+  883  ls
+  884  cd ..
+  885  ls
+  886  cd .
+  887  cd ..
+  888  cd pinpr
+  889  ls
+  890  cd pypinproc/
+  891  ls
+  892  python -i
+  893  more setup.py
+  894  python -i
+  895  python -i setup.py
+  896  fg
+  897  more setup.py
+  898  python -i setup.py
+  899  stty sane
+  900  stty reset
+  901  stty clear
+  902  export PS1="$PS1\[\e]12;#c0c0c0\a\]"
+  903  PS1="$PS1\[\e]12;#c0c0c0\a\]"
+  904  ls
+  905  cd noah/
+  906  ls
+  907  cd libpinproc/
+  908  ls
+  909  cd bin
+  910  ls
+  911  ./pinproctest pdb
+  912  sudo ./pinproctest pdb
+  913  ls
+  914  make install
+  915  sudo make install
+  916  cd ..
+  917  ls
+  918  cd pypinproc/
+  919  ls
+  920  python setup.py build
+  921  ls
+  922  sudo python setup.py install
+  923  cd ..
+  924  ls
+  925  cd mpf
+  926  ls
+  927  cd ..
+  928  cd pinball
+  929  ls
+  930  cd notes/
+  931  ls
+  932  cd MPF/
+  933  ls
+  934  cd test_platform/
+  935  mpf
+  936  cd ..
+  937  cd noah
+  938  cd MP
+  939  lls
+  940  ls
+  941  cd pypinproc/
+  942  ls
+  943  history
+  944  sudo python setup.py install
+  945  python
+  946  history
+
+
+ raise MpfRuntimeError('Could not import "pinproc". Either the library is not installed or is missing '
+
+ pip install  --pre mpf
+ 
+ 
+ 
