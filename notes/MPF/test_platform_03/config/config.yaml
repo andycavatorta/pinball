@@ -39,8 +39,8 @@ switches:
         number: A0-B1-3
 
     # Trough (placeholder)
-    s_trough1:
-        number: A0-B1-7
+#    s_trough1:
+#        number: A0-B1-7
 
 coils:
     # Flippers
@@ -103,8 +103,9 @@ coils:
                 
 playfields:
     playfield:
-        default_source_device: bd_trough  # use None in steps before 8
         tags: default
+        default_source_device: None  # use None in steps before 8
+        #default_source_device: bd_trough  # use None in steps before 8
 
 flippers:
     left_flipper:
@@ -163,8 +164,8 @@ drop_target_banks:
   drop_target_bank_1:
     drop_targets: d_drop_target_1, d_drop_target_2, d_drop_target_2
     reset_coils: c_reset_drop_target_1, c_reset_drop_target_2, c_reset_drop_target_3
-    reset_events: 
-        machine_reset_phase_3: 0 
+    #reset_events: 
+    #    machine_reset_phase_3: 0 
         #ball_started.1: 0
         #ball_started.2: 1s
         #ball_started.3: 2s
@@ -175,15 +176,15 @@ lights:
   l_led0:
     number: 8-0-1-2
 
-ball_devices:
-  bd_trough:
-    ball_switches: s_trough1
-    eject_coil: c_trough_eject
-    tags: trough, home, drain
-    #eject_targets: bd_plunger
-    #jam_switch: s_trough_jam
-    #eject_coil_jam_pulse: 15ms
-    debug: true
+#ball_devices:
+#  bd_trough:
+#    ball_switches: s_trough1
+#    eject_coil: c_trough_eject
+#    tags: trough, home, drain
+#    #eject_targets: bd_plunger
+#    #jam_switch: s_trough_jam
+#    #eject_coil_jam_pulse: 15ms
+#    debug: true
 
 #eject_targets: bd_plunger
 
@@ -221,8 +222,8 @@ slides:
         height: 120
         color: green
         
-slide_player:
-  init_done: welcome_slide
+#slide_player:
+#  init_done: welcome_slide
 ##! test
 #advance_time_and_run .1
         
