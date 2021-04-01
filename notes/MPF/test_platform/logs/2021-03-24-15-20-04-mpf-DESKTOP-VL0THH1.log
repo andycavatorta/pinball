@@ -1,0 +1,125 @@
+2021-03-24 15:20:04,159 : INFO : root : Loading config.
+2021-03-24 15:20:04,166 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-24 15:20:04,167 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml
+2021-03-24 15:20:04,167 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-24 15:20:04,289 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-24 15:20:04,290 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml.
+2021-03-24 15:20:04,347 : INFO : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform\config\config.yaml
+2021-03-24 15:20:04,351 : INFO : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-24 15:20:04,463 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-24 15:20:04,465 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-24 15:20:04,465 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-24 15:20:04,467 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-24 15:20:04,468 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-24 15:20:04,469 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-24 15:20:04,469 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-24-15-20-04-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-24 15:20:04,469 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-24 15:20:04,470 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-24 15:20:04,470 : INFO : Machine : Platform: win32
+2021-03-24 15:20:04,470 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-24 15:20:04,470 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-24 15:20:04,474 : INFO : Machine : Initialise MPF.
+2021-03-24 15:20:04,599 : INFO : P-Roc : Connecting to P-ROC
+2021-03-24 15:20:04,812 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-24 15:20:04,812 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-24 15:20:04,878 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,878 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,878 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,880 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,976 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,976 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,976 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,977 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,977 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,978 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,978 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,978 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-24 15:20:04,978 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-24 15:20:05,019 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-24 15:20:05,025 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-24 15:20:05,048 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_drop_target_1>
+2021-03-24 15:20:05,048 : INFO : SwitchController : Found active switch: (7, <Platform.P3-ROC>) <switch.s_drop_target_2>
+2021-03-24 15:20:05,056 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-24 15:20:05,057 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-24 15:20:07,076 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-24 15:20:07,076 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-24 15:20:07,076 : INFO : ball_device.bd_trough : State: idle
+2021-03-24 15:20:07,086 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-24 15:20:07,092 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,092 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,095 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,095 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-24 15:20:07,098 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 15:20:07,098 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 15:20:07,098 : INFO : EventManager : Event: ======'drop_target_d_drop_target_1_down'====== Args={'device': <drop_target.d_drop_target_1>}
+2021-03-24 15:20:07,099 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_mixed'====== Args={'down': 1}
+2021-03-24 15:20:07,099 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 15:20:07,099 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 15:20:07,099 : INFO : EventManager : Event: ======'drop_target_d_drop_target_2_down'====== Args={'device': <drop_target.d_drop_target_2>}
+2021-03-24 15:20:07,099 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:07,099 : INFO : BallController : Initial balls found: 0
+2021-03-24 15:20:07,101 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,102 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,102 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,103 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,103 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,104 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,104 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,104 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,105 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,105 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,106 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_3'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,106 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 15:20:07,107 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-24 15:20:07,107 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-24 15:20:07,109 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-24 15:20:07,123 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 15:20:07,127 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 15:20:07,134 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 15:20:07,134 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-24 15:20:07,134 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-24 15:20:07,135 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:07,135 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:07,149 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:07,154 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-24 15:20:07,154 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-24 15:20:07,155 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-24 15:20:07,156 : INFO : Mode.attract : Started. Priority: 10
+2021-03-24 15:20:07,156 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-24 15:20:07,156 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-24 15:20:07,157 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-24 15:20:07,158 : INFO : Machine : Starting the main run loop.
+2021-03-24 15:20:07,170 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:07,170 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 15:20:07,172 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 15:20:07,209 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:07,630 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-24 15:20:07,630 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:08,112 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:08,112 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:08,132 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:08,604 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-24 15:20:08,604 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:08,615 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:08,615 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:08,645 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:09,122 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-24 15:20:09,122 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:09,611 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:09,611 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:09,632 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:10,111 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-24 15:20:10,111 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:10,112 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:10,112 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:10,159 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:10,173 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 15:20:10,178 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 15:20:10,621 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-24 15:20:10,621 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_down'====== Args={}
+2021-03-24 15:20:11,111 : INFO : drop_target_bank.drop_target_bank_1 : 2 targets are down. Will reset those.
+2021-03-24 15:20:11,113 : INFO : coil.c_reset_drop_target_1 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:11,143 : INFO : coil.c_reset_drop_target_2 : Pulsing Driver for 30ms (0.9 pulse_power)
+2021-03-24 15:20:11,160 : INFO : Machine : Shutting down...
+2021-03-24 15:20:11,160 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-24 15:20:11,163 : INFO : root : MPF run loop ended.

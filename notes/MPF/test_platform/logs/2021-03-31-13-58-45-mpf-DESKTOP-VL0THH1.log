@@ -1,0 +1,26 @@
+2021-03-31 13:58:45,240 : INFO : root : Loading config.
+2021-03-31 13:58:45,246 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-31 13:58:45,246 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-31 13:58:45,363 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-31 13:58:45,364 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-31 13:58:45,365 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-31 13:58:45,367 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-31 13:58:45,367 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-31 13:58:45,368 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-31 13:58:45,368 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-31-13-58-45-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-31 13:58:45,368 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-31 13:58:45,368 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-31 13:58:45,368 : INFO : Machine : Platform: win32
+2021-03-31 13:58:45,368 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-31 13:58:45,368 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-31 13:59:07,447 : ERROR : root : 
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\commands\andys_game.py", line 284, in __init__
+    py_dbg.set_trace()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\commands\andys_game.py", line 284, in __init__
+    py_dbg.set_trace()
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

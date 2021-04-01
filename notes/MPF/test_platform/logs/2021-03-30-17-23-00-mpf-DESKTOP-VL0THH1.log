@@ -1,0 +1,59 @@
+2021-03-30 17:23:00,697 : INFO : root : Loading config.
+2021-03-30 17:23:00,703 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 17:23:00,704 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-30 17:23:00,846 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-30 17:23:00,847 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 17:23:00,848 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-30 17:23:00,850 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-30 17:23:00,851 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-30 17:23:00,852 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 17:23:00,852 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-17-23-00-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': True, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 17:23:00,853 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 17:23:00,853 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-30 17:23:00,853 : INFO : Machine : Platform: win32
+2021-03-30 17:23:00,853 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 17:23:00,853 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 17:23:00,857 : INFO : Machine : Initialise MPF.
+2021-03-30 17:23:01,553 : INFO : P-Roc : Connecting to P-ROC
+2021-03-30 17:23:01,557 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:01,557 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:02,563 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:02,563 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:03,022 : INFO : Machine : Starting the main run loop.
+2021-03-30 17:23:03,022 : INFO : Machine : Shutting down...
+2021-03-30 17:23:03,022 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-30 17:23:03,567 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:03,567 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:04,574 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:04,574 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:05,579 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:05,579 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:06,587 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:06,587 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:07,595 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:07,595 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:08,608 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:08,608 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:09,623 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:09,623 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:10,635 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:10,635 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:11,651 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:11,651 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:12,663 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:12,663 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 17:23:13,676 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 17:23:13,677 : INFO : P-Roc : Will retry creating PinPROC in 1s.

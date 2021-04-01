@@ -1,0 +1,17 @@
+2021-03-30 20:07:05,880 : INFO : root : Loading config.
+2021-03-30 20:07:05,885 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 20:07:05,886 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-30 20:07:05,996 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-30 20:07:05,997 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 20:07:05,998 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-30 20:07:05,999 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-30 20:07:06,000 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-30 20:07:06,001 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 20:07:06,001 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-20-07-05-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 20:07:06,001 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 20:07:06,001 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-30 20:07:06,001 : INFO : Machine : Platform: win32
+2021-03-30 20:07:06,001 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 20:07:06,001 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 20:07:06,004 : INFO : Machine : Initialise MPF.
+2021-03-30 20:07:06,129 : INFO : P-Roc : Connecting to P-ROC

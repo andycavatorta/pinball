@@ -1,0 +1,151 @@
+2021-03-18 19:22:17,804 : INFO : root : Loading config.
+2021-03-18 19:22:17,811 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 19:22:17,812 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 19:22:17,940 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 19:22:17,941 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 19:22:17,943 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-18 19:22:17,944 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-18 19:22:17,944 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-18-19-22-17-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-18 19:22:17,944 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-18 19:22:17,944 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 19:22:17,944 : INFO : Machine : Platform: win32
+2021-03-18 19:22:17,945 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-18 19:22:17,945 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-18 19:22:17,947 : INFO : Machine : Initialise MPF.
+2021-03-18 19:22:18,060 : INFO : P-Roc : Connecting to P-ROC
+2021-03-18 19:22:18,275 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-18 19:22:18,275 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-18 19:22:18,336 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,336 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,336 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,337 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,417 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,418 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,418 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,418 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,418 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,419 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,419 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,419 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-18 19:22:18,419 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 19:22:18,460 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-18 19:22:18,466 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 19:22:18,490 : INFO : SwitchController : Found active switch: (15, <Platform.P3-ROC>) <switch.s_trough1>
+2021-03-18 19:22:18,493 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-18 19:22:18,495 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-18 19:22:20,511 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-18 19:22:20,512 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-18 19:22:20,513 : INFO : ball_device.bd_trough : State: idle
+2021-03-18 19:22:20,522 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-18 19:22:20,527 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,527 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,531 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,531 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-18 19:22:20,532 : INFO : BallController : Initial balls found: 1
+2021-03-18 19:22:20,533 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,534 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,534 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,534 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,535 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,535 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,536 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,536 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 19:22:20,537 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-18 19:22:20,537 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-18 19:22:20,539 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-18 19:22:20,541 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-18 19:22:20,548 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-18 19:22:20,549 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-18 19:22:20,559 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-18 19:22:20,561 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-18 19:22:20,562 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-18 19:22:20,569 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-18 19:22:20,569 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-18 19:22:20,570 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-18 19:22:20,570 : INFO : Mode.attract : Started. Priority: 10
+2021-03-18 19:22:20,570 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-18 19:22:20,570 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-18 19:22:20,571 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-18 19:22:20,571 : INFO : Machine : Starting the main run loop.
+2021-03-18 19:22:20,588 : INFO : EventManager : Event: ======'slide_attract_started_created'====== Args={'_from_bcp': True}
+2021-03-18 19:22:20,590 : INFO : EventManager : Event: ======'slide_attract_started_active'====== Args={'_from_bcp': True}
+2021-03-18 19:22:26,445 : INFO : SwitchController : <<<<<<< 's_right_inlane' active >>>>>>>
+2021-03-18 19:22:26,446 : INFO : EventManager : Event: ======'sw_playfield_active'====== Args={}
+2021-03-18 19:22:26,446 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-18 19:22:26,446 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-18 19:22:29,119 : INFO : SwitchController : <<<<<<< 's_right_inlane' inactive >>>>>>>
+2021-03-18 19:22:33,090 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-18 19:22:33,155 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-18 19:22:33,156 : INFO : EventManager : Event: ======'request_to_start_game'====== Args={}
+2021-03-18 19:22:33,156 : INFO : EventManager : Event: ======'game_start'====== Args={'buttons': [], 'hold_time': 0.06199999999807915}
+2021-03-18 19:22:33,156 : INFO : EventManager : Event: ======'mode_game_will_start'====== Args={'buttons': [], 'hold_time': 0.06199999999807915}
+2021-03-18 19:22:33,157 : INFO : EventManager : Event: ======'mode_game_starting'====== Args={'buttons': [], 'hold_time': 0.06199999999807915}
+2021-03-18 19:22:33,157 : INFO : EventManager : Event: ======'mode_attract_will_stop'====== Args={}
+2021-03-18 19:22:33,157 : INFO : EventManager : Event: ======'mode_attract_stopping'====== Args={}
+2021-03-18 19:22:33,157 : INFO : Mode.attract : Stopped.
+2021-03-18 19:22:33,157 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-18 19:22:33,158 : INFO : EventManager : Event: ======'mode_attract_stopped'====== Args={}
+2021-03-18 19:22:33,158 : INFO : EventManager : Event: ======'clear'====== Args={'key': 'attract'}
+2021-03-18 19:22:33,159 : INFO : Mode.game : Started. Priority: 20
+2021-03-18 19:22:33,159 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-18 19:22:33,159 : INFO : EventManager : Event: ======'mode_game_started'====== Args={'buttons': [], 'hold_time': 0.06199999999807915}
+2021-03-18 19:22:33,160 : INFO : EventManager : Event: ======'game_will_start'====== Args={}
+2021-03-18 19:22:33,161 : INFO : EventManager : Event: ======'game_starting'====== Args={'game': <Mode.game>}
+2021-03-18 19:22:33,162 : INFO : EventManager : Event: ======'player_add_request'====== Args={}
+2021-03-18 19:22:33,162 : INFO : EventManager : Event: ======'player_will_add'====== Args={'number': 1}
+2021-03-18 19:22:33,162 : INFO : EventManager : Event: ======'player_adding'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-18 19:22:33,162 : INFO : EventManager : Event: ======'player_added'====== Args={'player': <Player 1>, 'num': 1}
+2021-03-18 19:22:33,162 : INFO : Mode.game : Player added successfully. Total players: 1
+2021-03-18 19:22:33,163 : INFO : EventManager : Event: ======'player_index'====== Args={'value': 0, 'prev_value': 0, 'change': 0, 'player_num': 1}
+2021-03-18 19:22:33,163 : INFO : EventManager : Event: ======'player_number'====== Args={'value': 1, 'prev_value': 1, 'change': 0, 'player_num': 1}
+2021-03-18 19:22:33,163 : INFO : EventManager : Event: ======'player_score'====== Args={'value': 0, 'prev_value': 0, 'change': 0, 'player_num': 1}
+2021-03-18 19:22:33,164 : INFO : EventManager : Event: ======'game_started'====== Args={}
+2021-03-18 19:22:33,165 : INFO : EventManager : Event: ======'player_turn_will_start'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-18 19:22:33,165 : INFO : EventManager : Event: ======'player_turn_starting'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-18 19:22:33,165 : INFO : EventManager : Event: ======'player_ball'====== Args={'value': 1, 'prev_value': 0, 'change': 1, 'player_num': 1}
+2021-03-18 19:22:33,166 : INFO : EventManager : Event: ======'player_turn_started'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-18 19:22:33,166 : INFO : EventManager : Event: ======'ball_will_start'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-18 19:22:33,166 : INFO : EventManager : Event: ======'ball_starting'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-18 19:22:33,167 : INFO : EventManager : Event: ======'balls_in_play'====== Args={'balls': 1}
+2021-03-18 19:22:33,167 : INFO : EventManager : Event: ======'ball_started'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-18 19:22:33,168 : INFO : EventManager : Event: ======'single_player_ball_started'====== Args={}
+2021-03-18 19:22:33,168 : ERROR : asyncio : Exception in callback AsyncMode._mode_ended(<Task finishe... playfield?')>)
+handle: <Handle AsyncMode._mode_ended(<Task finishe... playfield?')>)>
+Traceback (most recent call last):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\async_mode.py", line 40, in _mode_ended
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 89, in _run
+    await self._run_ball()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 106, in _run_ball
+    await self._start_ball(is_extra_ball)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 387, in _start_ball
+    self.machine.playfield.add_ball(player_controlled=True)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\playfield.py", line 237, in add_ball
+    "in your playfield?", 1)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\logging.py", line 171, in raise_config_error
+    raise ConfigFileError(msg, error_no, self.log.name if self.log else "", context, self._url_base)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in playfield.playfield: Missing a source device to request a ball. Did you define a default_source_device in your playfield? Error Code: CFE-playfield-1 (https://docs.missionpinball.org/en/0.54/logs/CFE-playfield-1.html)
+2021-03-18 19:22:33,174 : INFO : Machine : Shutting down...
+2021-03-18 19:22:33,174 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 19:22:33,177 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 745, in _run_loop
+    raise self._exception['exception']
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\async_mode.py", line 40, in _mode_ended
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 89, in _run
+    await self._run_ball()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 106, in _run_ball
+    await self._start_ball(is_extra_ball)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\modes\game\code\game.py", line 387, in _start_ball
+    self.machine.playfield.add_ball(player_controlled=True)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\playfield.py", line 237, in add_ball
+    "in your playfield?", 1)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\logging.py", line 171, in raise_config_error
+    raise ConfigFileError(msg, error_no, self.log.name if self.log else "", context, self._url_base)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in playfield.playfield: Missing a source device to request a ball. Did you define a default_source_device in your playfield? Error Code: CFE-playfield-1 (https://docs.missionpinball.org/en/0.54/logs/CFE-playfield-1.html)
+2021-03-18 19:22:33,179 : INFO : root : MPF run loop ended.

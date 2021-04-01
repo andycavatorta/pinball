@@ -1,0 +1,57 @@
+2021-03-18 15:25:16,317 : kivy : Factory: 184 symbols loaded
+2021-03-18 15:25:16,532 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 15:25:16,534 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 15:25:16,600 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 15:25:16,601 : kivy : Video: Provider: gstplayer
+2021-03-18 15:25:16,683 : kivy : Loading MPF-MC controller
+2021-03-18 15:25:16,690 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 15:25:16,691 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 15:25:16,692 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 15:25:16,747 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 15:25:16,748 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.
+2021-03-18 15:25:16,778 : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 15:25:16,784 : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\13e1228f6bf8ea03affe51e56cb3543a.mpf_cache
+2021-03-18 15:25:16,788 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 15:25:16,790 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 15:25:16,792 : mpfmc : Mission Pinball Framework Media Controller v0.54.0
+2021-03-18 15:25:16,793 : mpfmc : Mission Pinball Framework Game Engine v0.54.6
+2021-03-18 15:25:16,794 : mpfmc : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 15:25:16,795 : mpfmc : Starting clock at 60.0Hz
+2021-03-18 15:25:16,840 : kivy : Text: Provider: sdl2
+2021-03-18 15:25:16,898 : kivy : Window: Provider: sdl2
+2021-03-18 15:25:17,051 : kivy : GL: Using the "OpenGL" graphics system
+2021-03-18 15:25:17,052 : kivy : GL: GLEW initialization succeeded
+2021-03-18 15:25:17,055 : kivy : GL: Backend used <glew>
+2021-03-18 15:25:17,056 : kivy : GL: OpenGL version <b'4.4.0 - Build 20.19.15.4835'>
+2021-03-18 15:25:17,057 : kivy : GL: OpenGL vendor <b'Intel'>
+2021-03-18 15:25:17,058 : kivy : GL: OpenGL renderer <b'Intel(R) HD Graphics 5500'>
+2021-03-18 15:25:17,059 : kivy : GL: OpenGL parsed version: 4, 4
+2021-03-18 15:25:17,059 : kivy : GL: Shading version <b'4.40 - Build 20.19.15.4835'>
+2021-03-18 15:25:17,060 : kivy : GL: Texture max size <16384>
+2021-03-18 15:25:17,063 : kivy : GL: Texture max units <32>
+2021-03-18 15:25:17,095 : kivy : Window: auto add sdl2 input provider
+2021-03-18 15:25:17,097 : kivy : Window: virtual keyboard not allowed, single mode, not docked
+2021-03-18 15:25:17,113 : SoundSystem : SoundSystem: Using default 'sound_system' settings
+2021-03-18 15:25:17,573 : AudioInterface : Initialized
+2021-03-18 15:25:17,574 : SoundSystem : No audio tracks are specified in your machine config file. a track named 'default' has been created.
+2021-03-18 15:25:17,578 : kivy : Base: Start application main loop
+2021-03-18 15:25:17,579 : EventManager : Event: ======'display_window_initialized'====== Args={}
+2021-03-18 15:25:17,604 : mpfmc : Display: Setting 'window' as default display
+2021-03-18 15:25:17,614 : EventManager : Event: ======'displays_initialized'====== Args={}
+2021-03-18 15:25:17,615 : EventManager : Event: ======'slide_window_blank_created'====== Args={}
+2021-03-18 15:25:17,615 : EventManager : Event: ======'display_window_ready'====== Args={}
+2021-03-18 15:25:17,629 : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 15:25:17,633 : EventManager : Event: ======'mc_ready'====== Args={}
+2021-03-18 15:25:17,633 : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 15:25:17,636 : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-18 15:25:17,638 : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-18 15:25:17,638 : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-18 15:25:17,639 : EventManager : Event: ======'init_done'====== Args={}
+2021-03-18 15:25:17,640 : MPF-MC BCP Server : Starting up on localhost port 5050
+2021-03-18 15:25:17,645 : MPF-MC BCP Server : Waiting for a connection...
+2021-03-18 15:25:17,645 : mpfmc : SlidePlayer: Play called with settings={'slides': {welcome_slide-None-None: {'priority': None, 'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play', 'transition': None, 'transition_out': None}}}
+2021-03-18 15:25:17,650 : kivy : GL: NPOT texture support is available
+2021-03-18 15:25:17,654 : EventManager : Event: ======'slide_welcome_slide_created'====== Args={}
+2021-03-18 15:25:17,657 : EventManager : Event: ======'slide_welcome_slide_active'====== Args={}
+2021-03-18 15:25:17,667 : EventManager : Event: ======'client_disconnected'====== Args={'host': '127.0.0.1', 'port': 5050}
+2021-03-18 15:25:32,542 : kivy : Base: Leaving application in progress...

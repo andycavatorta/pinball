@@ -1,0 +1,428 @@
+2021-03-19 14:18:14,013 : INFO : root : Loading config.
+2021-03-19 14:18:14,019 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-19 14:18:14,020 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-19 14:18:14,213 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-19 14:18:14,214 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-19 14:18:14,215 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-19 14:18:14,217 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-19 14:18:14,218 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-19 14:18:14,219 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-19 14:18:14,219 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-19-14-18-14-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-19 14:18:14,219 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-19 14:18:14,219 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-19 14:18:14,219 : INFO : Machine : Platform: win32
+2021-03-19 14:18:14,220 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-19 14:18:14,220 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-19 14:18:14,222 : INFO : Machine : Initialise MPF.
+2021-03-19 14:18:14,376 : INFO : P-Roc : Connecting to P-ROC
+2021-03-19 14:18:14,381 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 14:18:14,381 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 14:18:15,382 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 14:18:15,382 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 14:18:16,383 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 14:18:16,383 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 14:18:18,545 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error reading Chip IP and Version. Read 7 words instead of 5. The first 2 were: 0x0 and 0x0.. Is your P/P3-Roc connected and powered up?
+2021-03-19 14:18:18,545 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 14:18:19,742 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-19 14:18:19,742 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-19 14:18:19,811 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,811 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,812 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,812 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,919 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,919 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,919 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-19 14:18:19,920 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-19 14:18:19,954 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:19,964 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-19 14:18:19,987 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_right_inlane>
+2021-03-19 14:18:19,987 : INFO : SwitchController : Found active switch: (15, <Platform.P3-ROC>) <switch.s_trough1>
+2021-03-19 14:18:19,987 : INFO : SwitchController : Found active switch: (4, <Platform.P3-ROC>) <switch.s_drop_target>
+2021-03-19 14:18:19,993 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-19 14:18:19,995 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-19 14:18:22,011 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-19 14:18:22,011 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-19 14:18:22,012 : INFO : ball_device.bd_trough : State: idle
+2021-03-19 14:18:22,030 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-19 14:18:22,036 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,037 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,040 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,041 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-19 14:18:22,041 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:18:22,042 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:18:22,042 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:22,043 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:22,044 : INFO : BallController : Initial balls found: 1
+2021-03-19 14:18:22,047 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 123, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,047 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 20, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,048 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,048 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,049 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,049 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,049 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 12, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,050 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-19 14:18:22,051 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-19 14:18:22,052 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-19 14:18:22,052 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-19 14:18:22,069 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:22,083 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:22,086 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:22,086 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-19 14:18:22,086 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-19 14:18:22,087 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:18:22,087 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:22,097 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-19 14:18:22,098 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:22,098 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-19 14:18:22,100 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-19 14:18:22,100 : INFO : Mode.attract : Started. Priority: 10
+2021-03-19 14:18:22,100 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:18:22,101 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-19 14:18:22,102 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-19 14:18:22,103 : INFO : Machine : Starting the main run loop.
+2021-03-19 14:18:22,117 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:18:22,124 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:22,129 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:22,591 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:22,591 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:18:22,591 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:23,039 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:18:25,113 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:25,117 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:25,384 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:18:25,384 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:18:25,385 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:18:25,385 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:25,385 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:26,385 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:18:26,385 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:26,418 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:18:26,878 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:26,878 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:18:26,878 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:27,363 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:18:27,363 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:18:27,363 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:18:27,364 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:27,364 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:28,100 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:28,103 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:28,377 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:18:28,377 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:28,411 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:18:28,870 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:18:28,870 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:28,870 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:28,871 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:29,874 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:18:31,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:31,118 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:34,097 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:34,099 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:34,101 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:37,105 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:37,114 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:37,116 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:40,099 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:40,101 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:40,104 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:41,006 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:18:41,006 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:18:41,006 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:18:41,006 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:41,006 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:42,003 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:18:42,003 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:42,037 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:18:42,504 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:42,504 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:18:42,504 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:42,853 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:18:42,854 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:18:42,854 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:18:42,854 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:42,855 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:43,106 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:43,111 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:43,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:43,839 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:18:43,839 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:18:43,874 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:18:44,342 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:18:44,342 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:18:44,342 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:18:44,342 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:18:45,339 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:18:46,100 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:46,103 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:46,106 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:49,102 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:49,110 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:49,113 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:52,106 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:52,109 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:52,111 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:55,110 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:55,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:55,120 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:18:58,106 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:18:58,108 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:18:58,109 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:01,108 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:01,113 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:01,118 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:04,099 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:04,103 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:04,104 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:07,104 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:07,108 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:07,111 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:10,103 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:10,106 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:10,108 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:13,103 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:13,108 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:13,111 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:16,100 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:16,103 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:16,104 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:19,099 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:19,107 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:19,110 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:22,100 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:22,102 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:22,104 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:25,101 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:25,105 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:25,108 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:28,100 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:28,103 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:28,104 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:31,108 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:31,113 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:31,120 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:34,101 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:34,104 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:34,106 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:37,095 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:37,099 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:37,102 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:40,103 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:40,105 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:40,108 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:43,102 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:43,108 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:43,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:46,100 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:46,102 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:46,104 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:49,102 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:49,107 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:49,110 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:52,099 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:52,103 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:52,105 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:55,104 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:55,108 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:55,111 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:19:58,100 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:19:58,105 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:19:58,107 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:01,099 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:01,106 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:01,109 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:04,101 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:04,104 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:04,107 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:06,134 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:20:06,135 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:20:06,135 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:20:06,135 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:06,135 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:07,105 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:07,109 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:07,111 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:07,134 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:07,134 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:07,167 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:20:07,632 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:07,632 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:20:07,632 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:20:07,959 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:20:07,959 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:20:07,959 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:20:07,959 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:07,959 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:08,959 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:08,959 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:08,992 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:20:09,462 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:09,462 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:20:09,462 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:20:10,100 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:10,103 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:10,106 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:13,100 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:13,105 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:13,108 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:16,108 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:16,110 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:16,112 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:19,109 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:19,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:19,119 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:22,095 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:22,097 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:22,100 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:25,104 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:25,108 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:25,111 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:25,707 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:20:25,707 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:20:25,707 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:20:25,708 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:25,708 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:26,711 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:26,711 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:26,733 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:20:27,213 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:20:27,213 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:27,213 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:27,213 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:20:27,458 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:20:27,459 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:20:27,459 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:20:27,459 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:27,459 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:28,104 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:28,107 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:28,108 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:28,211 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:28,211 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:28,234 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:20:28,461 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:28,461 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:28,709 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:28,961 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:20:28,961 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:20:29,666 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:20:29,666 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:20:29,667 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:20:29,667 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:29,667 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:20:30,670 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:20:30,670 : INFO : coil.c_reset_drop_target : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-19 14:20:30,704 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:20:31,099 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:31,103 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:31,107 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:31,169 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:20:31,169 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:20:31,169 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:20:34,098 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:34,102 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:34,104 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:37,102 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:37,107 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:37,109 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:40,103 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:40,105 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:40,107 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:43,107 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:43,110 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:43,114 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:46,101 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:46,102 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:46,103 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:49,102 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:49,108 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:49,110 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:52,100 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:52,103 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:52,105 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:55,102 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:55,106 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:55,109 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:20:58,108 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:20:58,111 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:20:58,113 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:01,104 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:01,109 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:01,111 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:04,094 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:04,096 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:04,098 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:07,094 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:07,141 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:07,146 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:10,101 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:10,103 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:10,105 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:13,103 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:13,108 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:13,110 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:16,101 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:16,107 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:16,110 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:19,106 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:19,110 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:19,117 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:22,099 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:22,102 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:22,105 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:25,101 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:25,114 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:25,118 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:28,101 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:28,104 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:28,106 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:31,105 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:31,111 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:31,115 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:34,104 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:34,109 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:34,112 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:37,109 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:37,116 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:37,121 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:40,096 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:40,098 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:40,100 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:43,102 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:43,107 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:43,109 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:46,104 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:46,107 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:46,108 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:49,100 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:49,104 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:49,107 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:52,098 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:52,101 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:52,103 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:55,101 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:55,104 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:55,108 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:21:58,102 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:21:58,107 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:21:58,109 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:22:01,092 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:22:01,095 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:22:01,098 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:22:04,101 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:22:04,104 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:22:04,105 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:22:07,106 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:22:07,112 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:22:07,120 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:22:09,727 : INFO : Machine : Shutting down...
+2021-03-19 14:22:09,727 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-19 14:22:09,731 : INFO : root : MPF run loop ended.

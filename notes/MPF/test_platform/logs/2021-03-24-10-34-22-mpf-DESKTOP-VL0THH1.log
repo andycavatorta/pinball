@@ -1,0 +1,326 @@
+2021-03-24 10:34:22,445 : INFO : root : Loading config.
+2021-03-24 10:34:22,451 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-24 10:34:22,452 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-24 10:34:22,601 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-24 10:34:22,602 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-24 10:34:22,603 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-24 10:34:22,604 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-24 10:34:22,606 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-24 10:34:22,607 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-24 10:34:22,607 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-24-10-34-22-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-24 10:34:22,607 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-24 10:34:22,607 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-24 10:34:22,608 : INFO : Machine : Platform: win32
+2021-03-24 10:34:22,608 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-24 10:34:22,608 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-24 10:34:22,613 : INFO : Machine : Initialise MPF.
+2021-03-24 10:34:22,745 : INFO : P-Roc : Connecting to P-ROC
+2021-03-24 10:34:23,155 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-24 10:34:23,155 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-24 10:34:23,224 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,224 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,224 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,224 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,321 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,321 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-24 10:34:23,322 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-24 10:34:23,370 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-24 10:34:23,378 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-24 10:34:23,407 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-24 10:34:23,411 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-24 10:34:25,428 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-24 10:34:25,428 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-24 10:34:25,428 : INFO : ball_device.bd_trough : State: idle
+2021-03-24 10:34:25,441 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-24 10:34:25,449 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,450 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,453 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,453 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-24 10:34:25,454 : INFO : BallController : Initial balls found: 0
+2021-03-24 10:34:25,455 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,456 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,456 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,457 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,457 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,457 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,458 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,459 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,460 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,461 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,461 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_3'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,462 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 10:34:25,463 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-24 10:34:25,464 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-24 10:34:25,465 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-24 10:34:25,479 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:25,482 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:25,486 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-24 10:34:25,487 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-24 10:34:25,487 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-24 10:34:25,503 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:25,503 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-24 10:34:25,503 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-24 10:34:25,504 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-24 10:34:25,504 : INFO : Mode.attract : Started. Priority: 10
+2021-03-24 10:34:25,505 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-24 10:34:25,505 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-24 10:34:25,507 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-24 10:34:25,508 : INFO : Machine : Starting the main run loop.
+2021-03-24 10:34:25,516 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:25,521 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:28,520 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:28,522 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:31,519 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:31,521 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:34,531 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:34,533 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:37,532 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:37,534 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:37,537 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:40,525 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:40,531 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:40,533 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:43,525 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:43,527 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:43,529 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:46,528 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:46,532 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:46,536 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:49,514 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:49,518 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:49,522 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:52,533 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:52,539 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:52,543 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:55,522 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:55,526 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:55,528 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:34:58,523 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:34:58,544 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:34:58,548 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:01,528 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:01,530 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:01,532 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:04,533 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:04,539 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:04,543 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:07,530 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:07,537 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:07,540 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:09,158 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:09,299 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:10,050 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:10,133 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:10,525 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:10,530 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:10,538 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:13,527 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:13,532 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:13,535 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:13,592 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:13,593 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:13,593 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:13,733 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:13,734 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:13,795 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:13,795 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:14,199 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:14,428 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:14,483 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_pop_bumper_1 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 10:35:15,753 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 10:35:16,137 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 10:35:16,137 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 10:35:16,137 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 10:35:16,149 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 10:35:16,531 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:16,537 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:16,542 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:19,525 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:19,528 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:19,530 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:19,894 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:19,959 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:22,541 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:22,554 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:22,559 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:22,592 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:22,809 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:23,089 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:23,154 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:23,229 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:23,353 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:24,527 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:24,722 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:25,523 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:25,528 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:25,535 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:27,709 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:27,951 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:28,532 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:28,543 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:28,571 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:30,113 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 10:35:30,495 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:30,496 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:30,496 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:30,692 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:30,693 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:30,693 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:30,693 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:31,473 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:31,474 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:31,474 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:31,519 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:31,523 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:31,525 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:31,576 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:31,577 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:31,577 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:31,577 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:32,037 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:32,199 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:32,302 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:32,466 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:33,730 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:33,731 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:33,731 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:33,920 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:33,920 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:33,943 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:33,944 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:34,079 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:34,230 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:34,313 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:34,432 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:34,526 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:34,533 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:34,537 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:34,659 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:34,786 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:34,787 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:34,787 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:34,787 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:34,916 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:34,917 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:34,993 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:35,112 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:35,113 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,130 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,130 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:35,183 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,183 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,218 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:35,298 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:35,299 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,331 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,332 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:35,365 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,365 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,591 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:35,689 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:35,690 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,702 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,702 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:35,792 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,792 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,847 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:35,944 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:35,945 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:35,956 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:35,956 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:36,036 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:36,036 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:36,049 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:36,134 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:36,135 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:36,179 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:36,179 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:36,213 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:36,213 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:36,277 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:36,342 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:36,343 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:36,386 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:36,387 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:36,440 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:36,441 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:37,575 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:37,584 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:37,598 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:38,069 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:38,177 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:38,618 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:38,726 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:39,001 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:39,143 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:39,143 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:39,143 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:39,144 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:39,255 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:39,256 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:39,268 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:39,398 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:39,398 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:39,515 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:39,571 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:39,852 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,018 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:40,085 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:40,085 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:40,204 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,204 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:40,284 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,284 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:40,427 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:40,460 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:40,461 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:40,526 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:40,532 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:40,535 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:40,616 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,616 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:40,650 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,650 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:40,749 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:40,772 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:40,772 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:40,872 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,873 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:40,905 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:40,906 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:43,532 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:43,536 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:43,539 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:43,702 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:43,770 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:43,847 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:43,934 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:44,538 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:44,679 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:44,810 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:44,939 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:44,952 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:45,064 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:45,886 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:45,995 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:45,996 : INFO : EventManager : Event: ======'flipper_cancel'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:46,040 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:46,040 : INFO : EventManager : Event: ======'both_flippers_one'====== Args={'triggering_group': 1, 'triggering_switch': 's_left_flipper'}
+2021-03-24 10:35:46,169 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:46,170 : INFO : EventManager : Event: ======'both_flippers_inactive'====== Args={'triggering_group': 2, 'triggering_switch': 's_right_flipper'}
+2021-03-24 10:35:46,476 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 10:35:46,603 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 10:35:46,617 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 10:35:46,635 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 10:35:46,663 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 10:35:46,678 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 10:35:46,813 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 10:35:47,241 : INFO : Machine : Shutting down...
+2021-03-24 10:35:47,241 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-24 10:35:47,245 : INFO : root : MPF run loop ended.

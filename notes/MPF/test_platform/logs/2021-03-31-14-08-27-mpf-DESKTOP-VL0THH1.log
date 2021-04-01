@@ -1,0 +1,129 @@
+2021-03-31 14:08:27,215 : INFO : root : Loading config.
+2021-03-31 14:08:27,220 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-31 14:08:27,221 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-31 14:08:27,332 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-31 14:08:27,333 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-31 14:08:27,335 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-31 14:08:27,337 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-31 14:08:27,338 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-31 14:08:27,339 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-31 14:08:27,339 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-31-14-08-27-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-31 14:08:27,339 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-31 14:08:27,339 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-31 14:08:27,339 : INFO : Machine : Platform: win32
+2021-03-31 14:08:27,339 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-31 14:08:27,339 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-31 14:08:28,347 : INFO : Machine : Initialise MPF.
+2021-03-31 14:08:28,452 : INFO : P-Roc : Connecting to P-ROC
+2021-03-31 14:08:28,675 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-31 14:08:28,675 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-31 14:08:28,862 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,862 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,862 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,863 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,937 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-31 14:08:28,938 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-31 14:08:29,126 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-31 14:10:03,185 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-31 14:10:03,219 : INFO : ball_device.bd_trough : State: idle
+2021-03-31 14:10:03,219 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-31 14:10:03,220 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-31 14:10:03,220 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-31 14:10:03,220 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-31 14:10:03,221 : INFO : drop_target_bank.drop_target_bank_1 : All targets are already up. Will not reset bank.
+2021-03-31 14:10:03,231 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-31 14:10:03,231 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-31 14:10:03,232 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-31 14:10:03,232 : INFO : Mode.attract : Started. Priority: 10
+2021-03-31 14:10:03,232 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-31 14:10:03,232 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-31 14:10:03,232 : ERROR : asyncio : Exception in callback EventManager.process_event_queue()
+handle: <Handle EventManager.process_event_queue()>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 683, in _run_handlers
+    result = handler.callback(**merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 323, in config_play_callback
+    **kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 60, in play
+    self._update_show(show.name, show_settings, context, queue, start_time, show_tokens)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 220, in _update_show
+    action(key, instance_dict, show_name, show_settings, queue, start_time, placeholder_args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 115, in _play
+    start_running, stop_callback)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\show_controller.py", line 138, in replace_or_advance_show
+    start_callback=start_callback
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 298, in play_with_config
+    show_config=show_config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 518, in __init__
+    self._start_play()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 543, in _start_play
+    self._start_now()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 641, in _start_now
+    pause_after_step=pause_after_step)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 673, in _run_next_step
+    for item_type, item_dict in self.show_steps[self.current_step_index].items():
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 770, in process_event_queue
+    **event[3])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 729, in _process_event
+    result = self._run_handlers(event, ev_type, kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 685, in _run_handlers
+    raise Exception("Exception while processing {} for event {}. {}".format(handler, event, e)) from e
+Exception: Exception while processing RegisteredHandler(callback=<bound method ConfigPlayer.config_play_callback of ConfigPlayer.show_player/shows>, priority=11, kwargs={'calling_context': 'mode_attract_started.1', 'mode': <Mode.attract>, 'settings': {attract_light_show-None-None: {'speed': 4.0, 'priority': 0, 'action': 'play', 'show': None, 'block_queue': False, 'start_step': <NativeTemplate 1>, 'start_running': <Template True>, 'loops': -1, 'sync_ms': None, 'manual_advance': False, 'show_queue': None, 'key': None, 'show_tokens': {}, 'events_when_played': [], 'events_when_stopped': [], 'events_when_looped': [], 'events_when_paused': [], 'events_when_resumed': [], 'events_when_advanced': [], 'events_when_stepped_back': [], 'events_when_updated': [], 'events_when_completed': []}}}, key=UUID('bdf8882a-9f36-4d27-bb94-d90d83e2be02'), condition=None, blocking_facility=None) for event mode_attract_started. list index out of range
+2021-03-31 14:10:06,808 : INFO : Machine : Starting the main run loop.
+2021-03-31 14:10:06,808 : INFO : Machine : Shutting down...
+2021-03-31 14:10:06,808 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-31 14:10:06,810 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 683, in _run_handlers
+    result = handler.callback(**merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 323, in config_play_callback
+    **kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 60, in play
+    self._update_show(show.name, show_settings, context, queue, start_time, show_tokens)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 220, in _update_show
+    action(key, instance_dict, show_name, show_settings, queue, start_time, placeholder_args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\show_player.py", line 115, in _play
+    start_running, stop_callback)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\show_controller.py", line 138, in replace_or_advance_show
+    start_callback=start_callback
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 298, in play_with_config
+    show_config=show_config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 518, in __init__
+    self._start_play()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 543, in _start_play
+    self._start_now()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 641, in _start_now
+    pause_after_step=pause_after_step)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\assets\show.py", line 673, in _run_next_step
+    for item_type, item_dict in self.show_steps[self.current_step_index].items():
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 754, in _run_loop
+    raise self._exception['exception']
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 770, in process_event_queue
+    **event[3])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 729, in _process_event
+    result = self._run_handlers(event, ev_type, kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 685, in _run_handlers
+    raise Exception("Exception while processing {} for event {}. {}".format(handler, event, e)) from e
+Exception: Exception while processing RegisteredHandler(callback=<bound method ConfigPlayer.config_play_callback of ConfigPlayer.show_player/shows>, priority=11, kwargs={'calling_context': 'mode_attract_started.1', 'mode': <Mode.attract>, 'settings': {attract_light_show-None-None: {'speed': 4.0, 'priority': 0, 'action': 'play', 'show': None, 'block_queue': False, 'start_step': <NativeTemplate 1>, 'start_running': <Template True>, 'loops': -1, 'sync_ms': None, 'manual_advance': False, 'show_queue': None, 'key': None, 'show_tokens': {}, 'events_when_played': [], 'events_when_stopped': [], 'events_when_looped': [], 'events_when_paused': [], 'events_when_resumed': [], 'events_when_advanced': [], 'events_when_stepped_back': [], 'events_when_updated': [], 'events_when_completed': []}}}, key=UUID('bdf8882a-9f36-4d27-bb94-d90d83e2be02'), condition=None, blocking_facility=None) for event mode_attract_started. list index out of range
+2021-03-31 14:10:06,811 : INFO : root : MPF run loop ended.

@@ -1,0 +1,43 @@
+2021-03-30 15:31:45,660 : INFO : root : Loading config.
+2021-03-30 15:31:45,665 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 15:31:45,666 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-30 15:31:45,764 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-30 15:31:45,765 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 15:31:45,766 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-30 15:31:45,767 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-30 15:31:45,768 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-30 15:31:45,769 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 15:31:45,769 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-15-31-45-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': True, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 15:31:45,769 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 15:31:45,769 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-30 15:31:45,769 : INFO : Machine : Platform: win32
+2021-03-30 15:31:45,769 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 15:31:45,769 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 15:31:45,771 : INFO : Machine : Initialise MPF.
+2021-03-30 15:31:46,150 : INFO : P-Roc : Connecting to P-ROC
+2021-03-30 15:31:46,152 : INFO : Machine : Starting the main run loop.
+2021-03-30 15:31:46,152 : INFO : Machine : Shutting down...
+2021-03-30 15:31:46,152 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-30 15:31:46,154 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error FT_OpenEx(3), device
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:46,154 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:47,169 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error FT_OpenEx(3), device
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:47,169 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:48,174 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error FT_OpenEx(3), device
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:48,174 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:49,177 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error FT_OpenEx(3), device
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:49,177 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:50,180 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error FT_OpenEx(3), device
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:50,180 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:51,182 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:51,183 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:52,201 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:31:52,201 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:31:53,415 : ERROR : root : Received second SIGINT. Will exit ungracefully!
+NoneType: None

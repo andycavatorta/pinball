@@ -1,0 +1,7 @@
+2021-03-18 20:07:31,827 : INFO : root : Loading config.
+2021-03-18 20:07:31,836 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 20:07:31,836 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 20:07:31,955 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 20:07:31,957 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 20:07:31,959 : WARNING : ConfigProcessor : Cache file not found: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-18 20:07:31,959 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\base\config\base.yaml.

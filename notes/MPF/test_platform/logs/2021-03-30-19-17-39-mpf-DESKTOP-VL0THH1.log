@@ -1,0 +1,137 @@
+2021-03-30 19:17:39,812 : INFO : root : Loading config.
+2021-03-30 19:17:39,817 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 19:17:39,818 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-30 19:17:39,931 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-30 19:17:39,932 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 19:17:39,933 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-30 19:17:39,936 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-30 19:17:39,937 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-30 19:17:39,937 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 19:17:39,938 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-19-17-39-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 19:17:39,938 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 19:17:39,938 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-30 19:17:39,938 : INFO : Machine : Platform: win32
+2021-03-30 19:17:39,938 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 19:17:39,938 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 19:17:39,942 : INFO : Machine : Initialise MPF.
+2021-03-30 19:17:40,056 : INFO : P-Roc : Connecting to P-ROC
+2021-03-30 19:17:40,295 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-30 19:17:40,295 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-30 19:18:08,315 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,315 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,315 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,315 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,388 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,388 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,388 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-30 19:18:08,389 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-30 19:21:02,909 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-30 19:21:07,652 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<SystemWideDevice.device_added_system_wide() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py:15> exception=BdbQuit()>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py", line 17, in device_added_system_wide
+    await self._initialize()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 94, in _initialize
+    self.hw_driver = self.platform.configure_driver(config, self.config['number'], platform_settings)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-30 19:21:07,653 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<SystemWideDevice.device_added_system_wide() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py:15> exception=BdbQuit()>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py", line 17, in device_added_system_wide
+    await self._initialize()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 94, in _initialize
+    self.hw_driver = self.platform.configure_driver(config, self.config['number'], platform_settings)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-30 19:21:07,654 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<SystemWideDevice.device_added_system_wide() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py:15> exception=BdbQuit()>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py", line 17, in device_added_system_wide
+    await self._initialize()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 94, in _initialize
+    self.hw_driver = self.platform.configure_driver(config, self.config['number'], platform_settings)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-30 19:21:07,655 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<SystemWideDevice.device_added_system_wide() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py:15> exception=BdbQuit()>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py", line 17, in device_added_system_wide
+    await self._initialize()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 94, in _initialize
+    self.hw_driver = self.platform.configure_driver(config, self.config['number'], platform_settings)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-30 19:21:07,656 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-30 19:21:07,656 : INFO : Machine : Starting the main run loop.
+2021-03-30 19:21:07,657 : INFO : Machine : Shutting down...
+2021-03-30 19:21:07,657 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-30 19:21:07,659 : ERROR : asyncio : Task exception was never retrieved
+future: <Task finished coro=<SwitchController._initialize_switches() done, defined at c:\users\noah\mpfenv\lib\site-packages\mpf\core\switch_controller.py:79> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\switch_controller.py", line 81, in _initialize_switches
+    await self.update_switches_from_hw()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\switch_controller.py", line 106, in update_switches_from_hw
+    switch_states = await platform.get_hw_switch_states()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 518, in get_hw_switch_states
+    states = await self.run_proc_cmd("switch_get_states")
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 210, in run_proc_cmd
+    asyncio.run_coroutine_threadsafe(self.proc_process.run_command(cmd, *args), self.proc_process_instance),
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\tasks.py", line 846, in run_coroutine_threadsafe
+    loop.call_soon_threadsafe(callback)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 736, in call_soon_threadsafe
+    self._check_closed()
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 479, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2021-03-30 19:21:07,679 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 745, in _run_loop
+    raise self._exception['exception']
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\system_wide_device.py", line 17, in device_added_system_wide
+    await self._initialize()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 94, in _initialize
+    self.hw_driver = self.platform.configure_driver(config, self.config['number'], platform_settings)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 324, in configure_driver
+    if number.startswith("direct-"):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-30 19:21:07,679 : INFO : root : MPF run loop ended.

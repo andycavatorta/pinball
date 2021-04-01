@@ -1,0 +1,407 @@
+2021-03-19 14:03:23,164 : INFO : root : Loading config.
+2021-03-19 14:03:23,171 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-19 14:03:23,171 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-19 14:03:23,308 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-19 14:03:23,309 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-19 14:03:23,310 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-19 14:03:23,311 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-19 14:03:23,312 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-19 14:03:23,313 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-19 14:03:23,313 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-19-14-03-23-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-19 14:03:23,313 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-19 14:03:23,313 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-19 14:03:23,313 : INFO : Machine : Platform: win32
+2021-03-19 14:03:23,314 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-19 14:03:23,314 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-19 14:03:23,318 : INFO : Machine : Initialise MPF.
+2021-03-19 14:03:23,425 : INFO : P-Roc : Connecting to P-ROC
+2021-03-19 14:03:23,638 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-19 14:03:23,638 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-19 14:03:23,697 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,697 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,697 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,698 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,772 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,773 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,773 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,774 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,774 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,774 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,775 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,775 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-19 14:03:23,775 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-19 14:03:23,818 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:03:23,821 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-19 14:03:23,845 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_right_inlane>
+2021-03-19 14:03:23,845 : INFO : SwitchController : Found active switch: (15, <Platform.P3-ROC>) <switch.s_trough1>
+2021-03-19 14:03:23,845 : INFO : SwitchController : Found active switch: (4, <Platform.P3-ROC>) <switch.s_drop_target>
+2021-03-19 14:03:23,852 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-19 14:03:23,854 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-19 14:03:25,869 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-19 14:03:25,869 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-19 14:03:25,870 : INFO : ball_device.bd_trough : State: idle
+2021-03-19 14:03:25,892 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-19 14:03:25,900 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,901 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,903 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,903 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-19 14:03:25,903 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:03:25,903 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-19 14:03:25,904 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:03:25,904 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:03:25,904 : INFO : BallController : Initial balls found: 1
+2021-03-19 14:03:25,906 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 97, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,906 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 20, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,907 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,907 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,908 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 8, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,908 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,908 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 11, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,909 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 5, 'prev_value': None, 'change': True}
+2021-03-19 14:03:25,910 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-19 14:03:25,910 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-19 14:03:25,911 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-19 14:03:25,923 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:25,927 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:25,930 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-19 14:03:25,930 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-19 14:03:25,930 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:03:25,931 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:25,943 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-19 14:03:25,943 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:25,944 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-19 14:03:25,944 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-19 14:03:25,944 : INFO : Mode.attract : Started. Priority: 10
+2021-03-19 14:03:25,944 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:03:25,944 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-19 14:03:25,945 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-19 14:03:25,947 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:25,949 : INFO : Machine : Starting the main run loop.
+2021-03-19 14:03:25,958 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:25,960 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:25,961 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:03:26,423 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:03:26,423 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:03:26,423 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:03:26,894 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:03:29,463 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:29,467 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:31,963 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:31,966 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:34,960 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:34,963 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:37,970 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:37,972 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:37,974 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:40,955 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:40,962 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:40,965 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:43,963 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:43,965 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:43,967 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,727 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-19 14:03:45,793 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-19 14:03:45,793 : INFO : EventManager : Event: ======'request_to_start_game'====== Args={}
+2021-03-19 14:03:45,793 : INFO : EventManager : Event: ======'game_start'====== Args={'buttons': [], 'hold_time': 0.06300000000919681}
+2021-03-19 14:03:45,793 : INFO : EventManager : Event: ======'mode_game_will_start'====== Args={'buttons': [], 'hold_time': 0.06300000000919681}
+2021-03-19 14:03:45,794 : INFO : EventManager : Event: ======'mode_game_starting'====== Args={'buttons': [], 'hold_time': 0.06300000000919681}
+2021-03-19 14:03:45,794 : INFO : EventManager : Event: ======'mode_attract_will_stop'====== Args={}
+2021-03-19 14:03:45,794 : INFO : EventManager : Event: ======'mode_attract_stopping'====== Args={}
+2021-03-19 14:03:45,794 : INFO : Mode.attract : Stopped.
+2021-03-19 14:03:45,794 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:03:45,795 : INFO : EventManager : Event: ======'mode_attract_stopped'====== Args={}
+2021-03-19 14:03:45,795 : INFO : EventManager : Event: ======'clear'====== Args={'key': 'attract'}
+2021-03-19 14:03:45,796 : INFO : Mode.game : Started. Priority: 20
+2021-03-19 14:03:45,796 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:03:45,796 : INFO : EventManager : Event: ======'mode_game_started'====== Args={'buttons': [], 'hold_time': 0.06300000000919681}
+2021-03-19 14:03:45,797 : INFO : EventManager : Event: ======'game_will_start'====== Args={}
+2021-03-19 14:03:45,799 : INFO : EventManager : Event: ======'game_starting'====== Args={'game': <Mode.game>}
+2021-03-19 14:03:45,799 : INFO : EventManager : Event: ======'player_add_request'====== Args={}
+2021-03-19 14:03:45,799 : INFO : EventManager : Event: ======'player_will_add'====== Args={'number': 1}
+2021-03-19 14:03:45,799 : INFO : EventManager : Event: ======'player_adding'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:03:45,799 : INFO : EventManager : Event: ======'player_added'====== Args={'player': <Player 1>, 'num': 1}
+2021-03-19 14:03:45,799 : INFO : Mode.game : Player added successfully. Total players: 1
+2021-03-19 14:03:45,800 : INFO : EventManager : Event: ======'player_index'====== Args={'value': 0, 'prev_value': 0, 'change': 0, 'player_num': 1}
+2021-03-19 14:03:45,800 : INFO : EventManager : Event: ======'player_number'====== Args={'value': 1, 'prev_value': 1, 'change': 0, 'player_num': 1}
+2021-03-19 14:03:45,800 : INFO : EventManager : Event: ======'player_score'====== Args={'value': 0, 'prev_value': 0, 'change': 0, 'player_num': 1}
+2021-03-19 14:03:45,800 : INFO : EventManager : Event: ======'game_started'====== Args={}
+2021-03-19 14:03:45,801 : INFO : EventManager : Event: ======'player_turn_will_start'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:03:45,801 : INFO : EventManager : Event: ======'player_turn_starting'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:03:45,801 : INFO : EventManager : Event: ======'player_ball'====== Args={'value': 1, 'prev_value': 0, 'change': 1, 'player_num': 1}
+2021-03-19 14:03:45,802 : INFO : EventManager : Event: ======'player_turn_started'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:03:45,802 : INFO : EventManager : Event: ======'ball_will_start'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,803 : INFO : EventManager : Event: ======'ball_starting'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,803 : INFO : EventManager : Event: ======'balls_in_play'====== Args={'balls': 1}
+2021-03-19 14:03:45,803 : INFO : EventManager : Event: ======'ball_started'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,804 : INFO : EventManager : Event: ======'mode_base_will_start'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,805 : INFO : EventManager : Event: ======'mode_base_starting'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,805 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:03:45,805 : INFO : Mode.base : Started. Priority: 100
+2021-03-19 14:03:45,806 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:03:45,806 : INFO : EventManager : Event: ======'mode_base_started'====== Args={'player': 1, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:03:45,807 : INFO : EventManager : Event: ======'single_player_ball_started'====== Args={}
+2021-03-19 14:03:45,807 : INFO : ball_device.bd_trough : Setting up player-controlled eject. Balls: 1, Target: <playfield.playfield>, player_controlled_eject_event: None
+2021-03-19 14:03:45,807 : INFO : ball_device.bd_trough : Adding 1 ball(s) to the eject_queue with target <playfield.playfield>.
+2021-03-19 14:03:45,808 : INFO : EventManager : Event: ======'balldevice_balls_available'====== Args={}
+2021-03-19 14:03:45,808 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:03:45,808 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 0}
+2021-03-19 14:03:45,808 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:03:45,809 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:03:45,809 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 0}
+2021-03-19 14:03:45,810 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:03:45,810 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:45,812 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,814 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,816 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,819 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,832 : INFO : EventManager : Event: ======'slide_base.slide_player-mode_base_started_created'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,833 : INFO : EventManager : Event: ======'slide_base.slide_player-mode_base_started_active'====== Args={'_from_bcp': True}
+2021-03-19 14:03:45,975 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-19 14:03:45,976 : INFO : EventManager : Event: ======'sw_start'====== Args={}
+2021-03-19 14:03:45,976 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 12, 'prev_value': 11, 'change': 1}
+2021-03-19 14:03:45,976 : INFO : EventManager : Event: ======'player_add_request'====== Args={}
+2021-03-19 14:03:45,977 : INFO : EventManager : Event: ======'player_will_add'====== Args={'number': 2}
+2021-03-19 14:03:45,977 : INFO : EventManager : Event: ======'player_adding'====== Args={'player': <Player 2>, 'number': 2}
+2021-03-19 14:03:45,977 : INFO : EventManager : Event: ======'player_added'====== Args={'player': <Player 2>, 'num': 2}
+2021-03-19 14:03:45,977 : INFO : Mode.game : Player added successfully. Total players: 2
+2021-03-19 14:03:45,977 : INFO : EventManager : Event: ======'multiplayer_game'====== Args={}
+2021-03-19 14:03:45,980 : INFO : EventManager : Event: ======'player_index'====== Args={'value': 1, 'prev_value': 1, 'change': 0, 'player_num': 2}
+2021-03-19 14:03:45,980 : INFO : EventManager : Event: ======'player_number'====== Args={'value': 2, 'prev_value': 2, 'change': 0, 'player_num': 2}
+2021-03-19 14:03:45,981 : INFO : EventManager : Event: ======'player_score'====== Args={'value': 0, 'prev_value': 0, 'change': 0, 'player_num': 2}
+2021-03-19 14:03:46,079 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-19 14:03:46,789 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:03:47,792 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:03:54,394 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:03:54,394 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:03:54,395 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:03:54,395 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:03:54,395 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 98, 'prev_value': 97, 'change': 1}
+2021-03-19 14:03:55,388 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:03:55,388 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:55,421 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:03:55,485 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:03:55,486 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 99, 'prev_value': 98, 'change': 1}
+2021-03-19 14:03:55,791 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 1}
+2021-03-19 14:03:55,792 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:03:55,792 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 1}
+2021-03-19 14:03:55,792 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:03:55,793 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:03:55,793 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 1}
+2021-03-19 14:03:55,794 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:03:55,794 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:55,891 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:03:55,891 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:03:56,886 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:03:56,886 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:56,920 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:03:56,974 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:03:56,974 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 100, 'prev_value': 99, 'change': 1}
+2021-03-19 14:03:57,386 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:03:57,386 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:03:58,393 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:03:58,393 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:58,426 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:03:58,490 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:03:58,491 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 101, 'prev_value': 100, 'change': 1}
+2021-03-19 14:03:58,879 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:03:58,879 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:03:59,879 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:03:59,879 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:03:59,913 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:03:59,968 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:03:59,969 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 102, 'prev_value': 101, 'change': 1}
+2021-03-19 14:04:00,379 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:04:00,379 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:04:00,829 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:04:00,830 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:04:00,830 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:04:00,830 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:04:01,390 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:04:05,784 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 2}
+2021-03-19 14:04:05,785 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:04:05,785 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 2}
+2021-03-19 14:04:05,785 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:04:05,785 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:04:05,785 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 2}
+2021-03-19 14:04:05,786 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:04:05,786 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:04:15,790 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 3}
+2021-03-19 14:04:15,791 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:04:15,791 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 3}
+2021-03-19 14:04:15,791 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:04:15,791 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:04:15,791 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 3}
+2021-03-19 14:04:15,792 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:04:15,792 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:04:24,215 : INFO : SwitchController : <<<<<<< 's_trough1' inactive >>>>>>>
+2021-03-19 14:04:24,216 : INFO : ball_device.bd_trough : State: ball_left
+2021-03-19 14:04:24,216 : INFO : ball_device.bd_trough : Ball left
+2021-03-19 14:04:24,216 : INFO : ball_device.bd_trough : Wait for confirm with timeout 10.0
+2021-03-19 14:04:28,200 : INFO : SwitchController : <<<<<<< 's_right_inlane' inactive >>>>>>>
+2021-03-19 14:04:34,217 : INFO : ball_device.bd_trough : State: failed_confirm
+2021-03-19 14:04:34,217 : INFO : ball_device.bd_trough : Got timeout (10.0s) before confirm from <playfield.playfield>
+2021-03-19 14:04:34,312 : INFO : ball_device.bd_trough : Confirming eject because target is playfield and ball did not return.
+2021-03-19 14:04:34,312 : INFO : ball_device.bd_trough : Eject successful
+2021-03-19 14:04:34,312 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_success'====== Args={'balls': 1, 'target': <playfield.playfield>}
+2021-03-19 14:04:34,312 : INFO : EventManager : Event: ======'balldevice_playfield_ball_enter'====== Args={'new_balls': 1, 'unclaimed_balls': 1, 'device': <playfield.playfield>}
+2021-03-19 14:04:34,313 : INFO : EventManager : Event: ======'playfield_ball_count_change'====== Args={'balls': 1, 'change': 1}
+2021-03-19 14:04:34,313 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_count_changed'====== Args={'balls': 0}
+2021-03-19 14:04:34,313 : INFO : ball_device.bd_trough : State: idle
+2021-03-19 14:04:35,904 : INFO : SwitchController : <<<<<<< 's_right_inlane' active >>>>>>>
+2021-03-19 14:04:35,904 : INFO : EventManager : Event: ======'sw_playfield_active'====== Args={}
+2021-03-19 14:04:35,905 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 9, 'prev_value': 8, 'change': 1}
+2021-03-19 14:04:37,776 : INFO : SwitchController : <<<<<<< 's_trough1' active >>>>>>>
+2021-03-19 14:04:37,776 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 6, 'prev_value': 5, 'change': 1}
+2021-03-19 14:04:38,280 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_count_changed'====== Args={'balls': 1}
+2021-03-19 14:04:38,280 : INFO : ball_device.bd_trough : Received unexpected ball
+2021-03-19 14:04:38,280 : INFO : EventManager : Event: ======'balldevice_captured_from_playfield'====== Args={'balls': 1}
+2021-03-19 14:04:38,280 : INFO : EventManager : Event: ======'sw_playfield_active'====== Args={'balls': 1}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'playfield_ball_count_change'====== Args={'balls': 0, 'change': -1}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_enter'====== Args={'new_balls': 1, 'unclaimed_balls': 1, 'new_available_balls': 1, 'device': <ball_device.bd_trough>}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'ball_drain'====== Args={'device': <ball_device.bd_trough>, 'balls': 1}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'ball_will_end'====== Args={}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'balldevice_balls_available'====== Args={}
+2021-03-19 14:04:38,281 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_entered'====== Args={'new_balls': 1, 'device': <ball_device.bd_trough>}
+2021-03-19 14:04:38,290 : INFO : EventManager : Event: ======'ball_ending'====== Args={}
+2021-03-19 14:04:38,290 : INFO : EventManager : Event: ======'mode_base_will_stop'====== Args={}
+2021-03-19 14:04:38,290 : INFO : EventManager : Event: ======'mode_base_stopping'====== Args={}
+2021-03-19 14:04:38,290 : INFO : Mode.base : Stopped.
+2021-03-19 14:04:38,290 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:04:38,291 : INFO : EventManager : Event: ======'mode_base_stopped'====== Args={}
+2021-03-19 14:04:38,291 : INFO : EventManager : Event: ======'clear'====== Args={'key': 'base'}
+2021-03-19 14:04:38,292 : INFO : EventManager : Event: ======'ball_ended'====== Args={}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_will_end'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_ending'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_ended'====== Args={'player': <Player 1>, 'number': 1}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'slide_base.slide_player-mode_base_started_removed'====== Args={'_from_bcp': True}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_will_start'====== Args={'player': <Player 2>, 'number': 2}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_starting'====== Args={'player': <Player 2>, 'number': 2}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_ball'====== Args={'value': 1, 'prev_value': 0, 'change': 1, 'player_num': 2}
+2021-03-19 14:04:38,293 : INFO : EventManager : Event: ======'player_turn_started'====== Args={'player': <Player 2>, 'number': 2}
+2021-03-19 14:04:38,294 : INFO : EventManager : Event: ======'ball_will_start'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,295 : INFO : EventManager : Event: ======'ball_starting'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,295 : INFO : EventManager : Event: ======'balls_in_play'====== Args={'balls': 1}
+2021-03-19 14:04:38,295 : INFO : EventManager : Event: ======'ball_started'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,296 : INFO : EventManager : Event: ======'mode_base_will_start'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,297 : INFO : EventManager : Event: ======'mode_base_starting'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,297 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:04:38,298 : INFO : Mode.base : Started. Priority: 100
+2021-03-19 14:04:38,299 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-19 14:04:38,300 : INFO : EventManager : Event: ======'mode_base_started'====== Args={'player': 2, 'ball': 1, 'balls_remaining': 2, 'is_extra_ball': False}
+2021-03-19 14:04:38,302 : INFO : EventManager : Event: ======'multi_player_ball_started'====== Args={}
+2021-03-19 14:04:38,302 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-19 14:04:38,303 : INFO : EventManager : Event: ======'player_2_ball_started'====== Args={}
+2021-03-19 14:04:38,304 : INFO : ball_device.bd_trough : Setting up player-controlled eject. Balls: 1, Target: <playfield.playfield>, player_controlled_eject_event: None
+2021-03-19 14:04:38,304 : INFO : ball_device.bd_trough : Adding 1 ball(s) to the eject_queue with target <playfield.playfield>.
+2021-03-19 14:04:38,304 : INFO : EventManager : Event: ======'balldevice_balls_available'====== Args={}
+2021-03-19 14:04:38,306 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:04:38,306 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 0}
+2021-03-19 14:04:38,307 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:04:38,307 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:04:38,307 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 0}
+2021-03-19 14:04:38,308 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:04:38,308 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:04:38,323 : INFO : EventManager : Event: ======'slide_base.slide_player-mode_base_started_created'====== Args={'_from_bcp': True}
+2021-03-19 14:04:38,326 : INFO : EventManager : Event: ======'slide_base.slide_player-mode_base_started_active'====== Args={'_from_bcp': True}
+2021-03-19 14:04:39,285 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:04:40,290 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:04:48,293 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 1}
+2021-03-19 14:04:48,294 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:04:48,294 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 1}
+2021-03-19 14:04:48,294 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:04:48,294 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:04:48,294 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 1}
+2021-03-19 14:04:48,294 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:04:48,294 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:04:49,531 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:04:49,532 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:04:49,532 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:04:49,532 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:04:49,532 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 103, 'prev_value': 102, 'change': 1}
+2021-03-19 14:04:50,507 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:04:50,507 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:04:50,540 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:04:50,605 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:04:50,605 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 104, 'prev_value': 103, 'change': 1}
+2021-03-19 14:04:51,008 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:04:51,008 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:04:51,163 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:04:51,163 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:04:51,164 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:04:51,164 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:04:52,012 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:04:58,300 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 2}
+2021-03-19 14:04:58,300 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:04:58,300 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 2}
+2021-03-19 14:04:58,300 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:04:58,300 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:04:58,301 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 2}
+2021-03-19 14:04:58,301 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:04:58,301 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:08,293 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 3}
+2021-03-19 14:05:08,294 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:05:08,294 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 3}
+2021-03-19 14:05:08,295 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:05:08,295 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:05:08,295 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 3}
+2021-03-19 14:05:08,296 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:05:08,296 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:18,291 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 4}
+2021-03-19 14:05:18,292 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:05:18,292 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 4}
+2021-03-19 14:05:18,292 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:05:18,292 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:05:18,292 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 4}
+2021-03-19 14:05:18,293 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:05:18,293 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:28,298 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 5}
+2021-03-19 14:05:28,299 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:05:28,299 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 5}
+2021-03-19 14:05:28,299 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:05:28,299 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:05:28,299 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 5}
+2021-03-19 14:05:28,300 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:05:28,300 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:34,929 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:05:34,929 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:05:34,930 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:05:34,930 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:05:34,930 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 105, 'prev_value': 104, 'change': 1}
+2021-03-19 14:05:35,914 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:05:35,914 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:35,947 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:05:36,002 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:05:36,002 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 106, 'prev_value': 105, 'change': 1}
+2021-03-19 14:05:36,411 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:05:36,411 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:05:37,413 : INFO : drop_target_bank.noah : 1 targets are down. Will reset those.
+2021-03-19 14:05:37,413 : INFO : coil.c_reset_drop_target : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:37,448 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:05:37,492 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-19 14:05:37,492 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 107, 'prev_value': 106, 'change': 1}
+2021-03-19 14:05:37,912 : INFO : EventManager : Event: ======'restore'====== Args={}
+2021-03-19 14:05:37,912 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-19 14:05:38,074 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-19 14:05:38,074 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-19 14:05:38,075 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-19 14:05:38,075 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-19 14:05:38,304 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 6}
+2021-03-19 14:05:38,305 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:05:38,305 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 6}
+2021-03-19 14:05:38,305 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:05:38,305 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:05:38,306 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 6}
+2021-03-19 14:05:38,306 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:05:38,306 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:38,923 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-19 14:05:48,290 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_failed'====== Args={'target': <playfield.playfield>, 'balls': 1, 'retry': True, 'num_attempts': 7}
+2021-03-19 14:05:48,291 : INFO : ball_device.bd_trough : State: waiting_for_target_ready
+2021-03-19 14:05:48,291 : INFO : EventManager : Event: ======'balldevice_bd_trough_ball_eject_attempt'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 7}
+2021-03-19 14:05:48,291 : INFO : ball_device.bd_trough : State: ejecting
+2021-03-19 14:05:48,292 : INFO : ball_device.bd_trough : Ejecting ball to <playfield.playfield>
+2021-03-19 14:05:48,292 : INFO : EventManager : Event: ======'balldevice_bd_trough_ejecting_ball'====== Args={'balls': 1, 'target': <playfield.playfield>, 'source': <ball_device.bd_trough>, 'mechanical_eject': False, 'num_attempts': 7}
+2021-03-19 14:05:48,292 : INFO : ball_device.bd_trough : Wait for ball to leave device
+2021-03-19 14:05:48,292 : INFO : coil.c_trough_eject : Pulsing Driver for 10ms (1.0 pulse_power)
+2021-03-19 14:05:57,501 : INFO : Machine : Shutting down...
+2021-03-19 14:05:57,502 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-19 14:05:57,504 : INFO : root : MPF run loop ended.

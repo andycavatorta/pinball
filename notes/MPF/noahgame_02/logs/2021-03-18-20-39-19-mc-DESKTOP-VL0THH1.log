@@ -1,0 +1,17 @@
+2021-03-18 20:39:19,731 : kivy : Factory: 184 symbols loaded
+2021-03-18 20:39:19,907 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 20:39:19,910 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 20:39:19,989 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 20:39:19,990 : kivy : Video: Provider: gstplayer
+2021-03-18 20:39:20,074 : kivy : Loading MPF-MC controller
+2021-03-18 20:39:20,078 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 20:39:20,079 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:39:20,080 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 20:39:20,128 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 20:39:20,129 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.
+2021-03-18 20:39:20,161 : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:39:20,163 : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\13e1228f6bf8ea03affe51e56cb3543a.mpf_cache
+2021-03-18 20:39:20,165 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\attract\config\attract.yaml
+2021-03-18 20:39:20,166 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\modes\attract\config\attract.yaml.
+2021-03-18 20:39:20,170 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\modes\attract\config\attract.yaml
+2021-03-18 20:39:20,170 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\attract\config\attract.yaml.

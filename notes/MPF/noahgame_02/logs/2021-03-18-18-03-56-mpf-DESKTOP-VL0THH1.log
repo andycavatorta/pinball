@@ -1,0 +1,14 @@
+2021-03-18 18:03:56,473 : INFO : root : Loading config.
+2021-03-18 18:03:56,479 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 18:03:56,480 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml
+2021-03-18 18:03:56,480 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-18 18:03:56,607 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-18 18:03:56,609 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml.
+2021-03-18 18:03:56,656 : INFO : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml
+2021-03-18 18:03:56,660 : INFO : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 18:03:56,789 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 18:03:56,790 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 18:03:56,791 : WARNING : ConfigProcessor : Cache file not found: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-18 18:03:56,791 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\attract\shows\.\attract_light_show.yaml.
+2021-03-18 18:04:43,627 : ERROR : root : Shutdown because of SIGINT or keyboard interrupt.
+NoneType: None

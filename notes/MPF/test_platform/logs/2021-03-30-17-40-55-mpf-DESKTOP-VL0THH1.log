@@ -1,0 +1,47 @@
+2021-03-30 17:40:55,031 : INFO : root : Loading config.
+2021-03-30 17:40:55,038 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 17:40:55,039 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-30 17:40:55,143 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-30 17:40:55,144 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 17:40:55,146 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-30 17:40:55,148 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-30 17:40:55,148 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-30 17:40:55,150 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 17:40:55,150 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-17-40-55-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 17:40:55,150 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 17:40:55,150 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-30 17:40:55,150 : INFO : Machine : Platform: win32
+2021-03-30 17:40:55,150 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 17:40:55,150 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 17:40:55,154 : INFO : Machine : Initialise MPF.
+2021-03-30 17:40:55,256 : INFO : P-Roc : Connecting to P-ROC
+2021-03-30 17:40:55,490 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-30 17:40:55,490 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-30 17:41:12,660 : INFO : Machine : Shutting down...
+2021-03-30 17:41:12,660 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-30 17:41:12,662 : ERROR : Machine : Failed to initialise MPF
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 663, in initialise_mpf
+    raise init.exception()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 239, in initialise
+    await self.initialise_core_and_hardware()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 235, in initialise_core_and_hardware
+    await self._initialize_platforms()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 326, in _initialize_platforms
+    result.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 225, in initialize
+    await self.connect()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p3_roc.py", line 141, in connect
+    self.pdbconfig = PDBConfig(self, self.machine.config, self.pinproc.DriverCount)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 849, in __init__
+    coil_bank_list, unconfigured_coil_bank_list = self._load_coil_bank_list_from_config(config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 1091, in _load_coil_bank_list_from_config
+    coil = PDBCoil(self, str(item_dict['number']))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_devices.py", line 265, in __init__
+    elif self.is_pdb_coil(number_str):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_devices.py", line 307, in is_pdb_coil
+    return self.pdb.is_pdb_address(string)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\platforms\p_roc_common.py", line 998, in is_pdb_address
+    pdb.set_trace()
+NameError: name 'pdb' is not defined
+2021-03-30 17:41:12,664 : INFO : root : MPF run loop ended.

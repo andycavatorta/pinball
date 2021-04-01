@@ -1,0 +1,63 @@
+2021-03-31 21:29:42,884 : INFO : root : Loading config.
+2021-03-31 21:29:42,896 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-31 21:29:42,897 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-31 21:29:43,063 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-31 21:29:43,071 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-31 21:29:43,080 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-31 21:29:43,097 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-31 21:29:43,113 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-31 21:29:43,127 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-31 21:29:43,127 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-31-21-29-42-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-31 21:29:43,127 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-31 21:29:43,127 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-31 21:29:43,128 : INFO : Machine : Platform: win32
+2021-03-31 21:29:43,128 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-31 21:29:43,128 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-31 21:29:43,885 : INFO : Machine : Initialise MPF.
+2021-03-31 21:29:44,151 : INFO : P-Roc : Connecting to P-ROC
+2021-03-31 21:29:44,156 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:44,156 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:45,166 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:45,166 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:46,176 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:46,177 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:47,184 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:47,184 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:48,189 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:48,189 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:49,200 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:49,200 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:50,211 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-31 21:29:50,212 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-31 21:29:59,995 : ERROR : root : 
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\commands\game.py", line 233, in __init__
+    self.machine.add_crash_handler(self.restore_logger)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 743, in run
+    if not self.initialise_mpf():
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 721, in initialise_mpf
+    loop=self.clock.loop, timeout=timeout))
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 574, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 541, in run_forever
+    self._run_once()
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 1750, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\selectors.py", line 323, in select
+    r, w, _ = self._select(self._readers, self._writers, [], timeout)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\selectors.py", line 315, in _select
+    return r, w + x, []
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\selectors.py", line 315, in _select
+    return r, w + x, []
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

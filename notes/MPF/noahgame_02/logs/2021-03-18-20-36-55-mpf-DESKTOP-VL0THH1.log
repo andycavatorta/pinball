@@ -1,0 +1,7 @@
+2021-03-18 20:36:55,722 : INFO : root : Loading config.
+2021-03-18 20:36:55,728 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 20:36:55,729 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 20:36:55,872 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\attract\config\attract.yaml
+2021-03-18 20:36:55,872 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\modes\attract\config\attract.yaml.
+2021-03-18 20:36:55,878 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\modes\attract\config\attract.yaml
+2021-03-18 20:36:55,878 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\modes\attract\config\attract.yaml.

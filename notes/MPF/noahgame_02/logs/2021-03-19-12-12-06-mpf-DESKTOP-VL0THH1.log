@@ -1,0 +1,1287 @@
+2021-03-19 12:12:06,193 : INFO : root : Loading config.
+2021-03-19 12:12:06,219 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-19 12:12:06,220 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-19 12:12:06,391 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-19 12:12:06,403 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-19 12:12:06,414 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-19 12:12:06,424 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-19 12:12:06,436 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-19 12:12:06,447 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-19 12:12:06,447 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-19-12-12-06-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-19 12:12:06,447 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-19 12:12:06,447 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-19 12:12:06,448 : INFO : Machine : Platform: win32
+2021-03-19 12:12:06,448 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-19 12:12:06,448 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-19 12:12:06,452 : INFO : Machine : Initialise MPF.
+2021-03-19 12:12:06,726 : INFO : P-Roc : Connecting to P-ROC
+2021-03-19 12:12:06,731 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:06,732 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:07,733 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:07,733 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:08,735 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:08,735 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:09,737 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:09,737 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:10,739 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:10,739 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:11,740 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:11,740 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:12,742 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:12,742 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:13,743 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:13,743 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:14,744 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:14,744 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:15,745 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:15,745 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:16,747 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:16,747 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:17,748 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:17,748 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:18,749 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:18,749 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:19,750 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:19,750 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:20,751 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:20,751 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:21,753 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:21,753 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:22,754 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:22,754 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:23,755 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:23,755 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:24,757 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:24,757 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:25,758 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:25,758 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:26,759 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:26,759 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:27,762 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:27,762 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:28,763 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:28,763 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:29,764 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:29,764 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:30,765 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:30,765 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:31,767 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:31,767 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:32,768 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:32,768 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:33,770 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:33,770 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:34,771 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:34,771 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:35,772 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:35,772 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:36,773 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:36,773 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:37,774 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:37,774 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:38,774 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:38,774 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:39,775 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:39,775 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:40,776 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:40,776 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:41,777 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:41,777 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:42,778 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:42,778 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:43,779 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:43,779 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:44,780 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:44,780 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:45,781 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:45,781 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:46,782 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:46,782 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:47,783 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:47,783 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:48,784 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:48,784 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:49,785 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:49,785 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:50,786 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:50,786 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:51,787 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:51,787 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:52,788 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:52,788 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:53,790 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:53,790 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:54,791 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:54,791 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:55,792 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:55,792 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:56,793 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:56,793 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:57,794 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:57,794 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:58,795 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:58,795 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:12:59,795 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:12:59,795 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:00,797 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:00,797 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:01,797 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:01,797 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:02,798 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:02,798 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:03,799 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:03,799 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:04,801 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:04,801 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:05,803 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:05,803 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:06,804 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:06,804 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:07,805 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:07,805 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:08,806 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:08,806 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:09,807 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:09,807 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:10,808 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:10,808 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:11,808 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:11,808 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:12,809 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:12,809 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:13,810 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:13,810 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:14,811 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:14,811 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:15,812 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:15,812 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:16,813 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:16,813 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:17,814 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:17,814 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:18,816 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:18,816 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:19,817 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:19,817 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:20,818 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:20,818 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:21,819 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:21,819 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:22,819 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:22,819 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:23,820 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:23,820 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:24,821 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:24,821 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:25,822 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:25,822 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:26,823 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:26,823 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:27,824 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:27,824 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:28,825 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:28,825 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:29,826 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:29,826 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:30,827 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:30,827 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:31,828 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:31,828 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:32,829 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:32,829 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:33,830 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:33,830 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:34,830 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:34,830 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:35,831 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:35,831 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:36,833 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:36,833 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:37,834 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:37,834 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:38,835 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:38,835 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:39,836 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:39,836 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:40,837 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:40,837 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:41,838 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:41,838 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:42,840 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:42,840 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:43,841 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:43,841 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:44,842 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:44,842 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:45,842 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:45,842 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:46,843 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:46,843 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:47,844 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:47,844 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:48,845 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:48,845 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:49,846 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:49,846 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:50,847 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:50,847 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:51,848 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:51,848 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:52,850 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:52,850 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:53,851 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:53,851 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:54,852 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:54,852 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:55,853 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:55,853 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:56,855 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:56,855 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:57,856 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:57,856 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:58,857 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:58,857 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:13:59,858 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:13:59,858 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:00,859 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:00,859 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:01,860 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:01,860 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:02,862 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:02,862 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:03,863 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:03,863 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:04,864 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:04,864 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:05,865 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:05,865 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:06,865 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:06,865 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:07,868 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:07,868 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:08,870 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:08,870 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:09,872 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:09,872 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:10,873 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:10,873 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:11,882 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:11,882 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:12,883 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:12,883 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:13,884 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:13,884 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:14,885 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:14,885 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:15,891 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:15,892 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:16,917 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:16,918 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:17,919 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:17,920 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:18,923 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:18,923 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:19,924 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:19,925 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:20,946 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:20,946 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:21,947 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:21,947 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:22,948 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:22,948 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:23,949 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:23,949 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:24,950 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:24,950 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:25,951 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:25,951 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:26,952 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:26,952 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:27,954 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:27,954 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:28,956 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:28,956 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:29,957 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:29,957 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:30,958 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:30,958 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:31,959 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:31,959 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:32,959 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:32,959 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:33,961 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:33,961 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:34,962 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:34,962 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:35,963 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:35,963 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:36,965 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:36,966 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:37,967 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:37,967 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:38,969 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:38,969 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:39,971 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:39,972 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:40,975 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:40,975 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:41,976 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:41,976 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:42,983 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:42,986 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:43,990 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:43,990 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:44,995 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:44,995 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:45,996 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:45,996 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:46,997 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:46,997 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:47,998 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:47,998 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:48,998 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:48,999 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:50,000 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:50,000 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:51,001 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:51,001 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:52,003 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:52,003 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:53,004 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:53,004 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:54,005 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:54,006 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:55,007 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:55,007 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:56,008 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:56,008 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:57,009 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:57,009 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:58,011 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:58,011 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:14:59,012 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:14:59,012 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:00,013 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:00,014 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:01,016 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:01,016 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:02,018 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:02,018 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:03,020 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:03,020 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:04,021 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:04,021 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:05,022 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:05,022 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:06,024 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:06,024 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:07,026 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:07,026 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:08,027 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:08,027 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:09,030 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:09,031 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:10,032 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:10,032 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:11,033 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:11,033 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:12,034 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:12,034 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:13,035 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:13,035 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:14,036 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:14,036 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:15,037 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:15,037 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:16,038 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:16,038 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:17,039 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:17,039 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:18,040 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:18,040 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:19,041 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:19,041 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:20,042 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:20,042 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:21,044 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:21,044 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:22,046 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:22,046 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:23,047 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:23,047 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:24,048 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:24,048 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:25,049 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:25,049 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:26,050 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:26,050 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:27,051 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:27,051 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:28,052 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:28,052 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:29,053 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:29,053 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:30,054 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:30,054 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:31,054 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:31,054 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:32,055 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:32,055 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:33,056 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:33,056 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:34,058 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:34,058 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:35,059 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:35,059 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:36,060 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:36,060 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:37,061 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:37,061 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:38,062 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:38,062 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:39,063 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:39,063 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:40,064 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:40,064 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:41,064 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:41,064 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:42,065 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:42,065 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:43,066 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:43,066 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:44,067 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:44,067 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:45,068 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:45,068 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:46,069 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:46,069 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:47,070 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:47,070 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:48,071 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:48,071 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:49,073 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:49,073 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:50,074 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:50,074 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:51,075 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:51,075 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:52,075 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:52,075 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:53,076 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:53,076 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:54,077 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:54,077 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:55,078 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:55,078 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:56,079 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:56,079 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:57,080 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:57,080 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:58,081 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:58,081 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:15:59,082 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:15:59,082 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:00,083 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:00,083 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:01,084 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:01,084 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:02,085 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:02,085 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:03,098 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:03,099 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:04,100 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:04,100 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:05,102 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:05,102 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:06,104 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:06,104 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:07,106 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:07,106 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:08,107 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:08,107 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:09,108 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:09,108 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:10,109 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:10,109 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:11,109 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:11,109 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:12,110 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:12,110 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:13,111 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:13,111 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:14,112 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:14,112 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:15,114 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:15,114 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:16,115 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:16,115 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:17,116 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:17,116 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:18,117 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:18,117 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:19,119 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:19,119 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:20,120 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:20,120 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:21,121 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:21,121 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:22,122 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:22,122 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:23,122 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:23,122 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:24,123 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:24,123 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:25,125 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:25,125 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:26,126 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:26,126 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:27,127 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:27,127 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:28,128 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:28,128 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:29,129 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:29,130 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:30,131 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:30,131 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:31,133 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:31,133 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:32,133 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:32,133 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:33,134 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:33,134 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:34,135 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:34,135 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:35,136 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:35,136 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:36,137 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:36,137 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:37,138 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:37,138 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:38,139 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:38,139 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:39,140 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:39,140 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:40,141 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:40,141 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:41,142 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:41,142 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:42,143 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:42,143 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:43,144 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:43,144 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:44,145 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:44,145 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:45,146 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:45,146 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:46,148 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:46,149 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:47,150 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:47,150 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:48,151 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:48,152 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:49,154 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:49,155 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:50,156 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:50,156 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:51,158 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:51,158 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:52,160 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:52,160 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:53,160 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:53,160 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:54,161 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:54,161 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:55,163 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:55,163 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:56,165 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:56,165 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:57,166 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:57,166 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:58,167 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:58,167 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:16:59,168 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:16:59,168 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:00,169 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:00,169 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:01,170 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:01,170 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:02,171 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:02,171 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:03,172 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:03,172 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:04,172 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:04,172 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:05,173 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:05,173 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:06,175 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:06,175 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:07,176 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:07,176 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:08,177 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:08,177 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:09,178 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:09,178 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:10,179 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:10,179 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:11,181 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:11,181 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:12,182 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:12,182 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:13,184 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:13,185 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:14,185 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:14,185 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:15,187 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:15,187 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:16,188 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:16,188 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:17,189 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:17,189 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:18,190 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:18,191 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:19,192 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:19,192 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:20,193 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:20,193 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:21,194 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:21,194 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:22,195 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:22,195 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:23,196 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:23,196 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:24,198 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:24,198 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:25,199 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:25,199 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:26,205 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:26,206 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:27,207 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:27,207 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:28,209 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:28,210 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:29,212 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:29,212 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:30,213 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:30,213 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:31,214 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:31,214 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:32,215 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:32,215 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:33,215 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:33,215 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:34,217 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:34,217 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:35,217 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:35,217 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:36,218 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:36,219 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:37,220 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:37,220 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:38,221 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:38,221 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:39,222 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:39,222 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:40,223 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:40,223 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:41,224 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:41,224 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:42,225 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:42,225 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:43,226 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:43,226 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:44,227 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:44,227 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:45,228 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:45,228 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:46,229 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:46,229 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:47,230 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:47,231 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:48,232 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:48,232 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:49,233 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:49,233 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:50,234 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:50,234 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:51,235 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:51,235 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:52,236 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:52,236 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:53,237 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:53,237 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:54,238 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:54,238 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:55,239 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:55,239 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:56,239 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:56,239 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:57,240 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:57,240 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:58,241 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:58,241 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:17:59,242 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:17:59,242 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:00,243 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:00,243 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:01,244 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:01,244 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:02,245 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:02,245 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:03,246 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:03,246 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:04,247 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:04,247 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:05,248 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:05,248 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:06,249 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:06,249 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:07,249 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:07,249 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:08,250 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:08,250 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:09,251 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:09,251 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:10,252 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:10,252 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:11,253 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:11,253 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:12,261 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:12,261 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:13,263 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:13,263 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:14,264 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:14,264 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:15,265 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:15,265 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:16,266 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:16,266 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:17,267 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:17,267 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:18,269 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:18,270 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:19,334 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:19,334 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:20,338 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:20,338 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:21,339 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:21,339 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:22,341 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:22,341 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:23,342 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:23,342 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:24,343 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:24,343 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:25,345 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:25,345 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:26,346 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:26,346 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:27,347 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:27,347 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:28,348 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:28,348 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:29,349 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:29,349 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:30,350 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:30,350 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:31,351 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:31,351 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:32,352 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:32,352 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:33,353 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:33,353 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:34,354 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:34,354 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:35,355 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:35,355 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:36,356 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:36,356 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:37,357 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:37,357 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:38,359 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:38,359 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:39,360 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:39,360 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:40,361 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:40,361 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:41,362 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:41,362 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:42,362 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:42,362 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:43,363 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:43,363 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:44,364 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:44,364 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:45,365 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:45,365 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:46,366 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:46,366 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:47,367 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:47,367 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:48,368 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:48,368 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:49,369 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:49,369 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:50,370 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:50,370 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:51,371 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:51,371 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:52,372 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:52,372 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:53,373 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:53,373 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:54,374 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:54,374 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:55,375 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:55,375 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:56,376 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:56,376 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:57,377 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:57,377 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:58,378 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:58,378 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:18:59,380 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:18:59,380 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:00,381 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:00,381 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:01,382 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:01,382 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:02,602 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:02,602 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:03,603 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:03,603 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:04,604 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:04,604 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:05,605 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:05,605 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:06,607 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:06,607 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:07,608 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:07,608 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:08,609 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-19 12:19:08,610 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-19 12:19:10,021 : INFO : Machine : Starting the main run loop.
+2021-03-19 12:19:10,021 : INFO : Machine : Shutting down...
+2021-03-19 12:19:10,021 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-19 12:19:10,035 : INFO : root : MPF run loop ended.

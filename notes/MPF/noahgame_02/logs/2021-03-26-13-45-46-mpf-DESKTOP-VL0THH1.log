@@ -1,0 +1,363 @@
+2021-03-26 13:45:46,428 : INFO : root : Loading config.
+2021-03-26 13:45:46,434 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-26 13:45:46,435 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-26 13:45:46,551 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-26 13:45:46,553 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-26 13:45:46,555 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-26 13:45:46,556 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-26 13:45:46,557 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-26 13:45:46,557 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-26 13:45:46,558 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-26-13-45-46-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-26 13:45:46,558 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-26 13:45:46,558 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-26 13:45:46,558 : INFO : Machine : Platform: win32
+2021-03-26 13:45:46,558 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-26 13:45:46,558 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-26 13:45:46,562 : INFO : Machine : Initialise MPF.
+2021-03-26 13:45:46,679 : INFO : P-Roc : Connecting to P-ROC
+2021-03-26 13:45:47,090 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-26 13:45:47,090 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-26 13:45:47,161 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,161 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,162 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,162 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,249 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,249 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,249 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,249 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,250 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,250 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,250 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,250 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-26 13:45:47,250 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-26 13:45:47,290 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-26 13:45:47,291 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-26 13:45:47,318 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-26 13:45:47,320 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-26 13:45:49,338 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-26 13:45:49,339 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-26 13:45:49,340 : INFO : ball_device.bd_trough : State: idle
+2021-03-26 13:45:49,355 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-26 13:45:49,360 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,360 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,364 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,365 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-26 13:45:49,366 : INFO : BallController : Initial balls found: 0
+2021-03-26 13:45:49,367 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 123, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,368 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 20, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,368 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,369 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,369 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,369 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,369 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 12, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,370 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,371 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-26 13:45:49,372 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-26 13:45:49,373 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-26 13:45:49,374 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-26 13:45:49,382 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:45:49,388 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:45:49,391 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:45:49,392 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-26 13:45:49,393 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-26 13:45:49,393 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-26 13:45:49,403 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-26 13:45:49,404 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-26 13:45:49,406 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-26 13:45:49,406 : INFO : Mode.attract : Started. Priority: 10
+2021-03-26 13:45:49,406 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-26 13:45:49,406 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-26 13:45:49,410 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-26 13:45:49,411 : INFO : Machine : Starting the main run loop.
+2021-03-26 13:45:49,418 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:45:49,423 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:45:50,945 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:45:50,945 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:50,946 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:51,301 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:45:51,461 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:45:51,462 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:51,462 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:51,559 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:45:51,667 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:45:51,667 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:51,668 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:51,732 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:45:51,829 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:45:51,830 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:51,830 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:51,897 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:45:51,993 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:45:51,993 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:51,993 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:52,070 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:45:52,417 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:45:52,421 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:45:53,079 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-26 13:45:53,122 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-26 13:45:55,412 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:45:55,414 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:45:56,115 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-26 13:45:56,181 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-26 13:45:56,182 : INFO : EventManager : Event: ======'request_to_start_game'====== Args={}
+2021-03-26 13:45:56,182 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-26 13:45:56,182 : INFO : BallController : bd_trough contains 0 balls. Tags ['trough', 'home', 'drain']
+2021-03-26 13:45:56,183 : INFO : BallController : playfield contains 0 balls. Tags ['default']
+2021-03-26 13:45:56,183 : WARNING : BallController : BallController denies game start. Not enough balls. 0 found. 1 required
+2021-03-26 13:45:56,390 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-26 13:45:56,390 : INFO : EventManager : Event: ======'request_to_start_game'====== Args={}
+2021-03-26 13:45:56,391 : INFO : BallController : bd_trough contains 0 balls. Tags ['trough', 'home', 'drain']
+2021-03-26 13:45:56,391 : INFO : BallController : playfield contains 0 balls. Tags ['default']
+2021-03-26 13:45:56,391 : WARNING : BallController : BallController denies game start. Not enough balls. 0 found. 1 required
+2021-03-26 13:45:56,731 : INFO : SwitchController : <<<<<<< 's_start' active >>>>>>>
+2021-03-26 13:45:56,840 : INFO : SwitchController : <<<<<<< 's_start' inactive >>>>>>>
+2021-03-26 13:45:56,840 : INFO : EventManager : Event: ======'request_to_start_game'====== Args={}
+2021-03-26 13:45:56,841 : INFO : BallController : bd_trough contains 0 balls. Tags ['trough', 'home', 'drain']
+2021-03-26 13:45:56,841 : INFO : BallController : playfield contains 0 balls. Tags ['default']
+2021-03-26 13:45:56,841 : WARNING : BallController : BallController denies game start. Not enough balls. 0 found. 1 required
+2021-03-26 13:45:57,365 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-26 13:45:57,548 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-26 13:45:57,549 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_flipper from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-26 13:45:57,676 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-26 13:45:57,817 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-26 13:45:58,199 : INFO : SwitchController : <<<<<<< 's_right_slingshot' active >>>>>>>
+2021-03-26 13:45:58,200 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:58,200 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:58,296 : INFO : SwitchController : <<<<<<< 's_right_slingshot' inactive >>>>>>>
+2021-03-26 13:45:58,418 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:45:58,420 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:45:58,425 : INFO : SwitchController : <<<<<<< 's_right_slingshot' active >>>>>>>
+2021-03-26 13:45:58,426 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:58,426 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:58,502 : INFO : SwitchController : <<<<<<< 's_right_slingshot' inactive >>>>>>>
+2021-03-26 13:45:58,742 : INFO : SwitchController : <<<<<<< 's_right_slingshot' active >>>>>>>
+2021-03-26 13:45:58,742 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:58,743 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:58,872 : INFO : SwitchController : <<<<<<< 's_right_slingshot' inactive >>>>>>>
+2021-03-26 13:45:59,061 : INFO : SwitchController : <<<<<<< 's_right_slingshot' active >>>>>>>
+2021-03-26 13:45:59,061 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:59,062 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:59,277 : INFO : SwitchController : <<<<<<< 's_right_slingshot' inactive >>>>>>>
+2021-03-26 13:45:59,414 : INFO : SwitchController : <<<<<<< 's_right_slingshot' active >>>>>>>
+2021-03-26 13:45:59,415 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:45:59,415 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:45:59,501 : INFO : SwitchController : <<<<<<< 's_right_slingshot' inactive >>>>>>>
+2021-03-26 13:46:00,015 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-26 13:46:00,015 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:00,015 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:00,016 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-26 13:46:00,016 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-26 13:46:00,123 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-26 13:46:00,124 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:00,124 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:00,124 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-26 13:46:00,124 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-26 13:46:00,249 : INFO : SwitchController : <<<<<<< 's_drop_target' active >>>>>>>
+2021-03-26 13:46:00,250 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:00,250 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:00,250 : INFO : EventManager : Event: ======'drop_target_d_drop_target_down'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-26 13:46:00,250 : INFO : EventManager : Event: ======'drop_target_bank_noah_down'====== Args={}
+2021-03-26 13:46:00,325 : INFO : SwitchController : <<<<<<< 's_drop_target' inactive >>>>>>>
+2021-03-26 13:46:00,325 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:00,326 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:00,326 : INFO : EventManager : Event: ======'drop_target_d_drop_target_up'====== Args={'device': <drop_target.d_drop_target>}
+2021-03-26 13:46:00,326 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-26 13:46:00,988 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-26 13:46:01,238 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-26 13:46:01,405 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:01,408 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:01,410 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:04,406 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:04,410 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:04,412 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:07,414 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:07,422 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:07,425 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:10,407 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:10,411 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:10,413 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:13,407 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:13,409 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:13,411 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:16,417 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:16,421 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:16,424 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:19,405 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:19,409 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:19,411 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:22,414 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:22,419 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:22,422 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:25,412 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:25,415 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:25,417 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:26,072 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:26,073 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:26,073 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:26,393 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:26,534 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:26,534 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:26,535 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:26,600 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:26,735 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:26,735 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:26,736 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:26,779 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:26,887 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:26,887 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:26,888 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:26,943 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:27,019 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:27,020 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:27,020 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:27,096 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:27,307 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:27,307 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:27,307 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:27,372 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:27,594 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:27,595 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:27,595 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:27,656 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:27,936 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:27,937 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:27,937 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:27,958 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:28,407 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:28,413 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:28,416 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:31,414 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:31,416 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:31,418 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:31,962 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:31,963 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:31,963 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:32,050 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:32,286 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:32,286 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:32,286 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:32,332 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:32,442 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:32,442 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:32,442 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:32,507 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:32,626 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:32,626 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:32,627 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:32,688 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:32,959 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:32,960 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:32,960 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:33,068 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:33,936 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:33,936 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:33,936 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:34,001 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:34,415 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:34,420 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:34,422 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:34,622 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:34,622 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:34,623 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:34,673 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:34,770 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:34,771 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:34,771 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:34,846 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:36,115 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:36,115 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:36,116 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:36,223 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:36,448 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:36,448 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:36,449 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:36,513 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:36,610 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:36,611 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:36,611 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:36,654 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:36,773 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:36,773 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:36,774 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:36,860 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:37,124 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:37,125 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:37,125 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:37,411 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:37,414 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:37,415 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:37,493 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:38,867 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-26 13:46:38,918 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-26 13:46:40,417 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:40,423 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:40,427 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:42,881 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:42,881 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:42,882 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:42,985 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:43,403 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:43,405 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:43,407 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:43,860 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:43,860 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:43,861 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:44,753 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:45,511 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:45,512 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:45,512 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:45,608 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:46,421 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:46,426 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:46,430 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:46,579 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:46,580 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:46,580 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:46,634 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:47,157 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:47,157 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:47,157 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:47,243 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:47,524 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:47,525 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:47,525 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:47,589 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:47,844 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:47,844 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:47,845 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:47,927 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:49,415 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:49,418 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:49,421 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:50,749 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:50,749 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:50,750 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:50,869 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:51,145 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-26 13:46:51,146 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-26 13:46:51,146 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-26 13:46:51,254 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-26 13:46:52,408 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:52,413 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:52,416 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:55,420 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:55,425 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:55,427 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:46:58,418 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:46:58,422 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:46:58,426 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:47:01,406 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:47:01,409 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:47:01,411 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:47:04,425 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:47:04,430 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-26 13:47:04,434 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-26 13:47:07,410 : INFO : EventManager : Event: ======'slide_mission_pinball_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:47:07,413 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-26 13:47:07,415 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-26 13:47:10,414 : INFO : EventManager : Event: ======'slide_last_game_score_slide_removed'====== Args={'_from_bcp': True}
+2021-03-26 13:47:10,420 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-26 13:47:10,425 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-26 13:47:10,608 : INFO : Machine : Shutting down...
+2021-03-26 13:47:10,608 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-26 13:47:10,611 : INFO : root : MPF run loop ended.

@@ -1,0 +1,11 @@
+events: {}
+player: {}
+switches:
+  s_drop_target: 123
+  s_left_flipper: 20
+  s_left_slingshot: 9
+  s_right_flipper: 31
+  s_right_inlane: 9
+  s_right_slingshot: 31
+  s_start: 12
+  s_trough1: 6

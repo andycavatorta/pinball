@@ -1,0 +1,72 @@
+2021-03-18 15:07:46,416 : INFO : root : Loading config.
+2021-03-18 15:07:46,423 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 15:07:46,424 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml
+2021-03-18 15:07:46,425 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-18 15:07:46,541 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-18 15:07:46,542 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml.
+2021-03-18 15:07:46,571 : INFO : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml
+2021-03-18 15:07:46,572 : INFO : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 15:07:46,690 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 15:07:46,691 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 15:07:46,692 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-18 15:07:46,692 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-18-15-07-46-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-18 15:07:46,693 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-18 15:07:46,693 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 15:07:46,693 : INFO : Machine : Platform: win32
+2021-03-18 15:07:46,693 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-18 15:07:46,693 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-18 15:07:46,695 : INFO : Machine : Initialise MPF.
+2021-03-18 15:07:46,816 : INFO : P-Roc : Connecting to P-ROC
+2021-03-18 15:07:47,019 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-18 15:07:47,019 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-18 15:07:47,081 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,081 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,081 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,082 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,170 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,171 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,171 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,171 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,171 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,172 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,172 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,172 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-18 15:07:47,172 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 15:07:47,206 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-18 15:07:47,210 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 15:07:47,236 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-18 15:07:47,238 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-18 15:07:49,255 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-18 15:07:49,255 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-18 15:07:49,265 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-18 15:07:49,281 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,281 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,285 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,286 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-18 15:07:49,287 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,288 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,288 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,289 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,289 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:07:49,291 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-18 15:07:49,291 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-18 15:07:49,292 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-18 15:07:49,315 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-18 15:07:49,320 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-18 15:07:49,324 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-18 15:07:49,324 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-18 15:07:49,324 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-18 15:07:49,324 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-18 15:07:49,334 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-18 15:07:49,335 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-18 15:07:49,336 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-18 15:07:49,337 : INFO : Mode.attract : Started. Priority: 10
+2021-03-18 15:07:49,337 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-18 15:07:49,337 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-18 15:07:49,338 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-18 15:07:49,339 : INFO : Machine : Starting the main run loop.
+2021-03-18 15:07:49,352 : INFO : EventManager : Event: ======'slide_attract_started_created'====== Args={'_from_bcp': True}
+2021-03-18 15:07:49,354 : INFO : EventManager : Event: ======'slide_attract_started_active'====== Args={'_from_bcp': True}
+2021-03-18 15:08:49,442 : INFO : Machine : Shutting down...
+2021-03-18 15:08:49,442 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 15:08:49,446 : INFO : root : MPF run loop ended.
