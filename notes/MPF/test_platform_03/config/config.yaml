@@ -71,13 +71,13 @@ coils:
     # Slingshots
     c_slingshot_left_main:
         number: A0-B1-4
-        default_pulse_ms: 5
+        default_pulse_ms: 10
     c_slingshot_right_main:
         number: A0-B1-5
-        default_pulse_ms: 5
+        default_pulse_ms: 10
     c_slingshot_left_mid:
         number: A0-B1-6
-        default_pulse_ms: 5
+        default_pulse_ms: 10
     
     # Drop Targets
     c_reset_drop_target_1:
@@ -96,9 +96,15 @@ coils:
     # Pop Bumpers
     c_pop_bumper_1:
         number: A0-B0-2
+        default_pulse_ms: 25
+        default_pulse_power: 1.0
     c_pop_bumper_2:
         number: A0-B0-3
+        default_pulse_ms: 25
+        default_pulse_power: 1.0
     c_pop_bumper_3:
+        default_pulse_ms: 25
+        default_pulse_power: 1.0
         number: A0-B0-4
                 
 playfields:
