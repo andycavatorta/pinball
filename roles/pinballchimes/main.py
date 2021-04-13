@@ -15,56 +15,57 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
-class Scores():
-    attraction_mode = {
+scores ={
+    attraction_mode : {
         "tempo_multiplier":4,
         "beats":[[1,2],[2,3],[3,4],[4,5],[5,1]]
     }
-    countdown_mode = {
+    countdown_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    barter_mode = {
+    barter_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    money_mode = {
+    money_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    score = {
+    score : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    scorex10 = {
+    scorex10 : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    barter_request = {
+    barter_request : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    fail_theme = {
+    fail_theme : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    closing_theme = {
+    closing_theme : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
-    empty = {
+    empty : {
         "tempo_multiplier":4,
         "beats":[
         ]
     }
+}
 
 class Chimes(threading.Thread):
     def __init__(self):
