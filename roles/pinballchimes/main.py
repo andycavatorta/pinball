@@ -19,47 +19,47 @@ scores ={
     attraction_mode : {
         "tempo_multiplier":4,
         "beats":[[1,2],[2,3],[3,4],[4,5],[5,1]]
-    }
+    },
     countdown_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     barter_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     money_mode : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     score : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     scorex10 : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     barter_request : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     fail_theme : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     closing_theme : {
         "tempo_multiplier":4,
         "beats":[
         ]
-    }
+    },
     empty : {
         "tempo_multiplier":4,
         "beats":[
