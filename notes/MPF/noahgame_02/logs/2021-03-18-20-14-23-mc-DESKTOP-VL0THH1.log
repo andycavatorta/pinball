@@ -1,0 +1,11 @@
+2021-03-18 20:14:23,699 : kivy : Factory: 184 symbols loaded
+2021-03-18 20:14:23,888 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 20:14:23,889 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 20:14:23,958 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 20:14:23,958 : kivy : Video: Provider: gstplayer
+2021-03-18 20:14:24,040 : kivy : Loading MPF-MC controller
+2021-03-18 20:14:24,045 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 20:14:24,046 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:14:24,046 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 20:14:24,107 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 20:14:24,108 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.

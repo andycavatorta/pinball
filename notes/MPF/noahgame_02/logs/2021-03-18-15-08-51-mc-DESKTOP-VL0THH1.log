@@ -1,0 +1,103 @@
+2021-03-18 15:08:51,579 : kivy : Factory: 184 symbols loaded
+2021-03-18 15:08:51,776 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 15:08:51,780 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 15:08:51,879 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 15:08:51,879 : kivy : Video: Provider: gstplayer
+2021-03-18 15:08:51,966 : kivy : Loading MPF-MC controller
+2021-03-18 15:08:51,972 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 15:08:51,973 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 15:08:51,974 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 15:08:52,033 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 15:08:52,034 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.
+2021-03-18 15:08:52,060 : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 15:08:52,063 : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\13e1228f6bf8ea03affe51e56cb3543a.mpf_cache
+2021-03-18 15:08:52,065 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 15:08:52,066 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 15:08:52,067 : mpfmc : Mission Pinball Framework Media Controller v0.54.0
+2021-03-18 15:08:52,068 : mpfmc : Mission Pinball Framework Game Engine v0.54.6
+2021-03-18 15:08:52,071 : mpfmc : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 15:08:52,072 : mpfmc : Starting clock at 60.0Hz
+2021-03-18 15:08:52,113 : kivy : Text: Provider: sdl2
+2021-03-18 15:08:52,186 : kivy : Window: Provider: sdl2
+2021-03-18 15:08:52,338 : kivy : GL: Using the "OpenGL" graphics system
+2021-03-18 15:08:52,339 : kivy : GL: GLEW initialization succeeded
+2021-03-18 15:08:52,340 : kivy : GL: Backend used <glew>
+2021-03-18 15:08:52,341 : kivy : GL: OpenGL version <b'4.4.0 - Build 20.19.15.4835'>
+2021-03-18 15:08:52,342 : kivy : GL: OpenGL vendor <b'Intel'>
+2021-03-18 15:08:52,343 : kivy : GL: OpenGL renderer <b'Intel(R) HD Graphics 5500'>
+2021-03-18 15:08:52,344 : kivy : GL: OpenGL parsed version: 4, 4
+2021-03-18 15:08:52,345 : kivy : GL: Shading version <b'4.40 - Build 20.19.15.4835'>
+2021-03-18 15:08:52,346 : kivy : GL: Texture max size <16384>
+2021-03-18 15:08:52,347 : kivy : GL: Texture max units <32>
+2021-03-18 15:08:52,376 : kivy : Window: auto add sdl2 input provider
+2021-03-18 15:08:52,377 : kivy : Window: virtual keyboard not allowed, single mode, not docked
+2021-03-18 15:08:52,396 : SoundSystem : SoundSystem: Using default 'sound_system' settings
+2021-03-18 15:08:52,887 : AudioInterface : Initialized
+2021-03-18 15:08:52,887 : SoundSystem : No audio tracks are specified in your machine config file. a track named 'default' has been created.
+2021-03-18 15:08:52,891 : kivy : Base: Start application main loop
+2021-03-18 15:08:52,892 : EventManager : Event: ======'display_window_initialized'====== Args={}
+2021-03-18 15:08:52,916 : mpfmc : Display: Setting 'window' as default display
+2021-03-18 15:08:52,927 : EventManager : Event: ======'displays_initialized'====== Args={}
+2021-03-18 15:08:52,930 : EventManager : Event: ======'slide_window_blank_created'====== Args={}
+2021-03-18 15:08:52,931 : EventManager : Event: ======'display_window_ready'====== Args={}
+2021-03-18 15:08:52,944 : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 15:08:52,949 : EventManager : Event: ======'mc_ready'====== Args={}
+2021-03-18 15:08:52,949 : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 15:08:52,952 : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-18 15:08:52,953 : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-18 15:08:52,953 : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-18 15:08:52,954 : EventManager : Event: ======'init_done'====== Args={}
+2021-03-18 15:08:52,955 : MPF-MC BCP Server : Starting up on localhost port 5050
+2021-03-18 15:08:52,959 : MPF-MC BCP Server : Waiting for a connection...
+2021-03-18 15:08:52,959 : mpfmc : SlidePlayer: Play called with settings={'slides': {welcome_slide-None-None: {'priority': None, 'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play', 'transition': None, 'transition_out': None}}}
+2021-03-18 15:08:52,966 : kivy : GL: NPOT texture support is available
+2021-03-18 15:08:52,968 : EventManager : Event: ======'slide_welcome_slide_created'====== Args={}
+2021-03-18 15:08:52,972 : EventManager : Event: ======'slide_welcome_slide_active'====== Args={}
+2021-03-18 15:08:52,983 : EventManager : Event: ======'client_disconnected'====== Args={'host': '127.0.0.1', 'port': 5050}
+2021-03-18 15:08:53,927 : MPF-MC BCP Server : Received connection from: 127.0.0.1:54894
+2021-03-18 15:08:53,939 : EventManager : Event: ======'client_connected'====== Args={'host': '127.0.0.1', 'port': 54894}
+2021-03-18 15:08:53,951 : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,952 : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,953 : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,954 : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,956 : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,959 : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,961 : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,962 : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,962 : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,963 : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,963 : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,964 : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,965 : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,965 : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,966 : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,966 : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,967 : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,970 : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,971 : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,972 : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-18 15:08:53,972 : EventManager : Event: ======'slides_play'====== Args={'settings': {'welcome_slide': {'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'priority': None, 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play'}}, 'context': '_global', 'calling_context': 'init_done', 'priority': 0}
+2021-03-18 15:08:53,973 : EventManager : Event: ======'mc_reset_phase_1'====== Args={}
+2021-03-18 15:08:53,973 : mpfmc : SlidePlayer: Play called with settings={'welcome_slide': {'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'priority': None, 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play'}}
+2021-03-18 15:08:53,975 : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={}
+2021-03-18 15:08:53,980 : EventManager : Event: ======'slide_welcome_slide_created'====== Args={}
+2021-03-18 15:08:53,982 : EventManager : Event: ======'mc_reset_phase_2'====== Args={}
+2021-03-18 15:08:53,982 : EventManager : Event: ======'mc_reset_phase_3'====== Args={}
+2021-03-18 15:08:53,983 : EventManager : Event: ======'mc_reset_complete'====== Args={}
+2021-03-18 15:08:53,984 : EventManager : Event: ======'slide_welcome_slide_active'====== Args={}
+2021-03-18 15:08:54,005 : EventManager : Event: ======'slides_play'====== Args={'settings': {'attract_started': {'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'priority': None, 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play'}}, 'context': '_global', 'calling_context': 'mode_attract_started', 'priority': 0}
+2021-03-18 15:08:54,006 : mpfmc : SlidePlayer: Play called with settings={'attract_started': {'target': None, 'background_color': [0.0, 0.0, 0.0, 1.0], 'priority': None, 'show': True, 'force': False, 'expire': None, 'slide': None, 'tokens': {}, 'action': 'play'}}
+2021-03-18 15:08:54,013 : EventManager : Event: ======'slide_attract_started_created'====== Args={}
+2021-03-18 15:08:54,015 : EventManager : Event: ======'slide_attract_started_active'====== Args={}
+2021-03-18 15:09:01,426 : kivy : Base: Leaving application in progress...
+2021-03-18 15:09:01,621 : kivy : WindowSDL: exiting mainloop and closing.
+2021-03-18 15:09:01,638 : mpfmc : Stopping...
+2021-03-18 15:09:01,638 : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 15:09:01,639 : mpfmc : Loop rate 76.24 Hz
+2021-03-18 15:09:01,644 : kivy : MC run loop ended.
+2021-03-18 15:09:01,644 : kivy : Stopping child threads... (3 remaining)
+2021-03-18 15:09:02,003 : mpfmc : Stopping...
+2021-03-18 15:09:02,003 : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 15:09:02,010 : mpfmc : Loop rate 73.13 Hz
+2021-03-18 15:09:02,020 : MPF-MC BCP Server : Stopping BCP sending thread
+2021-03-18 15:09:02,049 : kivy : All child threads stopped.

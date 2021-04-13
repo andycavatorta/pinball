@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+
+import pyexamples
+
+pyexamples.hello(b"world")
+#pyexamples.py_hello(b"world")

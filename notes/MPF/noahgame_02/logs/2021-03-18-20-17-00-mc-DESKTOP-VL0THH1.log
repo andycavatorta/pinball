@@ -1,0 +1,111 @@
+2021-03-18 20:17:00,381 : kivy : Factory: 184 symbols loaded
+2021-03-18 20:17:00,597 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 20:17:00,598 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 20:17:00,662 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 20:17:00,662 : kivy : Video: Provider: gstplayer
+2021-03-18 20:17:00,740 : kivy : Loading MPF-MC controller
+2021-03-18 20:17:00,745 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 20:17:00,746 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:17:00,747 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 20:17:00,797 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 20:17:00,797 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.
+2021-03-18 20:17:00,826 : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:17:00,829 : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\13e1228f6bf8ea03affe51e56cb3543a.mpf_cache
+2021-03-18 20:17:00,830 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 20:17:00,831 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 20:17:00,832 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-18 20:17:00,842 : mpfmc : Mission Pinball Framework Media Controller v0.54.0
+2021-03-18 20:17:00,842 : mpfmc : Mission Pinball Framework Game Engine v0.54.6
+2021-03-18 20:17:00,844 : mpfmc : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 20:17:00,844 : mpfmc : Starting clock at 60.0Hz
+2021-03-18 20:17:00,883 : kivy : Text: Provider: sdl2
+2021-03-18 20:17:00,938 : kivy : Window: Provider: sdl2
+2021-03-18 20:17:01,100 : kivy : GL: Using the "OpenGL" graphics system
+2021-03-18 20:17:01,102 : kivy : GL: GLEW initialization succeeded
+2021-03-18 20:17:01,103 : kivy : GL: Backend used <glew>
+2021-03-18 20:17:01,106 : kivy : GL: OpenGL version <b'4.4.0 - Build 20.19.15.4835'>
+2021-03-18 20:17:01,107 : kivy : GL: OpenGL vendor <b'Intel'>
+2021-03-18 20:17:01,108 : kivy : GL: OpenGL renderer <b'Intel(R) HD Graphics 5500'>
+2021-03-18 20:17:01,109 : kivy : GL: OpenGL parsed version: 4, 4
+2021-03-18 20:17:01,112 : kivy : GL: Shading version <b'4.40 - Build 20.19.15.4835'>
+2021-03-18 20:17:01,113 : kivy : GL: Texture max size <16384>
+2021-03-18 20:17:01,115 : kivy : GL: Texture max units <32>
+2021-03-18 20:17:01,146 : kivy : Window: auto add sdl2 input provider
+2021-03-18 20:17:01,147 : kivy : Window: virtual keyboard not allowed, single mode, not docked
+2021-03-18 20:17:01,163 : SoundSystem : SoundSystem: Using default 'sound_system' settings
+2021-03-18 20:17:01,615 : AudioInterface : Initialized
+2021-03-18 20:17:01,616 : SoundSystem : No audio tracks are specified in your machine config file. a track named 'default' has been created.
+2021-03-18 20:17:01,622 : kivy : Base: Start application main loop
+2021-03-18 20:17:01,623 : EventManager : Event: ======'display_window_initialized'====== Args={}
+2021-03-18 20:17:01,646 : mpfmc : Display: Setting 'window' as default display
+2021-03-18 20:17:01,657 : EventManager : Event: ======'displays_initialized'====== Args={}
+2021-03-18 20:17:01,659 : EventManager : Event: ======'slide_window_blank_created'====== Args={}
+2021-03-18 20:17:01,659 : EventManager : Event: ======'display_window_ready'====== Args={}
+2021-03-18 20:17:01,676 : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 20:17:01,681 : EventManager : Event: ======'mc_ready'====== Args={}
+2021-03-18 20:17:01,682 : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 20:17:01,685 : kivy : Base: Leaving application in progress...
+2021-03-18 20:17:01,686 : kivy : Exception while processing RegisteredHandler(callback=<bound method ModeController._load_modes of <mpfmc.core.mode_controller.ModeController object at 0x0000016A0A9EBD48>>, priority=1, kwargs={}, key=UUID('997c285a-4dca-4ee0-a555-db9b1bb61496'), condition=None, blocking_facility=None) for event init_phase_2. Config File Error in ConfigValidator: Error while loading mode 'base' >> Config validation error: Entry widgets:text:widgets:text:text = "None" is not valid. Required setting "text:" is missing from section "widgets:text:widgets:text:" in your config. Error Code: CFE-ConfigValidator-9 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-9.html)
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 683, in _run_handlers
+    result = handler.callback(**merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mode_controller.py", line 76, in _load_modes
+    raise e
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mode_controller.py", line 73, in _load_modes
+    **item.kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 133, in process_mode_config
+    config = self.validate_config(config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\slide_player.py", line 263, in validate_config
+    self._validate_config_item(slide, slide_settings))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\slide_player.py", line 276, in _validate_config_item
+    config['widgets'])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_collections\widget.py", line 40, in process_config
+    widget_list.append(self.process_widget(widget))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_collections\widget.py", line 82, in process_widget
+    config['type']).lower(), config, base_spec='widgets:common')
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 176, in validate_config
+    validation_failure_info=validation_failure_info)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 228, in _validate_config
+    validation_failure_info=ValidationPath(validation_failure_info, k))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 250, in validate_config_item
+    validation_failure_info.item, section), 9)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 718, in validation_error
+    item, msg), 5 if code is None else code, self.log.name)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in ConfigValidator: Error while loading mode 'base' >> Config validation error: Entry widgets:text:widgets:text:text = "None" is not valid. Required setting "text:" is missing from section "widgets:text:widgets:text:" in your config. Error Code: CFE-ConfigValidator-9 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-9.html)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\commands\mc.py", line 224, in __init__
+    thread_stopper=thread_stopper).run()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\app.py", line 855, in run
+    runTouchApp()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\base.py", line 504, in runTouchApp
+    EventLoop.window.mainloop()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\core\window\window_sdl2.py", line 747, in mainloop
+    self._mainloop()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\core\window\window_sdl2.py", line 479, in _mainloop
+    EventLoop.idle()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\base.py", line 339, in idle
+    Clock.tick()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\clock.py", line 591, in tick
+    self._process_events()
+  File "kivy\_clock.pyx", line 384, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 414, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 412, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 167, in kivy._clock.ClockEvent.tick
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\uix\display.py", line 208, in _displays_initialized
+    self.mc.displays_initialized()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mc.py", line 348, in displays_initialized
+    self._init()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mc.py", line 393, in _init
+    self.events.process_event_queue()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 770, in process_event_queue
+    **event[3])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 729, in _process_event
+    result = self._run_handlers(event, ev_type, kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 685, in _run_handlers
+    raise Exception("Exception while processing {} for event {}. {}".format(handler, event, e)) from e
+Exception: Exception while processing RegisteredHandler(callback=<bound method ModeController._load_modes of <mpfmc.core.mode_controller.ModeController object at 0x0000016A0A9EBD48>>, priority=1, kwargs={}, key=UUID('997c285a-4dca-4ee0-a555-db9b1bb61496'), condition=None, blocking_facility=None) for event init_phase_2. Config File Error in ConfigValidator: Error while loading mode 'base' >> Config validation error: Entry widgets:text:widgets:text:text = "None" is not valid. Required setting "text:" is missing from section "widgets:text:widgets:text:" in your config. Error Code: CFE-ConfigValidator-9 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-9.html)
+2021-03-18 20:17:01,694 : kivy : Stopping child threads... (1 remaining)
+2021-03-18 20:17:02,699 : kivy : All child threads stopped.

@@ -1,0 +1,1519 @@
+2021-03-24 18:19:48,655 : INFO : root : Loading config.
+2021-03-24 18:19:48,662 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-24 18:19:48,663 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-24 18:19:48,784 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-24 18:19:48,785 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-24 18:19:48,786 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-24 18:19:48,787 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-24 18:19:48,788 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-24 18:19:48,789 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-24 18:19:48,789 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-24-18-19-48-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-24 18:19:48,789 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-24 18:19:48,789 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-24 18:19:48,789 : INFO : Machine : Platform: win32
+2021-03-24 18:19:48,789 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-24 18:19:48,789 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-24 18:19:48,792 : INFO : Machine : Initialise MPF.
+2021-03-24 18:19:48,906 : INFO : P-Roc : Connecting to P-ROC
+2021-03-24 18:19:49,323 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-24 18:19:49,323 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-24 18:19:49,390 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,390 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,390 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,391 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,474 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,474 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,474 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,475 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,475 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,475 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,475 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,476 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-24 18:19:49,476 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-24 18:19:49,521 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-24 18:19:49,525 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-24 18:19:49,557 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-24 18:19:49,559 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-24 18:19:51,573 : INFO : BCPClientSocket : Connected BCP to 'local_display' localhost:5050
+2021-03-24 18:19:51,574 : INFO : EventManager : Event: ======'bcp_clients_connected'====== Args={}
+2021-03-24 18:19:51,574 : INFO : ball_device.bd_trough : State: idle
+2021-03-24 18:19:51,585 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-24 18:19:51,598 : INFO : EventManager : Event: ======'machine_var_mc_version'====== Args={'value': 'MPF-MC v0.54.0', 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,599 : INFO : EventManager : Event: ======'machine_var_mc_extended_version'====== Args={'value': 'MPF-MC v0.54.0 (config_version=5, BCP v1.1, Requires MPF v0.54.0)', 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,602 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,603 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-24 18:19:51,603 : INFO : BallController : Initial balls found: 0
+2021-03-24 18:19:51,605 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,606 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,606 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,606 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,606 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,607 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,607 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,608 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,608 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,608 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,609 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_3'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,609 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-24 18:19:51,610 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-24 18:19:51,611 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-24 18:19:51,614 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-24 18:19:51,623 : INFO : EventManager : Event: ======'slide_welcome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 18:19:51,627 : INFO : EventManager : Event: ======'slide_welcome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 18:19:51,632 : INFO : EventManager : Event: ======'slide_welcome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 18:19:51,632 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-24 18:19:51,632 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-24 18:19:51,633 : INFO : drop_target_bank.drop_target_bank_1 : All targets are already up. Will not reset bank.
+2021-03-24 18:19:51,648 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-24 18:19:51,650 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-24 18:19:51,651 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-24 18:19:51,651 : INFO : Mode.attract : Started. Priority: 10
+2021-03-24 18:19:51,651 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-24 18:19:51,651 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-24 18:19:51,654 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-24 18:19:51,655 : INFO : Machine : Starting the main run loop.
+2021-03-24 18:19:51,672 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 18:19:51,675 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 18:20:51,668 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 18:20:51,671 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 18:21:37,113 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:37,114 : INFO : SwitchController : <<<<<<< 's_drop_target_1' active >>>>>>>
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'drop_target_d_drop_target_1_down'====== Args={'device': <drop_target.d_drop_target_1>}
+2021-03-24 18:21:37,114 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_mixed'====== Args={'down': 1}
+2021-03-24 18:21:37,137 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_flipper from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,137 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_flipper from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_drop_target_2 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_pop_bumper_1 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_pop_bumper_2 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_pop_bumper_3 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:37,138 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_trough1 from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:51,669 : INFO : EventManager : Event: ======'slide_mission_pinball_created'====== Args={'_from_bcp': True}
+2021-03-24 18:21:51,671 : INFO : EventManager : Event: ======'slide_mission_pinball_active'====== Args={'_from_bcp': True}
+2021-03-24 18:21:59,628 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:21:59,641 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,663 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:59,664 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:59,664 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:59,675 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,687 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:59,721 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:21:59,721 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:59,722 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:59,722 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:59,739 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,761 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:59,773 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:21:59,805 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:59,806 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:59,806 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:59,806 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,817 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:59,818 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:59,818 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:59,839 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,839 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:21:59,840 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:21:59,840 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:21:59,872 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:21:59,884 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:00,818 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:01,049 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:03,378 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:03,427 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:03,427 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:03,427 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:03,428 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:03,504 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:03,536 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:03,537 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:03,537 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:03,547 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:03,571 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:03,679 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:03,689 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:03,730 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:03,762 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:03,772 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:03,773 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:03,773 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:03,773 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:03,794 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:03,794 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:03,794 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:03,795 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:03,828 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:03,828 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:03,829 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:04,323 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:04,335 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:04,781 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:04,909 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:04,909 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:04,909 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:04,909 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:04,931 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:04,943 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:05,083 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:05,083 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:05,083 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:05,106 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:09,006 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:09,029 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,062 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,072 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,095 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:09,095 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:09,096 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:09,107 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,119 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,363 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:09,894 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:09,927 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:09,938 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:09,972 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:09,973 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:09,973 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:09,973 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:10,048 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,048 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,048 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:10,081 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,103 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:10,103 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:10,103 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:10,595 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:10,607 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:10,641 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,664 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,675 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,709 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:10,709 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:10,709 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:10,721 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:10,775 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:10,787 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:10,787 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:10,787 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:10,798 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:10,820 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:10,821 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:10,821 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:10,896 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:11,488 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:11,510 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:11,522 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:11,523 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:11,523 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:11,544 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:11,567 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:11,599 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:11,621 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:11,621 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:11,621 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:11,704 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:15,828 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:15,884 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:15,896 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:15,896 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:15,928 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:15,928 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:15,929 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:15,929 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:15,940 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:15,958 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:15,990 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:16,034 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:16,067 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:16,181 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:16,438 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:16,438 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:16,439 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:16,439 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:16,451 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:16,602 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:16,742 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:17,463 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:17,720 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:17,988 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:18,171 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:18,600 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:18,613 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:18,613 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:18,613 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:18,635 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:18,808 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:19,367 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:19,368 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:19,368 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:19,389 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:19,402 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:19,402 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:19,402 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:19,414 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:19,435 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:20,156 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:20,189 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:20,222 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:20,223 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:20,223 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:20,235 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:20,268 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:20,652 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:20,824 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:20,920 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:20,920 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:20,921 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:20,921 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:20,966 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,031 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,085 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:21,097 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,119 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:21,119 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:21,120 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:21,131 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:21,131 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:21,131 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:21,131 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:21,142 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,198 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:21,317 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,339 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:21,352 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:21,352 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:21,352 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:21,374 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:21,385 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:21,419 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:21,419 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:21,419 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:25,004 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:25,212 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:25,351 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:25,385 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:25,386 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:25,386 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:25,386 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:25,408 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:25,409 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:25,409 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:25,409 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:25,489 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:25,500 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:25,534 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:25,534 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:25,534 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:25,534 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:25,613 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:25,724 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:25,886 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:25,983 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:26,264 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:26,296 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:26,318 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:26,318 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:26,318 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:26,319 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:26,330 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:26,352 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:26,352 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:26,353 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:26,353 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:26,365 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:26,386 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:26,386 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:26,386 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:26,399 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:26,539 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:26,670 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:26,906 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:22:26,940 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:26,961 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:26,961 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:26,961 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:26,973 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:26,984 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,017 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:22:27,018 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,048 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,089 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,100 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,113 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:27,113 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:27,113 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:27,791 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:27,906 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:27,939 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:27,939 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:27,940 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:27,940 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:27,968 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:28,011 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:29,508 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:22:29,716 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:22:31,330 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:31,331 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:31,331 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:31,349 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:31,360 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:31,372 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:31,395 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:31,439 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:31,440 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:31,440 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:31,440 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:31,472 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:31,472 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:31,472 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:31,473 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:31,484 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:31,517 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:31,570 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:32,542 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:32,542 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:32,543 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:32,543 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:32,608 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:32,640 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:32,640 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:32,641 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:33,139 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:33,140 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:33,140 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:33,140 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:33,151 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:33,173 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,205 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,216 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,238 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:33,238 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:33,238 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:33,250 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:33,262 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:33,263 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:33,263 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:33,263 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:33,284 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,316 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,349 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,350 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:33,350 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:33,350 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:33,360 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:33,372 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:33,396 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:33,397 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:33,397 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:34,006 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:34,018 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:34,019 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:34,019 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:34,019 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:34,038 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:34,070 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:34,103 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:34,530 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:34,541 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:34,542 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:34,542 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:34,542 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:34,563 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:36,270 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:38,245 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:38,246 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:38,246 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:38,257 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:38,280 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:38,280 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:38,280 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:38,292 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:38,790 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:38,790 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:38,790 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:38,803 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:39,174 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:39,174 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:39,174 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:39,175 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:39,242 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:39,350 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:39,350 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:39,350 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:39,363 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:39,397 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:39,634 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:39,634 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:39,634 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:39,658 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:39,691 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:39,896 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:39,896 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:39,896 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:39,896 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:39,928 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:40,194 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:40,194 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:40,195 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:40,195 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:40,355 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:40,388 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:40,388 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:40,389 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:40,411 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:40,423 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:40,424 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:40,424 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:40,435 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:40,522 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:40,522 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:40,523 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:40,609 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:41,179 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:41,180 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:41,180 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:41,191 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:41,417 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:41,913 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:41,913 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:41,914 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:41,925 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:42,259 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:42,259 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:42,259 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:42,281 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:42,568 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:42,568 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:42,568 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:42,580 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:42,742 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:42,742 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:42,743 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:42,743 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:43,130 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:43,255 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:22:43,255 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:43,256 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:43,266 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:43,738 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:43,738 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:43,739 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:43,750 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,005 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:44,059 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,059 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,059 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,059 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,236 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,236 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,237 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,280 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,523 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,523 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,524 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,524 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,567 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,567 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,567 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,568 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,568 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:44,842 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,842 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,843 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,854 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,887 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:44,887 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:44,888 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:44,899 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:44,921 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:45,060 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:45,060 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:45,061 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:45,061 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:45,093 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:45,094 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:45,094 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:45,116 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:45,387 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:45,387 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:45,388 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:45,399 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:45,540 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:22:45,541 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:45,541 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:45,605 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:22:48,238 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:48,238 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:48,238 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:48,250 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:48,284 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:48,285 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:48,285 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:48,297 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:48,297 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:48,297 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:48,297 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:48,361 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:51,669 : INFO : EventManager : Event: ======'slide_last_game_score_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 18:22:51,671 : INFO : EventManager : Event: ======'slide_last_game_score_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 18:22:54,573 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:54,573 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:54,573 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:54,595 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:54,606 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:54,639 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:55,389 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:55,389 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:55,389 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:55,411 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:55,444 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:55,791 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:55,791 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:55,792 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:55,792 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:55,804 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:55,939 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:56,499 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:56,499 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:56,500 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:56,500 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:57,298 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:57,298 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:57,298 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:57,307 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,362 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:57,374 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:57,374 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:57,374 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:57,414 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,437 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,523 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,535 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:22:57,588 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,742 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:22:57,894 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:22:57,894 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:22:57,894 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:22:57,894 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:00,213 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:00,214 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:00,214 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:00,226 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:00,260 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:01,235 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:01,235 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:01,236 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:01,268 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:01,332 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:01,647 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:01,648 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:01,648 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:01,682 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:01,715 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:01,715 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:01,716 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:01,716 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:01,748 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:01,760 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:01,793 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:01,793 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:01,793 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:01,793 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:01,815 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:01,815 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:01,816 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:01,816 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,004 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,004 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,004 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,005 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,016 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,071 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,114 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,136 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,136 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,136 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,149 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,160 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,160 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,160 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,182 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,215 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,215 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,216 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,216 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,248 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,248 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,249 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,249 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,627 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,649 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,650 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,650 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,661 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,672 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,695 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,695 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,695 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,696 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,739 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:02,739 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:02,739 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:02,739 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:02,751 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:02,773 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:03,062 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:03,105 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:03,138 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:03,138 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:03,139 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:03,161 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:03,161 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:03,174 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:03,185 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:03,186 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:03,186 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:03,186 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:03,208 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:03,208 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:03,209 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:03,221 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:03,232 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:03,254 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:04,852 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:04,852 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:04,853 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:04,853 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:04,865 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:04,865 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:04,865 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:04,922 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:04,922 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:04,923 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:04,923 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:04,935 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:05,427 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:05,427 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:05,427 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:05,449 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:05,460 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:05,460 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:05,460 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:05,557 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:05,569 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:05,570 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:05,570 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:05,592 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:06,038 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:06,038 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:06,038 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:06,050 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:06,115 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:06,227 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:06,377 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:06,377 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:06,377 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:06,378 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:06,389 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:06,389 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:06,389 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:06,389 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:06,422 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:06,422 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:06,423 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:06,435 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:06,467 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:06,488 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:06,489 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:06,995 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:06,995 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:06,996 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:07,019 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:07,029 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:07,063 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:07,075 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:07,338 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:07,338 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:07,338 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:07,339 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:07,427 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:07,449 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:07,449 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:07,450 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:07,461 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:07,570 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:07,570 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:07,570 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:07,603 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,373 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,374 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,374 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,396 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,408 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,408 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,408 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,408 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:08,441 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:08,453 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:08,453 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,658 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,658 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,658 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,658 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,680 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,680 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,680 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,681 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,714 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,714 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,715 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,715 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,727 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,727 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,727 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,748 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,748 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,748 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,749 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,760 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:08,793 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:08,804 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:08,805 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:08,805 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:08,869 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:08,892 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:09,734 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:09,798 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:09,830 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:09,863 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:09,875 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:09,947 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:09,947 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:09,947 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:09,959 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:18,288 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:18,288 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:18,289 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:18,300 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:18,301 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:18,301 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:18,301 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:18,301 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:18,301 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:18,301 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:18,301 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:18,344 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:18,345 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:18,345 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:18,345 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:18,367 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,367 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,367 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,397 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,418 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,450 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,450 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,462 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,475 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,571 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:18,657 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,700 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,786 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,798 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:18,810 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:22,516 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:22,516 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:22,517 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:22,517 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:22,540 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:22,540 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:22,540 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:22,540 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:22,561 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:22,561 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:22,562 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:22,596 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:22,628 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:27,727 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:27,727 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:27,727 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:27,750 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:27,762 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:27,762 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:27,762 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:27,762 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:27,783 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:27,783 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:27,783 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:27,799 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:27,799 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:27,895 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:27,895 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:27,896 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:27,896 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:27,908 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:27,908 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:27,908 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:27,908 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:27,920 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,178 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:28,434 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:28,434 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:28,434 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:28,456 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,467 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,478 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,501 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,565 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,641 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:28,641 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:28,641 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:28,641 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:28,719 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:28,741 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:28,741 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,056 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:29,056 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:29,056 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:29,089 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,199 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:29,199 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:29,199 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:29,200 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:29,233 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,266 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,288 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,288 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,299 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,319 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:29,319 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:29,319 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:29,320 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:29,353 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:29,354 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:29,354 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:29,354 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:29,355 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:29,366 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:29,366 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:29,366 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:29,377 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:29,480 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:29,512 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:30,689 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:30,689 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:30,689 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:30,689 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:30,689 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:30,689 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:30,689 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:30,711 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:30,808 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:30,819 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:30,841 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:31,026 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:31,285 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:31,286 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:31,286 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:32,313 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:32,662 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:32,662 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:32,663 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:32,673 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:33,331 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:33,605 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:33,605 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:33,605 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:33,627 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:33,995 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:34,008 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:34,824 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:34,824 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:34,824 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:34,890 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:34,989 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:35,032 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:35,042 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:36,106 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:36,525 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:36,525 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:36,526 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:36,547 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:36,662 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:37,628 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:38,009 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:38,009 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:38,010 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:38,570 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:39,179 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:39,179 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,180 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,255 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:39,352 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:39,374 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:39,456 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:39,456 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,456 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,457 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:39,468 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:39,469 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,469 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,469 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:39,480 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:39,481 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,481 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,481 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:39,502 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:39,502 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,502 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,502 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:39,514 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:39,526 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:39,527 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:39,527 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:39,527 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:39,910 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:40,103 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:23:40,103 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:40,104 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:40,126 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:40,126 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:40,126 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:40,126 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:40,166 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:40,166 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:40,167 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:40,167 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:40,199 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:40,199 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:40,199 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:40,200 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:40,221 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:40,221 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:40,221 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:40,221 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:40,234 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:40,246 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:40,269 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:40,526 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:23:41,809 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:41,853 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:41,886 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:41,919 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:41,952 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:41,952 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:41,952 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:41,952 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:41,996 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:42,008 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:42,030 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:42,030 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:42,030 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:42,031 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:42,042 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:42,064 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:42,064 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:42,064 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:42,065 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:42,079 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:42,079 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:42,079 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:42,080 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:42,090 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:42,113 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:42,160 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:42,160 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:42,161 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:43,753 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:43,753 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:43,754 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:43,775 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:43,775 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:43,775 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:43,775 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:43,776 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:43,787 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:44,623 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:44,923 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:44,924 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:44,924 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:44,945 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:44,978 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:44,989 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,024 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,035 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,057 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,069 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,069 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,069 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,080 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,081 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,100 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,100 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,101 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,101 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,170 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,171 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,171 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,171 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,171 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,183 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,183 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,183 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,184 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,194 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,195 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,195 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,218 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,230 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,241 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,242 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,242 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,242 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,242 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,571 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,603 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,603 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,647 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,648 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,648 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,648 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,691 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,723 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,723 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,723 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,746 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,746 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,747 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,747 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,757 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,758 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,758 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,758 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,770 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:45,791 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:45,792 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:45,792 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:45,792 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:45,803 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,334 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,334 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,334 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,346 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,347 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,369 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,369 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,370 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,370 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,398 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,398 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,399 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,399 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,411 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,433 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,433 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,433 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,433 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,445 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,477 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,477 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,478 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,478 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,478 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,478 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,478 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,478 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,533 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,533 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,533 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,533 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,544 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:46,544 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:46,544 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:46,544 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:46,555 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,579 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:46,945 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:47,279 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:47,280 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:47,280 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:47,291 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:47,292 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:47,292 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:47,292 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:47,325 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:47,358 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:47,359 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:47,359 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:47,359 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:47,406 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:47,406 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:47,406 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:48,670 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:48,691 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:48,692 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:48,692 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:48,692 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:48,703 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:48,704 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:48,704 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:48,716 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:48,738 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:48,738 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:48,738 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:48,752 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:48,795 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:49,167 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:49,232 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:49,233 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:49,233 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:49,244 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:49,245 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:49,245 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:49,245 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:49,602 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:49,613 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:49,635 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:49,636 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:49,636 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:49,647 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:49,681 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:50,428 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:50,450 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:50,450 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:50,450 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:50,462 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:50,484 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:50,484 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:50,484 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:50,496 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:50,497 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:50,497 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:50,497 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:50,508 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:50,509 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:50,509 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:50,509 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:50,530 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:51,657 : INFO : EventManager : Event: ======'slide_awesome_slide_removed'====== Args={'_from_bcp': True}
+2021-03-24 18:23:51,661 : INFO : EventManager : Event: ======'slide_awesome_slide_created'====== Args={'_from_bcp': True}
+2021-03-24 18:23:51,663 : INFO : EventManager : Event: ======'slide_awesome_slide_active'====== Args={'_from_bcp': True}
+2021-03-24 18:23:51,684 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:51,685 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:51,685 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:51,696 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:51,696 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:51,718 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:51,719 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:51,719 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:51,730 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:23:51,742 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:23:51,743 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:23:51,743 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:23:51,766 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:23:56,419 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:03,549 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:03,549 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:03,549 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:04,249 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:04,894 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:04,895 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:04,895 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:05,545 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:08,430 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:08,430 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:08,430 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:08,464 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:08,497 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:08,984 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:09,649 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:09,650 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:09,650 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:09,661 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:09,672 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:09,673 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:09,673 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:09,673 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:09,696 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:10,319 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:12,666 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:12,666 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:12,666 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:13,067 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:13,473 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:13,473 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:13,473 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:13,485 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:13,507 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:13,507 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:13,508 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:13,541 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:13,541 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:13,541 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:13,541 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:13,920 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:13,921 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:14,573 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:14,574 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:14,574 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:14,596 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:14,630 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:14,641 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:14,641 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:14,641 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:14,653 : WARNING : SwitchController : Received duplicate switch state 1 for switch s_left_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:15,324 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,384 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,428 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,428 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,429 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,429 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,494 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,623 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,672 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,684 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,684 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,684 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,684 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,696 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,824 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,878 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,879 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,879 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,879 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,890 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,913 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,913 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,914 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,914 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,926 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,926 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,926 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,927 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:19,937 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:19,961 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:19,961 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:19,962 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:19,962 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:20,080 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:20,080 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:20,081 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:20,081 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:20,099 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:20,121 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:20,133 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:20,133 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:20,133 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:20,133 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:20,145 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:20,178 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,195 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,196 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,196 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,196 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,293 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,337 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,507 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,518 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,518 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,518 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,518 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,529 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,552 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,552 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,552 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,552 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,564 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,564 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,564 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,564 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,587 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,599 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,681 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,725 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,725 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,725 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,725 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,737 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,760 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,792 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,793 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,793 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,793 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,805 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,817 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,817 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,817 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,817 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,839 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:22,839 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:22,840 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:22,840 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:22,950 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:22,982 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:23,015 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:23,027 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,027 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,027 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,028 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,049 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,050 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,050 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,050 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,061 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,062 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,062 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,062 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,074 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,074 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,074 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,074 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,095 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:23,238 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:23,250 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,250 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,250 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,250 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,283 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,283 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,284 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,297 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,297 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:23,321 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,321 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,322 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,322 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,333 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,334 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,334 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,334 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,345 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:23,345 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:23,345 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:23,345 : INFO : SwitchController : <<<<<<< 's_right_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:23,367 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_mid from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:35,657 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:35,657 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:35,658 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:35,658 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:36,505 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:36,506 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:36,506 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:36,528 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:36,560 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:36,560 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:36,561 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:36,561 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:36,593 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:36,594 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:36,594 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:36,606 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:36,606 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:36,619 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:36,619 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:36,619 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:36,862 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:37,060 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:37,060 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:37,061 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:37,061 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:37,083 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:37,084 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:37,084 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:37,137 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:37,279 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:37,504 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:37,644 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' active >>>>>>>
+2021-03-24 18:24:37,645 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:37,645 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:37,667 : INFO : SwitchController : <<<<<<< 's_left_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:37,829 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_left_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:38,270 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:38,270 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:38,271 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:38,292 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:38,356 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:38,356 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:38,356 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:38,357 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:38,400 : WARNING : SwitchController : Received duplicate switch state 0 for switch s_right_slingshot_main from the platform interface. Log Code: Log-SwitchController-1 (https://docs.missionpinball.org/en/0.54/logs/Log-SwitchController-1.html)
+2021-03-24 18:24:38,573 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:38,573 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:38,573 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:38,595 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:38,618 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:38,619 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:38,619 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:38,909 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,092 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,092 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,093 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,104 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,116 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,116 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,116 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,228 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,573 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,573 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,574 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,585 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,598 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,598 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,598 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,620 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,886 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,886 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,886 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,909 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:39,921 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:39,921 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:39,921 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:39,985 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:40,285 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:40,285 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:40,286 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:40,307 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:40,320 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' active >>>>>>>
+2021-03-24 18:24:40,320 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:40,320 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:40,385 : INFO : SwitchController : <<<<<<< 's_right_slingshot_main' inactive >>>>>>>
+2021-03-24 18:24:40,989 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:40,989 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:40,989 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:40,989 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:41,043 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:41,043 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:41,043 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:41,044 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:41,055 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:41,056 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:41,056 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:41,056 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:41,168 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' active >>>>>>>
+2021-03-24 18:24:41,168 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-24 18:24:41,169 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-24 18:24:41,222 : INFO : SwitchController : <<<<<<< 's_left_slingshot_mid' inactive >>>>>>>
+2021-03-24 18:24:42,003 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:24:42,212 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:24:42,352 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:24:42,449 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:24:42,643 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-24 18:24:42,720 : INFO : SwitchController : <<<<<<< 's_right_flipper' inactive >>>>>>>
+2021-03-24 18:24:43,330 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:24:43,460 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:24:43,688 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:24:43,775 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:24:43,984 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-24 18:24:44,071 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-24 18:24:51,664 : INFO : EventManager : Event: ======'slide_press_start_removed'====== Args={'_from_bcp': True}
+2021-03-24 18:24:51,669 : INFO : EventManager : Event: ======'slide_press_start_created'====== Args={'_from_bcp': True}
+2021-03-24 18:24:51,673 : INFO : EventManager : Event: ======'slide_press_start_active'====== Args={'_from_bcp': True}
+2021-03-24 18:24:56,791 : INFO : Machine : Shutting down...
+2021-03-24 18:24:56,791 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-24 18:24:56,794 : INFO : root : MPF run loop ended.

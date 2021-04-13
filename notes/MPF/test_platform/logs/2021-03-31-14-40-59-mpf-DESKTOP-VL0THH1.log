@@ -1,0 +1,76 @@
+2021-03-31 14:40:59,764 : INFO : root : Loading config.
+2021-03-31 14:40:59,770 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-31 14:40:59,771 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-31 14:40:59,876 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-31 14:40:59,877 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-31 14:40:59,878 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-31 14:40:59,880 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-31 14:40:59,881 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-31 14:40:59,881 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-31 14:40:59,882 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-31-14-40-59-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-31 14:40:59,882 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-31 14:40:59,882 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-31 14:40:59,882 : INFO : Machine : Platform: win32
+2021-03-31 14:40:59,882 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-31 14:40:59,882 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-31 14:41:01,275 : INFO : Machine : Initialise MPF.
+2021-03-31 14:41:01,379 : INFO : P-Roc : Connecting to P-ROC
+2021-03-31 14:41:01,602 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-31 14:41:01,602 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-31 14:41:01,795 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,795 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,795 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,796 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,867 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,867 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,867 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,867 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,868 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,868 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,868 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,868 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-31 14:41:01,868 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-31 14:41:02,046 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-31 14:41:03,446 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-31 14:41:03,480 : INFO : ball_device.bd_trough : State: idle
+2021-03-31 14:41:03,488 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-31 14:41:03,494 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-31 14:41:03,494 : INFO : BallController : Initial balls found: 0
+2021-03-31 14:41:03,496 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,496 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_3'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:41:03,497 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-31 14:41:28,964 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:41:40,464 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:41:45,224 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:41:48,812 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:42:03,970 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:43:35,964 : INFO : Machine : Shutting down...
+2021-03-31 14:43:35,964 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-31 14:43:35,967 : ERROR : Machine : Failed to initialise MPF
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 721, in initialise_mpf
+    loop=self.clock.loop, timeout=timeout))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 313, in initialise
+    test_seq( self.coils )
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 70, in test_seq
+    c2.pulse()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 278, in pulse
+    pulse_ms = self.get_and_verify_pulse_ms(pulse_ms)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\devices\driver.py", line 278, in pulse
+    pulse_ms = self.get_and_verify_pulse_ms(pulse_ms)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-31 14:43:35,969 : INFO : root : MPF run loop ended.

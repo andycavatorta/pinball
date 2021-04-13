@@ -1,0 +1,6 @@
+2021-03-18 20:14:23,136 : INFO : root : Loading config.
+2021-03-18 20:14:23,142 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 20:14:23,142 : WARNING : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml
+2021-03-18 20:14:23,142 : INFO : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml.
+2021-03-18 20:14:23,271 : INFO : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpf\mpfconfig.yaml
+2021-03-18 20:14:23,274 : INFO : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.yaml.

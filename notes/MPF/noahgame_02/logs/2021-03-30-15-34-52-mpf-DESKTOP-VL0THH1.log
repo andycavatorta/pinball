@@ -1,0 +1,113 @@
+2021-03-30 15:34:52,299 : INFO : root : Loading config.
+2021-03-30 15:34:52,305 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-30 15:34:52,306 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-30 15:34:52,418 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-30 15:34:52,418 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-30 15:34:52,419 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-30 15:34:52,420 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-30 15:34:52,421 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-30 15:34:52,421 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-30 15:34:52,422 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-30-15-34-52-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': True, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-30 15:34:52,422 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-30 15:34:52,422 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-30 15:34:52,422 : INFO : Machine : Platform: win32
+2021-03-30 15:34:52,422 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-30 15:34:52,422 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-30 15:34:52,425 : INFO : Machine : Initialise MPF.
+2021-03-30 15:34:52,790 : INFO : P-Roc : Connecting to P-ROC
+2021-03-30 15:34:52,794 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:52,794 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:34:53,807 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:53,807 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:34:54,815 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:54,815 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:34:55,825 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:55,825 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:34:56,835 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:56,835 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:34:57,842 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:34:57,842 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:35:00,018 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error reading Chip IP and Version. Read 7 words instead of 5. The first 2 were: 0x0 and 0x0.. Is your P/P3-Roc connected and powered up?
+2021-03-30 15:35:00,018 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-30 15:35:01,254 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-30 15:35:01,254 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-30 15:35:01,301 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,301 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,301 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,301 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,362 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,363 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-30 15:35:01,422 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-30 15:35:01,430 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-30 15:35:01,460 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_right_inlane>
+2021-03-30 15:35:01,466 : INFO : ball_device.bd_trough : State: idle
+2021-03-30 15:35:01,476 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-30 15:35:01,481 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-30 15:35:01,481 : INFO : BallController : Initial balls found: 0
+2021-03-30 15:35:01,482 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target'====== Args={'value': 123, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,482 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 20, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,482 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_inlane'====== Args={'value': 9, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot'====== Args={'value': 31, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_start'====== Args={'value': 12, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,483 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-30 15:35:01,484 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-30 15:35:01,553 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-30 15:35:01,564 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-30 15:35:01,564 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-30 15:35:01,565 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-30 15:35:01,565 : INFO : drop_target_bank.noah : All targets are already up. Will not reset bank.
+2021-03-30 15:35:01,567 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-30 15:35:01,567 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-30 15:35:01,568 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-30 15:35:01,568 : INFO : Mode.attract : Started. Priority: 10
+2021-03-30 15:35:01,568 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-30 15:35:01,568 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-30 15:35:01,569 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-30 15:35:01,628 : INFO : Machine : Starting the main run loop.
+2021-03-30 15:35:05,318 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-30 15:35:06,088 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-30 15:35:06,243 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-30 15:35:06,244 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-30 15:35:06,244 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-30 15:35:07,389 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-30 15:35:07,621 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-30 15:35:07,962 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-30 15:35:08,208 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-30 15:35:08,209 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-30 15:35:08,209 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-30 15:35:08,719 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-30 15:35:09,078 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-30 15:35:09,340 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-30 15:35:09,480 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-30 15:35:09,481 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-30 15:35:09,481 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-30 15:35:09,727 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-30 15:35:10,471 : INFO : SwitchController : <<<<<<< 's_left_flipper' active >>>>>>>
+2021-03-30 15:35:10,611 : INFO : SwitchController : <<<<<<< 's_left_flipper' inactive >>>>>>>
+2021-03-30 15:35:10,735 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-30 15:35:10,736 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-30 15:35:10,736 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-30 15:35:10,967 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-30 15:35:11,165 : INFO : SwitchController : <<<<<<< 's_left_slingshot' active >>>>>>>
+2021-03-30 15:35:11,166 : INFO : EventManager : Event: ======'playfield_active'====== Args={}
+2021-03-30 15:35:11,166 : INFO : EventManager : Event: ======'unexpected_ball_on_playfield'====== Args={}
+2021-03-30 15:35:11,305 : INFO : SwitchController : <<<<<<< 's_left_slingshot' inactive >>>>>>>
+2021-03-30 15:35:17,429 : INFO : Machine : Shutting down...
+2021-03-30 15:35:17,429 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-30 15:35:17,435 : INFO : root : MPF run loop ended.

@@ -1,0 +1,93 @@
+2021-03-18 20:43:45,659 : kivy : Factory: 184 symbols loaded
+2021-03-18 20:43:45,863 : kivy : ImageLoaderFFPy: Using ffpyplayer 4.3.1
+2021-03-18 20:43:45,865 : kivy : Image: Providers: img_tex, img_dds, img_sdl2, img_pil, img_ffpyplayer, img_gif 
+2021-03-18 20:43:45,940 : kivy : VideoGstplayer: Using Gstreamer 1.16.0.0
+2021-03-18 20:43:45,940 : kivy : Video: Provider: gstplayer
+2021-03-18 20:43:46,025 : kivy : Loading MPF-MC controller
+2021-03-18 20:43:46,032 : YamlMultifileConfigLoader : Machine config file #1: config
+2021-03-18 20:43:46,033 : ConfigProcessor : Config file in cache changed: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:43:46,034 : ConfigProcessor : Loading config from file c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml.
+2021-03-18 20:43:46,088 : ConfigProcessor : Loading config: c:\users\noah\mpfenv\lib\site-packages\mpfmc\mcconfig.yaml
+2021-03-18 20:43:46,089 : ConfigProcessor : Loading config from file C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config.
+2021-03-18 20:43:46,118 : ConfigProcessor : Loading config: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02\config\config
+2021-03-18 20:43:46,120 : ConfigProcessor : Config file cache created: C:\Users\Noah\AppData\Local\Temp\13e1228f6bf8ea03affe51e56cb3543a.mpf_cache
+2021-03-18 20:43:46,122 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-18 20:43:46,123 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 20:43:46,123 : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-18 20:43:46,124 : mpfmc : Mission Pinball Framework Media Controller v0.54.0
+2021-03-18 20:43:46,124 : mpfmc : Mission Pinball Framework Game Engine v0.54.6
+2021-03-18 20:43:46,125 : mpfmc : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 20:43:46,125 : mpfmc : Starting clock at 60.0Hz
+2021-03-18 20:43:46,164 : kivy : Text: Provider: sdl2
+2021-03-18 20:43:46,221 : kivy : Window: Provider: sdl2
+2021-03-18 20:43:46,388 : kivy : GL: Using the "OpenGL" graphics system
+2021-03-18 20:43:46,391 : kivy : GL: GLEW initialization succeeded
+2021-03-18 20:43:46,392 : kivy : GL: Backend used <glew>
+2021-03-18 20:43:46,395 : kivy : GL: OpenGL version <b'4.4.0 - Build 20.19.15.4835'>
+2021-03-18 20:43:46,396 : kivy : GL: OpenGL vendor <b'Intel'>
+2021-03-18 20:43:46,397 : kivy : GL: OpenGL renderer <b'Intel(R) HD Graphics 5500'>
+2021-03-18 20:43:46,399 : kivy : GL: OpenGL parsed version: 4, 4
+2021-03-18 20:43:46,403 : kivy : GL: Shading version <b'4.40 - Build 20.19.15.4835'>
+2021-03-18 20:43:46,404 : kivy : GL: Texture max size <16384>
+2021-03-18 20:43:46,405 : kivy : GL: Texture max units <32>
+2021-03-18 20:43:46,437 : kivy : Window: auto add sdl2 input provider
+2021-03-18 20:43:46,438 : kivy : Window: virtual keyboard not allowed, single mode, not docked
+2021-03-18 20:43:46,454 : SoundSystem : SoundSystem: Using default 'sound_system' settings
+2021-03-18 20:43:46,949 : AudioInterface : Initialized
+2021-03-18 20:43:46,949 : SoundSystem : No audio tracks are specified in your machine config file. a track named 'default' has been created.
+2021-03-18 20:43:46,954 : kivy : Base: Start application main loop
+2021-03-18 20:43:46,955 : EventManager : Event: ======'display_window_initialized'====== Args={}
+2021-03-18 20:43:46,983 : mpfmc : Display: Setting 'window' as default display
+2021-03-18 20:43:46,996 : EventManager : Event: ======'displays_initialized'====== Args={}
+2021-03-18 20:43:46,999 : EventManager : Event: ======'slide_window_blank_created'====== Args={}
+2021-03-18 20:43:46,999 : EventManager : Event: ======'display_window_ready'====== Args={}
+2021-03-18 20:43:47,016 : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 20:43:47,022 : kivy : Base: Leaving application in progress...
+2021-03-18 20:43:47,023 : kivy : Exception while processing RegisteredHandler(callback=<bound method McConfigPlayer._initialise_system_wide of McConfigPlayer.slides>, priority=1, kwargs={}, key=UUID('cde52795-6586-441b-a695-082dd35d1ab2'), condition=None, blocking_facility=None) for event init_phase_1. Slide attract_started not found
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 683, in _run_handlers
+    result = handler.callback(**merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mc_config_player.py", line 36, in _initialise_system_wide
+    self.machine.machine_config[self.config_file_section]))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\slide_player.py", line 263, in validate_config
+    self._validate_config_item(slide, slide_settings))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\slide_player.py", line 285, in _validate_config_item
+    raise AssertionError("Slide {} not found".format(slide))
+AssertionError: Slide attract_started not found
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\commands\mc.py", line 224, in __init__
+    thread_stopper=thread_stopper).run()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\app.py", line 855, in run
+    runTouchApp()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\base.py", line 504, in runTouchApp
+    EventLoop.window.mainloop()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\core\window\window_sdl2.py", line 747, in mainloop
+    self._mainloop()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\core\window\window_sdl2.py", line 479, in _mainloop
+    EventLoop.idle()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\base.py", line 339, in idle
+    Clock.tick()
+  File "c:\users\noah\mpfenv\lib\site-packages\kivy\clock.py", line 591, in tick
+    self._process_events()
+  File "kivy\_clock.pyx", line 384, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 414, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 412, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 167, in kivy._clock.ClockEvent.tick
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\uix\display.py", line 208, in _displays_initialized
+    self.mc.displays_initialized()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mc.py", line 348, in displays_initialized
+    self._init()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\core\mc.py", line 373, in _init
+    self.events.process_event_queue()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 770, in process_event_queue
+    **event[3])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 729, in _process_event
+    result = self._run_handlers(event, ev_type, kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 685, in _run_handlers
+    raise Exception("Exception while processing {} for event {}. {}".format(handler, event, e)) from e
+Exception: Exception while processing RegisteredHandler(callback=<bound method McConfigPlayer._initialise_system_wide of McConfigPlayer.slides>, priority=1, kwargs={}, key=UUID('cde52795-6586-441b-a695-082dd35d1ab2'), condition=None, blocking_facility=None) for event init_phase_1. Slide attract_started not found
+2021-03-18 20:43:47,031 : kivy : Stopping child threads... (1 remaining)
+2021-03-18 20:43:48,037 : kivy : All child threads stopped.

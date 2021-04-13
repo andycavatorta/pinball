@@ -1,0 +1,148 @@
+2021-03-31 14:45:23,991 : INFO : root : Loading config.
+2021-03-31 14:45:23,997 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-31 14:45:23,998 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\f1e6b3d603b69cf20c882e489c97a885.mpf_cache
+2021-03-31 14:45:24,104 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\3667aa7b16c33035bf5ed76426078541.mpf_cache
+2021-03-31 14:45:24,105 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-31 14:45:24,106 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\087a53a03e25f86845675c231fd2982a.mpf_cache
+2021-03-31 14:45:24,108 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\8252fe0f7adb2196fe883aefa2a8963e.mpf_cache
+2021-03-31 14:45:24,110 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\fab15a6988082b7b90a1ae2ab7ba49ba.mpf_cache
+2021-03-31 14:45:24,111 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-31 14:45:24,111 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-31-14-45-23-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-31 14:45:24,111 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-31 14:45:24,111 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\test_platform
+2021-03-31 14:45:24,111 : INFO : Machine : Platform: win32
+2021-03-31 14:45:24,111 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-31 14:45:24,111 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-31 14:45:24,772 : INFO : Machine : Initialise MPF.
+2021-03-31 14:45:24,876 : INFO : P-Roc : Connecting to P-ROC
+2021-03-31 14:45:25,096 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-31 14:45:25,096 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-31 14:45:25,283 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,284 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,284 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,285 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,351 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,352 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-31 14:45:25,353 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-31 14:45:25,529 : INFO : EventManager : Event: ======'drop_target_bank_drop_target_bank_1_up'====== Args={}
+2021-03-31 14:45:26,426 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-31 14:45:26,460 : INFO : ball_device.bd_trough : State: idle
+2021-03-31 14:45:26,469 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2021-03-31 14:45:26,474 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2021-03-31 14:45:26,474 : INFO : BallController : Initial balls found: 0
+2021-03-31 14:45:26,477 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,477 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_flipper'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,477 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,477 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_main'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_left_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_right_slingshot_mid'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_drop_target_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_2'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_pop_bumper_3'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'machine_var_audits_switches_s_trough1'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2021-03-31 14:45:26,478 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2021-03-31 14:45:29,240 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2021-03-31 14:45:29,240 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2021-03-31 14:45:29,241 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2021-03-31 14:45:29,241 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2021-03-31 14:45:29,242 : INFO : drop_target_bank.drop_target_bank_1 : All targets are already up. Will not reset bank.
+2021-03-31 14:45:29,250 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2021-03-31 14:45:29,250 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2021-03-31 14:45:29,251 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2021-03-31 14:45:29,251 : INFO : Mode.attract : Started. Priority: 10
+2021-03-31 14:45:29,251 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2021-03-31 14:45:29,251 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2021-03-31 14:45:29,251 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2021-03-31 14:45:29,728 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:30,597 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:31,388 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:32,166 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:32,550 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:32,940 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:33,343 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:33,761 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:34,195 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:34,644 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:35,111 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:35,608 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:36,153 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:36,742 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:37,375 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:38,058 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:38,770 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:40,290 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:41,800 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:43,196 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:44,401 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:44,943 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:45,440 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:45,919 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:46,377 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:46,801 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:47,203 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:47,590 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:47,976 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:48,348 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:48,721 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:49,110 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:49,935 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:50,804 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:51,794 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:52,938 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:53,573 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:54,256 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:54,982 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:55,740 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:56,516 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:57,274 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:58,034 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:58,747 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:45:59,414 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:46:00,037 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:46:00,625 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:46:01,166 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:46:01,676 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:46:02,599 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:47:57,931 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:47:58,711 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:47:59,469 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:47:59,856 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:00,242 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:00,646 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:01,080 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:01,527 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:02,008 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:02,519 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:03,078 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:03,682 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:04,313 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:04,997 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:06,474 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 14:48:07,996 : INFO : coil.c_flipper_left_main : Pulsing Driver for 15ms (1.0 pulse_power)
+2021-03-31 15:14:07,220 : INFO : SwitchController : <<<<<<< 's_right_flipper' active >>>>>>>
+2021-03-31 15:14:07,221 : INFO : Machine : Shutting down...
+2021-03-31 15:14:07,221 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-31 15:14:07,226 : ERROR : Machine : Failed to initialise MPF
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 721, in initialise_mpf
+    loop=self.clock.loop, timeout=timeout))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 320, in initialise
+    test_seq( self.coils )
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 72, in test_seq
+    time.sleep( ontime )
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 72, in test_seq
+    time.sleep( ontime )
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2021-03-31 15:14:07,227 : INFO : root : MPF run loop ended.

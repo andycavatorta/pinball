@@ -1,0 +1,108 @@
+2021-03-18 20:14:48,609 : INFO : root : Loading config.
+2021-03-18 20:14:48,616 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 20:14:48,617 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 20:14:48,740 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\74774f186c18434d8d39d0d4b0a3afeb.mpf_cache
+2021-03-18 20:14:48,741 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 20:14:48,742 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-18 20:14:48,744 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-18 20:14:48,745 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-18 20:14:48,745 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-18-20-14-48-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-18 20:14:48,745 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-18 20:14:48,746 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 20:14:48,746 : INFO : Machine : Platform: win32
+2021-03-18 20:14:48,746 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-18 20:14:48,746 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-18 20:14:48,749 : INFO : Machine : Initialise MPF.
+2021-03-18 20:14:48,870 : INFO : P-Roc : Connecting to P-ROC
+2021-03-18 20:14:49,080 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-18 20:14:49,080 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-18 20:14:49,146 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,147 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,147 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,147 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,218 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,218 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,218 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-18 20:14:49,219 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 20:14:49,262 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-18 20:14:49,266 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 20:14:49,290 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_right_inlane>
+2021-03-18 20:14:49,291 : INFO : SwitchController : Found active switch: (15, <Platform.P3-ROC>) <switch.s_trough1>
+2021-03-18 20:14:49,295 : ERROR : asyncio : Exception in callback EventManager._queue_task_done(<Task finishe...our config.')>)
+handle: <Handle EventManager._queue_task_done(<Task finishe...our config.')>)>
+Traceback (most recent call last):
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 716, in _queue_task_done
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 633, in _run_handlers_sequential
+    handler.callback(queue=queue, **merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\mode_controller.py", line 104, in initialise_modes
+    **item.kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 133, in process_mode_config
+    config = self.validate_config(config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 105, in validate_config
+    validated_config[event] = self.validate_config_entry(settings, event)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\device_config_player.py", line 55, in validate_config_entry
+    raise e
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\device_config_player.py", line 51, in validate_config_entry
+    self._validate_config_item(device, device_settings))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 65, in _validate_config_item
+    device_settings['widgets'])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 92, in process_widgets
+    widget_list.append(self.process_widget(widget))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 112, in process_widget
+    config['type']).lower(), config, base_spec='widgets:common')
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 176, in validate_config
+    validation_failure_info=validation_failure_info)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 228, in _validate_config
+    validation_failure_info=ValidationPath(validation_failure_info, k))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 250, in validate_config_item
+    validation_failure_info.item, section), 9)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 718, in validation_error
+    item, msg), 5 if code is None else code, self.log.name)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in ConfigValidator: Failed to load config player mode_base_started:slides with settings {'widgets': [{'type': 'text', 'text': '(score)', 'number_grouping': True, 'min_digits': 2, 'font_size': 100, '_default_settings': ['type', 'text', 'number_grouping', 'min_digits', 'font_size'], 'x': None, 'y': None, 'anchor_x': 'center', 'anchor_y': 'center', 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': [], 'bitmap_font': False, 'font_kerning': True, 'bold': False, 'italic': False, 'halign': 'center', 'valign': 'middle', 'rotation': 0, 'scale': 1.0, 'casing': None, 'animations': None}, {'type': 'text', 'text': 'PLAYER (number)', 'y': '10', 'x': '10', 'font_size': 50, 'anchor_x': 'left', 'anchor_y': 'bottom', '_default_settings': ['type', 'text', 'y', 'x', 'font_size', 'anchor_x', 'anchor_y'], 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': [], 'bitmap_font': False, 'font_kerning': True, 'bold': False, 'italic': False, 'number_grouping': False, 'min_digits': 0, 'halign': 'center', 'valign': 'middle', 'rotation': 0, 'scale': 1.0, 'casing': None, 'animations': None}, {'type': 'text', 'y': '10', 'x': 'right-10', 'anchor_x': 'right', 'anchor_y': 'bottom', 'font_size': 50, '_default_settings': ['type', 'y', 'x', 'anchor_x', 'anchor_y', 'font_size'], 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': []}]} >> Config validation error: Entry widgets:text:widgets:text:text = "None" is not valid. Required setting "text:" is missing from section "widgets:text:widgets:text:" in your config. Error Code: CFE-ConfigValidator-9 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-9.html)
+2021-03-18 20:14:49,300 : INFO : Machine : Starting the main run loop.
+2021-03-18 20:14:49,300 : INFO : Machine : Shutting down...
+2021-03-18 20:14:49,300 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 20:14:49,306 : ERROR : Machine : Runtime Exception
+Traceback (most recent call last):
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\machine.py", line 745, in _run_loop
+    raise self._exception['exception']
+  File "C:\Users\Noah\AppData\Local\Programs\Python\Python37\lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 716, in _queue_task_done
+    future.result()
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\events.py", line 633, in _run_handlers_sequential
+    handler.callback(queue=queue, **merged_kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\mode_controller.py", line 104, in initialise_modes
+    **item.kwargs)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 133, in process_mode_config
+    config = self.validate_config(config)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_player.py", line 105, in validate_config
+    validated_config[event] = self.validate_config_entry(settings, event)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\device_config_player.py", line 55, in validate_config_entry
+    raise e
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\config_players\device_config_player.py", line 51, in validate_config_entry
+    self._validate_config_item(device, device_settings))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 65, in _validate_config_item
+    device_settings['widgets'])
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 92, in process_widgets
+    widget_list.append(self.process_widget(widget))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpfmc\config_players\plugins\slide_player.py", line 112, in process_widget
+    config['type']).lower(), config, base_spec='widgets:common')
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 176, in validate_config
+    validation_failure_info=validation_failure_info)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 228, in _validate_config
+    validation_failure_info=ValidationPath(validation_failure_info, k))
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 250, in validate_config_item
+    validation_failure_info.item, section), 9)
+  File "c:\users\noah\mpfenv\lib\site-packages\mpf\core\config_validator.py", line 718, in validation_error
+    item, msg), 5 if code is None else code, self.log.name)
+mpf.exceptions.config_file_error.ConfigFileError: Config File Error in ConfigValidator: Failed to load config player mode_base_started:slides with settings {'widgets': [{'type': 'text', 'text': '(score)', 'number_grouping': True, 'min_digits': 2, 'font_size': 100, '_default_settings': ['type', 'text', 'number_grouping', 'min_digits', 'font_size'], 'x': None, 'y': None, 'anchor_x': 'center', 'anchor_y': 'center', 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': [], 'bitmap_font': False, 'font_kerning': True, 'bold': False, 'italic': False, 'halign': 'center', 'valign': 'middle', 'rotation': 0, 'scale': 1.0, 'casing': None, 'animations': None}, {'type': 'text', 'text': 'PLAYER (number)', 'y': '10', 'x': '10', 'font_size': 50, 'anchor_x': 'left', 'anchor_y': 'bottom', '_default_settings': ['type', 'text', 'y', 'x', 'font_size', 'anchor_x', 'anchor_y'], 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': [], 'bitmap_font': False, 'font_kerning': True, 'bold': False, 'italic': False, 'number_grouping': False, 'min_digits': 0, 'halign': 'center', 'valign': 'middle', 'rotation': 0, 'scale': 1.0, 'casing': None, 'animations': None}, {'type': 'text', 'y': '10', 'x': 'right-10', 'anchor_x': 'right', 'anchor_y': 'bottom', 'font_size': 50, '_default_settings': ['type', 'y', 'x', 'anchor_x', 'anchor_y', 'font_size'], 'round_anchor_x': None, 'round_anchor_y': None, 'opacity': 1.0, 'z': 0, 'reset_animations_events': {}, 'color': [1.0, 1.0, 1.0, 1.0], 'style': [], 'adjust_top': 0, 'adjust_bottom': 0, 'adjust_left': 0, 'adjust_right': 0, 'expire': None, 'key': None, 'widget': None, 'events_when_added': [], 'events_when_removed': []}]} >> Config validation error: Entry widgets:text:widgets:text:text = "None" is not valid. Required setting "text:" is missing from section "widgets:text:widgets:text:" in your config. Error Code: CFE-ConfigValidator-9 (https://docs.missionpinball.org/en/0.54/logs/CFE-ConfigValidator-9.html)
+2021-03-18 20:14:49,308 : INFO : root : MPF run loop ended.

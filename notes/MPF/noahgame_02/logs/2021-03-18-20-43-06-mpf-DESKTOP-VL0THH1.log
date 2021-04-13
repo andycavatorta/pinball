@@ -1,0 +1,74 @@
+2021-03-18 20:43:06,275 : INFO : root : Loading config.
+2021-03-18 20:43:06,282 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-03-18 20:43:06,283 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\d1f6a309ab2e3c3e66b0fef93f7a960f.mpf_cache
+2021-03-18 20:43:06,410 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\98acf0898e619a6798c45a0e5cbb339b.mpf_cache
+2021-03-18 20:43:06,411 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\a7eac71e9da1e9cfd4db34c71351dbda.mpf_cache
+2021-03-18 20:43:06,413 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\c6adbc38c235400b65ae43d7099eba05.mpf_cache
+2021-03-18 20:43:06,415 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\9689abd61e57da3f8bc074c7a88f2b77.mpf_cache
+2021-03-18 20:43:06,416 : INFO : ConfigProcessor : Loading config from cache: C:\Users\Noah\AppData\Local\Temp\06881332f8a9c1e11264544d2c255f98.mpf_cache
+2021-03-18 20:43:06,418 : INFO : Machine : Mission Pinball Framework Core Engine v0.54.6
+2021-03-18 20:43:06,419 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': True, 'configfile': ['config.yaml'], 'force_assets_load': False, 'jsonlogging': False, 'logfile': 'logs\\2021-03-18-20-43-06-mpf-DESKTOP-VL0THH1.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': None, 'syslog_address': None, 'mc_file_name': None, 'no_sound': False}
+2021-03-18 20:43:06,419 : INFO : Machine : MPF path: c:\users\noah\mpfenv\lib\site-packages\mpf
+2021-03-18 20:43:06,419 : INFO : Machine : Machine path: C:\Users\Noah\work\Andy Cavatorta\pinball\notes\MPF\noahgame_02
+2021-03-18 20:43:06,419 : INFO : Machine : Platform: win32
+2021-03-18 20:43:06,419 : INFO : Machine : Python executable location: c:\users\noah\mpfenv\scripts\python.exe
+2021-03-18 20:43:06,420 : INFO : Machine : Python version: 3.7.9 (64-bit)
+2021-03-18 20:43:06,423 : INFO : Machine : Initialise MPF.
+2021-03-18 20:43:06,563 : INFO : P-Roc : Connecting to P-ROC
+2021-03-18 20:43:06,569 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:06,569 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:07,591 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:07,591 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:08,593 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:08,593 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:09,594 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:09,594 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:10,596 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:10,596 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:11,597 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:11,597 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:12,597 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:12,597 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:13,599 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:13,599 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:14,601 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:14,601 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:15,602 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): FT_ListDevices(2)
+. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:15,602 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:17,716 : WARNING : P-Roc : Failed to instantiate pinproc.PinPROC(7): Error reading Chip IP and Version. Read 7 words instead of 5. The first 2 were: 0x0 and 0x0.. Is your P/P3-Roc connected and powered up?
+2021-03-18 20:43:17,716 : INFO : P-Roc : Will retry creating PinPROC in 1s.
+2021-03-18 20:43:18,915 : INFO : P-Roc : Successfully connected to P-ROC/P3-ROC. Firmware Version: 2. Firmware Revision: 6. Hardware Board ID: 1
+2021-03-18 20:43:18,915 : WARNING : P-Roc : Consider upgrading the firmware of your P/P3-Roc to at least 2.14. Your version contains known bugs.
+2021-03-18 20:43:18,972 : INFO : EventManager : Event: ======'machine_var_p_roc_version'====== Args={'value': 2, 'prev_value': None, 'change': True}
+2021-03-18 20:43:18,972 : INFO : EventManager : Event: ======'machine_var_p_roc_revision'====== Args={'value': 6, 'prev_value': None, 'change': True}
+2021-03-18 20:43:18,972 : INFO : EventManager : Event: ======'machine_var_p_roc_hardware_version'====== Args={'value': 1, 'prev_value': None, 'change': True}
+2021-03-18 20:43:18,972 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,052 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'MPF v0.54.6', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,052 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'MPF v0.54.6, Config version:5, Show version: 5, BCP version:1.1', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,052 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.7.9', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,053 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-10-10.0.19041-SP0', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,053 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,053 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '10', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,053 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.19041', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,054 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2021-03-18 20:43:19,054 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2021-03-18 20:43:19,088 : INFO : EventManager : Event: ======'drop_target_bank_noah_up'====== Args={}
+2021-03-18 20:43:19,093 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2021-03-18 20:43:19,117 : INFO : SwitchController : Found active switch: (6, <Platform.P3-ROC>) <switch.s_right_inlane>
+2021-03-18 20:43:19,117 : INFO : SwitchController : Found active switch: (15, <Platform.P3-ROC>) <switch.s_trough1>
+2021-03-18 20:43:19,120 : INFO : EventManager : Event: ======'bcp_connection_attempt'====== Args={'name': 'local_display', 'host': 'localhost', 'port': 5050}
+2021-03-18 20:43:19,123 : INFO : BCPClientSocket : Connecting BCP to 'local_display' at localhost:5050...
+2021-03-18 20:43:41,681 : INFO : Machine : Starting the main run loop.
+2021-03-18 20:43:41,682 : INFO : Machine : Shutting down...
+2021-03-18 20:43:41,682 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2021-03-18 20:43:41,686 : INFO : root : MPF run loop ended.
