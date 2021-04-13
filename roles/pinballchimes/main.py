@@ -131,7 +131,7 @@ class Player(threading.Thread):
                 score_name = self.queue.get(True)
                 score = scores[score_name]
                 print("4",self.target, score)
-                for beat in score.beats:
+                for beat in score["beats"]:
                     print("5",beat)
                     self.chimes.pulse(self.target, beat)
                 time.sleep(self.base_tempo * score.tempo_multiplier)
