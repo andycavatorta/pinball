@@ -240,11 +240,11 @@ class Main(threading.Thread):
 
 main = Main()
 
-main.add_to_queue("sound_event",(1,"attraction_mode_dense"),None,None)
-main.add_to_queue("sound_event",(2,"attraction_mode_sparse"),None,None)
-main.add_to_queue("sound_event",(3,"attraction_mode_sparse"),None,None)
-main.add_to_queue("sound_event",(4,"attraction_mode_sparse"),None,None)
-main.add_to_queue("sound_event",(5,"attraction_mode_sparse"),None,None)
+main.add_to_queue("sound_event",(1,"attraction_mode_dense"),False,False)
+main.add_to_queue("sound_event",(2,"attraction_mode_sparse"),False,False)
+main.add_to_queue("sound_event",(3,"attraction_mode_sparse"),False,False)
+main.add_to_queue("sound_event",(4,"attraction_mode_sparse"),False,False)
+main.add_to_queue("sound_event",(5,"attraction_mode_sparse"),False,False)
 #main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
 #main.add_to_queue("sound_event",(5,"attraction_mode"))
