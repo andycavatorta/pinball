@@ -15,6 +15,22 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
+
+class Safety_Enable(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.start()
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        while True:
+            #self.queue.get(True)
+            tb.publish("deadman", True)
+            time.sleep(2)
+
 scores ={
     "attraction_mode_dense" : {
         "tempo_multiplier":6,
@@ -232,20 +248,4 @@ main.add_to_queue("sound_event",(5,"attraction_mode_sparse"))
 #main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
 #main.add_to_queue("sound_event",(5,"attraction_mode"))
-
-class Safety_Enable(threading.Thread):
-    def __init__(self, tb):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.start()
-
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
-
-    def run(self):
-        while True:
-            #self.queue.get(True)
-            tb.publish("deadman", True)
-            time.sleep(2)
-
 
