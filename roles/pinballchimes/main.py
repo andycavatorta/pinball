@@ -20,6 +20,7 @@ class Safety_Enable(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+        self.tb = tb
         self.start()
 
     def add_to_queue(self, topic, message):
@@ -28,7 +29,7 @@ class Safety_Enable(threading.Thread):
     def run(self):
         while True:
             #self.queue.get(True)
-            tb.publish("deadman", True)
+            self.tb.publish("deadman", True)
             time.sleep(2)
 
 scores ={
