@@ -41,19 +41,19 @@ class Main(threading.Thread):
         self.start()
 
     def network_message_handler(self, topic, message, origin, destination):
-        self.add_to_queue(topic, message)
+        self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
 
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
+    def add_to_queue(self, topic, message, origin, destination):
+        self.queue.put((topic, message, origin, destination))
     def run(self):
         while True:
             try:
                 topic, message = self.queue.get(True)
-                print(">>>",topic, message)
+                print(">>>",topic, message, origin, destination)
                 if topic=="deadman":
                     self.safety_enable.add_to_queue()
             except Exception as e:
