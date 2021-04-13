@@ -126,13 +126,13 @@ class Player(threading.Thread):
     def run(self):
         while True:
             try:
-                score = self.queue.get(True)
-                tempo_multiplier = score.tempo_multiplier
+                score_name = self.queue.get(True)
+                score = Scores.__dict__[score_name]
                 print("4",target, score)
                 for beat in score.beats:
                     print("5",beat)
                     self.chimes.pulse(self.target, beat)
-                time.sleep(self.base_tempo * tempo_multiplier)
+                time.sleep(self.base_tempo * score.tempo_multiplier)
                 self.chimes.all_off() # for safety
             except Exception as e:
                 print(e)
