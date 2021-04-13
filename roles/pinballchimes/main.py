@@ -211,7 +211,7 @@ class Main(threading.Thread):
             Player(5)
         ]
         self.tb.subscribe_to_topic("connected")
-        self.safety_enable = Safety_Enable()
+        self.safety_enable = Safety_Enable(self.tb)
         self.start()
 
     def status_receiver(self, msg):
