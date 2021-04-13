@@ -138,7 +138,7 @@ class Player(threading.Thread):
                 for beat in score["beats"]:
                     print("5",beat)
                     self.chimes.pulse(self.target, beat)
-                time.sleep(self.base_tempo * score["tempo_multiplier"])
+                    time.sleep(self.base_tempo * score["tempo_multiplier"])
                 self.chimes.all_off() # for safety
             except Exception as e:
                 print(e)
