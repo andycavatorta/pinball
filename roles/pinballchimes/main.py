@@ -4,6 +4,7 @@ import time
 import math
 import os
 import random
+import queue
 import RPi.GPIO as GPIO
 import sys
 import threading
