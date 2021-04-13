@@ -217,7 +217,7 @@ class Main(threading.Thread):
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
-        self.add_to_queue(topic, message)
+        self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
