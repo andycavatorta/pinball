@@ -118,6 +118,7 @@ class Player(threading.Thread):
         self.target = target
         self.base_tempo = 0.1
         self.chimes = Chimes()
+        self.start()
 
     def play(self, score):
         self.queue.put(score)
