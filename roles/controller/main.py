@@ -52,7 +52,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(True)
                 print(">>>",topic, message, origin, destination)
                 if topic=="deadman":
                     self.safety_enable.add_to_queue()
