@@ -36,10 +36,11 @@ class Main(threading.Thread):
         self.state = self.states.WAITING_FOR_CONNECTIONS
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("home")
         self.start()
 
-    def network_message_handler(self, topic, message):
+    def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message)
     def exception_handler(self, exception):
         print("exception_handler",exception)
@@ -53,9 +54,18 @@ class Main(threading.Thread):
             try:
                 topic, message = self.queue.get(True)
                 print(">>>",topic, message)
-
+                if topic=="deadman":
+                    self.safety_enable.add_to_queue()
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
 
+
+
+
+
+            #try:
+            #    polling = self.queue.get(False)
+            #except queue.Empty:
+            #    pass
