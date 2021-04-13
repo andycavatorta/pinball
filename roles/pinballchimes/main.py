@@ -84,7 +84,7 @@ class Chimes(threading.Thread):
             self.gpio_numbers[15:20],
             self.gpio_numbers[20:25],
         ]
-        self.duration = 0.010
+        self.duration = 0.008
         GPIO.setmode(GPIO.BCM)
         for gpio_number in self.gpio_numbers:
           GPIO.setup( gpio_number, GPIO.OUT )
