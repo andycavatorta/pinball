@@ -16,12 +16,21 @@ import settings
 from thirtybirds3 import thirtybirds
 
 scores ={
-    "attraction_mode" : {
+    "attraction_mode_dense" : {
         "tempo_multiplier":6,
         "beats":[
             [4],[0,1,2,3,4],[0],[0,1,2,3,4],[0],[0,1,2,3,4],[4],[0,1,2,3,4],[0],[0,1,2,3,4],
             [3],[0,1,2,3,4],[0],[0,1,2,3,4],[0],[0,1,2,3,4],[3],[0,1,2,3,4],[0],[0,1,2,3,4],
             [2],[0,1,2,3,4],[0],[0,1,2,3,4],[0],[0,1,2,3,4],[2],[0,1,2,3,4],[0],[],
+            [3],[],[1],[],[3],[],[1],[],[3],[],
+        ]
+    },
+    "attraction_mode_sparse" : {
+        "tempo_multiplier":6,
+        "beats":[
+            [4],[],[0],[],[0],[],[4],[],[0],[],
+            [3],[],[0],[],[0],[],[3],[],[0],[],
+            [2],[],[0],[],[0],[],[2],[],[0],[],
             [3],[],[1],[],[3],[],[1],[],[3],[],
         ]
     },
@@ -216,9 +225,11 @@ main = Main()
 
 
 
-main.add_to_queue("sound_event",(0,"attraction_mode"))
-main.add_to_queue("sound_event",(0,"attraction_mode"))
-main.add_to_queue("sound_event",(0,"attraction_mode"))
+main.add_to_queue("sound_event",(1,"attraction_mode_dense"))
+main.add_to_queue("sound_event",(2,"attraction_mode_sparse"))
+main.add_to_queue("sound_event",(3,"attraction_mode_sparse"))
+main.add_to_queue("sound_event",(4,"attraction_mode_sparse"))
+main.add_to_queue("sound_event",(5,"attraction_mode_sparse"))
 #main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
 #main.add_to_queue("sound_event",(5,"attraction_mode"))
