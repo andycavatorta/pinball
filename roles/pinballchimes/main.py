@@ -100,12 +100,15 @@ class Chimes(threading.Thread):
         while True:
             try:
                 target, beat = self.queue.get(True)
-                for notes in beat:
+                print("7",target, beat)
+                for note in beat:
+                    print("8",notes)
                     gpio = self.stations[target][note]
                     GPIO.output( gpio, GPIO.HIGH )
                 time.sleep(self.duration)
                 self.all_off()
             except Exception as e:
+                print(e)
                 self.all_off()
 
 class Player(threading.Thread):
