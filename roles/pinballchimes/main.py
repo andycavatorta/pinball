@@ -5,6 +5,7 @@ import math
 import os
 import random
 import RPi.GPIO as GPIO
+import sys
 import threading
 
 app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
