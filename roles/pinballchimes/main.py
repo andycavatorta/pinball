@@ -91,16 +91,16 @@ class Chimes(threading.Thread):
     def set_duration(self, duration):
         self.duration = duration
 
-    def pulse(self, list_of_station_pitch_pairs):
-        self.queue.put(list_of_station_pitch_pairs)
+    def pulse(self, target, beat):
+        print("5",list_of_station_pitch_pairs)
+        self.queue.put((target, beat))
 
     def run(self):
         while True:
             try:
-                list_of_station_pitch_pairs = self.queue.get(True)
-                for station_pitch_pair in list_of_station_pitch_pairs:
-                    station, pitch = station_pitch_pair
-                    gpio = self.stations[station][pitch]
+                target, beat = self.queue.get(True)
+                for notes in beat:
+                    gpio = self.stations[target][note]
                     GPIO.output( gpio, GPIO.HIGH )
                 time.sleep(self.duration)
                 self.all_off()
@@ -121,13 +121,16 @@ class Player(threading.Thread):
 
     def play(self, score):
         self.queue.put(score)
+        print("3",score)
 
     def run(self):
         while True:
             try:
                 score = self.queue.get(True)
-                tempo_multiplier = score.tempo_multiplier_mul
+                tempo_multiplier = score.tempo_multiplier
+                print("4",target, score)
                 for beat in score.beats:
+                    print("4",beat)
                     self.chimes.pulse(self.target, beat)
                 time.sleep(self.base_tempo * tempo_multiplier)
                 self.chimes.all_off() # for safety
@@ -181,8 +184,10 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message = self.queue.get(True)
+                print("1",topic, message)
                 if topic == "sound_event":
                     target, score = message
+                    print("2",target, score)
                     self.players[target].play(score)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
