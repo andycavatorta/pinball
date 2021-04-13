@@ -100,95 +100,29 @@ class Main(threading.Thread):
     def ppr_to_mils(self, ppr):
         return int(((ppr-2048)/2048*1000))
 
-
     def mils_to_ppr(self, mils):
         return int(((float(mils)/1000.0)*2048.0)+2048.0)
-
 
     def home(self):
         for motor_name in self.motor_names:
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
             rel_pos = self.controllers.motors[motor_name].get_encoder_counter_absolute(True)
-            print("===",motor_name,abs_position, rel_pos)
             self.controllers.motors[motor_name].go_to_speed_or_relative_position(self.ppr_to_mils(0))
             time.sleep(2)
             abs_position = self.controllers.motors[motor_name].absolute_encoder.get_position()
-            print("after",motor_name,abs_position, self.ppr_to_mils(abs_position))
 
-        """
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(200)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(400)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(600)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(800)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(1000)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(800)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(600)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(400)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(200)
-        time.sleep(3)
-        for motor_name in self.motor_names:
-            self.controllers.motors[motor_name].go_to_speed_or_relative_position(0)
-        time.sleep(3)
-        """
-        # are all controllers are responding?
-
-        # are all abs encoders responding?
-
-        # homing
-        """
-        # SET UP BOARDS AND MOTORS
-        self.controllers = roboteq_command_wrapper.Controllers(
-            roboteq_data_receiver.add_to_queue, 
-            self.status_receiver, 
-            self.network_status_change_handler, 
-            {
-                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
-                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
-                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"],
-            },
-            {
-                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
-                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
-                "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
-                "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
-                "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
-                "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
-            }
-        )
-        #SET UP ABSOLUTE ENCODERS
-        encoders = [
-            AMT203_absolute_encoder.AMT203(cs=8),
-            AMT203_absolute_encoder.AMT203(cs=7),
-            AMT203_absolute_encoder.AMT203(cs=18),
-            AMT203_absolute_encoder.AMT203(cs=17),
-            AMT203_absolute_encoder.AMT203(cs=16),
-            AMT203_absolute_encoder.AMT203(cs=5),
-        ]
-        for encoder in encoders:
-            print(encoder.get_position())
-        self.start()
-        """
-
+    def ball_transfer(self, gamestation_a, gamestation_b):
+        # start timer_a and timer_b
+        # confirm bridges a and b are down
+        # turn gamestation_a carousel to receive ball
+        # turn gamestation_b carousel to receive ball
+        # if gamestation_a and gamestation_b receive balls before time runs out:
+            # rotate carousels to bridges
+            # confirm carousel positions
+            # lift bridges
+            # confirm balls are received in central carousel
+            # rotate 
+        time.sleep(1)
 
     def status_receiver(self, msg):
         print("status_receiver", msg)

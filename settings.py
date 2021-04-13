@@ -30,6 +30,7 @@ class Roles():
         "pinball5lights":"pinball5lights",
         "pinball5game":"pinball5game",
         "pinball5display":"pinball5display",
+        "pinballchimes":"pinballchimes",
         "pinballmatrix":"pinballmatrix"
     }
 
