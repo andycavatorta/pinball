@@ -142,7 +142,14 @@ class Player(threading.Thread):
                 print("4",self.target, score)
                 for beat in score["beats"]:
                     print("5",beat)
-                    self.chimes.pulse(self.target, beat)
+                    if self.target == 0:
+                        self.chimes.pulse(1, beat)
+                        self.chimes.pulse(2, beat)
+                        self.chimes.pulse(3, beat)
+                        self.chimes.pulse(4, beat)
+                        self.chimes.pulse(5, beat)
+                    else:
+                        self.chimes.pulse(self.target, beat)
                     time.sleep(self.base_tempo * score["tempo_multiplier"])
                 self.chimes.all_off() # for safety
             except Exception as e:
@@ -211,7 +218,7 @@ main = Main()
 
 main.add_to_queue("sound_event",(1,"attraction_mode"))
 main.add_to_queue("sound_event",(2,"attraction_mode"))
-#main.add_to_queue("sound_event",(3,"attraction_mode"))
+main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
 #main.add_to_queue("sound_event",(5,"attraction_mode"))
 
