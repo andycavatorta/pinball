@@ -209,7 +209,7 @@ main = Main()
 
 
 
-main.add_to_queue("sound_event",(1,"attraction_mode"))
+main.add_to_queue("sound_event",(2,"attraction_mode"))
 #main.add_to_queue("sound_event",(2,"attraction_mode"))
 #main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
