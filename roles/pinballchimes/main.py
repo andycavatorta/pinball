@@ -17,7 +17,7 @@ from thirtybirds3 import thirtybirds
 
 scores ={
     "attraction_mode" : {
-        "tempo_multiplier":4,
+        "tempo_multiplier":8,
         "beats":[
             [0],[0,1,2,3,4],[4],[0,1,2,3,4],[4],[0,1,2,3,4],[0],[0,1,2,3,4],[4],[0,1,2,3,4],
             [1],[0,1,2,3,4],[4],[0,1,2,3,4],[4],[0,1,2,3,4],[1],[0,1,2,3,4],[4],[0,1,2,3,4],
@@ -210,6 +210,10 @@ main = Main()
 
 
 main.add_to_queue("sound_event",(1,"attraction_mode"))
+main.add_to_queue("sound_event",(2,"attraction_mode"))
+main.add_to_queue("sound_event",(3,"attraction_mode"))
+main.add_to_queue("sound_event",(4,"attraction_mode"))
+main.add_to_queue("sound_event",(5,"attraction_mode"))
 
 
 
