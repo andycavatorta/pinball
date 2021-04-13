@@ -129,7 +129,7 @@ class Player(threading.Thread):
         while True:
             try:
                 score_name = self.queue.get(True)
-                score = Scores[score_name]
+                score = scores[score_name]
                 print("4",self.target, score)
                 for beat in score.beats:
                     print("5",beat)
