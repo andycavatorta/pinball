@@ -93,7 +93,7 @@ class Chimes(threading.Thread):
             self.gpio_numbers[15:20],
             self.gpio_numbers[20:25],
         ]
-        self.duration = 0.009
+        self.duration = 0.011
         GPIO.setmode(GPIO.BCM)
         for gpio_number in self.gpio_numbers:
           GPIO.setup( gpio_number, GPIO.OUT )
@@ -222,8 +222,6 @@ class Main(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 main = Main()
-
-
 
 main.add_to_queue("sound_event",(1,"attraction_mode_dense"))
 main.add_to_queue("sound_event",(2,"attraction_mode_sparse"))
