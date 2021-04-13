@@ -93,7 +93,7 @@ class Chimes(threading.Thread):
         self.duration = duration
 
     def pulse(self, target, beat):
-        print("5",list_of_station_pitch_pairs)
+        print("6",target, beat)
         self.queue.put((target, beat))
 
     def run(self):
