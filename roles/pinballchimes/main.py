@@ -99,16 +99,16 @@ class Chimes(threading.Thread):
         self.duration = duration
 
     def pulse(self, target, beat):
-        print("6",target, beat)
+        #print("6",target, beat)
         self.queue.put((target, beat))
 
     def run(self):
         while True:
             try:
                 target, beat = self.queue.get(True)
-                print("7",target, beat)
+                #print("7",target, beat)
                 for note in beat:
-                    print("8",note)
+                    #print("8",note)
                     gpio = self.stations[target][note]
                     GPIO.output( gpio, GPIO.HIGH )
                 time.sleep(self.duration)
@@ -139,9 +139,9 @@ class Player(threading.Thread):
             try:
                 score_name = self.queue.get(True)
                 score = scores[score_name]
-                print("4",self.target, score)
+                #print("4",self.target, score)
                 for beat in score["beats"]:
-                    print("5",beat)
+                    #print("5",beat)
                     if self.target == 0:
                         self.chimes.pulse(1, beat)
                         self.chimes.pulse(2, beat)
