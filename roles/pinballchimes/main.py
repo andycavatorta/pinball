@@ -84,6 +84,7 @@ class Chimes(threading.Thread):
         for gpio_number in self.gpio_numbers:
           GPIO.setup( gpio_number, GPIO.OUT )
         self.all_off()
+        self.start()
 
     def all_off(self):
         for gpio_number in self.gpio_numbers:
