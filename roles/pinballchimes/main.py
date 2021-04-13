@@ -109,7 +109,7 @@ class Chimes(threading.Thread):
                 #print("7",target, beat)
                 for note in beat:
                     #print("8",note)
-                    gpio = self.stations[target][note]
+                    gpio = self.stations[target-1][note]
                     GPIO.output( gpio, GPIO.HIGH )
                 time.sleep(self.duration)
                 self.all_off()
