@@ -96,7 +96,7 @@ class Main(threading.Thread):
 main = Main()
 
 
-
+"""
 while True:
     time.sleep(10)
     GPIO.output(26, GPIO.LOW)
@@ -107,3 +107,4 @@ while True:
             #    polling = self.queue.get(False)
             #except queue.Empty:
             #    pass
+"""
