@@ -88,7 +88,7 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(">>>",topic, message, origin, destination)
-                if topic=="deadman":
+                if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
