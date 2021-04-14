@@ -87,7 +87,8 @@ while True:
     time.sleep(10)
     GPIO.output(26, GPIO.LOW)
     time.sleep(10)
-    GPIO.output(26, GPIO.LOW)
+    GPIO.output(26, GPIO.HIGH)
+    print(time.time())
             #try:
             #    polling = self.queue.get(False)
             #except queue.Empty:
