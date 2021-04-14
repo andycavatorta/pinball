@@ -29,7 +29,7 @@ class Safety_Enable(threading.Thread):
     def run(self):
         while True:
             #self.queue.get(True)
-            self.tb.publish("deadman", True)
+            self.tb.publish("deadman", "safe")
             time.sleep(2)
 
 scores ={
@@ -241,11 +241,11 @@ class Main(threading.Thread):
 
 main = Main()
 
-main.add_to_queue("sound_event",(1,"attraction_mode_dense"),False,False)
-main.add_to_queue("sound_event",(2,"attraction_mode_sparse"),False,False)
-main.add_to_queue("sound_event",(3,"attraction_mode_sparse"),False,False)
-main.add_to_queue("sound_event",(4,"attraction_mode_sparse"),False,False)
-main.add_to_queue("sound_event",(5,"attraction_mode_sparse"),False,False)
+#main.add_to_queue("sound_event",(1,"attraction_mode_dense"),False,False)
+#main.add_to_queue("sound_event",(2,"attraction_mode_sparse"),False,False)
+#main.add_to_queue("sound_event",(3,"attraction_mode_sparse"),False,False)
+#main.add_to_queue("sound_event",(4,"attraction_mode_sparse"),False,False)
+#main.add_to_queue("sound_event",(5,"attraction_mode_sparse"),False,False)
 #main.add_to_queue("sound_event",(3,"attraction_mode"))
 #main.add_to_queue("sound_event",(4,"attraction_mode"))
 #main.add_to_queue("sound_event",(5,"attraction_mode"))

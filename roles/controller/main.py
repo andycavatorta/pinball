@@ -2,6 +2,7 @@ import importlib
 import mido
 import os
 import queue
+import RPi.GPIO as GPIO
 import sys
 import threading
 import time
@@ -12,6 +13,22 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
+class Safety_Enable(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.tb = tb
+        self.start()
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        while True:
+            #self.queue.get(True)
+            self.tb.publish("deadman", "safe")
+            time.sleep(2)
+            
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -55,7 +72,7 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 print(">>>",topic, message, origin, destination)
                 if topic=="deadman":
-                    self.safety_enable.add_to_queue()
+                    self.safety_enable.add_to_queue(topic, message, origin, destination)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
@@ -63,8 +80,14 @@ main = Main()
 
 
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup( 26, GPIO.OUT )
 
-
+while True:
+    time.sleep(10)
+    GPIO.output(26, GPIO.LOW)
+    time.sleep(10)
+    GPIO.output(26, GPIO.LOW)
             #try:
             #    polling = self.queue.get(False)
             #except queue.Empty:
