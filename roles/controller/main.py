@@ -13,20 +13,35 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
+setting_safety_enable_duration = 3
+setting_safety_enable_gpio = 26
+
 class Safety_Enable(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.queue = queue.Queue()
         self.tb = tb
         self.start()
+        self.hosts_alive = []
 
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
+    def add_to_queue(self, topic, message, origin, destination):
+        self.queue.put((topic, message, origin, destination))
 
     def run(self):
         while True:
-            #self.queue.get(True)
-            self.tb.publish("deadman", "safe")
+            time.sleep(setting_safety_enable_duration)
+            self.hosts_alive = []
+            try:
+                while True:
+                    deadman_message = self.queue.get(False)
+                    topic, message, origin, destination = deadman_message
+                    self.hosts_alive.append(origin)
+
+            except queue.Empty:
+                pass
+            print(self.hosts_alive)
             time.sleep(2)
             
 # Main handles network send/recv and can see all other classes directly
@@ -36,6 +51,7 @@ class Main(threading.Thread):
         class States:
             WAITING_FOR_CONNECTIONS = "waiting_for_connections"
         self.states =States()
+
         self.tb = thirtybirds.Thirtybirds(
             settings, 
             app_path,
@@ -43,6 +59,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.safety_enable = Safety_Enable(self.tb)
         """
         self.transport_connected = False
         self.horsewheel_connected = False
@@ -79,9 +96,6 @@ class Main(threading.Thread):
 main = Main()
 
 
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup( 26, GPIO.OUT )
 
 while True:
     time.sleep(10)
