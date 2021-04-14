@@ -41,7 +41,11 @@ class Safety_Enable(threading.Thread):
 
             except queue.Empty:
                 pass
-            print(self.hosts_alive)
+            #print(self.hosts_alive)
+            if "pinballchimes" in self.hosts_alive:
+                GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
+            else:
+                GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
             time.sleep(2)
             
 # Main handles network send/recv and can see all other classes directly
@@ -87,7 +91,7 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(">>>",topic, message, origin, destination)
+                #print(">>>",topic, message, origin, destination)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
             except Exception as e:
