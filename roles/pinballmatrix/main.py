@@ -14,6 +14,24 @@ from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 
+
+class Safety_Enable(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.tb = tb
+        self.start()
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        while True:
+            #self.queue.get(True)
+            self.tb.publish("deadman", "safe")
+            time.sleep(2)
+
+
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -54,6 +72,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.safety_enable = Safety_Enable(self.tb)
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
 
