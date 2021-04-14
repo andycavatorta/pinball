@@ -76,11 +76,11 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("home")
 
-        self.create_controllers_and_motors()
-        time.sleep(3)
-        self.set_rel_encoder_position_to_abs_encoder_position()
-        time.sleep(1)
-        self.home()
+        #self.create_controllers_and_motors()
+        #time.sleep(3)
+        #self.set_rel_encoder_position_to_abs_encoder_position()
+        #time.sleep(1)
+        #self.home()
         self.start()
 
 
