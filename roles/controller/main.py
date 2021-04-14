@@ -38,7 +38,6 @@ class Safety_Enable(threading.Thread):
                     deadman_message = self.queue.get(False)
                     topic, message, origin, destination = deadman_message
                     self.hosts_alive.append(origin)
-
             except queue.Empty:
                 pass
             print(all(elem in self.required_hosts  for elem in self.hosts_alive), self.required_hosts, self.hosts_alive)
