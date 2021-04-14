@@ -41,7 +41,7 @@ class Safety_Enable(threading.Thread):
             except queue.Empty:
                 pass
             print(all(elem in self.required_hosts  for elem in self.hosts_alive), self.required_hosts, self.hosts_alive)
-            GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
+            GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.required_hosts  for elem in self.hosts_alive) else GPIO.LOW)
             self.hosts_alive = []
             time.sleep(2)
             
