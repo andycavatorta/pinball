@@ -48,9 +48,7 @@ class Safety_Enable(threading.Thread):
                     self.hosts_alive.add(origin)
             except queue.Empty:
                 pass
-            print("hosts_alive", (self.hosts_alive))
-            print("required_hosts", sorted(self.required_hosts))
-            print("")
+            print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
             #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
             self.hosts_alive = set()
