@@ -30,6 +30,23 @@ class Roboteq_Data_Receiver(threading.Thread):
 
 roboteq_data_receiver = Roboteq_Data_Receiver()
 """
+
+class Safety_Enable(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.tb = tb
+        self.start()
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        while True:
+            #self.queue.get(True)
+            self.tb.publish("deadman", "safe")
+            time.sleep(1)
+
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -40,6 +57,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.safety_enable = Safety_Enable(self.tb)
         self.queue = queue.Queue()
         """
         self.controllers = roboteq_command_wrapper.Controllers(

@@ -48,6 +48,9 @@ class Safety_Enable(threading.Thread):
                     self.hosts_alive.append(origin)
             except queue.Empty:
                 pass
+            print("hosts_alive", sorted(self.hosts_alive))
+            print("required_hosts", sorted(self.required_hosts))
+            print("")
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
             self.hosts_alive = []
             time.sleep(2)
