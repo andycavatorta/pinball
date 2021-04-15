@@ -23,7 +23,7 @@ class Safety_Enable(threading.Thread):
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.queue = queue.Queue()
         self.tb = tb
-        self.required_hosts = [
+        self.required_hosts = {
             "pinballchimes",
             "pinballmatrix",
             "pinball1game",
@@ -31,8 +31,8 @@ class Safety_Enable(threading.Thread):
             "pinball3game",
             "pinball4game",
             "pinball5game"
-        ]
-        self.hosts_alive = []
+        }
+        self.hosts_alive = set()
         self.start()
 
     def add_to_queue(self, topic, message, origin, destination):
@@ -45,14 +45,15 @@ class Safety_Enable(threading.Thread):
                 while True:
                     deadman_message = self.queue.get(False)
                     topic, message, origin, destination = deadman_message
-                    self.hosts_alive.append(origin)
+                    self.hosts_alive.add(origin)
             except queue.Empty:
                 pass
-            print("hosts_alive", sorted(self.hosts_alive))
+            print("hosts_alive", (self.hosts_alive))
             print("required_hosts", sorted(self.required_hosts))
             print("")
-            GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
-            self.hosts_alive = []
+            GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.subset(self.hosts_alive) else GPIO.LOW)
+            #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
+            self.hosts_alive = set()
             time.sleep(2)
             
 # Main handles network send/recv and can see all other classes directly
