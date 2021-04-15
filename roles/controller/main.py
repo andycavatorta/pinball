@@ -23,7 +23,15 @@ class Safety_Enable(threading.Thread):
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.queue = queue.Queue()
         self.tb = tb
-        self.required_hosts = ["pinballchimes","pinballmatrix"]
+        self.required_hosts = [
+            "pinballchimes",
+            "pinballmatrix",
+            "pinball1game",
+            "pinball2game",
+            "pinball3game",
+            "pinball4game",
+            "pinball5game"
+        ]
         self.hosts_alive = []
         self.start()
 
@@ -38,10 +46,8 @@ class Safety_Enable(threading.Thread):
                     deadman_message = self.queue.get(False)
                     topic, message, origin, destination = deadman_message
                     self.hosts_alive.append(origin)
-
             except queue.Empty:
                 pass
-            print(all(elem in self.hosts_alive for elem in self.required_hosts),self.hosts_alive,self.required_hosts)
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
             self.hosts_alive = []
             time.sleep(2)

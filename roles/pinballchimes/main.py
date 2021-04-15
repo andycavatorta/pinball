@@ -30,7 +30,7 @@ class Safety_Enable(threading.Thread):
         while True:
             #self.queue.get(True)
             self.tb.publish("deadman", "safe")
-            time.sleep(2)
+            time.sleep(1)
 
 scores ={
     "attraction_mode_dense" : {
