@@ -24,13 +24,17 @@ class Safety_Enable(threading.Thread):
         self.queue = queue.Queue()
         self.tb = tb
         self.required_hosts = {
-            "pinballchimes",
             "pinballmatrix",
             "pinball1game",
             "pinball2game",
             "pinball3game",
             "pinball4game",
             "pinball5game"
+            "pinball1display",
+            "pinball2display",
+            "pinball3display",
+            "pinball4display",
+            "pinball5display"
         }
         self.hosts_alive = set()
         self.start()
