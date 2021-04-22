@@ -29,7 +29,7 @@ class Safety_Enable(threading.Thread):
             "pinball2game",
             "pinball3game",
             "pinball4game",
-            "pinball5game"
+            "pinball5game",
             "pinball1display",
             "pinball2display",
             "pinball3display",
