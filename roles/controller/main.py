@@ -52,7 +52,6 @@ class Safety_Enable(threading.Thread):
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
             #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
             self.hosts_alive = set()
-            time.sleep(2)
             
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
