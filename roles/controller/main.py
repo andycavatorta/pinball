@@ -99,12 +99,14 @@ class Main(threading.Thread):
         print("network_status_change_handler", status, hostname)
         if status:
             self.hosts_alive.add(hostname)
-        else:
+            missing_hosts = self.required_hosts.difference(self.hosts_alive)
+            if len(missing_hosts) == 0: #if a host has just disconnected
+                self.set_mode(self.modes.ATTRACTION)
+        else: # if a host is removed
             self.hosts_alive.remove(hostname)
-        missing_hosts = self.required_hosts.difference(self.hosts_alive)
-        if len(missing_hosts) > 0:
-            self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
-
+            missing_hosts = self.required_hosts.difference(self.hosts_alive)
+            if len(missing_hosts) > 0: #if a host has just disconnected
+                self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
