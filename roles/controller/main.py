@@ -25,21 +25,6 @@ class Safety_Enable(threading.Thread):
         self.tb = tb
         self.required_hosts = set(settings.Roles.hosts.keys())
         self.required_hosts.remove("controller")
-        """
-        self.required_hosts = {
-            "pinballmatrix",
-            "pinball1game",
-            "pinball2game",
-            "pinball3game",
-            "pinball4game",
-            "pinball5game",
-            "pinball1display",
-            "pinball2display",
-            "pinball3display",
-            "pinball4display",
-            "pinball5display"
-        }
-        """
         self.hosts_alive = set()
         self.start()
 
@@ -56,8 +41,8 @@ class Safety_Enable(threading.Thread):
                     self.hosts_alive.add(origin)
             except queue.Empty:
                 pass
-            mission_hosts = self.required_hosts.difference(self.hosts_alive)
-            if len(mission_hosts) > 0:
+            missing_hosts = self.required_hosts.difference(self.hosts_alive)
+            if len(missing_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
             self.hosts_alive = set()
@@ -70,6 +55,7 @@ class Main(threading.Thread):
             WAITING_FOR_CONNECTIONS = "waiting_for_connections"
             ERROR = "error"
             ATTRACTION = "attraction"
+            COUNTDOWN = "countdown"
             BARTER_MODE_INTRO = "barter_mode_intro"
             BARTER_MODE = "barter_mode"
             MONEY_MODE_INTRO = "money_mode_intro"
@@ -77,7 +63,10 @@ class Main(threading.Thread):
             ENDING = "ending"
             RESET = "reset"
         self.modes =Modes()
-        self.mode = self.modes.WAITING_FOR_CONNECTIONS
+
+        self.required_hosts = set(settings.Roles.hosts.keys())
+        self.required_hosts.remove("controller")
+        self.hosts_alive = set()
 
         self.tb = thirtybirds.Thirtybirds(
             settings, 
@@ -92,6 +81,15 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("home")
         self.start()
+        self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
+
+    def set_mode( self, mode):
+        self.mode = mode
+        # actions
+        if self.mode == self.modes.WAITING_FOR_CONNECTIONS:
+            print(self.mode)
+        if self.mode == self.modes.ATTRACTION:
+            print(self.mode)
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -99,6 +97,14 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
+        if status:
+            self.hosts_alive.add(hostname)
+        else:
+            self.hosts_alive.remove(hostname)
+        missing_hosts = self.required_hosts.difference(self.hosts_alive)
+        if len(missing_hosts) > 0:
+            self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
+
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
