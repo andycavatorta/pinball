@@ -59,7 +59,7 @@ class Safety_Enable(threading.Thread):
             if len(mission_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
-            self.hosts_alive = set()
+            self.hosts_alive = set("controller")
             
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
