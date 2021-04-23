@@ -24,6 +24,7 @@ class Safety_Enable(threading.Thread):
         self.queue = queue.Queue()
         self.tb = tb
         self.required_hosts = set(settings.Roles.hosts.keys())
+        self.required_hosts.remove("controller")
         """
         self.required_hosts = {
             "pinballmatrix",
@@ -39,7 +40,7 @@ class Safety_Enable(threading.Thread):
             "pinball5display"
         }
         """
-        self.hosts_alive = set("controller")
+        self.hosts_alive = set()
         self.start()
 
     def add_to_queue(self, topic, message, origin, destination):
@@ -59,7 +60,7 @@ class Safety_Enable(threading.Thread):
             if len(mission_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
-            self.hosts_alive = set("controller")
+            self.hosts_alive = set()
             
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
