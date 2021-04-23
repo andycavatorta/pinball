@@ -14,24 +14,22 @@ foo = ClassFoo(reports.foo_config)
 class Roles():
     controller_hostname="feral"
     hosts={
-        "feral":"controller",
         "controller":"controller",
-        "pinball1lights":"pinball1lights",
+        #"pinball1lights":"pinball1lights",
         "pinball1game":"pinball1game",
         "pinball1display":"pinball1display",
-        "pinball2lights":"pinball2lights",
+        #"pinball2lights":"pinball2lights",
         "pinball2game":"pinball2game",
         "pinball2display":"pinball2display",
-        "pinball3lights":"pinball3lights",
+        #"pinball3lights":"pinball3lights",
         "pinball3game":"pinball3game",
         "pinball3display":"pinball3display",
-        "pinball4lights":"pinball4lights",
+        #"pinball4lights":"pinball4lights",
         "pinball4game":"pinball4game",
         "pinball4display":"pinball4display",
-        "pinball5lights":"pinball5lights",
+        #"pinball5lights":"pinball5lights",
         "pinball5game":"pinball5game",
         "pinball5display":"pinball5display",
-        "pinballchimes":"pinballchimes",
         "pinballmatrix":"pinballmatrix"
     }
 

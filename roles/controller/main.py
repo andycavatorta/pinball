@@ -23,6 +23,8 @@ class Safety_Enable(threading.Thread):
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.queue = queue.Queue()
         self.tb = tb
+        self.required_hosts = settings.Roles.hosts
+        """
         self.required_hosts = {
             "pinballmatrix",
             "pinball1game",
@@ -36,7 +38,8 @@ class Safety_Enable(threading.Thread):
             "pinball4display",
             "pinball5display"
         }
-        self.hosts_alive = set()
+        """
+        self.hosts_alive = set("controller")
         self.start()
 
     def add_to_queue(self, topic, message, origin, destination):
@@ -52,18 +55,28 @@ class Safety_Enable(threading.Thread):
                     self.hosts_alive.add(origin)
             except queue.Empty:
                 pass
-            print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
+            mission_hosts = self.required_hosts.difference(self.hosts_alive)
+            if len(mission_hosts) > 0:
+                print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
-            #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if all(elem in self.hosts_alive for elem in self.required_hosts) else GPIO.LOW)
             self.hosts_alive = set()
             
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        class States:
+        class Modes:
             WAITING_FOR_CONNECTIONS = "waiting_for_connections"
-        self.states =States()
+            ERROR = "error"
+            ATTRACTION = "attraction"
+            BARTER_MODE_INTRO = "barter_mode_intro"
+            BARTER_MODE = "barter_mode"
+            MONEY_MODE_INTRO = "money_mode_intro"
+            MONEY_MODE = "money_mode"
+            ENDING = "ending"
+            RESET = "reset"
+        self.modes =Modes()
+        self.mode = self.modes.WAITING_FOR_CONNECTIONS
 
         self.tb = thirtybirds.Thirtybirds(
             settings, 
@@ -73,13 +86,6 @@ class Main(threading.Thread):
             self.exception_handler
         )
         self.safety_enable = Safety_Enable(self.tb)
-        """
-        self.transport_connected = False
-        self.horsewheel_connected = False
-        self.pitch_slider_home = False
-        self.horsewheel_slider_home = False
-        self.horsewheel_lifter_home = False
-        """
         self.state = self.states.WAITING_FOR_CONNECTIONS
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("connected")
@@ -108,16 +114,3 @@ class Main(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
 
-
-"""
-while True:
-    time.sleep(10)
-    GPIO.output(26, GPIO.LOW)
-    time.sleep(10)
-    GPIO.output(26, GPIO.HIGH)
-    print(time.time())
-            #try:
-            #    polling = self.queue.get(False)
-            #except queue.Empty:
-            #    pass
-"""
