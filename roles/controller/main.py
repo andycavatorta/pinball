@@ -86,7 +86,6 @@ class Main(threading.Thread):
             self.exception_handler
         )
         self.safety_enable = Safety_Enable(self.tb)
-        self.state = self.states.WAITING_FOR_CONNECTIONS
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
