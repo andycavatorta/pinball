@@ -23,7 +23,7 @@ class Safety_Enable(threading.Thread):
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.queue = queue.Queue()
         self.tb = tb
-        self.required_hosts = settings.Roles.hosts
+        self.required_hosts = set(settings.Roles.hosts.keys())
         """
         self.required_hosts = {
             "pinballmatrix",
