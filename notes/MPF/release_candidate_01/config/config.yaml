@@ -18,14 +18,14 @@ switches:
         number: A0-B0-2
     s_right_slingshot_main:
         number: A0-B0-3
-    s_left_slingshot_mid:
-        number: A0-B0-4
-    s_right_slingshot_mid:
-        number: A0-B0-5
 
-    s_drop_target_1:
+    s_rollover_1:
+        number: A0-B0-4
+    s_rollover_2:
+        number: A0-B0-5
+    s_rollover_3:
         number: A0-B0-6
-    s_drop_target_2:
+    s_rollover_4:
         number: A0-B0-7
 
     s_pop_bumper_1:
@@ -72,23 +72,7 @@ coils:
     c_slingshot_right_main:
         number: A0-B1-5
         default_pulse_ms: 5
-    c_slingshot_left_mid:
-        number: A0-B1-6
-        default_pulse_ms: 5
-    c_slingshot_right_mid:
-        number: A0-B1-7
-        default_pulse_ms: 5
     
-    # Drop Targets
-    c_reset_drop_target_1:
-        number: A0-B0-0
-        default_pulse_ms: 25
-        default_pulse_power: 1.0
-    c_reset_drop_target_2:
-        number: A0-B0-1
-        default_pulse_ms: 25
-        default_pulse_power: 1.0
-
     # Pop Bumpers
     c_pop_bumper_1:
         number: A0-B0-2
@@ -146,27 +130,6 @@ autofire_coils:
         switch: s_pop_bumper_3
         enable_events: machine_reset_phase_3
 
-drop_targets:
-  d_drop_target_1:
-    switch: s_drop_target_1
-    reset_coil: c_reset_drop_target_1
-  d_drop_target_2:
-    switch: s_drop_target_2
-    reset_coil: c_reset_drop_target_2
-    #knockdown_coil: c_knock_down_coil
-    #enable_events: machine_reset_phase_3
-
-drop_target_banks:
-  drop_target_bank_1:
-    drop_targets: d_drop_target_1, d_drop_target_2
-    reset_coils: c_reset_drop_target_1, c_reset_drop_target_2
-    reset_events: 
-        machine_reset_phase_3: 0 
-        #ball_started.1: 0
-        #ball_started.2: 1s
-        #ball_started.3: 2s
-    reset_on_complete: 1s
-
 
 lights:
   l_led0:
@@ -177,12 +140,7 @@ ball_devices:
     ball_switches: s_trough1
     eject_coil: c_trough_eject
     tags: trough, home, drain
-    #eject_targets: bd_plunger
-    #jam_switch: s_trough_jam
-    #eject_coil_jam_pulse: 15ms
     debug: true
-
-#eject_targets: bd_plunger
 
 keyboard:
     z: 
