@@ -53,7 +53,7 @@ class Main(threading.Thread):
         self.tb.subscribe.to_topic("pb2_display")  # pinball2display
 
         # initialize overhead display
-        self.ovdisp = td.tlc_5947(  digitalio.DigitalInOut( board.D5 ), driverCount = 4 )
+        self.ovdisp = td.tlc_5947(  digitalio.DigitalInOut( board.D5 ), driverCount = 2 )
         
         self.tb.publish("connected", True)
         self.start()
