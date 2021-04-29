@@ -75,12 +75,21 @@ class Main(threading.Thread):
                 topic, message = self.queue.get(True)
                 print(topic, message)
 
-                if topic == "pb2_display":
+                if topic == "pb2_display_led":
                     spl = message.split()
                     ledIdx = spl[ 0 ]
-                    ledVal = spl[ 1 ]
-                    self.ovdisp.write( ledIdx, ledVal )
-                
+                    pwmVal = spl[ 1 ]
+                    self.ovdisp.write( ledIdx, pwmVal )
+
+                if topic == "pb2_display_digit":
+                    spl = message.split()
+                    # which digit, from 0 to 3 where 0-2 are numbers and 3 is upper message
+                    digit  = spl[ 0 ]  
+                    number = spl[ 1 ]  # value from 0-9
+                    pwmVal = spl[ 2 ]  # brightness
+                    ledIdx = 12 * digit + number
+                    self.ovdisp.write( ledIdx, pwmVal )
+                    
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
