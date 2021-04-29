@@ -11,6 +11,13 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
+# adafruit libs
+import board
+import digitalio
+
+# 24-channel LED Driver
+import tlc5947_driver as td
+
 class Safety_Enable(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
@@ -43,7 +50,11 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("test_lights")
         self.tb.subscribe_to_topic("home")
         self.tb.subscribe_to_topic("pass_ball")
+        self.tb.subscribe.to_topic("pb2_display")  # pinball2display
 
+        # initialize overhead display
+        self.ovdisp = td.tlc_5947(  digitalio.DigitalInOut( board.D5 ), driverCount = 4 )
+        
         self.tb.publish("connected", True)
         self.start()
     def status_receiver(self, msg):
@@ -63,6 +74,13 @@ class Main(threading.Thread):
             try:
                 topic, message = self.queue.get(True)
                 print(topic, message)
+
+                if topic == "pb2_display":
+                    spl = message.split()
+                    ledIdx = spl[ 0 ]
+                    ledVal = spl[ 1 ]
+                    self.ovdisp.write( ledIdx, ledVal )
+                
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
