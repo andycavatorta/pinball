@@ -100,7 +100,7 @@ class Host_State_Manager():
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.game_modes = self.settings.Game_Modes
+        self.game_modes = settings.Game_Modes
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.host_state_manager = Host_State_Manager(host_state_change_handler)
 
