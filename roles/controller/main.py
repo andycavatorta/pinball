@@ -102,7 +102,7 @@ class Main(threading.Thread):
         threading.Thread.__init__(self)
         self.game_modes = settings.Game_Modes
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        self.host_state_manager = Host_State_Manager(host_state_change_handler)
+        self.host_state_manager = Host_State_Manager(self.host_state_change_handler)
 
         self.tb = thirtybirds.Thirtybirds(
             settings, 
