@@ -90,6 +90,7 @@ class Chimes(threading.Thread):
           GPIO.setup( gpio_number, GPIO.OUT )
         self.all_off()
         self.pulse_duration = 0.011
+        self.start()
 
     def set_pulse_duration(self, duration):
         self.duration = duration
