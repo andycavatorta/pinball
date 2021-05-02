@@ -180,6 +180,9 @@ class Main(threading.Thread):
         self.tb.publish("connected", True)
         self.start()
         self.player = Player()
+        time.seep(10)
+        self.player.play(scores["attraction_mode_dense"])
+
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -207,7 +210,3 @@ class Main(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 main = Main()
-
-time.seep(10)
-
-main.player.play(scores["attraction_mode_dense"])
