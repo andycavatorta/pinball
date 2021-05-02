@@ -153,6 +153,7 @@ class Safety_Enable(threading.Thread):
         self.start()
 
     def add_to_queue(self, topic, message):
+        print("-1 asdf")
         self.queue.put((topic, message))
 
     def run(self):
