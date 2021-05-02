@@ -134,8 +134,11 @@ class Player(threading.Thread):
                 score_name = self.queue.get(True)
                 print("2----")
                 score = scores[score_name]
+                print("2a----")
                 delay_between_beats = 60.0 / score["beats_per_minute"]
+                print("2b----")
                 for beat in score["beats"]:
+                    print("2c----")
                     self.chimes.pulse(pitch, beat)
                     print(pitch, beat)
                     time.sleep(delay_between_beats)
@@ -202,7 +205,6 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == "sound_event":
                     score = message
-                    print("2",score)
                     self.player.play(score)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
