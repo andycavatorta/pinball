@@ -92,8 +92,8 @@ class Chimes(threading.Thread):
         self.pulse_duration = 0.011
         self.start()
 
-    def set_pulse_duration(self, duration):
-        self.duration = duration
+    def set_pulse_duration(self, pulse_duration):
+        self.pulse_duration = pulse_duration
 
     def all_off(self):
         for gpio_number in self.pitch_to_gpio:
@@ -110,7 +110,7 @@ class Chimes(threading.Thread):
                 print("4----")
                 for note in notes:
                     GPIO.output( self.pitch_to_gpio[note], GPIO.HIGH )
-                time.sleep(self.duration)
+                time.sleep(self.pulse_duration)
                 self.all_off()
             except Exception as e:
                 print(e)
