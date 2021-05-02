@@ -132,7 +132,7 @@ class Player(threading.Thread):
         while True:
             try:
                 score_name = self.queue.get(True)
-                print("2----")
+                print("2----", score_name)
                 score = scores[score_name]
                 print("2a----")
                 delay_between_beats = 60.0 / score["beats_per_minute"]
