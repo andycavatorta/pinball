@@ -178,7 +178,9 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("home")
         self.tb.subscribe_to_topic("pass_ball")
         self.tb.publish("connected", True)
+        print("aaaaaaaaaaaaa")
         self.player = Player()
+        print("bbbbbbbbbbbbbb")
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -205,7 +207,11 @@ class Main(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
+print("ccccccccccccccc")
 main = Main()
+print("ddddddddddddddd")
 main.start()
-time.seep(10)
+print("eeeeeeeeeeeeeee")
+time.sleep(10)
+print("fffffffffffffffff")
 main.start.add_to_queue("sound_event",scores["attraction_mode_dense"])
