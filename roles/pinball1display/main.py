@@ -158,7 +158,6 @@ class Safety_Enable(threading.Thread):
 
     def run(self):
         while True:
-            #self.queue.get(True)
             self.tb.publish("deadman", "safe")
             time.sleep(1)
 
@@ -179,11 +178,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("home")
         self.tb.subscribe_to_topic("pass_ball")
         self.tb.publish("connected", True)
-        self.start()
         self.player = Player()
-        time.seep(10)
-        self.add_to_queue("sound_event",scores["attraction_mode_dense"])
-
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -211,3 +206,6 @@ class Main(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 main = Main()
+main.start()
+time.seep(10)
+main.start.add_to_queue("sound_event",scores["attraction_mode_dense"])
