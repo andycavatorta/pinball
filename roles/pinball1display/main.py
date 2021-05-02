@@ -118,7 +118,7 @@ class Chimes(threading.Thread):
                 self.all_off()
 
 class Player(threading.Thread):
-    def __init__(self, target):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.chimes = Chimes()
