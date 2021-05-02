@@ -12,6 +12,7 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
+print("ggggggggggggggg")
 
 scores ={
     "attraction_mode_dense" : {
