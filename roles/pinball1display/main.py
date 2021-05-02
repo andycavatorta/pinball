@@ -98,12 +98,14 @@ class Chimes(threading.Thread):
           GPIO.output(gpio_number, GPIO.LOW)
 
     def pulse(self, beat):
+        print("3----")
         self.queue.put((notes))
 
     def run(self):
         while True:
             try:
                 notes = self.queue.get(True)
+                print("4----")
                 for note in notes:
                     GPIO.output( self.pitch_to_gpio[note], GPIO.HIGH )
                 time.sleep(self.duration)
@@ -122,12 +124,14 @@ class Player(threading.Thread):
         self.start()
 
     def play(self, score):
+        print("1----")
         self.queue.put(score)
 
     def run(self):
         while True:
             try:
                 score_name = self.queue.get(True)
+                print("2----")
                 score = scores[score_name]
                 delay_between_beats = 60.0 / score["beats_per_minute"]
                 for beat in score["beats"]:
