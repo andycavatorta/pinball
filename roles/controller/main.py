@@ -17,10 +17,11 @@ setting_safety_enable_duration = 3
 setting_safety_enable_gpio = 26
 
 class Safety_Enable(threading.Thread):
-    def __init__(self, tb):
+    def __init__(self, tb, enable_state_change_handler):
         threading.Thread.__init__(self)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
+        self.enabled = False # used for detecting when state changes
         self.queue = queue.Queue()
         self.tb = tb
         self.required_hosts = set(settings.Roles.hosts.keys())
@@ -44,29 +45,64 @@ class Safety_Enable(threading.Thread):
             missing_hosts = self.required_hosts.difference(self.hosts_alive)
             if len(missing_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
-            GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
+            if self.required_hosts.issubset(self.hosts_alive):
+                if not self.enabled: # if changing state
+                    self.enabled == True
+                    GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
+                    self.enable_state_change_handler(self.enabled)
+            else:
+                if self.enabled: # if changing state
+                    self.enabled == False
+                    GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
+                    self.enable_state_change_handler(self.enabled)
+            #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
             self.hosts_alive = set()
-            
+
+class Host_State_Manager():
+    def __init__(self, host_state_change_handler):
+        self.host_state_change_handler = host_state_change_handler
+        self.required_hosts = set(settings.Roles.hosts.keys())
+        self.required_hosts.remove("controller")
+        self.hosts_alive = set() # hosts responding to heartbeats
+        self.hosts_ready = set() # hosts confirming readiness
+        #self.start()
+    def reset_hosts_alive(self):
+        self.hosts_alive = set()
+    def add_host_alive(self, hostname):
+        self.hosts_alive.add(hostname)
+    def remove_host_alive(self, hostname):
+        self.hosts_alive.remove(hostname)
+    def are_all_hosts_alive(self):
+        missing_hosts = self.required_hosts.difference(self.hosts_alive)
+        if len(missing_hosts) == 0:
+            self.host_state_change_handler("all_hosts_alive")
+
+    def reset_hosts_ready(self):
+        self.hosts_ready = set()
+    def add_host_ready(self, hostname):
+        self.hosts_ready.add(hostname)
+    def remove_host_ready(self, hostname):
+        self.hosts_ready.remove(hostname)
+    def are_all_hosts_alive(self):
+        unready_hosts = self.required_hosts.difference(self.hosts_ready)
+        if len(unready_hosts) == 0:
+            self.host_state_change_handler("all_hosts_ready")
+
+
+    def set_game_mode(self, game_mode):
+        self.game_mode = game_mode
+        self.host_state_change_handler(self.game_mode)
+    def get_game_mode(self):
+        return self.game_mode
+
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        class Modes:
-            WAITING_FOR_CONNECTIONS = "waiting_for_connections"
-            ERROR = "error"
-            ATTRACTION = "attraction"
-            COUNTDOWN = "countdown"
-            BARTER_MODE_INTRO = "barter_mode_intro"
-            BARTER_MODE = "barter_mode"
-            MONEY_MODE_INTRO = "money_mode_intro"
-            MONEY_MODE = "money_mode"
-            ENDING = "ending"
-            RESET = "reset"
-        self.modes =Modes()
-
-        self.required_hosts = set(settings.Roles.hosts.keys())
-        self.required_hosts.remove("controller")
-        self.hosts_alive = set()
+        self.game_modes = self.settings.Game_Modes
+        self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
+        self.host_state_manager = Host_State_Manager(host_state_change_handler)
 
         self.tb = thirtybirds.Thirtybirds(
             settings, 
@@ -75,21 +111,50 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.safety_enable = Safety_Enable(self.tb)
+        self.safety_enable = Safety_Enable(self.tb, self.enable_state_change_handler)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
-        self.tb.subscribe_to_topic("home")
+        self.tb.subscribe_to_topic("ready")
         self.start()
-        self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
 
-    def set_mode( self, mode):
-        self.mode = mode
-        # actions
-        if self.mode == self.modes.WAITING_FOR_CONNECTIONS:
-            print(self.mode)
-        if self.mode == self.modes.ATTRACTION:
-            print(self.mode)
+    def enable_state_change_handler(self, enabled):
+        if enabled: # when changing to enabled mode
+            self.host_state_manager.set_game_mode(self.game_modes.RESET)
+        else:
+            self.host_state_manager.set_game_mode(self.game_modes.ERROR)
+
+    def host_state_change_handler(self, host_change):
+        if host_change == "all_hosts_alive":
+            # this should happen only game_mode is WAITING_FOR_CONNECTIONS
+            if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+                self.game_mode = self.game_modes.RESET
+                self.tb.publish("set_game_mode",self.game_modes.RESET)          
+
+        if host_change == "all_hosts_ready":
+            # this should happen only game_mode is self.game_modes.RESET
+            if self.game_mode == self.game_modes.RESET:
+                self.tb.publish("set_game_mode",)                
+
+        if self.game_mode == self.game_modes.RESET:
+            pass
+        if self.game_mode == self.game_modes.ATTRACTION:
+            pass
+        if self.game_mode == self.game_modes.COUNTDOWN:
+            pass
+        if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+            pass
+        if self.game_mode == self.game_modes.BARTER_MODE:
+            pass
+        if self.game_mode == self.game_modes.MONEY_MODE_INTRO:
+            pass
+        if self.game_mode == self.game_modes.MONEY_MODE:
+            pass
+        if self.game_mode == self.game_modes.ENDING:
+            pass
+        if self.game_mode == self.game_modes.ERROR:
+            pass
+        self.tb.publish("game_mode", self.game_mode)
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -98,15 +163,9 @@ class Main(threading.Thread):
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
         if status:
-            self.hosts_alive.add(hostname)
-            missing_hosts = self.required_hosts.difference(self.hosts_alive)
-            if len(missing_hosts) == 0: #if a host has just disconnected
-                self.set_mode(self.modes.ATTRACTION)
+            self.host_state_manager.add_host_alive(hostname)
         else: # if a host is removed
-            self.hosts_alive.remove(hostname)
-            missing_hosts = self.required_hosts.difference(self.hosts_alive)
-            if len(missing_hosts) > 0: #if a host has just disconnected
-                self.set_mode(self.modes.WAITING_FOR_CONNECTIONS)
+            self.host_state_manager.remove_host_alive(hostname)
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
@@ -117,6 +176,8 @@ class Main(threading.Thread):
                 #print(">>>",topic, message, origin, destination)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
+                if topic==b"ready_state":
+                        self.host_state_manager.add_host_ready(origin)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))

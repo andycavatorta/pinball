@@ -33,6 +33,19 @@ class Roles():
         "pinballmatrix":"pinballmatrix"
     }
 
+
+class Game_Modes:
+    WAITING_FOR_CONNECTIONS = "waiting_for_connections"
+    ERROR = "error"
+    ATTRACTION = "attraction"
+    COUNTDOWN = "countdown"
+    BARTER_MODE_INTRO = "barter_mode_intro"
+    BARTER_MODE = "barter_mode"
+    MONEY_MODE_INTRO = "money_mode_intro"
+    MONEY_MODE = "money_mode"
+    ENDING = "ending"
+    RESET = "reset"
+
 class Reporting():
     app_name = "pinball"
     #level = "ERROR" #[DEBUG | INFO | WARNING | ERROR | CRITICAL]
