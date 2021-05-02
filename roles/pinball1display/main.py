@@ -181,7 +181,7 @@ class Main(threading.Thread):
         self.start()
         self.player = Player()
         time.seep(10)
-        self.player.play(scores["attraction_mode_dense"])
+        self.add_to_queue("sound_event",scores["attraction_mode_dense"])
 
 
     def status_receiver(self, msg):
@@ -203,7 +203,7 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == "sound_event":
                     score = message
-                    print("2",target, score)
+                    print("2",score)
                     self.player.play(score)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
