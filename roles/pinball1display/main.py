@@ -218,9 +218,9 @@ class Main(threading.Thread):
             self.player.play("attraction_mode_sparse")
             # waits for press of start button 
 
+        """
         if mode == self.game_modes.COUNTDOWN:
             #self.player.play("countdown_mode")
-        """
         if mode == self.game_modes.BARTER_MODE_INTRO:
             self.player.play("barter_mode_intro")
         if mode == self.game_modes.BARTER_MODE:
