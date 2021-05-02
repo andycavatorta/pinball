@@ -132,6 +132,7 @@ class Player(threading.Thread):
                 delay_between_beats = 60.0 / score["beats_per_minute"]
                 for beat in score["beats"]:
                     self.chimes.pulse(pitch, beat)
+                    print(pitch, beat)
                     time.sleep(delay_between_beats)
                 self.chimes.all_off() # for safety
             except Exception as e:
@@ -203,3 +204,6 @@ class Main(threading.Thread):
 
 main = Main()
 
+time.seep(10)
+
+main.player.play(scores["attraction_mode_dense"])
