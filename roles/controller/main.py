@@ -115,7 +115,7 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
-        self.tb.subscribe_to_topic("ready")
+        self.tb.subscribe_to_topic("ready_state")
         self.start()
 
     def enable_state_change_handler(self, enabled):
