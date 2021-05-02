@@ -139,8 +139,8 @@ class Player(threading.Thread):
                 print("2b----")
                 for beat in score["beats"]:
                     print("2c----")
-                    self.chimes.pulse(pitch, beat)
-                    print(pitch, beat)
+                    self.chimes.pulse(beat)
+                    print(beat)
                     time.sleep(delay_between_beats)
                 self.chimes.all_off() # for safety
             except Exception as e:
