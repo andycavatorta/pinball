@@ -100,7 +100,7 @@ class Chimes(threading.Thread):
 
     def pulse(self, beat):
         print("3----")
-        self.queue.put((notes))
+        self.queue.put(beat)
 
     def run(self):
         while True:
