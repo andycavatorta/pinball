@@ -137,12 +137,12 @@ class Main(threading.Thread):
             if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
                 self.game_mode = self.game_modes.RESET
                 self.tb.publish("set_game_mode",self.game_modes.RESET)
-                self.tb.publish("sound_event",self.game_modes.RESET)
+                print("------------------------")
 
         if host_change == "all_hosts_ready":
             # this should happen only game_mode is self.game_modes.RESET
             if self.game_mode == self.game_modes.RESET:
-                self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)                
+                self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
 
         if self.game_mode == self.game_modes.RESET:
             pass
