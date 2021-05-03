@@ -48,11 +48,14 @@ class Safety_Enable(threading.Thread):
             if len(missing_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             if self.required_hosts.issubset(self.hosts_alive):
+                print("Safety_Enable", 1)
                 if not self.enabled: # if changing state
+                    print("Safety_Enable", )
                     self.enabled == True
                     GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
                     self.enable_state_change_handler(self.enabled)
             else:
+                print("Safety_Enable", 2)
                 if self.enabled: # if changing state
                     self.enabled == False
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
