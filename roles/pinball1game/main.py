@@ -38,6 +38,8 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.game_modes = settings.Game_Modes()
+        self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("set_game_mode")
