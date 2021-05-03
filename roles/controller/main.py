@@ -48,13 +48,11 @@ class Safety_Enable(threading.Thread):
             if len(missing_hosts) > 0:
                 print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             if self.required_hosts.issubset(self.hosts_alive):
-                print("Safety_Enable", 1)
                 if not self.enabled: # if changing state
                     self.enabled = True
                     GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
                     self.enable_state_change_handler(self.enabled)
             else:
-                print("Safety_Enable", 2)
                 if self.enabled: # if changing state
                     self.enabled = False
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
@@ -179,11 +177,12 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(">>>",topic, message, origin, destination)
+                
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                 if topic==b"ready_state":
-                        self.host_state_manager.add_host_ready(origin)
+                    print(">>>",topic, message, origin, destination)
+                    self.host_state_manager.add_host_ready(origin)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
