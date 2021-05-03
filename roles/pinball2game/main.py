@@ -4,32 +4,13 @@ import queue
 import sys
 import threading
 import time
+import traceback
 
 app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-"""
-class Roboteq_Data_Receiver(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.start()
-
-    def add_to_queue(self, message):
-        self.queue.put(message)
-
-    def run(self):
-        while True:
-            message = self.queue.get(True)
-            print("data",message)
-            #if "internal_event" in message:
-            #    pass
-
-roboteq_data_receiver = Roboteq_Data_Receiver()
-"""
 
 class Safety_Enable(threading.Thread):
     def __init__(self, tb):
@@ -47,7 +28,6 @@ class Safety_Enable(threading.Thread):
             self.tb.publish("deadman", "safe")
             time.sleep(1)
 
-
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -58,55 +38,62 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.game_modes = settings.Game_Modes()
+        self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
         self.queue = queue.Queue()
-        """
-        self.controllers = roboteq_command_wrapper.Controllers(
-            roboteq_data_receiver.add_to_queue, 
-            self.status_receiver, 
-            self.network_status_change_handler, 
-            {"sliders":settings.Roboteq.BOARDS["sliders"]},
-            {
-                "pitch_slider":settings.Roboteq.MOTORS["pitch_slider"],
-                "bow_position_slider":settings.Roboteq.MOTORS["bow_position_slider"],
-            }
-        )
-        """
-        self.tb.subscribe_to_topic("test_rotation")
-        self.tb.subscribe_to_topic("test_lights")
-        self.tb.subscribe_to_topic("home")
-        self.tb.subscribe_to_topic("pass_ball")
-
+        self.tb.subscribe_to_topic("set_game_mode")
         self.tb.publish("connected", True)
         self.start()
-    """
-    def macro_callback(self, motor_name, action, status):
-        print("macro_callback",motor_name, action, status)
-        if motor_name == "pitch_slider":
-            if action == 'go_to_limit_switch':
-                self.tb.publish("pitch_slider_home", False)
-
-        if motor_name == "bow_position_slider":
-            if action == 'go_to_limit_switch':
-                self.tb.publish("horsewheel_slider_home", False)
-    """
     def status_receiver(self, msg):
         print("status_receiver", msg)
-    def network_message_handler(self,topic, message):
-        print("network_message_handler",topic, message)
-        self.add_to_queue(topic, message)
+    def network_message_handler(self, topic, message, origin, destination):
+        self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
+    def add_to_queue(self, topic, message, origin, destination):
+        self.queue.put((topic, message, origin, destination))
+
+    def set_game_mode(self, mode):
+        if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+            self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
+            pass # peripheral power should be off during this mode
+        if mode == self.game_modes.RESET:
+            self.game_mode = self.game_modes.RESET
+            time.sleep(6)
+            self.tb.publish("ready_state",True)
+
+        if mode == self.game_modes.ATTRACTION:
+            self.game_mode = self.game_modes.ATTRACTION
+        # waits for press of start button 
+        """
+        if mode == self.game_modes.COUNTDOWN:
+            #self.player.play("countdown_mode")
+        if mode == self.game_modes.BARTER_MODE_INTRO:
+            self.player.play("barter_mode_intro")
+        if mode == self.game_modes.BARTER_MODE:
+            self.player.play("barter_mode")
+        if mode == self.game_modes.MONEY_MODE_INTRO:
+            self.player.play("money_mode_intro")
+        if mode == self.game_modes.MONEY_MODE:
+            self.player.play("money_mode")
+        if mode == self.game_modes.ENDING:
+            self.player.play("closing_theme")
+        if mode == self.game_modes.RESET:
+            self.player.play("reset")
+        if mode == self.game_modes.ERROR:
+            pass
+        """
 
     def run(self):
         while True:
             try:
-                topic, message = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
+                if topic == b'set_game_mode':
+                    self.set_game_mode(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
