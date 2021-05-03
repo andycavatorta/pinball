@@ -125,19 +125,23 @@ class Main(threading.Thread):
 
     def enable_state_change_handler(self, enabled):
         print("enable_state_change_handler",enabled)
-        if enabled: # when changing to enabled mode
-            self.host_state_manager.are_all_hosts_alive()
-        else:
-            print("+++ handle game_mode change when enable state becomes False")
-            #self.host_state_manager.set_game_mode(self.game_modes.ERROR)
+        #if enabled: # when changing to enabled mode
+        #    self.host_state_manager.are_all_hosts_alive()
+        #else:
+        #    print("+++ handle game_mode change when enable state becomes False")
+        #    #self.host_state_manager.set_game_mode(self.game_modes.ERROR)
 
     def host_state_change_handler(self, host_change):
-        print("host_state_change_handler", host_change)
+        print("host_state_change_handler 1", host_change)
         if host_change == "all_hosts_alive":
+            print("host_state_change_handler 2",self.game_mode)
             # this should happen only game_mode is WAITING_FOR_CONNECTIONS
             if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+                print("host_state_change_handler 3")
                 self.game_mode = self.game_modes.RESET
-                self.tb.publish("set_game_mode",self.game_modes.RESET)          
+                print("host_state_change_handler 4")
+                self.tb.publish("set_game_mode",self.game_modes.RESET)
+                print("host_state_change_handler 5")
 
         if host_change == "all_hosts_ready":
             # this should happen only game_mode is self.game_modes.RESET
