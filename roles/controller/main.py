@@ -76,7 +76,7 @@ class Host_State_Manager():
         self.hosts_alive.remove(hostname)
     def are_all_hosts_alive(self):
         missing_hosts = self.required_hosts.difference(self.hosts_alive)
-        print("are_all_hosts_ready unready_hosts",unready_hosts)
+        print("are_all_hosts_ready unready_hosts",missing_hosts)
         if len(missing_hosts) == 0:
             self.host_state_change_handler("all_hosts_alive")
 
