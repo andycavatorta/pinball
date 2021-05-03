@@ -135,8 +135,8 @@ class Main(threading.Thread):
     def host_state_change_handler(self, host_change):
         print("host_state_change_handler 1", host_change)
         if host_change == "missing_hosts":
-            self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
-                self.tb.publish("set_game_mode",self.game_modes.WAITING_FOR_CONNECTIONS)
+            self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
+            self.tb.publish("set_game_mode",self.game_modes.WAITING_FOR_CONNECTIONS)
 
         if host_change == "all_hosts_alive":
             # this should happen only game_mode is WAITING_FOR_CONNECTIONS
