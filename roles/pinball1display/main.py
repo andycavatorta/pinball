@@ -182,8 +182,8 @@ class Main(threading.Thread):
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
         self.queue = queue.Queue()
-        self.tb.subscribe_to_topic(b"sound_event")
-        self.tb.subscribe_to_topic(b"set_game_mode")
+        self.tb.subscribe_to_topic("sound_event")
+        self.tb.subscribe_to_topic("set_game_mode")
         self.tb.publish("connected", True)
         self.player = Player()
         self.start()
