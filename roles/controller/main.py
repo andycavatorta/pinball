@@ -137,11 +137,8 @@ class Main(threading.Thread):
             print("host_state_change_handler 2",self.game_mode)
             # this should happen only game_mode is WAITING_FOR_CONNECTIONS
             if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
-                print("host_state_change_handler 3")
                 self.game_mode = self.game_modes.RESET
-                print("host_state_change_handler 4")
                 self.tb.publish("set_game_mode",self.game_modes.RESET)
-                print("host_state_change_handler 5")
 
         if host_change == "all_hosts_ready":
             # this should happen only game_mode is self.game_modes.RESET
