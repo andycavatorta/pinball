@@ -198,11 +198,8 @@ class Main(threading.Thread):
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
     def add_to_queue(self, topic, message):
+        print("add_to_queue",topic, message)
         self.queue.put((topic, message))
-
-    def test_hardware_ready_state(self): #part of start/reset cycle
-        time.sleep(5)
-        return True
 
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
@@ -242,9 +239,9 @@ class Main(threading.Thread):
             try:
                 topic, message = self.queue.get(True)
                 print(topic, message)
-                if topic == b"sound_event":
+                if topic == b'sound_event':
                     self.player.play(message)
-                if topic == b"set_game_mode":
+                if topic == b'set_game_mode':
                     self.set_game_mode(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
