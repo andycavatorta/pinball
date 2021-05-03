@@ -75,10 +75,13 @@ class Host_State_Manager():
         self.are_all_hosts_alive()
     def remove_host_alive(self, hostname):
         self.hosts_alive.remove(hostname)
+        self.are_all_hosts_alive()
     def are_all_hosts_alive(self):
         missing_hosts = self.required_hosts.difference(self.hosts_alive)
         if len(missing_hosts) == 0:
             self.host_state_change_handler("all_hosts_alive")
+        else:
+            self.host_state_change_handler("missing_hosts")
 
     def reset_hosts_ready(self):
         self.hosts_ready = set()
@@ -131,13 +134,15 @@ class Main(threading.Thread):
 
     def host_state_change_handler(self, host_change):
         print("host_state_change_handler 1", host_change)
+        if host_change == "missing_hosts":
+            self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+                self.tb.publish("set_game_mode",self.game_modes.WAITING_FOR_CONNECTIONS)
+
         if host_change == "all_hosts_alive":
-            print("host_state_change_handler 2",self.game_mode)
             # this should happen only game_mode is WAITING_FOR_CONNECTIONS
             if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
                 self.game_mode = self.game_modes.RESET
                 self.tb.publish("set_game_mode",self.game_modes.RESET)
-                print("------------------------")
 
         if host_change == "all_hosts_ready":
             # this should happen only game_mode is self.game_modes.RESET
