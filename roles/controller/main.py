@@ -121,6 +121,7 @@ class Main(threading.Thread):
         self.start()
 
     def enable_state_change_handler(self, enabled):
+        print("enable_state_change_handler",enabled)
         if enabled: # when changing to enabled mode
             #self.host_state_change_handler(self.game_modes.RESET)
             self.host_state_manager.are_all_hosts_alive()
