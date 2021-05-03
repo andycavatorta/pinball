@@ -72,6 +72,7 @@ class Host_State_Manager():
         self.hosts_alive = set()
     def add_host_alive(self, hostname):
         self.hosts_alive.add(hostname)
+        self.are_all_hosts_alive()
     def remove_host_alive(self, hostname):
         self.hosts_alive.remove(hostname)
     def are_all_hosts_alive(self):
@@ -169,7 +170,7 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
-        if status:
+        if status == True:
             self.host_state_manager.add_host_alive(hostname)
         else: # if a host is removed
             self.host_state_manager.remove_host_alive(hostname)
