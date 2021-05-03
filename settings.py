@@ -17,7 +17,7 @@ class Roles():
         "controller":"controller",
         #"pinball1lights":"pinball1lights",
         "pinball1game":"pinball1game",
-        "pinball1display":"pinball1display",
+        "pinball1display":"display",
         #"pinball2lights":"pinball2lights",
         "pinball2game":"pinball2game",
         "pinball2display":"display",
