@@ -19,6 +19,7 @@ setting_safety_enable_gpio = 26
 class Safety_Enable(threading.Thread):
     def __init__(self, tb, enable_state_change_handler):
         threading.Thread.__init__(self)
+        self.enable_state_change_handler = enable_state_change_handler
         GPIO.setmode(GPIO.BCM)
         GPIO.setup( setting_safety_enable_gpio, GPIO.OUT )
         self.enabled = False # used for detecting when state changes
