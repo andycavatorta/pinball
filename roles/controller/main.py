@@ -84,18 +84,18 @@ class Host_State_Manager():
         self.hosts_ready.add(hostname)
     def remove_host_ready(self, hostname):
         self.hosts_ready.remove(hostname)
-    def are_all_hosts_alive(self):
+    def are_all_hosts_ready(self):
         unready_hosts = self.required_hosts.difference(self.hosts_ready)
         if len(unready_hosts) == 0:
             self.host_state_change_handler("all_hosts_ready")
 
-
+    """
     def set_game_mode(self, game_mode):
         self.game_mode = game_mode
         self.host_state_change_handler(self.game_mode)
     def get_game_mode(self):
         return self.game_mode
-
+    """
 
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
@@ -121,9 +121,11 @@ class Main(threading.Thread):
 
     def enable_state_change_handler(self, enabled):
         if enabled: # when changing to enabled mode
-            self.host_state_manager.set_game_mode(self.game_modes.RESET)
+            #self.host_state_change_handler(self.game_modes.RESET)
+            self.host_state_manager.are_all_hosts_alive()
         else:
-            self.host_state_manager.set_game_mode(self.game_modes.ERROR)
+            print("+++ handle game_mode change when enable state becomes False")
+            #self.host_state_manager.set_game_mode(self.game_modes.ERROR)
 
     def host_state_change_handler(self, host_change):
         if host_change == "all_hosts_alive":
