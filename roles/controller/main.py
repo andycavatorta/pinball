@@ -140,7 +140,7 @@ class Main(threading.Thread):
         if host_change == "all_hosts_ready":
             # this should happen only game_mode is self.game_modes.RESET
             if self.game_mode == self.game_modes.RESET:
-                self.tb.publish("set_game_mode",)                
+                self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)                
 
         if self.game_mode == self.game_modes.RESET:
             pass
@@ -179,7 +179,7 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                #print(">>>",topic, message, origin, destination)
+                print(">>>",topic, message, origin, destination)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                 if topic==b"ready_state":
