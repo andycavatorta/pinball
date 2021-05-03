@@ -190,16 +190,14 @@ class Main(threading.Thread):
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
-    def network_message_handler(self,topic, message):
-        print("network_message_handler",topic, message)
-        self.add_to_queue(topic, message)
+    def network_message_handler(self, topic, message, origin, destination):
+        self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
-    def add_to_queue(self, topic, message):
-        print("add_to_queue",topic, message)
-        self.queue.put((topic, message))
+    def add_to_queue(self, topic, message, origin, destination):
+        self.queue.put((topic, message, origin, destination))
 
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
@@ -237,7 +235,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
                 if topic == b'sound_event':
                     self.player.play(message)
