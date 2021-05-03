@@ -88,7 +88,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
                 if topic == b'set_game_mode':
                     self.set_game_mode(message)
