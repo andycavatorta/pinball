@@ -204,12 +204,15 @@ class Main(threading.Thread):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
             pass # peripheral power should be off during this mode
         if mode == self.game_modes.RESET:
+            print("setting game mode to reset ")
             self.game_mode = self.game_modes.RESET
             self.player.play("reset")
             time.sleep(5)
             self.tb.publish("ready_state",True)
+            print("Sent done with reset msg ")
 
         if mode == self.game_modes.ATTRACTION:
+            print("Starting attraction mode")
             self.game_mode = self.game_modes.ATTRACTION
             self.player.play("attraction_mode_sparse")
             # waits for press of start button 
@@ -241,6 +244,7 @@ class Main(threading.Thread):
                 if topic == b'sound_event':
                     self.player.play(message)
                 if topic == b'set_game_mode':
+                    print("setting game mode ", message)
                     self.set_game_mode(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
