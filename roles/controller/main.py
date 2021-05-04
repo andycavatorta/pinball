@@ -94,6 +94,7 @@ class Host_State_Manager():
         unready_hosts = self.required_hosts.difference(self.hosts_ready)
         print("Current unready hosts : ", len(unready_hosts))
         if len(unready_hosts) == 0:
+            print("Found no hosts left starting attraction mode")
             self.host_state_change_handler("all_hosts_ready")
 
     """
@@ -147,8 +148,11 @@ class Main(threading.Thread):
                 self.tb.publish("set_game_mode",self.game_modes.RESET)
 
         if host_change == "all_hosts_ready":
+            print("got correct host change")
+            print(self.game_mode)
             # this should happen only game_mode is self.game_modes.RESET
             if self.game_mode == self.game_modes.RESET:
+                print("sending message for attraction")
                 self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
 
         if self.game_mode == self.game_modes.RESET:
