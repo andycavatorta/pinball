@@ -87,10 +87,12 @@ class Host_State_Manager():
         self.hosts_ready = set()
     def add_host_ready(self, hostname):
         self.hosts_ready.add(hostname)
+        self.are_all_hosts_ready()
     def remove_host_ready(self, hostname):
         self.hosts_ready.remove(hostname)
     def are_all_hosts_ready(self):
         unready_hosts = self.required_hosts.difference(self.hosts_ready)
+        print("Current unready hosts : ", len(unready_hosts))
         if len(unready_hosts) == 0:
             self.host_state_change_handler("all_hosts_ready")
 
