@@ -5,12 +5,37 @@ import sys
 import threading
 import time
 import traceback
+import zmq
 
 app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
+
+class MPF_Bridge(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.tb = tb
+        self.start()
+        self.context = zmq.Context()
+        self.socket = self.context.socket(zmq.PULL)
+        self.socket.bind("tcp://*:5555")
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        print("starting run of mpf bridge")
+        while True:
+            try:
+              message = self.socket.recv()
+              print(f"Received msg#{count}: {message}")
+              count = count +1
+            except Exception as e:
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 class Safety_Enable(threading.Thread):
     def __init__(self, tb):
@@ -41,6 +66,8 @@ class Main(threading.Thread):
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
+        self.mpf_bridge = MPF_Bridge(self.tb)
+
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("set_game_mode")
         self.tb.publish("connected", True)
