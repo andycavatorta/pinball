@@ -31,7 +31,7 @@ class MPF_Bridge(threading.Thread):
         while True:
             try:
               message = self.socket.recv()
-              print(f"Received msg#{count}: {message}")
+              print(f"Received msg#: {message}")
               count = count +1
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
