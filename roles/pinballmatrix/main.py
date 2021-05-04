@@ -158,14 +158,20 @@ class Main(threading.Thread):
         self.queue.put((topic, message, origin, destination))
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+            print("Mode Attraction")
             self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
             pass # peripheral power should be off during this mode
         if mode == self.game_modes.RESET:
+            print("Mode : Reset ")
+            
             self.game_mode = self.game_modes.RESET
             time.sleep(6)
             self.tb.publish("ready_state",True)
+            print("Done with reset, initiating attraction")
 
         if mode == self.game_modes.ATTRACTION:
+            print("Mode Attraction")
+
             self.game_mode = self.game_modes.ATTRACTION
         # waits for press of start button 
         """
