@@ -205,11 +205,15 @@ class Main(threading.Thread):
             pass # peripheral power should be off during this mode
         if mode == self.game_modes.RESET:
             self.game_mode = self.game_modes.RESET
+            print("Setting game mode to reset ")
             self.player.play("reset")
+            print("Playing theme reset")
             time.sleep(5)
             self.tb.publish("ready_state",True)
+            print("Published ready state of true")
 
         if mode == self.game_modes.ATTRACTION:
+            print("Currently in attraction mode")
             self.game_mode = self.game_modes.ATTRACTION
             self.player.play("attraction_mode_sparse")
             # waits for press of start button 
