@@ -196,7 +196,7 @@ class Main(threading.Thread):
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
-        print("network_status_change_handler", status, hostname)
+        print("network_status_change_handler : ", status, hostname)
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
@@ -245,6 +245,7 @@ class Main(threading.Thread):
                 if topic == b'sound_event':
                     self.player.play(message)
                 if topic == b'set_game_mode':
+                    print("Sending topic for new game mode", message)
                     self.set_game_mode(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
