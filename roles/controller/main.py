@@ -244,6 +244,7 @@ class Main(threading.Thread):
                 if topic==b"confirm_countdown":
                     self.host_state_change_handler("start_barter_mode_intro")
                 if topic==b"confirm_barter_mode_intro":
+                    print("Here i got a message for barter mode intro done time for barter mode proper")
                     self.host_state_change_handler("start_barter_mode")
                 if topic==b"confirm_barter_mode":
                     print("Here i got a message for barter mode done time for money mode")
