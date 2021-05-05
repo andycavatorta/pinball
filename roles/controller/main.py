@@ -185,6 +185,7 @@ class Main(threading.Thread):
     
     def handle_game_state(self,topic, message, origin, destination):
         print(">>>",topic, message, origin, destination)
+        print('Got a gameupdate my game mode is ', self.game_mode)
         if self.game_mode == self.game_modes.ATTRACTION:
             print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("trigger_countdown")
