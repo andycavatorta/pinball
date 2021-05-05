@@ -32,7 +32,7 @@ class MPF_Bridge(threading.Thread):
             try:
               message = self.socket.recv()
               print(f"Received msg#: {message}")
-              self.tb.publish("gameupdate", message)
+              self.tb.publish("gameupdate", str(message))
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
