@@ -228,7 +228,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                 if topic==b"ready_state":
-                    # print(">>>",topic, message, origin, destination)
+                    print("ready state",topic, message, origin, destination)
                     self.host_state_manager.add_host_ready(origin)
                 if topic==b"gameupdate":
                     self.handle_game_state(topic, message, origin, destination)
