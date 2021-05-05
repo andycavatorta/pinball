@@ -180,18 +180,22 @@ class Main(threading.Thread):
                 self.game_mode = self.game_modes.BARTER_MODE
                 self.tb.publish("set_game_mode",self.game_modes.BARTER_MODE)
 
-        if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
-            pass
-        if self.game_mode == self.game_modes.BARTER_MODE:
-            pass
-        if self.game_mode == self.game_modes.MONEY_MODE_INTRO:
-            pass
-        if self.game_mode == self.game_modes.MONEY_MODE:
-            pass
-        if self.game_mode == self.game_modes.ENDING:
-            pass
-        if self.game_mode == self.game_modes.ERROR:
-            pass
+
+        if host_change == "start_money_mode_intro":
+            if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+                self.game_mode = self.game_modes.MONEY_MODE_INTRO
+                self.tb.publish("set_game_mode",self.game_modes.MONEY_MODE_INTRO)
+
+        if host_change == "start_money_mode":
+            if self.game_mode == self.game_modes.MONEY_MODE_INTRO:
+                self.game_mode = self.game_modes.MONEY_MODE
+                self.tb.publish("set_game_mode",self.game_modes.MONEY_MODE)
+
+        if host_change == "RESET":
+            if self.game_mode == self.game_modes.ENDING:
+                self.game_mode = self.game_modes.RESET
+                self.tb.publish("set_game_mode",self.game_modes.RESET)
+
         self.tb.publish("game_mode", self.game_mode)
     
     def handle_game_state(self,topic, message, origin, destination):
@@ -231,6 +235,14 @@ class Main(threading.Thread):
                     self.host_state_change_handler("start_barter_mode_intro")
                 if topic==b"confirm_barter_mode_intro":
                     self.host_state_change_handler("start_barter_mode")
+                if topic==b"confirm_barter_mode":
+                    self.host_state_change_handler("start_money_mode_intro")
+                if topic==b"confirm_money_mode_intro":
+                    self.host_state_change_handler("start_money_mode")
+                if topic==b"confirm_money_mode":
+                    self.host_state_change_handler("start_ending")
+                if topic==b"confirm_ending":
+                    self.host_state_change_handler("reset")
 
 
             

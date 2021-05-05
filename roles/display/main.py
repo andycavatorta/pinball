@@ -31,6 +31,12 @@ scores ={
             [0],[],[],[],[],[],[],[]
         ]
     },
+    "attraction_mode_test" : {
+        "beats_per_minute":120,
+        "beats":[
+            [0,0],[2,3],[4]
+        ]
+    },
     "countdown_mode" : {
         "beats_per_minute":120,
         "beats":[
@@ -269,7 +275,7 @@ class Main(threading.Thread):
         if mode == self.game_modes.ENDING:
             self.game_mode = self.game_modes.ENDING
 
-            self.player.play("ending")
+            self.player.play("closing_theme")
             time.sleep(5)
             self.tb.publish("confirm_ending",True)
     
