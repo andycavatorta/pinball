@@ -140,6 +140,7 @@ class Main(threading.Thread):
 
     def host_state_change_handler(self, host_change):
         print("host_state_change_handler 1", host_change)
+        print('Current game mode is ', self.game_mode)
         if host_change == "missing_hosts":
             self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
             self.tb.publish("set_game_mode",self.game_modes.WAITING_FOR_CONNECTIONS)
@@ -158,13 +159,21 @@ class Main(threading.Thread):
                 print("sending message for attraction")
                 self.game_mode = self.game_modes.ATTRACTION
                 self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
-        if host_change == "trigger_countdown":
+        if host_change == "start_countdown":
             print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.ATTRACTION:
-                print("Sending message to switch to countdown")
                 self.game_mode = self.game_modes.COUNTDOWN
-
                 self.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
+
+        if host_change == "start_barter_mode_intro":
+            if self.game_mode == self.game_modes.COUNTDOWN:
+                self.game_mode = self.game_modes.BARTER_MODE_INTRO
+                self.tb.publish("set_game_mode",self.game_modes.BARTER_MODE_INTRO)
+
+        if host_change == "start_barter_mode":
+            if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+                self.game_mode = self.game_modes.BARTER_MODE
+                self.tb.publish("set_game_mode",self.game_modes.BARTER_MODE)
 
         if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
             pass
@@ -186,7 +195,7 @@ class Main(threading.Thread):
         # If we get any message from the pinball machine in attraction mode, move to countdown
         if self.game_mode == self.game_modes.ATTRACTION:
             print("Currently in attraction and got a new message so triggering countdown")
-            self.host_state_change_handler("trigger_countdown")
+            self.host_state_change_handler("start_countdown")
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -213,6 +222,10 @@ class Main(threading.Thread):
                     self.host_state_manager.add_host_ready(origin)
                 if topic==b"gameupdate":
                     self.handle_game_state(topic, message, origin, destination)
+               if topic==b"confirm_countdown":
+                    self.host_state_change_handler("start_barter_mode_intro")
+               if topic==b"barter_mode_intro":
+                    self.host_state_change_handler("start_barter_mode")
 
 
             
