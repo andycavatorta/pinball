@@ -41,7 +41,9 @@ scores ={
     },
     "countdown_mode" : {
         "beats_per_minute":120,
-        "beats":[0,0],[2,3],[4],[],[2,2,1],[4],[],[0],[0]
+        "beats":[
+            [0,0],[2,3],[4],[],[2,2,1],[4],[],[0],[0]
+        ]
     },
     "barter_mode_intro" : {
         "beats_per_minute":120,
