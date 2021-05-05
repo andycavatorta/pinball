@@ -82,7 +82,9 @@ class Host_State_Manager():
         if len(missing_hosts) == 0:
             self.host_state_change_handler("all_hosts_alive")
         else:
+            print(missing_hosts)
             self.host_state_change_handler("missing_hosts")
+            
 
     def reset_hosts_ready(self):
         self.hosts_ready = set()
