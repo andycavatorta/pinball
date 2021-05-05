@@ -205,7 +205,7 @@ class Main(threading.Thread):
                     self.host_state_manager.add_host_ready(origin)
                 if topic==b"attraction_complete":
                     self.host_state_change_handler("trigger_countdown")
-               if topic==b"gameupdate":
+                if topic==b"gameupdate":
                     print(">>>",topic, message, origin, destination)
 
             
