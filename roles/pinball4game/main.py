@@ -18,8 +18,6 @@ class MPF_Bridge(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.tb = tb
-        self.game_mode = game_mode
-        self.game_modes = game_modes
         self.start()
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PULL)
