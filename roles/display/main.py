@@ -25,19 +25,18 @@ scores ={
         ]
     },
     "attraction_mode_sparse" : {
-        "beats_per_minute":15,
+        "beats_per_minute":30,
         "beats":[
             [0],[1],[2],[3],[4],[3],[2],[1],
             [0],[],[],[],[],[],[],[],
             [],[],[],[],[],[],[],[],
             [],[],[],[],[],[],[],[],
             [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[]
+        ]
+    },
+    "test_no_beats":{
+        "beats_per_minute":120,
+        "beats":[
         ]
     },
     "countdown_mode" : {
@@ -220,7 +219,8 @@ class Main(threading.Thread):
         if mode == self.game_modes.ATTRACTION:
             print("Starting attraction mode")
             self.game_mode = self.game_modes.ATTRACTION
-            self.player.play("attraction_mode_sparse")
+            # self.player.play("attraction_mode_sparse")
+            
             # waits for press of start button 
 
         """
