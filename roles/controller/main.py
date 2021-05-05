@@ -156,6 +156,7 @@ class Main(threading.Thread):
             # this should happen only game_mode is self.game_modes.RESET
             if self.game_mode == self.game_modes.RESET:
                 print("sending message for attraction")
+                 self.game_mode = self.game_modes.ATTRACTION
                 self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
         if host_change == "trigger_countdown":
             print('Got a host event to change to count my game mode is ', self.game_mode)
