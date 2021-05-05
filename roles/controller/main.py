@@ -162,6 +162,8 @@ class Main(threading.Thread):
             print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.ATTRACTION:
                 print("Sending message to switch to countdown")
+                self.game_mode = self.game_modes.COUNTDOWN
+
                 self.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
 
         if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
@@ -183,7 +185,6 @@ class Main(threading.Thread):
         print('Got a gameupdate my game mode is ', self.game_mode)
         # If we get any message from the pinball machine in attraction mode, move to countdown
         if self.game_mode == self.game_modes.ATTRACTION:
-            self.game_mode = self.game_modes.COUNTDOWN
             print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("trigger_countdown")
 
