@@ -222,9 +222,9 @@ class Main(threading.Thread):
                     self.host_state_manager.add_host_ready(origin)
                 if topic==b"gameupdate":
                     self.handle_game_state(topic, message, origin, destination)
-               if topic==b"confirm_countdown":
+                if topic==b"confirm_countdown":
                     self.host_state_change_handler("start_barter_mode_intro")
-               if topic==b"confirm_barter_mode_intro":
+                if topic==b"confirm_barter_mode_intro":
                     self.host_state_change_handler("start_barter_mode")
 
 
