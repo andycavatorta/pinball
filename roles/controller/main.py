@@ -125,6 +125,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("ready_state")
+        self.tb.subscribe_to_topic("gameupdate")
         self.start()
 
     def enable_state_change_handler(self, enabled):
