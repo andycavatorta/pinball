@@ -35,7 +35,6 @@ class MPF_Bridge(threading.Thread):
               message = self.socket.recv()
               print(f"Received msg#: {message}")
               # Once we get any interaction, send tell controller to start countdown
-              print("Current game mode is ", self.game_mode)
             #   if self.game_mode == self.game_modes.ATTRACTION:
             #       self.tb.publish("attraction_complete", True)
               self.tb.publish("gameupdate", str(message))
