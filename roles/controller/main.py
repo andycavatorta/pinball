@@ -78,6 +78,7 @@ class Host_State_Manager():
         self.are_all_hosts_alive()
     def are_all_hosts_alive(self):
         missing_hosts = self.required_hosts.difference(self.hosts_alive)
+        print("Numb of missing hosts : ", len(missing_hosts))
         if len(missing_hosts) == 0:
             self.host_state_change_handler("all_hosts_alive")
         else:
