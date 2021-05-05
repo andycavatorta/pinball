@@ -25,7 +25,7 @@ scores ={
         ]
     },
     "attraction_mode_sparse" : {
-        "beats_per_minute":120,
+        "beats_per_minute":10,
         "beats":[
             [0],[1],[2],[3],[4],[3],[2],[1],
             [0],[],[],[],[],[],[],[],
