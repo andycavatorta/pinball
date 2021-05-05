@@ -14,7 +14,7 @@ import settings
 from thirtybirds3 import thirtybirds
 
 class MPF_Bridge(threading.Thread):
-    def __init__(self, tb,game_mode,game_modes):
+    def __init__(self, tb):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.tb = tb
@@ -36,8 +36,8 @@ class MPF_Bridge(threading.Thread):
               print(f"Received msg#: {message}")
               # Once we get any interaction, send tell controller to start countdown
               print("Current game mode is ", self.game_mode)
-              if self.game_mode == self.game_modes.ATTRACTION:
-                  self.tb.publish("attraction_complete", True)
+            #   if self.game_mode == self.game_modes.ATTRACTION:
+            #       self.tb.publish("attraction_complete", True)
               self.tb.publish("gameupdate", str(message))
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -72,7 +72,7 @@ class Main(threading.Thread):
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
-        self.mpf_bridge = MPF_Bridge(self.tb,self.game_mode,self.game_modes)
+        self.mpf_bridge = MPF_Bridge(self.tb)
 
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("set_game_mode")
@@ -95,6 +95,7 @@ class Main(threading.Thread):
             pass # peripheral power should be off during this mode
         if mode == self.game_modes.RESET:
             self.game_mode = self.game_modes.RESET
+            self.mpf_bridge.set_game_mode = self.game_modes.RESET
             time.sleep(6)
             self.tb.publish("ready_state",True)
 

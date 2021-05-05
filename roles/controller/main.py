@@ -180,6 +180,11 @@ class Main(threading.Thread):
         if self.game_mode == self.game_modes.ERROR:
             pass
         self.tb.publish("game_mode", self.game_mode)
+    
+    def handle_game_state(self,topic, message, origin, destination):
+        print(">>>",topic, message, origin, destination)
+        if self.game_mode == self.game_modes.ATTRACTION:
+            self.host_state_change_handler("trigger_countdown")
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -192,6 +197,7 @@ class Main(threading.Thread):
         else: # if a host is removed
             self.host_state_manager.remove_host_alive(hostname)
 
+
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
     def run(self):
@@ -203,10 +209,9 @@ class Main(threading.Thread):
                 if topic==b"ready_state":
                     # print(">>>",topic, message, origin, destination)
                     self.host_state_manager.add_host_ready(origin)
-                if topic==b"attraction_complete":
-                    self.host_state_change_handler("trigger_countdown")
                 if topic==b"gameupdate":
-                    print(">>>",topic, message, origin, destination)
+                    self.handle_game_state(topic, message, origin, destination)
+
 
             
 
