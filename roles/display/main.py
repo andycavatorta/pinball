@@ -41,8 +41,7 @@ scores ={
     },
     "countdown_mode" : {
         "beats_per_minute":120,
-        "beats":[
-        ]
+        "beats":[0,0],[2,3],[4],[],[2,2,1],[4],[],[0],[0]
     },
     "barter_mode_intro" : {
         "beats_per_minute":120,
@@ -93,6 +92,12 @@ scores ={
         "beats_per_minute":240,
         "beats":[
             [0],[2],[4],[0],[2],[4],[0],[2],[4]
+        ]
+    },
+     "reset_sparse" : {
+        "beats_per_minute":240,
+        "beats":[
+            [0],[2],[4]
         ]
     }
 }
@@ -211,7 +216,7 @@ class Main(threading.Thread):
         if mode == self.game_modes.RESET:
             print("setting game mode to reset ")
             self.game_mode = self.game_modes.RESET
-            self.player.play("reset")
+            self.player.play("reset_sparse")
             time.sleep(5)
             self.tb.publish("ready_state",True)
             print("Sent done with reset msg ")
@@ -222,7 +227,8 @@ class Main(threading.Thread):
             # self.player.play("attraction_mode_sparse")
             
             # waits for press of start button 
-
+        if mode == self.game_modes.COUNTDOWN:
+            self.player.play("countdown_mode")
         """
         if mode == self.game_modes.COUNTDOWN:
             #self.player.play("countdown_mode")
