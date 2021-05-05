@@ -158,7 +158,9 @@ class Main(threading.Thread):
                 print("sending message for attraction")
                 self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
         if host_change == "trigger_countdown":
+            print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.ATTRACTION:
+                print("Sending message to switch to countdown")
                 elf.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
 
         if self.game_mode == self.game_modes.RESET:
@@ -184,6 +186,7 @@ class Main(threading.Thread):
     def handle_game_state(self,topic, message, origin, destination):
         print(">>>",topic, message, origin, destination)
         if self.game_mode == self.game_modes.ATTRACTION:
+            print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("trigger_countdown")
 
     def network_message_handler(self, topic, message, origin, destination):
