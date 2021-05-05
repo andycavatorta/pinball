@@ -28,15 +28,7 @@ scores ={
         "beats_per_minute":30,
         "beats":[
             [0],[1],[2],[3],[4],[3],[2],[1],
-            [0],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-            [],[],[],[],[],[],[],[],
-        ]
-    },
-    "test_no_beats":{
-        "beats_per_minute":120,
-        "beats":[
+            [0],[],[],[],[],[],[],[]
         ]
     },
     "countdown_mode" : {
@@ -48,21 +40,28 @@ scores ={
     "barter_mode_intro" : {
         "beats_per_minute":120,
         "beats":[
+            [0],[0],[0],[0]
         ]
     },
     "barter_mode" : {
         "beats_per_minute":120,
         "beats":[
+            [1],[1],[1],[1]
+
         ]
     },
     "money_mode_intro" : {
         "beats_per_minute":120,
         "beats":[
+            [2],[2],[2],[2]
+
         ]
     },
     "money_mode" : {
         "beats_per_minute":120,
         "beats":[
+            [3],[3],[3],[3]
+
         ]
     },
     "score" : {
@@ -88,6 +87,8 @@ scores ={
     "closing_theme" : {
         "beats_per_minute":120,
         "beats":[
+            [4],[4],[4],[4]
+
         ]
     },
     "reset" : {
@@ -215,6 +216,7 @@ class Main(threading.Thread):
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
             pass # peripheral power should be off during this mode
+
         if mode == self.game_modes.RESET:
             print("setting game mode to reset ")
             self.game_mode = self.game_modes.RESET
@@ -226,12 +228,50 @@ class Main(threading.Thread):
         if mode == self.game_modes.ATTRACTION:
             print("Starting attraction mode")
             self.game_mode = self.game_modes.ATTRACTION
-            # self.player.play("attraction_mode_sparse")
+            self.player.play("attraction_mode_sparse")
             
-            # waits for press of start button 
+        # waits for press of start button 
         if mode == self.game_modes.COUNTDOWN:
+            self.game_mode = self.game_modes.COUNTDOWN
             print("In countdown, playing countdown motif")
             self.player.play("countdown_mode")
+            time.sleep(5)
+            self.tb.publish("confirm_countdown",True)
+
+        if mode == self.game_modes.BARTER_MODE_INTRO:
+            self.game_mode = self.game_modes.BARTER_MODE_INTRO
+
+            self.player.play("barter_mode_intro")
+            time.sleep(5)
+            self.tb.publish("confirm_barter_mode_intro",True)
+
+       if mode == self.game_modes.BARTER_MODE:
+            self.game_mode = self.game_modes.BARTER_MODE
+
+            self.player.play("barter_mode")
+            time.sleep(5)
+            self.tb.publish("confirm_barter_mode",True)
+
+       if mode == self.game_modes.MONEY_MODE_INTRO:
+            self.game_mode = self.game_modes.MONEY_MODE_INTRO
+
+            self.player.play("money_mode_intro")
+            time.sleep(5)
+            self.tb.publish("confirm_money_mode_intro",True)
+       if mode == self.game_modes.MONEY_MODE:
+            self.game_mode = self.game_modes.MONEY_MODE
+
+            self.player.play("money_mode")
+            time.sleep(5)
+            self.tb.publish("confirm_money_mode",True)
+
+       if mode == self.game_modes.ENDING:
+            self.game_mode = self.game_modes.ENDING
+
+            self.player.play("ending")
+            time.sleep(5)
+            self.tb.publish("confirm_ending",True)
+    
         """
         if mode == self.game_modes.COUNTDOWN:
             #self.player.play("countdown_mode")
