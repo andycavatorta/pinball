@@ -14,10 +14,12 @@ import settings
 from thirtybirds3 import thirtybirds
 
 class MPF_Bridge(threading.Thread):
-    def __init__(self, tb):
+    def __init__(self, tb,game_mode,game_modes):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.tb = tb
+        self.game_mode = game_mode
+        self.game_modes = game_modes
         self.start()
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PULL)
@@ -33,6 +35,7 @@ class MPF_Bridge(threading.Thread):
               message = self.socket.recv()
               print(f"Received msg#: {message}")
               # Once we get any interaction, send tell controller to start countdown
+              print("Current game mode is ", self.game_mode)
               if self.game_mode == self.game_modes.ATTRACTION:
                   self.tb.publish("attraction_complete", True)
               self.tb.publish("gameupdate", str(message))
@@ -69,7 +72,7 @@ class Main(threading.Thread):
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.safety_enable = Safety_Enable(self.tb)
-        self.mpf_bridge = MPF_Bridge(self.tb)
+        self.mpf_bridge = MPF_Bridge(self.tb,self.game_mode,self.game_modes)
 
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("set_game_mode")
