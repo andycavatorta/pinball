@@ -32,6 +32,9 @@ class MPF_Bridge(threading.Thread):
             try:
               message = self.socket.recv()
               print(f"Received msg#: {message}")
+              # Once we get any interaction, send tell controller to start countdown
+              if mode == self.game_modes.ATTRACTION:
+                  self.tb.publish("attraction_complete", True)
               self.tb.publish("gameupdate", str(message))
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -95,9 +98,11 @@ class Main(threading.Thread):
         if mode == self.game_modes.ATTRACTION:
             self.game_mode = self.game_modes.ATTRACTION
         # waits for press of start button 
-        """
+
         if mode == self.game_modes.COUNTDOWN:
             #self.player.play("countdown_mode")
+            print("In countdown")
+        """
         if mode == self.game_modes.BARTER_MODE_INTRO:
             self.player.play("barter_mode_intro")
         if mode == self.game_modes.BARTER_MODE:

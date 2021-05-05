@@ -126,6 +126,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("ready_state")
         self.tb.subscribe_to_topic("gameupdate")
+        self.tb.subscribe_to_topic("attraction_complete")
+
         self.start()
 
     def enable_state_change_handler(self, enabled):
@@ -155,6 +157,9 @@ class Main(threading.Thread):
             if self.game_mode == self.game_modes.RESET:
                 print("sending message for attraction")
                 self.tb.publish("set_game_mode",self.game_modes.ATTRACTION)
+        if host_change == "trigger_countdown":
+            if self.game_mode == self.game_modes.ATTRACTION:
+                elf.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
 
         if self.game_mode == self.game_modes.RESET:
             pass
@@ -195,11 +200,15 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
-                else:
-                    print(">>>",topic, message, origin, destination)
                 if topic==b"ready_state":
                     # print(">>>",topic, message, origin, destination)
                     self.host_state_manager.add_host_ready(origin)
+                if topic==b"attraction_complete":
+                    self.host_state_change_handler("trigger_countdown")
+               if topic==b"gameupdate":
+                    print(">>>",topic, message, origin, destination)
+
+            
 
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
