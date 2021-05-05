@@ -170,22 +170,29 @@ class Main(threading.Thread):
         if host_change == "start_countdown":
             print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.ATTRACTION:
+                print("setting mode to countdown")
                 self.game_mode = self.game_modes.COUNTDOWN
                 self.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
 
         if host_change == "start_barter_mode_intro":
+            print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.COUNTDOWN:
+                print("setting mode to barter mode intro")
                 self.game_mode = self.game_modes.BARTER_MODE_INTRO
                 self.tb.publish("set_game_mode",self.game_modes.BARTER_MODE_INTRO)
 
         if host_change == "start_barter_mode":
+            print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+                print("setting mode to barter mode proper")
                 self.game_mode = self.game_modes.BARTER_MODE
                 self.tb.publish("set_game_mode",self.game_modes.BARTER_MODE)
 
 
         if host_change == "start_money_mode_intro":
+            print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+                print("setting mode to money mode intro")
                 self.game_mode = self.game_modes.MONEY_MODE_INTRO
                 self.tb.publish("set_game_mode",self.game_modes.MONEY_MODE_INTRO)
 
