@@ -254,22 +254,25 @@ class Main(threading.Thread):
 
         if mode == self.game_modes.BARTER_MODE:
             self.game_mode = self.game_modes.BARTER_MODE
-
+            print("playing barter mode theme")
             self.player.play("barter_mode")
             time.sleep(5)
+            print("sending confirm barter mode")
             self.tb.publish("confirm_barter_mode",True)
 
         if mode == self.game_modes.MONEY_MODE_INTRO:
             self.game_mode = self.game_modes.MONEY_MODE_INTRO
-
+            print("playing barter mode theme")
             self.player.play("money_mode_intro")
             time.sleep(5)
+            print("sending confirm money mode intro")
             self.tb.publish("confirm_money_mode_intro",True)
         if mode == self.game_modes.MONEY_MODE:
             self.game_mode = self.game_modes.MONEY_MODE
 
             self.player.play("money_mode")
             time.sleep(5)
+            print("sending confirm money mode intro")
             self.tb.publish("confirm_money_mode",True)
 
         if mode == self.game_modes.ENDING:

@@ -147,7 +147,7 @@ class Main(threading.Thread):
         #    #self.host_state_manager.set_game_mode(self.game_modes.ERROR)
 
     def host_state_change_handler(self, host_change):
-        print("host_state_change_handler 1", host_change)
+        print("\nhost_state_change_handler 1", host_change)
         print('Current game mode is ', self.game_mode)
         if host_change == "missing_hosts":
             self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
