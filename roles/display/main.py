@@ -228,6 +228,7 @@ class Main(threading.Thread):
             
             # waits for press of start button 
         if mode == self.game_modes.COUNTDOWN:
+            print("In countdown, playing countdown motif")
             self.player.play("countdown_mode")
         """
         if mode == self.game_modes.COUNTDOWN:
