@@ -206,8 +206,10 @@ class Main(threading.Thread):
             if self.game_mode == self.game_modes.MONEY_MODE:
                 self.game_mode = self.game_modes.ENDING
                 self.tb.publish("set_game_mode",self.game_modes.ENDING)
-        if host_change == "RESET":
+        if host_change == "reset":
+            print("Got command for ending game mode is ", self.game_mode)
             if self.game_mode == self.game_modes.ENDING:
+                print("resetting")
                 self.game_mode = self.game_modes.RESET
                 self.tb.publish("set_game_mode",self.game_modes.RESET)
 
