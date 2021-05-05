@@ -127,6 +127,11 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("ready_state")
         self.tb.subscribe_to_topic("gameupdate")
         self.tb.subscribe_to_topic("attraction_complete")
+        self.tb.subscribe_to_topic("confirm_countdown")
+        self.tb.subscribe_to_topic("confirm_barter_mode_intro")
+        self.tb.subscribe_to_topic("confirm_money_mode_intro")
+        self.tb.subscribe_to_topic("confirm_money_mode")
+        self.tb.subscribe_to_topic("confirm_ending")
 
         self.start()
 

@@ -237,6 +237,7 @@ class Main(threading.Thread):
             self.player.play("countdown_mode")
             time.sleep(5)
             self.tb.publish("confirm_countdown",True)
+            print("sent message for countdown")
 
         if mode == self.game_modes.BARTER_MODE_INTRO:
             self.game_mode = self.game_modes.BARTER_MODE_INTRO
