@@ -162,7 +162,7 @@ class Main(threading.Thread):
             print('Got a host event to change to count my game mode is ', self.game_mode)
             if self.game_mode == self.game_modes.ATTRACTION:
                 print("Sending message to switch to countdown")
-                elf.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
+                self.tb.publish("set_game_mode",self.game_modes.COUNTDOWN)
 
         if self.game_mode == self.game_modes.RESET:
             pass
