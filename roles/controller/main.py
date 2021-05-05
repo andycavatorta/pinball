@@ -192,7 +192,7 @@ class Main(threading.Thread):
 
         if host_change == "start_money_mode_intro":
             print('Got a host event to change to count my game mode is ', self.game_mode)
-            if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+            if self.game_mode == self.game_modes.BARTER_MODE:
                 print("setting mode to money mode intro")
                 self.game_mode = self.game_modes.MONEY_MODE_INTRO
                 self.tb.publish("set_game_mode",self.game_modes.MONEY_MODE_INTRO)
@@ -202,6 +202,10 @@ class Main(threading.Thread):
                 self.game_mode = self.game_modes.MONEY_MODE
                 self.tb.publish("set_game_mode",self.game_modes.MONEY_MODE)
 
+        if host_change == "start_ending":
+            if self.game_mode == self.game_modes.MONEY_MODE:
+                self.game_mode = self.game_modes.ENDING
+                self.tb.publish("set_game_mode",self.game_modes.ENDING)
         if host_change == "RESET":
             if self.game_mode == self.game_modes.ENDING:
                 self.game_mode = self.game_modes.RESET
