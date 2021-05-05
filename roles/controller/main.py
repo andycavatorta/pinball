@@ -195,11 +195,12 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
-                if topic==b"ready_state":
-                    print(">>>",topic, message, origin, destination)
-                    self.host_state_manager.add_host_ready(origin)
                 else:
                     print(">>>",topic, message, origin, destination)
+                if topic==b"ready_state":
+                    # print(">>>",topic, message, origin, destination)
+                    self.host_state_manager.add_host_ready(origin)
+
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
