@@ -250,7 +250,7 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("sound_event")
         self.tb.subscribe_to_topic("set_game_mode")
-        self.tb_subscribe_to_topic("set_display_number")
+        self.tb.subscribe_to_topic("set_display_number")
         self.tb.publish("connected", True)
         self.player = Player()
         self.start()
