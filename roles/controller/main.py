@@ -231,11 +231,14 @@ class Main(threading.Thread):
         if self.game_mode == self.game_modes.ATTRACTION:
             print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("start_countdown")
-        game_event = json.loads(message)
-        if game_event["new_state"] == "active":
-            print("got an active for {}".format(game_event["component"]))
-            tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
-        
+
+        try:
+            game_event = json.loads(message)
+            if game_event["new_state"] == "active":
+                print("got an active for {}".format(game_event["component"]))
+                tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
+        except Exception as e:
+            print("exception while loading json message from pinball game update", e)
 
 
     def network_message_handler(self, topic, message, origin, destination):
