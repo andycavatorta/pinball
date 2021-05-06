@@ -35,8 +35,10 @@ class MPF_Bridge(threading.Thread):
               print(type(message))
 
               self.tb.publish("game_event", message)
+              print("Send message")
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
+                print("got except90j")
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 class Safety_Enable(threading.Thread):

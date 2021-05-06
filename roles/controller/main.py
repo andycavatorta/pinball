@@ -233,9 +233,9 @@ class Main(threading.Thread):
             self.host_state_change_handler("start_countdown")
 
         try:
-            print("Loading this json message", message)
+            print("\nLoading this json message", message)
             print(type(message))
-            print(str(message))
+            # print(str(message))
             game_event = json.loads(message)
             if game_event["new_state"] == "active":
                 print("got an active for {}".format(game_event["component"]))
