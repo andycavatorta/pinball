@@ -234,7 +234,7 @@ class Main(threading.Thread):
 
         try:
             print("Loading this json message", message)
-            game_event = json.loads(message.decode())
+            game_event = json.loads(message)
             if game_event["new_state"] == "active":
                 print("got an active for {}".format(game_event["component"]))
                 tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
