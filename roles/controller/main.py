@@ -128,7 +128,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("ready_state")
-        self.tb.subscribe_to_topic("gameupdate")
+        self.tb.subscribe_to_topic("game_event")
         self.tb.subscribe_to_topic("attraction_complete")
         self.tb.subscribe_to_topic("confirm_countdown")
         self.tb.subscribe_to_topic("confirm_barter_mode_intro")
@@ -215,13 +215,15 @@ class Main(threading.Thread):
 
         self.tb.publish("game_mode", self.game_mode)
     
-    def handle_game_state(self,topic, message, origin, destination):
+    def handle_game_event(self,topic, message, origin, destination):
         print(">>>",topic, message, origin, destination)
-        print('Got a gameupdate my game mode is ', self.game_mode)
+        # print('Got a game event my game mode is ', self.game_mode)
         # If we get any message from the pinball machine in attraction mode, move to countdown
         if self.game_mode == self.game_modes.ATTRACTION:
             print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("start_countdown")
+        
+        
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -246,6 +248,8 @@ class Main(threading.Thread):
                 if topic==b"ready_state":
                     print("ready state",topic, message, origin, destination)
                     self.host_state_manager.add_host_ready(origin)
+                if topic==b"game_event":
+                    self.handle_game_event(topic, message, origin, destination)
                 if topic==b"gameupdate":
                     self.handle_game_state(topic, message, origin, destination)
                 if topic==b"confirm_countdown":
