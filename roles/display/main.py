@@ -73,11 +73,31 @@ scores ={
     "score" : {
         "beats_per_minute":120,
         "beats":[
+            [3,1]
         ]
     },
     "scorex10" : {
         "beats_per_minute":120,
         "beats":[
+            [0,2]
+        ]
+    },
+    "note1" : {
+        "beats_per_minute":120,
+        "beats":[
+            [0,4]
+        ]
+    },
+    "note2" : {
+        "beats_per_minute":120,
+        "beats":[
+            [1,4]
+        ]
+    },
+    "note3" : {
+        "beats_per_minute":120,
+        "beats":[
+            [2,4]
         ]
     },
     "barter_request" : {
@@ -241,9 +261,11 @@ class Main(threading.Thread):
             self.game_mode = self.game_modes.COUNTDOWN
             print("In countdown, playing countdown motif")
             self.player.play("countdown_mode")
-            time.sleep(5)
-            self.tb.publish("confirm_countdown",True)
-            print("sent message for countdown")
+
+            # Stay in countdown for testing
+            # time.sleep(5)
+            # self.tb.publish("confirm_countdown",True)
+            # print("sent message for countdown")
 
         if mode == self.game_modes.BARTER_MODE_INTRO:
             self.game_mode = self.game_modes.BARTER_MODE_INTRO

@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import sys
 import threading
 import time
+import json
 
 app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 sys.path.append(os.path.split(app_path)[0])
@@ -136,6 +137,13 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("confirm_money_mode_intro")
         self.tb.subscribe_to_topic("confirm_money_mode")
         self.tb.subscribe_to_topic("confirm_ending")
+        self.pinball_event_to_sound_map = {
+            "s_left_flipper" :"score",
+            "s_right_flipper" : "scorex10",
+            "s_pop_bumper_2" : "note1", 
+            "s_pop_bumper_3" : "note2", 
+            "s_pop_bumper_4" : "note3"
+        }
 
         self.start()
 
@@ -148,8 +156,8 @@ class Main(threading.Thread):
         #    #self.host_state_manager.set_game_mode(self.game_modes.ERROR)
 
     def host_state_change_handler(self, host_change):
-        print("\nhost_state_change_handler 1", host_change)
-        print('Current game mode is ', self.game_mode)
+        print("host_state_change_handler 1", host_change)
+        # print('Current game mode is ', self.game_mode)
         if host_change == "missing_hosts":
             self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
             self.tb.publish("set_game_mode",self.game_modes.WAITING_FOR_CONNECTIONS)
@@ -219,11 +227,16 @@ class Main(threading.Thread):
         print(">>>",topic, message, origin, destination)
         # print('Got a game event my game mode is ', self.game_mode)
         # If we get any message from the pinball machine in attraction mode, move to countdown
+
         if self.game_mode == self.game_modes.ATTRACTION:
             print("Currently in attraction and got a new message so triggering countdown")
             self.host_state_change_handler("start_countdown")
+        game_event = json.loads(message)
+        if game_event["new_state"] == "active":
+            print("got an active for {}".format(game_event["component"]))
+            tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
         
-        
+
 
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
