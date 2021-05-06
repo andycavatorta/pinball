@@ -120,7 +120,7 @@ class Chimes(threading.Thread):
         for gpio_number in self.pitch_to_gpio:
           GPIO.setup( gpio_number, GPIO.OUT )
         self.all_off()
-        self.pulse_duration = 0.011
+        self.pulse_duration = 0.008
         self.start()
 
     def set_pulse_duration(self, pulse_duration):
