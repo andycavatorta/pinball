@@ -363,7 +363,7 @@ class Main(threading.Thread):
                 if topic == b'set_game_mode':
                     print("setting game mode ", message)
                     self.set_game_mode(message)
-                if topic == b'set_display_number'
+                if topic == b'set_display_number':
                     self.acrylic_display.set_display_number(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
