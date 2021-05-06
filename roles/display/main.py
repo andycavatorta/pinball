@@ -239,6 +239,16 @@ class Main(threading.Thread):
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
+    def handle_attraction(self):
+        print("Starting attraction mode")
+        self.game_mode = self.game_modes.ATTRACTION
+        self.player.play("attraction_mode_sparse")
+    
+    def handle_countdown(self):
+        self.game_mode = self.game_modes.COUNTDOWN
+        print("In countdown, playing countdown motif")
+        self.player.play("countdown_mode")
+
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
             pass # peripheral power should be off during this mode
@@ -252,15 +262,17 @@ class Main(threading.Thread):
             print("Sent done with reset msg ")
 
         if mode == self.game_modes.ATTRACTION:
-            print("Starting attraction mode")
-            self.game_mode = self.game_modes.ATTRACTION
-            self.player.play("attraction_mode_sparse")
+            self.handle_attraction()
+            # print("Starting attraction mode")
+            # self.game_mode = self.game_modes.ATTRACTION
+            # self.player.play("attraction_mode_sparse")
             
         # waits for press of start button 
         if mode == self.game_modes.COUNTDOWN:
-            self.game_mode = self.game_modes.COUNTDOWN
-            print("In countdown, playing countdown motif")
-            self.player.play("countdown_mode")
+            self.handle_countdown()
+            # self.game_mode = self.game_modes.COUNTDOWN
+            # print("In countdown, playing countdown motif")
+            # self.player.play("countdown_mode")
 
             # Stay in countdown for testing
             # time.sleep(5)
@@ -304,24 +316,6 @@ class Main(threading.Thread):
             time.sleep(5)
             self.tb.publish("confirm_ending",True)
     
-        """
-        if mode == self.game_modes.COUNTDOWN:
-            #self.player.play("countdown_mode")
-        if mode == self.game_modes.BARTER_MODE_INTRO:
-            self.player.play("barter_mode_intro")
-        if mode == self.game_modes.BARTER_MODE:
-            self.player.play("barter_mode")
-        if mode == self.game_modes.MONEY_MODE_INTRO:
-            self.player.play("money_mode_intro")
-        if mode == self.game_modes.MONEY_MODE:
-            self.player.play("money_mode")
-        if mode == self.game_modes.ENDING:
-            self.player.play("closing_theme")
-        if mode == self.game_modes.RESET:
-            self.player.play("reset")
-        if mode == self.game_modes.ERROR:
-            pass
-        """
 
     def run(self):
         while True:
