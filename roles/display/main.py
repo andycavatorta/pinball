@@ -131,6 +131,32 @@ scores ={
     }
 }
 
+class Acrylic_Display():
+    def __init__(self):
+        self.current_words = 0 
+        self.current_number = 0
+
+    def set_number(self, number):
+        self.current_number = number
+        self._update_display()
+
+    def set_words(self, words):
+        self.current_words()
+        self._update_display()
+
+# def _generate_byte_frame_(self):
+# self.current_words
+#     self.current_number
+#     byte_frame =
+#     return byte_frame
+
+    def _update_display_(self):
+        print("updating display to Current Word {} Number {}".format(self.current_words, self.current_number))
+    # byte_frame = self._generate_byte_frame_()
+    # send to SPI bus
+
+
+
 class Chimes(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -224,9 +250,11 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("sound_event")
         self.tb.subscribe_to_topic("set_game_mode")
+        self.tb_subscribe_to_topic("set_display_number")
         self.tb.publish("connected", True)
         self.player = Player()
         self.start()
+        self.acrylic_display = Acrylic_Display()
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -242,79 +270,87 @@ class Main(threading.Thread):
     def handle_attraction(self):
         print("Starting attraction mode")
         self.game_mode = self.game_modes.ATTRACTION
+        self.acrylic_display.set_words(0)
         self.player.play("attraction_mode_sparse")
     
     def handle_countdown(self):
         self.game_mode = self.game_modes.COUNTDOWN
         print("In countdown, playing countdown motif")
         self.player.play("countdown_mode")
+        # Stay in countdown for testing
+        time.sleep(5)
+        self.tb.publish("confirm_countdown",True)
+        
+
+    def handle_reset(self):
+        self.game_mode = self.game_modes.RESET
+        self.player.play("reset_sparse")
+        time.sleep(5)
+        self.tb.publish("ready_state",True)
+
+    def barter_mode_intro(self):
+        self.game_mode = self.game_modes.BARTER_MODE_INTRO
+        self.player.play("barter_mode_intro")
+        time.sleep(5)
+        self.tb.publish("confirm_barter_mode_intro",True)
+
+    def handle_barter_mode(self):
+        self.game_mode = self.game_modes.BARTER_MODE
+        self.player.play("barter_mode")
+        time.sleep(5)
+        self.tb.publish("confirm_barter_mode",True)
+
+    def handle_money_mode_intro(self):
+        self.game_mode = self.game_modes.MONEY_MODE_INTRO
+        self.player.play("money_mode_intro")
+        time.sleep(5)
+        self.tb.publish("confirm_money_mode_intro",True)
+
+    def handle_money_mode(self):
+        self.game_mode = self.game_modes.MONEY_MODE
+        self.player.play("money_mode")
+        time.sleep(5)
+        self.tb.publish("confirm_money_mode",True)
+
+    def handle_ending(self):
+        self.game_mode = self.game_modes.ENDING
+
+        self.player.play("closing_theme")
+        time.sleep(5)
+        self.tb.publish("confirm_ending",True)
 
     def set_game_mode(self, mode):
         if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
             pass # peripheral power should be off during this mode
 
         if mode == self.game_modes.RESET:
-            print("setting game mode to reset ")
-            self.game_mode = self.game_modes.RESET
-            self.player.play("reset_sparse")
-            time.sleep(5)
-            self.tb.publish("ready_state",True)
-            print("Sent done with reset msg ")
+            self.handle_reset()
 
         if mode == self.game_modes.ATTRACTION:
             self.handle_attraction()
-            # print("Starting attraction mode")
-            # self.game_mode = self.game_modes.ATTRACTION
-            # self.player.play("attraction_mode_sparse")
-            
+
         # waits for press of start button 
         if mode == self.game_modes.COUNTDOWN:
             self.handle_countdown()
-            # self.game_mode = self.game_modes.COUNTDOWN
-            # print("In countdown, playing countdown motif")
-            # self.player.play("countdown_mode")
-
-            # Stay in countdown for testing
-            # time.sleep(5)
-            # self.tb.publish("confirm_countdown",True)
-            # print("sent message for countdown")
 
         if mode == self.game_modes.BARTER_MODE_INTRO:
-            self.game_mode = self.game_modes.BARTER_MODE_INTRO
+            self.handle_barter_mode_intro()
 
-            self.player.play("barter_mode_intro")
-            time.sleep(5)
-            self.tb.publish("confirm_barter_mode_intro",True)
 
         if mode == self.game_modes.BARTER_MODE:
-            self.game_mode = self.game_modes.BARTER_MODE
-            print("playing barter mode theme")
-            self.player.play("barter_mode")
-            time.sleep(5)
-            print("sending confirm barter mode")
-            self.tb.publish("confirm_barter_mode",True)
+            self.handle_barter_mode()
+
 
         if mode == self.game_modes.MONEY_MODE_INTRO:
-            self.game_mode = self.game_modes.MONEY_MODE_INTRO
-            print("playing barter mode theme")
-            self.player.play("money_mode_intro")
-            time.sleep(5)
-            print("sending confirm money mode intro")
-            self.tb.publish("confirm_money_mode_intro",True)
+            self.handle_money_mode_intro()
+ 
         if mode == self.game_modes.MONEY_MODE:
-            self.game_mode = self.game_modes.MONEY_MODE
+            self.handle_money_mode()
 
-            self.player.play("money_mode")
-            time.sleep(5)
-            print("sending confirm money mode intro")
-            self.tb.publish("confirm_money_mode",True)
 
         if mode == self.game_modes.ENDING:
-            self.game_mode = self.game_modes.ENDING
+            self.handle_ending()
 
-            self.player.play("closing_theme")
-            time.sleep(5)
-            self.tb.publish("confirm_ending",True)
     
 
     def run(self):
@@ -327,6 +363,8 @@ class Main(threading.Thread):
                 if topic == b'set_game_mode':
                     print("setting game mode ", message)
                     self.set_game_mode(message)
+                if topic == b'set_display_number'
+                    self.acrylic_display.set_display_number(message)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
