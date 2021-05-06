@@ -233,13 +233,11 @@ class Main(threading.Thread):
             self.host_state_change_handler("start_countdown")
 
         try:
-            print("\nLoading this json message", message)
-            print(type(message))
-            # print(str(message))
+
             game_event = json.loads(message)
             if game_event["new_state"] == "active":
                 print("got an active for {}".format(game_event["component"]))
-                tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
+                self.tb.publish("sound_event", self.pinball_event_to_sound_map[game_event["component"]])
         except Exception as e:
             print("exception while loading json message from pinball game update", e)
 
