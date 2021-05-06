@@ -288,7 +288,7 @@ class Main(threading.Thread):
         time.sleep(5)
         self.tb.publish("ready_state",True)
 
-    def barter_mode_intro(self):
+    def handle_barter_mode_intro(self):
         self.game_mode = self.game_modes.BARTER_MODE_INTRO
         self.player.play("barter_mode_intro")
         time.sleep(5)
