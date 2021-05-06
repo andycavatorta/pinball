@@ -34,7 +34,7 @@ class MPF_Bridge(threading.Thread):
               print(f"Received msg#: {message}")
               print(type(message))
 
-              self.tb.publish("game_event", message.encode('utf-8'))
+              self.tb.publish("game_event", message.decode('utf-8'))
               print("Send message")
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
