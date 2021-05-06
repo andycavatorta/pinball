@@ -270,7 +270,7 @@ class Main(threading.Thread):
     def handle_attraction(self):
         print("Starting attraction mode")
         self.game_mode = self.game_modes.ATTRACTION
-        self.acrylic_display.set_words(0)
+        # self.acrylic_display.set_words(0)
         self.player.play("attraction_mode_sparse")
     
     def handle_countdown(self):
