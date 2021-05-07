@@ -12,6 +12,7 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
+from thirtybirds3.adapters.actuators.overhead_display.hc595 import HC595_shift_reg as shifter
 
 scores ={
 
@@ -133,27 +134,67 @@ scores ={
 
 class Acrylic_Display():
     def __init__(self):
-        self.current_words = 0 
+        self.current_words = 0
         self.current_number = 0
+        self.game_mode = "countdown"
+        self.shift_register_state = [0, 0, 0, 0, 0]
+        self.reg = shifter.HC595()
 
-    def set_number(self, number):
-        self.current_number = number
-        self._update_display()
+    def format_number(self, num):
+        num = str(num)
+        # Make sure 7 goes to 007 and 37 goes to 037
+        num = ("0" + num) if len(num) == 1 else num
+        num = ("0" + num) if len(num) == 2 else num
+        return num
 
-    def set_words(self, words):
-        self.current_words()
-        self._update_display()
+    def set_number(self, num):
+        self.current_number = self.format_number(num)
+        print("setting num to ", self.current_number)
+        self._update_display_()
 
-# def _generate_byte_frame_(self):
-# self.current_words
-#     self.current_number
-#     byte_frame =
-#     return byte_frame
+    def generate_number_bytes(self):
+        # For each number of 007 look up the correct shift reg and bit to flip
+        for index, number in enumerate(self.current_number):
+
+            # Casting Int to Number right now because not sure if we are getting int or str input
+            # Will Standardize Format Later 
+            shift_register_index = self.Display_LED_Mapping.shift_reg_mapping[
+                "display_number"][index][int(number)]["shift_register_index"]
+
+            bit = self.Display_LED_Mapping.shift_reg_mapping["display_number"][index][int(
+                number)]["bit"]
+            print("Shift Reg {} Writing {} at index {}".format(
+                self.shift_register_state, bit, shift_register_index))
+            self.shift_register_state[shift_register_index] = self.shift_register_state[shift_register_index] + (
+                1 << bit)
+
+    def set_words(self):
+        self.current_words = self.game_mode
+        self._update_display_()
+
+    def generate_word_bytes(self):
+        shift_register_index = self.Display_LED_Mapping.shift_reg_mapping[
+            "display_sentence"][self.game_mode]["shift_register_index"]
+        bit = self.Display_LED_Mapping["display_sentence"][self.game_mode]["bit"]
+
+        # Turn on state for word
+        self.shift_register_state[shift_register_index] = self.shift_register_state[shift_register_index] + (
+            1 << bit)
+
+    def turn_off_lights(self):
+        # Set every value in byte array to 0 
+        for index, val in enumerate(self.shift_register_state):
+            self.shift_register_state[index] = 0x00
+        self.reg.write(self.shift_register_state)
 
     def _update_display_(self):
-        print("updating display to Current Word {} Number {}".format(self.current_words, self.current_number))
-    # byte_frame = self._generate_byte_frame_()
-    # send to SPI bus
+        self.turn_off_lights()
+        self.generate_number_bytes()
+        # self.generate_word_bytes()
+        self.reg.write(self.shift_register_state)
+        print("updating display to Current Word {} Number {}".format(
+            self.current_words, self.current_number))
+
 
 
 
@@ -270,18 +311,22 @@ class Main(threading.Thread):
     def handle_attraction(self):
         print("Starting attraction mode")
         self.game_mode = self.game_modes.ATTRACTION
+
+        # Set game mode words here on change 
         # self.acrylic_display.set_words(0)
         self.player.play("attraction_mode_sparse")
-    
+
     def handle_countdown(self):
         self.game_mode = self.game_modes.COUNTDOWN
         print("In countdown, playing countdown motif")
         self.player.play("countdown_mode")
-        # Stay in countdown for testing
+        # Set game mode words here on change 
+        # self.acrylic_display.set_words(0)
+        
+        # Comment this block out if you want to stay in countdown for testing
         time.sleep(5)
         self.tb.publish("confirm_countdown",True)
         
-
     def handle_reset(self):
         self.game_mode = self.game_modes.RESET
         self.player.play("reset_sparse")
@@ -291,24 +336,28 @@ class Main(threading.Thread):
     def handle_barter_mode_intro(self):
         self.game_mode = self.game_modes.BARTER_MODE_INTRO
         self.player.play("barter_mode_intro")
+        self.acrylic_display.set_words()
         time.sleep(5)
         self.tb.publish("confirm_barter_mode_intro",True)
 
     def handle_barter_mode(self):
         self.game_mode = self.game_modes.BARTER_MODE
         self.player.play("barter_mode")
+        self.acrylic_display.set_words()
         time.sleep(5)
         self.tb.publish("confirm_barter_mode",True)
 
     def handle_money_mode_intro(self):
         self.game_mode = self.game_modes.MONEY_MODE_INTRO
         self.player.play("money_mode_intro")
+        self.acrylic_display.set_words()
         time.sleep(5)
         self.tb.publish("confirm_money_mode_intro",True)
 
     def handle_money_mode(self):
         self.game_mode = self.game_modes.MONEY_MODE
         self.player.play("money_mode")
+        self.acrylic_display.set_words()
         time.sleep(5)
         self.tb.publish("confirm_money_mode",True)
 
