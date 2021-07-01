@@ -16,6 +16,17 @@ import threading
 import traceback
 import sys
 
+
+BASE_PATH = os.path.dirname(os.path.realpath(__file__))
+UPPER_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+DEVICES_PATH = "%s/Hosts/" % (BASE_PATH )
+THIRTYBIRDS_PATH = "%s/thirtybirds_2_0" % (UPPER_PATH )
+
+#sys.path.append(BASE_PATH)
+#sys.path.append(UPPER_PATH)
+
+from thirtybirds_2_0.Adaptors.Sensors import MPR121
+
 class Capacitive_Sensors(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
