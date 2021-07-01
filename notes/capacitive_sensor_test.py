@@ -41,7 +41,9 @@ class Capacitive_Sensors(threading.Thread):
             time.sleep(0.01)
 
 
-def init(hostname):
+def init():
     capcitive_sensors = Capacitive_Sensors()
     #capcitive_sensors.daemon = True
     capcitive_sensors.start()
+
+init()
