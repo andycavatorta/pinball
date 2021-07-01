@@ -21,6 +21,11 @@ BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 UPPER_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
 THIRTYBIRDS_PATH = "%s/thirtybirds3" % (UPPER_PATH )
 
+print("BASE_PATH=",BASE_PATH)
+print("UPPER_PATH=",UPPER_PATH)
+print("THIRTYBIRDS_PATH=",THIRTYBIRDS_PATH)
+
+
 #sys.path.append(BASE_PATH)
 #sys.path.append(UPPER_PATH)
 
