@@ -25,7 +25,7 @@ THIRTYBIRDS_PATH = "%s/thirtybirds_2_0" % (UPPER_PATH )
 #sys.path.append(BASE_PATH)
 #sys.path.append(UPPER_PATH)
 
-from thirtybirds3.adapters.sensors.MPR121 import MPR121
+from thirtybirds3.adapters.sensors.MPR121.MPR121 import MPR121
 
 class Capacitive_Sensors(threading.Thread):
     def __init__(self):
