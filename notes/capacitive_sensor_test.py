@@ -27,8 +27,8 @@ print("UPPER_PATH=",UPPER_PATH)
 print("THIRTYBIRDS_PATH=",THIRTYBIRDS_PATH)
 
 
-#sys.path.append(BASE_PATH)
-#sys.path.append(UPPER_PATH)
+sys.path.append(BASE_PATH)
+sys.path.append(UPPER_PATH)
 
 from thirtybirds3.adapters.sensors.MPR121 import MPR121
 
