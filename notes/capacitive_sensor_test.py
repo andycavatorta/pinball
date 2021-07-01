@@ -19,6 +19,7 @@ import sys
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 UPPER_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+UPPER_PATH = "/home/thirtybirds"
 THIRTYBIRDS_PATH = "%s/thirtybirds3" % (UPPER_PATH )
 
 print("BASE_PATH=",BASE_PATH)
