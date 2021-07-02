@@ -9,13 +9,11 @@ the pitch key sensors are daisy-chained together in an I2C bus with four wires.
     pin 5: SCL [ Serial Clock ]
 
 """
-
 import os
 import time
 import threading
 import traceback
 import sys
-
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 UPPER_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
