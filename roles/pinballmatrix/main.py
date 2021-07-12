@@ -124,6 +124,11 @@ class Motor_Controllers(threading.Thread):
         for motor_name_ordinal in enumerate(self.motor_names):
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(cs=self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
 
+    def status_receiver(self, msg):
+        print("status_receiver", msg)
+    def network_status_change_handler(self, status, hostname):
+        print("network_status_change_handler", status, hostname)
+
     """
     def set_rel_encoder_position_to_abs_encoder_position(self):
         for motor_name in self.motor_names:
