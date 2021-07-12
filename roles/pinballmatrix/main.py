@@ -63,6 +63,26 @@ class Safety_Enable(threading.Thread):
 # STATES #
 ##########
 
+class Game_Mode():
+    def __init__(self):
+        self.modes = settings.Game_Modes
+        self.mode = self.game_modes.WAITING_FOR_CONNECTIONS
+    def get_mode(self):
+        return self.mode
+    def set_mode(self, mode_ref):
+        self.mode = mode_ref
+
+class Matrix_Mode():
+    UNHOMED = "unhomed"
+    HOMED = "homed"
+    START_POSITIONS_FOR_BARTER = "start positions for barter"
+    START_POSITIONS_FOR_MONEY = "start positions for money"
+    BALL_TRANSFER_MODE = "ball transfer mode" # same for game and inventory?
+
+    def __init__(self):
+        self.mode = self.UNHOMED
+
+
 ###################
 # HARDWARE SETUP  #
 ###################
@@ -94,6 +114,7 @@ class Motor_Controllers(threading.Thread):
         self.controller_names = ["carousel1and2", "carousel3and4","carousel5and6"]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
         self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
+        self.encoder_value_offset = [0,0,0,0,0,0]
         self.ppr = 4096
         self.queue = queue.Queue()
         self.create_controllers_and_motors()
@@ -173,7 +194,6 @@ class Motor_Controllers(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 main = Motor_Controllers()
-
 
 ################################################
 # HARDWARE SEMANTICS (map of callable methods) #
@@ -510,7 +530,6 @@ motor = {
     },
 }
 
-
 #############################################
 # ROUTINES (time, events, multiple systems) # 
 #############################################
@@ -531,7 +550,6 @@ class Main(threading.Thread):
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
         self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
         self.ppr = 4096
-
 
         # SET UP TB
         self.queue = queue.Queue()
@@ -555,7 +573,6 @@ class Main(threading.Thread):
         #self.home()
         self.start()
 
-
     def create_controllers_and_motors(self):
         self.controllers = roboteq_command_wrapper.Controllers(
             roboteq_data_receiver.add_to_queue, 
@@ -577,7 +594,6 @@ class Main(threading.Thread):
         )
         for motor_name_ordinal in enumerate(self.motor_names):
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(cs=self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
-
 
     def set_rel_encoder_position_to_abs_encoder_position(self):
         for motor_name in self.motor_names:
@@ -673,4 +689,3 @@ class Main(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 #main = Main()
-
