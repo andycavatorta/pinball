@@ -37,6 +37,7 @@ class Roles():
 class Game_Modes:
     WAITING_FOR_CONNECTIONS = "waiting_for_connections"
     ERROR = "error"
+    INVENTORY = "inventory"
     ATTRACTION = "attraction"
     COUNTDOWN = "countdown"
     BARTER_MODE_INTRO = "barter_mode_intro"
@@ -92,7 +93,7 @@ class Roboteq:
             "channel":"1",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":1, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":2, # 0-255
@@ -104,7 +105,7 @@ class Roboteq:
             "channel":"2",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":2, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":1, # 0-255
@@ -116,7 +117,7 @@ class Roboteq:
             "channel":"1",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":2, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":1, # 0-255
@@ -128,7 +129,7 @@ class Roboteq:
             "channel":"2",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":2, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":5, # 0-255
@@ -140,7 +141,7 @@ class Roboteq:
             "channel":"1",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":2, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":5, # 0-255
@@ -152,7 +153,7 @@ class Roboteq:
             "channel":"2",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
             #"motor_deceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s
-            "operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
+            #"operating_mode":3, #0: Open-loop,1: Closed-loop speed,2: Closed-loop position relative,3: Closed-loop count position,4: Closed-loop position tracking,5: Torque,6: Closed-loop speed position
             #"pid_differential_gain":2, # 0-255
             #"pid_integral_gain":1, # 0-255
             #"pid_proportional_gain":5, # 0-255
