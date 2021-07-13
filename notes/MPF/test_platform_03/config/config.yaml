@@ -18,8 +18,13 @@ switches:
         number: A0-B0-2
     s_right_slingshot_main:       
         number: A0-B0-3
-    s_left_slingshot_mid:         
+
+    s_rollover_left:
+        number: A0-B0-4
+    s_rollover_right:
         number: A0-B0-5
+    s_spinner:
+        number: A0-B0-6
 
     s_pop_bumper_1:        
         number: A0-B1-0
@@ -69,9 +74,6 @@ coils:
     c_slingshot_right_main:
         number: A0-B1-5
         default_pulse_ms: 10
-    c_slingshot_left_mid:
-        number: A0-B1-6
-        default_pulse_ms: 10
     
 
     # Pop Bumpers
@@ -90,7 +92,7 @@ coils:
 
     # Launchers
     c_left_launch:
-        number: A0-B0-5
+        number: A0-B0-1
         default_pulse_ms: 25
         default_pulse_power: 1.0
         
@@ -133,11 +135,6 @@ autofire_coils:
         switch: s_right_slingshot_main
         enable_events: machine_reset_phase_3
 
-    left_slingshot_mid:
-        coil: c_slingshot_left_mid
-        switch: s_left_slingshot_mid
-        enable_events: machine_reset_phase_3
-
     pop_bumper_1:
         coil: c_pop_bumper_1
         switch: s_pop_bumper_1
@@ -167,22 +164,6 @@ autofire_coils:
         enable_events: machine_reset_phase_3
 
 
-
-lights:
-  l_led0:
-    number: 8-0-1-2
-
-#ball_devices:
-#  bd_trough:
-#    ball_switches: s_trough1
-#    eject_coil: c_trough_eject
-#    tags: trough, home, drain
-#    #eject_targets: bd_plunger
-#    #jam_switch: s_trough_jam
-#    #eject_coil_jam_pulse: 15ms
-#    debug: true
-
-#eject_targets: bd_plunger
 
 keyboard:
     z: 
