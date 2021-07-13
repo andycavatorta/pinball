@@ -115,7 +115,7 @@ class Motor_Controllers(threading.Thread):
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
         self.chip_select_pins_for_abs_enc = [18,17,16,5,8,7,]
         #self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
-        
+
         self.encoder_value_offset = [0,0,0,0,0,0]
         self.ppr = 4096
         self.queue = queue.Queue()
@@ -145,6 +145,7 @@ class Motor_Controllers(threading.Thread):
             }
         )
         for motor_name_ordinal in enumerate(self.motor_names):
+            print("creating AMT203_absolute_encoder", motor_name_ordinal[0], self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
             self.controllers.motors[motor_name_ordinal[1]].absolute_encoder = AMT203_absolute_encoder.AMT203(cs=self.chip_select_pins_for_abs_enc[motor_name_ordinal[0]])
 
     def status_receiver(self, msg):
