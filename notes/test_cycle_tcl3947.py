@@ -53,7 +53,7 @@ red = tlc5947.create_pwm_out(0)
 green = tlc5947.create_pwm_out(1)
 blue = tlc5947.create_pwm_out(2)
 
-step = 10
+step = 100
 start_pwm = 0
 end_pwm = 32767  # 50% (32767, or half of the maximum 65535):
 
