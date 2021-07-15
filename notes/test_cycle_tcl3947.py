@@ -1,9 +1,11 @@
+"""
+
 import board
 import busio
 import digitalio
 import adafruit_tlc5947
 import time
-
+    
 spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
 latch = digitalio.DigitalInOut(board.D5)
 tlc5947 = adafruit_tlc5947.TLC5947(spi, latch)
@@ -22,7 +24,6 @@ while True:
     time.sleep(1)
 
 
-"""
 pins = [0]*24
 for channel in range(23):
     pins[channel] = tlc5947.create_pwm_out(channel)
@@ -33,7 +34,7 @@ while True:
         print("pwm=",pwm)
         for channel in range(23):
             pins[channel].duty_cycle = pwm
-
+"""
 import board
 import busio
 import digitalio
@@ -68,4 +69,3 @@ while True:
         for pwm in range(end_pwm, start_pwm, 0 - step):
             pin.duty_cycle = pwm
 
-"""
