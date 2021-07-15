@@ -15,28 +15,29 @@ class Roles():
     controller_hostname="feral"
     hosts={
         "controller":"controller",
-        #"pinball1lights":"pinball1lights",
         "pinball1game":"pinball1game",
         "pinball1display":"display",
-        #"pinball2lights":"pinball2lights",
         "pinball2game":"pinball2game",
         "pinball2display":"display",
-        #"pinball3lights":"pinball3lights",
         "pinball3game":"pinball3game",
         "pinball3display":"display",
-        #"pinball4lights":"pinball4lights",
         "pinball4game":"pinball4game",
         "pinball4display":"display",
-        #"pinball5lights":"pinball5lights",
         "pinball5game":"pinball5game",
         "pinball5display":"display",
-        "pinballmatrix":"pinballmatrix"
+        "pinballmatrix":"pinballmatrix",
+        "carousel1":"carousel",
+        "carousel2":"carousel",
+        "carousel3":"carousel",
+        "carousel4":"carousel",
+        "carousel5":"carousel",
+        "carouselcenter":"carousel",
     }
 
-
 class Game_Modes:
-    WAITING_FOR_CONNECTIONS = "waiting_for_connections"
     ERROR = "error"
+    WAITING_FOR_CONNECTIONS = "waiting_for_connections"
+    SYSTEM_TEST = "system_test"
     INVENTORY = "inventory"
     ATTRACTION = "attraction"
     COUNTDOWN = "countdown"
@@ -46,6 +47,13 @@ class Game_Modes:
     MONEY_MODE = "money_mode"
     ENDING = "ending"
     RESET = "reset"
+
+class Sound_Motif_Names:
+    LOSS = "loss"
+
+
+
+
 
 class Reporting():
     app_name = "pinball"

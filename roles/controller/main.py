@@ -17,6 +17,10 @@ from thirtybirds3 import thirtybirds
 setting_safety_enable_duration = 3
 setting_safety_enable_gpio = 26
 
+##################################################
+# SAFETY SYSTEMS #
+##################################################
+
 class Safety_Enable(threading.Thread):
     def __init__(self, tb, enable_state_change_handler):
         threading.Thread.__init__(self)
@@ -61,6 +65,23 @@ class Safety_Enable(threading.Thread):
             #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
             self.hosts_alive = set()
 
+
+##################################################
+# LOGGING AND REPORTING #
+##################################################
+
+# EXCEPTION
+
+# STATUS MESSAGES
+
+# LOCAL LOGGING / ROTATION
+
+
+##########
+# STATES #
+##########
+
+
 class Host_State_Manager():
     def __init__(self, host_state_change_handler):
         self.host_state_change_handler = host_state_change_handler
@@ -85,7 +106,6 @@ class Host_State_Manager():
         else:
             print(missing_hosts)
             self.host_state_change_handler("missing_hosts")
-            
 
     def reset_hosts_ready(self):
         self.hosts_ready = set()
@@ -109,6 +129,216 @@ class Host_State_Manager():
         return self.game_mode
     """
 
+class Game_Mode_Manager():
+    def __init__(self, tb):
+        self.tb = tb
+        self.game_modes = settings.Game_Modes
+        self.set_game_mode(self.game_modes.WAITING_FOR_CONNECTIONS)
+
+    def get_game_mode(self):
+        return self.game_mode
+
+    def set_game_mode(self, game_mode):
+        if self.game_mode == game_mode:
+            return
+        self.game_mode = game_mode
+        if self.game_mode == self.game_modes.ERROR:
+            pass
+            # stop Safety_Enable? 
+            # log errors (elsewSafety_Enablehere?)
+            # send error message to maintenance
+        if self.game_mode == self.game_modes.WAITING_FOR_CONNECTIONS:
+            pass
+            # send start message to maintenance
+            # log start time
+            # poll host_state_manager until timeout or until all hosts alive
+        if self.game_mode == self.game_modes.SYSTEM_TEST:
+            pass
+            # request system tests from all hosts
+            # poll host_state_manager until timeout or until all hosts ready
+        if self.game_mode == self.game_modes.INVENTORY:
+            pass
+            # NEED TO ENCODE INVENTORY ALGORITHM HERE OR SOMEWHERE
+            # UPDATE DISPLAYS TO SHOW COUNT IN TUBE CURRENTLY INVENTORIED
+            # thought: shift all balls in one direction until upper limit is detected,
+        if self.game_mode == self.game_modes.SHIFT_BALLS_IN_TUBES:
+            pass
+            # distribute correct number of balls into each tube
+            # WRITE SYSTEM FOR BALL EXCHANGES HERE IN CONTROLLER
+        if self.game_mode == self.game_modes.ATTRACTION:
+            pass
+            # send attraction mode messages to all hosts
+            # listen for light up start button
+        if self.game_mode == self.game_modes.COUNTDOWN:
+            pass
+            # send COUNTDOWN mode messages to all hosts
+        if self.game_mode == self.game_modes.BARTER_MODE_INTRO:
+            pass
+            # send BARTER_MODE_INTRO mode messages to all hosts
+        if self.game_mode == self.game_modes.BARTER_MODE:
+            pass
+            # send BARTER_MODE mode messages to all hosts
+        if self.game_mode == self.game_modes.MONEY_MODE_INTRO:
+            pass
+            # send MONEY_MODE_INTRO mode messages to all hosts
+        if self.game_mode == self.game_modes.MONEY_MODE:
+            pass
+            # send MONEY_MODE mode messages to all hosts
+        if self.game_mode == self.game_modes.ENDING:
+            pass
+            # send ENDING mode messages to all hosts
+        if self.game_mode == self.game_modes.RESET:
+            pass
+            # IS THIS DIFFERENT FROM SHIFT_BALLS_IN_TUBES?
+
+
+############
+# ROUTINES #
+############
+
+
+class Matrix_Pocket():
+    """ just routines related to ball handling """
+    def __init__(self):
+        self.ball_present = False
+    def request_ball_status(self):
+        pass
+    def receive_ball_status(self, status):
+        self.ball_present = status
+    def eject_ball(self):
+        pass
+
+class Matrix_Carousel():
+    """ just routines related to ball handling """
+    def __init__(self):
+        self.fruits = [
+            Matrix_Pocket(0),
+            Matrix_Pocket(1),
+            Matrix_Pocket(2),
+            Matrix_Pocket(3),
+            Matrix_Pocket(4),
+        ]
+    def get_inventory(self):# an accumulation of request_sensor_state
+        pass
+    def turn_fruit_to_barter_tube(self,fruit_number):
+        pass
+    def turn_fruit_to_money_tube(self,fruit_number):
+        pass
+    def turn_fruit_to_center(self, fruit_number)
+        pass
+    def request_sensor_state(self, fruit_number):
+        pass
+    def eject_ball(self, fruit_number, ):
+        pass
+
+class Matrix_Tube():
+    def __init__(self):
+        self.ball_count = -1 # -1 means unknown
+    def fire(self):
+        pass
+    def request_sensor_0_state(self):
+        pass
+    def request_sensor_16_state(self):
+        pass
+    def increment_ball_count(self):
+        self.ball_count += self.ball_count
+    def decrement_ball_count(self):
+        self.ball_count -= self.ball_count
+
+class Matrix_Station():
+    def __init__(self):
+        self.barter_tube = Matrix_tube()
+        self.carousel = Matrix_Carousel()
+    def pass_ball_from_carousel_to_tube(self, fruit_number, receiving_tube_name):
+        if receiving_tube_name == "barter":
+            self.carousel.turn_fruit_to_barter_tube(fruit_number)
+            # block until finished
+            self.carousel.eject_ball(fruit_number)
+            # how to verify? can we scan optical sensors fast enough to catch it passing the upper sensor?
+            self.barter_tube.increment_ball_count()
+        pass 
+    def pass_ball_from_tube_to_carousel(self, source_tube_name, fruit_number):
+        pass 
+    def pass_ball_between_local_tubes(self, source_tube_name, receiving_tube_name):
+        pass 
+
+class Matrix_Modes:
+    ERROR = "error"
+    AVAILABLE = "available"
+    TRADING_GOODS = "trading_goods"
+    TRADING_MONEY = "trading_money"
+    SETTING_UP_BARTER_MODE = "setting_up_barter_mode"
+    SETTING_UP_MONEY_MODE = "setting_up_money_mode"
+    PERFORMING_INVENTORY = "performing_inventory"
+    EXPIRING_GOODS = "expiring_goods"
+
+class Matrix(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.matrix_stations = [
+            Matrix_Station(0),
+            Matrix_Station(1),
+            Matrix_Station(2),
+            Matrix_Station(3),
+            Matrix_Station(4),
+        ]
+        self.center_carousel = Matrix_Carousel()
+        self.modes = Matrix_Modes
+        self.mode = self.modes.AVAILABLE
+        self.start()
+    def trade_goods(self, source_fruit_number, destination_fruit_number):
+        # source and destination are fruit_numbers
+        # this is called AFTER 
+        #   both users have goods
+        #   two players have agreed to trade goods
+        self.mode = self.modes.TRADING_GOODS
+        self.matrix_stations[source_fruit_number].pass_ball_from_tube_to_carousel("barter", source_fruit_number):
+        # this action will block until verified
+        self.matrix_stations[destination_fruit_number].pass_ball_from_tube_to_carousel("barter", destination_fruit_number):
+        # this action will block until verified
+        self.matrix_stations[source_fruit_number].carousel.turn_fruit_to_center(source_fruit_number)
+        # this action will block until verified
+        self.matrix_stations[destination_fruit_number].carousel.turn_fruit_to_center(destination_fruit_number)
+        # this action will block until verified
+        self._pass_ball_from_edge_carousel_to_center_carousel_(source_carousel_fruit_number, source_pocket_fruit_number)
+        # this action will block until verified
+        self._pass_ball_from_edge_carousel_to_center_carousel_(destination_carousel_fruit_number, destination_pocket_fruit_number)
+        # this action will block until verified
+        self._pass_ball_from_center_carousel_to_edge_carousel_(source_pocket_fruit_number, destination_carousel_fruit_number)
+        # this action will block until verified
+        self._pass_ball_from_center_carousel_to_edge_carousel_(destination_pocket_fruit_number, source_carousel_fruit_number)
+        # this action will block until verified
+        self.mode = self.modes.AVAILABLE
+    def trade_money(self, source, destination):
+        self.mode = self.modes.TRADING_MONEY
+        self.mode = self.modes.AVAILABLE
+    def setup_barter_mode(self):
+        self.mode = self.modes.SETTING_UP_BARTER_MODE
+        
+        self.mode = self.modes.AVAILABLE
+    def setup_money_mode(self):
+        self.mode = self.modes.SETTING_UP_MONEY_MODE
+        
+        self.mode = self.modes.AVAILABLE
+    def perform_inventory(self):
+        self.mode = self.modes.PERFORMING_INVENTORY
+        
+        self.mode = self.modes.AVAILABLE
+    def expire_goods(self, station_fruit_number, expired_fruit_number):
+        self.mode = self.modes.EXPIRING_GOODS
+        self.matrix_stations[station_fruit_number].pass_ball_from_carousel_to_tube(expired_fruit_number, "money")
+        self.mode = self.modes.AVAILABLE
+    def _pass_ball_from_edge_carousel_to_center_carousel_(self, source_station_fruit_number, pocket_fruit_number):
+        pass
+    def _pass_ball_from_center_carousel_to_edge_carousel_(self, pocket_fruit_number, destination_station_fruit_number):
+        pass
+
+
+
+##################################################
+# MAIN, TB, STATES, AND TOPICS #
+##################################################
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -129,22 +359,21 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
         self.tb.subscribe_to_topic("ready_state")
-        self.tb.subscribe_to_topic("game_event")
-        self.tb.subscribe_to_topic("attraction_complete")
-        self.tb.subscribe_to_topic("confirm_countdown")
-        self.tb.subscribe_to_topic("confirm_barter_mode_intro")
-        self.tb.subscribe_to_topic("confirm_barter_mode")
-        self.tb.subscribe_to_topic("confirm_money_mode_intro")
-        self.tb.subscribe_to_topic("confirm_money_mode")
-        self.tb.subscribe_to_topic("confirm_ending")
-        self.pinball_event_to_sound_map = {
-            "s_left_flipper" :"score",
-            "s_right_flipper" : "scorex10",
-            "s_pop_bumper_2" : "note1", 
-            "s_pop_bumper_3" : "note2", 
-            "s_pop_bumper_4" : "note3"
-        }
-
+        #self.tb.subscribe_to_topic("game_event")
+        #self.tb.subscribe_to_topic("attraction_complete")
+        #self.tb.subscribe_to_topic("confirm_countdown")
+        #self.tb.subscribe_to_topic("confirm_barter_mode_intro")
+        #self.tb.subscribe_to_topic("confirm_barter_mode")
+        #self.tb.subscribe_to_topic("confirm_money_mode_intro")
+        #self.tb.subscribe_to_topic("confirm_money_mode")
+        #self.tb.subscribe_to_topic("confirm_ending")
+        #self.pinball_event_to_sound_map = {
+        #    "s_left_flipper" :"score",
+        #    "s_right_flipper" : "scorex10",
+        #    "s_pop_bumper_2" : "note1", 
+        #    "s_pop_bumper_3" : "note2", 
+        #    "s_pop_bumper_4" : "note3"
+        #}
         self.start()
 
     def enable_state_change_handler(self, enabled):

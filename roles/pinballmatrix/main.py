@@ -113,8 +113,7 @@ class Motor_Controllers(threading.Thread):
         threading.Thread.__init__(self)
         self.controller_names = ["carousel1and2", "carousel3and4","carousel5and6"]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]
-        self.chip_select_pins_for_abs_enc = [18,17,16,5,8,7,]
-        #self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
+        self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
 
         self.encoder_value_offset = [0,0,0,0,0,0]
         self.ppr = 4096
