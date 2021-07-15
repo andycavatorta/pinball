@@ -8,7 +8,7 @@ spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
 latch = digitalio.DigitalInOut(board.D5)
 tlc5947 = adafruit_tlc5947.TLC5947(spi, latch)
 
-pins = []
+pins = [0]*24
 for channel in range(23):
     pins[channel] = tlc5947.create_pwm_out(channel)
 
