@@ -14,7 +14,7 @@ for channel in range(23):
 
 
 while True:
-    for pwm in range(0, 30000, 10):
+    for pwm in range(0, 30000, 100):
         print("pwm=",pwm)
         print("pins")
         for channel in range(23):
