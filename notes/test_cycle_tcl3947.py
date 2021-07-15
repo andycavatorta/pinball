@@ -10,7 +10,7 @@ tlc5947 = adafruit_tlc5947.TLC5947(spi, latch)
 
 pins = []
 for channel in range(23):
-    pin[channel] = tlc5947.create_pwm_out(channel)
+    pins[channel] = tlc5947.create_pwm_out(channel)
 
 
 while True:
