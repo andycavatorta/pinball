@@ -12,10 +12,12 @@ tlc5947 = adafruit_tlc5947.TLC5947(spi, latch)
 while True:
     for channel in range(23):
         print(channel, "on")
+        time.sleep(1)
         tlc5947[channel] = 1023
     time.sleep(1)
     for channel in range(23):
         print(channel, "off")
+        time.sleep(1)
         tlc5947[channel] = 0
     time.sleep(1)
 
