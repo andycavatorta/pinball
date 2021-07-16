@@ -23,14 +23,20 @@ while True:
 """
 
 pins = [0]*24
-for channel in range(24):
+
+for channel in range(len(pins)):
     pins[channel] = tlc5947.create_pwm_out(channel)
 
 while True:
-    for pwm in range(0, 30000, 1000):
-        print("pwm=",pwm)
-        for channel in range(24):
-            pins[channel].duty_cycle = pwm
+    for channel in range(len(pins)):
+        pins[channel].duty_cycle = 32000
+        time.sleep(.05)
+        pins[channel].duty_cycle = 0
+
+
+
+
+
 """
 import board
 import busio
