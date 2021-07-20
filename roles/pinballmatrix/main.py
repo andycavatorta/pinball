@@ -443,7 +443,7 @@ class Carousels(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
-motor_controllers = Motor_Controllers()
+carousels = Carousels() 
 
 
 ################################################
@@ -451,17 +451,17 @@ motor_controllers = Motor_Controllers()
 ################################################
 
 motor_controller = {
-    "carousel1and2":motor_controllers.controllers.boards["carousel1and2"],
-    "carousel3and4":motor_controllers.controllers.boards["carousel3and4"],
-    "carousel5and6":motor_controllers.controllers.boards["carousel5and6"],
+    "carousel1and2":carousels.controllers.boards["carousel1and2"],
+    "carousel3and4":carousels.controllers.boards["carousel3and4"],
+    "carousel5and6":carousels.controllers.boards["carousel5and6"],
 }
 
 motor = {
     "carousel_1":{
-        "set_rel_encoder_position":motor_controllers.controllers.motors["carousel_1"].set_encoder_counter,#(relative position in encoder pulses)
-        "get_rel_encoder_position":motor_controllers.controllers.motors["carousel_1"].get_encoder_counter_absolute,
-        "get_abs_encoder_position":motor_controllers.controllers.motors["carousel_1"].absolute_encoder.get_position,
-        "get_abs_encoder_position_to_zero":motor_controllers.controllers.motors["carousel_1"].absolute_encoder.set_zero,
+        "set_rel_encoder_position":carousels.controllers.motors["carousel_1"].set_encoder_counter,#(relative position in encoder pulses)
+        "get_rel_encoder_position":carousels.controllers.motors["carousel_1"].get_encoder_counter_absolute,
+        "get_abs_encoder_position":carousels.controllers.motors["carousel_1"].absolute_encoder.get_position,
+        "get_abs_encoder_position_to_zero":carousels.controllers.motors["carousel_1"].absolute_encoder.set_zero,
         "rotate_to_position_in_degrees":None,#(relative position in degrees)
         "rotate_to_position_in_pulses":None,#(relative position in encoder pulses)
         "rotate_to_barter_tube_position":None,#(fruit_number)
