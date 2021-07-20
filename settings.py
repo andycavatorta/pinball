@@ -48,7 +48,7 @@ class Game_Modes:
     ENDING = "ending"
     RESET = "reset"
 
-class Sound_Motif_Names:
+class Sound_Motif_Names: # named after emotional experiences
     LOSS = "loss"
 
 

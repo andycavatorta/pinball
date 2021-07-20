@@ -1,0 +1,52 @@
+pip3 install SimpleWebSocketServerFork
+sudo pip3 install SimpleWebSocketServerFork
+sudo apt install net-tools
+mv thirtybirds3.0/ thirtybirds3
+git clone https://github.com/doceme/py-spidev.git
+cd py-spidev
+sudo python3 setup.py install
+cd ..
+cd pinball
+git config pull.rebase false
+git pull
+update-alternatives --remove python /usr/bin/python2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+
+cd /etc/systemd/system/
+sudo nano thirtybirds.service
+
+[Unit]
+Description=thirtybirds service
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=thirtybirds
+ExecStart=/usr/bin/env python3 /home/thirtybirds/pinball/main.py
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl start thirtybirds
+ps ax | grep python
+sudo systemctl enable thirtybirds
+sudo reboot now
+
+
+
+msg = self.spi.xfer(values, speed, delay)
+OSError: [Errno 9] Bad file descriptor
+
+
+
+sudo modprobe spi-bcm2835aux
+
+
+sudo apt-get install python3-tk
+pip3 intstall graphics.py
+
+
+sudo chown root:$USER /dev/gpiomem
+sudo chmod g+rw /dev/gpiomem

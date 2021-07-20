@@ -228,7 +228,7 @@ class Matrix_Carousel():
         pass
     def request_sensor_state(self, fruit_number):
         pass
-    def eject_ball(self, fruit_number, ):
+    def eject_ball(self, fruit_number):
         pass
 
 class Matrix_Tube():
@@ -253,7 +253,7 @@ class Matrix_Station():
         if receiving_tube_name == "barter":
             self.carousel.turn_fruit_to_barter_tube(fruit_number)
             # block until finished
-            self.carousel.eject_ball(fruit_number)
+            self.carousel.eject_ball(fruit_number, settings.Sound_Motif_Names.LOSS)
             # how to verify? can we scan optical sensors fast enough to catch it passing the upper sensor?
             self.barter_tube.increment_ball_count()
         pass 
