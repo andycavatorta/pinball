@@ -94,15 +94,15 @@ class Lights_Pattern(threading.Thread):
                     for level in self.levels:
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
-                        time.sleep(self.action_times.THROB)
-                    if not self.action_queue.empty():
-                        break
+                        time.sleep(self.action_times.THROB)                        
+                        if not self.action_queue.empty():
+                            break
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
                         time.sleep(self.action_times.THROB)
-                    if not self.action_queue.empty():
-                        break
+                        if not self.action_queue.empty():
+                            break
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
                 for divisor in divisors:
@@ -301,4 +301,30 @@ lights.sign_bottom_right  ...
 lights.sign_top  ...
 lights.all_radial ...
 lights.all_clockwise ...
+
+
+lights.trail_rollover_left.throb()
+lights.trail_sling_right.throb()
+lights.trail_sling_left.throb()
+lights.trail_pop_left.throb()
+lights.trail_pop_right.throb()
+lights.trail_pop_center.throb()
+lights.trail_spinner.throb()
+lights.pie_rollover_right.throb()
+lights.pie_rollover_left.throb()
+lights.pie_sling_right.throb()
+lights.pie_sling_left.throb()
+lights.pie_pop_left.throb()
+lights.pie_pop_right.throb()
+lights.pie_pop_center.throb()
+lights.pie_spinner.throb()
+lights.sign_arrow_left.throb()
+lights.sign_arrow_right.throb()
+lights.sign_bottom_right.throb()
+lights.sign_top.throb()
+lights.all_radial ...
+lights.all_clockwise ...
+
+
+
 """
