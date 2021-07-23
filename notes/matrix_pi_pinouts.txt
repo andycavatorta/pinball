@@ -1,0 +1,29 @@
+pinout:
+g17 (yellow)
+g10 SPI0 MOSI (orange) 
+g09 SPI0 MISO (green)
+g11 SPI0 CLK (red)
+g5 (black) 
+
+g18 (orange)
+g08 SPI0 CE0 (brown) <- probably a bad idea to use as bitbanger
+g07 SPI0 CE1 (red) <- probably a bad idea to use as bitbanger
+g16 (green)
+
+
+
+usage:
+g09 SPI0 MISO (green)
+g10 SPI0 MOSI (orange) 
+g11 SPI0 CLK (red)
+
+g5 (black) 
+g07 SPI0 CE1 (red) <- probably a bad idea to use as bitbanger
+g08 SPI0 CE0 (brown) <- probably a bad idea to use as bitbanger
+g16 (green)
+g17 (yellow)
+g18 (orange)
+
+
+
+
