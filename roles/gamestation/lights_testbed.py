@@ -74,9 +74,13 @@ class Lights_Pattern(threading.Thread):
         while True:
             # new actions in action_queue will override previous actions
             action_name, channel = self.action_queue.get(True)
-            if action_name in [self.action_names.OFF, self.action_names.ON]: 
+            if action_name == self.action_names.OFF: 
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
+            if action_name == self.action_names.ON: 
+                    for channel in self.channels:
+                        self.upstream_queue.put([self.levels[-1], channel])
+
             if action_name == self.action_names.SPARKLE: 
                 while True:
                     for channel in self.channels:
