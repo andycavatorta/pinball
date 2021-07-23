@@ -40,9 +40,7 @@ class Lights_Pattern(threading.Thread):
     def __init__(self, 
             channels, 
             upstream_queue,):
-        threading.Thread.__init__(
-            self 
-        )
+        threading.Thread.__init__(self)
         self.levels = [0,1024,2048,4096,8192,16384,32768,65535] # just guesses for now
         self.upstream_queue = upstream_queue
         self.channels = channels
@@ -199,7 +197,7 @@ class Lights(threading.Thread):
         #ALL_CLOCKWISE = []
 
     def __init__(self):
-        threading.Thread.__init__()
+        threading.Thread.__init__(self)
         self.channels = [0]*72
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
         latch = digitalio.DigitalInOut(board.D5)
