@@ -205,7 +205,7 @@ class Lights(threading.Thread):
         self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
         
         for channel_number in range(len(self.channels)):
-            print("new pwm out", channel_number)
+            #print("new pwm out", channel_number)
             self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
 
         self.queue = queue.Queue()
@@ -239,7 +239,7 @@ class Lights(threading.Thread):
     def run(self):
         while True:
             level, channel_number = self.queue.get(True)
-            print(level, channel_number)
+            #print(level, channel_number)
             self.channels[channel_number].duty_cycle = int(level)
 
 lights = Lights()
@@ -257,6 +257,22 @@ lights.trail_rollover_right.back_stroke_on()
 lights.trail_rollover_right.back_stroke_off()
 lights.trail_rollover_right.trace()
 lights.trail_rollover_right.back_trace()
+
+
+lights.trail_rollover_left.off()
+lights.trail_rollover_left.on()
+lights.trail_rollover_left.sparkle()
+lights.trail_rollover_left.throb()
+lights.trail_rollover_left.energize()
+lights.trail_rollover_left.blink()
+lights.trail_rollover_left.stroke_on()
+lights.trail_rollover_left.stroke_off()
+lights.trail_rollover_left.back_stroke_on()
+lights.trail_rollover_left.back_stroke_off()
+lights.trail_rollover_left.trace()
+lights.trail_rollover_left.back_trace()
+
+
 
 lights.trail_rollover_left  ...
 lights.trail_sling_right  ...
