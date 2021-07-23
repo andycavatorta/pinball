@@ -162,7 +162,7 @@ class Lights_Pattern(threading.Thread):
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.TRACE)
-                    self.upstream_queue.put([self.levels[-1], channel])
+                    self.upstream_queue.put([self.levels[0], channel])
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BACK_TRACE:
