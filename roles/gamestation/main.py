@@ -186,29 +186,29 @@ class Lights_Pattern(threading.Thread):
 
 class Lights(threading.Thread):
     class pattern_channels():
-        TRAIL_ROLLOVER_RIGHT = [0,1,2]
-        TRAIL_ROLLOVER_LEFT = [0,1,2]
-        TRAIL_SLING_RIGHT = [0,1,2]
+        TRAIL_ROLLOVER_RIGHT = [16,15,14,13,12]
+        TRAIL_ROLLOVER_LEFT = [19,20,21,22.23]
+        TRAIL_SLING_RIGHT = [11,10,9]
         TRAIL_SLING_LEFT = [0,1,2]
-        TRAIL_POP_LEFT =  [0,1,2]
-        TRAIL_POP_RIGHT =  [0,1,2]
-        TRAIL_POP_CENTER = [0,1,2]
-        TRAIL_SPINNER = [0,1,2]
-        PIE_ROLLOVER_RIGHT = [0,1,2]
-        PIE_ROLLOVER_LEFT = [0,1,2]
-        PIE_SLING_RIGHT = [0,1,2]
-        PIE_SLING_LEFT = [0,1,2]
-        PIE_POP_LEFT =  [0,1,2]
-        PIE_POP_RIGHT =  [0,1,2]
-        PIE_POP_CENTER = [0,1,2]
-        PIE_SPINNER = [0,1,2]
-        SIGN_ARROW_LEFT = [0,1,2]
-        SIGN_ARROW_RIGHT = [0,1,2]
-        SIGN_BOTTOM_LEFT = [0,1,2]
-        SIGN_BOTTOM_RIGHT = [0,1,2]
-        SIGN_TOP = [0,1,2]
-        ALL_RADIAL = [0,1,2]
-        ALL_CLOCKWISE = [0,1,2]
+        TRAIL_POP_LEFT =  [66,65,64,63,62,61,60]
+        TRAIL_POP_CENTER = [69,68,67]
+        TRAIL_POP_RIGHT =  [36,37,38]
+        TRAIL_SPINNER = [39,40,41,42,43,44,45,46,47]
+        PIE_ROLLOVER_RIGHT = [27,28,29]
+        PIE_ROLLOVER_LEFT = [54,55,56]
+        PIE_SLING_RIGHT = [24,25,26]
+        PIE_SLING_LEFT = [57,58,59]
+        PIE_POP_LEFT =  [51,52,52]
+        PIE_POP_CENTER = [48,49,50]
+        PIE_POP_RIGHT =  [33,34,35]
+        PIE_SPINNER = [30,31,32]
+        SIGN_ARROW_LEFT = [5,4,3]
+        SIGN_ARROW_RIGHT = [6,7,8]
+        SIGN_BOTTOM_LEFT = [17]
+        SIGN_BOTTOM_RIGHT = [18]
+        SIGN_TOP = [70,71]
+        ALL_RADIAL = []
+        ALL_CLOCKWISE = []
 
     def __init__(self):
         threading.Thread.__init__()
@@ -444,7 +444,7 @@ class Scan_All_Inputs(threading.Thread):
         threading.Thread.__init__()
 
         GPIO.setup(17, GPIO.IN)
-        GPIO.setup(18, GPIO.OUT)
+        GPIO.setup(18, GPIO.IN)
         input_value = GPIO.input(17)
 
         self.inputs = [ # name, gpio, last_state
