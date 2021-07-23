@@ -142,7 +142,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.BACK_STROKE_ON: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[0], channel])
-                for channel in reverse(self.channels):
+                for channel in list(reversed(self.channels)):
                     self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.STROKE)
                     self.upstream_queue.put([self.levels[0], channel])
@@ -151,7 +151,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.BACK_STROKE_OFF: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[-1], channel])
-                for channel in reverse(self.channels):
+                for channel in list(reversed(self.channels)):
                     self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.STROKE)
                     if not self.action_queue.empty():
@@ -168,7 +168,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.BACK_TRACE:
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[0], channel])
-                for channel in reverse(self.channels):
+                for channel in list(reversed(self.channels)):
                     self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.TRACE)
                     self.upstream_queue.put([self.levels[-1], channel])
