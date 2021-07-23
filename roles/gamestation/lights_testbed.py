@@ -93,13 +93,16 @@ class Lights_Pattern(threading.Thread):
                 while True:
                     for level in self.levels:
                         for channel in self.channels:
-                            self.upstream_queue.put([level, channel])                     
+                            self.upstream_queue.put([level, channel])
+
+                            print("===1",self.action_queue.empty())             
                             if not self.action_queue.empty():
                                 break
                         time.sleep(self.action_times.THROB)
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
+                            print("===2",self.action_queue.empty())             
                             if not self.action_queue.empty():
                                 break
                         time.sleep(self.action_times.THROB)
@@ -292,29 +295,42 @@ lights.trail_rollover_left.trace()
 lights.trail_rollover_left.back_trace()
 
 
-
-lights.trail_rollover_left  ...
-lights.trail_sling_right  ...
-lights.trail_sling_left  ...
-lights.trail_pop_left  ...
-lights.trail_pop_right  ...
+lights.all x
+lights.trail_rollover_left - one bad led
+lights.trail_sling_right  +
+lights.trail_sling_left  +
+lights.trail_pop_left  -
 lights.trail_pop_center  ...
-lights.trail_spinner  ...
-lights.pie_rollover_right  ...
-lights.pie_rollover_left  ...
-lights.pie_sling_right  ...
-lights.pie_sling_left  ...
-lights.pie_pop_left  ...
-lights.pie_pop_right  ...
-lights.pie_pop_center  ...
-lights.pie_spinner  ...
-lights.sign_arrow_left  ...
-lights.sign_arrow_right  ...
+lights.trail_pop_right  +
+lights.trail_spinner  +
+lights.pie_rollover_right +
+lights.pie_rollover_left  -
+lights.pie_sling_right  +
+lights.pie_sling_left  -
+lights.pie_pop_left  -
+lights.pie_pop_right  +
+lights.pie_pop_center  -
+lights.pie_spinner  +
+lights.sign_arrow_left  +
+lights.sign_arrow_right  +
 lights.sign_bottom_right  ...
 lights.sign_top  ...
 lights.all_radial ...
 lights.all_clockwise ...
 
+
+off
+on
+sparkle
+throb
+energize
+blink
+stroke_on
+stroke_off
+back_stroke_on
+back_stroke_off
+trace
+back_trace
 
 lights.trail_rollover_left.off()
 lights.trail_sling_right.off()
@@ -322,7 +338,7 @@ lights.trail_sling_left.off()
 lights.trail_pop_left.off()
 lights.trail_pop_right.off()
 lights.trail_pop_center.off()
-lights.trail_spinner.trace()
+lights.trail_spinner.off()
 lights.pie_rollover_right.off()
 lights.pie_rollover_left.off()
 lights.pie_sling_right.off()
