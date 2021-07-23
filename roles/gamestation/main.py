@@ -242,6 +242,7 @@ class Lights(threading.Thread):
         self.sign_top = Lights_Pattern(self.pattern_channels.SIGN_TOP, self.queue)
         #self.all_radial = Lights_Pattern(self.pattern_channels.ALL_RADIAL, self.queue)
         #self.all_clockwise = Lights_Pattern(self.pattern_channels.ALL_CLOCKWISE, self.queue)
+        self.start()
 
     def add_to_queue(self, level, channel_number):
         self.queue.put((level, channel_number))
