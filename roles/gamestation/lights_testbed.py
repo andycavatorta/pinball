@@ -17,7 +17,7 @@ class Lights_Pattern(threading.Thread):
     class action_times():
         SPARKLE = 0.025
         THROB = 0.025
-        ENERGIZE = 0.25
+        ENERGIZE = 0.5
         BLINK = 0.25
         STROKE = 0.125
         BACK_TRACE = 0.125
@@ -104,7 +104,8 @@ class Lights_Pattern(threading.Thread):
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.ENERGIZE: 
-                for divisor in [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0]:
+                divisors = range(16)
+                for divisor in divisors:
                     #run everything off
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
