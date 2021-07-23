@@ -258,7 +258,7 @@ class Lights(threading.Thread):
     def run(self):
         while True:
             level, channel_number = self.queue.get(True)
-            #print(level, channel_number)
+            print(level, channel_number)
             self.channels[channel_number].duty_cycle = int(level)
 
 lights = Lights()
@@ -316,25 +316,27 @@ lights.all_radial ...
 lights.all_clockwise ...
 
 
-lights.trail_rollover_left.throb()
-lights.trail_sling_right.throb()
-lights.trail_sling_left.throb()
-lights.trail_pop_left.throb()
-lights.trail_pop_right.throb()
-lights.trail_pop_center.throb()
+lights.trail_rollover_left.off()
+lights.trail_sling_right.off()
+lights.trail_sling_left.off()
+lights.trail_pop_left.off()
+lights.trail_pop_right.off()
+lights.trail_pop_center.off()
 lights.trail_spinner.trace()
-lights.pie_rollover_right.throb()
-lights.pie_rollover_left.throb()
-lights.pie_sling_right.throb()
-lights.pie_sling_left.throb()
-lights.pie_pop_left.throb()
-lights.pie_pop_right.throb()
-lights.pie_pop_center.throb()
-lights.pie_spinner.throb()
-lights.sign_arrow_left.throb()
-lights.sign_arrow_right.throb()
-lights.sign_bottom_right.throb()
-lights.sign_top.throb()
+lights.pie_rollover_right.off()
+lights.pie_rollover_left.off()
+lights.pie_sling_right.off()
+lights.pie_sling_left.off()
+lights.pie_pop_left.off()
+lights.pie_pop_right.off()
+lights.pie_pop_center.off()
+lights.pie_spinner.off()
+lights.sign_arrow_left.off()
+lights.sign_arrow_right.off()
+lights.sign_bottom_right.off()
+lights.sign_top.off()
+
+
 lights.all_radial ...
 lights.all_clockwise ...
 
