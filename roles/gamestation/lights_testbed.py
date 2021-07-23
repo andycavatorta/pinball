@@ -100,12 +100,12 @@ class Lights_Pattern(threading.Thread):
                                 print("break 1")
                                 break
                         if interrupt:
-                            break
                             print("break 2")
+                            break
                         time.sleep(self.action_times.THROB)
                     if interrupt:
-                        break
                         print("break 3")
+                        break
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
