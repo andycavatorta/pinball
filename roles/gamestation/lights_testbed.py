@@ -225,6 +225,7 @@ class Lights(threading.Thread):
         self.pie_pop_center = Lights_Pattern(self.pattern_channels.PIE_POP_CENTER, self.queue)
         self.pie_spinner = Lights_Pattern(self.pattern_channels.PIE_SPINNER, self.queue)
         self.sign_arrow_left = Lights_Pattern(self.pattern_channels.SIGN_ARROW_LEFT, self.queue)
+        self.sign_arrow_right = Lights_Pattern(self.pattern_channels.SIGN_ARROW_RIGHT, self.queue)
         self.sign_bottom_right = Lights_Pattern(self.pattern_channels.SIGN_BOTTOM_RIGHT, self.queue)
         self.sign_top = Lights_Pattern(self.pattern_channels.SIGN_TOP, self.queue)
         #self.all_radial = Lights_Pattern(self.pattern_channels.ALL_RADIAL, self.queue)
