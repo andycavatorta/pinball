@@ -90,21 +90,28 @@ class Lights_Pattern(threading.Thread):
                         if not self.action_queue.empty():
                             break
             if action_name == self.action_names.THROB:
+                interrupt = False
                 while True:
                     for level in self.levels:
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
-                        print("===1",self.action_queue.empty())             
-                        if not self.action_queue.empty():
+                            if not self.action_queue.empty():
+                                interrupt = True
+                                break
+                        if interrupt:
                             break
                         time.sleep(self.action_times.THROB)
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
-                        print("===2",self.action_queue.empty())             
-                        if not self.action_queue.empty():
+                            if not self.action_queue.empty():
+                                interrupt = True
+                                break
+                        if interrupt:
                             break
                         time.sleep(self.action_times.THROB)
+                    if interrupt:
+                        break
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
                 for divisor in divisors:
