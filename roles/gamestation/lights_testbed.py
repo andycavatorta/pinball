@@ -104,7 +104,7 @@ class Lights_Pattern(threading.Thread):
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.ENERGIZE: 
-                divisors = range(16)
+                divisors = range(1,16)
                 for divisor in divisors:
                     #run everything off
                     for channel in self.channels:
