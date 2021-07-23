@@ -202,6 +202,16 @@ class Lights(threading.Thread):
         SIGN_BOTTOM_LEFT = [17]
         SIGN_BOTTOM_RIGHT = [18]
         SIGN_TOP = [70,71]
+        ALL = [
+            0,1,2,3,4,5,6,7,8,9,
+            10,11,12,13,14,15,16,17,18,19,
+            20,21,22,23,24,25,26,27,28,29,
+            30,31,32,33,34,35,36,37,38,39,
+            40,41,42,43,44,45,46,47,48,49,
+            50,51,52,53,54,55,56,57,58,59,
+            60,61,62,63,64,65,66,67,68,69,
+            70,71
+        ]
         #ALL_RADIAL = []
         #ALL_CLOCKWISE = []
 
@@ -237,6 +247,7 @@ class Lights(threading.Thread):
         self.sign_arrow_right = Lights_Pattern(self.pattern_channels.SIGN_ARROW_RIGHT, self.queue)
         self.sign_bottom_right = Lights_Pattern(self.pattern_channels.SIGN_BOTTOM_RIGHT, self.queue)
         self.sign_top = Lights_Pattern(self.pattern_channels.SIGN_TOP, self.queue)
+        self.all = Lights_Pattern(self.pattern_channels.ALL, self.queue)
         #self.all_radial = Lights_Pattern(self.pattern_channels.ALL_RADIAL, self.queue)
         #self.all_clockwise = Lights_Pattern(self.pattern_channels.ALL_CLOCKWISE, self.queue)
         self.start()
