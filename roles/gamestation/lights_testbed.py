@@ -205,6 +205,7 @@ class Lights(threading.Thread):
         self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
         
         for channel_number in range(len(self.channels)):
+            print("new pwm out", channel_number)
             self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
 
         self.queue = queue.Queue()
