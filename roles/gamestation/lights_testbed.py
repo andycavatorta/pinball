@@ -258,7 +258,7 @@ class Lights(threading.Thread):
     def run(self):
         while True:
             level, channel_number = self.queue.get(True)
-            print(level, channel_number)
+            #print(level, channel_number)
             self.channels[channel_number].duty_cycle = int(level)
 
 lights = Lights()
