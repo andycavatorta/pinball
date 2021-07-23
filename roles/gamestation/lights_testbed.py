@@ -204,7 +204,7 @@ class Lights(threading.Thread):
         self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
         
         for channel_number in range(len(self.channels)):
-            self.channels[channel_number] = self.create_pwm_out(channel_number)
+            self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
 
         self.queue = queue.Queue()
         self.trail_rollover_right = Lights_Pattern(self.pattern_channels.TRAIL_ROLLOVER_RIGHT, self.queue)
