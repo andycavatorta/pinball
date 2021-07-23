@@ -94,7 +94,7 @@ class Lights_Pattern(threading.Thread):
                     for level in self.levels:
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
-                            print("===1",self.action_queue.empty())             
+                            #print("===1",self.action_queue.empty())             
                             if not self.action_queue.empty():
                                 break
                         else:
@@ -104,7 +104,7 @@ class Lights_Pattern(threading.Thread):
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
-                            print("===2",self.action_queue.empty())             
+                            #print("===2",self.action_queue.empty())             
                             if not self.action_queue.empty():
                                 break
                         else:
