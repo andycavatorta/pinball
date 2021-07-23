@@ -19,7 +19,7 @@ class Lights_Pattern(threading.Thread):
         THROB = 0.025
         ENERGIZE = 0.3
         BLINK = 0.25
-        STROKE = 0.125
+        STROKE = 0.075
         BACK_TRACE = 0.125
         TRACE = 0.125
 
@@ -311,7 +311,7 @@ lights.trail_sling_left.throb()
 lights.trail_pop_left.throb()
 lights.trail_pop_right.throb()
 lights.trail_pop_center.throb()
-lights.trail_spinner.throb()
+lights.trail_spinner.trace()
 lights.pie_rollover_right.throb()
 lights.pie_rollover_left.throb()
 lights.pie_sling_right.throb()
