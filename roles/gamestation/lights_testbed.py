@@ -44,7 +44,7 @@ class Lights_Pattern(threading.Thread):
         self.levels = [0,1024,2048,4096,8192,16384,32768,65535] # just guesses for now
         self.upstream_queue = upstream_queue
         self.channels = channels
-        self.queue = queue.Queue()
+        self.action_queue = queue.Queue()
         self.start()
     def off(self):
         self.action_queue.put([self.action_names.OFF, self.channels])
