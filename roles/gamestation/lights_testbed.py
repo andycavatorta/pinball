@@ -87,22 +87,22 @@ class Lights_Pattern(threading.Thread):
                         self.upstream_queue.put([self.levels[0], channel])
                         time.sleep(self.action_times.SPARKLE)
                         self.upstream_queue.put([self.levels[-1], channel])
-                    if not self.action_queue.empty():
-                        break
+                        if not self.action_queue.empty():
+                            break
             if action_name == self.action_names.THROB:
                 while True:
                     for level in self.levels:
                         for channel in self.channels:
-                            self.upstream_queue.put([level, channel])
-                        time.sleep(self.action_times.THROB)                        
-                        if not self.action_queue.empty():
-                            break
+                            self.upstream_queue.put([level, channel])                     
+                            if not self.action_queue.empty():
+                                break
+                        time.sleep(self.action_times.THROB)
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
+                            if not self.action_queue.empty():
+                                break
                         time.sleep(self.action_times.THROB)
-                        if not self.action_queue.empty():
-                            break
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
                 for divisor in divisors:
@@ -119,12 +119,14 @@ class Lights_Pattern(threading.Thread):
                 while True:
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[-1], channel])
+                        if not self.action_queue.empty():
+                            break
                     time.sleep(self.action_times.BLINK)
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
+                        if not self.action_queue.empty():
+                            break
                     time.sleep(self.action_times.BLINK)
-                    if not self.action_queue.empty():
-                        break
             if action_name == self.action_names.STROKE_ON:
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[0], channel])
