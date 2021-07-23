@@ -106,10 +106,10 @@ class Lights_Pattern(threading.Thread):
                             self.upstream_queue.put([level, channel])
                             print("===2",self.action_queue.empty())             
                             if not self.action_queue.empty():
+                                break
                         else:
                             continue
                         break
-                                break
                         time.sleep(self.action_times.THROB)
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
