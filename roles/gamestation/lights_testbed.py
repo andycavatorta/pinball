@@ -15,7 +15,7 @@ GPIO.setmode(GPIO.BCM)
 
 class Lights_Pattern(threading.Thread):
     class action_times():
-        SPARKLE = 0.025
+        SPARKLE = 0.125
         THROB = 0.025
         ENERGIZE = 0.3
         BLINK = 0.5
@@ -82,13 +82,18 @@ class Lights_Pattern(threading.Thread):
                         self.upstream_queue.put([self.levels[-1], channel])
 
             if action_name == self.action_names.SPARKLE: 
-                while True:
+                interrupt = False
+                while not interrupt:
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
                         time.sleep(self.action_times.SPARKLE)
                         self.upstream_queue.put([self.levels[-1], channel])
                         if not self.action_queue.empty():
+                            interrupt = True
                             break
+
+
+
             if action_name == self.action_names.THROB:
                 interrupt = False
                 while not interrupt:
