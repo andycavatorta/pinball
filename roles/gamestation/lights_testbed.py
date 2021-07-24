@@ -121,6 +121,8 @@ class Lights_Pattern(threading.Thread):
                     if interrupt:
                         print("break 6")
                         break
+
+                print("ending throb")
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
                 for divisor in divisors:
