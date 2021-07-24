@@ -91,38 +91,29 @@ class Lights_Pattern(threading.Thread):
                             break
             if action_name == self.action_names.THROB:
                 interrupt = False
-                print("starting throb")
                 while not interrupt:
                     for level in self.levels:
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
                             if not self.action_queue.empty():
                                 interrupt = True
-                                print("break 1")
                                 break
                         if interrupt:
-                            print("break 2")
                             break
                         time.sleep(self.action_times.THROB)
                     if interrupt:
-                        print("break 3")
                         break
                     for level in reversed(self.levels): 
                         for channel in self.channels:
                             self.upstream_queue.put([level, channel])
                             if not self.action_queue.empty():
                                 interrupt = True
-                                print("break 4")
                                 break
                         if interrupt:
-                            print("break 5")
                             break
                         time.sleep(self.action_times.THROB)
                     if interrupt:
-                        print("break 6")
                         break
-
-                print("ending throb")
             if action_name == self.action_names.ENERGIZE: 
                 divisors = range(1,16)
                 for divisor in divisors:
@@ -136,15 +127,18 @@ class Lights_Pattern(threading.Thread):
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BLINK: 
-                while True:
+                interrupt = False
+                while not interrupt:
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[-1], channel])
                         if not self.action_queue.empty():
+                            interrupt = True
                             break
                     time.sleep(self.action_times.BLINK)
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
                         if not self.action_queue.empty():
+                            interrupt = True
                             break
                     time.sleep(self.action_times.BLINK)
             if action_name == self.action_names.STROKE_ON:
