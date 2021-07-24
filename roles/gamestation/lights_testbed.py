@@ -341,6 +341,10 @@ def test_all():
         lights.trail_sling_left.back_trace()
         time.sleep(3)
 
+
+
+"""
+
         lights.trail_rollover_left.()
         lights.trail_sling_right.()
         lights.trail_sling_left.()
@@ -360,9 +364,6 @@ def test_all():
         lights.sign_arrow_right.()
         lights.sign_bottom_right.()
 
-
-
-"""
 lights.trail_rollover_right.off()
 lights.trail_rollover_right.on()
 lights.trail_rollover_right.sparkle()
