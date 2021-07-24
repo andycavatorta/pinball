@@ -91,6 +91,7 @@ class Lights_Pattern(threading.Thread):
                             break
             if action_name == self.action_names.THROB:
                 interrupt = False
+                print("starting throb")
                 while True:
                     for level in self.levels:
                         for channel in self.channels:
