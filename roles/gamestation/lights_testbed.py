@@ -18,7 +18,7 @@ class Lights_Pattern(threading.Thread):
         SPARKLE = 0.025
         THROB = 0.025
         ENERGIZE = 0.3
-        BLINK = 0.25
+        BLINK = 0.5
         STROKE = 0.075
         BACK_TRACE = 0.125
         TRACE = 0.125
@@ -368,5 +368,7 @@ lights.all_radial ...
 lights.all_clockwise ...
 
 
+lights.trail_sling_right.energize()
+lights.trail_sling_left.energize()
 
 """
