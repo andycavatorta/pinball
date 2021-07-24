@@ -285,6 +285,83 @@ class Lights(threading.Thread):
 
 lights = Lights()
 
+def test_all():
+    while True:
+
+        lights.sign_arrow_left.energize()
+        time.sleep(2)
+
+        lights.pie_pop_center.on()        
+        lights.pie_pop_left.off()
+        lights.pie_rollover_left.on()
+        lights.pie_sling_left.off()
+        lights.pie_sling_right.on()
+        lights.pie_rollover_right.off()
+        lights.pie_spinner.on()
+        lights.pie_pop_right.off()
+
+        lights.sign_arrow_left.blink()
+        lights.sign_arrow_right.off()
+
+
+        lights.trail_spinner.back_stroke_off()
+        lights.trail_pop_right.back_stroke_on()
+        lights.trail_pop_center.back_stroke_off()
+        lights.trail_pop_left.back_stroke_on()
+
+        lights.trail_rollover_right.stroke_on()
+        lights.trail_rollover_left.stroke_off()
+        lights.trail_sling_right.trace()
+        lights.trail_sling_left.trace()
+
+        time.sleep(3)
+        lights.sign_arrow_right.energize()
+        time.sleep(2)
+
+        lights.pie_pop_center.off()        
+        lights.pie_pop_left.on()
+        lights.pie_rollover_left.off()
+        lights.pie_sling_left.on()
+        lights.pie_sling_right.off()
+        lights.pie_rollover_right.on()
+        lights.pie_spinner.off()
+        lights.pie_pop_right.on()
+
+        lights.sign_arrow_left.off()
+        lights.sign_arrow_right.blink()
+
+        lights.trail_spinner.stroke_off()
+        lights.trail_pop_right.stroke_on()
+        lights.trail_pop_center.stroke_off()
+        lights.trail_pop_left.stroke_on()
+
+        lights.trail_rollover_right.back_stroke_on()
+        lights.trail_rollover_left.back_stroke_off()
+        lights.trail_sling_right.back_trace()
+        lights.trail_sling_left.back_trace()
+        time.sleep(3)
+
+        lights.trail_rollover_left.()
+        lights.trail_sling_right.()
+        lights.trail_sling_left.()
+        lights.trail_pop_left.()
+        lights.trail_pop_center.()
+        lights.trail_pop_right.()
+        lights.trail_spinner.()
+        lights.pie_rollover_right.()
+        lights.pie_rollover_left.()
+        lights.pie_sling_right.()
+        lights.pie_sling_left.()
+        lights.pie_pop_left.()
+        lights.pie_pop_right.()
+        lights.pie_pop_center.()
+        lights.pie_spinner.()
+        lights.sign_arrow_left.()
+        lights.sign_arrow_right.()
+        lights.sign_bottom_right.()
+
+
+
 """
 lights.trail_rollover_right.off()
 lights.trail_rollover_right.on()
@@ -315,7 +392,7 @@ lights.trail_rollover_left.back_trace()
 
 
 lights.all x
-lights.trail_rollover_left - one bad led
+lights.trail_rollover_left 
 lights.trail_sling_right  +
 lights.trail_sling_left  +
 lights.trail_pop_left  -
