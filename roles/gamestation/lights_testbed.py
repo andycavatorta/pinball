@@ -86,6 +86,9 @@ class Lights_Pattern(threading.Thread):
                 while not interrupt:
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], channel])
+                        if not self.action_queue.empty():
+                            interrupt = True
+                            break
                         time.sleep(self.action_times.SPARKLE)
                         self.upstream_queue.put([self.levels[-1], channel])
                         if not self.action_queue.empty():
