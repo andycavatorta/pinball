@@ -345,25 +345,6 @@ def test_all():
 
 """
 
-        lights.trail_rollover_left.()
-        lights.trail_sling_right.()
-        lights.trail_sling_left.()
-        lights.trail_pop_left.()
-        lights.trail_pop_center.()
-        lights.trail_pop_right.()
-        lights.trail_spinner.()
-        lights.pie_rollover_right.()
-        lights.pie_rollover_left.()
-        lights.pie_sling_right.()
-        lights.pie_sling_left.()
-        lights.pie_pop_left.()
-        lights.pie_pop_right.()
-        lights.pie_pop_center.()
-        lights.pie_spinner.()
-        lights.sign_arrow_left.()
-        lights.sign_arrow_right.()
-        lights.sign_bottom_right.()
-
 lights.trail_rollover_right.off()
 lights.trail_rollover_right.on()
 lights.trail_rollover_right.sparkle()

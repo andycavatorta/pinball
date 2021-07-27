@@ -27,6 +27,8 @@ def turn_on_light(trk_value):
 '''
 '''
 
+
+
 word = ""
 global num
 

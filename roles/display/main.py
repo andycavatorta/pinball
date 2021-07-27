@@ -12,7 +12,7 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-from thirtybirds3.adapters.actuators.overhead_display.hc595 import HC595_shift_reg as shifter
+from thirtybirds3.adapters.gpio.hc595 import HC595_shift_reg as hc595
 
 scores ={
 
@@ -138,7 +138,7 @@ class Acrylic_Display():
         self.current_number = 0
         self.game_mode = "countdown"
         self.shift_register_state = [0, 0, 0, 0, 0]
-        self.reg = shifter.HC595()
+        self.shift_register = hc595.HC595()
 
     def format_number(self, num):
         num = str(num)
@@ -185,13 +185,13 @@ class Acrylic_Display():
         # Set every value in byte array to 0 
         for index, val in enumerate(self.shift_register_state):
             self.shift_register_state[index] = 0x00
-        self.reg.write(self.shift_register_state)
+        self.shift_register.write(self.shift_register_state)
 
     def _update_display_(self):
         self.turn_off_lights()
         self.generate_number_bytes()
         # self.generate_word_bytes()
-        self.reg.write(self.shift_register_state)
+        self.shift_register.write(self.shift_register_state)
         print("updating display to Current Word {} Number {}".format(
             self.current_words, self.current_number))
 
