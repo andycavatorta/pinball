@@ -11,66 +11,105 @@ scores = {
     "descending_scale":{
         "default_beat_period":0.1,
         "beats":[ # beats
-            [#one beat (notes)
+            [
                 [
                     {"pitch":0,"period":0.006},
+                    {"pitch":3,"period":0.014},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.007},
+                    {"pitch":3,"period":0.013},
                 ]
             ],
             [
                 [
                     {"pitch":0,"period":0.008},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.01},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.012},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.014},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.016},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.012},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.010},
-                    {"pitch":3,"period":0.006},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.008},
-                    {"pitch":3,"period":0.008},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.006},
-                    {"pitch":3,"period":0.01},
-                ]
-            ],
-            [
-                [
                     {"pitch":3,"period":0.012},
                 ]
             ],
             [
                 [
+                    {"pitch":0,"period":0.009},
+                    {"pitch":3,"period":0.011},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.010},
+                    {"pitch":3,"period":0.010},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.011},
+                    {"pitch":3,"period":0.009},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.012},
+                    {"pitch":3,"period":0.008},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.013},
+                    {"pitch":3,"period":0.007},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.014},
+                    {"pitch":3,"period":0.006},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.013},
+                    {"pitch":3,"period":0.007},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.012},
+                    {"pitch":3,"period":0.008},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.011},
+                    {"pitch":3,"period":0.009},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.010},
+                    {"pitch":3,"period":0.010},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.009},
+                    {"pitch":3,"period":0.011},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.08},
+                    {"pitch":3,"period":0.012},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.07},
+                    {"pitch":3,"period":0.013},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.06},
                     {"pitch":3,"period":0.014},
                 ]
             ],
