@@ -11,11 +11,11 @@ scores = {
     "descending_scale":{
         "default_beat_period":1,
         "beats":[
-            [[0,0.014]],
-            [[1,0.014]],
-            [[2,0.014]],
-            [[3,0.014]],
-            [[4,0.014]],
+            [{"pitch":0,"period":0.014}]
+            [{"pitch":1,"period":0.014}]
+            [{"pitch":2,"period":0.014}]
+            [{"pitch":3,"period":0.014}]
+            [{"pitch":4,"period":0.014}]
         ]
     }
 }
