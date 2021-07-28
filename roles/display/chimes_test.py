@@ -90,8 +90,7 @@ class Player(threading.Thread):
                         print("notes",notes)
                         for note in notes:
                             print("note",note) 
-                            pitch_number, pulse_duration = note
-                            self.chimes[pitch_number].add_pulse_to_queue(pulse_duration)
+                            self.chimes[note["pitch"]].add_pulse_to_queue(note["period"])
                     time.sleep(default_beat_period)
             except Exception as e:
                 print(e)
