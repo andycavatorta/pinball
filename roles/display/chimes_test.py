@@ -65,7 +65,7 @@ class Player(threading.Thread):
 
     def stop_all_chime_power(self):
         for chime in self.chimes:
-            chime.stop_power()
+            chime.stop_power()pulse_duration
 
     def play_score(self,score_name):
         self.current_score.put(score_name)
@@ -79,7 +79,7 @@ class Player(threading.Thread):
                 beats = score["beats"]
                 for beat in beats:
                     for note in beats: 
-                        pitch_number, duration = note
+                        pitch_number, pulse_duration = note
                         self.chimes[pitch_number].add_pulse_to_queue(pulse_duration)
                     time.sleep(default_beat_period)
             except Exception as e:
