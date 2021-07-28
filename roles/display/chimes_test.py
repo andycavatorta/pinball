@@ -9,7 +9,7 @@ import traceback
 
 scores = {
     "descending_scale":{
-        "default_beat_period":0.1,
+        "default_beat_period":0.05,
         "beats":[ # beats
             [
                 [
@@ -97,19 +97,19 @@ scores = {
             ],
             [
                 [
-                    {"pitch":0,"period":0.08},
+                    {"pitch":0,"period":0.008},
                     {"pitch":3,"period":0.012},
                 ]
             ],
             [
                 [
-                    {"pitch":0,"period":0.07},
+                    {"pitch":0,"period":0.007},
                     {"pitch":3,"period":0.013},
                 ]
             ],
             [
                 [
-                    {"pitch":0,"period":0.06},
+                    {"pitch":0,"period":0.006},
                     {"pitch":3,"period":0.014},
                 ]
             ],
