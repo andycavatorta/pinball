@@ -36,18 +36,31 @@ scores = {
                     {"pitch":0,"period":0.014},
                 ]
             ],
-            [#one beat (notes)
+            [
                 [
+                    {"pitch":0,"period":0.016},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.012},
+                ]
+            ],
+            [
+                [
+                    {"pitch":0,"period":0.010},
                     {"pitch":3,"period":0.006},
                 ]
             ],
             [
                 [
+                    {"pitch":0,"period":0.008},
                     {"pitch":3,"period":0.008},
                 ]
             ],
             [
                 [
+                    {"pitch":0,"period":0.006},
                     {"pitch":3,"period":0.01},
                 ]
             ],
