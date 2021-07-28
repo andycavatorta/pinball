@@ -30,9 +30,11 @@ class Chime(threading.Thread):
         self.start()
 
     def stop_power(self):
+        print("stop_power", self.gpio_number)
         GPIO.output(self.gpio_number, GPIO.LOW)
 
     def start_power(self):
+        print("start_power", self.gpio_number)
         GPIO.output(self.gpio_number, GPIO.HIGH)
 
     def add_pulse_to_queue(self, pulse_duration):
