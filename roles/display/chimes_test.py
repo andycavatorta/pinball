@@ -9,108 +9,135 @@ import traceback
 
 scores = {
     "descending_scale":{
-        "default_beat_period":0.05,
+        "default_beat_period":0.1,
         "beats":[ # beats
-            [
-                [
+            [#beat
+                [#notes in beat
                     {"pitch":0,"period":0.006},
-                    {"pitch":3,"period":0.014},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.007},
-                    {"pitch":3,"period":0.013},
-                ]
-            ],
-            [
-                [
+            [#beat
+                [#notes in beat
                     {"pitch":0,"period":0.008},
-                    {"pitch":3,"period":0.012},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.009},
-                    {"pitch":3,"period":0.011},
+            [#beat
+                [#notes in beat
+                    {"pitch":0,"period":0.01},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.010},
-                    {"pitch":3,"period":0.010},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.011},
-                    {"pitch":3,"period":0.009},
-                ]
-            ],
-            [
-                [
+            [#beat
+                [#notes in beat
                     {"pitch":0,"period":0.012},
-                    {"pitch":3,"period":0.008},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.013},
-                    {"pitch":3,"period":0.007},
-                ]
-            ],
-            [
-                [
+            [#beat
+                [#notes in beat
                     {"pitch":0,"period":0.014},
+                ]
+            ],
+
+            [#beat
+                [#notes in beat
+                    {"pitch":1,"period":0.006},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":1,"period":0.008},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":1,"period":0.01},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":1,"period":0.012},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":1,"period":0.014},
+                ]
+            ],
+
+            [#beat
+                [#notes in beat
+                    {"pitch":2,"period":0.006},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":2,"period":0.008},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":2,"period":0.01},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":2,"period":0.012},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":2,"period":0.014},
+                ]
+            ],
+
+            [#beat
+                [#notes in beat
                     {"pitch":3,"period":0.006},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.013},
-                    {"pitch":3,"period":0.007},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.012},
+            [#beat
+                [#notes in beat
                     {"pitch":3,"period":0.008},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.011},
-                    {"pitch":3,"period":0.009},
+            [#beat
+                [#notes in beat
+                    {"pitch":3,"period":0.01},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.010},
-                    {"pitch":3,"period":0.010},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.009},
-                    {"pitch":3,"period":0.011},
-                ]
-            ],
-            [
-                [
-                    {"pitch":0,"period":0.008},
+            [#beat
+                [#notes in beat
                     {"pitch":3,"period":0.012},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.007},
-                    {"pitch":3,"period":0.013},
+            [#beat
+                [#notes in beat
+                    {"pitch":3,"period":0.014},
                 ]
             ],
-            [
-                [
-                    {"pitch":0,"period":0.006},
-                    {"pitch":3,"period":0.014},
+
+            [#beat
+                [#notes in beat
+                    {"pitch":4,"period":0.006},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":4,"period":0.008},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":4,"period":0.01},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":4,"period":0.012},
+                ]
+            ],
+            [#beat
+                [#notes in beat
+                    {"pitch":4,"period":0.014},
                 ]
             ],
         ]
