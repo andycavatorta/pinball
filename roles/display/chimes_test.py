@@ -218,4 +218,7 @@ class Player(threading.Thread):
 
 player = Player()
 
-
+def repeat_score(score_name):
+    while True:
+        player.play_score(score_name)
+        time.sleep(10)
