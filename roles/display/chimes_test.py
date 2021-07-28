@@ -80,7 +80,9 @@ class Player(threading.Thread):
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
                 for beat in beats:
+                    print("beat",beat)
                     for notes in beat:
+                        print("notes",notes)
                         for note in notes:
                             print("note",note) 
                             pitch_number, pulse_duration = note
