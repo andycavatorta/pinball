@@ -9,7 +9,7 @@ import traceback
 
 scores = {
     "descending_scale":{
-        "default_beat_period":1
+        "default_beat_period":1,
         "beats":[
             [0,0.01],
             [1,0.01],
