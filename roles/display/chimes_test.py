@@ -68,12 +68,12 @@ class Player(threading.Thread):
             chime.stop_power()
 
     def play_score(self,score_name):
-        self.queue.put(score_name)
+        self.current_score.put(score_name)
 
     def run(self):
         while True:
             try:
-                score_name = self.queue.get(True)
+                score_name = self.current_score.get(True)
                 score = scores[score_name]
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
