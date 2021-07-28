@@ -38,56 +38,6 @@ scores = {
             ],
             [#one beat (notes)
                 [
-                    {"pitch":1,"period":0.006},
-                ]
-            ],
-            [
-                [
-                    {"pitch":1,"period":0.008},
-                ]
-            ],
-            [
-                [
-                    {"pitch":1,"period":0.01},
-                ]
-            ],
-            [
-                [
-                    {"pitch":1,"period":0.012},
-                ]
-            ],
-            [
-                [
-                    {"pitch":1,"period":0.014},
-                ]
-            ],
-            [#one beat (notes)
-                [
-                    {"pitch":2,"period":0.006},
-                ]
-            ],
-            [
-                [
-                    {"pitch":2,"period":0.008},
-                ]
-            ],
-            [
-                [
-                    {"pitch":2,"period":0.01},
-                ]
-            ],
-            [
-                [
-                    {"pitch":2,"period":0.012},
-                ]
-            ],
-            [
-                [
-                    {"pitch":2,"period":0.014},
-                ]
-            ],
-            [#one beat (notes)
-                [
                     {"pitch":3,"period":0.006},
                 ]
             ],
@@ -109,31 +59,6 @@ scores = {
             [
                 [
                     {"pitch":3,"period":0.014},
-                ]
-            ],
-            [#one beat (notes)
-                [
-                    {"pitch":4,"period":0.006},
-                ]
-            ],
-            [
-                [
-                    {"pitch":4,"period":0.008},
-                ]
-            ],
-            [
-                [
-                    {"pitch":4,"period":0.01},
-                ]
-            ],
-            [
-                [
-                    {"pitch":4,"period":0.012},
-                ]
-            ],
-            [
-                [
-                    {"pitch":4,"period":0.014},
                 ]
             ],
         ]
