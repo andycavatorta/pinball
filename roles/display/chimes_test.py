@@ -117,6 +117,7 @@ scores = {
     }
 }
 
+
 class Chime(threading.Thread):
     def __init__(self, gpio_number):
         threading.Thread.__init__(self)
