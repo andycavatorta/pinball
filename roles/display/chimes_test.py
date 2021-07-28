@@ -80,10 +80,11 @@ class Player(threading.Thread):
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
                 for beat in beats:
-                    for note in beats:
-                        print("note",note) 
-                        pitch_number, pulse_duration = note
-                        self.chimes[pitch_number].add_pulse_to_queue(pulse_duration)
+                    for notes in beat:
+                        for note in notes:
+                            print("note",note) 
+                            pitch_number, pulse_duration = note
+                            self.chimes[pitch_number].add_pulse_to_queue(pulse_duration)
                     time.sleep(default_beat_period)
             except Exception as e:
                 print(e)
