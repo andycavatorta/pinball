@@ -65,7 +65,7 @@ class Player(threading.Thread):
 
     def stop_all_chime_power(self):
         for chime in self.chimes:
-            chime.stop_power()pulse_duration
+            chime.stop_power()
 
     def play_score(self,score_name):
         self.current_score.put(score_name)
