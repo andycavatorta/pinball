@@ -117,19 +117,7 @@ class LED_Group(threading.Thread):
         self.upstream_queue = upstream_queue
         self.channels = channels
         self.local_queue = queue.Queue()
-        self.actions = {
-            "off":self.off,
-            "on":self.on,
-            "sparkle":self.sparkle,
-            "throb":self.throb,
-            "energize":self.energize,
-            "blink":self.blink,
-            "stroke_on":self.stroke_on,
-            "stroke_off":self.stroke_off,
-            "back_stroke_on":self.back_stroke_on,
-            "back_stroke_off":self.back_stroke_off,
-            "trace":self.trace,
-            "back_trace":self.back_trace,
+        self.actions = {1
         }
         self.start()
     def off(self):

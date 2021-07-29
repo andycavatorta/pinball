@@ -11,6 +11,8 @@ app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__f
 sys.path.append(os.path.split(app_path)[0])
 
 import settings
+import common.deadman
+import roles.display.scores as scores
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.gpio.hc595 import HC595_shift_reg as hc595
 

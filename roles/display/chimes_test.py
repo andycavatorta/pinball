@@ -184,7 +184,7 @@ class Player(threading.Thread):
         threading.Thread.__init__(self)
         self.current_score = queue.Queue() # queue can act as interrupt or stop message
         GPIO.setmode(GPIO.BCM)
-        self.gpios = [5,6,16,17,22]
+        self.gpios = [6,16,5,17,22]
         self.chimes = []
         for gpio in self.gpios: # how can this be a comprehension
             self.chimes.append(Chime(gpio))
