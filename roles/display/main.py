@@ -14,6 +14,8 @@ import settings
 import common.deadman
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.gpio.hc595 import HC595_shift_reg as hc595
+
+from thirtybirds3.adapters.sensors import ina260_current_sensor as ina260
 # scores are located outside this script because they're voluminous
 import roles.display.score_by_mode.system_test as system_test_scores
 
@@ -24,7 +26,7 @@ import roles.display.score_by_mode.system_test as system_test_scores
 class Acrylic_Display():
     """ This class is the hardware init and control for the acrylic displays and 
     their shift registers. It also acts as simple receiver of commands.  
-    All animations and sophisticated behaviors reside elsewhere.
+    All animations and sophisticated behaviors reside elsewhere and call this over thirtybirds
     """
     def __init__(self):
         self.current_phrase = 0
@@ -208,26 +210,21 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.game_modes = settings.Game_Modes()
-        self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.queue = queue.Queue()
         self.hostname = self.tb.self.get_hostname()
 
-        self.display_subscription_topic = "display_number_" + self.hostname
-        self.sound_event_subscription_topic = "play_score_" + self.hostname
-
-        self.tb.subscribe_to_topic("sound_event")
-        self.tb.subscribe_to_topic("set_game_mode")
-        self.tb.subscribe_to_topic("set_display_number")
-
-        self.tb.subscribe_to_topic(self.display_subscription_topic)
-        self.tb.subscribe_to_topic(self.sound_event_subscription_topic)
+        self.tb.subscribe_to_topic("play_score")
+        self.tb.subscribe_to_topic("set_phrase")
+        self.tb.subscribe_to_topic("set_number")
 
         self.tb.publish("connected", True)
-        self.player = Chime_Player()
-        self.start()
+        self.chime_player = Chime_Player()
         self.acrylic_display = Acrylic_Display()
+        if self.tb.self.get_hostname() == 'pinball1game':
+            self.power_sensor = ina260.INA260()
+            self.tb.subscribe_to_topic("get_amps")
+        self.start()
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -240,112 +237,25 @@ class Main(threading.Thread):
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
-
-
-    def handle_attraction(self):
-        print("Starting attraction mode")
-        self.game_mode = self.game_modes.ATTRACTION
-
-        # Set game mode phrase here on change 
-        # self.acrylic_display.set_phrase(0)
-        self.player.play("attraction_mode_sparse")
-
-    def handle_countdown(self):
-        self.game_mode = self.game_modes.COUNTDOWN
-        print("In countdown, playing countdown motif")
-        self.player.play("countdown_mode")
-        # Set game mode phrase here on change 
-        # self.acrylic_display.set_phrase(0)
-        
-        # Comment this block out if you want to stay in countdown for testing
-        time.sleep(5)
-        self.tb.publish("confirm_countdown",True)
-        
-    def handle_reset(self):
-        self.game_mode = self.game_modes.RESET
-        self.player.play("reset_sparse")
-        time.sleep(5)
-        self.tb.publish("ready_state",True)
-
-    def handle_barter_mode_intro(self):
-        self.game_mode = self.game_modes.BARTER_MODE_INTRO
-        self.player.play("barter_mode_intro")
-        self.acrylic_display.set_phrase()
-        time.sleep(5)
-        self.tb.publish("confirm_barter_mode_intro",True)
-
-    def handle_barter_mode(self):
-        self.game_mode = self.game_modes.BARTER_MODE
-        self.player.play("barter_mode")
-        self.acrylic_display.set_phrase()
-        time.sleep(5)
-        self.tb.publish("confirm_barter_mode",True)
-
-    def handle_money_mode_intro(self):
-        self.game_mode = self.game_modes.MONEY_MODE_INTRO
-        self.player.play("money_mode_intro")
-        self.acrylic_display.set_phrase()
-        time.sleep(5)
-        self.tb.publish("confirm_money_mode_intro",True)
-
-    def handle_money_mode(self):
-        self.game_mode = self.game_modes.MONEY_MODE
-        self.player.play("money_mode")
-        self.acrylic_display.set_phrase()
-        time.sleep(5)
-        self.tb.publish("confirm_money_mode",True)
-
-    def handle_ending(self):
-        self.game_mode = self.game_modes.ENDING
-
-        self.player.play("closing_theme")
-        time.sleep(5)
-        self.tb.publish("confirm_ending",True)
-
-    def set_game_mode(self, mode):
-        if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
-            pass # peripheral power should be off during this mode
-
-        if mode == self.game_modes.RESET:
-            self.handle_reset()
-
-        if mode == self.game_modes.ATTRACTION:
-            self.handle_attraction()
-
-        # waits for press of start button 
-        if mode == self.game_modes.COUNTDOWN:
-            self.handle_countdown()
-
-        if mode == self.game_modes.BARTER_MODE_INTRO:
-            self.handle_barter_mode_intro()
-
-
-        if mode == self.game_modes.BARTER_MODE:
-            self.handle_barter_mode()
-
-
-        if mode == self.game_modes.MONEY_MODE_INTRO:
-            self.handle_money_mode_intro()
- 
-        if mode == self.game_modes.MONEY_MODE:
-            self.handle_money_mode()
-
-
-        if mode == self.game_modes.ENDING:
-            self.handle_ending()
-
     def run(self):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'sound_event':
-                    self.player.play(message)
-                if topic == b'set_game_mode':
-                    print("setting game mode ", message)
-                    self.set_game_mode(message)
-                if topic == b'set_display_number':
-                    self.acrylic_display.set_display_number(message)
+                if topic == b'play_score':
+                    if destination == self.tb.self.get_hostname():
+                        self.chime_player.play_score(message)
+
+                if topic == b'set_phrase':
+                    if destination == self.tb.self.get_hostname():
+                        self.acrylic_display.set_phrase(message)
+
+                if topic == b'set_number':
+                    if destination == self.tb.self.get_hostname():
+                        self.acrylic_display.set_number(message)
+                        
+                if topic == b'get_amps':
+                    tb.publish('measured_amps', self.power_sensor.get_current())
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))

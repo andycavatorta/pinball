@@ -14,8 +14,8 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
-setting_safety_enable_duration = 3
-setting_safety_enable_gpio = 26
+setting_safety_enable_duration = 1
+setting_safety_enable_gpio = 5
 
 ##################################################
 # SAFETY SYSTEMS #
