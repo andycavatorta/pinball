@@ -1,7 +1,7 @@
 import threading
 import queue
 
-class Safety_Enable(threading.Thread):
+class Deadman_Switch(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
@@ -15,8 +15,10 @@ class Safety_Enable(threading.Thread):
         while True:
             try:
                 error_message = self.queue.get(False)
+                print("deadman", error_message)
                 self.tb.publish("deadman", error_message)
                 break
-            except queue.Empty:    
+            except queue.Empty:
+                print("deadman", "safe")
                 self.tb.publish("deadman", "safe")
             time.sleep(1)
