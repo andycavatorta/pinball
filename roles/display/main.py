@@ -32,7 +32,7 @@ class Acrylic_Display():
         self.current_phrase = 0
         self.current_number = 0
         self.shift_register_states = [0x00,0x00,0x00,0x00,0x00]
-        self.shift_register_chain = shifter.HC595(bus=0,deviceId=0)
+        self.shift_register_chain = hc595.HC595(bus=0,deviceId=0)
         self.Display_LED_Mapping = {
             "digit":  {
                 "a": {
