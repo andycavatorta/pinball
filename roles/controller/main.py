@@ -292,9 +292,9 @@ class Matrix(threading.Thread):
         #   both users have goods
         #   two players have agreed to trade goods
         self.mode = self.modes.TRADING_GOODS
-        self.matrix_stations[source_fruit_number].pass_ball_from_tube_to_carousel("barter", source_fruit_number):
+        self.matrix_stations[source_fruit_number].pass_ball_from_tube_to_carousel("barter", source_fruit_number)
         # this action will block until verified
-        self.matrix_stations[destination_fruit_number].pass_ball_from_tube_to_carousel("barter", destination_fruit_number):
+        self.matrix_stations[destination_fruit_number].pass_ball_from_tube_to_carousel("barter", destination_fruit_number)
         # this action will block until verified
         self.matrix_stations[source_fruit_number].carousel.turn_fruit_to_center(source_fruit_number)
         # this action will block until verified
