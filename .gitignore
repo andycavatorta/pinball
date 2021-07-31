@@ -137,3 +137,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+pinball.sublime-project
+pinball.sublime-workspace
