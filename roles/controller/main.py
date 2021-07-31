@@ -43,8 +43,10 @@ class Safety_Enable(threading.Thread):
         while True:
             time.sleep(setting_safety_enable_duration)
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
+            print("HIGH")
             time.sleep(setting_safety_enable_duration)
             GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
+            print("LOW")
             """
             try:
                 while True:
