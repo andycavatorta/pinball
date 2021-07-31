@@ -224,7 +224,7 @@ class Matrix_Carousel():
         pass
     def turn_fruit_to_money_tube(self,fruit_number):
         pass
-    def turn_fruit_to_center(self, fruit_number)
+    def turn_fruit_to_center(self, fruit_number):
         pass
     def request_sensor_state(self, fruit_number):
         pass
