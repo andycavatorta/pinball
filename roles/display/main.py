@@ -212,7 +212,7 @@ class Main(threading.Thread):
         )
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.queue = queue.Queue()
-        self.hostname = self.tb.self.get_hostname()
+        self.hostname = self.tb.get_hostname()
 
         self.tb.subscribe_to_topic("play_score")
         self.tb.subscribe_to_topic("set_phrase")
