@@ -41,12 +41,11 @@ class Safety_Enable(threading.Thread):
 
     def run(self):
         while True:
+            """
             time.sleep(setting_safety_enable_duration)
             GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
-            print("HIGH")
             time.sleep(setting_safety_enable_duration)
             GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
-            print("LOW")
             """
             try:
                 while True:
@@ -69,7 +68,6 @@ class Safety_Enable(threading.Thread):
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
                     self.enable_state_change_handler(self.enabled)
             self.hosts_alive = set()
-            """
 
 
 ##################################################
