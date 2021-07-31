@@ -219,6 +219,9 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("set_number")
 
         self.tb.publish("connected", True)
+        self.scores = {
+            "system_test_scores":system_test_scores
+        }
         self.chime_player = Chime_Player()
         self.acrylic_display = Acrylic_Display()
         if self.tb.get_hostname() == 'pinball1game':
