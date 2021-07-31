@@ -180,8 +180,9 @@ class Chime_Player(threading.Thread):
     def run(self):
         while True:
             try:
-                score_name = self.current_score.get(True)
-                score = scores[score_name]
+                #score_name = self.current_score.get(True)
+                #score = scores[score_name]
+                score = self.current_score.get(True)
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
                 for beat in beats:
