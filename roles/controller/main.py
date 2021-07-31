@@ -58,15 +58,16 @@ class Safety_Enable(threading.Thread):
                 if not self.enabled: # if changing state
                     self.enabled = True
                     GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
+                    print("HIGH")
                     #self.enable_state_change_handler(self.enabled)
             else:
                 if self.enabled: # if changing state
                     self.enabled = False
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
+                    print("LOW")
                     #self.enable_state_change_handler(self.enabled)
             
-            #GPIO.output(setting_safety_enable_gpio, GPIO.HIGH if self.required_hosts.issubset(self.hosts_alive) else GPIO.LOW)
-            self.hosts_alive = set()
+            #self.hosts_alive = set()
 
 
 ##################################################
