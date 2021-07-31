@@ -221,7 +221,7 @@ class Main(threading.Thread):
         self.tb.publish("connected", True)
         self.chime_player = Chime_Player()
         self.acrylic_display = Acrylic_Display()
-        if self.tb.self.get_hostname() == 'pinball1game':
+        if self.tb.get_hostname() == 'pinball1game':
             self.power_sensor = ina260.INA260()
             self.tb.subscribe_to_topic("get_amps")
         self.start()
