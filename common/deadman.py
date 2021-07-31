@@ -16,10 +16,8 @@ class Deadman_Switch(threading.Thread):
         while True:
             try:
                 error_message = self.queue.get(False)
-                print("deadman", error_message)
                 self.tb.publish("deadman", error_message)
                 break
             except queue.Empty:
-                print("deadman", "safe")
                 self.tb.publish("deadman", "safe")
             time.sleep(1)
