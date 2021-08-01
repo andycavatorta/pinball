@@ -257,7 +257,7 @@ class Lights(threading.Thread):
         latch = digitalio.DigitalInOut(board.D5)
         self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=1)
         for channel_number in range(len(self.channels)):
-            self.channels[channel_number] = self.create_pwm_out(channel_number)
+            self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
         self.queue = queue.Queue()
         self.led_groups = {
             "fruit_0": LED_Group(self.group_channels.FRUIT_0, self.queue),
