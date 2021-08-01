@@ -1,5 +1,5 @@
+import busio
 import importlib
-import mido
 import os
 import queue
 import RPi.GPIO as GPIO
