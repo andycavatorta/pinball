@@ -1,3 +1,4 @@
+import adafruit_tlc5947
 import board
 import busio
 import digitalio
