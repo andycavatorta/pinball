@@ -328,9 +328,9 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.deadman = deadman.Deadman_Switch(self.tb)
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        self.deadman = deadman.Deadman_Switch(self.tb)
         self.tb.subscribe_to_topic("set_game_mode")
         self.tb.subscribe_to_topic("connected")
         self.start()
