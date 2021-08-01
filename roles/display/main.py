@@ -171,6 +171,7 @@ class Chime_Player(threading.Thread):
         self.start()
 
     def stop_all_chime_power(self):
+        self.play_score.("blank")
         for chime in self.chimes:
             chime.stop_power()
 
@@ -182,16 +183,25 @@ class Chime_Player(threading.Thread):
             try:
                 #score_name = self.current_score.get(True)
                 #score = scores[score_name]
-                score = self.current_score.get(True)
+                mode, motif = self.current_score.get(True)
+                score = mode[motif]
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
+                interrupt = False
                 for beat in beats:
-                    print("beat",beat)
+                    if interrupt:
+                        break
+                    #print("beat",beat)
                     for notes in beat:
-                        print("notes",notes)
+                        #print("notes",notes)
+                        if interrupt:
+                            break
                         for note in notes:
-                            print("note",note) 
+                            #print("note",note) 
                             self.chimes[note["pitch"]].add_pulse_to_queue(note["period"])
+                            if not self.current_score.empty():
+                                interrupt = True
+                                break
                     time.sleep(default_beat_period)
             except Exception as e:
                 print(e)
@@ -218,6 +228,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("play_score")
         self.tb.subscribe_to_topic("set_phrase")
         self.tb.subscribe_to_topic("set_number")
+        self.tb.subscribe_to_topic("all_off")
 
         self.tb.publish("connected", True)
         self.scores = {
@@ -260,6 +271,10 @@ class Main(threading.Thread):
                         
                 if topic == b'get_amps':
                     tb.publish('measured_amps', self.power_sensor.get_current())
+
+                if topic == b'all_off':
+                    self.acrylic_display.set_all_off()
+                    self.chime_player.stop_all_chime_power()
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))

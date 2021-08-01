@@ -1,1 +1,19 @@
-hardware tests for pinball
+controller
+
+display
+    chimes
+    display
+
+gamestation
+    launchers ( via P3-ROC)
+    lights
+
+matrix
+    rotation
+    lights
+    pocket kickers
+
+
+
+
+

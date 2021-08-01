@@ -15,6 +15,7 @@ import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
+import common.deadman as deadman
 
 GPIO.setmode(GPIO.BCM)
 
@@ -24,22 +25,6 @@ GPIO.setmode(GPIO.BCM)
 ##################################################
 
 # DEADMAN SWITCH ( SEND ANY OUT-OF-BOUNDS VALUES FROM OTHER SYSTEMS)
-
-class Safety_Enable(threading.Thread):
-    def __init__(self, tb):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.tb = tb
-        self.start()
-
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
-
-    def run(self):
-        while True:
-            #self.queue.get(True)
-            self.tb.publish("deadman", "safe")
-            time.sleep(1)
 
 # COMPUTER STATUS CHECK
     # runs on slower rhythm than deadman
@@ -285,7 +270,7 @@ class Lights(threading.Thread):
         self.queue.put((level, channel_number))
     def run(self):
         while True:
-            level, channel_number = self.queue.get(True)5
+            level, channel_number = self.queue.get(True)
             self.channels[channel_number].duty_cycle = level
 
 class Carousel(threading.Thread):
@@ -346,7 +331,7 @@ class Main(threading.Thread):
         )
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        self.safety_enable = Safety_Enable(self.tb)
+        self.deadman = deadman.Deadman_Switch(self.tb)
         self.tb.subscribe_to_topic("set_game_mode")
         self.tb.subscribe_to_topic("connected")
         self.start()
