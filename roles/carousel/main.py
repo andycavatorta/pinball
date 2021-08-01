@@ -1,5 +1,6 @@
 import board
 import busio
+import digitalio
 import importlib
 import os
 import queue
