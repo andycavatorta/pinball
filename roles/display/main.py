@@ -180,6 +180,7 @@ class Chime_Player(threading.Thread):
             chime.stop_power()
 
     def play_score(self,score_name):
+        print("score_name=",score_name)
         self.current_score.put(score_name)
 
     def run(self):
