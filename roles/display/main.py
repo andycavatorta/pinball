@@ -92,7 +92,7 @@ class Acrylic_Display():
     def generate_phrase_bytes(self):
         shift_register_index = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["shift_register_index"]
         bit = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["bit"]
-        self.shift_register_state[shift_register_index] = self.shift_register_state[shift_register_index] + (1 << bit)
+        self.shift_register_states[shift_register_index] = self.shift_register_states[shift_register_index] + (1 << bit)
 
     def set_number(self, number):
         if number > 999:
@@ -105,15 +105,15 @@ class Acrylic_Display():
 
         shift_register_index = self.Display_LED_Mapping["digit"]["a"][int(a)]["shift_register_index"]
         bit = self.Display_LED_Mapping["digit"]["a"][int(a)]["bit"]
-        self.shift_register_state[shift_register_index] += (1 << bit)
+        self.shift_register_states[shift_register_index] += (1 << bit)
 
         shift_register_index = self.Display_LED_Mapping["digit"]["b"][int(b)]["shift_register_index"]
         bit = self.Display_LED_Mapping["digit"]["b"][int(b)]["bit"]
-        self.shift_register_state[shift_register_index] += (1 << bit)
+        self.shift_register_states[shift_register_index] += (1 << bit)
 
         shift_register_index = self.Display_LED_Mapping["digit"]["c"][int(c)]["shift_register_index"]
         bit = self.Display_LED_Mapping["digit"]["c"][int(c)]["bit"]
-        self.shift_register_state[shift_register_index] += (1 << bit)
+        self.shift_register_states[shift_register_index] += (1 << bit)
 
     def set_all_off(self):
         self.shift_register_states = [0x00] * len(self.shift_register_states)
@@ -123,7 +123,7 @@ class Acrylic_Display():
         self.set_all_off()
         self.generate_number_bytes()
         self.generate_phrase_bytes()
-        self.shift_register_chain.write(self.shift_register_state)
+        self.shift_register_chain.write(self.shift_register_states)
 
 ###############
 # C H I M E S #
