@@ -271,14 +271,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_1",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_1",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_1",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_1",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_1",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_1",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_1",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_1",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_1", ["lights", "fruit_0", "off"]),
@@ -382,14 +382,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_2",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_2",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_2",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_2",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_2",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_2",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_2",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_2",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_2", ["lights", "fruit_0", "off"]),
@@ -493,14 +493,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_3",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_3",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_3",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_3",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_3",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_3",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_3",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_3",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_3", ["lights", "fruit_0", "off"]),
@@ -604,14 +604,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_4",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_4",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_4",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_4",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_4",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_4",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_4",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_4",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_4", ["lights", "fruit_0", "off"]),
@@ -715,14 +715,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_5",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_5",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_5",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_5",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_5",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_5",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_5",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_5",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_5", ["lights", "fruit_0", "off"]),
@@ -826,14 +826,14 @@ motor = {
             "fruit_2":motors.tb.publish("carousel_center",["eject_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_center",["eject_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_center",["eject_ball","fruit_4"]),
-        }
+        },
         "detect_ball": {
             "fruit_0":motors.tb.publish("carousel_center",["detect_ball","fruit_0"]),
             "fruit_1":motors.tb.publish("carousel_center",["detect_ball","fruit_1"]),
             "fruit_2":motors.tb.publish("carousel_center",["detect_ball","fruit_2"]),
             "fruit_3":motors.tb.publish("carousel_center",["detect_ball","fruit_3"]),
             "fruit_4":motors.tb.publish("carousel_center",["detect_ball","fruit_4"]),
-        }
+        },
         "lights":{
             "fruit_0":{
                 "off":motors.tb.publish("carousel_center", ["lights", "fruit_0", "off"]),
