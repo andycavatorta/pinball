@@ -19,6 +19,10 @@ from thirtybirds3.adapters.sensors import ina260_current_sensor as ina260
 # scores are located outside this script because they're voluminous
 import roles.display.score_by_mode.system_test as system_test_scores
 
+scores = {
+    "system_test_scores":system_test_scores
+}
+
 ###################
 # ACRYLIC DISPLAY #
 ###################
@@ -184,7 +188,7 @@ class Chime_Player(threading.Thread):
                 #score_name = self.current_score.get(True)
                 #score = scores[score_name]
                 mode, motif = self.current_score.get(True)
-                score = mode[motif]
+                score = scores[mode][motif]
                 default_beat_period = score["default_beat_period"]
                 beats = score["beats"]
                 interrupt = False
