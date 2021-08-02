@@ -119,7 +119,7 @@ class Acrylic_Display():
         self.shift_register_states = [0x00] * len(self.shift_register_states)
         self.shift_register_chain.write(self.shift_register_state)
 
-    def update_display_(self):
+    def update_display(self):
         self.set_all_off()
         self.generate_number_bytes()
         self.generate_phrase_bytes()
