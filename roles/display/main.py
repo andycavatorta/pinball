@@ -189,9 +189,9 @@ class Chime_Player(threading.Thread):
                 #score_name = self.current_score.get(True)
                 #score = scores[score_name]
                 print("a")
-                mode, motif = self.current_score.get(True)
+                score = self.current_score.get(True)
                 print("b")
-                score = scores[mode[motif]]
+                score = scores[score]
                 print("c")                
                 default_beat_period = score["default_beat_period"]
                 print("d")
