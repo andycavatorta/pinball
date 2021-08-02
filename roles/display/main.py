@@ -262,15 +262,15 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
                 if topic == b'play_score':
-                    if destination == self.tb.self.get_hostname():
+                    if destination == self.tb.get_hostname():
                         self.chime_player.play_score(message)
 
                 if topic == b'set_phrase':
-                    if destination == self.tb.self.get_hostname():
+                    if destination == self.tb.get_hostname():
                         self.acrylic_display.set_phrase(message)
 
                 if topic == b'set_number':
-                    if destination == self.tb.self.get_hostname():
+                    if destination == self.tb.get_hostname():
                         self.acrylic_display.set_number(message)
                         
                 if topic == b'get_amps':
