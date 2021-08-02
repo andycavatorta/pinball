@@ -175,7 +175,7 @@ class Chime_Player(threading.Thread):
         self.start()
 
     def stop_all_chime_power(self):
-        self.play_score.("blank")
+        self.play_score("blank")
         for chime in self.chimes:
             chime.stop_power()
 
