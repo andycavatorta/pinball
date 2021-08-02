@@ -117,7 +117,7 @@ class Acrylic_Display():
 
     def set_all_off(self):
         self.shift_register_states = [0x00] * len(self.shift_register_states)
-        self.shift_register_chain.write(self.shift_register_state)
+        self.shift_register_chain.write(self.shift_register_states)
 
     def update_display(self):
         self.set_all_off()
