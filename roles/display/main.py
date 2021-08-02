@@ -33,7 +33,7 @@ class Acrylic_Display():
     All animations and sophisticated behaviors reside elsewhere and call this over thirtybirds
     """
     def __init__(self):
-        self.current_phrase = 0
+        self.current_phrase = "juega"
         self.current_number = 0
         self.shift_register_states = [0x00,0x00,0x00,0x00,0x00]
         self.shift_register_chain = hc595.HC595(bus=0,deviceId=0)
@@ -81,7 +81,7 @@ class Acrylic_Display():
                 "trueque":{"bit": 3, "shift_register_index": 4},
                 "dinero": {"bit": 4, "shift_register_index": 4},
                 "como":   {"bit": 5, "shift_register_index": 4},
-                "que":    {"bit": 6, "shift_register_index": 4}
+                "fue":    {"bit": 6, "shift_register_index": 4}
             }
         }
 
