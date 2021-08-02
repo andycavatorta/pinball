@@ -1,5 +1,5 @@
 descending_scale={
-    "default_beat_period":0.5,
+    "default_beat_period":0.2,
     "beats":[ # beats
         [#beat
             [#notes in beat
