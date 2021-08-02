@@ -14,7 +14,7 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
-setting_safety_enable_duration = 1.5
+setting_safety_enable_duration = .9
 setting_safety_enable_gpio = 5
 
 ##################################################
@@ -55,20 +55,16 @@ class Safety_Enable(threading.Thread):
                     self.hosts_alive.add(origin)
             except queue.Empty:
                 pass
-            print(self.hosts_alive)
             missing_hosts = self.required_hosts.difference(self.hosts_alive)
             #if len(missing_hosts) > 0:
             #    print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
-            if True:#self.required_hosts.issubset(self.hosts_alive):
+            if self.required_hosts.issubset(self.hosts_alive):
                 if not self.enabled: # if changing state
-                    self.enabled = True
                     GPIO.output(setting_safety_enable_gpio, GPIO.HIGH)
-                    self.enable_state_change_handler(self.enabled)
-            else:
-                if self.enabled: # if changing state
-                    self.enabled = False
+                    time.sleep(setting_safety_enable_duration)
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
-                    self.enable_state_change_handler(self.enabled)
+                    #self.enabled = False
+                    #self.enable_state_change_handler(self.enabled)
             self.hosts_alive = set()
 
 
