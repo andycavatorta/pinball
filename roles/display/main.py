@@ -188,9 +188,13 @@ class Chime_Player(threading.Thread):
             try:
                 #score_name = self.current_score.get(True)
                 #score = scores[score_name]
+                print("a")
                 mode, motif = self.current_score.get(True)
+                print("b")
                 score = scores[mode][motif]
+                print("c")                
                 default_beat_period = score["default_beat_period"]
+                print("d")
                 beats = score["beats"]
                 interrupt = False
                 for beat in beats:
@@ -211,7 +215,7 @@ class Chime_Player(threading.Thread):
                     time.sleep(default_beat_period)
             except Exception as e:
                 print(e)
-                self.stop_all_chime_power()
+                #self.stop_all_chime_power()
 
 ###########
 # M A I N #
