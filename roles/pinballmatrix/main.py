@@ -12,6 +12,7 @@ app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__f
 sys.path.append(os.path.split(app_path)[0])
 
 import settings
+import common.deadman as deadman
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
@@ -960,7 +961,8 @@ class Main(threading.Thread):
         )
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        self.safety_enable = Safety_Enable(self.tb)
+        
+        self.deadman = deadman.Deadman_Switch(self.tb)
         self.tb.subscribe_to_topic("set_game_mode")
         self.tb.subscribe_to_topic("connected")
 
