@@ -87,7 +87,7 @@ class Acrylic_Display():
 
     def set_phrase(self, phrase): # [ juega | trueque | dinero | como | que ]
         self.current_phrase = phrase
-        self._update_display_()
+        self.update_display()
     
     def generate_phrase_bytes(self):
         shift_register_index = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["shift_register_index"]
