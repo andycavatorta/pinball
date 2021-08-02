@@ -20,7 +20,7 @@ from thirtybirds3.adapters.sensors import ina260_current_sensor as ina260
 import roles.display.score_by_mode.system_test as system_test_scores
 
 scores = {
-    "system_test_scores":system_test_scores
+    "system_test_scores_descending_scale":system_test_scores.descending_scale
 }
 
 ###################
