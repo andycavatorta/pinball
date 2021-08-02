@@ -55,8 +55,8 @@ class Safety_Enable(threading.Thread):
             except queue.Empty:
                 pass
             missing_hosts = self.required_hosts.difference(self.hosts_alive)
-            #if len(missing_hosts) > 0:
-            #    print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
+            if len(missing_hosts) > 0:
+                print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             if True:#self.required_hosts.issubset(self.hosts_alive):
                 if not self.enabled: # if changing state
                     self.enabled = True
@@ -493,7 +493,6 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(topic, message, origin, destination)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                 if topic==b"ready_state":
