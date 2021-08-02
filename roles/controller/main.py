@@ -14,7 +14,7 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 
-setting_safety_enable_duration = 1
+setting_safety_enable_duration = 2
 setting_safety_enable_gpio = 5
 
 ##################################################
@@ -47,6 +47,7 @@ class Safety_Enable(threading.Thread):
             time.sleep(setting_safety_enable_duration)
             GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
             """
+            time.sleep(setting_safety_enable_duration)
             try:
                 while True:
                     deadman_message = self.queue.get(False)
@@ -68,6 +69,7 @@ class Safety_Enable(threading.Thread):
                     GPIO.output(setting_safety_enable_gpio, GPIO.LOW)
                     self.enable_state_change_handler(self.enabled)
             self.hosts_alive = set()
+
 
 
 ##################################################
