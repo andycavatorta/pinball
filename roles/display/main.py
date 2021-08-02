@@ -193,6 +193,7 @@ class Chime_Player(threading.Thread):
                 beats = score["beats"]
                 interrupt = False
                 for beat in beats:
+                    print("beat=", beat)
                     if interrupt:
                         break
                     #print("beat",beat)
