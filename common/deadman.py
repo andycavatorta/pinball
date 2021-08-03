@@ -20,4 +20,4 @@ class Deadman_Switch(threading.Thread):
                 break
             except queue.Empty:
                 self.tb.publish("deadman", "safe")
-            time.sleep(1)
+            time.sleep(.5)
