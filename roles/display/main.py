@@ -18,9 +18,25 @@ from thirtybirds3.adapters.gpio.hc595 import HC595_shift_reg as hc595
 from thirtybirds3.adapters.sensors import ina260_current_sensor as ina260
 # scores are located outside this script because they're voluminous
 import roles.display.score_by_mode.system_test as system_test_scores
+import roles.display.score_by_mode.singles as single_notes
 
 scores = {
-    "system_test_scores_descending_scale":system_test_scores.descending_scale
+    "system_test_scores_descending_scale":system_test_scores.descending_scale,
+    "c_piano":single_notes.c_piano,
+    "c_mezzo":single_notes.c_mezzo,
+    "c_forte":single_notes.c_forte,
+    "asharp_piano":single_notes.asharp_piano,
+    "asharp_mezzo":single_notes.asharp_mezzo,
+    "asharp_forte":single_notes.asharp_forte,
+    "gsharp_piano":single_notes.gsharp_piano,
+    "gsharp_mezzo":single_notes.gsharp_mezzo,
+    "gsharp_forte":single_notes.gsharp_forte,
+    "g_piano":single_notes.g_piano,
+    "g_mezzo":single_notes.g_mezzo,
+    "g_forte":single_notes.g_forte,
+    "f_piano":single_notes.f_piano,
+    "f_mezzo":single_notes.f_mezzo,
+    "f_forte":single_notes.f_forte,
 }
 
 ###################
@@ -241,9 +257,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("all_off")
 
         self.tb.publish("connected", True)
-        self.scores = {
-            "system_test_scores":system_test_scores
-        }
         self.chime_player = Chime_Player()
         self.acrylic_display = Acrylic_Display()
         if self.tb.get_hostname() == 'pinball1game':

@@ -5,26 +5,42 @@ class Displays():
         self.tb = tb
         self.destinations = ("pinball1display","pinball2display","pinball3display","pinball4display","pinball5display")
         self.phrases = ("juega","dinero","trueque","como","fue","juega","dinero","trueque","como","fue")
-
+        self.chime_pattern = (
+            ("f_piano","g_piano","gsharp_piano"),
+            ("f_piano","g_piano","asharp_piano"),
+            ("f_piano","gsharp_piano","asharp_piano"),
+            ("f_piano","gsharp_piano","c_piano"),
+            ("g_mezzo","gsharp_mezzo","asharp_mezzo"),
+            ("g_mezzo","gsharp_mezzo","c_mezzo"),
+            ("g_mezzo","asharp_piano","c_piano"),
+            ("gsharp_mezzo","asharp_mezzo","c_mezzo"),
+            ("gsharp_forte","asharp_forte","c_forte"),
+            ("gsharp_forte","asharp_forte","c_forte"),
+        )
     def circular_countown(self):
         displayed_number = 999        
         for destination in self.destinations:
             self.tb.publish(topic="set_number",message=displayed_number,destination=destination)
         time.sleep(.5)
         while displayed_number > 0:
+            cycle_of_ten = int(displayed_number/100)
             for destination in self.destinations:
                 self.tb.publish(topic="set_number",message=displayed_number-1,destination=destination)
+                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][0],destination=destination)
                 time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-11,destination=destination)
+                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][1],destination=destination)
                 time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-111,destination=destination)
+                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][2],destination=destination)
                 time.sleep(.5)
-                self.tb.publish(topic="set_phrase",message=self.phrases[int(displayed_number/100)],destination=destination)
+                self.tb.publish(topic="set_phrase",message=self.phrases[cycle_of_ten],destination=destination)
             time.sleep(.5)
             displayed_number -= 111
 
-"""
 
+
+"""
 while True:
     for ai in range(10):
         for bi in range(10):

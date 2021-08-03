@@ -1,0 +1,60 @@
+192.168.100.21  carousel1 
+192.168.100.18  carousel2 
+192.168.100.14  carousel3 
+192.168.100.17  carousel4
+192.168.100.22  carousel5
+192.168.100.23  carouselcenter 
+192.168.100.16  pinballmatrix
+192.168.100.209  controller.local
+
+
+
+
+role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
+
+
+role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
+role_module.main.controllers.motors["carousel_4"].set_operating_mode(3)
+role_module.main.controllers.motors["carousel_5"].set_operating_mode(3)
+role_module.main.controllers.motors["carousel_6"].set_operating_mode(3)
+
+role_module.main.controllers.boards['carousel3and4'].save_configuration_in_eeprom()
+role_module.main.controllers.boards['carousel5and6'].save_configuration_in_eeprom()
+
+
+role_module.main.controllers.motors["carousel_4"].go_to_absolute_position(1000)
+
+role_module.main.controllers.motors["carousel_1"].get_pid_differential_gain(True)
+role_module.main.controllers.motors["carousel_1"].get_pid_integral_gain(True)
+role_module.main.controllers.motors["carousel_1"].get_pid_proportional_gain(True)
+
+
+role_module.main.controllers.motors["carousel_4"].set_pid_proportional_gain(1)
+role_module.main.controllers.motors["carousel_1"].go_to_absolute_position(4000)
+
+
+role_module.main.controllers.motors["carousel_6"].set_pid_proportional_gain(10)
+
+
+role_module.main.controllers.motors["carousel_1"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_2"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_3"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_4"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_5"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_6"].absolute_encoder.get_position()
+
+
+
+motor 1: no feedback?
+motor 2: no feedback?
+motor 3: good?
+motor 4: good?
+motor 5: good?
+motor 6: good?
+
+
+
+
+while True: 
+    displays = role_module.tests.Displays(role_module.main.tb)
+    displays.circular_countown()
