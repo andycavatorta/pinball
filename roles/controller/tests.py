@@ -10,15 +10,15 @@ class Displays():
         displayed_number = 999        
         for destination in self.destinations:
             self.tb.publish(topic="set_number",message=displayed_number,destination=destination)
-        time.sleep(.25)
+        time.sleep(.5)
         while displayed_number > 0:
             for destination in self.destinations:
                 self.tb.publish(topic="set_number",message=displayed_number-1,destination=destination)
-                time.sleep(.25)
+                time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-10,destination=destination)
-                time.sleep(.25)
+                time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-100,destination=destination)
-                time.sleep(.25)
+                time.sleep(.5)
             displayed_number -= 111
 
 """
