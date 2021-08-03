@@ -26,15 +26,21 @@ class Displays():
             cycle_of_ten = int(displayed_number/100)
             for destination in self.destinations:
                 self.tb.publish(topic="set_number",message=displayed_number-1,destination=destination)
-                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][0],destination=destination)
+                self.tb.publish(topic="play_score",message="c_mezzo",destination=destination)
                 time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-11,destination=destination)
-                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][1],destination=destination)
+                self.tb.publish(topic="play_score",message="asharp_mezzo",destination=destination)
                 time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-111,destination=destination)
-                self.tb.publish(topic="play_score",message=self.chime_pattern[cycle_of_ten][2],destination=destination)
+                self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=destination)
                 time.sleep(.5)
                 self.tb.publish(topic="set_phrase",message=self.phrases[cycle_of_ten],destination=destination)
+                self.tb.publish(topic="play_score",message="g_mezzo",destination=destination)
+                time.sleep(.5)
+                self.tb.publish(topic="set_phrase",message=self.phrases[cycle_of_ten],destination=destination)
+                self.tb.publish(topic="play_score",message="f_mezzo",destination=destination)
+                time.sleep(.5)
+
             time.sleep(.5)
             displayed_number -= 111
 
