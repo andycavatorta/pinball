@@ -201,23 +201,10 @@ class Scan_All_Inputs(threading.Thread):
         while True:
             try:
                 for input in self.inputs:
-
+                    time.sleep(1)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
-
-scan_all_inputs = Scan_All_Inputs(
-            rollover_handler,
-            spinner_handler,
-            button_handler,
-            trough_sensor_handler,
-            pop_bumper_handler,
-            slingshot_handler
-        )
-
-
-
 
 
 
