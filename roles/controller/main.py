@@ -13,7 +13,7 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-import tests
+import roles.controller.tests
 
 setting_safety_enable_duration = .9
 setting_safety_enable_gpio = 5
