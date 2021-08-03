@@ -194,7 +194,7 @@ class Lights(threading.Thread):
         #ALL_CLOCKWISE = []
 
     def __init__(self):
-        threading.Thread.__init__()
+        threading.Thread.__init__(self)
         self.channels = [0]*72
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
         latch = digitalio.DigitalInOut(board.D5)
