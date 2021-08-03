@@ -19,6 +19,7 @@ class Displays():
                 time.sleep(.5)
                 self.tb.publish(topic="set_number",message=displayed_number-100,destination=destination)
                 time.sleep(.5)
+            time.sleep(.5)
             displayed_number -= 111
 
 """
