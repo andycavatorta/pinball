@@ -22,7 +22,7 @@ class Displays():
                 role_module.main.tb.publish(topic="set_phrase",message=self.phrases[int(displayed_number/100)],destination=destination)
             time.sleep(.5)
             displayed_number -= 111
-            role_module.main.tb.publish(topic="set_phrase",message=phrases[bi],destination=destination)
+            self.tb.publish(topic="set_phrase",message=phrases[bi],destination=destination)
 
 """
 
