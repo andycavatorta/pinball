@@ -15,9 +15,9 @@ class Displays():
             for destination in self.destinations:
                 self.tb.publish(topic="set_number",message=displayed_number-1,destination=destination)
                 time.sleep(.5)
-                self.tb.publish(topic="set_number",message=displayed_number-10,destination=destination)
+                self.tb.publish(topic="set_number",message=displayed_number-11,destination=destination)
                 time.sleep(.5)
-                self.tb.publish(topic="set_number",message=displayed_number-100,destination=destination)
+                self.tb.publish(topic="set_number",message=displayed_number-111,destination=destination)
                 time.sleep(.5)
             time.sleep(.5)
             displayed_number -= 111
