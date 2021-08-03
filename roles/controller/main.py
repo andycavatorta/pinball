@@ -15,7 +15,7 @@ import settings
 from thirtybirds3 import thirtybirds
 import roles.controller.tests as tests
 
-setting_safety_enable_duration = .9
+setting_safety_enable_duration = 1.1
 setting_safety_enable_gpio = 5
 
 ##################################################
