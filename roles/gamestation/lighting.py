@@ -32,12 +32,8 @@ class Lights_Pattern(threading.Thread):
         TRACE = "trace"
         BACK_TRACE = "back_trace"
 
-    def __init__(self):
-        threading.Thread.__init__(
-            self, 
-            channels, 
-            upstream_queue, 
-        )
+    def __init__(self, channels, upstream_queue,):
+        threading.Thread.__init__(self )
         self.levels = [0,1024,2048,4096,8192,16384,32768,65535] # just guesses for now
         self.upstream_queue = upstream_queue
         self.channels = channels
