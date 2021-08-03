@@ -12,8 +12,8 @@ app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__f
 sys.path.append(os.path.split(app_path)[0])
 
 import settings
-import common.tests as tests
 from thirtybirds3 import thirtybirds
+import roles.controller.tests
 
 setting_safety_enable_duration = .9
 setting_safety_enable_gpio = 5
