@@ -45,6 +45,30 @@ class Displays():
             displayed_number -= 111
 
 
+    def circular_countown_just_displays(self):
+        displayed_number = 999        
+        for destination in self.destinations:
+            self.tb.publish(topic="set_number",message=displayed_number,destination=destination)
+        time.sleep(.5)
+        while displayed_number > 0:
+            cycle_of_ten = int(displayed_number/100)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=displayed_number-1,destination=destination)
+                time.sleep(.5)
+                self.tb.publish(topic="set_number",message=displayed_number-11,destination=destination)
+                time.sleep(.5)
+                self.tb.publish(topic="set_number",message=displayed_number-111,destination=destination)
+                time.sleep(.5)
+                self.tb.publish(topic="set_phrase",message=self.phrases[cycle_of_ten],destination=destination)
+                time.sleep(.5)
+                self.tb.publish(topic="set_phrase",message=self.phrases[cycle_of_ten],destination=destination)
+                time.sleep(.5)
+
+            time.sleep(.5)
+            displayed_number -= 111
+
+
+
 
 """
 while True:
