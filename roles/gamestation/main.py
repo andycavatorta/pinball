@@ -19,7 +19,7 @@ import settings
 import common.deadman as deadman
 from thirtybirds3 import thirtybirds
 
-import roles.gamestation.lighting
+import roles.gamestation.lighting as lighting
 
 GPIO.setmode(GPIO.BCM)
 
