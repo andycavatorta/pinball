@@ -19,6 +19,23 @@ from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 
 GPIO.setmode(GPIO.BCM)
 
+
+###########################
+# S Y S T E M   T E S T S #
+###########################
+
+# test ability to read encoders via SPI
+# test ability to communicate with SDC2160
+# check SDC2160 for fault flags or error states
+# check SDC2160 for current consumption
+# check SDC2160 for temperature
+# if not yet zeroed:
+    # rotate carousel to abs zero position
+    # check abs position
+    # set relative encoder to zero
+# rotate carousel to center self-fruit
+# check agreement between absolute and relative encoders
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):

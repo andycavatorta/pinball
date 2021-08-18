@@ -52,9 +52,65 @@ motor 4: good?
 motor 5: good?
 motor 6: good?
 
-
-
-
 while True: 
     displays = role_module.tests.Displays(role_module.main.tb)
     displays.circular_countown()
+
+
+while True:
+    role_module.main.chime_player.play_score("system_test_scores_descending_scale")
+    time.sleep(20)
+
+diana-p8f55vcxp2pscanx@host.airbnb.com
+
+=====================
+
+sudo apt-get update -y
+pip3 install spidev
+sudo pip3 install spidev
+pip3 install adafruit_blinka
+sudo pip3 install adafruit_blinka
+pip3 install adafruit-circuitpython-tlc5947
+sudo pip3 install adafruit-circuitpython-tlc5947
+
+sudo nano /etc/udev/rules.d/50-spi.rules
+
+SUBSYSTEM=="spidev", GROUP="spiuser", MODE="0660"
+
+sudo groupadd spiuser
+sudo adduser "$USER" spiuser
+
+cd pinball
+git pull
+cd ../thirtybirds3/
+git config pull.rebase false
+git pull
+
+sudo reboot
+
+
+
+sudo apt install python3-pip python3-gpiozero
+
+
+
+gpiochip0
+gpiochip1
+gpiomem   
+
+sudo adduser "$USER" dialout
+-----------------
+
+pip3 install adafruit-circuitpython-tlc5947
+pip3 install adafruit-blinka
+sudo apt install python3-pip python3-gpiozero
+
+sudo nano /etc/udev/rules.d/50-spi.rules
+
+SUBSYSTEM=="spidev", GROUP="spiuser", MODE="0660"
+
+sudo groupadd spiuser
+sudo adduser "$USER" spiuser
+sudo adduser "$USER" dialout
+
+sudo reboot

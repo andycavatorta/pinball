@@ -23,17 +23,11 @@ import common.deadman as deadman
 GPIO.setmode(GPIO.BCM)
 
 
-##################################################
-# SAFETY SYSTEMS #
-##################################################
+###########################
+# S Y S T E M   T E S T S #
+###########################
 
-# DEADMAN SWITCH ( SEND ANY OUT-OF-BOUNDS VALUES FROM OTHER SYSTEMS)
-
-# COMPUTER STATUS CHECK
-    # runs on slower rhythm than deadman
-    # only log report if there is a problem
-
-# 48V CURRENT METER current_sensor_handler
+# Check communication with TLC5947
 
 ##################################################
 # LOGGING AND REPORTING #

@@ -39,6 +39,19 @@ scores = {
     "f_forte":single_notes.f_forte,
 }
 
+###########################
+# S Y S T E M   T E S T S #
+###########################
+
+# machine measurements #
+# Check communication with TLC5947
+# Check communication with HC595
+# [unit 1 only] measure 24V current 
+    
+# tests for human observation #
+# [one station at a time] cycle through all digits and phrases
+# [one station at a time] cycle through all 5 pitches
+
 ###################
 # ACRYLIC DISPLAY #
 ###################

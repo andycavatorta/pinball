@@ -11,8 +11,11 @@ foo = ClassFoo(reports.foo_config)
 
 """
 
+class Deadman():
+    DURATION = 1.1
+    GPIO = 5
+
 class Roles():
-    controller_hostname="feral"
     hosts={
         "controller":"controller",
         "pinball1game":"gamestation",
@@ -37,8 +40,9 @@ class Roles():
 class Game_Modes:
     ERROR = "error"
     WAITING_FOR_CONNECTIONS = "waiting_for_connections"
-    SYSTEM_TEST = "system_test"
+    SYSTEM_TESTS = "system_test"
     INVENTORY = "inventory"
+    RESET = "reset"
     ATTRACTION = "attraction"
     COUNTDOWN = "countdown"
     BARTER_MODE_INTRO = "barter_mode_intro"
@@ -46,7 +50,20 @@ class Game_Modes:
     MONEY_MODE_INTRO = "money_mode_intro"
     MONEY_MODE = "money_mode"
     ENDING = "ending"
-    RESET = "reset"
+
+game_mode_order = (
+    Game_Modes.WAITING_FOR_CONNECTIONS,
+    Game_Modes.SYSTEM_TESTS,
+    Game_Modes.INVENTORY,
+    Game_Modes.ATTRACTION,
+    Game_Modes.COUNTDOWN,
+    Game_Modes.BARTER_MODE_INTRO,
+    Game_Modes.BARTER_MODE,
+    Game_Modes.MONEY_MODE_INTRO,
+    Game_Modes.MONEY_MODE,
+    Game_Modes.ENDING,
+    Game_Modes.RESET
+)
 
 class Sound_Motif_Names: # named after emotional experiences
     LOSS = "loss"

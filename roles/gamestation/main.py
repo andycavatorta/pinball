@@ -23,6 +23,13 @@ import roles.gamestation.lighting as lighting
 
 GPIO.setmode(GPIO.BCM)
 
+###########################
+# S Y S T E M   T E S T S #
+###########################
+
+# Check communication with TLC5947
+# Check MPF Bridge
+# measure 48V current
 
 #################
 # HARDWARE INIT #

@@ -1,0 +1,74 @@
+#waiting
+
+
+#attration mode: 
+    ready lights blink in a cycle around gamestations.
+    quiet / sparse motif plays
+
+#first ready light pushed: 
+    ready light on
+    sound motif switches to countdown
+    countdown starts on overhead displays
+    flipper buttons light up
+    flippers activated
+
+#next ready lights pushed:
+    ready lights on
+    sound motif intensifies
+
+#countdown ends:
+    lights: instructions for individual game light up under surface
+
+#ball launches into game:
+    players play for n seconds
+    balls accumulate as goods
+
+#one resource ball disappers in two games
+    one flipper deactivates
+    lights: instruction for trading appear
+    barter buttons light up
+
+#users negotiate trade verbally
+    players push barter buttons 1 time each
+    one good is sent to exchange matrix
+
+    if the corresponding good enters the matrix within x seconds
+        goods are exchanged, with corresponding good landing in player's larder
+    else 
+        goods are returned
+
+
+
+18 computers
+6 servo motors
+140 sensors
+105 solenoid actuators
+700 channels of lighting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo apt-get install avahi-daemon
+sudo insserv avahi-daemon
+sudo /etc/init.d/avahi-daemon restart
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,108 @@
+
+@import url(http://fonts.googleapis.com/css?family=Jura);
+@import url(http://fonts.googleapis.com/css?family=Play);
+
+svg {
+  position: absolute;
+}
+#top_level {
+  top:0px;
+  height:0px;
+  height:3800px;
+  width:2100px;
+}
+#background_rect{
+  top:0px;
+  left:0px;
+  fill:#202040;
+  width:3800px;
+  height:2100px;
+}
+.title_text{
+  font-family: Jura;
+  font-size: 36px;
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+#mode_title{
+  transform: translate(50px, 50px);
+}
+#high_power_title{
+  transform: translate(2650px,50px);
+}
+
+.carousel_segment{
+  fill:none;
+  stroke:#ffffff;
+  stroke-width:0.228491;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+}
+
+.lit_or_present{
+  fill:#aaaaaa;
+}
+
+.background_lines{
+  stroke-width:0.2;
+  opacity: 1;
+  filter: blur(.25px);
+}
+
+.status_block_name_value{
+  width:180px;
+  height:10px;
+  font-family: Jura;
+  font-weight: lighter;
+  font-size: 20px;
+  fill: #cccccc;
+  alignment-baseline: hanging;
+}
+.status_block_name{
+  width:100%;
+  text-anchor: start;
+}
+.status_block_value{
+  width:180px;
+}
+
+.status_block{
+  width:180px;
+  fill: none;
+}
+.status_block_rectangle{
+  top: 0px;
+  left: 0px;
+  width:100%;
+  height:100%;
+}
+
+.status_block_title{
+  width:180px;
+  height:20px;
+  font-family: Jura;
+  font-size: 24px;
+  fill: #cccccc;
+  transform: translate(5px, 5px);
+  alignment-baseline: hanging;
+}
+
+.status_block_title{
+  width:180px;
+  height:20px;
+  font-family: Jura;
+  font-size: 24px;
+  fill: #cccccc;
+  transform: translate(5px, 5px);
+  alignment-baseline: hanging;
+}
+
+.amps_block_value{
+  width:180px;
+  height:40px;
+  font-family: Jura;
+  font-size: 34px;
+  fill: #cccccc;
+  transform: translate(5px, 30px);
+  alignment-baseline: hanging;
+}
