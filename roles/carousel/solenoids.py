@@ -19,6 +19,7 @@ class Solenoids(threading.Thread):
         for cycle in range(number_of_cycles):
             for fruit_id in range(0,5):
                 self.add_to_queue("eject",fruit_id)
+                time.sleep(.5)
 
     def add_to_queue(self, action, fruit_id = None):
         self.queue.put((action, fruit_id))
