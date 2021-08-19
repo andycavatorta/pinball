@@ -20,20 +20,3 @@ class Solenoids(threading.Thread):
 
     def add_to_queue(self, action, fruit_id = None):
         self.queue.put((action, fruit_id))
-
-    def run(self):
-        while True:
-            try:
-                action, fruit_id = self.queue.get(True)
-                print(action, fruit_id)
-                if action == "eject":
-                    solenoid_pin = self.solenoid_pins[fruit_id]
-                    try:
-                        GPIO.output(solenoid_pin, GPIO.HIGH)
-                        time.sleep(self.eject_pulse_time)
-                        GPIO.output(solenoid_pin, GPIO.LOW)
-                    except:
-                        GPIO.output(solenoid_pin, GPIO.LOW)
-                if action == "all_off":
-                    for solenoid_pin in self.solenoid_pins:
-                        GPIO.output(solenoid_pin, GPIO.LOW)
