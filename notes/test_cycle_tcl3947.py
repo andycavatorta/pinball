@@ -5,7 +5,7 @@ import adafruit_tlc5947
 import time
     
 spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
-latch = digitalio.DigitalInOut(board.D5)
+latch = digitalio.DigitalInOut(board.D26)
 number_of_boards = 3
 number_of_channels = number_of_boards * 24
 tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=number_of_boards)

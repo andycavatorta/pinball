@@ -242,8 +242,17 @@ class MPF_Bridge(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print("got except90j")
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-"""
-class Safety_Enable(threading.Thread):
+
+
+
+class System_Tests(threading.Thread):
+    """
+    tests performed:
+        read INA260
+        write to TLC5947
+        read socket messages from P3-ROC
+        
+    """
     def __init__(self, tb):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
@@ -258,7 +267,9 @@ class Safety_Enable(threading.Thread):
             #self.queue.get(True)
             self.tb.publish("deadman", "safe")
             time.sleep(1)
-"""
+
+
+
 class Main(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -276,8 +287,22 @@ class Main(threading.Thread):
         self.mpf_bridge = MPF_Bridge(self.tb)
 
         self.queue = queue.Queue()
-        self.tb.subscribe_to_topic("set_game_mode")
-        self.tb.publish("connected", True)
+        self.tb.subscribe_to_topic("gamestation_all_off")
+        self.tb.subscribe_to_topic("gamestation_get_amps")
+        self.tb.subscribe_to_topic("get_system_tests")
+        self.tb.subscribe_to_topic("button_active_left_flipper")
+        self.tb.subscribe_to_topic("button_active_trade_goods")
+        self.tb.subscribe_to_topic("button_active_start")
+        self.tb.subscribe_to_topic("button_active_trade_money")
+        self.tb.subscribe_to_topic("button_active_right_flipper")
+        self.tb.subscribe_to_topic("playfield_lights")
+        self.tb.subscribe_to_topic("left_stack_launch")
+        self.tb.subscribe_to_topic("right_stack_launch")
+        self.tb.subscribe_to_topic("left_stack_detect_ball")
+        self.tb.subscribe_to_topic("right_stack_detect_ball")
+        self.tb.subscribe_to_topic("gutter_detect_ball")
+        self.tb.subscribe_to_topic("gutter_launch")
+        #self.tb.publish("connected", True)
         self.start()
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -290,50 +315,50 @@ class Main(threading.Thread):
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
-    def set_game_mode(self, mode):
-        if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
-            self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-            pass # peripheral power should be off during this mode
-        if mode == self.game_modes.RESET:
-            self.game_mode = self.game_modes.RESET
-            self.mpf_bridge.set_game_mode = self.game_modes.RESET
-            time.sleep(6)
-            self.tb.publish("ready_state",True)
-
-        if mode == self.game_modes.ATTRACTION:
-            self.game_mode = self.game_modes.ATTRACTION
-        # waits for press of start button 
-
-        if mode == self.game_modes.COUNTDOWN:
-            #self.player.play("countdown_mode")
-            print("In countdown")
-        """
-        if mode == self.game_modes.BARTER_MODE_INTRO:
-            self.player.play("barter_mode_intro")
-        if mode == self.game_modes.BARTER_MODE:
-            self.player.play("barter_mode")
-        if mode == self.game_modes.MONEY_MODE_INTRO:
-            self.player.play("money_mode_intro")
-        if mode == self.game_modes.MONEY_MODE:
-            self.player.play("money_mode")
-        if mode == self.game_modes.ENDING:
-            self.player.play("closing_theme")
-        if mode == self.game_modes.RESET:
-            self.player.play("reset")
-        if mode == self.game_modes.ERROR:
-            pass
-        """
-
     def run(self):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'set_game_mode':
-                    self.set_game_mode(message)
+                if topic == b'gamestation_all_off':
+                    pass
+                if topic == b'gamestation_get_amps':
+                    pass
+                if topic == b'get_system_tests':
+                    pass
+                if topic == b'button_active_left_flipper':
+                    pass
+                if topic == b'button_active_trade_goods':
+                    pass
+                if topic == b'button_active_start':
+                    pass
+                if topic == b'button_active_trade_money':
+                    pass
+                if topic == b'button_active_right_flipper':
+                    pass
+                if topic == b'playfield_lights':
+                    pass
+                if topic == b'left_stack_launch':
+                    pass
+                if topic == b'right_stack_launch':
+                    pass
+                if topic == b'left_stack_detect_ball':
+                    pass
+                if topic == b'right_stack_detect_ball':
+                    pass
+                if topic == b'gutter_detect_ball':
+                    pass
+                if topic == b'gutter_launch':
+                    pass
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
 main = Main()
 
+        
+        
+        
+        
+        
+        
+        
