@@ -1,3 +1,22 @@
+import adafruit_tlc5947
+import board
+import busio
+import digitalio
+import importlib
+import os
+import queue
+import RPi.GPIO as GPIO
+import sys
+import threading
+import time
+import traceback
+
+app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+sys.path.append(os.path.split(app_path)[0])
+
+import settings
+
+
 
 class LED_Group(threading.Thread):
     class action_times():
