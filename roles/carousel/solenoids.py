@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import threading
 
 class Solenoids(threading.Thread):
     def __init__(self):
@@ -20,3 +21,9 @@ class Solenoids(threading.Thread):
 
     def add_to_queue(self, action, fruit_id = None):
         self.queue.put((action, fruit_id))
+
+    def run(self):
+        while True:
+            try:
+                action, fruit_id = self.queue.get(True)
+                print(action, fruit_id)
