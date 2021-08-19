@@ -27,3 +27,15 @@ class Solenoids(threading.Thread):
             try:
                 action, fruit_id = self.queue.get(True)
                 print(action, fruit_id)
+                if action == "eject":
+                    solenoid_pin = self.solenoid_pins[fruit_id]
+                    try:
+                        GPIO.output(solenoid_pin, GPIO.HIGH)
+                        time.sleep(self.eject_pulse_time)
+                        GPIO.output(solenoid_pin, GPIO.LOW)
+                    finally:
+                        GPIO.output(solenoid_pin, GPIO.LOW)
+                if action == "all_off":
+                    for solenoid_pin in self.solenoid_pins:
+                        GPIO.output(solenoid_pin, GPIO.LOW)
+
