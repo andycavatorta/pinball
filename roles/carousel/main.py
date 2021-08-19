@@ -21,8 +21,8 @@ from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
 
-import roles.carousel.lights.Lights as Lights
-import roles.carousel.solenoids.Solenoids as Solenoids
+from roles.carousel.lights import Lights as Lights
+from roles.carousel.solenoids import Solenoids as Solenoids
 
 
 GPIO.setmode(GPIO.BCM)
