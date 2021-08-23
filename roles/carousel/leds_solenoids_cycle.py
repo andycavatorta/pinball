@@ -90,6 +90,7 @@ while True:
             pins[led].duty_cycle = 1000
         for solenoid_channels in solenoid_map[fruit_id]:
             print(solenoid_channels)
+            print("")
             #for solenoid_channel in solenoid_channels:
             #    solenoids.add_to_queue("eject",solenoid_channel)
 
