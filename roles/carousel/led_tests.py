@@ -42,6 +42,6 @@ while True:
     for channel in range(number_of_channels):
         pins[channel].duty_cycle = 3000
         print("channel=", channel)
-        time.sleep(.2)
+        time.sleep(.05)
         pins[channel].duty_cycle = 0
 
