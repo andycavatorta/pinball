@@ -96,4 +96,5 @@ while True:
         time.sleep(.4)
         for led in led_groups[fruit_id]:
             pins[led].duty_cycle = 0
+    time.sleep(5)
 
