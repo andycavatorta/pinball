@@ -20,9 +20,13 @@ pins = [0]*(number_of_channels)
 for channel in range(len(pins)):
     pins[channel] = tlc5947.create_pwm_out(channel)
 
+led_groups = [
+    
+]
+
 while True:
     for channel in range(number_of_channels):
-        pins[channel].duty_cycle = 20000
+        pins[channel].duty_cycle = 10000
         print("channel=", channel)
         time.sleep(.2)
         pins[channel].duty_cycle = 0
