@@ -94,6 +94,6 @@ while True:
             #    solenoids.add_to_queue("eject",solenoid_channel)
 
         time.sleep(.4)
-        for led in led_group:
+        for led in led_groups[fruit_id]:
             pins[led].duty_cycle = 0
 
