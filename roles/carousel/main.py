@@ -20,10 +20,8 @@ from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
-
 from roles.carousel.lights import Lights as Lights
 from roles.carousel.solenoids import Solenoids as Solenoids
-
 
 GPIO.setmode(GPIO.BCM)
 
@@ -70,42 +68,15 @@ class Game_Mode():
 # set up references to motors
 # set up proxies for carousels?
 
-
-class Carousel(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.lights = Lights()
-        self.sensor_pins = [0,1,2,3,4,5] # todo: update late
-        self.solenoid_pins = [6,7,8,9,10] # todo: update late
-        for sensor_pin in self.sensor_pins:
-            GPIO.setup(sensor_pin, GPIO.IN)
-        for solenoid_pin in self.solenoid_pins:
-            GPIO.setup(solenoid_pin, GPIO.OUT)
-
-    def eject_ball(self, fruit_number):
-        GPIO.output(self.cs, GPIO.HIGH)
-        time.sleep(0.1)
-        GPIO.output(self.cs, GPIO.LOW)
-        GPIO.output(self.cs, GPIO.LOW)
-
-    def detect_ball(self, fruit_number):
-        return GPIO.input(fruit_number)
-
-carousel = Carousel()
-
 ################################################
 # HARDWARE SEMANTICS (flatter map of callable methods) #
 ################################################
 
 # carousel class is pretty flat already.  Use as-is.
 
-
 #############################################
 # ROUTINES (time, events, multiple systems) # 
 #############################################
-
-
 
 #############################################
 
@@ -128,10 +99,14 @@ class Main(threading.Thread):
             self.exception_handler
         )
         self.deadman = deadman.Deadman_Switch(self.tb)
-        self.game_modes = settings.Game_Modes()
-        self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        self.tb.subscribe_to_topic("set_game_mode")
+        self.solenoids = Solenoids()
         self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("carousel_all_off")
+        self.tb.subscribe_to_topic("carousel_detect_ball")
+        self.tb.subscribe_to_topic("carousel_get_amps")
+        self.tb.subscribe_to_topic("carousel_lights")
+        self.tb.subscribe_to_topic("eject_ball")
+        self.tb.subscribe_to_topic("get_system_tests")
         self.start()
 
     def status_receiver(self, msg):
@@ -144,36 +119,23 @@ class Main(threading.Thread):
         print("network_status_change_handler", status, hostname)
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
-    def set_game_mode(self, mode):
-        if mode == self.game_modes.WAITING_FOR_CONNECTIONS:
-            print("Mode Attraction")
-            self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-            pass # peripheral power should be off during this mode
-        if mode == self.game_modes.RESET:
-            print("Mode : Reset ")
-            
-            self.game_mode = self.game_modes.RESET
-            time.sleep(6)
-            self.tb.publish("ready_state",True)
-            print("Done with reset, initiating attraction")
-
-        if mode == self.game_modes.ATTRACTION:
-            print("Mode Attraction")
-            self.game_mode = self.game_modes.ATTRACTION
-
     def run(self):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'set_game_mode':
-                    self.set_game_mode(message)
-                if topic == b'detect_ball':
-                    carousel.detect_ball(message)
+                if topic == b'carousel_all_off':
+                    self.solenoids.add_to_queue('all_off', None) 
+                if topic == b'carousel_detect_ball':
+                    pass
+                if topic == b'carousel_get_amps':
+                    pass
+                if topic == b'carousel_lights':
+                    pass
                 if topic == b'eject_ball':
-                    carousel.detect_ball(message)
-                if topic == b'play_light_animation':
-                    carousel.lights.led_groups[message[0]].actions[message[1]]()
+                    self.solenoids.add_to_queue('eject_ball', message) # message is fruit_id between 0 and 4
+                if topic == b'get_system_tests':
+                    pass
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
