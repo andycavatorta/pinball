@@ -75,24 +75,23 @@ led_groups = [
 
 ]
 
-solenoid_map = [
+solenoid_map = (
     [1],
     [0,1,2,3,4],
     [2],
     [3],
     [4],
     [0],
-]
+)
 
 while True:
     for fruit_id in range(0,6):
         for led in led_groups[fruit_id]:
             pins[led].duty_cycle = 1000
         print("")
-        for solenoid_channels in solenoid_map[fruit_id]:
-            print(solenoid_channels, fruit_id)
-            #for solenoid_channel in solenoid_channels:
-            #    solenoids.add_to_queue("eject",solenoid_channel)
+        for solenoid_channel in solenoid_map[fruit_id]:
+            print(solenoid_channel, fruit_id)
+            solenoids.add_to_queue("eject",solenoid_channel)
 
         time.sleep(.4)
         for led in led_groups[fruit_id]:
