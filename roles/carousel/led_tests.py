@@ -26,7 +26,7 @@ led_groups = [
 
 while True:
     for channel in range(number_of_channels):
-        pins[channel].duty_cycle = 5000
+        pins[channel].duty_cycle = 4000
         print("channel=", channel)
         time.sleep(.2)
         pins[channel].duty_cycle = 0
