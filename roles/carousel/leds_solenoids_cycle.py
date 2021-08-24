@@ -87,7 +87,7 @@ solenoid_map = (
 while True:
     for fruit_id in range(0,6):
         for led in led_groups[fruit_id]:
-            pins[led].duty_cycle = 1000
+            pins[led].duty_cycle = 40000
         print("")
         for solenoid_channel in solenoid_map[fruit_id]:
             print(solenoid_channel, fruit_id)
@@ -96,5 +96,5 @@ while True:
         time.sleep(.4)
         for led in led_groups[fruit_id]:
             pins[led].duty_cycle = 0
-    time.sleep(5)
+    time.sleep(15)
 
