@@ -35,7 +35,7 @@ led_groups = [
 
 ]
 
-duty_cycle_0 = 1000
+duty_cycle_low = 1000
 duty_cycle_med = 10000
 duty_cycle_hi = 20000
 
