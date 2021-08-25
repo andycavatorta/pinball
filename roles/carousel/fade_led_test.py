@@ -35,9 +35,22 @@ led_groups = [
 
 ]
 
+duty_cycle_low = 5000
+duty_cycle_med = 10000
+duty_cycle_hi = 50000
+
+
 while True:
     for radius in range(10):
-        pins[outer_radius[radius-1]].duty_cycle = 0
-        pins[inner_radius[radius-1]].duty_cycle = 0
-        pins[outer_radius[radius]].duty_cycle = 40000
-        pins[inner_radius[radius]].duty_cycle = 40000
+        pins[outer_radius[radius-3]].duty_cycle = duty_cycle_low
+        pins[inner_radius[radius-3]].duty_cycle = duty_cycle_low
+
+        pins[outer_radius[radius-2]].duty_cycle = duty_cycle_med
+        pins[inner_radius[radius-2]].duty_cycle = duty_cycle_med
+
+        pins[outer_radius[radius-1]].duty_cycle = duty_cycle_hi
+        pins[inner_radius[radius-1]].duty_cycle = duty_cycle_hi
+
+        pins[outer_radius[radius]].duty_cycle = duty_cycle_med
+        pins[inner_radius[radius]].duty_cycle = duty_cycle_med
+        time.sleep(0.1)
