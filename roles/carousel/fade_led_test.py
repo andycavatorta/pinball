@@ -21,9 +21,9 @@ for channel in range(len(pins)):
     pins[channel] = tlc5947.create_pwm_out(channel)
 
 
-outer_radius = [3, 0, 11, 8, 15, 12, 19, 16, 23, 20]
+outer_radius = [3, 0, 11, 8, 15, 12, 16, 19, 20, 23]
 
-inner_radius = [2, 1, 10, 9, 14, 13, 18, 17, 22, 21]
+inner_radius = [2, 1, 10, 9, 14, 13, 17, 18, 21, 22]
 
 center_group = [4,5,6,7]
 
@@ -75,5 +75,6 @@ while True:
         for pin in center_group:
             pins[pin].duty_cycle = throb_step
         time.sleep(0.05)
+    time.sleep(0.1)
 
 
