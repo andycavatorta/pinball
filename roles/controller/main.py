@@ -23,16 +23,16 @@ import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.sensors import ina260_current_sensor
 
-import roles.controller.tests as tests
+#import roles.controller.tests as tests
 
-import roles.pinball.Safety_Enable as Safety_Enable
-import roles.pinball.Safety_Enable as Safety_Enable
+import roles.controller.Safety_Enable as Safety_Enable
+import roles.controller.Hosts as Hosts
 
-import roles.pinball.Controller_Tests as Controller_Tests
+#import roles.pinball.Controller_Tests as Controller_Tests
 
-import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
-import roles.pinball.Mode_System_Tests as Mode_System_Tests
-import roles.pinball.Mode_Reset as Mode_Reset
+#import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
+#import roles.pinball.Mode_System_Tests as Mode_System_Tests
+#import roles.pinball.Mode_Reset as Mode_Reset
 
 ##################################################
 # LOGGING AND REPORTING #
@@ -139,7 +139,7 @@ class Main(threading.Thread):
         self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable(self.tb)
 
-        self.controller_tests = Controller_Tests(self.tb, settings, self.carousel_current_sensor)
+        #self.controller_tests = Controller_Tests(self.tb, settings, self.carousel_current_sensor)
         self.queue = queue.Queue()
 
         self.tb.subscribe_to_topic("connected")
@@ -221,8 +221,9 @@ class Main(threading.Thread):
                     pass
                 if topic==b"respond_computer_details":
                     # update http_server?
-                    if destination == "pinballmatrix":
-                       self.hosts.pinballmatrix.set_computer_details(message)
+                    pass
+                    #if destination == "pinballmatrix":
+                    #   self.hosts.pinballmatrix.set_computer_details(message)
                 if topic==b"respond_24v_current":
                     pass
                 if topic==b"respond_amt203_present":
