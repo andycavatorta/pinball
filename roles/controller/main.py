@@ -139,7 +139,6 @@ class Main(threading.Thread):
         self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable(self.tb)
 
-        #self.controller_tests = Controller_Tests(self.tb, settings, self.carousel_current_sensor)
         self.queue = queue.Queue()
 
         self.tb.subscribe_to_topic("connected")
@@ -206,7 +205,7 @@ class Main(threading.Thread):
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
         # update self.hosts[hostname].set_connected() 
-        self.add_to_queue(topic, message, origin, destination)
+        # self.add_to_queue(topic, message, origin, destination)
     def add_to_queue(self, topic, message, origin, destination):
 
         # if topic=system_tests, update self.hosts[hostname].set_connected() 
