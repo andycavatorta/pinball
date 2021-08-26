@@ -290,7 +290,7 @@ class Display(Host):
     def request_score(self, score_name):
         self.current_score_name = score_name
         self.tb.publish(topic="play_score",message=score_name,destination=self.hostname)
-    def get_score(self)
+    def get_score(self):
         return self.current_score_name
 
     def request_phrase(self, phrase_key):
