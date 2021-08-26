@@ -57,7 +57,7 @@ class Main(threading.Thread):
         self.hostname = self.tb.get_hostname()
         self.deadman = deadman.Deadman_Switch(self.tb)
 
-        self.current_sensor = ina260_current_sensor.INA260()
+        #self.current_sensor = ina260_current_sensor.INA260()
 
         self.absolute_encoders = [
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=8),
