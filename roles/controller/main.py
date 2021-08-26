@@ -8,7 +8,6 @@ There are three types of host states
 """
 
 import importlib
-import mido
 import os
 import queue
 import RPi.GPIO as GPIO
@@ -22,56 +21,18 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
+from thirtybirds3.adapters.sensors import ina260_current_sensor
+
 import roles.controller.tests as tests
 
-###########################
-# S Y S T E M   T E S T S #
-###########################
+import roles.pinball.Safety_Enable as Safety_Enable
+import roles.pinball.Safety_Enable as Safety_Enable
 
-# measure 24V current for SDC2160s
+import roles.pinball.Controller_Tests as Controller_Tests
 
-##############################
-# S A F E T Y  S Y S T E M S #
-##############################
-
-class Safety_Enable(threading.Thread):
-    def __init__(self, tb):
-        threading.Thread.__init__(self)
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(settings.Deadman.GPIO, GPIO.OUT )
-        GPIO.output(settings.Deadman.GPIO, GPIO.LOW)
-        self.enabled = False # used for detecting when state changes
-        self.queue = queue.Queue()
-        self.tb = tb
-        self.required_hosts = set(settings.Roles.hosts.keys())
-        self.required_hosts.remove("controller")
-        self.hosts_alive = set()
-        self.start()
-
-    def add_to_queue(self, topic, message, origin, destination):
-        self.queue.put((topic, message, origin, destination))
-
-    def run(self):
-        while True:
-            time.sleep(settings.Deadman.DURATION)
-            try:
-                while True:
-                    deadman_message = self.queue.get(False)
-                    topic, message, origin, destination = deadman_message
-                    self.hosts_alive.add(origin)
-            except queue.Empty:
-                pass
-            missing_hosts = self.required_hosts.difference(self.hosts_alive)
-            print("missing_hosts=",missing_hosts)
-            #if len(missing_hosts) > 0:
-            #    print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
-            if self.required_hosts.issubset(self.hosts_alive):
-                if not self.enabled: # if changing state
-                    GPIO.output(settings.Deadman.GPIO, GPIO.HIGH)
-                    time.sleep(settings.Deadman.DURATION)
-                    GPIO.output(settings.Deadman.GPIO, GPIO.LOW)
-                    #self.enabled = False
-            self.hosts_alive = set()
+import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
+import roles.pinball.Mode_System_Tests as Mode_System_Tests
+import roles.pinball.Mode_Reset as Mode_Reset
 
 ##################################################
 # LOGGING AND REPORTING #
@@ -86,127 +47,6 @@ class Safety_Enable(threading.Thread):
 ##########
 # STATES #
 ##########
-
-class Mode_Waiting_For_Connections(threading.Thread):
-    """
-    In Waiting_For_Connections mode, the controller is waiting until Thirtybirds 
-    establishes connections from all hosts.
-    """
-    def __init__(self,tb, host_states):
-        threading.Thread.__init__(self)
-        self.tb = tb 
-        self.host_states = host_states
-        # self.required_hosts = set(settings.Roles.hosts.keys())
-        self.queue = queue.Queue()
-        self.start()
-    def add_to_queue(self, topic, message, origin, destination):
-        """
-        receives messages about thirtybirds connections initially received by network_message_handler
-        """
-        self.queue.put((topic, message, origin, destination))
-    def run(self):
-        while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True) #we may not need these values. Just the event is may be important.
-                all_hosts_are_connected, connected_hosts_d = self.tb.check_connections()
-                # loop through self.required_hosts
-                    # set host_states[hostname].set_connected() to connected_hosts_d[hostname]
-                # ^^^ this could all be done in main. gotta do almost everything in main or in mode classes.
-                # if all_hosts_are_connected == True
-                    # if current mode is settings.Game_Modes.WAITING_FOR_CONNECTIONS
-                        # transition to settings.Game_Modes.SYSTEM_TESTS
-                # else
-                    # if current mode is not settings.Game_Modes.WAITING_FOR_CONNECTIONS
-                        # log loss of connection
-                        # transition to settings.Game_Modes.WAITING_FOR_CONNECTIONS
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
-class Mode_System_Tests(threading.Thread):
-    """
-    In SYSTEM_TESTS mode, the controller 
-        1) checks if System_Enable is on, implying deadman messages from all hosts are present.
-        2) sends a get_system_tests request to each host
-        3) waits to receive responses from each host
-        4) verifies that all tests are passed.
-    """
-    def __init__(self,tb, host_states):
-        threading.Thread.__init__(self)
-        self.tb = tb 
-        self.host_states = host_states
-        self.queue = queue.Queue()
-        self.start()
-    def add_to_queue(self, topic, message, origin, destination):
-        """
-        receives messages about host system_tests
-        """
-        self.queue.put((topic, message, origin, destination))
-    def run(self):
-        while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True) #we may not need these values. Just the event is may be important.
-                # if any system tests return False, stop Safety_Enable, cutting higher power, write to log
-                # if any tests do not return before timestamp,, stop Safety_Enable, cutting higher power, write to log
-                # if all tests return True before timestamp, 
-                    # if inventory_complete == True
-                        # transition to settings.Game_Modes.RESET
-                    # else
-                        # transition to settings.Game_Modes.INVENTORY
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
-class Mode_Reset(threading.Thread):
-    """
-    In RESET mode, the controller returns all balls to starting state.
-        balls are exchanged via carousels to equalize total number of balls per gamestation
-        in final state
-            left stack is empty
-            right stack has pre-defined max number of balls
-            all carousels pockets are filled
-        all carousels are in correct positions
-
-    """
-    def __init__(self,tb, host_states):
-        threading.Thread.__init__(self)
-        self.tb = tb 
-        self.host_states = host_states
-        self.queue = queue.Queue()
-        self.start()
-    def calculate_steps(self):
-        """
-        How to represent the steps?
-            topic + message would be good because it's not an intermediate system
-        Where do movements get verified?  
-            Should be in a whole-matrix-exchange system including the matrix, carousels, and stacks.
-        Phase 1: 
-            fill all carousels 
-        Phase 2: 
-            fill the right stack until full or until all gamestation balls are used
-        Phase 3: 
-            move excess balls in left tubes through matrix to unfilled right tubes of other gamestations
-            what is the algorithm?
-        """
-    def add_to_queue(self, topic, message, origin, destination):
-        """
-        receives messages about stacks, carousels, matrix
-        """
-        self.queue.put((topic, message, origin, destination))
-    def run(self):
-        while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True) #we may not need these values. Just the event is may be important.
-                # if any system tests return False, stop Safety_Enable, cutting higher power, write to log
-                # if any tests do not return before timestamp, stop Safety_Enable, cutting higher power, write to log
-                # if all tests return True before timestamp, 
-                    # if inventory_complete == True
-                        # transition to settings.Game_Modes.RESET
-                    # else
-                        # transition to settings.Game_Modes.INVENTORY
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 class Game_Mode_Manager():
     """ 
@@ -282,346 +122,6 @@ class Game_Mode_Manager():
 # MAIN, TB, STATES, AND TOPICS #
 ##################################################
 
-class Host:
-    def __init__(self, hostname):
-        self.hostname = hostname
-        self.connected = False
-        self.ready = False
-        self.last_deadman = 0 #unix timestamp
-    def set_connected(self, connected):
-        self.connected = connected
-    def get_connected(self, connected):
-        return self.connected
-    def set_ready(self, ready):
-        self.ready = ready
-    def get_ready(self, ready):
-        return self.ready
-    def set_last_deadman(self, last_deadman):
-        self.last_deadman = last_deadman
-    def get_connected(self, last_deadman):
-        return self.last_deadman
-
-class Hosts:
-    def __init__(self):
-        self.controller = Host("controller")
-        self.pinball1game = Host("pinball1game")
-        self.pinball2game = Host("pinball2game")
-        self.pinball3game = Host("pinball3game")
-        self.pinball4game = Host("pinball4game")
-        self.pinball5game = Host("pinball5game")
-        self.pinball1display = Host("pinball1display")
-        self.pinball2display = Host("pinball2display")
-        self.pinball3display = Host("pinball3display")
-        self.pinball4display = Host("pinball4display")
-        self.pinball5display = Host("pinball5display")
-        self.pinballmatrix = Host("pinballmatrix")
-        self.carousel1 = Host("carousel1")
-        self.carousel2 = Host("carousel2")
-        self.carousel3 = Host("carousel3")
-        self.carousel4 = Host("carousel4")
-        self.carousel5 = Host("carousel5")
-        self.carouselcenter = Host("carouselcenter")
-
-class Display():
-    def __init__(self, tb, fruit_id):
-        self.td = td
-        self.fruit_id = fruit_id
-    def play_score(self):
-        pass
-    def set_phrase(self):
-        pass
-    def set_number(self):
-        pass
-    def display_all_off(self):
-        pass
-    def display_get_amps(self):
-        pass
-
-class Carousel():
-    def __init__(self, tb, fruit_id):
-        self.td = td
-        self.fruit_id = fruit_id
-        self.carousel_measured_position = 0
-        self.carousel_target_position = 0
-        self.carousel_target_reached = False
-        self.carousel_ball_1 = False
-        self.carousel_ball_2 = False
-        self.carousel_ball_3 = False
-        self.carousel_ball_4 = False
-        self.carousel_ball_5 = False
-    def get_carousel_measured_position(self, carousel_measured_position):
-        return self.carousel_measured_position    
-    def set_carousel_measured_position(self, carousel_measured_position):
-        self.carousel_measured_position = carousel_measured_position
-    def get_carousel_target_position(self, carousel_target_position):
-        return self.carousel_target_position    
-    def set_carousel_target_position(self, carousel_target_position):
-        self.carousel_target_position = carousel_target_position
-    def get_carousel_target_reached(self, carousel_target_reached):
-        return self.carousel_target_reached    
-    def set_carousel_target_reached(self, carousel_target_reached):
-        self.carousel_target_reached = carousel_target_reached
-    def get_carousel_ball_1(self, carousel_ball_1):
-        return self.carousel_ball_1    
-    def set_carousel_ball_1(self, carousel_ball_1):
-        self.carousel_ball_1 = carousel_ball_1
-    def get_carousel_ball_2(self, carousel_ball_2):
-        return self.carousel_ball_2    
-    def set_carousel_ball_2(self, carousel_ball_2):
-        self.carousel_ball_2 = carousel_ball_2
-    def get_carousel_ball_3(self, carousel_ball_3):
-        return self.carousel_ball_2    
-    def set_carousel_ball_3(self, carousel_ball_3):
-        self.carousel_ball_3 = carousel_ball_3
-    def get_carousel_ball_4(self, carousel_ball_4):
-        return self.carousel_ball_3    
-    def set_carousel_ball_4(self, carousel_ball_4):
-        self.carousel_ball_4 = carousel_ball_4
-    def get_carousel_ball_5(self, carousel_ball_5):
-        return self.carousel_ball_5    
-    def set_carousel_ball_5(self, carousel_ball_5):
-        self.carousel_ball_5 = carousel_ball_5
-
-class Pinball():
-    def __init__(self, tb, fruit_id, hosts):
-        self.td = td
-        self.fruit_id = fruit_id
-        self.hosts = hosts
-        self.measured_amps = -1
-        self.left_stack_inventory = -1
-        self.right_stack_inventory = -1
-        self.gutter_ball_detected = False
-        self.barter_points = -1
-        self.money_points = -1
-    def get_measured_amps(self, measured_amps):
-        return self.measured_amps    
-    def set_measured_amps(self, measured_amps):
-        self.measured_amps = measured_amps        
-    def get_left_stack_inventory(self, left_stack_inventory):
-        return self.left_stack_inventory    
-    def set_left_stack_inventory(self, left_stack_inventory):
-        self.left_stack_inventory = left_stack_inventory
-    def get_right_stack_inventory(self, right_stack_inventory):
-        return self.right_stack_inventory    
-    def set_right_stack_inventory(self, right_stack_inventory):
-        self.right_stack_inventory = right_stack_inventory
-    def get_gutter_ball_detected(self, gutter_ball_detected):
-        return self.gutter_ball_detected    
-    def set_gutter_ball_detected(self, gutter_ball_detected):
-        self.gutter_ball_detected = gutter_ball_detected
-    def get_barter_points(self, barter_points):
-        return self.barter_points   
-    def set_barter_points(self, barter_points):
-        self.barter_points = barter_points
-    def get_money_points(self, money_points):
-        return self.money_points    
-    def set_money_points(self, money_points):
-        self.money_points = money_points
-    def gamestation_all_off(self, bool):
-        pass
-    def gamestation_get_amps(self):
-        pass
-    def button_active_left_flipper(self):
-        pass
-    def button_active_trade_goods(self):
-        pass
-    def button_active_start(self):
-        pass
-    def button_active_trade_money(self):
-        pass
-    def button_active_right_flipper(self):
-        pass
-    def playfield_lights(self, group, animation):
-        pass
-    def left_stack_launch(self):
-        pass
-    def right_stack_launch(self):
-        pass
-    def left_stack_detect_ball(self):
-        pass
-    def stack_detect_ball(self):
-        pass
-    def gutter_detect_ball(self):
-        pass
-    def gutter_launch(self):
-        pass
-
-"""
-class Gamestations():
-    def __init__(self):
-        self.gamestation_1 = Gamestation(1,["pinball1game","pinball1display","carousel1"]),
-        self.gamestation_2 = Gamestation(2,["pinball2game","pinball2display","carousel2"]),
-        self.gamestation_3 = Gamestation(3,["pinball3game","pinball3display","carousel3"]),
-        self.gamestation_4 = Gamestation(4,["pinball4game","pinball4display","carousel4"]),
-        self.gamestation_5 = Gamestation(5,["pinball5game","pinball5display","carousel5"])
-"""
-
-class Matrix():
-    def __init__(self, tb, fruit_id, hosts):
-        """
-        This class choreographs the passing of balls through stacks, carousels, and the pinball matrix.
-        actions:
-        expire ball to right stack
-            0:
-            lights for fruit x: energize animation
-            1:
-            lights for fruit x: blink animation
-            sounds: something in sync with blink.  how to do that?
-            command motor to rotate so fruit x aligns with right stack
-            2: 
-            confirm motor position
-                if not?
-            3: 
-            turn on solenoid x for n ms
-            sound: loss sound
-            4: 
-            confirm sensor x reads negative
-            rotate carousel so fruit x faces player
-            confirm motor position
-                if not?
-
-        expire ball to left stack
-            0:
-            lights for fruit x: energize animation
-            1:
-            lights for fruit x: blink animation
-            sounds: something in sync with blink.  how to do that?
-            command motor to rotate so fruit x aligns with left stack
-            2: 
-            confirm motor position
-                if not?
-            3: 
-            turn on solenoid x for n ms
-            sound: loss sound
-            4: 
-            confirm sensor x reads negative
-            rotate carousel so fruit x faces player
-            confirm motor position
-                if not?
-
-        add money point (transfer ball from left stack to right stack in same game)
-            0:
-            sound: anticipation sound
-            lights: playfield animation?
-            lights: self fruit on
-            lights: right arrow: energize animaition
-            rotate motor: self fruit to right stack
-            1: 
-            confirm motor position
-                if not?
-            2: 
-            eject ball
-            sound: win sound
-            lights: self fruit off
-            3: 
-            rotate motor: self fruit to left stack
-            4: 
-            confirm motor position
-                if not?
-            5: 
-            launch ball from left stack
-            6: 
-            sensor: confirm presence of ball
-                if not?
-            7:
-            lights: self fruit on
-            8:
-            rotate motor: self fruit to center
-            9:
-            confirm motor position
-                if not?
-            
-        add money point (transfer ball from right stack to left stack in same game)
-            0:
-            sound: anticipation sound
-            lights: playfield animation?
-            lights: self fruit on
-            lights: right arrow: energize animaition
-            rotate motor: self fruit to right stack
-            1: 
-            confirm motor position
-                if not?
-            2: 
-            eject ball
-            sound: win sound
-            lights: self fruit off
-            3: 
-            rotate motor: self fruit to left stack
-            4: 
-            confirm motor position
-                if not?
-            5: 
-            launch ball from left stack
-            6: 
-            sensor: confirm presence of ball
-                if not?
-            7:
-            lights: self fruit on
-            8:
-            rotate motor: self fruit to center
-            9:
-            confirm motor position
-                if not?
-            
-        trade goods (transfer ball from left stack to self fruit in other game)
-            0: 
-            player A lights: instructions for trading
-            player A lights: trade goods button: blink animation
-            player A sound: single-pitch alarm
-
-            player B ball expires when their playfield ball is in the gutter?
-
-            0:
-            sound: anticipation sound
-            lights: playfield animation?
-            lights: self fruit on
-            lights: right arrow: energize animaition
-            rotate motor: self fruit to right stack
-            1: 
-            confirm motor position
-                if not?
-            2: 
-            eject ball
-            sound: win sound
-            lights: self fruit off
-            3: 
-            rotate motor: self fruit to left stack
-            4: 
-            confirm motor position
-                if not?
-            5: 
-            launch ball from left stack
-            6: 
-            sensor: confirm presence of ball
-                if not?
-            7:
-            lights: self fruit on
-            8:
-            rotate motor: self fruit to center
-            9:
-            confirm motor position
-                if not?
-
-        
-        trade money
-        trade goods
-
-        inventory and reset routines
-
-        transfer ball from left stack to right stack in different game
-        transfer ball from right stack to left stack in different game
-        transfer ball from left stack to left stack in different game
-        transfer ball from right stack to right stack in different game
-
-        lights?
-        sensors?
-        """
-        pass
-        #"controller"
-        #"pinballmatrix"
-        #"carouselcenter"
-
-
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -636,9 +136,23 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable(self.tb)
+
+        self.controller_tests = Controller_Tests(self.tb, settings, self.carousel_current_sensor)
         self.queue = queue.Queue()
 
+        self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("deadman")
+
+        self.tb.subscribe_to_topic("respond_computer_details")
+        self.tb.subscribe_to_topic("respond_24v_current")
+        self.tb.subscribe_to_topic("respond_amt203_present")
+        self.tb.subscribe_to_topic("respond_amt203_zeroed")
+        self.tb.subscribe_to_topic("respond_amt203_absolute_position")
+
+
+        """
         # SYSTEM READINESS
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
@@ -654,9 +168,9 @@ class Main(threading.Thread):
 
         # STACKS
         self.tb.subscribe_to_topic("left_stack_ball_present")
-        self.tb.subscribe_to_topic("right stack_ball_present")
+        self.tb.subscribe_to_topic("right_stack_ball_present")
         self.tb.subscribe_to_topic("left_stack_motion_detected")
-        self.tb.subscribe_to_topic("right stack_motion_detected")
+        self.tb.subscribe_to_topic("right_stack_motion_detected")
 
         # GUTTER
         self.tb.subscribe_to_topic("gutter_ball_detected")
@@ -679,9 +193,10 @@ class Main(threading.Thread):
 
         # MOTORS
         self.tb.subscribe_to_topic("confirm_position")
-
+        
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("carousel_ball_detected")
+        """
         self.start()
     
     def network_message_handler(self, topic, message, origin, destination):
@@ -702,6 +217,73 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
+                if topic==b"connected":
+                    pass
+                if topic==b"respond_computer_details":
+                    # update http_server?
+                    if destination == "pinballmatrix":
+                       self.hosts.pinballmatrix.set_computer_details(message)
+                if topic==b"respond_24v_current":
+                    pass
+                if topic==b"respond_amt203_present":
+                    pass
+                if topic==b"respond_amt203_zeroed":
+                    pass
+                if topic==b"respond_amt203_absolute_position":
+                    pass
+
+                    """
+                if topic==b"system_tests":
+                    pass
+                if topic==b"button_press_left_flipper":
+                    pass
+                if topic==b"button_press_trade_goods":
+                    pass
+                if topic==b"button_press_start":
+                    pass
+                if topic==b"button_press_trade_money":
+                    pass
+                if topic==b"button_press_right_flipper":
+                    pass
+                if topic==b"left_stack_ball_present":
+                    pass
+                if topic==b"right_stack_ball_present":
+                    pass
+                if topic==b"left_stack_motion_detected":
+                    pass
+                if topic==b"right_stack_motion_detected":
+                    pass
+                if topic==b"gutter_ball_detected":
+                    pass
+                if topic==b"spinner":
+                    pass
+                if topic==b"pop_left":
+                    pass
+                if topic==b"pop_center":
+                    pass
+                if topic==b"pop_right":
+                    pass
+                if topic==b"sling_left":
+                    pass
+                if topic==b"sling_right":
+                    pass
+                if topic==b"roll_outer_left":
+                    pass
+                if topic==b"roll_inner_left":
+                    pass
+                if topic==b"roll_inner_right":
+                    pass
+                if topic==b"roll_outer_right":
+                    pass
+                if topic==b"absolute_position":
+                    pass
+                if topic==b"relative_position":
+                    pass
+                if topic==b"confirm_position":
+                    pass
+                if topic==b"carousel_ball_detected":
+                    pass
+                    """
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
