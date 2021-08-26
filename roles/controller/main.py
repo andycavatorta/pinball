@@ -136,7 +136,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.carousel_current_sensor = ina260_current_sensor.INA260()
+        #self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable(self.tb)
 
         self.queue = queue.Queue()
