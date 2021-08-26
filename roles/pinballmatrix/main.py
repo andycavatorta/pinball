@@ -58,7 +58,7 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
 
         #self.current_sensor = ina260_current_sensor.INA260()
-
+        """
         self.absolute_encoders = [
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=8),
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=7),
@@ -67,7 +67,7 @@ class Main(threading.Thread):
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=16),
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=5),
         ]
-
+        """
         self.absolute_encoders_zeroed = False
 
         self.tb.subscribe_to_topic("connected")
@@ -101,7 +101,6 @@ class Main(threading.Thread):
 
     def request_sdc2160_present(self):
         pass
-        
 
     def request_sdc2160_faults(self):
         pass
