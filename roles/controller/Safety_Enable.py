@@ -35,7 +35,8 @@ class Safety_Enable(threading.Thread):
             except queue.Empty:
                 pass
             missing_hosts = self.required_hosts.difference(self.hosts_alive)
-            print("missing_hosts=",missing_hosts)
+            if len(missing_hosts) > 0:
+                print("missing_hosts=",missing_hosts)
             #if len(missing_hosts) > 0:
             #    print("missing hosts:", self.required_hosts.difference(self.hosts_alive))
             if self.required_hosts.issubset(self.hosts_alive):
