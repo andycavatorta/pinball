@@ -170,12 +170,13 @@ p3roc = {
 
 class Button_Light():
     def __init__(self, pin):
-        GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(pin, GPIO.LOW)
+        self.pin = pin
+        GPIO.setup(self.pin, GPIO.OUT)
+        GPIO.output(self.pin, GPIO.LOW)
     def on(self):
-        GPIO.output(pin, GPIO.LOW)
+        GPIO.output(self.pin, GPIO.LOW)
     def off(self):
-        GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(self.pin, GPIO.HIGH)
 
 #scan all inputs
 class Button_Lights():
