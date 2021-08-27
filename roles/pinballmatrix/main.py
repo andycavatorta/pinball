@@ -59,9 +59,9 @@ class Main(threading.Thread):
         self.hostname = self.tb.get_hostname()
         self.deadman = deadman.Deadman_Switch(self.tb)
 
-
         time.sleep(5)
-        print("encoders", self.absolute_encoders.get_positions())
+
+        self.create_controllers_and_motors()
 
         #self.current_sensor = ina260_current_sensor.INA260()
         """
