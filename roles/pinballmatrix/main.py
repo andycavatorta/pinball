@@ -40,6 +40,26 @@ GPIO.setmode(GPIO.BCM)
 # rotate carousel to center self-fruit
 # check agreement between absolute and relative encoders
 
+class Roboteq_Data_Receiver(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.start()
+
+    def add_to_queue(self, message):
+        self.queue.put(message)
+
+    def run(self):
+        while True:
+            message = self.queue.get(True)
+            print("data",message)
+            #if "internal_event" in message:
+            #    pass
+roboteq_data_receiver = Roboteq_Data_Receiver()
+
+
+
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
