@@ -15,7 +15,7 @@ import settings
 import common.deadman as deadman
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
+from thirtybirds3.adapters.sensors.AMT203_encoder.AMT203_absolute_encoders import AMT203
 from thirtybirds3.adapters.sensors import ina260_current_sensor
 
 GPIO.setmode(GPIO.BCM)
@@ -54,8 +54,12 @@ class Main(threading.Thread):
         )
         self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
 
+        self.encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+
         self.hostname = self.tb.get_hostname()
         self.deadman = deadman.Deadman_Switch(self.tb)
+
+        print(self.encoders.get_positions())
 
         #self.current_sensor = ina260_current_sensor.INA260()
         """
@@ -67,8 +71,8 @@ class Main(threading.Thread):
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=16),
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=5),
         ]
-        """
-        self.absolute_encoders_zeroed = False
+        ""
+"        self.absolute_encoders_zeroed = False
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("request_computer_details")
