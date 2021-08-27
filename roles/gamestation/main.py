@@ -168,7 +168,25 @@ p3roc = {
 # ROUTINES (time, events, multiple systems) # 
 #############################################
 
+class Button_Light():
+    def __init__(self, pin):
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
+    def on(self):
+        GPIO.output(pin, GPIO.LOW)
+    def off(self):
+        GPIO.output(pin, GPIO.HIGH)
+
 #scan all inputs
+class Button_Lights():
+    def __init__(self):
+        self.gpios = [5,6,13,19,26]
+        self.izquierda = Button_Light(self.gpios[0])
+        self.trueque = Button_Light(self.gpios[1])
+        self.comienza = Button_Light(self.gpios[2])
+        self.dinero = Button_Light(self.gpios[3])
+        self.derecha = Button_Light(self.gpios[4])
+
 
 
 class Scan_All_Inputs(threading.Thread):
@@ -214,7 +232,6 @@ class Scan_All_Inputs(threading.Thread):
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 
-
 class MPF_Bridge(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
@@ -251,7 +268,6 @@ class System_Tests(threading.Thread):
         read INA260
         write to TLC5947
         read socket messages from P3-ROC
-        
     """
     def __init__(self, tb):
         threading.Thread.__init__(self)
@@ -285,6 +301,8 @@ class Main(threading.Thread):
         #self.safety_enable = Safety_Enable(self.tb)
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.mpf_bridge = MPF_Bridge(self.tb)
+
+        self.button_lights = Button_Lights()
 
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("gamestation_all_off")
