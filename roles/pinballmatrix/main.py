@@ -52,7 +52,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.chip_select_pins_for_abs_enc = [8,7,18,17,16,5]
+        self.chip_select_pins_for_abs_enc = [13,12,18,17,16,5]
 
         self.encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
 
