@@ -26,9 +26,7 @@ GPIO.setmode(GPIO.BCM)
 # S Y S T E M   T E S T S #
 ###########################
 
-#[13,12,18,17,16,5]
-
-# test ability to read encoders via SPI
+# + test ability to read encoders via SPI
 # test ability to communicate with SDC2160
 # check SDC2160 for fault flags or error states
 # check SDC2160 for current consumption
@@ -56,8 +54,6 @@ class Roboteq_Data_Receiver(threading.Thread):
             #if "internal_event" in message:
             #    pass
 roboteq_data_receiver = Roboteq_Data_Receiver()
-
-
 
 
 # Main handles network send/recv and can see all other classes directly
