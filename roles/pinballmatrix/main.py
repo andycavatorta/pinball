@@ -71,8 +71,8 @@ class Main(threading.Thread):
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=16),
             AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=5),
         ]
-        ""
-"        self.absolute_encoders_zeroed = False
+        """        
+        self.absolute_encoders_zeroed = False
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("request_computer_details")
