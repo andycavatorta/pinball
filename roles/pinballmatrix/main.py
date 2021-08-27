@@ -15,6 +15,7 @@ import settings
 import common.deadman as deadman
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
+from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder.AMT203_absolute_encoders import AMT203
 from thirtybirds3.adapters.sensors import ina260_current_sensor
 
