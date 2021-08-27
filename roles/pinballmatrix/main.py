@@ -54,14 +54,14 @@ class Main(threading.Thread):
         )
         self.chip_select_pins_for_abs_enc = [12,13,17,18,5,16]
 
-        self.encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+        self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
 
         self.hostname = self.tb.get_hostname()
         self.deadman = deadman.Deadman_Switch(self.tb)
 
 
         time.sleep(5)
-        print("encoders", self.encoders.get_positions())
+        print("encoders", self.absolute_encoders.get_positions())
 
         #self.current_sensor = ina260_current_sensor.INA260()
         """
@@ -94,6 +94,26 @@ class Main(threading.Thread):
         self.start()
 
 
+    def create_controllers_and_motors(self):
+        self.controllers = roboteq_command_wrapper.Controllers(
+            roboteq_data_receiver.add_to_queue, 
+            self.status_receiver, 
+            self.network_status_change_handler, 
+            {
+                "carousel1and2":settings.Roboteq.BOARDS["carousel1and2"],
+                "carousel3and4":settings.Roboteq.BOARDS["carousel3and4"],
+                "carousel5and6":settings.Roboteq.BOARDS["carousel5and6"],
+            },
+            {
+                "carousel_1":settings.Roboteq.MOTORS["carousel_1"],
+                "carousel_2":settings.Roboteq.MOTORS["carousel_2"],
+                "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
+                "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
+                "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
+                "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
+            }
+        )
+
     def request_computer_details(self):
         return {
             "df":self.tb.get_system_disk,
@@ -112,31 +132,16 @@ class Main(threading.Thread):
         pass
 
     def request_amt203_present(self):
-        amt203_present = [False,False,False,False,False,False,]
-        for position_and_absolute_encoder in enumerate(self.absolute_encoders):
-            position, absolute_encoder = position_and_absolute_encoder
-            try:
-                absolute_encoder.get_position()
-                amt203_present[position] = True
-            except Exception: # todo: specify exceptions
-                pass # todo: hande exceptions
-        return amt203_present
+        return self.absolute_encoders.get_presences()
 
     def request_amt203_zeroed(self):
         return self.absolute_encoders_zeroed
 
     def request_amt203_absolute_position(self, fruit_id=-1):
-        if fruit_id > -1:
-            return self.absolute_encoders[fruit_id].get_position()
+        if fruit_id == -1:
+            return self.absolute_encoders.get_positions()
         else:
-            return [
-                self.absolute_encoders[0].get_position(),
-                self.absolute_encoders[1].get_position(),
-                self.absolute_encoders[2].get_position(),
-                self.absolute_encoders[3].get_position(),
-                self.absolute_encoders[4].get_position(),
-                self.absolute_encoders[5].get_position()
-            ]
+            return self.absolute_encoders.get_position(self.chip_select_pins_for_abs_enc[fruit_id])
 
     def request_amt203_relative_position(self):
         pass
