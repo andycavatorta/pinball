@@ -173,10 +173,10 @@ class Button_Light():
         self.pin = pin
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
-    def on(self):
+    def off(self):
         GPIO.output(self.pin, GPIO.LOW)
         print(self.pin, GPIO.LOW)
-    def off(self):
+    def on(self):
         GPIO.output(self.pin, GPIO.HIGH)
         print(self.pin, GPIO.HIGH)
 
