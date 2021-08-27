@@ -178,7 +178,7 @@ class Main(threading.Thread):
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="respond_computer_details", 
-                        message=request_computer_details()
+                        message=self.request_computer_details()
                     )
                 if topic == b'request_24v_current':
                     self.tb.publish(
