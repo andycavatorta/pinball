@@ -175,8 +175,11 @@ class Button_Light():
         GPIO.output(self.pin, GPIO.LOW)
     def on(self):
         GPIO.output(self.pin, GPIO.LOW)
+        print(self.pin, GPIO.LOW)
     def off(self):
         GPIO.output(self.pin, GPIO.HIGH)
+        print(self.pin, GPIO.HIGH)
+
 
 #scan all inputs
 class Button_Lights():
@@ -187,6 +190,12 @@ class Button_Lights():
         self.comienza = Button_Light(self.gpios[2])
         self.dinero = Button_Light(self.gpios[3])
         self.derecha = Button_Light(self.gpios[4])
+
+
+class GPIO_Input():
+    def __init__(self, pin):
+        self.pin = pin
+        GPIO.setup(self.pin, GPIO.IN)
 
 
 
