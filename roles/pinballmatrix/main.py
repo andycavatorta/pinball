@@ -71,14 +71,12 @@ class Main(threading.Thread):
         )
         self.chip_select_pins_for_abs_enc = [12,13,17,18,5,16]
 
-        self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
-
         self.hostname = self.tb.get_hostname()
         self.deadman = deadman.Deadman_Switch(self.tb)
 
-        time.sleep(5)
+        self.high_power_init = False
 
-        self.create_controllers_and_motors()
+        
 
         #self.current_sensor = ina260_current_sensor.INA260()
         """
@@ -92,8 +90,8 @@ class Main(threading.Thread):
         ]
         """        
         self.absolute_encoders_zeroed = False
-
         self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("high_power_enabled")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_24v_current")
         self.tb.subscribe_to_topic("request_sdc2160_present")
@@ -143,7 +141,19 @@ class Main(threading.Thread):
         return self.current_sensor.get_current()
 
     def request_sdc2160_present(self):
-        pass
+        present = {
+            "carousel1and2":"",
+            "carousel3and4":"",
+            "carousel5and6":""
+        }
+        for controller_name in present:
+            try:     
+                mcu_id = self.controller.boards[controller_name].get_mcu_id()
+                present[controller_name] = mcu_id
+            except:
+                present[controller_name] = ""
+        return present
+
 
     def request_sdc2160_faults(self):
         pass
@@ -197,6 +207,14 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == b'connected':
                     pass
+                if topic == b'high_power_enabled':
+                    time.sleep(2)
+                    if message; #transition for high power
+                        if not self.high_power_init:# if this is the first transition to high power
+                            self.high_power_init = True
+                            self.create_controllers_and_motors()
+                            self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="respond_computer_details", 
@@ -222,7 +240,8 @@ class Main(threading.Thread):
                         message=self.request_amt203_zeroed()
                     )                    
                 if topic == b'request_amt203_absolute_position':
-                    fruit_id = message
+                    fruit_id = mess
+                    age
                     self.tb.publish(
                         topic="respond_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position(fruit_id)
