@@ -237,10 +237,10 @@ class Main(threading.Thread):
                     )
                     # motor controllers present
                     print("0-----------------------")
-                    self.tb.publish(
-                        topic="respond_sdc2160_present", 
-                        message=self.request_sdc2160_present()
-                    )
+                    #self.tb.publish(
+                    #    topic="respond_sdc2160_present", 
+                    #    message=self.request_sdc2160_present()
+                    #)
                     # motor controllers faults
                     # motor amps
                     # motor pid error
