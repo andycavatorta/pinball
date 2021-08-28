@@ -223,7 +223,7 @@ class Scan_GPIO_Inputs(threading.Thread):
             trough_sensor_handler,
             button_handler
         ):
-        threading.Thread.__init__()
+        threading.Thread.__init__(self)
 
         self.inputs = [ # name, gpio, last_state
             GPIO_Input("rollover_outer_left", 12, rollover_handler),
