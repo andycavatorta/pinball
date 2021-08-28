@@ -136,10 +136,10 @@ class Main(threading.Thread):
 
     def request_computer_details(self):
         return {
-            "df":self.tb.get_system_disk,
-            "cpu_temp":self.tb.get_core_temp,
-            "pinball_git_timestamp":self.tb.app_get_git_timestamp,
-            "tb_git_timestamp":self.tb.tb_get_git_timestamp,
+            "df":self.tb.get_system_disk(),
+            "cpu_temp":self.tb.get_core_temp(),
+            "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
+            "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
 
     def request_24v_current(self):
@@ -231,10 +231,10 @@ class Main(threading.Thread):
                         message=self.request_24v_current()
                     )
                     # computer details
-                    #self.tb.publish(
-                    #    topic="respond_computer_details", 
-                    #    message=self.request_computer_details()
-                    #)
+                    self.tb.publish(
+                        topic="respond_computer_details", 
+                        message=self.request_computer_details()
+                    )
                     # motor controllers present
                     print("0-----------------------")
                     #self.tb.publish(
