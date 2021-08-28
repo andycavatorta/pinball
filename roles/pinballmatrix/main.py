@@ -111,7 +111,6 @@ class Main(threading.Thread):
         time.sleep(1) # just being superstitious
 
         # check system state
-        self.tb.publish()        
 
 
     def create_controllers_and_motors(self):
