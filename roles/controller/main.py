@@ -137,7 +137,7 @@ class Main(threading.Thread):
             self.exception_handler
         )
         #self.carousel_current_sensor = ina260_current_sensor.INA260()
-        self.safety_enable = Safety_Enable.Safety_Enable(self.tb)
+        self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
 
         self.queue = queue.Queue()
 
@@ -197,6 +197,15 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("carousel_ball_detected")
         """
         self.start()
+
+    def safety_enable_handler(self, state_bool):
+        # when all computers are present
+        # when power turns on or off
+        self.tb.publish("respond_high_power_enabled", state_bool)
+        if state_bool:
+            self.tb.publish("request_system_tests", True)
+           
+
     
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
@@ -221,8 +230,6 @@ class Main(threading.Thread):
                 if topic==b"respond_computer_details":
                     # update http_server?
                     pass
-                    #if destination == "pinballmatrix":
-                    #   self.hosts.pinballmatrix.set_computer_details(message)
                 if topic==b"respond_24v_current":
                     pass
                 if topic==b"respond_amt203_present":
