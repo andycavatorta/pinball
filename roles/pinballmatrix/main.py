@@ -163,7 +163,7 @@ class Main(threading.Thread):
         collected_faults = [{},{},{}]
         fault_detected = False
         for controller_fault_state in enumerate(controller_fault_states):
-            controller_ordinal, faults_d = controller_fault_state:
+            controller_ordinal, faults_d = controller_fault_state
             for fault_type in faults_d:
                 if faults_d[fault_type] > 0:
                     fault_detected = True
