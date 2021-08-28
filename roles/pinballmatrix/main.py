@@ -157,22 +157,23 @@ class Main(threading.Thread):
                 topic="respond_computer_details", 
                 message=collected_computer_details
             )
-
-        amt203_present = self.request_amt203_present()
-        if not all(amt203_present):
-            self.tb.publish(
-                topic="respond_amt203_present", 
-                message=amt203_present
-            )
-
-        sdc2160_present = self.request_sdc2160_present()
-        if not all(sdc2160_present):
-            self.tb.publish(
-                topic="respond_sdc2160_present", 
-                message=sdc2160_present
-            )
-
         if self.high_power_init:
+
+            amt203_present = self.request_amt203_present()
+            if not all(amt203_present):
+                self.tb.publish(
+                    topic="respond_amt203_present", 
+                    message=amt203_present
+                )
+
+            sdc2160_present = self.request_sdc2160_present()
+            if not all(sdc2160_present):
+                self.tb.publish(
+                    topic="respond_sdc2160_present", 
+                    message=sdc2160_present
+                )
+
+
             controller_fault_states = self.request_sdc2160_controller_faults()
             collected_faults = [{},{},{}]
             fault_detected = False
