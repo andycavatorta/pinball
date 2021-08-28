@@ -56,6 +56,8 @@ class Roboteq_Data_Receiver(threading.Thread):
 roboteq_data_receiver = Roboteq_Data_Receiver()
 
 
+
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -134,6 +136,63 @@ class Main(threading.Thread):
             }
         )
 
+    def request_system_tests(self):
+        # INA260 current
+        self.tb.publish(
+            topic="respond_24v_current", 
+            message=self.request_24v_current()
+        )
+        # computer details
+        self.tb.publish(
+            topic="respond_computer_details", 
+            message=self.request_computer_details()
+        )
+        # motor controllers present
+        self.tb.publish(
+            topic="respond_sdc2160_present", 
+            message=self.request_sdc2160_present()
+        )
+        # motor controllers faults
+
+        self.tb.publish(
+            topic="respond_sdc2160_controller_faults",
+            message=self.request_sdc2160_controller_faults()
+        )
+        #board "get_runtime_fault_flags" True
+        self.tb.publish(
+           topic="respond_sdc2160_channel_faults", 
+            message=[
+                self.request_sdc2160_channel_faults("carousel_1"),
+                self.request_sdc2160_channel_faults("carousel_2"),
+                self.request_sdc2160_channel_faults("carousel_3"),
+                self.request_sdc2160_channel_faults("carousel_4"),
+                self.request_sdc2160_channel_faults("carousel_5"),
+                self.request_sdc2160_channel_faults("carousel_6"),
+            ]
+        )
+
+        self.tb.publish(
+           topic="respond_amt203_present", 
+            message=self.request_amt203_present()
+        )               
+        # absolute encoder value
+        self.tb.publish(
+            topic="respond_amt203_absolute_position", 
+            message=self.request_amt203_absolute_position()
+        )
+        # relative encoder value
+        self.tb.publish(
+            topic="respond_sdc2160_relative_position", 
+            message=self.request_sdc2160_relative_position()
+        )
+
+    def request_sdc2160_controller_faults(self):
+        return [
+            self.controllers.boards["carousel1and2"].get_runtime_fault_flags(),
+            self.controllers.boards["carousel3and4"].get_runtime_fault_flags(),
+            self.controllers.boards["carousel5and6"].get_runtime_fault_flags(),
+        ]
+
     def request_computer_details(self):
         return {
             "df":self.tb.get_system_disk(),
@@ -205,9 +264,6 @@ class Main(threading.Thread):
         }
 
 
-    def request_sdc2160_controller_faults(self):
-        pass
-
     def request_target_position_confirmed(self):
         pass
 
@@ -242,57 +298,7 @@ class Main(threading.Thread):
                             self.high_power_init = True
 
                 if topic == b'request_system_tests':
-                    time.sleep(1) # just being superstitious
-                    # INA260 current
-                    self.tb.publish(
-                        topic="respond_24v_current", 
-                        message=self.request_24v_current()
-                    )
-                    # computer details
-                    self.tb.publish(
-                        topic="respond_computer_details", 
-                        message=self.request_computer_details()
-                    )
-                    # motor controllers present
-                    self.tb.publish(
-                        topic="respond_sdc2160_present", 
-                        message=self.request_sdc2160_present()
-                    )
-
-
-                    # motor controllers faults
-
-
-                    #board "get_runtime_fault_flags" True
-
-                    self.tb.publish(
-                       topic="respond_sdc2160_channel_faults", 
-                        message=[
-                            self.request_sdc2160_channel_faults("carousel_1"),
-                            self.request_sdc2160_channel_faults("carousel_2"),
-                            self.request_sdc2160_channel_faults("carousel_3"),
-                            self.request_sdc2160_channel_faults("carousel_4"),
-                            self.request_sdc2160_channel_faults("carousel_5"),
-                            self.request_sdc2160_channel_faults("carousel_6"),
-                        ]
-                    )
-
-                    self.tb.publish(
-                       topic="respond_amt203_present", 
-                        message=self.request_amt203_present()
-                    )               
-                    # absolute encoder value
-                    self.tb.publish(
-                        topic="respond_amt203_absolute_position", 
-                        message=self.request_amt203_absolute_position()
-                    )
-                    # relative encoder value
-                    self.tb.publish(
-                        topic="respond_sdc2160_relative_position", 
-                        message=self.request_sdc2160_relative_position()
-                    )
-
-
+                    self.request_system_tests()
 
                 if topic == b'request_computer_details':
                     self.tb.publish(
