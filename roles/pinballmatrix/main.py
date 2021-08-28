@@ -265,18 +265,16 @@ class Main(threading.Thread):
 
                     #board "get_runtime_fault_flags" True
 
-                    all_motor_faults = [
-                        self.request_sdc2160_channel_faults("carousel_1"),
-                        self.request_sdc2160_channel_faults("carousel_2"),
-                        self.request_sdc2160_channel_faults("carousel_3"),
-                        self.request_sdc2160_channel_faults("carousel_4"),
-                        self.request_sdc2160_channel_faults("carousel_5"),
-                        self.request_sdc2160_channel_faults("carousel_6"),
-                    ]
-
                     self.tb.publish(
                        topic="respond_sdc2160_channel_faults", 
-                        message=self.all_motor_faults
+                        message=[
+                            self.request_sdc2160_channel_faults("carousel_1"),
+                            self.request_sdc2160_channel_faults("carousel_2"),
+                            self.request_sdc2160_channel_faults("carousel_3"),
+                            self.request_sdc2160_channel_faults("carousel_4"),
+                            self.request_sdc2160_channel_faults("carousel_5"),
+                            self.request_sdc2160_channel_faults("carousel_6"),
+                        ]
                     )
 
                     self.tb.publish(
