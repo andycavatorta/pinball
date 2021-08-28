@@ -100,7 +100,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_amt203_present")
         self.tb.subscribe_to_topic("request_amt203_zeroed")
         self.tb.subscribe_to_topic("request_amt203_absolute_position")
-        self.tb.subscribe_to_topic("request_amt203_relative_position")
+        self.tb.subscribe_to_topic("request_sdc2160_relative_position")
         self.tb.subscribe_to_topic("request_sdc2160_details")
         self.tb.subscribe_to_topic("request_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("request_sdc2160_controller_faults")
@@ -178,14 +178,32 @@ class Main(threading.Thread):
         else:
             return self.absolute_encoders.get_position(self.chip_select_pins_for_abs_enc[fruit_id])
 
-    def request_amt203_relative_position(self):
-        pass
+    def request_sdc2160_relative_position(self, fruit_id=-1):
+        if fruit_id == -1:
+            return [
+                self.controllers.motors['carousel_1'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_2'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_3'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_4'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_5'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_6'].get_encoder_counter_absolute(),
+            ]
+        else:
+            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
+            return self.controllers.motors[motor_name].get_encoder_counter_absolute()
 
     def request_sdc2160_details(self):
         pass
 
-    def request_sdc2160_channel_faults(self):
-        pass
+    def request_sdc2160_channel_faults(self, motor_name):
+        return {
+            "temperature":self.controllers.motors[motor_name].get_temperature(True),
+            "runtime_status_flags":self.controllers.motors[motor_name].get_runtime_status_flags(True),
+            "closed_loop_error":self.controllers.motors[motor_name].get_closed_loop_error(True),
+            "stall_detection":self.controllers.motors[motor_name].get_stall_detection(True),
+            "motor_amps":self.controllers.motors[motor_name].get_motor_amps(True),
+        }
+
 
     def request_sdc2160_controller_faults(self):
         pass
@@ -236,31 +254,46 @@ class Main(threading.Thread):
                         message=self.request_computer_details()
                     )
                     # motor controllers present
-                    print("0-----------------------")
-                    #self.tb.publish(
-                    #    topic="respond_sdc2160_present", 
-                    #    message=self.request_sdc2160_present()
-                    #)
+                    self.tb.publish(
+                        topic="respond_sdc2160_present", 
+                        message=self.request_sdc2160_present()
+                    )
+
+
                     # motor controllers faults
-                    # motor amps
-                    # motor pid error
-                    # motor status
-                    # motor theta target
-                    # absolute encoder present
-                    print("1-----------------------")
-                    amt203_present =self.request_amt203_present()
-                    print("1-----------------------", amt203_present)
-                    #self.tb.publish(
-                    #    topic="respond_amt203_present", 
-                    #    message=list(amt203_present)
-                    #)               
-                    print("2-----------------------")     
+
+
+                    #board "get_runtime_fault_flags" True
+
+                    all_motor_faults = [
+                        self.request_sdc2160_channel_faults("carousel_1"),
+                        self.request_sdc2160_channel_faults("carousel_2"),
+                        self.request_sdc2160_channel_faults("carousel_3"),
+                        self.request_sdc2160_channel_faults("carousel_4"),
+                        self.request_sdc2160_channel_faults("carousel_5"),
+                        self.request_sdc2160_channel_faults("carousel_6"),
+                    ]
+
+                    self.tb.publish(
+                       topic="respond_sdc2160_channel_faults", 
+                        message=self.all_motor_faults
+                    )
+
+                    self.tb.publish(
+                       topic="respond_amt203_present", 
+                        message=self.request_amt203_present()
+                    )               
                     # absolute encoder value
                     self.tb.publish(
                         topic="respond_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position()
                     )
                     # relative encoder value
+                    self.tb.publish(
+                        topic="respond_sdc2160_relative_position", 
+                        message=self.request_sdc2160_relative_position()
+                    )
+
 
 
                 if topic == b'request_computer_details':
@@ -296,7 +329,7 @@ class Main(threading.Thread):
                         topic="respond_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position(fruit_id)
                     )                    
-                if topic == b'request_amt203_relative_position':
+                if topic == b'request_sdc2160_relative_position':
                     pass
                 if topic == b'request_sdc2160_details':
                     pass
