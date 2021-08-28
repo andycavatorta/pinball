@@ -152,8 +152,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_present")
         self.tb.subscribe_to_topic("respond_sdc2160_relative_position")
         self.tb.subscribe_to_topic("respond_sdc2160_channel_faults")
-
-        
+        self.tb.subscribe_to_topic("respond_sdc2160_controller_faults")
 
 
         """
