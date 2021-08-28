@@ -195,8 +195,6 @@ def rollover_handler(name, value):
     print(name, value)
 def spinner_handler(name, value):
     print(name, value)
-def button_handler(name, value):
-    print(name, value)
 def trough_sensor_handler(name, value):
     print(name, value)
 def button_handler(name, value):
@@ -222,7 +220,6 @@ class Scan_GPIO_Inputs(threading.Thread):
             self,
             rollover_handler,
             spinner_handler,
-            button_handler,
             trough_sensor_handler,
             button_handler
         ):
