@@ -143,7 +143,8 @@ class Main(threading.Thread):
         }
 
     def request_24v_current(self):
-        return self.current_sensor.get_current()
+        return 0
+        #return self.current_sensor.get_current()
 
     def request_sdc2160_present(self):
         present = {
