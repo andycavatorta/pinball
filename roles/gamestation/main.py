@@ -209,7 +209,7 @@ class GPIO_Input():
         self.name = name
         self.pin = pin
         self.callback = callback
-        self.previous_state = 0
+        self.previous_state = -1 # so first read changes state and reports to callback
         GPIO.setup(self.pin, GPIO.IN)
     def scan(self):
         new_state = GPIO.input(self.pin)
@@ -229,17 +229,17 @@ class Scan_GPIO_Inputs(threading.Thread):
         threading.Thread.__init__()
 
         self.inputs = [ # name, gpio, last_state
-            "rollover_outer_left": GPIO_Input("rollover_outer_left", 12, rollover_handler),
-            "rollover_inner_left": GPIO_Input("rollover_inner_left", 16, rollover_handler),
-            "rollover_inner_right": GPIO_Input("rollover_inner_right", 20, rollover_handler),
-            "rollover_outer_right": GPIO_Input("rollover_outer_right", 21, rollover_handler),
-            "spinner": GPIO_Input("spinner", 1, spinner_handler),
-            "trough_sensor": GPIO_Input("trough_sensor", 25, trough_sensor_handler),
-            "button_izquierda": GPIO_Input("button_izquierda", 14, button_handler),
-            "button_trueque": GPIO_Input("button_trueque", 15, button_handler),
-            "button_comienza": GPIO_Input("button_comienza", 18, button_handler),
-            "button_dinero": GPIO_Input("button_dinero", 23, button_handler),
-            "button_derecha": GPIO_Input("button_derecha", 24, button_handler),
+            GPIO_Input("rollover_outer_left", 12, rollover_handler),
+            GPIO_Input("rollover_inner_left", 16, rollover_handler),
+            GPIO_Input("rollover_inner_right", 20, rollover_handler),
+            GPIO_Input("rollover_outer_right", 21, rollover_handler),
+            GPIO_Input("spinner", 1, spinner_handler),
+            GPIO_Input("trough_sensor", 25, trough_sensor_handler),
+            GPIO_Input("button_izquierda", 14, button_handler),
+            GPIO_Input("button_trueque", 15, button_handler),
+            GPIO_Input("button_comienza", 18, button_handler),
+            GPIO_Input("button_dinero", 23, button_handler),
+            GPIO_Input("button_derecha", 24, button_handler),
         ]
         self.queue = queue.Queue()
         self.start()
