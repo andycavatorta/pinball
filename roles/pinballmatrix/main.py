@@ -220,7 +220,7 @@ class Main(threading.Thread):
             if len(all_sdc2160_channel_faults.keys()) > 0:
                 self.tb.publish(
                     topic="respond_sdc2160_channel_faults", 
-                    message=collected_faults
+                    message=all_sdc2160_channel_faults
                 )
 
 
