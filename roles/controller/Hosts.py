@@ -197,7 +197,7 @@ class Carousel(Host):
         self.light_animation[fruit_id] = animation
 
     def request_system_tests(self):
-        self.tb.publish(topic="get_system_tests",message=True,destination=self.hostname)
+        self.tb.publish(topic="request_system_tests",message=True,destination=self.hostname)
 
     def request_eject_ball(self, fruit_id):
         self.tb.publish(topic="carousel_eject_ball",message=True,destination=self.hostname)
