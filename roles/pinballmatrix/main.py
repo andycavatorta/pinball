@@ -224,6 +224,7 @@ class Main(threading.Thread):
                             self.high_power_init = True
 
                 if topic == b'request_system_tests':
+                    time.sleep(1) # just being superstitious
                     # INA260 current
                     self.tb.publish(
                         topic="respond_24v_current", 
@@ -235,6 +236,7 @@ class Main(threading.Thread):
                         message=self.request_computer_details()
                     )
                     # motor controllers present
+                    print("0-----------------------")
                     self.tb.publish(
                         topic="respond_sdc2160_present", 
                         message=self.request_sdc2160_present()
@@ -245,10 +247,12 @@ class Main(threading.Thread):
                     # motor status
                     # motor theta target
                     # absolute encoder present
+                    print("1-----------------------")
                     self.tb.publish(
                         topic="respond_amt203_present", 
                         message=self.request_amt203_present()
-                    )                    
+                    )               
+                    print("2-----------------------")     
                     # absolute encoder value
                     self.tb.publish(
                         topic="respond_amt203_absolute_position", 
