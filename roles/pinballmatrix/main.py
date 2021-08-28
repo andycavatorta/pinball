@@ -135,6 +135,81 @@ class Main(threading.Thread):
             }
         )
 
+    def request_system_faults(self):
+
+        _24v_current = self.request_24v_current()
+        if _24v_current > 0 :
+            self.tb.publish(
+                topic="respond_24v_current", 
+                message=_24v_current
+            )
+        self.request_computer_details()
+
+        amt203_present = self.request_amt203_present()
+        if not all(amt203_present):
+            self.tb.publish(
+                topic="respond_amt203_present", 
+                message=amt203_present
+            )
+
+        sdc2160_present = self.request_sdc2160_present()
+        if not all(sdc2160_present):
+            self.tb.publish(
+                topic="respond_sdc2160_present", 
+                message=sdc2160_present
+            )
+
+        controller_fault_states = self.request_sdc2160_controller_faults()
+        collected_faults = [{},{},{}]
+        fault_detected = False
+        for controller_fault_state in enumerate(controller_fault_states):
+            controller_ordinal, faults_d = controller_fault_state:
+            for fault_type in faults_d:
+                if faults_d[fault_type] > 0:
+                    fault_detected = True
+                    collected_faults[controller_ordinal][fault_type] = faults_d[fault_type]
+        if fault_detected:
+            self.tb.publish(
+                topic="respond_sdc2160_controller_faults", 
+                message=collected_faults
+            )
+
+        all_sdc2160_channel_faults = {}
+        for carousel_name in ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]:
+            sdc2160_channel_faults = self.request_sdc2160_channel_faults(carousel_name)
+            collected_faults = {}
+            if sdc2160_channel_faults["temperature"] > 40:
+                collected_faults["temperature"] = sdc2160_channel_faults["temperature"]
+            if abs(sdc2160_channel_faults["closed_loop_error"]) > 20:
+                collected_faults["closed_loop_error"] = sdc2160_channel_faults["closed_loop_error"]
+            if sdc2160_channel_faults["stall_detection"] > 0:
+                collected_faults["stall_detection"] = sdc2160_channel_faults["stall_detection"]
+            if abs(sdc2160_channel_faults["motor_amps"]) > 0:
+                collected_faults["motor_amps"] = sdc2160_channel_faults["motor_amps"]
+            if sdc2160_channel_faults["runtime_status_flags"]["amps_limit_activated"] > 0:
+                collected_faults["amps_limit_activated"] = sdc2160_channel_faults["runtime_status_flags"]["amps_limit_activated"]
+            if sdc2160_channel_faults["runtime_status_flags"]["motor_stalled"] > 0:
+                collected_faults["motor_stalled"] = sdc2160_channel_faults["runtime_status_flags"]["motor_stalled"]
+            if sdc2160_channel_faults["runtime_status_flags"]["loop_error_detected"] > 0:
+                collected_faults["loop_error_detected"] = sdc2160_channel_faults["runtime_status_flags"]["loop_error_detected"]
+            if sdc2160_channel_faults["runtime_status_flags"]["safety_stop_active"] > 0:
+                collected_faults["safety_stop_active"] = sdc2160_channel_faults["runtime_status_flags"]["safety_stop_active"]
+            if sdc2160_channel_faults["runtime_status_flags"]["forward_limit_triggered"] > 0:
+                collected_faults["forward_limit_triggered"] = sdc2160_channel_faults["runtime_status_flags"]["forward_limit_triggered"]
+            if sdc2160_channel_faults["runtime_status_flags"]["reverse_limit_triggered"] > 0:
+                collected_faults["reverse_limit_triggered"] = sdc2160_channel_faults["runtime_status_flags"]["reverse_limit_triggered"]
+            if sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"] > 0:
+                collected_faults["amps_trigger_activated"] = sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"]
+            if len(collected_faults.keys()) > 0:
+                all_sdc2160_channel_faults[carousel_name] = collected_faults
+        if len(all_sdc2160_channel_faults.keys()) > 0:
+            self.tb.publish(
+                topic="respond_sdc2160_channel_faults", 
+                message=collected_faults
+            )
+
+
+
     def request_system_tests(self):
         # INA260 current
         self.tb.publish(
@@ -346,7 +421,7 @@ class Main(threading.Thread):
                     pass
 
             except queue.Empty as e:
-                self.request_system_tests()
+                self.request_system_faults()
 
             #except Exception as e:
             #    exc_type, exc_value, exc_traceback = sys.exc_info()
