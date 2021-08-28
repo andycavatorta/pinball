@@ -92,6 +92,7 @@ class Main(threading.Thread):
         self.absolute_encoders_zeroed = False
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("high_power_enabled")
+        self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_24v_current")
         self.tb.subscribe_to_topic("request_sdc2160_present")
