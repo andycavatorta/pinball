@@ -345,7 +345,7 @@ class Main(threading.Thread):
                 if topic == b'cmd_rotate_fruit_to_target':
 
             except queue.Empty as e:
-                    self.request_system_tests()
+                self.request_system_tests()
 
             #except Exception as e:
             #    exc_type, exc_value, exc_traceback = sys.exc_info()
