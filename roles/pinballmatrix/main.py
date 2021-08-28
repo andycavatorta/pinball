@@ -223,6 +223,14 @@ class Main(threading.Thread):
                     message=all_sdc2160_channel_faults
                 )
 
+            self.tb.publish(
+                topic="respond_sdc2160_relative_position", 
+                message=self.request_sdc2160_relative_position()
+            )
+            self.tb.publish(
+                topic="respond_amt203_absolute_position", 
+                message=self.request_amt203_absolute_position()
+            )
 
 
     def request_system_tests(self):
@@ -277,9 +285,9 @@ class Main(threading.Thread):
 
     def request_sdc2160_controller_faults(self):
         return [
-            self.controllers.boards["carousel1and2"].get_runtime_fault_flags(),
-            self.controllers.boards["carousel3and4"].get_runtime_fault_flags(),
-            self.controllers.boards["carousel5and6"].get_runtime_fault_flags(),
+            self.controllers.boards["carousel1and2"].get_runtime_fault_flags(True),
+            self.controllers.boards["carousel3and4"].get_runtime_fault_flags(True),
+            self.controllers.boards["carousel5and6"].get_runtime_fault_flags(True),
         ]
 
     def request_computer_details(self):
@@ -329,12 +337,12 @@ class Main(threading.Thread):
     def request_sdc2160_relative_position(self, fruit_id=-1):
         if fruit_id == -1:
             return [
-                self.controllers.motors['carousel_1'].get_encoder_counter_absolute(),
-                self.controllers.motors['carousel_2'].get_encoder_counter_absolute(),
-                self.controllers.motors['carousel_3'].get_encoder_counter_absolute(),
-                self.controllers.motors['carousel_4'].get_encoder_counter_absolute(),
-                self.controllers.motors['carousel_5'].get_encoder_counter_absolute(),
-                self.controllers.motors['carousel_6'].get_encoder_counter_absolute(),
+                self.controllers.motors['carousel_1'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_2'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_3'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_4'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_5'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_6'].get_encoder_counter_absolute(True),
             ]
         else:
             motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
