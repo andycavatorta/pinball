@@ -257,7 +257,6 @@ class Scan_GPIO_Inputs(threading.Thread):
 scan_gpio_inputs = Scan_GPIO_Inputs(
     rollover_handler,
     spinner_handler,
-    button_handler,
     trough_sensor_handler,
     button_handler
 )
