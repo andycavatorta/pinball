@@ -180,7 +180,6 @@ class Button_Light():
         GPIO.output(self.pin, GPIO.HIGH)
         print(self.pin, GPIO.HIGH)
 
-
 #scan all inputs
 class Button_Lights():
     def __init__(self):
@@ -191,40 +190,56 @@ class Button_Lights():
         self.dinero = Button_Light(self.gpios[3])
         self.derecha = Button_Light(self.gpios[4])
 
+# stubs for testing
+def rollover_handler(name, value):
+    print(name, value)
+def spinner_handler(name, value):
+    print(name, value)
+def button_handler(name, value):
+    print(name, value)
+def trough_sensor_handler(name, value):
+    print(name, value)
+def button_handler(name, value):
+    print(name, value)
+
+# end stubs
 
 class GPIO_Input():
-    def __init__(self, pin):
+    def __init__(self, name, pin, callback):
+        self.name = name
         self.pin = pin
+        self.callback = callback
+        self.previous_state = 0
         GPIO.setup(self.pin, GPIO.IN)
+    def scan(self):
+        new_state = GPIO.input(self.pin)
+        if self.previous_state != new_state:
+            self.previous_state = new_state
+            self.callback(self.name,new_state)
 
-
-
-class Scan_All_Inputs(threading.Thread):
+class Scan_GPIO_Inputs(threading.Thread):
     def __init__(
             self,
             rollover_handler,
             spinner_handler,
             button_handler,
             trough_sensor_handler,
-            pop_bumper_handler,
-            slingshot_handler,
+            button_handler
         ):
         threading.Thread.__init__()
 
-        GPIO.setup(17, GPIO.IN)
-        GPIO.setup(18, GPIO.IN)
-        input_value = GPIO.input(17)
-
         self.inputs = [ # name, gpio, last_state
-            ["rollover_outer_left", 0, False],
-            ["rollover_inner_left", 0, False],
-            ["rollover_inner_right", 0, False],
-            ["rollover_outer_right", 0, False],
-            ["spinner", 0, False],
-            ["trough_Sensor", 0, False],
-            ["button_trade_goods", 23, False],
-            ["button_start", 18, False],
-            ["button_trade_money", 24, False],
+            "rollover_outer_left": GPIO_Input("rollover_outer_left", 12, rollover_handler),
+            "rollover_inner_left": GPIO_Input("rollover_inner_left", 16, rollover_handler),
+            "rollover_inner_right": GPIO_Input("rollover_inner_right", 20, rollover_handler),
+            "rollover_outer_right": GPIO_Input("rollover_outer_right", 21, rollover_handler),
+            "spinner": GPIO_Input("spinner", 1, spinner_handler),
+            "trough_sensor": GPIO_Input("trough_sensor", 25, trough_sensor_handler),
+            "button_izquierda": GPIO_Input("button_izquierda", 14, button_handler),
+            "button_trueque": GPIO_Input("button_trueque", 15, button_handler),
+            "button_comienza": GPIO_Input("button_comienza", 18, button_handler),
+            "button_dinero": GPIO_Input("button_dinero", 23, button_handler),
+            "button_derecha": GPIO_Input("button_derecha", 24, button_handler),
         ]
         self.queue = queue.Queue()
         self.start()
@@ -236,11 +251,19 @@ class Scan_All_Inputs(threading.Thread):
         while True:
             try:
                 for input in self.inputs:
-                    time.sleep(1)
+                    input.scan()
+                time.sleep(0.01)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
+scan_gpio_inputs = Scan_GPIO_Inputs(
+    rollover_handler,
+    spinner_handler,
+    button_handler,
+    trough_sensor_handler,
+    button_handler
+)
 
 class MPF_Bridge(threading.Thread):
     def __init__(self, tb):
