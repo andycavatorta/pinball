@@ -108,6 +108,11 @@ class Main(threading.Thread):
 
         self.start()
 
+        time.sleep(1) # just being superstitious
+
+        # check system state
+        self.tb.publish()        
+
 
     def create_controllers_and_motors(self):
         self.controllers = roboteq_command_wrapper.Controllers(
@@ -148,11 +153,13 @@ class Main(threading.Thread):
         }
         for controller_name in present:
             try:     
-                mcu_id = self.controller.boards[controller_name].get_mcu_id()
+                mcu_id = self.controllers.boards[controller_name].get_mcu_id()
                 present[controller_name] = mcu_id
             except:
                 present[controller_name] = ""
         return present
+        #role_module.main.controller.boards["carousel1and2"].get_mcu_id()
+        #
 
 
     def request_sdc2160_faults(self):
@@ -207,13 +214,47 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == b'connected':
                     pass
-                if topic == b'high_power_enabled':
+                if topic == b'respond_high_power_enabled':
                     time.sleep(2)
                     if message: #transition for high power
                         if not self.high_power_init:# if this is the first transition to high power
-                            self.high_power_init = True
                             self.create_controllers_and_motors()
                             self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+                            self.high_power_init = True
+
+                if topic == b'request_system_tests':
+                    # INA260 current
+                    self.tb.publish(
+                        topic="respond_24v_current", 
+                        message=self.request_24v_current()
+                    )
+                    # computer details
+                    self.tb.publish(
+                        topic="respond_computer_details", 
+                        message=self.request_computer_details()
+                    )
+                    # motor controllers present
+                    self.tb.publish(
+                        topic="respond_sdc2160_present", 
+                        message=self.request_sdc2160_present()
+                    )
+                    # motor controllers faults
+                    # motor amps
+                    # motor pid error
+                    # motor status
+                    # motor theta target
+                    # absolute encoder present
+                    self.tb.publish(
+                        topic="respond_amt203_present", 
+                        message=self.request_amt203_present()
+                    )                    
+                    # absolute encoder value
+                    self.tb.publish(
+                        topic="respond_amt203_absolute_position", 
+                        message=self.request_amt203_absolute_position()
+                    )
+                    # relative encoder value
+
 
                 if topic == b'request_computer_details':
                     self.tb.publish(
@@ -226,7 +267,10 @@ class Main(threading.Thread):
                         message=self.request_24v_current()
                     )                    
                 if topic == b'request_sdc2160_present':
-                    pass
+                    self.tb.publish(
+                        topic="respond_sdc2160_present", 
+                        message=self.request_sdc2160_present()
+                    )                    
                 if topic == b'request_sdc2160_faults':
                     pass
                 if topic == b'request_amt203_present':
@@ -240,8 +284,7 @@ class Main(threading.Thread):
                         message=self.request_amt203_zeroed()
                     )                    
                 if topic == b'request_amt203_absolute_position':
-                    fruit_id = mess
-                    age
+                    fruit_id = message
                     self.tb.publish(
                         topic="respond_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position(fruit_id)
