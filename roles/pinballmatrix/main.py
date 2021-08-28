@@ -231,10 +231,10 @@ class Main(threading.Thread):
                         message=self.request_24v_current()
                     )
                     # computer details
-                    self.tb.publish(
-                        topic="respond_computer_details", 
-                        message=self.request_computer_details()
-                    )
+                    #self.tb.publish(
+                    #    topic="respond_computer_details", 
+                    #    message=self.request_computer_details()
+                    #)
                     # motor controllers present
                     print("0-----------------------")
                     #self.tb.publish(
