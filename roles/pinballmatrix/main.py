@@ -249,10 +249,11 @@ class Main(threading.Thread):
                     # absolute encoder present
                     print("1-----------------------")
                     amt203_present =self.request_amt203_present()
-                    self.tb.publish(
-                        topic="respond_amt203_present", 
-                        message=list(amt203_present)
-                    )               
+                    print("1-----------------------", amt203_present)
+                    #self.tb.publish(
+                    #    topic="respond_amt203_present", 
+                    #    message=list(amt203_present)
+                    #)               
                     print("2-----------------------")     
                     # absolute encoder value
                     self.tb.publish(
