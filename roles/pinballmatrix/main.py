@@ -343,6 +343,7 @@ class Main(threading.Thread):
                 if topic == b'request_target_position_confirmed':
                     pass
                 if topic == b'cmd_rotate_fruit_to_target':
+                    pass
 
             except queue.Empty as e:
                 self.request_system_tests()
