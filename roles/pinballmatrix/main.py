@@ -149,7 +149,7 @@ class Main(threading.Thread):
         if computer_details["df"][1] <500000:
             collected_computer_details["df"] = computer_details["df"]
 
-        if computer_details["cpu_temp"][1] > 70:
+        if computer_details["cpu_temp"] > 70:
             collected_computer_details["cpu_temp"] = computer_details["cpu_temp"]
 
         if len(collected_computer_details.keys()) > 0:
