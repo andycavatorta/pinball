@@ -211,9 +211,11 @@ class GPIO_Input():
         GPIO.setup(self.pin, GPIO.IN)
     def scan(self):
         new_state = GPIO.input(self.pin)
+        if self.name == "button_izquierda":
+            print(self.previous_state,new_state)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            self.callback(self.name,new_state)
+            #self.callback(self.name,new_state)
 
 class Scan_GPIO_Inputs(threading.Thread):
     def __init__(
