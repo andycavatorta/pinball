@@ -209,7 +209,7 @@ class Main(threading.Thread):
                     pass
                 if topic == b'high_power_enabled':
                     time.sleep(2)
-                    if message; #transition for high power
+                    if message: #transition for high power
                         if not self.high_power_init:# if this is the first transition to high power
                             self.high_power_init = True
                             self.create_controllers_and_motors()
