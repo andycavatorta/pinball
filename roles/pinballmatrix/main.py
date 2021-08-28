@@ -248,11 +248,10 @@ class Main(threading.Thread):
                     # motor theta target
                     # absolute encoder present
                     print("1-----------------------")
-                    print(self.request_amt203_present())
-                    print("1-----------------------")
+                    amt203_present =self.request_amt203_present()
                     self.tb.publish(
                         topic="respond_amt203_present", 
-                        message=self.request_amt203_present()
+                        message=amt203_present
                     )               
                     print("2-----------------------")     
                     # absolute encoder value
