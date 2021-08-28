@@ -57,7 +57,6 @@ roboteq_data_receiver = Roboteq_Data_Receiver()
 
 
 
-
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -285,7 +284,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(True, 5)
                 print(topic, message)
                 if topic == b'connected':
                     pass
@@ -344,9 +343,11 @@ class Main(threading.Thread):
                 if topic == b'request_target_position_confirmed':
                     pass
                 if topic == b'cmd_rotate_fruit_to_target':
-                    pass
 
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
+            except queue.Empty as e:
+                    self.request_system_tests()
+
+            #except Exception as e:
+            #    exc_type, exc_value, exc_traceback = sys.exc_info()
+            #    print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
