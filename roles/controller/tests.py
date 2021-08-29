@@ -132,6 +132,8 @@ class Displays():
                     rest = random.randint(0,1)
                     if rest != 0:
                         self.tb.publish(topic="play_score",message=pitches[random.randint(0,4)],destination=destination)
+                    if rest == 1:
+                        self.tb.publish(topic="play_score",message=pitches[random.randint(0,4)],destination=destination)
                     #if pitch_i != 0:
                     #    self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
                     time.sleep(interval/5)
@@ -142,6 +144,8 @@ class Displays():
                 for destination in self.destinations:
                     rest = random.randint(0,1)
                     if rest != 0:
+                        self.tb.publish(topic="play_score",message=pitches[random.randint(0,4)],destination=destination)
+                    if rest == 1:
                         self.tb.publish(topic="play_score",message=pitches[random.randint(0,4)],destination=destination)
                     #if pitch_i != 0:
                     #    self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
