@@ -246,6 +246,121 @@ class Displays():
                 time.sleep(interval)
 
 
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_phrase",message="",destination=destination)
+                    self.tb.publish(topic="set_number",message=999,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=000,destination=destination)    
+                    self.tb.publish(topic="set_phrase",message="juega",destination=destination)
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+
+
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_phrase",message="",destination=destination)
+                    self.tb.publish(topic="set_number",message=999,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=000,destination=destination)    
+                    self.tb.publish(topic="set_phrase",message="juega",destination=destination)
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+
 
 
 """
