@@ -131,7 +131,7 @@ class Displays():
                 for destination in self.destinations:
                     self.tb.publish(topic="play_score",message=pitches[pitch_i],destination=destination)
                     if pitch_i > 0:
-                        self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
+                        self.tb.publish(topic="play_score",message="c_mezzo",destination=destination)
                     time.sleep(interval/5)
                 #time.sleep(interval/2)
                 for destination in self.destinations:
