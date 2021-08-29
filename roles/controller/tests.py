@@ -108,13 +108,21 @@ class Displays():
     def wave(self):
         interval = 0.1     
         pitches = [
+            "c_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "f_mezzo"
+        ]
+        """
+        pitches = [
             "c_piano",
             "asharp_piano",
             "gsharp_piano",
             "g_piano",
             "f_piano"
         ]
-
+        """
         while True:
             for pitch in pitches:
                 for destination in self.destinations:
