@@ -74,7 +74,7 @@ class Displays():
                 self.tb.publish(topic="set_phrase",message="",destination=destination)
             time.sleep(1)
             for destination in self.destinations:
-                self.tb.publish(topic="set_phrase",message=self."juega",destination=destination)
+                self.tb.publish(topic="set_phrase",message="juega",destination=destination)
 
 
 
