@@ -105,7 +105,7 @@ class Displays():
                 self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
 
 
-    def searching wave(self):
+    def wave(self):
         interval = 0.2
         while True:
             for destination in self.destinations:
