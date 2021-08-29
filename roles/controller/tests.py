@@ -106,7 +106,7 @@ class Displays():
 
 
     def wave(self):
-        interval = 0.3
+        interval = 0.5
         pitches = [
             "c_mezzo",
             "asharp_mezzo",
