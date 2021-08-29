@@ -118,7 +118,7 @@ class Displays():
         while True:
             for pitch in pitches:
                 for destination in self.destinations:
-                    self.tb.publish(topic="play_score",message=pitches,destination=destination)
+                    self.tb.publish(topic="play_score",message=pitch,destination=destination)
                     self.tb.publish(topic="set_phrase",message="",destination=destination)
                     self.tb.publish(topic="set_number",message=999,destination=destination)    
                 time.sleep(interval)
