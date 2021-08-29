@@ -114,14 +114,15 @@ class Acrylic_Display():
             }
         }
 
-    def set_phrase(self, phrase): # [ juega | trueque | dinero | como | que ]
+    def set_phrase(self, phrase): # [ ""| juega | trueque | dinero | como | que ]
         self.current_phrase = phrase
         self.update_display()
     
     def generate_phrase_bytes(self):
-        shift_register_index = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["shift_register_index"]
-        bit = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["bit"]
-        self.shift_register_states[shift_register_index] = self.shift_register_states[shift_register_index] + (1 << bit)
+        if self.current_phrase != "":
+            shift_register_index = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["shift_register_index"]
+            bit = self.Display_LED_Mapping["display_phrase"][self.current_phrase]["bit"]
+            self.shift_register_states[shift_register_index] = self.shift_register_states[shift_register_index] + (1 << bit)
 
     def set_number(self, number):
         if number > 999:
@@ -150,8 +151,10 @@ class Acrylic_Display():
 
     def update_display(self):
         self.set_all_off()
-        self.generate_number_bytes()
-        self.generate_phrase_bytes()
+        if self.current_number > -1:
+            self.generate_number_bytes()
+        if self.current_phrase != "":
+            self.generate_phrase_bytes()
         self.shift_register_chain.write(self.shift_register_states)
 
 ###############
@@ -274,7 +277,7 @@ class Main(threading.Thread):
         self.acrylic_display = Acrylic_Display()
         if self.tb.get_hostname() == 'pinball1game':
             self.power_sensor = ina260.INA260()
-            self.tb.subscribe_to_topic("get_amps")
+            self.tb.subscribe_to_topic("get_current")
         self.start()
 
     def status_receiver(self, msg):
@@ -305,7 +308,7 @@ class Main(threading.Thread):
                     if destination == self.tb.get_hostname():
                         self.acrylic_display.set_number(message)
                         
-                if topic == b'get_amps':
+                if topic == b'get_current':
                     tb.publish('measured_amps', self.power_sensor.get_current())
 
                 if topic == b'all_off':
