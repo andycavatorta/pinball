@@ -23,7 +23,7 @@ import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.sensors import ina260_current_sensor
 
-#import roles.controller.tests as tests
+import roles.controller.tests as tests
 
 import roles.controller.Safety_Enable as Safety_Enable
 import roles.controller.Hosts as Hosts
