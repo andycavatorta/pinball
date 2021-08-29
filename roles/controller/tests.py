@@ -106,7 +106,7 @@ class Displays():
 
 
     def wave(self):
-        interval = 0.2   
+        interval = 0.3
         pitches = [
             "c_mezzo",
             "asharp_mezzo",
@@ -131,7 +131,7 @@ class Displays():
                 for destination in self.destinations:
                     self.tb.publish(topic="play_score",message=pitches[pitch_i],destination=destination)
                     if pitch_i > 0:
-                        self.tb.publish(topic="play_score",message="c_piano",destination=destination)
+                        self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
                     time.sleep(interval/5)
                 #time.sleep(interval/2)
                 for destination in self.destinations:
