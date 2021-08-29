@@ -106,7 +106,8 @@ class Displays():
 
 
     def wave(self):
-        interval = 0.5
+        interval = 0.4
+        """
         pitches = [
             "c_mezzo",
             "asharp_mezzo",
@@ -122,7 +123,6 @@ class Displays():
             "g_piano",
             "f_piano"
         ]
-        """
         while True:
             for pitch_i in range(5):
                 for destination in self.destinations:
