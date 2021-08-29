@@ -137,7 +137,11 @@ class Displays():
                 for destination in self.destinations:
                     self.tb.publish(topic="set_number",message=888,destination=destination)    
                     self.tb.publish(topic="set_phrase",message="juega",destination=destination)
-                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="play_score",message=pitches[random.randint(0,4)],destination=destination)
+                    #if pitch_i != 0:
+                    #    self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
+                    time.sleep(interval/5)
                 for destination in self.destinations:
                     self.tb.publish(topic="set_number",message=777,destination=destination) 
                     self.tb.publish(topic="set_phrase",message="",destination=destination)   
