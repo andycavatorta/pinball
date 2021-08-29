@@ -106,7 +106,7 @@ class Displays():
 
 
     def wave(self):
-        interval = 0.3
+        interval = 0.2
         pitches = [
             "c_mezzo",
             "asharp_mezzo",
@@ -134,6 +134,64 @@ class Displays():
                         self.tb.publish(topic="play_score",message=pitches[0],destination=destination)
                     time.sleep(interval/5)
                 #time.sleep(interval/2)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_number",message=000,destination=destination)    
+                    self.tb.publish(topic="set_phrase",message="juega",destination=destination)
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=111,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=222,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=333,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=444,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=555,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=666,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=777,destination=destination)    
+                time.sleep(interval)
+                for destination in self.destinations:                
+                    self.tb.publish(topic="set_number",message=888,destination=destination)    
+                time.sleep(interval)
+
+
+                for destination in self.destinations:
+                    self.tb.publish(topic="set_phrase",message="",destination=destination)
+                    self.tb.publish(topic="set_number",message=999,destination=destination)    
+                time.sleep(interval)
                 for destination in self.destinations:
                     self.tb.publish(topic="set_number",message=888,destination=destination)    
                 time.sleep(interval)
