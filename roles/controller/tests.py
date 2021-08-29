@@ -106,7 +106,7 @@ class Displays():
 
 
     def wave(self):
-        interval = 0.2
+        interval = 0.1
         while True:
             for destination in self.destinations:
                 self.tb.publish(topic="set_phrase",message="",destination=destination)
