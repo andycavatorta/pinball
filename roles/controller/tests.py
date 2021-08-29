@@ -1,3 +1,4 @@
+import random
 import time
 
 class Displays():
@@ -69,14 +70,39 @@ class Displays():
 
 
     def blinking_juega_and_number_show(self):
+        interval = 0.2
         while True:
             for destination in self.destinations:
                 self.tb.publish(topic="set_phrase",message="",destination=destination)
-            time.sleep(1)
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
             for destination in self.destinations:
                 self.tb.publish(topic="set_phrase",message="juega",destination=destination)
-            time.sleep(1)
-
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
+            time.sleep(interval)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=random.randint(0,999),destination=destination)    
 
 
 
