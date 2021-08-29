@@ -122,8 +122,8 @@ class Displays():
                     self.tb.publish(topic="set_number",message=999,destination=destination)    
                 for destination in self.destinations:
                     self.tb.publish(topic="play_score",message=pitch,destination=destination)
-                    time.sleep(interval/10)
-                time.sleep(interval/2)
+                    time.sleep(interval/5)
+                #time.sleep(interval/2)
                 for destination in self.destinations:
                     self.tb.publish(topic="set_number",message=888,destination=destination)    
                 time.sleep(interval)
