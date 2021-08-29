@@ -137,6 +137,7 @@ class Displays():
                 self.tb.publish(topic="set_number",message=111,destination=destination)    
             time.sleep(interval)
             for destination in self.destinations:
+                self.tb.publish(topic="set_number",message=000,destination=destination)    
                 self.tb.publish(topic="set_phrase",message="juega",destination=destination)
             time.sleep(interval)
             for destination in self.destinations:                
