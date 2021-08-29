@@ -68,6 +68,15 @@ class Displays():
             displayed_number -= 111
 
 
+    def blinking_juega_and_number_show(self):
+        while True:
+            for destination in self.destinations:
+                self.tb.publish(topic="set_phrase",message=self."",destination=destination)
+            time.sleep(1)
+            for destination in self.destinations:
+                self.tb.publish(topic="set_phrase",message=self."juega",destination=destination)
+
+
 
 
 """
