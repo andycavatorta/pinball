@@ -42,7 +42,7 @@ duty_cycle_med = 10000
 duty_cycle_hi = 20000
 duty_cycle_xhi = 50000
 
-def start()
+def start():
     while True:
         for radial_cycle in range(10):
             for radius in range(10):
