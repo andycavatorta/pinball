@@ -2,7 +2,11 @@ import adafruit_tlc5947
 import board
 import busio
 import digitalio
+import queue
+import RPi.GPIO as GPIO
+import threading
 import time
+
 
 SCK = board.SCK
 MOSI = board.MOSI
@@ -42,6 +46,44 @@ duty_cycle_med = 10000
 duty_cycle_hi = 20000
 duty_cycle_xhi = 50000
 
+class Solenoids(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.eject_pulse_time = 0.08
+        GPIO.setmode(GPIO.BCM)
+        self.solenoid_pins = [1,2,3,4,5] # todo: update later
+        for solenoid_pin in self.solenoid_pins:
+            GPIO.setup(solenoid_pin, GPIO.OUT)
+            GPIO.output(solenoid_pin, GPIO.LOW)
+        self.start()
+
+    def test_cycle(self, number_of_cycles=1):
+        for cycle in range(number_of_cycles):
+            for fruit_id in range(0,5):
+                self.add_to_queue("eject",fruit_id)
+                time.sleep(.5)
+
+    def add_to_queue(self, action, fruit_id = None):
+        self.queue.put((action, fruit_id))
+
+    def run(self):
+        while True:
+            action, fruit_id = self.queue.get(True)
+            print(action, fruit_id)
+            if action == "eject":
+                solenoid_pin = self.solenoid_pins[fruit_id]
+                try:
+                    GPIO.output(solenoid_pin, GPIO.HIGH)
+                    time.sleep(self.eject_pulse_time)
+                    GPIO.output(solenoid_pin, GPIO.LOW)
+                finally:
+                    GPIO.output(solenoid_pin, GPIO.LOW)
+            if action == "all_off":
+                for solenoid_pin in self.solenoid_pins:
+                    GPIO.output(solenoid_pin, GPIO.LOW)
+
+
 def start():
     while True:
         for radial_cycle in range(10):
@@ -69,6 +111,9 @@ def start():
         for radius in range(10):
             pins[outer_radius[radius]].duty_cycle = 0
             pins[inner_radius[radius]].duty_cycle = 0
+            if radius % 2 == 0:
+                solenoids.add_to_queue("eject",radius/2)
+
             time.sleep(0.1)
 
         for throb_step in [0,duty_cycle_low,duty_cycle_med,duty_cycle_hi,duty_cycle_xhi,duty_cycle_hi,duty_cycle_med,duty_cycle_low,0]:
@@ -76,5 +121,3 @@ def start():
                 pins[pin].duty_cycle = throb_step
             time.sleep(0.05)
         time.sleep(0.1)
-
-
