@@ -42,39 +42,39 @@ duty_cycle_med = 10000
 duty_cycle_hi = 20000
 duty_cycle_xhi = 50000
 
+def start()
+    while True:
+        for radial_cycle in range(10):
+            for radius in range(10):
 
-while True:
-    for radial_cycle in range(10):
+                pins[outer_radius[radius-5]].duty_cycle = duty_cycle_low
+                pins[inner_radius[radius-5]].duty_cycle = duty_cycle_low
+
+                pins[outer_radius[radius-4]].duty_cycle = duty_cycle_med
+                pins[inner_radius[radius-4]].duty_cycle = duty_cycle_med
+
+                pins[outer_radius[radius-3]].duty_cycle = duty_cycle_hi
+                pins[inner_radius[radius-3]].duty_cycle = duty_cycle_hi
+
+                pins[outer_radius[radius-2]].duty_cycle = duty_cycle_hi
+                pins[inner_radius[radius-2]].duty_cycle = duty_cycle_hi
+
+                pins[outer_radius[radius-1]].duty_cycle = duty_cycle_hi
+                pins[inner_radius[radius-1]].duty_cycle = duty_cycle_hi
+
+                pins[outer_radius[radius]].duty_cycle = duty_cycle_med
+                pins[inner_radius[radius]].duty_cycle = duty_cycle_med
+                time.sleep(0.05)
+
         for radius in range(10):
+            pins[outer_radius[radius]].duty_cycle = 0
+            pins[inner_radius[radius]].duty_cycle = 0
+            time.sleep(0.1)
 
-            pins[outer_radius[radius-5]].duty_cycle = duty_cycle_low
-            pins[inner_radius[radius-5]].duty_cycle = duty_cycle_low
-
-            pins[outer_radius[radius-4]].duty_cycle = duty_cycle_med
-            pins[inner_radius[radius-4]].duty_cycle = duty_cycle_med
-
-            pins[outer_radius[radius-3]].duty_cycle = duty_cycle_hi
-            pins[inner_radius[radius-3]].duty_cycle = duty_cycle_hi
-
-            pins[outer_radius[radius-2]].duty_cycle = duty_cycle_hi
-            pins[inner_radius[radius-2]].duty_cycle = duty_cycle_hi
-
-            pins[outer_radius[radius-1]].duty_cycle = duty_cycle_hi
-            pins[inner_radius[radius-1]].duty_cycle = duty_cycle_hi
-
-            pins[outer_radius[radius]].duty_cycle = duty_cycle_med
-            pins[inner_radius[radius]].duty_cycle = duty_cycle_med
+        for throb_step in [0,duty_cycle_low,duty_cycle_med,duty_cycle_hi,duty_cycle_xhi,duty_cycle_hi,duty_cycle_med,duty_cycle_low,0]:
+            for pin in center_group:
+                pins[pin].duty_cycle = throb_step
             time.sleep(0.05)
-
-    for radius in range(10):
-        pins[outer_radius[radius]].duty_cycle = 0
-        pins[inner_radius[radius]].duty_cycle = 0
         time.sleep(0.1)
-
-    for throb_step in [0,duty_cycle_low,duty_cycle_med,duty_cycle_hi,duty_cycle_xhi,duty_cycle_hi,duty_cycle_med,duty_cycle_low,0]:
-        for pin in center_group:
-            pins[pin].duty_cycle = throb_step
-        time.sleep(0.05)
-    time.sleep(0.1)
 
 
