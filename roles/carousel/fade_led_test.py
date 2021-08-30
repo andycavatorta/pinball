@@ -83,6 +83,7 @@ class Solenoids(threading.Thread):
                 for solenoid_pin in self.solenoid_pins:
                     GPIO.output(solenoid_pin, GPIO.LOW)
 
+solenoids = Solenoids()
 
 def start():
     while True:
