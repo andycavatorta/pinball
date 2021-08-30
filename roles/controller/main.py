@@ -143,7 +143,7 @@ class Main(threading.Thread):
         self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
         self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
-        self.send_to_dashboard = dashboard.init(self.tb)
+        #self.send_to_dashboard = dashboard.init(self.tb)
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
