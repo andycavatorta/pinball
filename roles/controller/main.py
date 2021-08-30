@@ -68,8 +68,8 @@ class Game_Mode_Manager():
     def __init__(self):
         self.modes = settings.Game_Modes
         self.game_mode_order = settings.game_mode_order
-        self.mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS #initial mode
-        self.transitional_mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS # this is the intened next mode, pending testing
+        #self.mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS #initial mode
+        #self.transitional_mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS # this is the intened next mode, pending testing
         self.inventory_complete = False
     def set_mode(self,mode_str):
         # test mode_str in values of self.modes
