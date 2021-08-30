@@ -6,6 +6,7 @@ import queue
 import RPi.GPIO as GPIO
 import threading
 import time
+import random
 
 
 SCK = board.SCK
@@ -109,11 +110,13 @@ def start():
                 pins[inner_radius[radius]].duty_cycle = duty_cycle_med
                 time.sleep(0.05)
 
+        random_int = random.randint(0,10)
         for radius in range(10):
             pins[outer_radius[radius]].duty_cycle = 0
             pins[inner_radius[radius]].duty_cycle = 0
-            if radius % 2 == 0:
-                solenoids.add_to_queue("eject",int(radius/2))
+            if random_int ==0;
+                if radius % 2 == 0:
+                    solenoids.add_to_queue("eject",int(radius/2))
 
             time.sleep(0.1)
 
