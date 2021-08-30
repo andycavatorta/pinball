@@ -205,7 +205,7 @@ class Main(threading.Thread):
         """
         self.start()
 
-    def process_computer_details(self, hostname, type, value)
+    #def process_computer_details(self, hostname, type, value)
 
 
     def (self, state_bool):
