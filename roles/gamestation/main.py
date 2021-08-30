@@ -175,10 +175,10 @@ class Button_Light():
         GPIO.output(self.pin, GPIO.LOW)
     def off(self):
         GPIO.output(self.pin, GPIO.LOW)
-        print(self.pin, GPIO.LOW)
+        #print(self.pin, GPIO.LOW)
     def on(self):
         GPIO.output(self.pin, GPIO.HIGH)
-        print(self.pin, GPIO.HIGH)
+        #print(self.pin, GPIO.HIGH)
 
 #scan all inputs
 class Button_Lights():
@@ -192,13 +192,17 @@ class Button_Lights():
 
 # stubs for testing
 def rollover_handler(name, value):
-    print(name, value)
+    pass
+    #print(name, value)
 def spinner_handler(name, value):
-    print(name, value)
+    pass
+    #print(name, value)
 def trough_sensor_handler(name, value):
-    print(name, value)
+    pass
+    #print(name, value)
 def button_handler(name, value):
-    print(name, value)
+    pass
+    #print(name, value)
 
 # end stubs
 
@@ -405,7 +409,34 @@ class Main(threading.Thread):
 main = Main()
 
         
-        
+
+while True:
+    time.sleep(0.2)
+    main.button_lights.izquierda.off()
+    main.button_lights.trueque.on()
+    time.sleep(0.2)
+    main.button_lights.trueque.off()
+    main.button_lights.comienza.on()
+    time.sleep(0.2)
+    main.button_lights.comienza.off()
+    main.button_lights.dinero.on()
+    time.sleep(0.2)
+    main.button_lights.dinero.off()
+    main.button_lights.derecha.on()
+    time.sleep(0.2)
+    main.button_lights.derecha.off()
+    main.button_lights.dinero.on()
+    time.sleep(0.2)
+    main.button_lights.dinero.off()
+    main.button_lights.comienza.on()
+    time.sleep(0.2)
+    main.button_lights.comienza.off()
+    main.button_lights.trueque.on()
+    time.sleep(0.2)
+    main.button_lights.trueque.off()
+    main.button_lights.izquierda.on()
+    time.sleep(0.2)
+
         
         
         
