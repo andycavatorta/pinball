@@ -309,6 +309,6 @@ class Main(threading.Thread):
 main = Main()
 
 
-displays = role_module.tests.Displays(role_module.main.tb)
+displays = tests.Displays(role_module.main.tb)
 displays.wave()
 
