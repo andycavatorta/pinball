@@ -117,6 +117,8 @@ def start():
             if random_int ==0:
                 if radius % 2 == 0:
                     solenoids.add_to_queue("eject",int(radius/2))
+                    solenoids.add_to_queue("eject",int(radius/2))
+                    solenoids.add_to_queue("eject",int(radius/2))
 
             time.sleep(0.1)
 
