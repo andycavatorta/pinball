@@ -78,6 +78,7 @@ class Solenoids(threading.Thread):
                     GPIO.output(solenoid_pin, GPIO.HIGH)
                     time.sleep(self.eject_pulse_time)
                     GPIO.output(solenoid_pin, GPIO.LOW)
+                    time.sleep(self.eject_pulse_time)
                 finally:
                     GPIO.output(solenoid_pin, GPIO.LOW)
             if action == "all_off":
