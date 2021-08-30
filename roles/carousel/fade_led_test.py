@@ -113,7 +113,7 @@ def start():
             pins[outer_radius[radius]].duty_cycle = 0
             pins[inner_radius[radius]].duty_cycle = 0
             if radius % 2 == 0:
-                solenoids.add_to_queue("eject",radius/2)
+                solenoids.add_to_queue("eject",int(radius/2))
 
             time.sleep(0.1)
 
