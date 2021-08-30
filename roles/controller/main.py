@@ -207,8 +207,8 @@ class Main(threading.Thread):
     """
     def process_computer_details(self, hostname, type, value)
 
-
-    def (self, state_bool):
+    """
+    def safety_enable_handler(self, state_bool):
         # when all computers are present
         # when power turns on or off
         # self.game_mode_manager.set_mode()
@@ -216,8 +216,6 @@ class Main(threading.Thread):
         self.tb.publish("respond_high_power_enabled", state_bool)
         if state_bool:
             self.tb.publish("request_system_tests", True)
-    """
-
     
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
