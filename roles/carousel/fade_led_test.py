@@ -114,7 +114,7 @@ def start():
         for radius in range(10):
             pins[outer_radius[radius]].duty_cycle = 0
             pins[inner_radius[radius]].duty_cycle = 0
-            if random_int ==0;
+            if random_int ==0:
                 if radius % 2 == 0:
                     solenoids.add_to_queue("eject",int(radius/2))
 
