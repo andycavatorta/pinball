@@ -204,8 +204,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("carousel_ball_detected")
         """
         self.start()
-
-    #def process_computer_details(self, hostname, type, value)
+    """
+    def process_computer_details(self, hostname, type, value)
 
 
     def (self, state_bool):
@@ -216,6 +216,7 @@ class Main(threading.Thread):
         self.tb.publish("respond_high_power_enabled", state_bool)
         if state_bool:
             self.tb.publish("request_system_tests", True)
+    """
 
     
     def network_message_handler(self, topic, message, origin, destination):
