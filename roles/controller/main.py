@@ -28,6 +28,8 @@ import roles.controller.tests as tests
 import roles.controller.Safety_Enable as Safety_Enable
 import roles.controller.Hosts as Hosts
 
+from http_server_root import dashboard
+
 #import roles.pinball.Controller_Tests as Controller_Tests
 
 #import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
@@ -72,6 +74,7 @@ class Game_Mode_Manager():
     def set_mode(self,mode_str):
         # test mode_str in values of self.modes
         self.mode = mode_str
+        print("new mode:",self.mode)
     def get_mode(self):
         return self.mode
     def get_next_mode(self, mode_str):
@@ -138,8 +141,9 @@ class Main(threading.Thread):
         )
         #self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
-
+        self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
+        self.send_to_dashboard = dashboard.init(self.tb)
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
@@ -153,7 +157,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_relative_position")
         self.tb.subscribe_to_topic("respond_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("respond_sdc2160_controller_faults")
-
 
         """
         # SYSTEM READINESS
@@ -202,13 +205,17 @@ class Main(threading.Thread):
         """
         self.start()
 
-    def safety_enable_handler(self, state_bool):
+    def process_computer_details(self, hostname, type, value)
+
+
+    def (self, state_bool):
         # when all computers are present
         # when power turns on or off
+        # self.game_mode_manager.set_mode()
+        # self.game_mode_manager.set_mode(modes.SYSTEM_TESTS)
         self.tb.publish("respond_high_power_enabled", state_bool)
         if state_bool:
             self.tb.publish("request_system_tests", True)
-           
 
     
     def network_message_handler(self, topic, message, origin, destination):
@@ -301,4 +308,8 @@ class Main(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
+
+
+displays = role_module.tests.Displays(role_module.main.tb)
+displays.wave()
 
