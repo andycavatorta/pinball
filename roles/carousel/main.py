@@ -23,7 +23,7 @@ import common.deadman as deadman
 from roles.carousel.lights import Lights as Lights
 from roles.carousel.solenoids import Solenoids as Solenoids
 
-import roles.carousel.fade_led_test
+from roles.carousel import fade_led_test
 
 GPIO.setmode(GPIO.BCM)
 
