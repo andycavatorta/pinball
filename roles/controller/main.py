@@ -147,6 +147,8 @@ class Main(threading.Thread):
         self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
+        
+        self.send_to_dashboard = dashboard.init(self.tb)
         #self.send_to_dashboard = dashboard.init(self.tb)
 
         self.tb.subscribe_to_topic("connected")
@@ -248,6 +250,7 @@ class Main(threading.Thread):
                     #send to game mode
                     #send to hosts object
                     #send to dashboard
+
                     pass
                 if topic==b"respond_24v_current":
                     pass
