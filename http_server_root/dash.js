@@ -95,7 +95,7 @@ function websocket_message_handler(evt) {
     var device = target[1]
     var data_name = target[2]
     var data_value = target[3]
-    console.log("action>>>>>>",action, ("update_status"==action));
+    console.log("action>>>>>>",action);
     console.log("hostname>>>>>>",hostname);
     console.log("device>>>>>>",device);
     console.log("data_name>>>>>>",data_name);
@@ -107,6 +107,7 @@ function websocket_message_handler(evt) {
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
         }
         if (data_value == "status_present"){
+          console.log("000000000000000000000000000000",hostmap[hostname][device].background_rectangle.)
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
         }
         if (data_value == "status_nominal"){
