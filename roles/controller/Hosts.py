@@ -133,7 +133,7 @@ class Carousel(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
         self.hostname = hostname
-        self.td = td
+        self.tb = tb
         self.df = -1
         self.cpu_temp = -1
         self.pinball_git_timestamp = ""
@@ -570,7 +570,7 @@ class Matrix(Host):
 class Pinball(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
-        self.td = td
+        self.tb = tb
         self.fruit_id = fruit_id
         self.hosts = hosts
         self._48v_current = -1
