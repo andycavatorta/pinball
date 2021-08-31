@@ -571,7 +571,6 @@ class Pinball(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
         self.tb = tb
-        self.fruit_id = fruit_id
         self.hosts = hosts
         self._48v_current = -1
         self.left_stack_inventory = -1
