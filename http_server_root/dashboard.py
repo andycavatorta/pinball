@@ -29,35 +29,25 @@ class SimpleChat(WebSocket):
         self.tb_ref = tb_ref
 
     def handleMessage(self):
-       print("got ws message", self.data)
-       trigger_map = {
-           "tb_pull_from_github" : self.tb_ref.tb_pull_from_github,
-           "app_pull_from_github" : self.tb_ref.app_pull_from_github,
-           "reboot" : self.tb_ref.restart,
-           "shutdown" : self.tb_ref.shutdown,
-           "run_update_scripts": self.tb_ref.tb_run_update_scripts
-       }
-       try:
-         print(trigger_map[self.data]())
-       except Exception as e:
-           print("Got Exception", e)
+       #print("got ws message", self.data)
+       print("handleMessage",self.data)
 
     def handleConnected(self):
-        print(self.address, 'connected')
+        #print(self.address, 'connected')
         for client in clients:
             client.sendMessage(self.address[0] + u' - connected')
         clients.append(self)
 
     def handleClose(self):
         clients.remove(self)
-        print(self.address, 'closed')
+        #print(self.address, 'closed')
         for client in clients:
             client.sendMessage(self.address[0] + u' - disconnected')
 
     def sendToClients(self, message):
-        print("Sending message to client : ", message)
+        #print("Sending message to client : ", message)
         for client in clients:
-            print("client",client)
+            #print("client",client)
             client.sendMessage(message)
 
 class Message_Receiver(threading.Thread):
@@ -93,7 +83,7 @@ class Message_Receiver(threading.Thread):
     def run(self):
         while True:
             topic, message = self.queue.get(block=True)
-            print("topic, message",topic, message)
+            #print("topic, message",topic, message)
             message_json = json.dumps([topic, message])
             self.websocket.sendToClients(self.websocket,message_json)
             """
