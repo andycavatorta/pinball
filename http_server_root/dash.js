@@ -87,7 +87,7 @@ function sendTrigger(command) {
 function websocket_message_handler(evt) {
     var topic_data = JSON.parse(evt.data);
     // console.log("New Websocket Message")
-    console.log(topic_data)
+    //console.log(topic_data)
     var action = topic_data[0]
     var target = topic_data[1]
 
@@ -95,13 +95,11 @@ function websocket_message_handler(evt) {
     var device = target[1]
     var data_name = target[2]
     var data_value = target[3]
-    /*
     console.log("action>>>>>>",action);
     console.log("hostname>>>>>>",hostname);
     console.log("device>>>>>>",device);
     console.log("data_name>>>>>>",data_name);
     console.log("data_value>>>>>>",data_value);
-    */
 
     switch (action) {
       case "update_status":
