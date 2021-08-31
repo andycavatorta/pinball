@@ -107,7 +107,7 @@ function websocket_message_handler(evt) {
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
         }
         if (data_value == "status_present"){
-          console.log("000000000000000000000000000000",hostmap[hostname][device].background_rectangle.)
+          console.log("000000000000000000000000000000",hostmap[hostname][device].background_rectangle)
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
         }
         if (data_value == "status_nominal"){
