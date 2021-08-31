@@ -148,10 +148,6 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
 
-        self.send_to_dashboard = dashboard.init(self.tb)
-
-        print("<<<<<<<<<<<< 0 >>>>>>>>>>>>>>")
-
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
 
@@ -211,6 +207,10 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("carousel_ball_detected")
         """
         self.start()
+        print("<<<<<<<<<<<< 0 >>>>>>>>>>>>>>")
+        self.send_to_dashboard = dashboard.init(self.tb)
+        print("<<<<<<<<<<<< 1 >>>>>>>>>>>>>>")
+        
     """
     def process_computer_details(self, hostname, type, value)
 
