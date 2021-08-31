@@ -741,7 +741,7 @@ class Hosts:
         self.pinball4game = Pinball("pinball4game", tb)
         self.pinball5game = Pinball("pinball5game", tb)
         self.pinballmatrix = Matrix("pinballmatrix", tb)
-        hostname = {
+        self.hostname = {
             'controller':self.controller,
             'carousel1':self.carousel1,
             'carousel2':self.carousel2,
