@@ -147,9 +147,10 @@ class Main(threading.Thread):
         self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
-        
+
         self.send_to_dashboard = dashboard.init(self.tb)
-        #self.send_to_dashboard = dashboard.init(self.tb)
+
+        print("<<<<<<<<<<<< 0 >>>>>>>>>>>>>>")
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
