@@ -722,6 +722,7 @@ class Pinball(Host):
 
 class Hosts:
     def __init__(self, tb):
+
         self.controller = Controller("controller", tb)
         self.carousel1 = Carousel("carousel1", tb)
         self.carousel2 = Carousel("carousel2", tb)
@@ -740,9 +741,26 @@ class Hosts:
         self.pinball4game = Pinball("pinball4game", tb)
         self.pinball5game = Pinball("pinball5game", tb)
         self.pinballmatrix = Matrix("pinballmatrix", tb)
-
-
-
+        hostname = {
+            'controller':self.controller,
+            'carousel1':self.carousel1,
+            'carousel2':self.carousel2,
+            'carousel3':self.carousel3,
+            'carousel4':self.carousel4,
+            'carousel5':self.carousel5,
+            'carouselcenter':self.carouselcenter,
+            'pinball1display':self.pinball1display,
+            'pinball2display':self.pinball2display,
+            'pinball3display':self.pinball3display,
+            'pinball4display':self.pinball4display,
+            'pinball5display':self.pinball5display,
+            'pinball1game':self.pinball1game,
+            'pinball2game':self.pinball2game,
+            'pinball3game':self.pinball3game,
+            'pinball4game':self.pinball4game,
+            'pinball5game':self.pinball5game,
+            'pinballmatrix':self.pinballmatrix,
+        }
 
         """
 
