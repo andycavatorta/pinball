@@ -103,16 +103,16 @@ function websocket_message_handler(evt) {
 
     switch (action) {
       case "update_status":
-        if (data_value == "absent"){
+        if (data_value == "status_absent"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
         }
-        if (data_value == "present"){
+        if (data_value == "status_present"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
         }
-        if (data_value == "nominal"){
+        if (data_value == "status_nominal"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_nominal");
         }
-        if (data_value == "fault"){
+        if (data_value == "status_fault"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_fault");
         }
         break;
