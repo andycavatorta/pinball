@@ -7,10 +7,12 @@ var interface = {};
 const block_grid_x = [50,250,450,650,850,1050,1250,1450,1650,1850,2050,2250,2450,2650,2850,3050,3250,3450,3650]
 const block_grid_y = [20,70,150,280,350,480,550,650,750,850,950,1050,1150,1250,1350,1450,1550,1650,1750,1850,2000]
 
+hostmap = {}
+
 // ------------------- utils -------------------
 
 function setAttributes(element, attributes_o){
-  for (var key in attributes_o) {
+  for ( var key in attributes_o) {
     if (attributes_o.hasOwnProperty(key)) {
       element.setAttribute(key,attributes_o[key]);
     }
@@ -18,7 +20,7 @@ function setAttributes(element, attributes_o){
 }
 
 function degrees_to_radians(radians){
-  return radians * Math.PI / 180
+  return radians * Math.PI / 180;
 }
 
 function makeColor(num, den, error) { // receive numerator, denominator, error of interval
@@ -32,6 +34,8 @@ function makeColor(num, den, error) { // receive numerator, denominator, error o
 }
 
 /* ========== N E T W O R K  ========== */
+
+
 
 function websocket_connect() {
     console.log("connecting to wesockets")
@@ -80,6 +84,83 @@ function sendTrigger(command) {
 }
 
 
+function websocket_message_handler(evt) {
+    var topic_data = JSON.parse(evt.data);
+    // console.log("New Websocket Message")
+    console.log(topic_data)
+    var action = topic_data[0]
+    var target = topic_data[1]
+
+    var hostname = target[0]
+    var device = target[1]
+    var data_name = target[2]
+    var data_value = target[3]
+    /*
+    console.log("action>>>>>>",action);
+    console.log("hostname>>>>>>",hostname);
+    console.log("device>>>>>>",device);
+    console.log("data_name>>>>>>",data_name);
+    console.log("data_value>>>>>>",data_value);
+    */
+
+    switch (action) {
+      case "update_status":
+        if (data_value == "absent"){
+          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (data_value == "present"){
+          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
+        }
+        if (data_value == "nominal"){
+          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_nominal");
+        }
+        if (data_value == "fault"){
+          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_fault");
+        }
+        break;
+      case "update_value":
+        if (device == "amps"){
+          hostmap[hostname][device].set_value(data_value);
+        }else{
+          console.log(
+            ">>>>>",
+            action,
+            hostname,
+            device,
+            data_name,
+            data_value,
+          )
+          hostmap[hostname][device].set_value(data_name, data_value);
+        }
+        break;
+      }
+
+}
+function websocket_error_handler(evt) {
+    console.log("websocket_error_handler", evt)
+    if (timers.retry_connection == false) {
+        //timers.retry_connection = window.setInterval(try_to_connect, 1000);
+    }
+}
+
+function try_to_connect() {
+    console.log("try_to_connect")
+    try {
+        websocket_connect()
+    }
+    catch (e) {
+        console.log("connection failed")
+    }
+}
+
+timers = {
+    retry_connection: window.setInterval(try_to_connect, 1000)
+}
+
+
+function update_display_values(data){
+  console.log(data)
+}
 
 ////////// SVG ELEMENT CONVENIENCE METHODS //////////
 function create_rectangle(dom_parent, attributes_o = new Object()) {
@@ -112,7 +193,6 @@ function create_path(dom_parent, attributes_o = new Object()){
   dom_parent.appendChild(path);
   return path;
 }
-
 function create_ellipse(dom_parent, attributes_o = new Object()){
   var ellipse = document.createElementNS( SVG_NS, "ellipse");
   setAttributes(ellipse, attributes_o);
@@ -167,6 +247,7 @@ class Status_Block{
       {
         class:"status_block",
         height:`${block_height}px`,
+        width:`180px`,
       }
     );
     this.title = create_text(
@@ -180,6 +261,9 @@ class Status_Block{
     for (var n_i in this.names){
       this.rows[this.names[n_i]] = new Status_Block_Name_Value(this.container, [10,((n_i)*line_height)+(2*line_height)], this.names[n_i])
     }
+  }
+  set_value(name, val){
+    //this.rows[name].set_value(val);
   }
 }
 
@@ -205,7 +289,8 @@ class Amps_Block{
       this.container,
       {
         class:"status_block",
-        height:`30px`,
+        height:`60px`,
+        width:`180px`,
       }
     );
     this.title = create_text(
@@ -364,7 +449,6 @@ class Carousel_Panel{
   // more methods to follow
 }
 
-var status_blocks = {}
 
 function init() {
   canvas = document.getElementById( "top_level" );
@@ -372,76 +456,96 @@ function init() {
   interface.mode_title = create_text(canvas, "MODE: WAITING_FOR_CONNECTIONS", {class:"title_text",id:"mode_title"})
   interface.high_power_title = create_text(canvas, "HIGH POWER: OFF", {class:"title_text",id:"high_power_title"})
   interface.carousel_panel = new Carousel_Panel([1850,1200],canvas);
-  //new Status_Block_Name_Value(canvas, [100,100], "asdf");
-
-  status_blocks["amps_game_1"] = new Amps_Block(canvas, [block_grid_x[0],block_grid_y[1]], "GAME 1 AMPS", 0);
-  status_blocks["amps_game_2"] = new Amps_Block(canvas, [block_grid_x[1],block_grid_y[1]], "GAME 2 AMPS", 0);
-  status_blocks["amps_game_3"] = new Amps_Block(canvas, [block_grid_x[2],block_grid_y[1]], "GAME 3 AMPS", 0);
-  status_blocks["amps_game_4"] = new Amps_Block(canvas, [block_grid_x[3],block_grid_y[1]], "GAME 4 AMPS", 0);
-  status_blocks["amps_game_5"] = new Amps_Block(canvas, [block_grid_x[4],block_grid_y[1]], "GAME 5 AMPS", 0);
-
-  status_blocks["amps_motors"] = new Amps_Block(canvas, [block_grid_x[6],block_grid_y[1]], "MOTORS AMPS", 0);
-  status_blocks["amps_display"] = new Amps_Block(canvas, [block_grid_x[13],block_grid_y[1]], "DISPLAY AMPS", 0);
-
-  status_blocks["amps_solenoids"] = new Amps_Block(canvas, [block_grid_x[6],block_grid_y[20]], "SOLENOID AMPS", 0);
 
 
-  status_blocks["rpi_controller"] = new Status_Block(canvas, [block_grid_x[11],block_grid_y[1]], "RPi CONTROLLER", ["df","temp","pin git","tb git"]);
-
-  status_blocks["rpi_game_1"] = new Status_Block(canvas, [block_grid_x[0],block_grid_y[2]], "RPi PINBALL 1", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_game_2"] = new Status_Block(canvas, [block_grid_x[1],block_grid_y[2]], "RPi PINBALL 2", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_game_3"] = new Status_Block(canvas, [block_grid_x[2],block_grid_y[2]], "RPi PINBALL 3", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_game_4"] = new Status_Block(canvas, [block_grid_x[3],block_grid_y[2]], "RPi PINBALL 4", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_game_5"] = new Status_Block(canvas, [block_grid_x[4],block_grid_y[2]], "RPi PINBALL 5", ["df","temp","pin git","tb git"]);
-
-  status_blocks["rpi_matrix"] = new Status_Block(canvas, [block_grid_x[6],block_grid_y[2]], "RPi MATRIX", ["df","temp","pin git","tb git"]);
-
-  status_blocks["rpi_display_1"] = new Status_Block(canvas, [block_grid_x[13],block_grid_y[2]], "RPi DISPLAY 1", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_display_2"] = new Status_Block(canvas, [block_grid_x[14],block_grid_y[2]], "RPi DISPLAY 2", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_display_3"] = new Status_Block(canvas, [block_grid_x[15],block_grid_y[2]], "RPi DISPLAY 3", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_display_4"] = new Status_Block(canvas, [block_grid_x[16],block_grid_y[2]], "RPi DISPLAY 4", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_display_5"] = new Status_Block(canvas, [block_grid_x[17],block_grid_y[2]], "RPi DISPLAY 5", ["df","temp","pin git","tb git"]);
-
-  status_blocks["rpi_carousel_1"] = new Status_Block(canvas, [block_grid_x[6],block_grid_y[19]], "RPi CAROUSEL 1", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_carousel_2"] = new Status_Block(canvas, [block_grid_x[7],block_grid_y[19]], "RPi CAROUSEL 2", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_carousel_3"] = new Status_Block(canvas, [block_grid_x[8],block_grid_y[19]], "RPi CAROUSEL 3", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_carousel_4"] = new Status_Block(canvas, [block_grid_x[9],block_grid_y[19]], "RPi CAROUSEL 4", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_carousel_5"] = new Status_Block(canvas, [block_grid_x[10],block_grid_y[19]], "RPi CAROUSEL 5", ["df","temp","pin git","tb git"]);
-  status_blocks["rpi_carousel_6"] = new Status_Block(canvas, [block_grid_x[11],block_grid_y[19]], "RPi CAROUSEL CENTER", ["df","temp","pin git","tb git"]);
-
-  status_blocks["nucleo"] = new Status_Block(canvas, [block_grid_x[10],block_grid_y[1]], "NUCLEO BOARD", ["connected"]);
-
-  status_blocks["p3_roc_1"] = new Status_Block(canvas, [block_grid_x[0],block_grid_y[3]], "PR ROC 1", ["connected"]);
-  status_blocks["p3_roc_2"] = new Status_Block(canvas, [block_grid_x[1],block_grid_y[3]], "PR ROC 2", ["connected"]);
-  status_blocks["p3_roc_3"] = new Status_Block(canvas, [block_grid_x[2],block_grid_y[3]], "PR ROC 3", ["connected"]);
-  status_blocks["p3_roc_4"] = new Status_Block(canvas, [block_grid_x[3],block_grid_y[3]], "PR ROC 4", ["connected"]);
-  status_blocks["p3_roc_5"] = new Status_Block(canvas, [block_grid_x[4],block_grid_y[3]], "PR ROC 5", ["connected"]);
-
-  status_blocks["sdc_1_2"] = new Status_Block(canvas, [block_grid_x[6],block_grid_y[3]], "SDC2160  1 & 2", ["faults"]);
-  status_blocks["sdc_3_4"] = new Status_Block(canvas, [block_grid_x[8],block_grid_y[3]], "SDC2160  3 & 4", ["faults"]);
-  status_blocks["sdc_5_6"] = new Status_Block(canvas, [block_grid_x[10],block_grid_y[3]], "SDC2160  5 & 6", ["faults"]);
-
-  status_blocks["hc_595_1"] = new Status_Block(canvas, [block_grid_x[13],block_grid_y[3]], "HC595 1", ["connected"]);
-  status_blocks["hc_595_2"] = new Status_Block(canvas, [block_grid_x[14],block_grid_y[3]], "HC595 2", ["connected"]);
-  status_blocks["hc_595_3"] = new Status_Block(canvas, [block_grid_x[15],block_grid_y[3]], "HC595 3", ["connected"]);
-  status_blocks["hc_595_4"] = new Status_Block(canvas, [block_grid_x[16],block_grid_y[3]], "HC595 4", ["connected"]);
-  status_blocks["hc_595_5"] = new Status_Block(canvas, [block_grid_x[17],block_grid_y[3]], "HC595 5", ["connected"]);
-
-  status_blocks["motor_channel_1"] = new Status_Block(canvas, [block_grid_x[6],block_grid_y[4]], "MOTOR 1", ["amps","pid error","status","θ target"]);
-  status_blocks["motor_channel_2"] = new Status_Block(canvas, [block_grid_x[7],block_grid_y[4]], "MOTOR 2", ["amps","pid error","status","θ target"]);
-  status_blocks["motor_channel_3"] = new Status_Block(canvas, [block_grid_x[8],block_grid_y[4]], "MOTOR 3", ["amps","pid error","status","θ target"]);
-  status_blocks["motor_channel_4"] = new Status_Block(canvas, [block_grid_x[9],block_grid_y[4]], "MOTOR 4", ["amps","pid error","status","θ target"]);
-  status_blocks["motor_channel_5"] = new Status_Block(canvas, [block_grid_x[10],block_grid_y[4]], "MOTOR 5", ["amps","pid error","status","θ target"]);
-  status_blocks["motor_channel_6"] = new Status_Block(canvas, [block_grid_x[11],block_grid_y[4]], "MOTOR CENTER", ["amps","pid error","status","θ target"]);
-
-  status_blocks["amt203_1"] = new Status_Block(canvas, [block_grid_x[6],block_grid_y[5]], "AMT203 1", ["θ relative","θ absolute","discrepancy"]);
-  status_blocks["amt203_2"] = new Status_Block(canvas, [block_grid_x[7],block_grid_y[5]], "AMT203 2", ["θ relative","θ absolute","discrepancy"]);
-  status_blocks["amt203_3"] = new Status_Block(canvas, [block_grid_x[8],block_grid_y[5]], "AMT203 3", ["θ relative","θ absolute","discrepancy"]);
-  status_blocks["amt203_4"] = new Status_Block(canvas, [block_grid_x[9],block_grid_y[5]], "AMT203 4", ["θ relative","θ absolute","discrepancy"]);
-  status_blocks["amt203_5"] = new Status_Block(canvas, [block_grid_x[10],block_grid_y[5]], "AMT203 5", ["θ relative","θ absolute","discrepancy"]);
-  status_blocks["amt203_6"] = new Status_Block(canvas, [block_grid_x[11],block_grid_y[5]], "AMT203 CENTER", ["θ relative","θ absolute","discrepancy"]);
-
-
+  hostmap = {
+    controller:{
+      rpi:new Status_Block(canvas, [block_grid_x[11],block_grid_y[1]], "RPi CONTROLLER", ["df","temp","pin git","tb git"]),
+      nucleo:new Status_Block(canvas, [block_grid_x[10],block_grid_y[1]], "NUCLEO BOARD", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[6],block_grid_y[20]], "SOLENOID AMPS", 0)
+    },
+    pinball1game:{
+      rpi:new Status_Block(canvas, [block_grid_x[0],block_grid_y[2]], "RPi PINBALL 1", ["df","temp","pin git","tb git"]),
+      p3_roc:new Status_Block(canvas, [block_grid_x[0],block_grid_y[3]], "P3 ROC 1", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[0],block_grid_y[1]], "GAME 1 AMPS", 0),
+    },
+    pinball2game:{
+      rpi:new Status_Block(canvas, [block_grid_x[1],block_grid_y[2]], "RPi PINBALL 2", ["df","temp","pin git","tb git"]),
+      p3_roc:new Status_Block(canvas, [block_grid_x[1],block_grid_y[3]], "P3 ROC 2", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[1],block_grid_y[1]], "GAME 2 AMPS", 0),
+    },
+    pinball3game:{
+      rpi:new Status_Block(canvas, [block_grid_x[2],block_grid_y[2]], "RPi PINBALL 3", ["df","temp","pin git","tb git"]),
+      p3_roc:new Status_Block(canvas, [block_grid_x[2],block_grid_y[3]], "P3 ROC 3", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[2],block_grid_y[1]], "GAME 3 AMPS", 0),
+    },
+    pinball4game:{
+      rpi:new Status_Block(canvas, [block_grid_x[3],block_grid_y[2]], "RPi PINBALL 4", ["df","temp","pin git","tb git"]),
+      p3_roc:new Status_Block(canvas, [block_grid_x[3],block_grid_y[3]], "P3 ROC 4", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[3],block_grid_y[1]], "GAME 4 AMPS", 0),
+    },
+    pinball5game:{
+      rpi:new Status_Block(canvas, [block_grid_x[4],block_grid_y[2]], "RPi PINBALL 5", ["df","temp","pin git","tb git"]),
+      p3_roc:new Status_Block(canvas, [block_grid_x[4],block_grid_y[3]], "P3 ROC 5", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[4],block_grid_y[1]], "GAME 5 AMPS", 0),
+    },
+    pinball1display:{
+      rpi:new Status_Block(canvas, [block_grid_x[13],block_grid_y[2]], "RPi DISPLAY 1", ["df","temp","pin git","tb git"]),
+      hc595_1:new Status_Block(canvas, [block_grid_x[13],block_grid_y[3]], "HC595 1", ["connected"]),
+      amps:new Amps_Block(canvas, [block_grid_x[13],block_grid_y[1]], "DISPLAY AMPS", 0),
+    },
+    pinball2display:{
+      rpi:new Status_Block(canvas, [block_grid_x[14],block_grid_y[2]], "RPi DISPLAY 2", ["df","temp","pin git","tb git"]),
+      hc595_1:new Status_Block(canvas, [block_grid_x[14],block_grid_y[3]], "HC595 2", ["connected"]),
+    },
+    pinball3display:{
+      rpi:new Status_Block(canvas, [block_grid_x[15],block_grid_y[2]], "RPi DISPLAY 3", ["df","temp","pin git","tb git"]),
+      hc595_1:new Status_Block(canvas, [block_grid_x[15],block_grid_y[3]], "HC595 3", ["connected"]),
+    },
+    pinball4display:{
+      rpi:new Status_Block(canvas, [block_grid_x[16],block_grid_y[2]], "RPi DISPLAY 4", ["df","temp","pin git","tb git"]),
+      hc595_1:new Status_Block(canvas, [block_grid_x[16],block_grid_y[3]], "HC595 4", ["connected"]),
+    },
+    pinball5display:{
+      rpi:new Status_Block(canvas, [block_grid_x[17],block_grid_y[2]], "RPi DISPLAY 5", ["df","temp","pin git","tb git"]),
+      hc595_1:new Status_Block(canvas, [block_grid_x[17],block_grid_y[3]], "HC595 5", ["connected"]),
+    },
+    pinballmatrix:{
+      rpi:new Status_Block(canvas, [block_grid_x[6],block_grid_y[2]], "RPi MATRIX", ["df","temp","pin git","tb git"]),
+      sdc_1_2: new Status_Block(canvas, [block_grid_x[6],block_grid_y[3]], "SDC2160  1 & 2", ["faults"]),
+      sdc_3_4: new Status_Block(canvas, [block_grid_x[8],block_grid_y[3]], "SDC2160  3 & 4", ["faults"]),
+      sdc_5_6: new Status_Block(canvas, [block_grid_x[10],block_grid_y[3]], "SDC2160  5 & 6", ["faults"]),
+      amt_1: new Status_Block(canvas, [block_grid_x[6],block_grid_y[5]], "AMT203 1", ["θ relative","θ absolute","discrepancy"]),
+      amt_2: new Status_Block(canvas, [block_grid_x[7],block_grid_y[5]], "AMT203 2", ["θ relative","θ absolute","discrepancy"]),
+      amt_3: new Status_Block(canvas, [block_grid_x[8],block_grid_y[5]], "AMT203 3", ["θ relative","θ absolute","discrepancy"]),
+      amt_4: new Status_Block(canvas, [block_grid_x[9],block_grid_y[5]], "AMT203 4", ["θ relative","θ absolute","discrepancy"]),
+      amt_5: new Status_Block(canvas, [block_grid_x[10],block_grid_y[5]], "AMT203 5", ["θ relative","θ absolute","discrepancy"]),
+      amt_6: new Status_Block(canvas, [block_grid_x[11],block_grid_y[5]], "AMT203 CENTER", ["θ relative","θ absolute","discrepancy"]),
+      motor_1 :new Status_Block(canvas, [block_grid_x[6],block_grid_y[4]], "MOTOR 1", ["amps","pid error","status","θ target"]),
+      motor_2 :new Status_Block(canvas, [block_grid_x[7],block_grid_y[4]], "MOTOR 2", ["amps","pid error","status","θ target"]),
+      motor_3 :new Status_Block(canvas, [block_grid_x[8],block_grid_y[4]], "MOTOR 3", ["amps","pid error","status","θ target"]),
+      motor_4 :new Status_Block(canvas, [block_grid_x[9],block_grid_y[4]], "MOTOR 4", ["amps","pid error","status","θ target"]),
+      motor_5 :new Status_Block(canvas, [block_grid_x[10],block_grid_y[4]], "MOTOR 5", ["amps","pid error","status","θ target"]),
+      motor_6 :new Status_Block(canvas, [block_grid_x[11],block_grid_y[4]], "MOTOR CENTER", ["amps","pid error","status","θ target"]),
+      amps:new Amps_Block(canvas, [block_grid_x[6],block_grid_y[1]], "MOTORS AMPS", 0),
+    },
+    carousel1:{
+      rpi:new Status_Block(canvas, [block_grid_x[6],block_grid_y[19]], "RPi CAROUSEL 1", ["df","temp","pin git","tb git"]),
+    },
+    carousel2:{
+      rpi:new Status_Block(canvas, [block_grid_x[7],block_grid_y[19]], "RPi CAROUSEL 2", ["df","temp","pin git","tb git"]),
+    },
+    carousel3:{
+      rpi:new Status_Block(canvas, [block_grid_x[8],block_grid_y[19]], "RPi CAROUSEL 3", ["df","temp","pin git","tb git"]),
+    },
+    carousel4:{
+      rpi:new Status_Block(canvas, [block_grid_x[9],block_grid_y[19]], "RPi CAROUSEL 4", ["df","temp","pin git","tb git"]),
+    },
+    carousel5:{
+      rpi:new Status_Block(canvas, [block_grid_x[10],block_grid_y[19]], "RPi CAROUSEL 5", ["df","temp","pin git","tb git"]),
+    },
+    carouselcenter:{
+      rpi:new Status_Block(canvas, [block_grid_x[11],block_grid_y[19]], "RPi CAROUSEL CENTER", ["df","temp","pin git","tb git"]),
+    },
+  }
 }
-
-
