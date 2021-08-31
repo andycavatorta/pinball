@@ -28,7 +28,7 @@ import roles.controller.tests as tests
 import roles.controller.Safety_Enable as Safety_Enable
 import roles.controller.Hosts as Hosts
 
-from roles.controller.http_server_root import dashboard
+from http_server_root import dashboard
 
 #import roles.pinball.Controller_Tests as Controller_Tests
 
