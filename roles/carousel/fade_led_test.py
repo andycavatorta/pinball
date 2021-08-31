@@ -111,7 +111,7 @@ def start():
                 pins[inner_radius[radius]].duty_cycle = duty_cycle_med
                 time.sleep(0.05)
 
-        random_int = random.randint(0,10)
+        random_int = random.randint(0,100)
         for radius in range(10):
             pins[outer_radius[radius]].duty_cycle = 0
             pins[inner_radius[radius]].duty_cycle = 0
