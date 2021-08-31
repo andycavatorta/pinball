@@ -224,7 +224,7 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
-
+        self.hosts.hostname[hostname].set_connected(status)
         # update self.hosts[hostname].set_connected() 
         # self.add_to_queue(topic, message, origin, destination)
     def add_to_queue(self, topic, message, origin, destination):
@@ -254,20 +254,6 @@ class Main(threading.Thread):
                     pass
 
 
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
-                if topic==b"":
-                    pass
                 if topic==b"":
                     pass
 
