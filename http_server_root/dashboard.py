@@ -118,7 +118,8 @@ def init(tb_ref):
     httpd_thread = threading.Thread(target=httpd.serve_forever)
     httpd_thread.start()    
 
-    server = SimpleWebSocketServer('', 8001, SimpleChat)
+    #server = SimpleWebSocketServer('', 8001, SimpleChat)
+    server = SimpleWebSocketServer('192.168.8.172', 8001, SimpleChat)
     server_thread = threading.Thread(target=server.serveforever)
     server_thread.start()
     message_receiver = Message_Receiver(tb_ref, server.websocketclass)
