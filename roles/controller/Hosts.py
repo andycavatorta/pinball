@@ -27,6 +27,12 @@ thread safety???
 
 """
 
+app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+sys.path.append(os.path.split(app_path)[0])
+
+from thirtybirds3 import thirtybirds
+from thirtybirds3.adapters.sensors.ina260 import ina260 
+
 import os
 import queue
 import sys
