@@ -242,10 +242,12 @@ class Main(threading.Thread):
                     print(topic, message, origin, destination)
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
-                if topic==b"connected":
+                if topic==b"connected": # is this useful when we have the network_status_change_handler?
                     print("----------connected----------", topic, message, origin, destination)
                 if topic==b"respond_computer_details":
-                    # update http_server?
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
                     pass
                 if topic==b"respond_24v_current":
                     pass
