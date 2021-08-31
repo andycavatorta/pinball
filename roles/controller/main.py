@@ -32,7 +32,7 @@ from http_server_root import dashboard
 
 #import roles.pinball.Controller_Tests as Controller_Tests
 
-#import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
+import roles.pinball.Mode_Waiting_For_Connections as Mode_Waiting_For_Connections
 #import roles.pinball.Mode_System_Tests as Mode_System_Tests
 #import roles.pinball.Mode_Reset as Mode_Reset
 
@@ -68,7 +68,7 @@ class Game_Mode_Manager():
     def __init__(self):
         self.modes = settings.Game_Modes
         self.game_mode_order = settings.game_mode_order
-        #self.mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS #initial mode
+        self.mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS #initial mode
         #self.transitional_mode = self.modes.Game_Modes.WAITING_FOR_CONNECTIONS # this is the intened next mode, pending testing
         self.inventory_complete = False
     def set_mode(self,mode_str):
@@ -127,6 +127,9 @@ class Game_Mode_Manager():
 
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
+    """
+    incoming messages are sorted and routed to the Hosts module, the dashboard, and the game mode manager
+    """
     def __init__(self):
         threading.Thread.__init__(self)
         self.game_modes = settings.Game_Modes
