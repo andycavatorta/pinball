@@ -10,6 +10,12 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 tb_path = os.path.dirname(os.path.realpath(__file__))
 
+STATUS_PRESENT = "status_present"
+STATUS_ABSENT = "status_absent"
+STATUS_NOMINAL = "status_nominal"
+STATUS_FAULT = "status_fault"
+
+
 clients = []
 class SimpleChat(WebSocket):
 
@@ -44,7 +50,7 @@ class SimpleChat(WebSocket):
           client.sendMessage(self.address[0] + u' - disconnected')
 
     def sendToClients(self, message):
-        print("Sending message to clinet : ", message)
+        print("Sending message to client : ", message)
         for client in clients:
             print("client",client)
             client.sendMessage(message)
@@ -97,7 +103,6 @@ def status_receiver(message):
 def exception_receiver(message):
     message_receiver.add_to_queue("exception_event",message)
 
-message_receiver = False
 
 def init(tb_ref):
     global message_receiver
