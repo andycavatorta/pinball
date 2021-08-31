@@ -14,7 +14,7 @@ svg {
 #background_rect{
   top:0px;
   left:0px;
-  fill:#202040;
+  fill:#222222;
   width:3800px;
   height:2100px;
 }
@@ -37,6 +37,23 @@ svg {
   stroke-width:0.228491;
   stroke-miterlimit:4;
   stroke-dasharray:none;
+}
+
+.theme_absent{
+  fill:#333333;
+  stroke:none;
+}
+.theme_present{
+  fill:#554422;
+  stroke:none;
+}
+.theme_nominal{
+  fill:#225522;
+  stroke:none;
+}
+.theme_fault{
+  fill:#552222;
+  stroke:none;
 }
 
 .lit_or_present{
@@ -106,3 +123,5 @@ svg {
   transform: translate(5px, 30px);
   alignment-baseline: hanging;
 }
+
+
