@@ -143,6 +143,7 @@ class Main(threading.Thread):
         self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
         self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
+        self.hosts = Hosts(self.tb)
         #self.send_to_dashboard = dashboard.init(self.tb)
 
         self.tb.subscribe_to_topic("connected")
@@ -223,6 +224,7 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
+
         # update self.hosts[hostname].set_connected() 
         # self.add_to_queue(topic, message, origin, destination)
     def add_to_queue(self, topic, message, origin, destination):
@@ -238,7 +240,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                 if topic==b"connected":
-                    pass
+                    print("----------connected----------", topic, message, origin, destination)
                 if topic==b"respond_computer_details":
                     # update http_server?
                     pass
@@ -250,6 +252,25 @@ class Main(threading.Thread):
                     pass
                 if topic==b"respond_amt203_absolute_position":
                     pass
+
+
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+                if topic==b"":
+                    pass
+
 
                     """
                 if topic==b"system_tests":
