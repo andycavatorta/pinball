@@ -231,6 +231,17 @@ class Main(threading.Thread):
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
         self.hosts.hostname[hostname].set_connected(status)
+        #send to hosts object
+
+        self.send_to_dashboard(
+            "update_status",
+            [
+                hostname, #hostname
+                "rpi", # device
+                "",#data_name
+                dashboard.STATUS_PRESENT if status else dashboard.STATUS_ABSENT
+            ]
+        )
         # update self.hosts[hostname].set_connected() 
         # self.add_to_queue(topic, message, origin, destination)
     def add_to_queue(self, topic, message, origin, destination):
@@ -249,9 +260,9 @@ class Main(threading.Thread):
                     print("----------connected----------", topic, message, origin, destination)
                 if topic==b"respond_computer_details":
                     #send to game mode
+
                     #send to hosts object
                     #send to dashboard
-
                     pass
                 if topic==b"respond_24v_current":
                     pass
