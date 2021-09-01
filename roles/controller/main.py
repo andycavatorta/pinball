@@ -375,7 +375,37 @@ class Main(threading.Thread):
                     pass
 
                 if topic==b"respond_sdc2160_present":
-                    pass
+
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_1_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_3_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel3and4'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_5_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+
+
+
 
                 if topic==b"respond_sdc2160_controller_faults":
                     pass
