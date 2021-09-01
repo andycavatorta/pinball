@@ -256,9 +256,9 @@ class Status_Block{
   }
   set_value(name, val){
     //console.log("Status_Block set_value", name, val)
-    if (["pin git","tb git"].includes(name)){
-      val = new Date(val)
-    }
+    //if (["pin git","tb git"].includes(name)){
+    //  val = new Date(val)
+    //}
     this.rows[name].set_value(val);
   }
 }
