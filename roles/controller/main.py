@@ -453,7 +453,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_1", # device
+                            "carousel_1", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -462,7 +462,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_2", # device
+                            "carousel_2", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -480,7 +480,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_3", # device
+                            "carousel_3", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -489,7 +489,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_4", # device
+                            "carousel_4", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -507,7 +507,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_5", # device
+                            "carousel_5", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -516,7 +516,7 @@ class Main(threading.Thread):
                         "update_status",
                         [
                             origin, #hostname
-                            "motor_6", # device
+                            "carousel_6", # device
                             "",#data_name
                             dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
                         ]
@@ -540,9 +540,6 @@ class Main(threading.Thread):
                                 )
 
                 if topic==b"respond_sdc2160_channel_faults":
-                    print("+++++++++++++++++++++++++++++++++++++++++++++")
-                    print(message)
-                    print("+++++++++++++++++++++++++++++++++++++++++++++")
                     device_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
                     for motor_ordinal_name in enumerate(device_names):
                         motor_ordinal, motor_name = motor_ordinal_name
