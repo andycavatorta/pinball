@@ -95,19 +95,12 @@ function websocket_message_handler(evt) {
     var device = target[1]
     var data_name = target[2]
     var data_value = target[3]
-    console.log("action>>>>>>",action);
-    console.log("hostname>>>>>>",hostname);
-    console.log("device>>>>>>",device);
-    console.log("data_name>>>>>>",data_name);
-    console.log("data_value>>>>>>",data_value);
-
     switch (action) {
       case "update_status":
         if (data_value == "status_absent"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
         }
         if (data_value == "status_present"){
-          console.log(hostmap[hostname][device].background_rectangle)
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
         }
         if (data_value == "status_nominal"){
@@ -121,14 +114,13 @@ function websocket_message_handler(evt) {
         if (device == "amps"){
           hostmap[hostname][device].set_value(data_value);
         }else{
-          console.log(
-            ">>>>>",
-            action,
-            hostname,
-            device,
-            data_name,
-            data_value,
-          )
+          
+          console.log("action>>>>>>",action);
+          console.log("hostname>>>>>>",hostname);
+          console.log("device>>>>>>",device);
+          console.log("data_name>>>>>>",data_name);
+          console.log("data_value>>>>>>",data_value);
+
           hostmap[hostname][device].set_value(data_name, data_value);
         }
         break;
