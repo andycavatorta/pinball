@@ -382,7 +382,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True, 5)
+                topic, message, origin, destination = self.queue.get(True, 0.5)
                 print(topic, message)
                 if topic == b'connected':
                     pass
@@ -451,12 +451,14 @@ class Main(threading.Thread):
             #    print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
 main = Main()
-
+"""
 class Status_Report_Impeller(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.start()
     def run(self):
         time.sleep(30) # this is brittle. Fix this later with try/catch blocks
+        while
         main.add_to_queue("request_amt203_absolute_position","","controller","pinballmatrix")
         time.sleep(1)
+"""
