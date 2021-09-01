@@ -262,7 +262,7 @@ class Status_Block{
     }
   }
   set_value(name, val){
-    //this.rows[name].set_value(val);
+    this.rows[name].set_value(val);
   }
 }
 
