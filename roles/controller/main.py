@@ -579,8 +579,8 @@ class Main(threading.Thread):
                                         motor[fault_type]
                                     ]
                                 )
-
-                if topic==b"respond_sdc2160_relative_position":
+                """
+                if topic==b"respond_amt203_absolute_position":
                     #send to game mode
                     #send to hosts object
                     #send to dashboard
@@ -639,6 +639,7 @@ class Main(threading.Thread):
                             message[5]
                         ]
                     )
+                    """
 
                     """
                 if topic==b"system_tests":
