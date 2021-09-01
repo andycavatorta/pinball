@@ -327,7 +327,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_1", # device
                             "",#data_name
-                            message[0]
+                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
                         ]
                     )
                     self.send_to_dashboard(
@@ -336,7 +336,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_2", # device
                             "",#data_name
-                            message[1]
+                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
                         ]
                     )
                     self.send_to_dashboard(
@@ -345,7 +345,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_3", # device
                             "",#data_name
-                            message[2]
+                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
                         ]
                     )
                     self.send_to_dashboard(
@@ -354,7 +354,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_4", # device
                             "",#data_name
-                            message[3]
+                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
                         ]
                     )
                     self.send_to_dashboard(
@@ -363,7 +363,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_5", # device
                             "",#data_name
-                            message[4]
+                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
                         ]
                     )
                     self.send_to_dashboard(
@@ -372,7 +372,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_6", # device
                             "",#data_name
-                            message[5]
+                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
                         ]
                     )
                     
@@ -388,7 +388,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_1", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
+                            message[0]
                         ]
                     )
                     self.send_to_dashboard(
@@ -397,7 +397,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_2", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
+                            message[1]
                         ]
                     )
                     self.send_to_dashboard(
@@ -406,7 +406,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_3", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
+                            message[2]
                         ]
                     )
                     self.send_to_dashboard(
@@ -415,7 +415,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_4", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
+                            message[3]
                         ]
                     )
                     self.send_to_dashboard(
@@ -424,7 +424,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_5", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
+                            message[4]
                         ]
                     )
                     self.send_to_dashboard(
@@ -433,7 +433,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_6", # device
                             "θ absolute",#data_name
-                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
+                            message[5]
                         ]
                     )
                 if topic==b"respond_sdc2160_present":
@@ -579,7 +579,7 @@ class Main(threading.Thread):
                                         motor[fault_type]
                                     ]
                                 )
-                
+
                 if topic==b"respond_sdc2160_relative_position":
                     #send to game mode
                     #send to hosts object
