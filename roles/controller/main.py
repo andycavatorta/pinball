@@ -305,7 +305,7 @@ class Main(threading.Thread):
                         "update_value",
                         [
                             origin, #hostname
-                            "rpi", # device
+                            "amt_1", # device
                             "tb git",#data_name
                             tb_git_timestamp
                         ]
@@ -314,7 +314,61 @@ class Main(threading.Thread):
                 if topic==b"respond_24v_current":
                     pass
                 if topic==b"respond_amt203_present":
-                    pass
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    
                 if topic==b"respond_amt203_zeroed":
                     pass
                 if topic==b"respond_amt203_absolute_position":
