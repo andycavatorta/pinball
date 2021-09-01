@@ -6,7 +6,7 @@ There are three types of host states
 
     tests_complete and deadman seem redundant.  But deadman must be enabled in order to run some tests
 """
-
+import datetime
 import importlib
 import os
 import queue
@@ -215,6 +215,12 @@ class Main(threading.Thread):
     def process_computer_details(self, hostname, type, value)
 
     """
+    def convert_git_timestamp_to_epoch(self, git_timestamp):
+        weekdayname_str, monthname_str, day_str, time_str, year_str, timezone_str =  git_timestamp.split(" ")
+        hour_str, minute_str, second_str = time_str.split(":")
+        month_int = datetime.datetime.strptime(monthname_str, "%b").month
+        return datetime.datetime(int(year_str),month_int,int(day_str),int(hour_str),int(minute_str),int(second_str)).timestamp()
+
     def safety_enable_handler(self, state_bool):
         # when all computers are present
         # when power turns on or off
@@ -259,11 +265,52 @@ class Main(threading.Thread):
                 if topic==b"connected": # is this useful when we have the network_status_change_handler?
                     print("----------connected----------", topic, message, origin, destination)
                 if topic==b"respond_computer_details":
-                    #send to game mode
+                    cpu_temp = message["cpu_temp"]
+                    df = message["df"][0]
+                    pinball_git_timestamp = self.convert_git_timestamp_to_epoch(message["pinball_git_timestamp"])
+                    tb_git_timestamp = self.convert_git_timestamp_to_epoch(message["tb_git_timestamp"])
 
+                    #send to game mode
                     #send to hosts object
                     #send to dashboard
-                    pass
+
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            hostname, #hostname
+                            "rpi", # device
+                            "temp",#data_name
+                            cpu_temp
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            hostname, #hostname
+                            "rpi", # device
+                            "df",#data_name
+                            df
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            hostname, #hostname
+                            "rpi", # device
+                            "pin git",#data_name
+                            pinball_git_timestamp
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            hostname, #hostname
+                            "rpi", # device
+                            "tb git",#data_name
+                            tb_git_timestamp
+                        ]
+                    )
+
                 if topic==b"respond_24v_current":
                     pass
                 if topic==b"respond_amt203_present":
@@ -273,9 +320,23 @@ class Main(threading.Thread):
                 if topic==b"respond_amt203_absolute_position":
                     pass
 
-
-                if topic==b"":
+                if topic==b"respond_sdc2160_present":
                     pass
+
+                if topic==b"respond_sdc2160_controller_faults":
+                    pass
+
+                if topic==b"respond_sdc2160_channel_faults":
+                    pass
+
+                if topic==b"respond_sdc2160_relative_position":
+                    pass
+
+
+
+
+
+
 
 
                     """
