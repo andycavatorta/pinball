@@ -218,6 +218,7 @@ class Status_Block_Name_Value{
     this.set_value(this.value); // first time setup
   }
   set_value(value){
+    console.log("Status_Block_Name_Value set_value", val)
     this.value = value;
     let textnode = document.createTextNode(this.value);
     this.value_display.replaceChild(textnode, this.value_display.childNodes[0]);
@@ -262,6 +263,7 @@ class Status_Block{
     }
   }
   set_value(name, val){
+    console.log("Status_Block set_value", name, val)
     this.rows[name].set_value(val);
   }
 }
