@@ -57,6 +57,7 @@ roboteq_data_receiver = Roboteq_Data_Receiver()
 
 
 
+
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -172,7 +173,6 @@ class Main(threading.Thread):
                     topic="respond_sdc2160_present", 
                     message=sdc2160_present
                 )
-
 
             controller_fault_states = self.request_sdc2160_controller_faults()
             collected_faults = [{},{},{}]
@@ -449,4 +449,14 @@ class Main(threading.Thread):
             #except Exception as e:
             #    exc_type, exc_value, exc_traceback = sys.exc_info()
             #    print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
+
 main = Main()
+
+class Status_Report_Impeller(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.start()
+    def run(self)
+        time.sleep(30) # this is brittle. Fix this later with try/catch blocks
+        main.add_to_queue("request_amt203_absolute_position","","controller","pinballmatrix")
+        time.sleep(1)
