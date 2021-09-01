@@ -561,13 +561,21 @@ class Main(threading.Thread):
                                 pass
                             else:
 
-                                
+                                fault_type_client_names = {
+                                    "closed_loop_error":"pid error",
+                                    "motor_amps":"amps" ,
+                                    "temperature":"temp",
+                                    "stall_detection":"stall",
+                                    "status":"status",
+                                    "θ target":"θ target",
+                                }
+
                                 self.send_to_dashboard(
                                     "update_value",
                                     [
                                         origin, #hostname
                                         motor_name, # device
-                                        fault_type,#data_name
+                                        fault_type_client_names[fault_type],#data_name
                                         motor[fault_type]
                                     ]
                                 )
