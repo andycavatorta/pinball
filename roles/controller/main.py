@@ -257,6 +257,10 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
+                """
+                much of this switchboard below can be moved into Hosts
+                and Hosts will manage and call methods within each Mode class
+                """
                 topic, message, origin, destination = self.queue.get(True)
                 if topic!=b"deadman":
                     print(topic, message, origin, destination)
@@ -314,13 +318,16 @@ class Main(threading.Thread):
                 if topic==b"respond_24v_current":
                     pass
                 if topic==b"respond_amt203_present":
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
                     self.send_to_dashboard(
                         "update_status",
                         [
                             origin, #hostname
                             "amt_1", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
+                            message[0]
                         ]
                     )
                     self.send_to_dashboard(
@@ -329,7 +336,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_2", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
+                            message[1]
                         ]
                     )
                     self.send_to_dashboard(
@@ -338,7 +345,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_3", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
+                            message[2]
                         ]
                     )
                     self.send_to_dashboard(
@@ -347,7 +354,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_4", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
+                            message[3]
                         ]
                     )
                     self.send_to_dashboard(
@@ -356,7 +363,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_5", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
+                            message[4]
                         ]
                     )
                     self.send_to_dashboard(
@@ -365,17 +372,74 @@ class Main(threading.Thread):
                             origin, #hostname
                             "amt_6", # device
                             "",#data_name
-                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
+                            message[5]
                         ]
                     )
                     
                 if topic==b"respond_amt203_zeroed":
                     pass
                 if topic==b"respond_amt203_absolute_position":
-                    pass
-
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "θ absolute",#data_name
+                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
+                        ]
+                    )
                 if topic==b"respond_sdc2160_present":
-
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -385,7 +449,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -395,7 +458,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -405,7 +467,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -415,7 +476,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel3and4'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -434,7 +494,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -444,7 +503,6 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
-
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -464,23 +522,113 @@ class Main(threading.Thread):
                         ]
                     )
 
-
-
                 if topic==b"respond_sdc2160_controller_faults":
-                    pass
+                    device_names = ['sdc_1_2','sdc_3_4','sdc_5_6']
+                    for controller_ordinal_name in enumerate(device_names):
+                        controller_ordinal, controller_name = controller_ordinal_name
+                        controller = message[controller_ordinal]
+                        for fault_type in controller:
+                            if controller[fault_type] > 0:
+                                self.send_to_dashboard(
+                                    "update_value",
+                                    [
+                                        origin, #hostname
+                                        controller_name, # device
+                                        "faults",#data_name
+                                        fault_type
+                                    ]
+                                )
 
                 if topic==b"respond_sdc2160_channel_faults":
-                    pass
+                    device_names = ['sdc_1_2','sdc_3_4','sdc_5_6']
+                    for motor_ordinal_name in enumerate(device_names):
+                        motor_ordinal, motor_name = motor_ordinal_name
+                        motor = message[motor_ordinal]
+                        for fault_type in motor:
+                            if fault_type != 'runtime_status_flags':
+                                # add interface affordance for runtime_status_flags
+                                """
+                                    'runtime_status_flags': {
+                                        'amps_limit_activated': 0, 
+                                        'motor_stalled': 0, 
+                                        'loop_error_detected': 0, 
+                                        'safety_stop_active': 0, 
+                                        'forward_limit_triggered': 0, 
+                                        'reverse_limit_triggered': 0, 
+                                        'amps_trigger_activated': 0
+                                    }, 
+                                """
+                                pass
+                            else:
+                                self.send_to_dashboard(
+                                    "update_value",
+                                    [
+                                        origin, #hostname
+                                        motor_name, # device
+                                        fault_type,#data_name
+                                        motor[fault_type]
+                                    ]
+                                )
 
                 if topic==b"respond_sdc2160_relative_position":
-                    pass
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
 
-
-
-
-
-
-
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "θ relative",#data_name
+                            message[0]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "θ relative",#data_name
+                            message[1]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "θ relative",#data_name
+                            message[2]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "θ relative",#data_name
+                            message[3]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "θ relative",#data_name
+                            message[4]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "θ relative",#data_name
+                            message[5]
+                        ]
+                    )
 
                     """
                 if topic==b"system_tests":
