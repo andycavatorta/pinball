@@ -42,18 +42,22 @@ svg {
 .theme_absent{
   fill:none;
   stroke:#333333;
+  stroke-width: 3px;
 }
 .theme_present{
   fill:none;
   stroke:#554422;
+  stroke-width: 3px;
 }
 .theme_nominal{
   fill:none;
   stroke:#225522;
+  stroke-width: 3px;
 }
 .theme_fault{
   fill:none;
   stroke:#552222;
+  stroke-width: 3px;
 }
 
 .lit_or_present{
