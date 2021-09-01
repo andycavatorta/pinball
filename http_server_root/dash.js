@@ -97,6 +97,12 @@ function websocket_message_handler(evt) {
     var data_value = target[3]
     switch (action) {
       case "update_status":
+
+          console.log("action>>>>>>",action);
+          console.log("hostname>>>>>>",hostname);
+          console.log("device>>>>>>",device);
+          console.log("data_name>>>>>>",data_name);
+          console.log("data_value>>>>>>",data_value);
         if (data_value == "status_absent"){
           hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
         }
@@ -114,12 +120,6 @@ function websocket_message_handler(evt) {
         if (device == "amps"){
           hostmap[hostname][device].set_value(data_value);
         }else{
-
-          console.log("action>>>>>>",action);
-          console.log("hostname>>>>>>",hostname);
-          console.log("device>>>>>>",device);
-          console.log("data_name>>>>>>",data_name);
-          console.log("data_value>>>>>>",data_value);
 
           hostmap[hostname][device].set_value(data_name, data_value);
         }
@@ -210,7 +210,6 @@ class Status_Block_Name_Value{
     this.set_value(this.value); // first time setup
   }
   set_value(value){
-    console.log("set_value", value)
     this.value = value;
     let textnode = document.createTextNode(this.value);
     this.value_display.replaceChild(textnode, this.value_display.childNodes[0]);
