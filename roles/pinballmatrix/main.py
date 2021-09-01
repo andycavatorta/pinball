@@ -456,7 +456,7 @@ class Status_Report_Impeller(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.start()
-    def run(self)
+    def run(self):
         time.sleep(30) # this is brittle. Fix this later with try/catch blocks
         main.add_to_queue("request_amt203_absolute_position","","controller","pinballmatrix")
         time.sleep(1)
