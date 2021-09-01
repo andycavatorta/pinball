@@ -289,7 +289,7 @@ class Main(threading.Thread):
                             origin, #hostname
                             "rpi", # device
                             "df",#data_name
-                            df/1073741824
+                            round(df/1073741824,2)
                         ]
                     )
                     self.send_to_dashboard(
