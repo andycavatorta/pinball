@@ -277,7 +277,7 @@ class Main(threading.Thread):
                     self.send_to_dashboard(
                         "update_value",
                         [
-                            hostname, #hostname
+                            origin, #hostname
                             "rpi", # device
                             "temp",#data_name
                             cpu_temp
@@ -286,7 +286,7 @@ class Main(threading.Thread):
                     self.send_to_dashboard(
                         "update_value",
                         [
-                            hostname, #hostname
+                            origin, #hostname
                             "rpi", # device
                             "df",#data_name
                             df
@@ -295,7 +295,7 @@ class Main(threading.Thread):
                     self.send_to_dashboard(
                         "update_value",
                         [
-                            hostname, #hostname
+                            origin, #hostname
                             "rpi", # device
                             "pin git",#data_name
                             pinball_git_timestamp
@@ -304,7 +304,7 @@ class Main(threading.Thread):
                     self.send_to_dashboard(
                         "update_value",
                         [
-                            hostname, #hostname
+                            origin, #hostname
                             "rpi", # device
                             "tb git",#data_name
                             tb_git_timestamp
