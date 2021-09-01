@@ -309,7 +309,7 @@ class Main(threading.Thread):
                         "update_value",
                         [
                             origin, #hostname
-                            "amt_1", # device
+                            "rpi", # device
                             "tb git",#data_name
                             tb_git_timestamp
                         ]
@@ -545,7 +545,7 @@ class Main(threading.Thread):
                         motor_ordinal, motor_name = motor_ordinal_name
                         motor = message[motor_ordinal]
                         for fault_type in motor:
-                            if fault_type != 'runtime_status_flags':
+                            if fault_type == 'runtime_status_flags':
                                 # add interface affordance for runtime_status_flags
                                 """
                                     'runtime_status_flags': {
