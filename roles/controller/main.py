@@ -523,7 +523,7 @@ class Main(threading.Thread):
                     )
 
                 if topic==b"respond_sdc2160_controller_faults":
-                    device_names = ['sdc_1_2','sdc_3_4','sdc_5_6']
+                    device_names = ['motor_1','motor_2','motor_3','motor_4','motor_5','motor_6']
                     for controller_ordinal_name in enumerate(device_names):
                         controller_ordinal, controller_name = controller_ordinal_name
                         controller = message[controller_ordinal]
