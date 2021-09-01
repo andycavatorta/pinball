@@ -114,7 +114,7 @@ function websocket_message_handler(evt) {
         if (device == "amps"){
           hostmap[hostname][device].set_value(data_value);
         }else{
-          
+
           console.log("action>>>>>>",action);
           console.log("hostname>>>>>>",hostname);
           console.log("device>>>>>>",device);
@@ -210,7 +210,7 @@ class Status_Block_Name_Value{
     this.set_value(this.value); // first time setup
   }
   set_value(value){
-    console.log("Status_Block_Name_Value set_value", value)
+    console.log("et_value", value)
     this.value = value;
     let textnode = document.createTextNode(this.value);
     this.value_display.replaceChild(textnode, this.value_display.childNodes[0]);
@@ -255,7 +255,7 @@ class Status_Block{
     }
   }
   set_value(name, val){
-    console.log("Status_Block set_value", name, val)
+    //console.log("Status_Block set_value", name, val)
     this.rows[name].set_value(val);
   }
 }
