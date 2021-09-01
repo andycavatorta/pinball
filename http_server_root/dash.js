@@ -258,6 +258,7 @@ class Status_Block{
     //if (["pin git","tb git"].includes(name)){
     //  val = new Date(val)
     //}
+    console.log("name=",name)
     this.rows[name].set_value(val);
   }
 }
