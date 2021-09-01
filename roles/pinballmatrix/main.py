@@ -382,7 +382,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True, 0.5)
+                topic, message, origin, destination = self.queue.get(True,5)
                 print(topic, message)
                 if topic == b'connected':
                     pass
