@@ -275,7 +275,7 @@ class Main(threading.Thread):
                     #send to dashboard
 
                     self.send_to_dashboard(
-                        "update_status",
+                        "update_value",
                         [
                             hostname, #hostname
                             "rpi", # device
@@ -284,7 +284,7 @@ class Main(threading.Thread):
                         ]
                     )
                     self.send_to_dashboard(
-                        "update_status",
+                        "update_value",
                         [
                             hostname, #hostname
                             "rpi", # device
@@ -293,7 +293,7 @@ class Main(threading.Thread):
                         ]
                     )
                     self.send_to_dashboard(
-                        "update_status",
+                        "update_value",
                         [
                             hostname, #hostname
                             "rpi", # device
@@ -302,7 +302,7 @@ class Main(threading.Thread):
                         ]
                     )
                     self.send_to_dashboard(
-                        "update_status",
+                        "update_value",
                         [
                             hostname, #hostname
                             "rpi", # device
