@@ -385,6 +385,27 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
+
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_1", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -394,6 +415,26 @@ class Main(threading.Thread):
                             dashboard.STATUS_PRESENT if len(message['carousel3and4'])>0 else dashboard.STATUS_ABSENT
                         ]
                     )
+
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_3", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+
                     self.send_to_dashboard(
                         "update_status",
                         [
@@ -404,6 +445,24 @@ class Main(threading.Thread):
                         ]
                     )
 
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_5", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "motor_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
 
 
 
