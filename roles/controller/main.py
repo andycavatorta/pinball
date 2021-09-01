@@ -546,7 +546,7 @@ class Main(threading.Thread):
                     device_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
                     for motor_ordinal_name in enumerate(device_names):
                         motor_ordinal, motor_name = motor_ordinal_name
-                        motor = message[motor_ordinal]
+                        motor = message[motor_name]
                         for fault_type in motor:
                             if fault_type == 'runtime_status_flags':
                                 # add interface affordance for runtime_status_flags
