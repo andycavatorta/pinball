@@ -229,7 +229,7 @@ class Status_Block{
       {
         class:"status_block",
         transform:`matrix(1,0,0,1,${coordinates[0]},${coordinates[1]})`,
-        height: `${(line_height*(this.names.length+3))}px`,
+        height: `${(line_height*(this.names.length+6))}px`,
       }
     );
     let block_height = ((names.length+1)*line_height)
