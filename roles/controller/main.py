@@ -540,6 +540,9 @@ class Main(threading.Thread):
                                 )
 
                 if topic==b"respond_sdc2160_channel_faults":
+                    print("+++++++++++++++++++++++++++++++++++++++++++++")
+                    print(message)
+                    print("+++++++++++++++++++++++++++++++++++++++++++++")
                     device_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
                     for motor_ordinal_name in enumerate(device_names):
                         motor_ordinal, motor_name = motor_ordinal_name
