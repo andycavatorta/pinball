@@ -40,20 +40,20 @@ svg {
 }
 
 .theme_absent{
-  fill:#333333;
-  stroke:none;
+  fill:none;
+  stroke:#333333;
 }
 .theme_present{
-  fill:#554422;
-  stroke:none;
+  fill:none;
+  stroke:#554422;
 }
 .theme_nominal{
-  fill:#225522;
-  stroke:none;
+  fill:none;
+  stroke:#225522;
 }
 .theme_fault{
-  fill:#552222;
-  stroke:none;
+  fill:none;
+  stroke:#552222;
 }
 
 .lit_or_present{
