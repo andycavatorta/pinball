@@ -569,16 +569,18 @@ class Main(threading.Thread):
                                     "status":"status",
                                     "θ target":"θ target",
                                 }
-
-                                self.send_to_dashboard(
-                                    "update_value",
-                                    [
-                                        origin, #hostname
-                                        motor_name, # device
-                                        fault_type_client_names[fault_type],#data_name
-                                        motor[fault_type]
-                                    ]
-                                )
+                                try:
+                                    self.send_to_dashboard(
+                                        "update_value",
+                                        [
+                                            origin, #hostname
+                                            motor_name, # device
+                                            fault_type_client_names[fault_type],#data_name
+                                            motor[fault_type]
+                                        ]
+                                    )
+                                except KeyError:
+                                    print("key error in respond_sdc2160_channel_faults", fault_type)
 
                 if topic==b"respond_sdc2160_relative_position":
                     #send to game mode
