@@ -560,6 +560,8 @@ class Main(threading.Thread):
                                 """
                                 pass
                             else:
+
+                                
                                 self.send_to_dashboard(
                                     "update_value",
                                     [
