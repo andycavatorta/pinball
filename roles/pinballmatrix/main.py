@@ -136,6 +136,15 @@ class Main(threading.Thread):
             }
         )
 
+    def sync_relative_encoders_to_absolute_encoders(self):
+        carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
+        if self.high_power_init: # if power is on
+            # add try/catch blocks and/or general system to track if hi power is on
+            abs_positions = self.absolute_encoders.get_positions()
+            for abs_ordinal_position in enumerate(abs_positions):
+                abs_ordinal, abs_position = abs_ordinal_position
+                self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
+
     def request_system_faults(self):
 
         _24v_current = self.request_24v_current()
@@ -393,6 +402,7 @@ class Main(threading.Thread):
                             self.create_controllers_and_motors()
                             self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
                             self.high_power_init = True
+                            self.sync_relative_encoders_to_absolute_encoders()
 
                 if topic == b'request_system_tests':
                     self.request_system_tests()
