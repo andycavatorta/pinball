@@ -95,8 +95,6 @@ class Lights_Pattern(threading.Thread):
                             interrupt = True
                             break
 
-
-
             if action_name == self.action_names.THROB:
                 interrupt = False
                 while not interrupt:
