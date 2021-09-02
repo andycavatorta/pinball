@@ -225,8 +225,8 @@ class Main(threading.Thread):
                     collected_faults["reverse_limit_triggered"] = sdc2160_channel_faults["runtime_status_flags"]["reverse_limit_triggered"]
                 if sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"] > 0:
                     collected_faults["amps_trigger_activated"] = sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"]
-                if len(collected_faults.keys()) > 0:
-                    all_sdc2160_channel_faults[carousel_name] = collected_faults
+                #if len(collected_faults.keys()) > 0:
+                all_sdc2160_channel_faults[carousel_name] = collected_faults
             if len(all_sdc2160_channel_faults.keys()) > 0:
                 self.tb.publish(
                     topic="respond_sdc2160_channel_faults", 
