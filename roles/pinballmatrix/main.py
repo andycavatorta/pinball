@@ -365,7 +365,7 @@ class Main(threading.Thread):
             "temperature":self.controllers.motors[motor_name].get_temperature(True),
             "runtime_status_flags":self.controllers.motors[motor_name].get_runtime_status_flags(True),
             "closed_loop_error":self.controllers.motors[motor_name].get_closed_loop_error(True),
-            "stall_detection":False #self.controllers.motors[motor_name].get_stall_detection(True),
+            "stall_detection":False, #self.controllers.motors[motor_name].get_stall_detection(True),
             "motor_amps":self.controllers.motors[motor_name].get_motor_amps(True),
         }
 
