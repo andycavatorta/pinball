@@ -228,14 +228,6 @@ class Main(threading.Thread):
         if state_bool:
             self.tb.publish("request_system_tests", True)
 
-    def set_fruits_to_start_positions(self):
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_1", 0, "front"])
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_2", 1, "front"])
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_3", 2, "front"])
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_4", 3, "front"])
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_5", 4, "front"])
-        self.tb.publish("cmd_rotate_fruit_to_target", ["carousel_6", 5, "front"])
-
     
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
