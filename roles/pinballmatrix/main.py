@@ -78,8 +78,6 @@ class Main(threading.Thread):
 
         self.high_power_init = False
 
-        
-
         #self.current_sensor = ina260_current_sensor.INA260()
         """
         self.absolute_encoders = [
@@ -149,9 +147,7 @@ class Main(threading.Thread):
                 time.sleep(0.5)
                 self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
 
-
     def request_system_faults(self):
-
         _24v_current = self.request_24v_current()
         if _24v_current > 0 :
             self.tb.publish(
@@ -245,7 +241,6 @@ class Main(threading.Thread):
                 topic="respond_amt203_absolute_position", 
                 message=self.request_amt203_absolute_position()
             )
-
 
     def request_system_tests(self):
         # INA260 current
@@ -374,12 +369,15 @@ class Main(threading.Thread):
             "motor_amps":self.controllers.motors[motor_name].get_motor_amps(True),
         }
 
-
     def request_target_position_confirmed(self):
         pass
 
-    def cmd_rotate_fruit_to_target(self, fruit_id, target_name):
-        pass
+    def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
+        # calculate target position
+        target_position = settings.Carousel_Fruit_Offsets[fruit_id] + settings.Carousel_Target_Positions[target_name]
+        current_position = self.controllers.motors[carousel_name].get_encoder_counter_absolute(True)
+        current_position = current_position % 4096
+        self.controllers.motors[carousel_name].go_to_absolute_position(current_position)
 
 
     #####
@@ -456,7 +454,8 @@ class Main(threading.Thread):
                 if topic == b'request_target_position_confirmed':
                     pass
                 if topic == b'cmd_rotate_fruit_to_target':
-                    pass
+                    carousel_name, fruit_id, target_name = message
+                    self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
 
             except queue.Empty as e:
                 self.request_system_faults()
