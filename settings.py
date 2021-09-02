@@ -11,6 +11,36 @@ foo = ClassFoo(reports.foo_config)
 
 """
 
+Carousel_Target_Positions = {
+    "front":0,
+    "left tube":300,
+    "right tube":300,
+    "left pause":-1700,
+    "right pause":1700,
+    "transfer": 2048
+}
+
+class Carousel_center_Positions:
+    class Carousel_1:
+        carousel_3_right = -2048
+        carousel_4 = -1638
+        carousel_4_right = -1229
+        carousel_5_left = -1229
+        carousel_5 = -819
+        carousel_5_right = -410
+        carousel_1_left = -410
+        carousel_1 = 0
+        carousel_1_right = 410
+        carousel_2_left = 410
+        carousel_2 = 819
+        carousel_2_right = 1229
+        carousel_3_left = 1229
+        carousel_3 = 1638
+        carousel_4_left = 2048
+
+Carousel_Fruit_Offsets = [0, -819, -1638, 1638, 819]
+
+
 class Nominal_Ranges_For_Tests:
     minimum_disk_free = 500000000
     maximum_cpu_temperature = 90
@@ -38,7 +68,7 @@ class Roles():
         "carousel3":"carousel",
         "carousel4":"carousel",
         "carousel5":"carousel",
-        "carouselcenter":"carousel",
+        "carouselcenter":"carousel"
     }
 
 class Game_Modes:
