@@ -38,7 +38,7 @@ class Carousel_center_Positions:
         carousel_3 = 1638
         carousel_4_left = 2048
 
-Carousel_Fruit_Offsets = [0, -819, -1638, 1638, 819]
+Carousel_Fruit_Offsets = [0, -819, -1638, 1638, 819, 0]
 
 
 class Nominal_Ranges_For_Tests:
