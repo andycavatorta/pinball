@@ -408,12 +408,12 @@ class Main(threading.Thread):
                             self.sync_relative_encoders_to_absolute_encoders()
                             time.sleep(5)
 
-                            self.cmd_rotate_fruit_to_target(["carousel_1", 0, "front"])
-                            self.cmd_rotate_fruit_to_target(["carousel_2", 1, "front"])
-                            self.cmd_rotate_fruit_to_target(["carousel_3", 2, "front"])
-                            self.cmd_rotate_fruit_to_target(["carousel_4", 3, "front"])
-                            self.cmd_rotate_fruit_to_target(["carousel_5", 4, "front"])
-                            self.cmd_rotate_fruit_to_target(["carousel_6", 5, "front"])
+                            self.cmd_rotate_fruit_to_target("carousel_1", 0, "front")
+                            self.cmd_rotate_fruit_to_target("carousel_2", 1, "front")
+                            self.cmd_rotate_fruit_to_target("carousel_3", 2, "front")
+                            self.cmd_rotate_fruit_to_target("carousel_4", 3, "front")
+                            self.cmd_rotate_fruit_to_target("carousel_5", 4, "front")
+                            self.cmd_rotate_fruit_to_target("carousel_6", 5, "front")
 
 
                 if topic == b'request_system_tests':
