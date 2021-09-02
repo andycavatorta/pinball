@@ -143,7 +143,12 @@ class Main(threading.Thread):
             abs_positions = self.absolute_encoders.get_positions()
             for abs_ordinal_position in enumerate(abs_positions):
                 abs_ordinal, abs_position = abs_ordinal_position
+                self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
+                time.sleep(0.5)
                 self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
+                time.sleep(0.5)
+                self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+
 
     def request_system_faults(self):
 
