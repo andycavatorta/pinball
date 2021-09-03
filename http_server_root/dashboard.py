@@ -10,16 +10,10 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 tb_path = os.path.dirname(os.path.realpath(__file__))
 
-
-
 STATUS_PRESENT = "status_present"
 STATUS_ABSENT = "status_absent"
 STATUS_NOMINAL = "status_nominal"
 STATUS_FAULT = "status_fault"
-
-
-
-
 
 clients = []
 class SimpleChat(WebSocket):

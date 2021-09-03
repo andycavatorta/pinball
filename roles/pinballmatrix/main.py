@@ -78,17 +78,6 @@ class Main(threading.Thread):
 
         self.high_power_init = False
 
-        #self.current_sensor = ina260_current_sensor.INA260()
-        """
-        self.absolute_encoders = [
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=8),
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=7),
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=18),
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=17),
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=16),
-            AMT203_absolute_encoder.AMT203(speed_hz=5000, cs=5),
-        ]
-        """        
         self.absolute_encoders_zeroed = False
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("respond_high_power_enabled")
@@ -146,6 +135,66 @@ class Main(threading.Thread):
                 self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
                 time.sleep(0.5)
                 self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+
+
+    def request_system_runtime_states(self):
+        if self.high_power_init:
+            """
+            controller_fault_states = self.request_sdc2160_controller_faults()
+            collected_faults = [{},{},{}]
+            fault_detected = False
+            for controller_fault_state in enumerate(controller_fault_states):
+                controller_ordinal, faults_d = controller_fault_state
+                for fault_type in faults_d:
+                    if faults_d[fault_type] > 0:
+                        fault_detected = True
+                        collected_faults[controller_ordinal][fault_type] = faults_d[fault_type]
+            if fault_detected:
+                self.tb.publish(
+                    topic="respond_sdc2160_controller_faults", 
+                    message=collected_faults
+                )
+
+            all_sdc2160_channel_faults = {}
+            for carousel_name in ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6"]:
+                sdc2160_channel_faults = self.request_sdc2160_channel_faults(carousel_name)
+                collected_faults = {}
+                if sdc2160_channel_faults["temperature"] > 40:
+                    collected_faults["temperature"] = sdc2160_channel_faults["temperature"]
+                if abs(sdc2160_channel_faults["closed_loop_error"]) > 20:
+                    collected_faults["closed_loop_error"] = sdc2160_channel_faults["closed_loop_error"]
+                if sdc2160_channel_faults["stall_detection"] > 0:
+                    collected_faults["stall_detection"] = sdc2160_channel_faults["stall_detection"]
+                if abs(sdc2160_channel_faults["motor_amps"]) > 0:
+                    collected_faults["motor_amps"] = sdc2160_channel_faults["motor_amps"]
+                if sdc2160_channel_faults["runtime_status_flags"]["amps_limit_activated"] > 0:
+                    collected_faults["amps_limit_activated"] = sdc2160_channel_faults["runtime_status_flags"]["amps_limit_activated"]
+                if sdc2160_channel_faults["runtime_status_flags"]["motor_stalled"] > 0:
+                    collected_faults["motor_stalled"] = sdc2160_channel_faults["runtime_status_flags"]["motor_stalled"]
+                if sdc2160_channel_faults["runtime_status_flags"]["loop_error_detected"] > 0:
+                    collected_faults["loop_error_detected"] = sdc2160_channel_faults["runtime_status_flags"]["loop_error_detected"]
+                if sdc2160_channel_faults["runtime_status_flags"]["safety_stop_active"] > 0:
+                    collected_faults["safety_stop_active"] = sdc2160_channel_faults["runtime_status_flags"]["safety_stop_active"]
+                if sdc2160_channel_faults["runtime_status_flags"]["forward_limit_triggered"] > 0:
+                    collected_faults["forward_limit_triggered"] = sdc2160_channel_faults["runtime_status_flags"]["forward_limit_triggered"]
+                if sdc2160_channel_faults["runtime_status_flags"]["reverse_limit_triggered"] > 0:
+                    collected_faults["reverse_limit_triggered"] = sdc2160_channel_faults["runtime_status_flags"]["reverse_limit_triggered"]
+                if sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"] > 0:
+                    collected_faults["amps_trigger_activated"] = sdc2160_channel_faults["runtime_status_flags"]["amps_trigger_activated"]
+                #if len(collected_faults.keys()) > 0:
+                all_sdc2160_channel_faults[carousel_name] = collected_faults
+            if len(all_sdc2160_channel_faults.keys()) > 0:
+                self.tb.publish(
+                    topic="respond_sdc2160_channel_faults", 
+                    message=all_sdc2160_channel_faults
+                )
+            """
+            self.tb.publish(
+                topic="respond_sdc2160_relative_position", 
+                message=self.request_sdc2160_relative_position()
+            )
+
+
 
     def request_system_faults(self):
         _24v_current = self.request_24v_current()
@@ -467,7 +516,8 @@ class Main(threading.Thread):
                     self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
 
             except queue.Empty as e:
-                self.request_system_faults()
+                #self.request_system_faults()
+                self.request_system_runtime_states()
 
             #except Exception as e:
             #    exc_type, exc_value, exc_traceback = sys.exc_info()
