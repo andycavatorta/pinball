@@ -33,7 +33,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
         self.tb.publish("request_computer_details",None)
 
     def respond_host_connected(self, message, origin, destination): 
-        if hosts.all.host_connected() == True:
+        if self.hosts.all.host_connected() == True:
             self.mode_manager.set_mode(self.game_mode_names.System_Tests)
 
     def respond_computer_details(self, message, origin, destination):
