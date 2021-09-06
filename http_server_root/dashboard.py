@@ -77,7 +77,7 @@ class Message_Receiver(threading.Thread):
         while True:
             topic, message = self.queue.get(block=True)
             #print("topic, message",topic, message)
-            message_json = json.dumps([topic, message])
+            message_json = json.dumps([str(topic), str(message)])
             self.websocket.sendToClients(self.websocket,message_json)
             """
             try:
