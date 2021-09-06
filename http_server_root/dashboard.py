@@ -101,7 +101,7 @@ def exception_receiver(message):
 
 def init(tb_ref):
     global message_receiver
-    server_address = ('192.168.8.172', 8080)
+    server_address = ('0.0.0.0', 8080)
     #server_address = ('0.0.0.0', 8080)
     httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
     os.chdir(tb_path)  # optional
