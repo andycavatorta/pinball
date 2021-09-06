@@ -275,7 +275,7 @@ class Main(threading.Thread):
                     print(topic, message, origin, destination)
 
                 self.hosts.add_to_queue(topic, message, origin, destination)
-                self.dashboard.add_to_queue(topic, message, origin, destination)
+                self.send_to_dashboard(topic, message, origin, destination)
 
                 # ERROR
 
