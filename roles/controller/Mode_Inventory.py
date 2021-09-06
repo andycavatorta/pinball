@@ -278,11 +278,11 @@ class Main(threading.Thread):
                 # ERROR
 
                 # WAITING_FOR_CONNECTIONS
-                if self.game_mode_name = self.game_mode_names.WAITING_FOR_CONNECTIONS:
+                if self.game_mode_name == self.game_mode_names.WAITING_FOR_CONNECTIONS:
                     self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
 
                 # SYSTEM_TESTS
-                if self.game_mode_name = self.game_mode_names.SYSTEM_TESTS:
+                if self.game_mode_name == self.game_mode_names.SYSTEM_TESTS:
                     self.mode_system_tests.add_to_queue(topic, message, origin, destination)
 
                 # INVENTORY
