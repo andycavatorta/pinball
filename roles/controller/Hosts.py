@@ -779,6 +779,20 @@ class Hosts:
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
+    def add_to_queue(self, topic, message, origin, destination):
+        # if topic=system_tests, update self.hosts[hostname].set_connected() 
+        self.queue.put((topic, message, origin, destination))
+
+    def run(self):
+        while True:
+            try:
+                """
+                much of this switchboard below can be moved into Hosts
+                and Hosts will manage and call methods within each Mode class
+                """
+                topic, message, origin, destination = self.queue.get(True)
+                print("Hosts.run",topic, message, origin, destination)
+
 
         """
 
