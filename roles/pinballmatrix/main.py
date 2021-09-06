@@ -15,7 +15,6 @@ import settings
 import common.deadman as deadman
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.actuators import roboteq_command_wrapper
-from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder.AMT203_absolute_encoders import AMT203
 from thirtybirds3.adapters.sensors import ina260_current_sensor
 
@@ -83,17 +82,20 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_high_power_enabled")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
-        self.tb.subscribe_to_topic("request_24v_current")
+        self.tb.subscribe_to_topic("respond_current_sensor_present")
+        self.tb.subscribe_to_topic("respond_current_sensor_value")
+        self.tb.subscribe_to_topic("respond_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_sdc2160_present")
         self.tb.subscribe_to_topic("request_sdc2160_faults")
         self.tb.subscribe_to_topic("request_amt203_present")
         self.tb.subscribe_to_topic("request_amt203_zeroed")
         self.tb.subscribe_to_topic("request_amt203_absolute_position")
         self.tb.subscribe_to_topic("request_sdc2160_relative_position")
-        self.tb.subscribe_to_topic("request_sdc2160_details")
+        self.tb.subscribe_to_topic("request_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("request_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("request_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("request_target_position_confirmed")
+        self.tb.subscribe_to_topic("request_visual_tests")
         self.tb.subscribe_to_topic("cmd_rotate_fruit_to_target")
 
         self.start()
@@ -101,7 +103,17 @@ class Main(threading.Thread):
         time.sleep(1) # just being superstitious
 
         # check system state
-
+        """
+        visual tests are, for x minutes:
+           all chimes in order
+           all digits in order
+           all carousel lights in order
+           all playfield lights in order
+           all button lights in order
+           all carousel solenoids in order, one at a time
+           all triggerable playfield solenoids in order
+                including trough and short solenoid taps in tubes
+        """
 
     def create_controllers_and_motors(self):
         self.controllers = roboteq_command_wrapper.Controllers(
@@ -135,6 +147,13 @@ class Main(threading.Thread):
                 self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
                 time.sleep(0.5)
                 self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+
+
+
+
+
+
+
 
 
     def request_system_runtime_states(self):
@@ -193,15 +212,18 @@ class Main(threading.Thread):
                 topic="respond_sdc2160_relative_position", 
                 message=self.request_sdc2160_relative_position()
             )
-
+            self.tb.publish(
+                topic="respond_sdc2160_closed_loop_error", 
+                message=self.request_sdc2160_closed_loop_error()
+            )
 
 
     def request_system_faults(self):
-        _24v_current = self.request_24v_current()
-        if _24v_current > 0 :
+        current_sensor_value = self.request_current_sensor_value()
+        if current_sensor_value > 0 :
             self.tb.publish(
-                topic="respond_24v_current", 
-                message=_24v_current
+                topic="respond_current_sensor_value", 
+                message=current_sensor_value
             )
 
         computer_details = self.request_computer_details()
@@ -294,8 +316,8 @@ class Main(threading.Thread):
     def request_system_tests(self):
         # INA260 current
         self.tb.publish(
-            topic="respond_24v_current", 
-            message=self.request_24v_current()
+            topic="respond_current_sensor_value", 
+            message=self.request_current_sensor_value()
         )
         # computer details
         self.tb.publish(
@@ -355,8 +377,16 @@ class Main(threading.Thread):
             "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
+        
+    def request_current_sensor_present(self):
+        return 0
+        #return self.current_sensor.get_current()
 
-    def request_24v_current(self):
+    def request_current_sensor_value(self):
+        return 0
+        #return self.current_sensor.get_current()
+
+    def request_current_sensor_nominal(self):
         return 0
         #return self.current_sensor.get_current()
 
@@ -406,8 +436,20 @@ class Main(threading.Thread):
             motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
             return self.controllers.motors[motor_name].get_encoder_counter_absolute()
 
-    def request_sdc2160_details(self):
-        pass
+
+    def request_sdc2160_closed_loop_error(self, fruit_id=-1):
+        if fruit_id == -1:
+            return [
+                self.controllers.motors['carousel_1'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_2'].get_closed_loop_error(True),
+                self.controllers.motors['carousel_3'].get_closed_loop_error(True),
+                self.controllers.motors['carousel_4'].get_closed_loop_error(True),
+                self.controllers.motors['carousel_5'].get_closed_loop_error(True),
+                self.controllers.motors['carousel_6'].get_closed_loop_error(True),
+            ]
+        else:
+            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
+            return self.controllers.motors[motor_name].get_closed_loop_error()
 
     def request_sdc2160_channel_faults(self, motor_name):
         return {
@@ -473,10 +515,10 @@ class Main(threading.Thread):
                         topic="respond_computer_details", 
                         message=self.request_computer_details()
                     )
-                if topic == b'request_24v_current':
+                if topic == b'request_current_sensor_value':
                     self.tb.publish(
-                        topic="respond_24v_current", 
-                        message=self.request_24v_current()
+                        topic="respond_current_sensor_value", 
+                        message=self.request_current_sensor_value()
                     )                    
                 if topic == b'request_sdc2160_present':
                     self.tb.publish(
@@ -494,16 +536,14 @@ class Main(threading.Thread):
                     self.tb.publish(
                         topic="respond_amt203_zeroed", 
                         message=self.request_amt203_zeroed()
-                    )                    
+                    )
                 if topic == b'request_amt203_absolute_position':
                     fruit_id = message
                     self.tb.publish(
                         topic="respond_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position(fruit_id)
-                    )                    
+                    )
                 if topic == b'request_sdc2160_relative_position':
-                    pass
-                if topic == b'request_sdc2160_details':
                     pass
                 if topic == b'request_sdc2160_channel_faults':
                     pass

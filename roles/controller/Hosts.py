@@ -25,6 +25,24 @@ thread safety???
     game mode modules read from these
     http_server reads from these
 
+
+
+        self.send_to_dashboard(
+            "update_status",
+            [
+                hostname, #hostname
+                "rpi", # device
+                "",#data_name
+                dashboard.STATUS_PRESENT if status else dashboard.STATUS_ABSENT
+            ]
+        )
+
+
+hosts.all.computer_details_received()
+hosts.all.sdc2160_present
+hosts.all.amt203_present
+hosts.all.current_sensor_present
+
 """
 
 
