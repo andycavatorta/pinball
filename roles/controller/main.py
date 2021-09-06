@@ -34,7 +34,7 @@ from http_server_root import dashboard
 
 from roles.controller.Mode_Waiting_For_Connections import Mode_Waiting_For_Connections
 from roles.controller.Mode_System_Tests import Mode_System_Tests
-from roles.controller.Mode_Inventory import Mode_Inventory
+#from roles.controller.Mode_Inventory import Mode_Inventory
 #import roles.pinball.Mode_Reset as Mode_Reset
 
 ##################################################

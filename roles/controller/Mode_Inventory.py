@@ -228,5 +228,526 @@ class Main(threading.Thread):
         """
         self.start()
         self.send_to_dashboard = dashboard.init(self.tb)
-       
+        
+    """
+    def process_computer_details(self, hostname, type, value)
+
+    """
+
+
+
+    def convert_git_timestamp_to_epoch(self, git_timestamp):
+        weekdayname_str, monthname_str, day_str, time_str, year_str, timezone_str =  git_timestamp.split(" ")
+        hour_str, minute_str, second_str = time_str.split(":")
+        month_int = datetime.datetime.strptime(monthname_str, "%b").month
+        return datetime.datetime(int(year_str),month_int,int(day_str),int(hour_str),int(minute_str),int(second_str)).timestamp()
+
+    def safety_enable_handler(self, state_bool):
+        # when all computers are present
+        # when power turns on or off
+        # self.game_mode_manager.set_mode()
+        # self.game_mode_manager.set_mode(modes.SYSTEM_TESTS)
+        self.tb.publish("respond_high_power_enabled", state_bool)
+        if state_bool:
+            self.tb.publish("request_system_tests", True)
+
+    def network_message_handler(self, topic, message, origin, destination):
+        self.add_to_queue(topic, message, origin, destination)
+    def exception_handler(self, exception):
+        print("exception_handler",exception)
+    def network_status_change_handler(self, status, hostname):
+        self.add_to_queue("respond_host_connected",status,hostname, False)
+
+        # update self.hosts[hostname].set_connected() 
+        # self.add_to_queue(topic, message, origin, destination)
+    def add_to_queue(self, topic, message, origin, destination):
+
+        # if topic=system_tests, update self.hosts[hostname].set_connected() 
+        self.queue.put((topic, message, origin, destination))
+    def run(self):
+        while True:
+            try:
+                """
+                much of this switchboard below can be moved into Hosts
+                and Hosts will manage and call methods within each Mode class
+                """
+                topic, message, origin, destination = self.queue.get(True)
+                if topic!=b"deadman":
+                    print(topic, message, origin, destination)
+
+                self.hosts.add_to_queue(topic, message, origin, destination)
+                self.dashboard.add_to_queue(topic, message, origin, destination)
+
+                # ERROR
+
+                # WAITING_FOR_CONNECTIONS
+                if self.game_mode_name == self.game_mode_names.WAITING_FOR_CONNECTIONS:
+                    pass
+                    #self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
+
+                # SYSTEM_TESTS
+                if self.game_mode_name == self.game_mode_names.SYSTEM_TESTS:
+                    self.mode_system_tests.add_to_queue(topic, message, origin, destination)
+
+                # INVENTORY
+
+                # RESET
+
+                # ATTRACTION
+
+                # COUNTDOWN
+
+                # BARTER_MODE_INTRO
+
+                # BARTER_MODE
+
+                # MONEY_MODE_INTRO
+
+                # MONEY_MODE
+
+                # ENDING
+
+
+                if topic==b"deadman":
+                    self.safety_enable.add_to_queue(topic, message, origin, destination)
+                if topic==b"connected": # is this useful when we have the network_status_change_handler?
+                    print("----------connected----------", topic, message, origin, destination)
+                if topic==b"respond_computer_details":
+                    cpu_temp = message["cpu_temp"]
+                    df = message["df"][0]
+                    pinball_git_timestamp = self.convert_git_timestamp_to_epoch(message["pinball_git_timestamp"])
+                    tb_git_timestamp = self.convert_git_timestamp_to_epoch(message["tb_git_timestamp"])
+
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "rpi", # device
+                            "temp",#data_name
+                            cpu_temp
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "rpi", # device
+                            "df",#data_name
+                            round(df/1073741824,2)
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "rpi", # device
+                            "pin git",#data_name
+                            pinball_git_timestamp
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "rpi", # device
+                            "tb git",#data_name
+                            tb_git_timestamp
+                        ]
+                    )
+
+                if topic==b"respond_current_sensor_value":
+                    pass
+                if topic==b"respond_current_sensor_nominal":
+                    pass
+                if topic==b"respond_current_sensor_present":
+                    pass
+                if topic==b"respond_amt203_present":
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[0] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[1] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[2] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[3] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[4] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if message[5] else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    
+                if topic==b"respond_amt203_zeroed":
+                    pass
+                if topic==b"respond_amt203_absolute_position":
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "θ absolute",#data_name
+                            message[0]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "θ absolute",#data_name
+                            message[1]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "θ absolute",#data_name
+                            message[2]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "θ absolute",#data_name
+                            message[3]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "θ absolute",#data_name
+                            message[4]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "θ absolute",#data_name
+                            message[5]
+                        ]
+                    )
+                if topic==b"respond_sdc2160_present":
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_1_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_1", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_2", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_3_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel3and4'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_3", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_4", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel1and2'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "sdc_5_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_5", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_status",
+                        [
+                            origin, #hostname
+                            "carousel_6", # device
+                            "",#data_name
+                            dashboard.STATUS_PRESENT if len(message['carousel5and6'])>0 else dashboard.STATUS_ABSENT
+                        ]
+                    )
+
+                if topic==b"respond_sdc2160_controller_faults":
+                    device_names = ['sdc_1_2','sdc_3_4','sdc_5_6']
+                    for controller_ordinal_name in enumerate(device_names):
+                        controller_ordinal, controller_name = controller_ordinal_name
+                        controller = message[controller_ordinal]
+                        for fault_type in controller:
+                            if controller[fault_type] > 0:
+                                self.send_to_dashboard(
+                                    "update_value",
+                                    [
+                                        origin, #hostname
+                                        controller_name, # device
+                                        "faults",#data_name
+                                        fault_type
+                                    ]
+                                )
+
+                if topic==b"respond_sdc2160_channel_faults":
+                    device_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
+                    for motor_ordinal_name in enumerate(device_names):
+                        motor_ordinal, motor_name = motor_ordinal_name
+                        motor = message[motor_name]
+                        for fault_type in motor:
+                            if fault_type == 'runtime_status_flags':
+                                # add interface affordance for runtime_status_flags
+                                """
+                                    'runtime_status_flags': {
+                                        'amps_limit_activated': 0, 
+                                        'motor_stalled': 0, 
+                                        'loop_error_detected': 0, 
+                                        'safety_stop_active': 0, 
+                                        'forward_limit_triggered': 0, 
+                                        'reverse_limit_triggered': 0, 
+                                        'amps_trigger_activated': 0
+                                    }, 
+                                """
+                                pass
+                            else:
+
+                                fault_type_client_names = {
+                                    "closed_loop_error":"pid error",
+                                    "motor_amps":"amps" ,
+                                    "temperature":"temp",
+                                    "stall_detection":"stall",
+                                    "status":"status",
+                                    "θ target":"θ target",
+                                }
+                                try:
+                                    self.send_to_dashboard(
+                                        "update_value",
+                                        [
+                                            origin, #hostname
+                                            motor_name, # device
+                                            fault_type_client_names[fault_type],#data_name
+                                            motor[fault_type]
+                                        ]
+                                    )
+                                except KeyError:
+                                    print("key error in respond_sdc2160_channel_faults", fault_type)
+
+                if topic==b"respond_sdc2160_relative_position":
+                    #send to game mode
+                    #send to hosts object
+                    #send to dashboard
+
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_1", # device
+                            "θ relative",#data_name
+                            message[0]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_2", # device
+                            "θ relative",#data_name
+                            message[1]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_3", # device
+                            "θ relative",#data_name
+                            message[2]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_4", # device
+                            "θ relative",#data_name
+                            message[3]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_5", # device
+                            "θ relative",#data_name
+                            message[4]
+                        ]
+                    )
+                    self.send_to_dashboard(
+                        "update_value",
+                        [
+                            origin, #hostname
+                            "amt_6", # device
+                            "θ relative",#data_name
+                            message[5]
+                        ]
+                    )
+
+                    """
+                if topic==b"system_tests":
+                    pass
+                if topic==b"button_press_left_flipper":
+                    pass
+                if topic==b"button_press_trade_goods":
+                    pass
+                if topic==b"button_press_start":
+                    pass
+                if topic==b"button_press_trade_money":
+                    pass
+                if topic==b"button_press_right_flipper":
+                    pass
+                if topic==b"left_stack_ball_present":
+                    pass
+                if topic==b"right_stack_ball_present":
+                    pass
+                if topic==b"left_stack_motion_detected":
+                    pass
+                if topic==b"right_stack_motion_detected":
+                    pass
+                if topic==b"gutter_ball_detected":
+                    pass
+                if topic==b"spinner":
+                    pass
+                if topic==b"pop_left":
+                    pass
+                if topic==b"pop_center":
+                    pass
+                if topic==b"pop_right":
+                    pass
+                if topic==b"sling_left":
+                    pass
+                if topic==b"sling_right":
+                    pass
+                if topic==b"roll_outer_left":
+                    pass
+                if topic==b"roll_inner_left":
+                    pass
+                if topic==b"roll_inner_right":
+                    pass
+                if topic==b"roll_outer_right":
+                    pass
+                if topic==b"absolute_position":
+                    pass
+                if topic==b"relative_position":
+                    pass
+                if topic==b"confirm_position":
+                    pass
+                if topic==b"carousel_ball_detected":
+                    pass
+                    """
+            except Exception as e:
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
+main = Main()
+
+
+displays = tests.Displays(main.tb)
+displays.wave()
 
