@@ -109,7 +109,24 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("carousel_lights")
         self.tb.subscribe_to_topic("eject_ball")
         self.tb.subscribe_to_topic("get_system_tests")
+        self.tb.subscribe_to_topic("request_system_tests")
+        self.tb.subscribe_to_topic("request_computer_details")
         self.start()
+
+    def request_system_tests(self):
+        # computer details
+        self.tb.publish(
+            topic="respond_computer_details", 
+            message=self.request_computer_details()
+        )
+
+    def request_computer_details(self):
+        return {
+            "df":self.tb.get_system_disk(),
+            "cpu_temp":self.tb.get_core_temp(),
+            "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
+            "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
+        }
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -126,6 +143,13 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
+                if topic == b'request_system_tests':
+                    self.request_system_tests()
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="respond_computer_details", 
+                        message=self.request_computer_details()
+                    )
                 if topic == b'carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
                 if topic == b'carousel_detect_ball':
