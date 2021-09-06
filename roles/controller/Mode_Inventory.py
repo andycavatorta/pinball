@@ -130,8 +130,11 @@ class Main(threading.Thread):
     """
     incoming messages are sorted and routed to the Hosts module, the dashboard, and the game mode manager
     """
-    def __init__(self):
+    def __init__(self, tb, hosts, mode_manager):
         threading.Thread.__init__(self)
+        self.tb = tb 
+        self.hosts = hosts
+        self.mode_manager = mode_manager
         self.game_mode_names = settings.Game_Modes
         self.game_mode_name = self.game_mode_names.WAITING_FOR_CONNECTIONS
 
@@ -148,7 +151,7 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
 
-        self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb,self.hosts)
+        #self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb,self.hosts)
         #self.mode_system_tests = Mode_System_Tests(self.tb,self.hosts)
         #self.mode_inventory = Mode_Inventory(self.tb,self.hosts)
         #self.mode_attraction = Mode_Attraction(self.tb,self.hosts)
@@ -279,7 +282,8 @@ class Main(threading.Thread):
 
                 # WAITING_FOR_CONNECTIONS
                 if self.game_mode_name == self.game_mode_names.WAITING_FOR_CONNECTIONS:
-                    self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
+                    pass
+                    #self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
 
                 # SYSTEM_TESTS
                 if self.game_mode_name == self.game_mode_names.SYSTEM_TESTS:
