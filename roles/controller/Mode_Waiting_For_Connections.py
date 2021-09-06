@@ -4,12 +4,17 @@ import settings
 import threading
 import time
 
-class Mode_System_Tests(threading.Thread):
+class Mode_Waiting_For_Connections(threading.Thread):
     """
     These mode modules are classes to help keep the namespace organizes
     These mode modules are threaded because some of them will have time-based tasks.
 
-    evacuate carousels
+    inventory carousels
+    evacuate center carousel to edge carousels
+    evacuate edge carousels into dinero tube
+    evacuate fruits carousels into dinero tube via carousel
+    
+
     """
     def __init__(self, tb, hosts, mode_manager):
         threading.Thread.__init__(self)
