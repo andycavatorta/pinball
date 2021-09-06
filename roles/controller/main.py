@@ -149,7 +149,7 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
 
-        self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb,self.hosts)
+        self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb,self.hosts,self.game_mode_manager)
         #self.mode_system_tests = Mode_System_Tests(self.tb,self.hosts)
         #self.mode_inventory = Mode_Inventory(self.tb,self.hosts)
         #self.mode_attraction = Mode_Attraction(self.tb,self.hosts)
