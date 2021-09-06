@@ -740,6 +740,7 @@ class Pinball(Host):
 
 class Hosts:
     def __init__(self, tb):
+        self.queue = queue.Queue()
 
         self.controller = Controller("controller", tb)
         self.carousel1 = Carousel("carousel1", tb)
