@@ -228,9 +228,5 @@ class Main(threading.Thread):
         """
         self.start()
         self.send_to_dashboard = dashboard.init(self.tb)
-        
-    """
-    def process_computer_details(self, hostname, type, value)
-
-    """
+       
 
