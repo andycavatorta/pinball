@@ -39,10 +39,10 @@ class Mode_System_Tests(threading.Thread):
             self.mode_manager.set_mode(self.game_mode_names.WAITING_FOR_CONNECTIONS)
 
     def respond_computer_details(self, message, origin, destination):
-        # if hosts responds that all hosts have reported details
+        # if self.hosts responds that all self.hosts have reported details
         #     send request for hardware presence
         if self.phase == self.PHASE_COMPUTER_DETAILS:
-            if hosts.all.computer_details_received() == True:
+            if self.hosts.all.computer_details_received() == True:
                 self.phase = self.PHASE_DEVICE_PRESENCE
                 self.tb.publish("request_amt203_present",None)
                 self.tb.publish("request_sdc2160_present",None)
@@ -52,9 +52,9 @@ class Mode_System_Tests(threading.Thread):
     # presence
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
-            if hosts.all.amt203_present() == True:
-                if hosts.all.sdc2160_present() == True:
-                    if hosts.all.current_sensor_present() == True:
+            if self.hosts.all.amt203_present() == True:
+                if self.hosts.all.sdc2160_present() == True:
+                    if self.hosts.all.current_sensor_present() == True:
                         self.phase = self.PHASE_DEVICE_STATES
                         self.tb.publish("respond_current_sensor_value",None)
                         self.tb.publish("respond_current_sensor_nominal",None)
@@ -79,13 +79,13 @@ class Mode_System_Tests(threading.Thread):
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
-            if hosts.all.current_sensor_value() == True:
-                if hosts.all.amt203_absolute_position() == True:
-                    if hosts.all.sdc2160_relative_position() == True:
-                        if hosts.all.sdc2160_channel_faults() == True:
-                            if hosts.all.sdc2160_controller_faults() == True:
-                                if hosts.all.sdc2160_closed_loop_error() == True:
-                                    if hosts.all.amt203_zeroed() == True:
+            if self.hosts.all.current_sensor_value() == True:
+                if self.hosts.all.amt203_absolute_position() == True:
+                    if self.hosts.all.sdc2160_relative_position() == True:
+                        if self.hosts.all.sdc2160_channel_faults() == True:
+                            if self.hosts.all.sdc2160_controller_faults() == True:
+                                if self.hosts.all.sdc2160_closed_loop_error() == True:
+                                    if self.hosts.all.amt203_zeroed() == True:
                                         self.phase = self.PHASE_CHECK_CURRENT_LEAK
                                         self.tb.publish("request_current_sensor_nominal",None)
                                         self.timer = time.time()
@@ -94,7 +94,7 @@ class Mode_System_Tests(threading.Thread):
     def respond_current_sensor_nominal(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
-        if hosts.all.current_sensor_value() == True:
+        if self.hosts.all.current_sensor_value() == True:
             self.timer = time.time()
             self.phase = self.PHASE_VISUAL_TESTS
             self.tb.publish("request_visual_tests",None)
