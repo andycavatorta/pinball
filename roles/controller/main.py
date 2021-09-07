@@ -285,18 +285,18 @@ class Main(threading.Thread):
                 if topic!=b"deadman":
                     self.hosts.dispatch(topic, message, origin, destination)
                     self.send_to_dashboard(topic, message)
-
+                    self.game_mode.add_to_queue(topic, message, origin, destination)
                 # ERROR
 
                 # WAITING_FOR_CONNECTIONS
-                if self.game_mode_name == self.game_mode_names.WAITING_FOR_CONNECTIONS:
-                    if topic!=b"deadman":
-                            self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
+                #if self.game_mode_name == self.game_mode_names.WAITING_FOR_CONNECTIONS:
+                #    if topic!=b"deadman":
+                #            self.mode_waiting_for_connections.add_to_queue(topic, message, origin, destination)
 
                 # SYSTEM_TESTS
-                if self.game_mode_name == self.game_mode_names.SYSTEM_TESTS:
-                    if topic!=b"deadman":
-                            self.mode_system_tests.add_to_queue(topic, message, origin, destination)
+                #if self.game_mode_name == self.game_mode_names.SYSTEM_TESTS:
+                #    if topic!=b"deadman":
+                #            self.mode_system_tests.add_to_queue(topic, message, origin, destination)
 
                 # INVENTORY
 
