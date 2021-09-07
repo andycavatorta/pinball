@@ -914,10 +914,6 @@ class Hosts:
 
     def run(self):
         while True:
-            """
-            much of this switchboard below can be moved into Hosts
-            and Hosts will manage and call methods within each Mode class
-            """
             topic, message, origin, destination = self.queue.get(True)
             print("Hosts.run",topic, message, origin, destination)
     """
