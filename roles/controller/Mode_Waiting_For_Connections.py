@@ -98,9 +98,9 @@ class Mode_Waiting_For_Connections(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True,1)
                 getattr(
                     self,codecs.decode(topic, 'UTF-8')(
-                        codecs.decode(message, 'UTF-8'),
-                        codecs.decode(origin, 'UTF-8'),
-                        codecs.decode(destination, 'UTF-8')
+                        message, 
+                        origin, 
+                        destination,
                     )
                 )
             except queue.Empty:
