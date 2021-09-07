@@ -271,11 +271,12 @@ class Main(threading.Thread):
                 and Hosts will manage and call methods within each Mode class
                 """
                 topic, message, origin, destination = self.queue.get(True)
-                if topic!=b"deadman":
-                    print(topic, message, origin, destination)
+                #if topic!=b"deadman":
+                #    print(topic, message, origin, destination)
 
-                self.hosts.dispatch(topic, message, origin, destination)
-                self.send_to_dashboard(topic, message)
+                if topic!=b"deadman":
+                    self.hosts.dispatch(topic, message, origin, destination)
+                    self.send_to_dashboard(topic, message)
 
                 # ERROR
 
