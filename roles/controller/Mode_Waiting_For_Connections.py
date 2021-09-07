@@ -34,7 +34,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
 
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.all.get_host_connected() == True:
-            self.mode_manager.set_mode(self.game_mode_names.System_Tests)
+            self.mode_manager.set_mode(self.game_mode_names.SYSTEM_TESTS)
 
     def respond_computer_details(self, message, origin, destination):
         # inappropriate response
@@ -94,7 +94,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True,1)
+                topic, message, origin, destination = self.queue.get(True,5)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
