@@ -1,3 +1,4 @@
+import codecs
 import os
 import queue
 import settings
@@ -95,7 +96,13 @@ class Mode_Waiting_For_Connections(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
-                getattr(self,str(topic))(str(message), str(origin), str(destination))
+                getattr(
+                    self,codecs.decode(topic, 'UTF-8')(
+                        codecs.decode(message, 'UTF-8'),
+                        codecs.decode(origin, 'UTF-8'),
+                        codecs.decode(destination, 'UTF-8')
+                    )
+                )
             except queue.Empty:
                 if self.timer + self.timeout_duration < time.time(): # if timeout condition
                     self.mode_manager.set_mode(self.game_mode_names.ERROR)
