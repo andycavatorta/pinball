@@ -16,11 +16,11 @@ class Mode_Waiting_For_Connections(threading.Thread):
     evacuate fruits carousels into dinero tube via carousel
 
     """
-    def __init__(self, tb, hosts, mode_manager):
+    def __init__(self, tb, hosts, set_mode):
         threading.Thread.__init__(self)
         self.tb = tb 
         self.hosts = hosts
-        self.mode_manager = mode_manager
+        self.set_mode = set_mode
         self.queue = queue.Queue()
         self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
         self.game_mode_names = settings.Game_Modes
@@ -34,7 +34,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
 
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.all.get_host_connected() == True:
-            self.mode_manager.set_mode(self.game_mode_names.SYSTEM_TESTS)
+            self.set_mode(self.game_mode_names.SYSTEM_TESTS)
 
     def respond_computer_details(self, message, origin, destination):
         # inappropriate response
@@ -110,5 +110,5 @@ class Mode_Waiting_For_Connections(threading.Thread):
                     )
             except queue.Empty:
                 if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                    self.mode_manager.set_mode(self.game_mode_names.ERROR)
+                    self.set_mode(self.game_mode_names.ERROR)
 

@@ -15,11 +15,11 @@ class Mode_System_Tests(threading.Thread):
     PHASE_DEVICE_STATES = "phase_device_states"
     PHASE_CHECK_CURRENT_LEAK = "phase_check_current_leak"
     PHASE_VISUAL_TESTS = "phase_visual_tests"
-    def __init__(self, tb, hosts, mode_manager):
+    def __init__(self, tb, hosts, set_mode):
         threading.Thread.__init__(self)
         self.tb = tb 
         self.hosts = hosts
-        self.mode_manager = mode_manager
+        self.set_mode = set_mode
         self.queue = queue.Queue()
         self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
         self.phase = self.PHASE_COMPUTER_DETAILS
@@ -41,7 +41,7 @@ class Mode_System_Tests(threading.Thread):
         # inappropriate response
         # if message is False, change mode back to Wait_For_Connections
         if message == False:
-            self.mode_manager.set_mode(self.game_mode_names.WAITING_FOR_CONNECTIONS)
+            self.set_mode(self.game_mode_names.WAITING_FOR_CONNECTIONS)
 
     def respond_computer_details(self, message, origin, destination):
         # if self.hosts responds that all self.hosts have reported details
@@ -154,7 +154,7 @@ class Mode_System_Tests(threading.Thread):
     def respond_visual_tests(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
-        self.mode_manager.set_mode(self.game_mode_names.INVENTORY)
+        self.set_mode(self.game_mode_names.INVENTORY)
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
@@ -176,4 +176,4 @@ class Mode_System_Tests(threading.Thread):
             except queue.Empty:
                 if self.phase != self.PHASE_VISUAL_TESTS:
                     if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                        self.mode_manager.set_mode(self.game_mode_names.ERROR)
+                        self.set_mode(self.game_mode_names.ERROR)

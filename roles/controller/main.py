@@ -134,8 +134,6 @@ class Main(threading.Thread):
     """
     def __init__(self):
         threading.Thread.__init__(self)
-        self.game_mode_names = settings.Game_Modes
-        self.game_mode_name = self.game_mode_names.WAITING_FOR_CONNECTIONS
 
         self.tb = thirtybirds.Thirtybirds(
             settings, 
@@ -146,21 +144,26 @@ class Main(threading.Thread):
         )
         #self.carousel_current_sensor = ina260_current_sensor.INA260()
         self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
-        self.game_mode_manager = Game_Mode_Manager()
+        #self.game_mode_manager = Game_Mode_Manager()
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
 
-        self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb,self.hosts,self.game_mode_manager)
-        #self.mode_system_tests = Mode_System_Tests(self.tb,self.hosts)
-        #self.mode_inventory = Mode_Inventory(self.tb,self.hosts)
-        #self.mode_attraction = Mode_Attraction(self.tb,self.hosts)
-        #self.mode_countdown = Mode_Countdown(self.tb,self.hosts)
-        #self.mode_barter_mode_intro = Mode_Barter_Mode_Intro(self.tb,self.hosts)
-        #self.mode_barter_mode = Mode_Barter_Mode(self.tb,self.hosts)
-        #self.mode_money_mode_intro = Mode_Money_Mode_Intro(self.tb,self.hosts)
-        #self.mode_money_mode = Mode_Money_Mode(self.tb,self.hosts)
-        #self.mode_ending = Mode_Ending(self.tb,self.hosts)
-        #self.mode_reset = Mode_Reset(self.tb,self.hosts)
+        self.game_modes = {
+            "waiting_for_connections" : Mode_Waiting_For_Connections(self.tb,self.hosts,self.set_mode),
+            "system_test" : Mode_System_Tests(self.tb,self.hosts,self.set_mode),
+            #"inventory" : Mode_Inventory(self.tb,self.hosts)
+            #"attraction" : Mode_Attraction(self.tb,self.hosts)
+            #"countdown" : Mode_Countdown(self.tb,self.hosts)
+            #"barter_mode_intro" : Mode_Barter_Mode_Intro(self.tb,self.hosts)
+            #"barter_mode" : Mode_Barter_Mode(self.tb,self.hosts)
+            #"money_mode"_intro : Mode_Money_Mode_Intro(self.tb,self.hosts)
+            #"money_mode" : Mode_Money_Mode(self.tb,self.hosts)
+            #"ending" : Mode_Ending(self.tb,self.hosts)
+            #"reset" : Mode_Reset(self.tb,self.hosts)
+        }
+        self.game_mode_names = settings.Game_Modes
+        self.game_mode_name = self.game_mode_names.WAITING_FOR_CONNECTIONS
+
 
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
@@ -227,12 +230,17 @@ class Main(threading.Thread):
         """
         self.start()
         self.send_to_dashboard = dashboard.init(self.tb)
+        self.set_mode(self.game_mode_names.WAITING_FOR_CONNECTIONS)
         
     """
     def process_computer_details(self, hostname, type, value)
 
     """
 
+    def set_mode(self, mode_name):
+        self.game_mode_name = mode_name
+        self.game_mode = self.game_modes[mode_name]:
+        self.game_mode.reset()
 
 
     def convert_git_timestamp_to_epoch(self, git_timestamp):
