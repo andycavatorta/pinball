@@ -821,7 +821,7 @@ class All():
         return True
 
     def request_computer_details(self):
-        self.tb.publish("request_computer_details",None)
+        self.main.tb.publish("request_computer_details",None)
 
 
     def get_computer_details_received(self):
