@@ -72,6 +72,7 @@ class Host():
         self.connected = connected
     def get_connected(self):
         return self.connected
+
     def set_ready(self, ready):
         self.ready = ready
     def get_ready(self, ready):
@@ -415,11 +416,11 @@ class Matrix(Host):
         self.pinball_git_timestamp = ""
         self.tb_git_timestamp = ""
         self._24v_current = -1
-        self.sdc2160_present = [
-            False,
-            False,
-            False,
-        ]
+        self.sdc2160_present = {
+            "carousel1and2":False,
+            "carousel3and4":False,
+            "carousel5and6":False,        
+        }
         self.sdc2160_controller_faults = [
             [],[],[],
         ]
@@ -550,10 +551,10 @@ class Matrix(Host):
 
     def request_sdc2160_present(self):
         self.tb.publish(topic="request_sdc2160_present", message="")
-    def set_sdc2160_present(self,sdc2160_present):
-        self.sdc2160_present =sdc2160_present
+    def set_sdc2160_present(presence):
+        self.sdc2160_present = presence
     def get_sdc2160_present(self):
-        return self.sdc2160_present
+        return all(self.sdc2160_present.values())
 
     def request_sdc2160_faults(self):
         self.tb.publish(topic="request_sdc2160_faults", message="")
@@ -579,8 +580,11 @@ class Matrix(Host):
     #encoder positions are locally scanned and updated by push
     def request_amt203_absolute_position(self, fruit_id):
         self.tb.publish(topic="request_amt203_absolute_position", message="")
-    def set_amt203_absolute_position(self, fruit_id, absolute_position):
-        self.amt203_absolute_position[fruit_id] = absolute_position
+    def set_amt203_absolute_position(self, absolute_position, fruit_id=-1):
+        if fruit_id == -1:
+            self.amt203_absolute_position = absolute_position
+        else:
+            self.amt203_absolute_position[fruit_id] = absolute_position
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
 
@@ -588,8 +592,11 @@ class Matrix(Host):
     #encoder positions are locally scanned and updated by push
     def request_sdc2160_relative_position(self, fruit_id):
         self.tb.publish(topic="request_sdc2160_relative_position", message="")
-    def set_sdc2160_relative_position(self, fruit_id, relative_position):
-        self.sdc2160_relative_position[fruit_id] = relative_position
+    def set_sdc2160_relative_position(self, relative_position, fruit_id = -1):
+        if fruit_id == -1:
+            self.sdc2160_relative_position = relative_position
+        else:
+            self.sdc2160_relative_position[fruit_id] = relative_position
     def get_sdc2160_relative_position(self, fruit_id=-1):
         if fruit_id == -1:
             return self.sdc2160_relative_position
@@ -915,8 +922,37 @@ class Hosts:
         self.all = All(self)
 
     def dispatch(self, topic, message, origin, destination):
+        if isinstance(topic, bytes):
+            topic = codecs.decode(topic, 'UTF-8')
+        if isinstance(message, bytes):
+            message = codecs.decode(message, 'UTF-8')
+        if isinstance(origin, bytes):
+            origin = codecs.decode(origin, 'UTF-8')
+        if isinstance(destination, bytes):
+            destination = codecs.decode(destination, 'UTF-8')
         print("DISPATCH", topic, message, origin, destination)
-        #getattr(self,str(topic))(str(message), str(origin), str(destination))
+        #getattr(self,topic)(message, origin, destination)
+        if topic == "respond_host_connected":
+            self.hostname[origin].set_connected(message)
+        if topic == "respond_sdc2160_relative_position":
+            # todo: accommodate data format {"fruit_id:x,position:x"}
+            self.hostname[origin].set_sdc2160_relative_position(message)
+        if topic == "respond_amt203_absolute_position":
+            # todo: accommodate data format {"fruit_id:x,position:x"}
+            self.hostname[origin].set_amt203_absolute_position(message)
+        if topic == "respond_amt203_present":
+            self.hostname[origin].set_amt203_present(message)
+        if topic == "respond_sdc2160_present":
+            self.hostname[origin].set_sdc2160_present(message)
+        if topic == "respond_computer_details":
+            self.hostname[origin].set_computer_detail(message)
+        if topic == "respond_sdc2160_controller_faults":
+            self.hostname[origin].set_sdc2160_controller_faults(message)
+        if topic == "respond_sdc2160_channel_faults":
+            self.hostname[origin].set_sdc2160_channel_faults()
+
+
+
 
     """
         self.start()
