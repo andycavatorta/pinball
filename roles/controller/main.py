@@ -239,7 +239,7 @@ class Main(threading.Thread):
 
     def set_mode(self, mode_name):
         self.game_mode_name = mode_name
-        self.game_mode = self.game_modes[mode_name]:
+        self.game_mode = self.game_modes[mode_name]
         self.game_mode.reset()
 
 
