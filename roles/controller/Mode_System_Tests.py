@@ -32,6 +32,9 @@ class Mode_System_Tests(threading.Thread):
         self.timer = time.time()
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.hosts.all.request_computer_details()
+        print("")
+        print("===========PHASE_COMPUTER_DETAILS============")
+        print("")
         #self.tb.publish("request_computer_details",None)
 
     def respond_host_connected(self, message, origin, destination):
@@ -45,6 +48,9 @@ class Mode_System_Tests(threading.Thread):
         #     send request for hardware presence
         if self.phase == self.PHASE_COMPUTER_DETAILS:
             if self.hosts.all.get_computer_details_received() == True:
+                print("")
+                print("===========PHASE_DEVICE_PRESENCE============")
+                print("")
                 self.phase = self.PHASE_DEVICE_PRESENCE
                 self.tb.publish("request_amt203_present",None)
                 self.tb.publish("request_sdc2160_present",None)
@@ -57,6 +63,9 @@ class Mode_System_Tests(threading.Thread):
             if self.hosts.all.amt203_present() == True:
                 if self.hosts.all.sdc2160_present() == True:
                     if self.hosts.all.current_sensor_present() == True:
+                        print("")
+                        print("===========PHASE_DEVICE_STATES============")
+                        print("")
                         self.phase = self.PHASE_DEVICE_STATES
                         self.tb.publish("respond_current_sensor_value",None)
                         self.tb.publish("respond_current_sensor_nominal",None)
@@ -88,6 +97,9 @@ class Mode_System_Tests(threading.Thread):
                             if self.hosts.all.sdc2160_controller_faults() == True:
                                 if self.hosts.all.sdc2160_closed_loop_error() == True:
                                     if self.hosts.all.amt203_zeroed() == True:
+                                        print("")
+                                        print("===========PHASE_CHECK_CURRENT_LEAK============")
+                                        print("")
                                         self.phase = self.PHASE_CHECK_CURRENT_LEAK
                                         self.tb.publish("request_current_sensor_nominal",None)
                                         self.timer = time.time()
@@ -97,6 +109,9 @@ class Mode_System_Tests(threading.Thread):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         if self.hosts.all.current_sensor_value() == True:
+            print("")
+            print("===========PHASE_VISUAL_TESTS============")
+            print("")
             self.timer = time.time()
             self.phase = self.PHASE_VISUAL_TESTS
             self.tb.publish("request_visual_tests",None)
