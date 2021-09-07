@@ -950,7 +950,7 @@ class Hosts:
         if topic == "respond_sdc2160_controller_faults":
             self.hostname[origin].set_sdc2160_controller_faults(message)
         if topic == "respond_sdc2160_channel_faults":
-            self.hostname[origin].set_sdc2160_channel_faults()
+            self.hostname[origin].set_sdc2160_channel_faults(message)
 
 
 
