@@ -41,14 +41,15 @@ thread safety???
 
 
 """
-
-
+# native python imports
+import codecs
 import os
 import queue
 import sys
 import threading
 import time
 
+# local module imports
 import settings
 
 app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
