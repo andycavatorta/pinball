@@ -906,6 +906,12 @@ class Hosts:
             'pinballmatrix':self.pinballmatrix,
         }
         self.all = All(self)
+
+
+    def dispatch(self, topic, message, origin, destination):
+        print("DISPATCH", topic, message, origin, destination)
+        #getattr(self,str(topic))(str(message), str(origin), str(destination))
+
     """
         self.start()
     def add_to_queue(self, topic, message, origin, destination):

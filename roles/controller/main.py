@@ -274,7 +274,7 @@ class Main(threading.Thread):
                 if topic!=b"deadman":
                     print(topic, message, origin, destination)
 
-                self.hosts.add_to_queue(topic, message, origin, destination)
+                self.hosts.dispatch(topic, message, origin, destination)
                 self.send_to_dashboard(topic, message)
 
                 # ERROR
