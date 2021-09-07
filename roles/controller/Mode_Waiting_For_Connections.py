@@ -96,10 +96,14 @@ class Mode_Waiting_For_Connections(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
-                try:
+                if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
-                except typeError:
-                    pass
+                if isinstance(message, bytes):
+                    message = codecs.decode(message, 'UTF-8')
+                if isinstance(origin, bytes):
+                    origin = codecs.decode(origin, 'UTF-8')
+                if isinstance(destination, bytes):
+                    destination = codecs.decode(destination, 'UTF-8')
                 getattr(
                     self,topic(
                         message, 
