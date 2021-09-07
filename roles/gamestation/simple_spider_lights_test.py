@@ -17,7 +17,10 @@ tlc5947 = adafruit_tlc5947.TLC5947(spi, LATCH)
 
 pins = [0]*(number_of_channels)
 
+print("number of pins=", len(pins))
+
 for channel in range(len(pins)):
+    print(channel)
     pins[channel] = tlc5947.create_pwm_out(channel)
 
 groups = {
