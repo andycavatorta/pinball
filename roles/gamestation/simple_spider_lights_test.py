@@ -13,7 +13,7 @@ number_of_channels = number_of_boards * 24
 
 spi = busio.SPI(clock=SCK, MOSI=MOSI)
 
-tlc5947 = adafruit_tlc5947.TLC5947(spi, LATCH)
+tlc5947 = adafruit_tlc5947.TLC5947(spi, LATCH,num_drivers=number_of_boards)
 
 pins = [0]*(number_of_channels)
 
