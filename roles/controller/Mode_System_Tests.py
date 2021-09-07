@@ -1,3 +1,4 @@
+import codecs
 import os
 import queue
 import settings
@@ -43,7 +44,7 @@ class Mode_System_Tests(threading.Thread):
         # if self.hosts responds that all self.hosts have reported details
         #     send request for hardware presence
         if self.phase == self.PHASE_COMPUTER_DETAILS:
-            if self.hosts.all.computer_details_received() == True:
+            if self.hosts.all.get_computer_details_received() == True:
                 self.phase = self.PHASE_DEVICE_PRESENCE
                 self.tb.publish("request_amt203_present",None)
                 self.tb.publish("request_sdc2160_present",None)
@@ -147,6 +148,14 @@ class Mode_System_Tests(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
+                if isinstance(topic, bytes):
+                    topic = codecs.decode(topic, 'UTF-8')
+                if isinstance(message, bytes):
+                    message = codecs.decode(message, 'UTF-8')
+                if isinstance(origin, bytes):
+                    origin = codecs.decode(origin, 'UTF-8')
+                if isinstance(destination, bytes):
+                    destination = codecs.decode(destination, 'UTF-8')
                 getattr(self,topic)(message, origin, destination)
             except queue.Empty:
                 if self.phase != self.PHASE_VISUAL_TESTS:

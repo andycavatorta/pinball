@@ -30,7 +30,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
 
     def reset(self):
         self.timer = time.time()
-        self.hosts.all.request_computer_details()
+        #self.hosts.all.request_computer_details()
 
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.all.get_host_connected() == True:
