@@ -104,13 +104,11 @@ class Mode_Waiting_For_Connections(threading.Thread):
                     origin = codecs.decode(origin, 'UTF-8')
                 if isinstance(destination, bytes):
                     destination = codecs.decode(destination, 'UTF-8')
-                getattr(
-                    self,topic(
+                getattr(self,topic)(
                         message, 
                         origin, 
                         destination,
                     )
-                )
             except queue.Empty:
                 if self.timer + self.timeout_duration < time.time(): # if timeout condition
                     self.mode_manager.set_mode(self.game_mode_names.ERROR)
