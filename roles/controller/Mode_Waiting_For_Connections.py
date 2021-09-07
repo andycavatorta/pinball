@@ -14,7 +14,6 @@ class Mode_Waiting_For_Connections(threading.Thread):
     evacuate center carousel to edge carousels
     evacuate edge carousels into dinero tube
     evacuate fruits carousels into dinero tube via carousel
-    
 
     """
     def __init__(self, tb, hosts, mode_manager):
@@ -31,10 +30,10 @@ class Mode_Waiting_For_Connections(threading.Thread):
 
     def reset(self):
         self.timer = time.time()
-        self.tb.publish("request_computer_details",None)
+        self.hosts.all.request_computer_details()
 
     def respond_host_connected(self, message, origin, destination): 
-        if self.hosts.all.host_connected() == True:
+        if self.hosts.all.get_host_connected() == True:
             self.mode_manager.set_mode(self.game_mode_names.System_Tests)
 
     def respond_computer_details(self, message, origin, destination):

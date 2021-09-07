@@ -70,7 +70,7 @@ class Host():
         self.tb_git_timestamp = ""
     def set_connected(self, connected):
         self.connected = connected
-    def get_connected(self, connected):
+    def get_connected(self):
         return self.connected
     def set_ready(self, ready):
         self.ready = ready
@@ -804,14 +804,19 @@ class Pinball(Host):
 class All():
     def __init__(self, main):
         self.main = main
-    def host_connected(self):
+
+    def get_host_connected(self):
         for name in self.main.hostname:
             if name != "controller":
                 if self.main.hostname[name].get_connected() == False:
                     return False
         return True
 
-    def computer_details_received(self):
+    def request_computer_details(self):
+        self.tb.publish("request_computer_details",None)
+
+
+    def get_computer_details_received(self):
         for name in self.main.hostname:
             if name != "controller":
                 if self.main.hostname[name].get_computer_details_received() == False:
@@ -861,6 +866,8 @@ class All():
         for name in names:
             if self.main.hostname[name].get_current_sensor_value() == False:
                 return False
+
+
 
 
 class Hosts:

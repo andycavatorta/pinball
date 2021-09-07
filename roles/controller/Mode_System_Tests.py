@@ -30,7 +30,8 @@ class Mode_System_Tests(threading.Thread):
     def reset(self):
         self.timer = time.time()
         self.phase = self.PHASE_COMPUTER_DETAILS
-        self.tb.publish("request_computer_details",None)
+        self.hosts.all.request_computer_details()
+        #self.tb.publish("request_computer_details",None)
 
     def respond_host_connected(self, message, origin, destination):
         # inappropriate response
