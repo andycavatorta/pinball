@@ -78,7 +78,7 @@ class Host():
         return self.ready
     def set_last_deadman(self, last_deadman):
         self.last_deadman = last_deadman
-    def get_connected(self, last_deadman):
+    def get_last_deadman(self, last_deadman):
         return self.last_deadman
 
     def set_computer_details(self,computer_details):
