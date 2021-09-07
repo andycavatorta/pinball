@@ -946,7 +946,7 @@ class Hosts:
         if topic == "respond_sdc2160_present":
             self.hostname[origin].set_sdc2160_present(message)
         if topic == "respond_computer_details":
-            self.hostname[origin].set_computer_detail(message)
+            self.hostname[origin].set_computer_details(message)
         if topic == "respond_sdc2160_controller_faults":
             self.hostname[origin].set_sdc2160_controller_faults(message)
         if topic == "respond_sdc2160_channel_faults":
