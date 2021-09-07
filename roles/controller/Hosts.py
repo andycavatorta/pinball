@@ -907,7 +907,6 @@ class Hosts:
         }
         self.all = All(self)
 
-
     def dispatch(self, topic, message, origin, destination):
         print("DISPATCH", topic, message, origin, destination)
         #getattr(self,str(topic))(str(message), str(origin), str(destination))
