@@ -68,6 +68,7 @@ group_names = [
     "TRAIL_SPINNER",
     "TRAIL_POP_RIGHT",
     "TRAIL_POP_CENTER",
+    "TRAIL_POP_LEFT",
     "TRAIL_SLING_LEFT"
 ]
 
