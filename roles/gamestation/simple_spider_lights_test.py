@@ -76,7 +76,7 @@ while True:
         led_group = groups[group_name]
         for led in led_group:
             pins[led].duty_cycle = 40000
-        time.sleep(.8)
+        time.sleep(2)
         for led in led_group:
             pins[led].duty_cycle = 0
-        time.sleep(.8)
+        #time.sleep(1)
