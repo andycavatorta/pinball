@@ -906,6 +906,7 @@ class Hosts:
             'pinballmatrix':self.pinballmatrix,
         }
         self.all = All(self)
+    """
         self.start()
     def add_to_queue(self, topic, message, origin, destination):
         # if topic=system_tests, update self.hosts[hostname].set_connected() 
@@ -919,7 +920,7 @@ class Hosts:
             """
             topic, message, origin, destination = self.queue.get(True)
             print("Hosts.run",topic, message, origin, destination)
-
+    """
 
     """
 
