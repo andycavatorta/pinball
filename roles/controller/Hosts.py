@@ -880,6 +880,7 @@ class All():
 
 class Hosts:
     def __init__(self, tb):
+        self.tb = tb
         self.queue = queue.Queue()
 
         self.controller = Controller("controller", tb)
