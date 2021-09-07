@@ -38,10 +38,7 @@ thread safety???
         )
 
 
-hosts.all.computer_details_received()
-hosts.all.sdc2160_present
-hosts.all.amt203_present
-hosts.all.current_sensor_present
+
 
 """
 
@@ -60,14 +57,17 @@ sys.path.append(os.path.split(app_path)[0])
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.sensors.ina260 import ina260 
 
-class Host(threading.Thread):
+class Host():
     def __init__(self, hostname):
-        threading.Thread.__init__(self)
         self.hostname = hostname
         self.connected = False
         self.ready = False
         self.last_deadman = 0 #unix timestamp
         self.queue = queue.Queue
+        self.df = -1
+        self.cpu_temp = -1
+        self.pinball_git_timestamp = ""
+        self.tb_git_timestamp = ""
     def set_connected(self, connected):
         self.connected = connected
     def get_connected(self, connected):
@@ -80,8 +80,32 @@ class Host(threading.Thread):
         self.last_deadman = last_deadman
     def get_connected(self, last_deadman):
         return self.last_deadman
-    def add_to_queue(self, topic, message, origin, destination):
-        self.queue.put((topic, message, origin, destination))
+
+    def set_computer_details(self,computer_details):
+        self.df = computer_details["df"]
+        self.cpu_temp = computer_details["cpu_temp"]
+        self.pinball_git_timestamp = computer_details["pinball_git_timestamp"]
+        self.tb_git_timestamp = computer_details["tb_git_timestamp"]
+    def get_computer_details(self):
+        return {
+            "df":self.df,
+            "cpu_temp":self.cpu_temp,
+            "pinball_git_timestamp":self.pinball_git_timestamp,
+            "tb_git_timestamp":self.tb_git_timestamp,
+        }
+    def get_computer_details_received(self):
+        if self.df == -1:
+            return False
+        if self.cpu_temp == -1:
+            return False
+        if self.pinball_git_timestamp == "":
+            return False
+        if self.tb_git_timestamp == "":
+            return False
+        return True
+
+
+
 
 class Controller(Host):
     def __init__(self, hostname, tb):
@@ -164,7 +188,7 @@ class Carousel(Host):
             "carousel5",
             "carouselcenter"
         ].index(hostname)
-
+        self.current_sensor_present = False
         self.solenoids_present = [
             False,
             False,
@@ -203,6 +227,12 @@ class Carousel(Host):
             "tb_git_timestamp":self.tb_git_timestamp,
         }
 
+    def request_current_sensor_present(self):
+        self.tb.publish(topic="current_sensor_present",message=True,destination="controller")
+    def set_current_sensor_present(self, present):
+        self.current_sensor_present= present
+    def get_current_sensor_present(self):
+        return self.current_sensor_present
 
     def request_solenoids_present(self):
         self.tb.publish(topic="request_solenoids_present",message=True,destination=self.hostname)
@@ -243,6 +273,7 @@ class Display(Host):
         self.last_score_name = ""
         self._24v_current = 0
         self.shift_registers_connected = False
+        self.current_sensor_present= False
         self.solenoids_present = [
             False,
             False,
@@ -311,6 +342,16 @@ class Display(Host):
             "pinball_git_timestamp":self.pinball_git_timestamp,
             "tb_git_timestamp":self.tb_git_timestamp,
         }
+
+    def request_current_sensor_present(self):
+        self.tb.publish(topic="current_sensor_present",message=True,destination=self.hostname)
+    def set_current_sensor_present(self, present):
+        self.current_sensor_present= present
+    def get_current_sensor_present(self):
+        return self.current_sensor_present
+
+
+
 
     def request_score(self, score_name):
         self.current_score_name = score_name
@@ -414,7 +455,7 @@ class Matrix(Host):
             0,
             0,
         ]
-        self.amt203_relative_position = [
+        self.sdc2160_relative_position = [
             0,
             0,
             0,
@@ -518,21 +559,21 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_faults", message="")
     def set_sdc2160_faults(self,sdc2160_present):
         self.sdc2160_present =sdc2160_present
-    def get_sdc2160_faults(self):
-        return self.sdc2160_present
+    def get_sdc2160_faults(self):_amt203_present
+        return self.sdc2160_presen_amt203_presentt
 
     def request_amt203_present(self):
         self.tb.publish(topic="request_amt203_present", message="")
-    def set_(self,amt203_present):
+    def set_amt203_present(self,amt203_present):
         self.amt203_present =amt203_present
-    def get_(self):
+    def get_amt203_present(self):
         return self.amt203_present
 
     def request_amt203_zeroed(self):
         self.tb.publish(topic="request_amt203_zeroed", message="")
-    def set_(self,amt203_zeroed):
+    def set_amt203_zeroed(self,amt203_zeroed):
         self.amt203_zeroed =amt203_zeroed
-    def get_(self):
+    def get_amt203_zeroed(self):
         return self.amt203_zeroed
 
     #encoder positions are locally scanned and updated by push
@@ -543,13 +584,17 @@ class Matrix(Host):
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
 
+
     #encoder positions are locally scanned and updated by push
-    def request_amt203_relative_position(self, fruit_id):
-        self.tb.publish(topic="request_amt203_relative_position", message="")
-    def set_amt203_relative_position(self, fruit_id, relative_position):
-        self.amt203_relative_position[fruit_id] = relative_position
-    def get_amt203_relative_position(self, fruit_id):
-        return self.relative_position[fruit_id]
+    def request_sdc2160_relative_position(self, fruit_id):
+        self.tb.publish(topic="request_sdc2160_relative_position", message="")
+    def set_sdc2160_relative_position(self, fruit_id, relative_position):
+        self.sdc2160_relative_position[fruit_id] = relative_position
+    def get_sdc2160_relative_position(self, fruit_id=-1):
+        if fruit_id == -1:
+            return self.sdc2160_relative_position
+        else:
+            return self.sdc2160_relative_position[fruit_id]
 
     def request_motor_details(self, property, fruit_id):
         self.tb.publish(topic="request_motor_details", message=[property, fruit_id])
@@ -565,12 +610,21 @@ class Matrix(Host):
     def get_sdc2160_controller_faults(self):
         return self.sdc2160_controller_faults
 
-    def request_sdc2160_controller_faults(self): 
-        self.tb.publish(topic="request_sdc2160_controller_faults", message="")
-    def set_sdc2160_controller_faults(self,sdc2160_controller_faults):
-        self.sdc2160_controller_faults = sdc2160_controller_faults
-    def get_sdc2160_controller_faults(self):
-        return self.sdc2160_controller_faults
+    def request_sdc2160_channel_faults(self): 
+        self.tb.publish(topic="request_sdc2160_channel_faults", message="")
+    def set_sdc2160_channel_faults(self,sdc2160_channel_faults):
+        self.sdc2160_channel_faults = sdc2160_channel_faults
+    def get_sdc2160_channel_faults(self):
+        return self.sdc2160_channel_faults
+
+
+    def request_sdc2160_closed_loop_error(self): 
+        self.tb.publish(topic="request_sdc2160_closed_loop_error", message="")
+    def set_sdc2160_closed_loop_error(self,sdc2160_closed_loop_error):
+        self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
+    def get_sdc2160_closed_loop_error(self):
+        return self.sdc2160_closed_loop_error
+
 
     def cmd_rotate_fruit_to_target(self, fruit_id, degrees):
         self.target_position[fruit_id] = degrees
@@ -595,6 +649,7 @@ class Pinball(Host):
         self.gutter_ball_detected = False
         self.barter_points = -1
         self.money_points = -1
+        self.current_sensor_present= False
         self.button_active = {
             "izquierda":False,
             "trueque":False,
@@ -624,6 +679,15 @@ class Pinball(Host):
             "sign_bottom_right":None,
             "sign_top":None,
         }
+
+
+    def request_current_sensor_present(self):
+        self.tb.publish(topic="current_sensor_present",message=True,destination=self.hostname)
+    def set_current_sensor_present(self, present):
+        self.current_sensor_present= present
+    def get_current_sensor_present(self):
+        return self.current_sensor_present
+
 
     def request_48v_current(self): 
         self.tb.publish(
@@ -737,6 +801,67 @@ class Pinball(Host):
             destination=self.hostname
         )
 
+class All():
+    def __init__(self, main):
+        self.main = main
+    def host_connected(self):
+        for name in self.main.hostname:
+            if name != "controller":
+                if self.main.hostname[name].get_connected() == False:
+                    return False
+        return True
+
+    def computer_details_received(self):
+        for name in self.main.hostname:
+            if name != "controller":
+                if self.main.hostname[name].get_computer_details_received() == False:
+                    return False
+        return True
+
+    # device presence
+    def sdc2160_present(self):
+        presents = self.main.hostname["pinballmatrix"].get_sdc2160_present()
+        if all(present == True for present in presents):
+            return Trule
+        return False
+
+    def amt203_present(self):
+        presents = self.main.hostname["pinballmatrix"].get_amt203_present()
+        if all(present == True for present in presents):
+            return Trule
+        return False
+
+    def current_sensor_present(self):
+        names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
+        for name in names:
+            if self.main.hostname[name].get_current_sensor_present() == False:
+                return False
+
+    # device states
+    def amt203_absolute_position(self):
+        return self.main.hostname["pinballmatrix"].get_amt203_absolute_position()
+
+    def sdc2160_relative_position(self):
+        return self.main.hostname["pinballmatrix"].get_sdc2160_relative_position()
+
+    def sdc2160_channel_faults(self):
+        return self.main.hostname["pinballmatrix"].get_sdc2160_channel_faults()
+
+    def sdc2160_controller_faults(self):
+        return self.main.hostname["pinballmatrix"].get_sdc2160_controller_faults()
+
+    def sdc2160_closed_loop_error(self):
+        return self.main.hostname["pinballmatrix"].get_sdc2160_closed_loop_error()
+
+    def amt203_zeroed(self):
+        return self.main.hostname["pinballmatrix"].get_amt203_zeroed()
+
+    def current_sensor_value(self):
+        names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
+        for name in names:
+            if self.main.hostname[name].get_current_sensor_value() == False:
+                return False
+
 
 class Hosts:
     def __init__(self, tb):
@@ -780,6 +905,8 @@ class Hosts:
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
+        self.all = All(self)
+        self.start()
     def add_to_queue(self, topic, message, origin, destination):
         # if topic=system_tests, update self.hosts[hostname].set_connected() 
         self.queue.put((topic, message, origin, destination))
