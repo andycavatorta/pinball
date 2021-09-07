@@ -559,7 +559,7 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_faults", message="")
     def set_sdc2160_faults(self,sdc2160_present):
         self.sdc2160_present =sdc2160_present
-    def get_sdc2160_faults(self):_
+    def get_sdc2160_faults(self):
         return self.sdc2160_presen_amt203_present
 
     def request_amt203_present(self):
