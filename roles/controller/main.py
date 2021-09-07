@@ -322,7 +322,7 @@ class Main(threading.Thread):
                     #send to game mode
                     #send to hosts object
                     #send to dashboard
-
+                    """
                     self.send_to_dashboard(
                         "update_value",
                         [
@@ -596,7 +596,6 @@ class Main(threading.Thread):
                         for fault_type in motor:
                             if fault_type == 'runtime_status_flags':
                                 # add interface affordance for runtime_status_flags
-                                """
                                     'runtime_status_flags': {
                                         'amps_limit_activated': 0, 
                                         'motor_stalled': 0, 
@@ -606,7 +605,6 @@ class Main(threading.Thread):
                                         'reverse_limit_triggered': 0, 
                                         'amps_trigger_activated': 0
                                     }, 
-                                """
                                 pass
                             else:
 
@@ -690,6 +688,8 @@ class Main(threading.Thread):
                             message[5]
                         ]
                     )
+
+                    """
 
                     """
                 if topic==b"system_tests":

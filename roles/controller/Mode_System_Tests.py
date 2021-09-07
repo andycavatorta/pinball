@@ -163,6 +163,7 @@ class Mode_System_Tests(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
+                print("in Mode_System_Tests":topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
