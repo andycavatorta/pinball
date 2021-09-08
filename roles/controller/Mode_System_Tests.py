@@ -96,7 +96,7 @@ class Mode_System_Tests(threading.Thread):
                         if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
                             if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
                                 if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
-                                    if self.hosts.pinballmatrix.amt203_zeroed() == True:
+                                    if self.hosts.pinballmatrix.get_amt203_zeroed() == True:
                                         print("")
                                         print("===========PHASE_CHECK_CURRENT_LEAK============")
                                         print("")
