@@ -340,6 +340,17 @@ class Main(threading.Thread):
         self.button_lights = Button_Lights()
 
         self.queue = queue.Queue()
+
+        self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("respond_high_power_enabled")
+        self.tb.subscribe_to_topic("request_system_tests")
+        self.tb.subscribe_to_topic("request_computer_details")
+        self.tb.subscribe_to_topic("respond_current_sensor_present")
+        self.tb.subscribe_to_topic("respond_current_sensor_value")
+        self.tb.subscribe_to_topic("respond_current_sensor_nominal")
+        self.tb.subscribe_to_topic("request_visual_tests")
+
+        # old ones that need to be checked and/or updated
         self.tb.subscribe_to_topic("gamestation_all_off")
         self.tb.subscribe_to_topic("gamestation_get_amps")
         self.tb.subscribe_to_topic("get_system_tests")
@@ -357,6 +368,16 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("gutter_launch")
         #self.tb.publish("connected", True)
         self.start()
+    
+    def request_computer_details(self):
+        return {
+            "df":self.tb.get_system_disk(),
+            "cpu_temp":self.tb.get_core_temp(),
+            "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
+            "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
+        }
+        
+    
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
@@ -373,6 +394,11 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="respond_computer_details", 
+                        message=self.request_computer_details()
+                    )
                 if topic == b'gamestation_all_off':
                     pass
                 if topic == b'gamestation_get_amps':
