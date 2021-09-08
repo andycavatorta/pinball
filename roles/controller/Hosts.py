@@ -600,6 +600,7 @@ class Matrix(Host):
 
     def get_amt203_absolute_position_populated(self):
         print("self.amt203_absolute_position",self.amt203_absolute_position)
+        print("None in self.amt203_absolute_position=",None in self.amt203_absolute_position)
         if None in self.amt203_absolute_position:
             return False
         return True
