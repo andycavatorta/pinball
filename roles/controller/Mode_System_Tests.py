@@ -91,7 +91,7 @@ class Mode_System_Tests(threading.Thread):
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
-                print("------------------->1")
+                print("------------------->0")
                 if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
                     print("------------------->1")
                     if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
