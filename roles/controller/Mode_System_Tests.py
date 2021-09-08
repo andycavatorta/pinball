@@ -67,9 +67,9 @@ class Mode_System_Tests(threading.Thread):
                         print("===========PHASE_DEVICE_STATES============")
                         print("")
                         self.phase = self.PHASE_DEVICE_STATES
-                        self.tb.publish("respond_current_sensor_value",None)
-                        self.tb.publish("respond_current_sensor_nominal",None)
-                        self.tb.publish("respond_current_sensor_present",None)
+                        self.tb.publish("request_current_sensor_value",None)
+                        self.tb.publish("request_current_sensor_nominal",None)
+                        self.tb.publish("request_current_sensor_present",None)
                         self.tb.publish("request_amt203_absolute_position",None)
                         self.tb.publish("request_sdc2160_relative_position",None)
                         self.tb.publish("request_sdc2160_closed_loop_error",None)
@@ -90,12 +90,12 @@ class Mode_System_Tests(threading.Thread):
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
-            if self.hosts.all.current_sensor_value() == True:
-                if self.hosts.pinballmatrix.amt203_absolute_position() == True:
-                    if self.hosts.pinballmatrix.sdc2160_relative_position() == True:
-                        if self.hosts.pinballmatrix.sdc2160_channel_faults() == True:
-                            if self.hosts.pinballmatrix.sdc2160_controller_faults() == True:
-                                if self.hosts.pinballmatrix.sdc2160_closed_loop_error() == True:
+            if self.hosts.all.get_current_sensor_populated() == True:
+                if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
+                    if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
+                        if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
+                            if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
+                                if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
                                     if self.hosts.pinballmatrix.amt203_zeroed() == True:
                                         print("")
                                         print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -163,7 +163,7 @@ class Mode_System_Tests(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
-                print("in Mode_System_Tests",topic, message, origin, destination)
+                #print("in Mode_System_Tests",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):

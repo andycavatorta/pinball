@@ -423,15 +423,15 @@ class Matrix(Host):
             "carousel5and6":False,        
         }
         self.sdc2160_controller_faults = [
-            [],[],[],
+            None,None,None,
         ]
         self.sdc2160_channel_faults = [
-            False,
-            False,
-            False,
-            False,
-            False,
-            False,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
         ]
         self.amt203_present = [
             False,
@@ -450,20 +450,20 @@ class Matrix(Host):
             False,
         ]
         self.amt203_absolute_position = [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
         ]
         self.sdc2160_relative_position = [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
         ]
         self.motors = [
             {
@@ -576,7 +576,7 @@ class Matrix(Host):
     def set_amt203_zeroed(self,amt203_zeroed):
         self.amt203_zeroed =amt203_zeroed
     def get_amt203_zeroed(self):
-        return self.amt203_zeroed
+        return False in self.amt203_zeroed
 
     #encoder positions are locally scanned and updated by push
     def request_amt203_absolute_position(self, fruit_id):
@@ -588,6 +588,11 @@ class Matrix(Host):
             self.amt203_absolute_position[fruit_id] = absolute_position
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
+
+    def get_amt203_absolute_position_populated(self):
+        if None in self.amt203_absolute_position:
+            return False
+        return True
 
 
     #encoder positions are locally scanned and updated by push
@@ -604,6 +609,11 @@ class Matrix(Host):
         else:
             return self.sdc2160_relative_position[fruit_id]
 
+    def sdc2160_relative_position_populated(self):
+        if None in self.sdc2160_relative_position:
+            return False
+        return True
+
     def request_motor_details(self, property, fruit_id):
         self.tb.publish(topic="request_motor_details", message=[property, fruit_id])
     def set_motor_details(self, property, fruit_id, value):
@@ -617,6 +627,10 @@ class Matrix(Host):
         self.sdc2160_controller_faults = sdc2160_controller_faults
     def get_sdc2160_controller_faults(self):
         return self.sdc2160_controller_faults
+    def sdc2160_controller_faults_populated(self):
+        if None in self.sdc2160_controller_faults:
+            return False
+        return True
 
     def request_sdc2160_channel_faults(self): 
         self.tb.publish(topic="request_sdc2160_channel_faults", message="")
@@ -624,7 +638,10 @@ class Matrix(Host):
         self.sdc2160_channel_faults = sdc2160_channel_faults
     def get_sdc2160_channel_faults(self):
         return self.sdc2160_channel_faults
-
+    def sdc2160_channel_faults_populated():
+        if None in self.sdc2160_channel_faults:
+            return False
+        return True
 
     def request_sdc2160_closed_loop_error(self): 
         self.tb.publish(topic="request_sdc2160_closed_loop_error", message="")
@@ -632,6 +649,7 @@ class Matrix(Host):
         self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
     def get_sdc2160_closed_loop_error(self):
         return self.sdc2160_closed_loop_error
+    def sdc2160_closed_loop_error_populated(self)
 
 
     def cmd_rotate_fruit_to_target(self, fruit_id, degrees):
@@ -813,6 +831,9 @@ class All():
     def __init__(self, main):
         self.main = main
 
+
+
+
     def get_host_connected(self):
         for name in self.main.hostname:
             if name != "controller":
@@ -822,7 +843,6 @@ class All():
 
     def request_computer_details(self):
         self.main.tb.publish("request_computer_details",None)
-
 
     def get_computer_details_received(self):
         for name in self.main.hostname:
@@ -845,6 +865,8 @@ class All():
             if self.main.hostname[name].get_current_sensor_value() == False:
                 return False
 
+    def get_current_sensor_populated(self):
+        return True
 
 
 
