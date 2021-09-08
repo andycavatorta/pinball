@@ -599,8 +599,6 @@ class Matrix(Host):
         return self.amt203_absolute_position[fruit_id]
 
     def get_amt203_absolute_position_populated(self):
-        print("self.amt203_absolute_position",self.amt203_absolute_position)
-        print("None in self.amt203_absolute_position=",None in self.amt203_absolute_position)
         if None in self.amt203_absolute_position:
             return False
         return True
@@ -621,6 +619,8 @@ class Matrix(Host):
             return self.sdc2160_relative_position[fruit_id]
 
     def sdc2160_relative_position_populated(self):
+        print("self.amt203_absolute_position",self.sdc2160_relative_position)
+        print("None in self.amt203_absolute_position=",None in self.sdc2160_relative_position)
         if None in self.sdc2160_relative_position:
             return False
         return True
