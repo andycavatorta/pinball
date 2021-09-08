@@ -646,7 +646,7 @@ class Matrix(Host):
         self.sdc2160_channel_faults = sdc2160_channel_faults
     def get_sdc2160_channel_faults(self):
         return self.sdc2160_channel_faults
-    def sdc2160_channel_faults_populated():
+    def sdc2160_channel_faults_populated(self):
         if None in self.sdc2160_channel_faults:
             return False
         return True

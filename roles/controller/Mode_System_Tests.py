@@ -145,6 +145,7 @@ class Mode_System_Tests(threading.Thread):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
+        
 
     def respond_amt203_zeroed(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
