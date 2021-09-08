@@ -835,13 +835,13 @@ class All():
     def sdc2160_present(self):
         presents = self.main.hostname["pinballmatrix"].get_sdc2160_present()
         if all(present == True for present in presents):
-            return Trule
+            return True
         return False
 
     def amt203_present(self):
         presents = self.main.hostname["pinballmatrix"].get_amt203_present()
         if all(present == True for present in presents):
-            return Trule
+            return True
         return False
 
     def current_sensor_present(self):
