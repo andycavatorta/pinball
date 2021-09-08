@@ -465,6 +465,14 @@ class Matrix(Host):
             None,
             None,
         ]
+        self.sdc2160_closed_loop_error = [
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+        ]
         self.motors = [
             {
                 "current":0,
@@ -649,7 +657,10 @@ class Matrix(Host):
         self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
     def get_sdc2160_closed_loop_error(self):
         return self.sdc2160_closed_loop_error
-    def sdc2160_closed_loop_error_populated(self)
+    def sdc2160_closed_loop_error_populated(self):
+        if None in self.sdc2160_closed_loop_error:
+            return False
+        return True
 
 
     def cmd_rotate_fruit_to_target(self, fruit_id, degrees):
@@ -661,7 +672,7 @@ class Matrix(Host):
         self.tb.publish(topic="request_target_position_confirmed", message="")
     def set_target_position_confirmed(self,fruit_id,state_bool):
         self.target_position_confirmed[fruit_id] = state_bool
-    def get_(self):
+    def get_target_position_confirmed(self):
         return self.target_position_confirmed
 
 
