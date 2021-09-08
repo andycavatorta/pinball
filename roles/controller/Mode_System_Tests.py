@@ -60,8 +60,8 @@ class Mode_System_Tests(threading.Thread):
     # presence
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
-            if self.hosts.pinballmatrix.amt203_present() == True:
-                if self.hosts.pinballmatrix.sdc2160_present() == True:
+            if self.hosts.pinballmatrix.get_amt203_all_present() == True:
+                if self.hosts.pinballmatrix.get_sdc2160_present() == True:
                     if self.hosts.all.current_sensor_present() == True:
                         print("")
                         print("===========PHASE_DEVICE_STATES============")

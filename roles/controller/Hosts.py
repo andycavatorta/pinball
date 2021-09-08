@@ -569,7 +569,7 @@ class Matrix(Host):
     def set_amt203_present(self,amt203_present):
         self.amt203_present =amt203_present
     def get_amt203_present(self):
-        return self.amt203_present
+        return all(self.amt203_present)
 
     def request_amt203_zeroed(self):
         self.tb.publish(topic="request_amt203_zeroed", message="")
@@ -831,45 +831,13 @@ class All():
                     return False
         return True
 
-    # device presence
-    def sdc2160_present(self):
-        presents = self.main.hostname["pinballmatrix"].get_sdc2160_present()
-        if all(present == True for present in presents):
-            return True
-        return False
-
-    def amt203_present(self):
-        presents = self.main.hostname["pinballmatrix"].get_amt203_present()
-        if all(present == True for present in presents):
-            return True
-        return False
-
-    def current_sensor_present(self):
+    def get_current_sensor_present(self):
         names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
             if self.main.hostname[name].get_current_sensor_present() == False:
                 return False
 
-    # device states
-    def amt203_absolute_position(self):
-        return self.main.hostname["pinballmatrix"].get_amt203_absolute_position()
-
-    def sdc2160_relative_position(self):
-        return self.main.hostname["pinballmatrix"].get_sdc2160_relative_position()
-
-    def sdc2160_channel_faults(self):
-        return self.main.hostname["pinballmatrix"].get_sdc2160_channel_faults()
-
-    def sdc2160_controller_faults(self):
-        return self.main.hostname["pinballmatrix"].get_sdc2160_controller_faults()
-
-    def sdc2160_closed_loop_error(self):
-        return self.main.hostname["pinballmatrix"].get_sdc2160_closed_loop_error()
-
-    def amt203_zeroed(self):
-        return self.main.hostname["pinballmatrix"].get_amt203_zeroed()
-
-    def current_sensor_value(self):
+    def get_current_sensor_value(self):
         names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
             if self.main.hostname[name].get_current_sensor_value() == False:
