@@ -90,12 +90,18 @@ class Mode_System_Tests(threading.Thread):
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
-            if self.hosts.all.get_current_sensor_populated() == True:
-                if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
-                    if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
+            if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
+                print("------------------->1")
+                if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
+                    print("------------------->1")
+                    if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
+                        print("------------------->2")
                         if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
+                            print("------------------->3")
                             if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
-                                if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
+                                print("------------------->4")
+                                if self.hosts.all.get_current_sensor_populated() == True:
+                                    print("------------------->5")
                                     if self.hosts.pinballmatrix.get_amt203_zeroed() == True:
                                         print("")
                                         print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -145,7 +151,7 @@ class Mode_System_Tests(threading.Thread):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
-        
+
 
     def respond_amt203_zeroed(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
