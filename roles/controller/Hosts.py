@@ -590,14 +590,16 @@ class Matrix(Host):
     def request_amt203_absolute_position(self, fruit_id):
         self.tb.publish(topic="request_amt203_absolute_position", message="")
     def set_amt203_absolute_position(self, absolute_position, fruit_id=-1):
-        if fruit_id == -1:
+        if fruit_id == -1 or fruit_id == None:
             self.amt203_absolute_position = absolute_position
         else:
             self.amt203_absolute_position[fruit_id] = absolute_position
+
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
 
     def get_amt203_absolute_position_populated(self):
+        print("self.amt203_absolute_position",self.amt203_absolute_position)
         if None in self.amt203_absolute_position:
             return False
         return True
@@ -955,6 +957,8 @@ class Hosts:
             self.hostname[origin].set_sdc2160_controller_faults(message)
         if topic == "respond_sdc2160_channel_faults":
             self.hostname[origin].set_sdc2160_channel_faults(message)
+
+
 
 
 
