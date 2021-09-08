@@ -417,7 +417,7 @@ class Main(threading.Thread):
         return self.absolute_encoders_zeroed
 
     def request_amt203_absolute_position(self, fruit_id=-1):
-        if fruit_id == -1:
+        if fruit_id == -1 or fruit_id == None:
             return self.absolute_encoders.get_positions()
         else:
             return self.absolute_encoders.get_position(self.chip_select_pins_for_abs_enc[fruit_id])
