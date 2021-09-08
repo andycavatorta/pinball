@@ -552,7 +552,7 @@ class Matrix(Host):
 
     def request_sdc2160_present(self):
         self.tb.publish(topic="request_sdc2160_present", message="")
-    def set_sdc2160_present(presence):
+    def set_sdc2160_present(self,presence):
         self.sdc2160_present = presence
     def get_sdc2160_present(self):
         return all(self.sdc2160_present.values())

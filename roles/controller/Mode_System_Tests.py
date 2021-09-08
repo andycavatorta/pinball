@@ -60,8 +60,8 @@ class Mode_System_Tests(threading.Thread):
     # presence
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
-            if self.hosts.all.amt203_present() == True:
-                if self.hosts.all.sdc2160_present() == True:
+            if self.hosts.pinballmatrix.amt203_present() == True:
+                if self.hosts.pinballmatrix.sdc2160_present() == True:
                     if self.hosts.all.current_sensor_present() == True:
                         print("")
                         print("===========PHASE_DEVICE_STATES============")
@@ -91,12 +91,12 @@ class Mode_System_Tests(threading.Thread):
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
             if self.hosts.all.current_sensor_value() == True:
-                if self.hosts.all.amt203_absolute_position() == True:
-                    if self.hosts.all.sdc2160_relative_position() == True:
-                        if self.hosts.all.sdc2160_channel_faults() == True:
-                            if self.hosts.all.sdc2160_controller_faults() == True:
-                                if self.hosts.all.sdc2160_closed_loop_error() == True:
-                                    if self.hosts.all.amt203_zeroed() == True:
+                if self.hosts.pinballmatrix.amt203_absolute_position() == True:
+                    if self.hosts.pinballmatrix.sdc2160_relative_position() == True:
+                        if self.hosts.pinballmatrix.sdc2160_channel_faults() == True:
+                            if self.hosts.pinballmatrix.sdc2160_controller_faults() == True:
+                                if self.hosts.pinballmatrix.sdc2160_closed_loop_error() == True:
+                                    if self.hosts.pinballmatrix.amt203_zeroed() == True:
                                         print("")
                                         print("===========PHASE_CHECK_CURRENT_LEAK============")
                                         print("")
