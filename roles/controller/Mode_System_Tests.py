@@ -62,7 +62,7 @@ class Mode_System_Tests(threading.Thread):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
             if self.hosts.pinballmatrix.get_amt203_present() == True:
                 if self.hosts.pinballmatrix.get_sdc2160_present() == True:
-                    if self.hosts.all.current_sensor_present() == True:
+                    if self.hosts.all.get_current_sensor_present() == True:
                         print("")
                         print("===========PHASE_DEVICE_STATES============")
                         print("")

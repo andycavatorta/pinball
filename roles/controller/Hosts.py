@@ -832,6 +832,8 @@ class All():
         return True
 
     def get_current_sensor_present(self):
+        return True
+        # todo: use real values instead of dummy value
         names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
             if self.main.hostname[name].get_current_sensor_present() == False:
