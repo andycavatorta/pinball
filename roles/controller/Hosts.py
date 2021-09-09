@@ -126,8 +126,8 @@ class Controller(Host):
         return {
             "df":self.tb.get_system_disk(),
             "cpu_temp":self.tb.get_core_temp,
-            "pinball_git_timestamp":self.tb.app_get_git_timestamp,
-            "tb_git_timestamp":self.tb.tb_get_git_timestamp,
+            "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
+            "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
 
     def get_carousels_current(self):
