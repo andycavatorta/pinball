@@ -899,7 +899,7 @@ class All():
                     non_nominal_states.append(["pinballmatrix",channel_name,flag_name, runtime_status_flags[flag_name]])
 
         # sdc: check controller faults
-        controller_faults_list = self.main.pinballmatrix.get_request_sdc2160_controller_faults()
+        controller_faults_list = self.main.pinballmatrix.get_sdc2160_controller_faults()
         controller_faults = {
             "carousel1and2":controller_faults_list[0],
             "carousel3and4":controller_faults_list[1],
