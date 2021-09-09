@@ -603,7 +603,6 @@ class Matrix(Host):
             return False
         return True
 
-
     #encoder positions are locally scanned and updated by push
     def request_sdc2160_relative_position(self, fruit_id):
         self.tb.publish(topic="request_sdc2160_relative_position", message="")
@@ -663,12 +662,10 @@ class Matrix(Host):
             return False
         return True
 
-
     def cmd_rotate_fruit_to_target(self, fruit_id, degrees):
         self.target_position[fruit_id] = degrees
         self.set_target_position_confirmed(fruit_id,False)
         self.tb.publish(topic="cmd_rotate_fruit_to_target", message=[fruit_id, degrees])
-
     def request_target_position_confirmed(self): 
         self.tb.publish(topic="request_target_position_confirmed", message="")
     def set_target_position_confirmed(self,fruit_id,state_bool):
@@ -840,19 +837,16 @@ class Pinball(Host):
         )
 
 class All():
+    current_sensor_hostnames = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
+
     def __init__(self, main):
         self.main = main
-
-
-
-
     def get_host_connected(self):
         for name in self.main.hostname:
             if name != "controller":
                 if self.main.hostname[name].get_connected() == False:
                     return False
         return True
-
     def request_computer_details(self):
         self.main.tb.publish("request_computer_details",None)
 
@@ -862,7 +856,6 @@ class All():
                 if self.main.hostname[name].get_computer_details_received() == False:
                     return False
         return True
-
     def get_current_sensor_present(self):
         return True
         # todo: use real values instead of dummy value
@@ -870,17 +863,71 @@ class All():
         for name in names:
             if self.main.hostname[name].get_current_sensor_present() == False:
                 return False
-
     def get_current_sensor_value(self):
         names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
             if self.main.hostname[name].get_current_sensor_value() == False:
                 return False
-
     def get_current_sensor_populated(self):
         return True
 
+    def get_non_nominal_states(self):
+        # [ [hostname, system, channel, value], ...]
+        # sdc: check closed loop error
+        non_nominal_states = []
+        closed_loop_error = self.main.pinballmatrix.get_sdc2160_closed_loop_error()
+        for channel_value in enumerate(closed_loop_error):
+            channel, value = channel_value
+            if value > 100:
+                non_nominal_states.append(["pinballmatrix","sdc2160_closed_loop_error",channel, value])
+        # sdc: check channel faults
+        channel_faults = self.main.pinballmatrix.request_sdc2160_channel_faults()
+        for channel_name in channel_faults:
+            channel = channel_faults[channel_name]
+            if channel["temperature"] > 40:
+                non_nominal_states.append(["pinballmatrix",channel_name,"temperature", channel["temperature"]])
+            if channel["closed_loop_error"] > 100:
+                non_nominal_states.append(["pinballmatrix",channel_name,"closed_loop_error", channel["closed_loop_error"]])
+            if channel["stall_detection"] == False:
+                non_nominal_states.append(["pinballmatrix",channel_name,"stall_detection", channel["stall_detection"]])
+            if channel["motor_amps"] > 6:
+                non_nominal_states.append(["pinballmatrix",channel_name,"motor_amps", channel["motor_amps"]])
 
+            runtime_status_flags = channel["runtime_status_flags"]
+            for flag_name in runtime_status_flags:
+                if runtime_status_flags[flag_name] != 0:
+                    non_nominal_states.append(["pinballmatrix",channel_name,flag_name, runtime_status_flags[flag_name]])
+
+        # sdc: check controller faults
+        controller_faults_list = self.main.pinballmatrix.get_request_sdc2160_controller_faults()
+        controller_faults = {
+            "carousel1and2":controller_faults_list[0],
+            "carousel3and4":controller_faults_list[1],
+            "carousel5and6":controller_faults_list[2],
+        }
+        for controller_name in controller_faults:
+            controller = controller_faults[controller_name]
+            for fault_name in controller:
+                if controller[flag_name] != 0:
+                    non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[flag_name]])
+
+        # all 'df': [3216769024, 7583248384], 
+        # all 'cpu_temp': 48, 
+        for hostname in self.main.hostname:
+            deets = hostname.get_computer_details()
+            if deets["cpu_temp"] > 60:
+                non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
+            if deets["df"][0] > 500000000:
+                non_nominal_states.append([hostname,"computer_details","df", deets["cpu_temp"]])
+
+        print("vvvvvvvvvvvvvvv")
+        print("")
+        print(non_nominal_states)
+        print("")
+        print("^^^^^^^^^^^^^^^")
+
+        # all: check current sensors
+        return non_nominal_states
 
 class Hosts:
     def __init__(self, tb):
