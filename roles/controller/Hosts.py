@@ -884,7 +884,7 @@ class All():
                 non_nominal_states.append(["pinballmatrix",channel_name,"temperature", channel["temperature"]])
             if channel["closed_loop_error"] > 100:
                 non_nominal_states.append(["pinballmatrix",channel_name,"closed_loop_error", channel["closed_loop_error"]])
-            if channel["stall_detection"] == False:
+            if channel["stall_detection"] != False:
                 non_nominal_states.append(["pinballmatrix",channel_name,"stall_detection", channel["stall_detection"]])
             if channel["motor_amps"] > 6:
                 non_nominal_states.append(["pinballmatrix",channel_name,"motor_amps", channel["motor_amps"]])
