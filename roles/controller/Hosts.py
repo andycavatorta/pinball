@@ -908,8 +908,8 @@ class All():
         for controller_name in controller_faults:
             controller = controller_faults[controller_name]
             for fault_name in controller:
-                if controller[flag_name] != 0:
-                    non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[flag_name]])
+                if controller[fault_name] != 0:
+                    non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
 
         # all 'df': [3216769024, 7583248384], 
         # all 'cpu_temp': 48, 
