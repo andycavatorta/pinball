@@ -913,8 +913,8 @@ class All():
             deets = self.main.hostname[hostname].get_computer_details()
             if deets["cpu_temp"] > 60:
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
-            if deets["df"][0] > 500000000:
-                non_nominal_states.append([hostname,"computer_details","df", deets["cpu_temp"]])
+            if deets["df"][0] < 500000000:
+                non_nominal_states.append([hostname,"computer_details","df", deets["df"]])
 
         print("vvvvvvvvvvvvvvv")
         print("")
