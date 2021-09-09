@@ -914,7 +914,7 @@ class All():
         # all 'df': [3216769024, 7583248384], 
         # all 'cpu_temp': 48, 
         for hostname in self.main.hostname:
-            deets = hostname.get_computer_details()
+            deets = self.main.hostname[hostname].get_computer_details()
             if deets["cpu_temp"] > 60:
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
             if deets["df"][0] > 500000000:
