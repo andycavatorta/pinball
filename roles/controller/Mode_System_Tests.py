@@ -110,6 +110,7 @@ class Mode_System_Tests(threading.Thread):
                                             print("non-nominal states reported")
                                             print(self.hosts.all.get_non_nominal_states())
                                             print("")
+                                            self.set_mode(self.game_mode_names.ERROR)
 
     def respond_current_sensor_nominal(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
