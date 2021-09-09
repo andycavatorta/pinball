@@ -123,7 +123,7 @@ class Controller(Host):
         #self.start()
 
     def get_computer_details(self):
-        df = self.tb.get_system_disk[0]
+        df = self.tb.get_system_disk()[0]
         temp = self.tb.get_core_temp
         git_pin = self.tb.app_get_git_timestamp
         git_tb = self.tb.tb_get_git_timestamp
