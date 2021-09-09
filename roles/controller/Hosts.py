@@ -125,7 +125,7 @@ class Controller(Host):
     def get_computer_details(self):
         return {
             "df":self.tb.get_system_disk(),
-            "cpu_temp":self.tb.get_core_temp,
+            "cpu_temp":self.tb.get_core_temp(),
             "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
