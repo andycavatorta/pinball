@@ -123,12 +123,12 @@ class Controller(Host):
         #self.start()
 
     def get_computer_details(self):
-        df = self.tb.get_system_disk()[0]
+        df = self.tb.get_system_disk()
         temp = self.tb.get_core_temp
         git_pin = self.tb.app_get_git_timestamp
         git_tb = self.tb.tb_get_git_timestamp
         return {
-            "df":[df,df < self.settings.Nominal_Ranges_For_Tests.minimum_disk_free],
+            "df":df,
             "temp":[temp,temp < self.settings.Nominal_Ranges_For_Tests.maximum_cpu_temperature],
             "git_pin":[git_pin,True],
             "git_tb":[git_tb,True],
