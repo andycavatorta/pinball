@@ -440,7 +440,7 @@ class Main(threading.Thread):
     def request_sdc2160_closed_loop_error(self, fruit_id=-1):
         if fruit_id == -1:
             return [
-                self.controllers.motors['carousel_1'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_1'].get_closed_loop_error(True),
                 self.controllers.motors['carousel_2'].get_closed_loop_error(True),
                 self.controllers.motors['carousel_3'].get_closed_loop_error(True),
                 self.controllers.motors['carousel_4'].get_closed_loop_error(True),
