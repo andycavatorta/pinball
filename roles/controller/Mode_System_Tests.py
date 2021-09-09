@@ -76,6 +76,7 @@ class Mode_System_Tests(threading.Thread):
                         self.tb.publish("request_sdc2160_channel_faults",None)
                         self.tb.publish("request_sdc2160_controller_faults",None)
                         self.tb.publish("request_amt203_zeroed",None)
+                        time.sleep(10)
                         self.timer = time.time()
 
     def respond_amt203_present(self, message, origin, destination):
