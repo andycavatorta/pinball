@@ -953,7 +953,7 @@ class All():
         non_nominal_states = []
         closed_loop_error = self.main.pinballmatrix.get_sdc2160_closed_loop_error()
         closed_loop_error_list = []
-        for channel_value2 in enumerate(closed_loop_error):
+        for channel_value in enumerate(closed_loop_error):
             channel, value = channel_value
             if value > 100:
                 closed_loop_error_list.append([channel, value])
