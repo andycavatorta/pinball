@@ -909,7 +909,8 @@ class All():
 
     def get_host_connected(self):
         host_keys  = self.main.hostname.keys()
-        host_list  = list(host_keys).remove("controller")
+        host_list  = list(host_keys)
+        host_list.remove("controller")
         unconnected_list = []
         for name in host_list:
             if self.main.hostname[name].get_connected() == False:
