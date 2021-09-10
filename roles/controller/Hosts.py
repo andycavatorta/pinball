@@ -922,7 +922,9 @@ class All():
         self.main.tb.publish("request_computer_details",None)
     def get_computer_details_received(self):
         absent_list = []
-        host_list  = self.main.hostname.keys().remove("controller")
+        host_keys  = self.main.hostname.keys()
+        host_list  = list(host_keys)
+        host_list.remove("controller")
         for name in host_list:
             if self.main.hostname[name].get_computer_details_received() == False:
                 absent_list.append(name)
