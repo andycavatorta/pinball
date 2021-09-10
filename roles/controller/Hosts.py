@@ -1239,8 +1239,8 @@ class Hosts:
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
-        self.all = All(self)
         self.errors = Errors(self)
+        self.all = All(self)
 
     def dispatch(self, topic, message, origin, destination):
         if isinstance(topic, bytes):
