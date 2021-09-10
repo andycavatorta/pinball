@@ -5,7 +5,7 @@ import settings
 import threading
 import time
 
-class Mode_Errors(threading.Thread):
+class Mode_Error(threading.Thread):
     """
     These mode modules are classes to help keep the namespace organizes
     These mode modules are threaded because some of them will have time-based tasks.
