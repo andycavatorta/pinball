@@ -1011,7 +1011,7 @@ class All():
         # all: check current sensors
         return non_nominal_states
 
-class Error():
+class Errors():
     """
     All error states can be found by checking here
     This class makes this module a shit show that should be refactored.  O where did it all go wrong?
