@@ -1035,6 +1035,7 @@ class Errors():
         self.sdc2160_channel_faults_unpopulated = []
         self.sdc2160_controller_faults_unpopulated = []
         self.amt203_not_zeroed = []
+        self.timeout = []
 
     def get_all(self):
         errors = {}
@@ -1066,7 +1067,19 @@ class Errors():
             errors["computer_details_absent"] = self.get_computer_details_absent()
         if self.test_host_unconnected():
             errors["host_unconnected"] = self.get_host_unconnected()
+        if self.test_timeout():
+            errors["timeout"] = self.get_timeout()
         return errors
+
+    def set_timeout(self,timeout):
+        self.timeout = timeout
+    def get_timeout(self):
+        return self.timeout
+    def test_timeout(self):
+        return not len(self.timeout) == 0
+    def reset_timeout(self):
+        self.timeout = []
+
 
     def set_host_unconnected(self,unconnected_list):
         self.hosts_unconnected = unconnected_list

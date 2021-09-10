@@ -100,7 +100,7 @@ class Mode_Error(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True,5)
+                topic, message, origin, destination = self.queue.get(True)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
@@ -115,6 +115,7 @@ class Mode_Error(threading.Thread):
                         destination,
                     )
             except queue.Empty:
-                if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                    self.set_mode(self.game_mode_names.ERROR)
+                pass
+                #if self.timer + self.timeout_duration < time.time(): # if timeout condition
+                #    self.set_mode(self.game_mode_names.ERROR)
 

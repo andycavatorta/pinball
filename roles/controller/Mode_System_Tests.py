@@ -183,4 +183,5 @@ class Mode_System_Tests(threading.Thread):
             except queue.Empty:
                 if self.phase != self.PHASE_VISUAL_TESTS:
                     if self.timer + self.timeout_duration < time.time(): # if timeout condition
+                        self.hosts.error.set_timeout = [self.phase]
                         self.set_mode(self.game_mode_names.ERROR)
