@@ -153,6 +153,8 @@ class Main(threading.Thread):
         self.game_modes = {
             "waiting_for_connections" : Mode_Waiting_For_Connections(self.tb,self.hosts,self.set_mode),
             "system_test" : Mode_System_Tests(self.tb,self.hosts,self.set_mode),
+            "error" : Mode_Error(self.tb,self.hosts,self.set_mode),
+
             #"inventory" : Mode_Inventory(self.tb,self.hosts)
             #"attraction" : Mode_Attraction(self.tb,self.hosts)
             #"countdown" : Mode_Countdown(self.tb,self.hosts)
