@@ -284,10 +284,14 @@ class Main(threading.Thread):
                 #if topic!=b"deadman":
                 #    print(topic, message, origin, destination)
 
+                if topic==b"deadman":
+                    self.safety_enable.add_to_queue(topic, message, origin, destination)
+
                 if topic!=b"deadman":
                     self.hosts.dispatch(topic, message, origin, destination)
                     self.send_to_dashboard(topic, message)
                     self.game_mode.add_to_queue(topic, message, origin, destination)
+
                 # ERROR
 
                 # WAITING_FOR_CONNECTIONS
@@ -319,15 +323,13 @@ class Main(threading.Thread):
                 # ENDING
 
 
-                if topic==b"deadman":
-                    self.safety_enable.add_to_queue(topic, message, origin, destination)
-                if topic==b"connected": # is this useful when we have the network_status_change_handler?
-                    print("----------connected----------", topic, message, origin, destination)
-                if topic==b"respond_computer_details":
-                    cpu_temp = message["cpu_temp"]
-                    df = message["df"][0]
-                    pinball_git_timestamp = self.convert_git_timestamp_to_epoch(message["pinball_git_timestamp"])
-                    tb_git_timestamp = self.convert_git_timestamp_to_epoch(message["tb_git_timestamp"])
+                #if topic==b"connected": # is this useful when we have the network_status_change_handler?
+                #    print("----------connected----------", topic, message, origin, destination)
+                #if topic==b"respond_computer_details":
+                #    cpu_temp = message["cpu_temp"]
+                #    df = message["df"][0]
+                #    pinball_git_timestamp = self.convert_git_timestamp_to_epoch(message["pinball_git_timestamp"])
+                #    tb_git_timestamp = self.convert_git_timestamp_to_epoch(message["tb_git_timestamp"])
 
                     #send to game mode
                     #send to hosts object

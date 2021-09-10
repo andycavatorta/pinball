@@ -404,10 +404,11 @@ class Display(Host):
 
 
 class Matrix(Host):
-    def __init__(self, hostname, tb):
+    def __init__(self, hostname, tb, main):
         Host.__init__(self, hostname)
         self.hostname = hostname
         self.tb = tb
+        self.main = main
         self.df = -1
         self.cpu_temp = -1
         self.pinball_git_timestamp = ""
@@ -418,6 +419,14 @@ class Matrix(Host):
             "carousel3and4":False,
             "carousel5and6":False,        
         }
+        self.carousel_names = [
+            "carousel1",
+            "carousel2",
+            "carousel3",
+            "carousel4",
+            "carousel5",
+            "carouselcenter",
+        ]
         self.sdc2160_controller_faults = [
             None,None,None,
         ]
@@ -558,6 +567,13 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_present", message="")
     def set_sdc2160_present(self,presence):
         self.sdc2160_present = presence
+        sdc_absent = []
+        sdc_names = ["carousel1and2","carousel3and4","carousel5and6"]
+        for sdc_name in sdc_names:
+            if presence[sdc_name] == False:
+                sdc_absent.append(sdc_name)
+        self.main.errors.set_sdc_absent(sdc_absent)
+
     def get_sdc2160_present(self):
         return all(self.sdc2160_present.values())
 
@@ -572,6 +588,12 @@ class Matrix(Host):
         self.tb.publish(topic="request_amt203_present", message="")
     def set_amt203_present(self,amt203_present):
         self.amt203_present =amt203_present
+        amt203_absent = []
+        for ord_name in enumerate(self.carousel_names):
+            ordinal, name = ord_name
+            if amt203_present[ordinal] == False:
+                amt203_absent.append(name)
+        self.main.errors.set_amt203_absent(amt203_absent)
     def get_amt203_present(self):
         return all(self.amt203_present)
 
@@ -579,6 +601,14 @@ class Matrix(Host):
         self.tb.publish(topic="request_amt203_zeroed", message="")
     def set_amt203_zeroed(self,amt203_zeroed):
         self.amt203_zeroed =amt203_zeroed
+        amt203_not_zeroed = []
+        for ord_name in enumerate(self.carousel_names):
+            ordinal, name = ord_name
+            if amt203_zeroed[ordinal] == False:
+                amt203_not_zeroed.append(name)
+        self.main.errors.set_amt203_not_zeroed(amt203_not_zeroed)
+
+
     def get_amt203_zeroed(self):
         return False in self.amt203_zeroed
 
@@ -590,6 +620,13 @@ class Matrix(Host):
             self.amt203_absolute_position = absolute_position
         else:
             self.amt203_absolute_position[fruit_id] = absolute_position
+        unpopulated = []
+        for ordinal_name in enumerate(self.carousel_names):
+            ordinal, name = ordinal_name
+            if self.amt203_absolute_position[ordinal] == None:
+                unpopulated.append[name]
+        self.main.errors.set_amt203_absolute_position_unpopulated(unpopulated)
+
 
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
@@ -607,6 +644,13 @@ class Matrix(Host):
             self.sdc2160_relative_position = relative_position
         else:
             self.sdc2160_relative_position[fruit_id] = relative_position
+        unpopulated = []
+        for ordinal_name in enumerate(self.carousel_names):
+            ordinal, name = ordinal_name
+            if self.sdc2160_relative_position[ordinal] == None:
+                unpopulated.append[name]
+        self.main.errors.set_sdc2160_relative_position_unpopulated(unpopulated)
+
     def get_sdc2160_relative_position(self, fruit_id=-1):
         if fruit_id == -1:
             return self.sdc2160_relative_position
@@ -629,6 +673,15 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_controller_faults", message="")
     def set_sdc2160_controller_faults(self,sdc2160_controller_faults):
         self.sdc2160_controller_faults = sdc2160_controller_faults
+
+        unpopulated = []
+        for ordinal_name in enumerate(self.carousel_names):
+            ordinal, name = ordinal_name
+            if self.sdc2160_controller_faults[ordinal] == None:
+                unpopulated.append[name]
+        self.main.errors.set_sdc2160_controller_faults_unpopulated(unpopulated)
+
+
     def get_sdc2160_controller_faults(self):
         return self.sdc2160_controller_faults
     def sdc2160_controller_faults_populated(self):
@@ -640,6 +693,14 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_channel_faults", message="")
     def set_sdc2160_channel_faults(self,sdc2160_channel_faults):
         self.sdc2160_channel_faults = sdc2160_channel_faults
+
+        unpopulated = []
+        for ordinal_name in enumerate(self.carousel_names):
+            ordinal, name = ordinal_name
+            if self.sdc2160_channel_faults[ordinal] == None:
+                unpopulated.append[name]
+        self.main.errors.set_sdc2160_channel_faults_unpopulated(unpopulated)
+
     def get_sdc2160_channel_faults(self):
         return self.sdc2160_channel_faults
     def sdc2160_channel_faults_populated(self):
@@ -651,6 +712,13 @@ class Matrix(Host):
         self.tb.publish(topic="request_sdc2160_closed_loop_error", message="")
     def set_sdc2160_closed_loop_error(self,sdc2160_closed_loop_error):
         self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
+        unpopulated = []
+        for ordinal_name in enumerate(self.carousel_names):
+            ordinal, name = ordinal_name
+            if self.sdc2160_closed_loop_error[ordinal] == None:
+                unpopulated.append[name]
+        self.main.errors.set_sdc2160_closed_loop_error_unpopulated(unpopulated)
+
     def get_sdc2160_closed_loop_error(self):
         return self.sdc2160_closed_loop_error
     def sdc2160_closed_loop_error_populated(self):
@@ -837,21 +905,28 @@ class All():
 
     def __init__(self, main):
         self.main = main
+        self.errors = self.main.errors
+
     def get_host_connected(self):
-        for name in self.main.hostname:
-            if name != "controller":
-                if self.main.hostname[name].get_connected() == False:
-                    return False
-        return True
+        host_list  = self.main.hostname.keys().remove("controller")
+        unconnected_list = []
+        for name in host_list:
+            if self.main.hostname[name].get_connected() == False:
+                unconnected_list.append(name)
+        self.errors.set_host_unconnected(unconnected_list)
+        return len(unconnected_list)==0
+
     def request_computer_details(self):
         self.main.tb.publish("request_computer_details",None)
-
     def get_computer_details_received(self):
-        for name in self.main.hostname:
-            if name != "controller":
-                if self.main.hostname[name].get_computer_details_received() == False:
-                    return False
-        return True
+        absent_list = []
+        host_list  = self.main.hostname.keys().remove("controller")
+        for name in host_list:
+            if self.main.hostname[name].get_computer_details_received() == False:
+                absent_list.append(name)
+        self.errors.set_computer_details_absent(absent_list)
+        return len(absent_list) == 0
+
     def get_current_sensor_present(self):
         return True
         # todo: use real values instead of dummy value
@@ -867,34 +942,47 @@ class All():
     def get_current_sensor_populated(self):
         return True
 
+
     def get_non_nominal_states(self):
         # [ [hostname, system, channel, value], ...]
         # sdc: check closed loop error
         non_nominal_states = []
         closed_loop_error = self.main.pinballmatrix.get_sdc2160_closed_loop_error()
-        for channel_value in enumerate(closed_loop_error):
+        closed_loop_error_list = []
+        for channel_value2 in enumerate(closed_loop_error):
             channel, value = channel_value
             if value > 100:
+                closed_loop_error_list.append([channel, value])
                 non_nominal_states.append(["pinballmatrix","sdc2160_closed_loop_error",channel, value])
+        self.errors.set_closed_loop_error_list(closed_loop_error_list)
+
         # sdc: check channel faults
         channel_faults = self.main.pinballmatrix.get_sdc2160_channel_faults()
+        channel_faults_list = []
         for channel_name in channel_faults:
             channel = channel_faults[channel_name]
             if channel["temperature"] > 40:
+                channel_faults_list.append(["temperature",channel_name, channel["temperature"]])
                 non_nominal_states.append(["pinballmatrix",channel_name,"temperature", channel["temperature"]])
             if channel["closed_loop_error"] > 100:
+                channel_faults_list.append("closed_loop_error", channel_name,channel["closed_loop_error"])
                 non_nominal_states.append(["pinballmatrix",channel_name,"closed_loop_error", channel["closed_loop_error"]])
             if channel["stall_detection"] != False:
+                channel_faults_list.append(["stall_detection", channel_name,channel["stall_detection"]])
                 non_nominal_states.append(["pinballmatrix",channel_name,"stall_detection", channel["stall_detection"]])
             if channel["motor_amps"] > 6:
+                channel_faults_list.append(["motor_amps",channel_name, channel["motor_amps"]])
                 non_nominal_states.append(["pinballmatrix",channel_name,"motor_amps", channel["motor_amps"]])
 
             runtime_status_flags = channel["runtime_status_flags"]
             for flag_name in runtime_status_flags:
                 if runtime_status_flags[flag_name] != 0:
+                    channel_faults_list.append(flag_name, channel_name,runtime_status_flags[flag_name])
                     non_nominal_states.append(["pinballmatrix",channel_name,flag_name, runtime_status_flags[flag_name]])
+        self.errors.set_channel_faults_list(channel_faults_list)
 
         # sdc: check controller faults
+        controller_errors_list = []
         controller_faults_list = self.main.pinballmatrix.get_sdc2160_controller_faults()
         controller_faults = {
             "carousel1and2":controller_faults_list[0],
@@ -905,25 +993,208 @@ class All():
             controller = controller_faults[controller_name]
             for fault_name in controller:
                 if controller[fault_name] != 0:
+                    controller_errors_list.append([fault_name, controller_name,controller[fault_name]])
                     non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
+        self.errors.set_controller_errors_list(controller_errors_list)
 
-        # all 'df': [3216769024, 7583248384], 
-        # all 'cpu_temp': 48, 
+
+        computer_details_errors = []
         for hostname in self.main.hostname:
             deets = self.main.hostname[hostname].get_computer_details()
             if deets["cpu_temp"] > 60:
+                computer_details_errors.append([hostname,"cpu_temp", deets["cpu_temp"]])
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
             if deets["df"][0] < 500000000:
+                computer_details_errors.append([hostname,"df", deets["df"]])
                 non_nominal_states.append([hostname,"computer_details","df", deets["df"]])
-
-        print("vvvvvvvvvvvvvvv")
-        print("")
-        print(non_nominal_states)
-        print("")
-        print("^^^^^^^^^^^^^^^")
-
+        self.errors.set_computer_details_errors(computer_details_errors)
         # all: check current sensors
         return non_nominal_states
+
+class Error():
+    """
+    All error states can be found by checking here
+    This class makes this module a shit show that should be refactored.  O where did it all go wrong?
+    """
+    def __init__(self, main):
+        self.main = main
+        self.hosts_unconnected = []
+        self.computer_details_absent = []
+        self.closed_loop_error_list = []
+        self.channel_faults_list = []
+        self.controller_errors_list = []
+        self.computer_details_errors = []
+        self.amt203_absent = []
+        self.amt203_absolute_position_unpopulated = []
+        self.sdc2160_relative_position_unpopulated = []
+        self.sdc2160_closed_loop_error_unpopulated = []
+        self.sdc2160_channel_faults_unpopulated = []
+        self.sdc2160_controller_faults_unpopulated = []
+        self.amt203_not_zeroed = []
+
+    def get_all(self):
+        errors = {}
+        if self.test_amt203_not_zeroed():
+            errors["amt203_not_zeroed"] = self.get_amt203_not_zeroed()
+        if self.test_sdc2160_controller_faults_unpopulated():
+            errors["sdc2160_controller_faults_unpopulated"] = self.get_sdc2160_controller_faults_unpopulated()
+        if self.test_sdc2160_channel_faults_unpopulated():
+            errors["sdc2160_channel_faults_unpopulated"] = self.get_sdc2160_channel_faults_unpopulated()
+        if self.test_sdc2160_closed_loop_error_unpopulated():
+            errors["sdc2160_closed_loop_error_unpopulated"] = self.get_sdc2160_closed_loop_error_unpopulated()
+        if self.test_sdc2160_relative_position_unpopulated():
+            errors["sdc2160_relative_position_unpopulated"] = self.get_sdc2160_relative_position_unpopulated()
+        if self.test_amt203_absolute_position_unpopulated():
+            errors["amt203_absolute_position_unpopulated"] = self.get_amt203_absolute_position_unpopulated()
+        if self.test_sdc_absent():
+            errors["sdc_absent"] = self.get_sdc_absent()
+        if self.test_amt203_absent():
+            errors["amt203_absent"] = self.get_amt203_absent()
+        if self.test_computer_details_errors():
+            errors["computer_details_errors"] = self.get_computer_details_errors()
+        if self.test_controller_errors_list():
+            errors["controller_errors_list"] = self.get_controller_errors_list()
+        if self.test_channel_faults_list():
+            errors["channel_faults_list"] = self.get_channel_faults_list()
+        if self.test_closed_loop_error_list():
+            errors["closed_loop_error_list"] = self.get_closed_loop_error_list()
+        if self.test_computer_details_absent():
+            errors["computer_details_absent"] = self.get_computer_details_absent()
+        if self.test_host_unconnected():
+            errors["host_unconnected"] = self.get_host_unconnected()
+        return errors
+
+    def set_host_unconnected(self,unconnected_list):
+        self.hosts_unconnected = unconnected_list
+    def get_host_unconnected(self):
+        return self.hosts_unconnected
+    def test_host_unconnected(self):
+        return not len(self.hosts_unconnected) == 0
+    def reset_host_unconnected(self):
+        self.hosts_unconnected = []
+
+    def set_computer_details_absent(self, absent_list):
+        self.computer_details_absent = absent_list
+    def get_computer_details_absent(self):
+        return self.computer_details_absent
+    def test_computer_details_absent(self):
+        return not len(self.computer_details_absent) == 0
+    def reset_computer_details_absent(self):
+        self.computer_details_absent = []
+
+    def set_closed_loop_error_list(self, closed_loop_error_list):
+        self.closed_loop_error_list = closed_loop_error_list
+    def get_closed_loop_error_list(self):
+        return self.closed_loop_error_list
+    def test_closed_loop_error_list(self):
+        return not len(self.closed_loop_error_list) == 0
+    def reset_closed_loop_error_list(self):
+        self.closed_loop_error_list = []
+
+    def set_channel_faults_list(self, channel_faults_list):
+        self.channel_faults_list = channel_faults_list
+    def get_channel_faults_list(self):
+        return self.channel_faults_list
+    def test_channel_faults_list(self):
+        return not len(self.channel_faults_list) == 0
+    def reset_channel_faults_list(self):
+        self.channel_faults_list = []
+
+    def set_controller_errors_list(self, controller_errors_list):
+        self.controller_errors_list = controller_errors_list
+    def get_controller_errors_list(self):
+        return self.controller_errors_list
+    def test_controller_errors_list(self):
+        return not len(self.controller_errors_list) == 0
+    def reset_controller_errors_list(self):
+        self.controller_errors_list = []
+
+    def set_computer_details_errors(self, computer_details_errors):
+        self.computer_details_errors = computer_details_errors
+    def get_computer_details_errors(self):
+        return self.computer_details_errors
+    def test_computer_details_errors(self):
+        return not len(self.computer_details_errors) == 0
+    def reset_computer_details_errors(self):
+        self.computer_details_errors = []
+
+    def set_amt203_absent(self, amt203_absent):
+        self.amt203_absent = amt203_absent
+    def get_amt203_absent(self):
+        return self.amt203_absent
+    def test_amt203_absent(self):
+        return not len(self.amt203_absent) == 0
+    def reset_amt203_absent(self):
+        self.amt203_absent = []
+
+    def set_sdc_absent(self, sdc_absent):
+        self.sdc_absent = sdc_absent
+    def get_sdc_absent(self):
+        return self.sdc_absent
+    def test_sdc_absent(self):
+        return not len(self.sdc_absent) == 0
+    def reset_sdc_absent(self):
+        self.sdc_absent = []
+
+    def set_amt203_absolute_position_unpopulated(self, amt203_absolute_position_unpopulated):
+        self.amt203_absolute_position_unpopulated = amt203_absolute_position_unpopulated
+    def get_amt203_absolute_position_unpopulated(self):
+        return self.amt203_absolute_position_unpopulated
+    def test_amt203_absolute_position_unpopulated(self):
+        return not len(self.amt203_absolute_position_unpopulated) == 0
+    def reset_amt203_absolute_position_unpopulated(self):
+        self.amt203_absolute_position_unpopulated = []
+
+    def set_sdc2160_relative_position_unpopulated(self, sdc2160_relative_position_unpopulated):
+        self.sdc2160_relative_position_unpopulated = sdc2160_relative_position_unpopulated
+    def get_sdc2160_relative_position_unpopulated(self):
+        return self.sdc2160_relative_position_unpopulated
+    def test_sdc2160_relative_position_unpopulated(self):
+        return not len(self.sdc2160_relative_position_unpopulated) == 0
+    def reset_sdc2160_relative_position_unpopulated(self):
+        self.sdc2160_relative_position_unpopulated = []
+
+    def set_sdc2160_closed_loop_error_unpopulated(self, sdc2160_closed_loop_error_unpopulated):
+        self.sdc2160_closed_loop_error_unpopulated = sdc2160_closed_loop_error_unpopulated
+    def get_sdc2160_closed_loop_error_unpopulated(self):
+        return self.sdc2160_closed_loop_error_unpopulated
+    def test_sdc2160_closed_loop_error_unpopulated(self):
+        return not len(self.sdc2160_closed_loop_error_unpopulated) == 0
+    def reset_sdc2160_closed_loop_error_unpopulated(self):
+        self.sdc2160_closed_loop_error_unpopulated = []
+
+    def set_sdc2160_channel_faults_unpopulated(self, sdc2160_channel_faults_unpopulated):
+        self.sdc2160_channel_faults_unpopulated = sdc2160_channel_faults_unpopulated
+    def get_sdc2160_channel_faults_unpopulated(self):
+        return self.sdc2160_channel_faults_unpopulated
+    def test_sdc2160_channel_faults_unpopulated(self):
+        return not len(self.sdc2160_channel_faults_unpopulated) == 0
+    def reset_sdc2160_channel_faults_unpopulated(self):
+        self.sdc2160_channel_faults_unpopulated = []
+
+    def set_sdc2160_controller_faults_unpopulated(self, sdc2160_controller_faults_unpopulated):
+        self.sdc2160_controller_faults_unpopulated = sdc2160_controller_faults_unpopulated
+    def get_sdc2160_controller_faults_unpopulated(self):
+        return self.sdc2160_controller_faults_unpopulated
+    def test_sdc2160_controller_faults_unpopulated(self):
+        return not len(self.sdc2160_controller_faults_unpopulated) == 0
+    def reset_sdc2160_controller_faults_unpopulated(self):
+        self.sdc2160_controller_faults_unpopulated = []
+
+    def set_amt203_not_zeroed(self, amt203_not_zeroed):
+        self.amt203_not_zeroed = amt203_not_zeroed
+    def get_amt203_not_zeroed(self):
+        return self.amt203_not_zeroed
+    def test_amt203_not_zeroed(self):
+        return not len(self.amt203_not_zeroed) == 0
+    def reset_amt203_not_zeroed(self):
+        self.amt203_not_zeroed = []
+
+
+
+
+
+
 
 class Hosts:
     def __init__(self, tb):
@@ -947,7 +1218,7 @@ class Hosts:
         self.pinball3game = Pinball("pinball3game", tb)
         self.pinball4game = Pinball("pinball4game", tb)
         self.pinball5game = Pinball("pinball5game", tb)
-        self.pinballmatrix = Matrix("pinballmatrix", tb)
+        self.pinballmatrix = Matrix("pinballmatrix", tb, self)
         self.hostname = {
             'controller':self.controller,
             'carousel1':self.carousel1,
@@ -969,6 +1240,7 @@ class Hosts:
             'pinballmatrix':self.pinballmatrix,
         }
         self.all = All(self)
+        self.errors = Errors(self)
 
     def dispatch(self, topic, message, origin, destination):
         if isinstance(topic, bytes):

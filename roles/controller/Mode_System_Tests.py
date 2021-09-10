@@ -56,7 +56,6 @@ class Mode_System_Tests(threading.Thread):
                 self.tb.publish("request_sdc2160_present",None)
                 self.tb.publish("request_current_sensor_present",None)
                 self.timer = time.time()
-
     # presence
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
