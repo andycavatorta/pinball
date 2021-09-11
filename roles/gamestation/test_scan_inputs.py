@@ -10,7 +10,7 @@ GPIO.setmode( GPIO.BCM )
 
 class GPIO_Switch():
     def __init__(self, gpio_pin):
-        self.gpio_pin
+        self.gpio_pin = gpio_pin
         self.last_value = 0
         GPIO.setup(self.gpio_pin, GPIO.IN, pull_up_down = GPIO.PUD_DOWN )
     def read(self):
