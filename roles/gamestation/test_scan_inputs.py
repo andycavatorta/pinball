@@ -51,3 +51,5 @@ class Scanner(threading.Thread):
 def receiver(switch_name,switch_value):
     print(switch_name,switch_value)
 
+
+scanner = Scanner(receiver)
