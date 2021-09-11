@@ -25,19 +25,19 @@ class Scanner(threading.Thread):
         threading.Thread.__init__(self)
         self.switch_event_receiver = switch_event_receiver
         self.switches = {
-            "derecho" : GPIO_Switch(14),
-            "trueque" : GPIO_Switch(),
-            "comienza" : GPIO_Switch(),
-            "dinero" : GPIO_Switch(),
-            "izquierda" : GPIO_Switch(),
-            "spinner" : GPIO_Switch(),
-            "roll_outer_left" : GPIO_Switch(),
-            "roll_outer_right" : GPIO_Switch(),
-            "roll_inner_left" : GPIO_Switch(),
-            "roll_inner_right" : GPIO_Switch(),
-            "trough" : GPIO_Switch(),
-            "beam_left" : GPIO_Switch(),
-            "beam_right" : GPIO_Switch(),
+            "derecho" : GPIO_Switch(24),
+            "trueque" : GPIO_Switch(15),
+            "comienza" : GPIO_Switch(18),
+            "dinero" : GPIO_Switch(23),
+            "izquierda" : GPIO_Switch(14),
+            #"spinner" : GPIO_Switch(1),
+            #"roll_outer_left" : GPIO_Switch(12),
+            #"roll_outer_right" : GPIO_Switch(21),
+            #"roll_inner_left" : GPIO_Switch(16),
+            #"roll_inner_right" : GPIO_Switch(20),
+            #"trough" : GPIO_Switch(25),
+            #"beam_left" : GPIO_Switch(17),
+            #"beam_right" : GPIO_Switch(27),
         }
         self.start()
 
@@ -47,6 +47,7 @@ class Scanner(threading.Thread):
                 switch_value = self.switches[switch_name].read()
                 if switch_value != -1: # if the value has changed
                     self.switch_event_receiver(switch_name,switch_value)
+                    time.sleep(0.05)
 
 def receiver(switch_name,switch_value):
     print(switch_name,switch_value)
