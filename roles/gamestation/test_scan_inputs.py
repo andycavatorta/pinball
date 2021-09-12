@@ -30,14 +30,14 @@ class Scanner(threading.Thread):
             "comienza" : GPIO_Switch(18),
             "dinero" : GPIO_Switch(23),
             "izquierda" : GPIO_Switch(14),
-            #"spinner" : GPIO_Switch(1),
-            #"roll_outer_left" : GPIO_Switch(12),
-            #"roll_outer_right" : GPIO_Switch(21),
-            #"roll_inner_left" : GPIO_Switch(16),
-            #"roll_inner_right" : GPIO_Switch(20),
-            #"trough" : GPIO_Switch(25),
-            #"beam_left" : GPIO_Switch(17),
-            #"beam_right" : GPIO_Switch(27),
+            "spinner" : GPIO_Switch(1),
+            "roll_outer_left" : GPIO_Switch(12),
+            "roll_outer_right" : GPIO_Switch(21),
+            "roll_inner_left" : GPIO_Switch(16),
+            "roll_inner_right" : GPIO_Switch(20),
+            "trough" : GPIO_Switch(25),
+            "beam_left" : GPIO_Switch(17),
+            "beam_right" : GPIO_Switch(27),
         }
         self.start()
 
