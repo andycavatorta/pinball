@@ -27,7 +27,7 @@ switches:
     s_pop_bumper_3:        
         number: A0-B1-2
     s_left_slingshot_main:        
-        number: A0-B1-3
+        number: A0-B1-5
     s_right_slingshot_main:       
         number: A0-B1-4
 
