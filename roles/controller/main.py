@@ -859,7 +859,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
             time.sleep(5)
-            self.run_ball_motion_sim(2,3)
+            self.run_ball_motion_sim(3,2)
             time.sleep(5)
 fake_attraction_mode = Fake_Attraction_Mode()
 
