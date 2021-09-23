@@ -859,7 +859,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_destination_carousel_ord])
                 self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_destination_carousel_ord])
                 time.sleep(1)
-            self.run_ball_motion_sim(4,2)
+            self.run_ball_motion_sim(ball_origin_carousel_ord,ball_destination_carousel_ord)
 
 
             """
