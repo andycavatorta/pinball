@@ -243,6 +243,7 @@ class Button_Lights():
         self.derecha = Button_Light(self.gpios[4])
 
 def rollover_handler(name, value):
+    print("rollover_handler",name, value)
     if name == "rollover_outer_left":
         main.publish_to_controller("event_roll_outer_left", value)
         if value == True:
