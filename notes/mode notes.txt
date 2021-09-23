@@ -1,6 +1,6 @@
 #waiting
 
-
+   
 #attration mode: 
     ready lights blink in a cycle around gamestations.
     quiet / sparse motif plays
