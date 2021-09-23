@@ -852,12 +852,12 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
             
-            for in in range(4):
-            self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_origin_carousel_ord])
-            self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[ball_origin_carousel_ord])
-            time.sleep(1)
-            self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_destination_carousel_ord])
-            self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_destination_carousel_ord])
+            for i in range(4):
+                self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_origin_carousel_ord])
+                self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[ball_origin_carousel_ord])
+                time.sleep(1)
+                self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_destination_carousel_ord])
+                self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_destination_carousel_ord])
             time.sleep(1)
             self.run_ball_motion_sim(4,2)
 
