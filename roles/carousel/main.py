@@ -20,7 +20,7 @@ from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
-from roles.carousel.lights import Lights as Lights
+import roles.carousel.lighting as lighting
 from roles.carousel.solenoids import Solenoids as Solenoids
 
 from roles.carousel import fade_led_test
@@ -102,6 +102,7 @@ class Main(threading.Thread):
         )
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.solenoids = Solenoids()
+        self.lighting = lighting
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("carousel_all_off")
         self.tb.subscribe_to_topic("carousel_detect_ball")
@@ -111,6 +112,10 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("get_system_tests")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
+        self.tb.subscribe_to_topic("request_current_sensor_nominal")
+
+        self.tb.subscribe_to_topic("request_led_animations")
+
         self.start()
 
     def request_system_tests(self):
@@ -118,6 +123,10 @@ class Main(threading.Thread):
         self.tb.publish(
             topic="respond_computer_details", 
             message=self.request_computer_details()
+        )
+        self.tb.publish(
+            topic="respond_current_sensor_nominal",
+            message=self.request_current_sensor_nominal()
         )
 
     def request_computer_details(self):
@@ -127,6 +136,10 @@ class Main(threading.Thread):
             "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
+
+    def request_current_sensor_nominal(self):
+        # TODO: Make the ACTUAL tests here.
+        return True
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -150,6 +163,11 @@ class Main(threading.Thread):
                         topic="respond_computer_details", 
                         message=self.request_computer_details()
                     )
+                if topic == b'request_current_sensor_nominal':
+                    self.tb.publish(
+                        topic="respond_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
+                    )
                 if topic == b'carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
                 if topic == b'carousel_detect_ball':
@@ -162,9 +180,21 @@ class Main(threading.Thread):
                     self.solenoids.add_to_queue('eject_ball', message) # message is fruit_id between 0 and 4
                 if topic == b'get_system_tests':
                     pass
+                if topic == b'request_led_animations':
+                    if destination == self.tb.get_hostname():
+                        animation_name, params = message
+                        if animation_name == "clear_all":
+                            self.lighting.clear_all()
+                        if animation_name == "stroke_ripple":
+                            self.lighting.stroke_ripple()
+                        if animation_name == "pulse_fruit":
+                            self.lighting.pulse_fruit(params[0])
+                        if animation_name == "stroke_arc":
+                            self.lighting.stroke_arc(params[0],params[1])
+
+
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
 
-fade_led_test.start()
