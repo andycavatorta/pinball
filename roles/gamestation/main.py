@@ -23,6 +23,58 @@ import roles.gamestation.lighting as lighting
 
 GPIO.setmode(GPIO.BCM)
 
+"""
+actions for this module:
+
+WAITING_FOR_CONNECTIONS:
+    find controller and connect
+
+SYSTEM_TESTS"
+    subscribe to test topics
+    perform tests
+    playfield light animations
+    button animations
+    solenoid tests
+
+INVENTORY
+    subscribe to inventory topics
+    request_fruit_tube_sensor
+    cmd_fruit_tube_launch
+
+    respond to topics for tube solenoids and optical sensors
+
+ATTRACTION
+    play animations on playfield
+    play button animation 
+    use solenoids for percussion?
+
+COUNTDOWN
+    play animations on playfield
+    play button animation 
+    use solenoids for percussion?
+
+BARTER_MODE_INTRO
+
+
+BARTER_MODE
+MONEY_MODE_INTRO
+MONEY_MODE
+ENDING
+
+RESET
+    
+
+ERROR = "error"
+
+
+
+
+
+
+
+"""
+
+
 ###########################
 # S Y S T E M   T E S T S #
 ###########################
@@ -347,7 +399,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("respond_current_sensor_present")
         self.tb.subscribe_to_topic("respond_current_sensor_value")
-        self.tb.subscribe_to_topic("respond_current_sensor_nominal")
+        self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_visual_tests")
 
         # old ones that need to be checked and/or updated
@@ -377,7 +429,10 @@ class Main(threading.Thread):
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
         
-    
+    def request_current_sensor_nominal(self):
+        #TODO: Do the ACTUAL tests here.
+        return True
+
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
@@ -399,6 +454,11 @@ class Main(threading.Thread):
                         topic="respond_computer_details", 
                         message=self.request_computer_details()
                     )
+                if topic == b'request_current_sensor_nominal':
+                    self.tb.publish(
+                        topic="respond_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
+                    )
                 if topic == b'gamestation_all_off':
                     pass
                 if topic == b'gamestation_get_amps':
@@ -406,15 +466,30 @@ class Main(threading.Thread):
                 if topic == b'get_system_tests':
                     pass
                 if topic == b'button_active_left_flipper':
-                    pass
+                    if message == True:
+                        main.button_lights.izquierda.on()
+                    else:
+                        main.button_lights.izquierda.off()
                 if topic == b'button_active_trade_goods':
-                    pass
+                    if message == True:
+                        main.button_lights.trueque.on()
+                    else:
+                        main.button_lights.trueque.off()
                 if topic == b'button_active_start':
-                    pass
+                    if message == True:
+                        main.button_lights.comienza.on()
+                    else:
+                        main.button_lights.comienza.off()
                 if topic == b'button_active_trade_money':
-                    pass
+                    if message == True:
+                        main.button_lights.dinero.on()
+                    else:
+                        main.button_lights.dinero.off()
                 if topic == b'button_active_right_flipper':
-                    pass
+                    if message == True:
+                        main.button_lights.derecha.on()
+                    else:
+                        main.button_lights.derecha.off()
                 if topic == b'playfield_lights':
                     pass
                 if topic == b'left_stack_launch':
@@ -435,7 +510,7 @@ class Main(threading.Thread):
 main = Main()
 
         
-
+"""
 while True:
     time.sleep(0.2)
     main.button_lights.izquierda.off()
@@ -462,7 +537,7 @@ while True:
     main.button_lights.trueque.off()
     main.button_lights.izquierda.on()
     time.sleep(0.2)
-
+"""
         
         
         
