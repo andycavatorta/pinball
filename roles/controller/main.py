@@ -793,7 +793,7 @@ class Fake_Attraction_Mode(threading.Thread):
         distance = abs(origin-destination)
         self.tb.publish("request_led_animations",["pulse_fruit",[origin]], carousel_name)
         time.sleep(0.5)
-        self.tb.publish("request_led_animations",["stroke_arc",[origin,destination]], carousel_name)
+        self.tb.publish("request_led_animations",["stroke_arc",[origin*2,destination*2]], carousel_name)
         time.sleep(0.1*distance)
         self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
         time.sleep(0.5)
