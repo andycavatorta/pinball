@@ -11,6 +11,7 @@ import importlib
 import json
 import os
 import queue
+import random
 import RPi.GPIO as GPIO
 import sys
 import threading
@@ -783,11 +784,29 @@ class Fake_Attraction_Mode(threading.Thread):
             "carouselcenter"
         ]
         self.start()
+    def run_ball_motion_sim(self, carousel_name):
+        origin = random.randrange(0,4)
+        while True:
+            destination = random.randrange(0,4)
+            if destination != origin:
+                break
+        distance = abs(origin-destination)
+        self.tb.publish("request_led_animations",["pulse_fruit",[origin]], carousel_name)
+        time.sleep(0.5)
+        self.tb.publish("request_led_animations",["stroke_arc",[origin,destination]], carousel_name)
+        time.sleep(0.1*distance)
+        self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
+        time.sleep(0.5)
+
+
     def run(self):
         while True:
             for station_ordinal in range(6):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
             time.sleep(5)
+            self.run_ball_motion_sim("carouselcenter")
+
+
 
 fake_attraction_mode = Fake_Attraction_Mode()
 
