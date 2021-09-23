@@ -815,7 +815,7 @@ class Fake_Attraction_Mode(threading.Thread):
         time.sleep(1)
 
         start_pocket = self.carouselcenter_fruit_led_map[start_carousel_ord]
-        end_pocket =  self.carouselcenter_fruit_led_map[end_carousel_ord]
+        end_pocket =  self.carouselcenter_fruit_led_map[end_carousel_ord]+10
         carousel_name = self.carousel_names[5]
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
         time.sleep(1)
