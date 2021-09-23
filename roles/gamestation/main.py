@@ -523,8 +523,6 @@ class Main(threading.Thread):
                         group = self.gamestation_lights.sign_top
                         if group_name == "trail_rollover_right":
                             group = self.gamestation_lights.trail_rollover_right
-                        if group_name == "trail_rollover_right":
-                            group = self.gamestation_lights.trail_rollover_right
                         if group_name == "trail_rollover_left":
                             group = self.gamestation_lights.trail_rollover_left
                         if group_name == "trail_sling_right":
