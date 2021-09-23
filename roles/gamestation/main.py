@@ -299,9 +299,10 @@ class GPIO_Input():
         GPIO.setup(self.pin, GPIO.IN)
     def scan(self):
         new_state = GPIO.input(self.pin)
-        if self.name == "rollover_outer_left":
-            print(new_state) 
+        #if self.name == "rollover_outer_left":
+        #    print(new_state) 
         if self.previous_state != new_state:
+            print(self.name)
             self.previous_state = new_state
             self.callback(self.name,new_state)
 
