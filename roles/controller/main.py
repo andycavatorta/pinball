@@ -807,14 +807,14 @@ class Fake_Attraction_Mode(threading.Thread):
         ]
         self.start()
     def run_ball_motion_sim(self, start_carousel_ord, end_carousel_ord):
-        start_pocket = self.self.carousel_start_end[start_carousel_ord][0]
-        end_pocket = self.self.carousel_start_end[start_carousel_ord][1]
+        start_pocket = self.carousel_start_end[start_carousel_ord][0]
+        end_pocket = self.carousel_start_end[start_carousel_ord][1]
         carousel_name = self.carousel_names[start_carousel_ord]
         self.tb.publish("request_led_animations",["pulse_fruit",[start_pocket]], carousel_name)
         time.sleep(0.5)
 
-        start_pocket = self.self.carousel_start_end[end_carousel_ord][0]
-        end_pocket = self.self.carousel_start_end[end_carousel_ord][1]
+        start_pocket = self.carousel_start_end[end_carousel_ord][0]
+        end_pocket = self.carousel_start_end[end_carousel_ord][1]
         carousel_name = self.carousel_names[end_carousel_ord]
         self.tb.publish("request_led_animations",["pulse_fruit",[end_pocket]], carousel_name)
 
