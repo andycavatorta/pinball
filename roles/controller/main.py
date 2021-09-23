@@ -878,7 +878,6 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_number",message=-1,destination=self.display_names[station_ordinal])
-
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_origin_carousel_ord])
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_destination_carousel_ord])
             for station_ordinal in range(6):
@@ -886,8 +885,6 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
             self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[ball_origin_carousel_ord])
             self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[ball_destination_carousel_ord])
-
-
             for i in range(3):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_origin_carousel_ord])
                 self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_origin_carousel_ord])
