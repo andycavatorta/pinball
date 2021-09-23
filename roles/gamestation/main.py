@@ -270,6 +270,7 @@ def rollover_handler(name, value):
             main.gamestation_lights.lights.pie_rollover_right.on()
         else:
             main.gamestation_lights.lights.pie_rollover_right.off()
+            
 def spinner_handler(name, value):
     if name == "spinner":
         main.publish_to_controller("event_spinner", value)
