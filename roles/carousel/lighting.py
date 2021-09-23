@@ -128,9 +128,9 @@ def stroke_arc(id1, id2):
 def stroke_ripple():
     clear_all()
     for group in radial_ripple:
-        fade_group(group, 0, duty_cycle_low,0.05)
+        fade_group(group, 0, duty_cycle_hi,0.05)
     for group in radial_ripple:
-        fade_group(group, duty_cycle_low,0.05)
+        fade_group(group, duty_cycle_hi,0.05)
     clear_all()
 
 def pulse_fruit(fruit_id):
