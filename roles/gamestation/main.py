@@ -270,7 +270,7 @@ def rollover_handler(name, value):
             main.gamestation_lights.lights.pie_rollover_right.on()
         else:
             main.gamestation_lights.lights.pie_rollover_right.off()
-            
+
 def spinner_handler(name, value):
     if name == "spinner":
         main.publish_to_controller("event_spinner", value)
@@ -279,7 +279,7 @@ def trough_sensor_handler(name, value):
     main.publish_to_controller("event_trough_sensor", value)
     if value == True:
         main.button_lights.comienza.on()
-    else
+    else:
         main.button_lights.comienza.off()
 
 def button_handler(name, value):
