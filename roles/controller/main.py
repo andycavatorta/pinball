@@ -790,8 +790,35 @@ class Fake_Attraction_Mode(threading.Thread):
             0,
             4,
         ]
+        self.carouselcenter_fruit_led_map = [
+            6,
+            4,
+            2,
+            0,
+            -2,
+        ]
+
+        self.carousel_start_end = [
+            [0,8,7,1],
+            [5,-1,0,6],
+            [3,-3,-2,4],
+            [1,-5,-4,2],
+            [9,3,4,10],
+        ]
         self.start()
-    def run_ball_motion_sim(self, carousel_name):
+    def run_ball_motion_sim(self, start_carousel_ord, end_carousel_ord):
+        start_pocket = self.self.carousel_start_end[start_carousel_ord][0]
+        end_pocket = self.self.carousel_start_end[start_carousel_ord][1]
+        carousel_name = self.carousel_names[start_carousel_ord]
+        self.tb.publish("request_led_animations",["pulse_fruit",[start_pocket]], carousel_name)
+        time.sleep(0.5)
+
+        start_pocket = self.self.carousel_start_end[end_carousel_ord][0]
+        end_pocket = self.self.carousel_start_end[end_carousel_ord][1]
+        carousel_name = self.carousel_names[end_carousel_ord]
+        self.tb.publish("request_led_animations",["pulse_fruit",[end_pocket]], carousel_name)
+
+        """
         origin = random.randrange(0,4)
         while True:
             destination = random.randrange(0,4)
@@ -804,6 +831,7 @@ class Fake_Attraction_Mode(threading.Thread):
         time.sleep(0.1*distance)
         self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
         time.sleep(0.5)
+        """
 
     def normalize_to_range(self, num, max):
         if num > max-1:
@@ -824,8 +852,8 @@ class Fake_Attraction_Mode(threading.Thread):
                 print(station_ordinal, origin, destination)
                 self.tb.publish("request_led_animations",["stroke_arc",[origin, destination]], self.carousel_names[station_ordinal])
                 time.sleep(2)
-            #self.run_ball_motion_sim("carouselcenter")
             """
+            self.run_ball_motion_sim(0,2)
 fake_attraction_mode = Fake_Attraction_Mode()
 
 
