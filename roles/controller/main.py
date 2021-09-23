@@ -186,6 +186,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("respond_visual_tests")
         
+        self.tb.subscribe_to_topic("request_current_sensor_nominal")
 
         """
         # SYSTEM READINESS
@@ -275,6 +276,7 @@ class Main(threading.Thread):
 
         # if topic=system_tests, update self.hosts[hostname].set_connected() 
         self.queue.put((topic, message, origin, destination))
+
     def run(self):
         while True:
             try:
@@ -763,6 +765,6 @@ class Main(threading.Thread):
 main = Main()
 
 
-displays = tests.Displays(main.tb)
-displays.wave()
+#displays = tests.Displays(main.tb)
+#displays.wave()
 
