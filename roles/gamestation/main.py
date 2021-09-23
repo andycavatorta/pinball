@@ -267,8 +267,6 @@ class GPIO_Input():
         GPIO.setup(self.pin, GPIO.IN)
     def scan(self):
         new_state = GPIO.input(self.pin)
-        if self.name == "button_izquierda":
-            print(self.previous_state,new_state)
         if self.previous_state != new_state:
             self.previous_state = new_state
             #self.callback(self.name,new_state)
@@ -290,11 +288,6 @@ class Scan_GPIO_Inputs(threading.Thread):
             GPIO_Input("rollover_outer_right", 21, rollover_handler),
             GPIO_Input("spinner", 1, spinner_handler),
             GPIO_Input("trough_sensor", 25, trough_sensor_handler),
-            GPIO_Input("button_izquierda", 14, button_handler),
-            GPIO_Input("button_trueque", 15, button_handler),
-            GPIO_Input("button_comienza", 18, button_handler),
-            GPIO_Input("button_dinero", 23, button_handler),
-            GPIO_Input("button_derecha", 24, button_handler),
         ]
         self.queue = queue.Queue()
         self.start()
