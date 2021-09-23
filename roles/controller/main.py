@@ -853,7 +853,7 @@ class Fake_Attraction_Mode(threading.Thread):
             for i in range(10):
                 for station_ordinal in range(6):
                     self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
-                    time.sleep(0.5)
+                    time.sleep(0.05)
 
             for station_ordinal in range(6):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
