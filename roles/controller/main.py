@@ -783,6 +783,13 @@ class Fake_Attraction_Mode(threading.Thread):
             "carousel5",
             "carouselcenter"
         ]
+        self.carousel_fruit_index_offsets = [
+            3,
+            2,
+            1,
+            0,
+            5,
+        ]
         self.start()
     def run_ball_motion_sim(self, carousel_name):
         origin = random.randrange(0,4)
@@ -804,6 +811,8 @@ class Fake_Attraction_Mode(threading.Thread):
             for station_ordinal in range(6):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
             time.sleep(5)
+            for station_ordinal in range(5):
+                self.tb.publish("request_led_animations",["pulse_fruit",[self.carousel_fruit_index_offsets[station_ordinal]]], self.carousel_names[station_ordinal])
             self.run_ball_motion_sim("carouselcenter")
 
 
