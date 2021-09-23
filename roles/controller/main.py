@@ -810,6 +810,7 @@ class Fake_Attraction_Mode(threading.Thread):
             return num - 5
         if num < 0:
             return num + 5
+        return num
 
     def run(self):
         while True:
