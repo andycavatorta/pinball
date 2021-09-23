@@ -878,6 +878,25 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_number",message=-1,destination=self.display_names[station_ordinal])
+
+                self.tb.publish("playfield_lights",["trail_rollover_right","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_rollover_left","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_sling_right","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_sling_left","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_pop_left","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_pop_right","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_pop_center","back_stroke_on"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["trail_spinner","back_stroke_on"], gamestation_names[station_ordinal])
+
+                self.tb.publish("playfield_lights",["pie_rollover_right","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_rollover_left","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_sling_right","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_sling_left","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_pop_left","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_pop_right","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_pop_center","sparkle"], gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["pie_spinner","sparkle"], gamestation_names[station_ordinal])
+
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_origin_carousel_ord])
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_destination_carousel_ord])
             for station_ordinal in range(6):
