@@ -187,7 +187,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("respond_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("respond_visual_tests")
-        
+        self.tb.subscribe_to_topic("respond_mpf_event")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
 
         """
@@ -297,6 +297,12 @@ class Main(threading.Thread):
                     self.hosts.dispatch(topic, message, origin, destination)
                     self.send_to_dashboard(topic, message)
                     self.game_mode.add_to_queue(topic, message, origin, destination)
+
+
+                ### temporarily parsing here for demo
+
+                if topic==b"respond_mpf_event":
+                    print("respond_mpf_event", message, origin)
 
                 # ERROR
 
