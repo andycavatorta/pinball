@@ -800,7 +800,7 @@ class Fake_Attraction_Mode(threading.Thread):
         ]
 
         self.carousel_start_end = [
-            [0,8,7,1],
+            [0,8,7,-9],
             [5,-1,0,6],
             [3,-3,-2,4],
             [1,-5,-4,2],
