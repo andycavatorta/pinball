@@ -848,22 +848,22 @@ class Fake_Attraction_Mode(threading.Thread):
                 print(self.display_names[station_ordinal])
                 self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[station_ordinal])
+                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                 time.sleep(0.1)
-                #self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-            time.sleep(0.2)
+            for station_ordinal in range(6):
+                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+            for station_ordinal in range(6):
+                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+            for station_ordinal in range(6):
+                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+
             for station_ordinal in range(6):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 time.sleep(0.1)
-            time.sleep(10)
-            """
-            for station_ordinal in range(5):
-                origin = 2 * self.carousel_fruit_index_offsets[station_ordinal]
-                destination = self.normalize_to_range(2 * self.carousel_fruit_index_offsets[station_ordinal]-3, 9)
-                print(station_ordinal, origin, destination)
-                self.tb.publish("request_led_animations",["stroke_arc",[origin, destination]], self.carousel_names[station_ordinal])
-                time.sleep(2)
-            """
+            self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
+            time.sleep(5)
             self.run_ball_motion_sim(0,2)
+            time.sleep(5)
 fake_attraction_mode = Fake_Attraction_Mode()
 
 
