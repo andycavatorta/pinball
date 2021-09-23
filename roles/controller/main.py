@@ -848,9 +848,12 @@ class Fake_Attraction_Mode(threading.Thread):
                 print(self.display_names[station_ordinal])
                 self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[station_ordinal])
-                time.sleep(0.5)
-                self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
+                time.sleep(0.1)
                 #self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
+            time.sleep(0.2)
+            for station_ordinal in range(6):
+                self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
+                time.sleep(0.1)
             time.sleep(10)
             """
             for station_ordinal in range(5):
