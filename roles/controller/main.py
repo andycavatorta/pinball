@@ -865,8 +865,8 @@ class Fake_Attraction_Mode(threading.Thread):
             for station_ordinal in range(6):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
-            self.tb.publish(topic="set_phrase",message="trueque",destination=self.gamestation_names[ball_origin_carousel_ord])
-            self.tb.publish(topic="set_phrase",message="trueque",destination=self.gamestation_names[ball_destination_carousel_ord])
+            self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[ball_origin_carousel_ord])
+            self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[ball_destination_carousel_ord])
 
 
             for i in range(3):
@@ -878,8 +878,8 @@ class Fake_Attraction_Mode(threading.Thread):
                 time.sleep(1)
             self.tb.publish("button_active_trade_goods",False, self.gamestation_names[ball_origin_carousel_ord])
             self.tb.publish("button_active_trade_goods",False, self.gamestation_names[ball_destination_carousel_ord])
-            self.tb.publish(topic="set_phrase",message="",destination=self.gamestation_names[ball_origin_carousel_ord])
-            self.tb.publish(topic="set_phrase",message="",destination=self.gamestation_names[ball_destination_carousel_ord])
+            self.tb.publish(topic="set_phrase",message="",destination=self.display_names[ball_origin_carousel_ord])
+            self.tb.publish(topic="set_phrase",message="",destination=self.display_names[ball_destination_carousel_ord])
             self.run_ball_motion_sim(ball_origin_carousel_ord,ball_destination_carousel_ord)
 
 
