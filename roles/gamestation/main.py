@@ -335,11 +335,6 @@ class Scan_GPIO_Inputs(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
-scan_gpio_inputs = Scan_GPIO_Inputs(
-    rollover_handler,
-    spinner_handler,
-    trough_sensor_handler,
-)
 
 class MPF_Bridge(threading.Thread):
     def __init__(self, tb):
@@ -538,6 +533,11 @@ class Main(threading.Thread):
 main = Main()
 
         
+scan_gpio_inputs = Scan_GPIO_Inputs(
+    rollover_handler,
+    spinner_handler,
+    trough_sensor_handler,
+)
 """
 while True:
     time.sleep(0.2)
