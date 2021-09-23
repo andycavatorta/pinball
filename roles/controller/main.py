@@ -800,11 +800,16 @@ class Fake_Attraction_Mode(threading.Thread):
         distance = abs(origin-destination)
         self.tb.publish("request_led_animations",["pulse_fruit",[origin]], carousel_name)
         time.sleep(0.5)
-        self.tb.publish("request_led_animations",["stroke_arc",[origin*2,destination*2]], carousel_name)
+        self.tb.publish("request_led_animations",["stroke_arc",[origin*2,destination*2,-1]], carousel_name)
         time.sleep(0.1*distance)
         self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
         time.sleep(0.5)
 
+    def normalize_to_range(self, num):
+        if num > 4:
+            return num - 5
+        if num < 0:
+            return num + 5
 
     def run(self):
         while True:
@@ -812,11 +817,12 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
             time.sleep(5)
             for station_ordinal in range(5):
-                self.tb.publish("request_led_animations",["pulse_fruit",[self.carousel_fruit_index_offsets[station_ordinal]]], self.carousel_names[station_ordinal])
-            time.sleep(5)
+                origin = self.carousel_fruit_index_offsets[station_ordinal]
+                destination = self.normalize_to_range(self.carousel_fruit_index_offsets[station_ordinal]-2)
+
+                self.tb.publish("request_led_animations",["stroke_arc",[origin, destination, 1]], self.carousel_names[station_ordinal])
+                time.sleep(2)
             #self.run_ball_motion_sim("carouselcenter")
-
-
 
 fake_attraction_mode = Fake_Attraction_Mode()
 
