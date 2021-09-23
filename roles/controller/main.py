@@ -814,25 +814,17 @@ class Fake_Attraction_Mode(threading.Thread):
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
         time.sleep(1)
 
+        start_pocket = self.carouselcenter_fruit_led_map[start_carousel_ord]
+        end_pocket =  self.carouselcenter_fruit_led_map[end_carousel_ord]
+        carousel_name = self.carousel_names[5]
+        self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
+        time.sleep(1)
+
+
         end_pocket = self.carousel_start_end[end_carousel_ord][0]
         start_pocket = self.carousel_start_end[end_carousel_ord][1]
         carousel_name = self.carousel_names[end_carousel_ord]
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
-
-        """
-        origin = random.randrange(0,4)
-        while True:
-            destination = random.randrange(0,4)
-            if destination != origin:
-                break
-        distance = abs(origin-destination)
-        self.tb.publish("request_led_animations",["pulse_fruit",[origin]], carousel_name)
-        time.sleep(0.5)
-        self.tb.publish("request_led_animations",["stroke_arc",[origin*2,destination*2,-1]], carousel_name)
-        time.sleep(0.1*distance)
-        self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
-        time.sleep(0.5)
-        """
 
     def normalize_to_range(self, num, max):
         if num > max-1:
