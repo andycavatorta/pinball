@@ -813,7 +813,8 @@ class Fake_Attraction_Mode(threading.Thread):
             time.sleep(5)
             for station_ordinal in range(5):
                 self.tb.publish("request_led_animations",["pulse_fruit",[self.carousel_fruit_index_offsets[station_ordinal]]], self.carousel_names[station_ordinal])
-            self.run_ball_motion_sim("carouselcenter")
+            time.sleep(5)
+            #self.run_ball_motion_sim("carouselcenter")
 
 
 
