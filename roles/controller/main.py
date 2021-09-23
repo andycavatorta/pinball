@@ -788,7 +788,7 @@ class Fake_Attraction_Mode(threading.Thread):
             2,
             1,
             0,
-            5,
+            4,
         ]
         self.start()
     def run_ball_motion_sim(self, carousel_name):
