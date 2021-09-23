@@ -859,6 +859,7 @@ class Fake_Attraction_Mode(threading.Thread):
             for station_ordinal in range(6):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
+                self.tb.publish(topic="set_number",message=-1,destination=self.display_names[station_ordinal])
 
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_origin_carousel_ord])
             self.tb.publish("button_active_trade_goods",True, self.gamestation_names[ball_destination_carousel_ord])
