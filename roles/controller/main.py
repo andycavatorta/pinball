@@ -187,8 +187,20 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("respond_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("respond_visual_tests")
-        self.tb.subscribe_to_topic("respond_mpf_event")
+        #self.tb.subscribe_to_topic("respond_mpf_event")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
+
+        self.tb.subscribe_to_topic("event_spinner")
+        self.tb.subscribe_to_topic("event_pop_left")
+        self.tb.subscribe_to_topic("event_pop_center")
+        self.tb.subscribe_to_topic("event_pop_right")
+        self.tb.subscribe_to_topic("event_sling_left")
+        self.tb.subscribe_to_topic("event_sling_right")
+        self.tb.subscribe_to_topic("event_roll_outer_left")
+        self.tb.subscribe_to_topic("event_roll_inner_left")
+        self.tb.subscribe_to_topic("event_roll_inner_right")
+        self.tb.subscribe_to_topic("event_roll_outer_right")
+        self.tb.subscribe_to_topic("event_trough_sensor")
 
         """
         # SYSTEM READINESS
@@ -878,9 +890,13 @@ class Fake_Attraction_Mode(threading.Thread):
 
             for i in range(3):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_origin_carousel_ord])
+                self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_origin_carousel_ord])
+                time.sleep(0.1)
                 self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[ball_origin_carousel_ord])
                 time.sleep(1)
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[ball_destination_carousel_ord])
+                self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[ball_destination_carousel_ord])
+                time.sleep(0.1)
                 self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[ball_destination_carousel_ord])
                 time.sleep(1)
             self.tb.publish("button_active_trade_goods",False, self.gamestation_names[ball_origin_carousel_ord])
