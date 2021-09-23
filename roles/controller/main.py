@@ -810,13 +810,13 @@ class Fake_Attraction_Mode(threading.Thread):
         start_pocket = self.carousel_start_end[start_carousel_ord][0]
         end_pocket = self.carousel_start_end[start_carousel_ord][1]
         carousel_name = self.carousel_names[start_carousel_ord]
-        self.tb.publish("request_led_animations",["pulse_fruit",[start_pocket]], carousel_name)
+        self.tb.publish("request_led_animations",["pulse_fruit",[Math.floor(start_pocket/2)]], carousel_name)
         time.sleep(0.5)
 
         start_pocket = self.carousel_start_end[end_carousel_ord][0]
         end_pocket = self.carousel_start_end[end_carousel_ord][1]
         carousel_name = self.carousel_names[end_carousel_ord]
-        self.tb.publish("request_led_animations",["pulse_fruit",[end_pocket]], carousel_name)
+        self.tb.publish("request_led_animations",["pulse_fruit",[Math.floor(end_pocket/2)]], carousel_name)
 
         """
         origin = random.randrange(0,4)
@@ -844,7 +844,7 @@ class Fake_Attraction_Mode(threading.Thread):
         while True:
             for station_ordinal in range(6):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-            time.sleep(15)
+            time.sleep(5)
             """
             for station_ordinal in range(5):
                 origin = 2 * self.carousel_fruit_index_offsets[station_ordinal]
