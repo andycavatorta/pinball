@@ -805,11 +805,11 @@ class Fake_Attraction_Mode(threading.Thread):
         self.tb.publish("request_led_animations",["pulse_fruit",[destination]], carousel_name)
         time.sleep(0.5)
 
-    def normalize_to_range(self, num):
-        if num > 4:
-            return num - 5
+    def normalize_to_range(self, num, max):
+        if num > max:
+            return num - max -1
         if num < 0:
-            return num + 5
+            return num + max
         return num
 
     def run(self):
@@ -821,7 +821,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 origin = self.carousel_fruit_index_offsets[station_ordinal]
                 destination = self.normalize_to_range(self.carousel_fruit_index_offsets[station_ordinal]-4)
                 print(station_ordinal, origin, destination)
-                self.tb.publish("request_led_animations",["stroke_arc",[origin, destination]], self.carousel_names[station_ordinal])
+                self.tb.publish("request_led_animations",["stroke_arc",[origin*2, destination*2]], self.carousel_names[station_ordinal])
                 time.sleep(2)
             #self.run_ball_motion_sim("carouselcenter")
 
