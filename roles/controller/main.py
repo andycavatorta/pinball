@@ -812,7 +812,7 @@ class Fake_Attraction_Mode(threading.Thread):
             [5,-1,4,-1],
             [3,-3,4,-3],
             [1,-5,2,-5],
-            [9,3,10,3],
+            [9,3,9,3],
         ]
         self.start()
     def run_ball_motion_sim(self, start_carousel_ord, end_carousel_ord):
