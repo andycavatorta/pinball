@@ -242,21 +242,35 @@ class Button_Lights():
         self.dinero = Button_Light(self.gpios[3])
         self.derecha = Button_Light(self.gpios[4])
 
-# stubs for testing
 def rollover_handler(name, value):
-    pass
-    #print(name, value)
-def spinner_handler(name, value):
-    pass
-    #print(name, value)
-def trough_sensor_handler(name, value):
-    pass
-    #print(name, value)
-def button_handler(name, value):
-    pass
-    #print(name, value)
+    if name == "rollover_outer_left":
+        main.publish_to_controller("event_roll_outer_left", value)
 
-# end stubs
+    if name == "rollover_inner_left":
+        main.publish_to_controller("event_roll_inner_left", value)
+
+    if name == "rollover_inner_right":
+        main.publish_to_controller("event_roll_inner_right", value)
+
+    if name == "rollover_outer_right":
+        main.publish_to_controller("event_roll_outer_right", value)
+def spinner_handler(name, value):
+    if name == "spinner":
+        main.publish_to_controller("event_spinner", value)
+
+def trough_sensor_handler(name, value):
+    main.publish_to_controller("event_trough_sensor", value)
+    if value == True:
+        main.button_lights.comienza.on()
+    else
+        main.button_lights.comienza.off()
+
+def button_handler(name, value):
+    main.publish_to_controller(self, name, value)
+
+
+
+
 
 class GPIO_Input():
     def __init__(self, name, pin, callback):
@@ -269,15 +283,14 @@ class GPIO_Input():
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            #self.callback(self.name,new_state)
+            self.callback(self.name,new_state)
 
 class Scan_GPIO_Inputs(threading.Thread):
     def __init__(
             self,
             rollover_handler,
             spinner_handler,
-            trough_sensor_handler,
-            button_handler
+            trough_sensor_handler
         ):
         threading.Thread.__init__(self)
 
@@ -309,7 +322,6 @@ scan_gpio_inputs = Scan_GPIO_Inputs(
     rollover_handler,
     spinner_handler,
     trough_sensor_handler,
-    button_handler
 )
 
 class MPF_Bridge(threading.Thread):
@@ -332,13 +344,10 @@ class MPF_Bridge(threading.Thread):
               message = self.socket.recv()
               print(f"Received msg#: {message}")
               self.tb.publish("respond_mpf_event", eval(message.decode('utf-8')))
-              print("Send message")
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print("got except90j")
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
-
 
 class System_Tests(threading.Thread):
     """
@@ -415,6 +424,9 @@ class Main(threading.Thread):
         #self.tb.publish("connected", True)
         self.start()
     
+    def publish_to_controller(self, topic, message):
+        self.tb.publish(topic, message)
+
     def request_computer_details(self):
         return {
             "df":self.tb.get_system_disk(),
