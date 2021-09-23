@@ -765,6 +765,33 @@ class Main(threading.Thread):
 main = Main()
 
 
+
+
 #displays = tests.Displays(main.tb)
 #displays.wave()
 
+class Fake_Attraction_Mode(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.tb = main.tb # real dirty
+        carousel_names = [
+            "carousel1",
+            "carousel2",
+            "carousel3",
+            "carousel4",
+            "carousel5",
+            "carouselcenter"
+        ]
+        self.start()
+    def run(self):
+        while True:
+            for station_ordinal in range(6):
+                self.tb.publish("request_led_animations",["stroke_ripple",[]], carousel_names[station_ordinal])
+            time.sleep(1)
+
+fake_attraction_mode = Fake_Attraction_Mode()
+
+
+#role_module.main.tb.publish("request_led_animations",["stroke_ripple",[]], "carouselcenter")
+#role_module.main.tb.publish("request_led_animations",["pulse_fruit",[0]], "carouselcenter")
+#role_module.main.tb.publish("request_led_animations",["stroke_arc",[0,8]], "carouselcenter")
