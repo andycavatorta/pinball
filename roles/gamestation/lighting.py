@@ -172,7 +172,7 @@ class Lights_Pattern(threading.Thread):
 class Lights(threading.Thread):
     class pattern_channels():
         TRAIL_ROLLOVER_RIGHT = [16,15,14,13,12]
-        TRAIL_ROLLOVER_LEFT = [19,20,21,22.23]
+        TRAIL_ROLLOVER_LEFT = [19,20,21,22,23]
         TRAIL_SLING_RIGHT = [11,10,9]
         TRAIL_SLING_LEFT = [0,1,2]
         TRAIL_POP_LEFT =  [66,65,64,63,62,61,60]
