@@ -790,6 +790,7 @@ class Fake_Attraction_Mode(threading.Thread):
             "pinball3display",
             "pinball4display",
             "pinball5display",
+            "" # hack for indexes  probably can't hurt for demo
         ]
         self.carousel_fruit_index_offsets = [
             3,
