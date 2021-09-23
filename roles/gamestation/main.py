@@ -459,30 +459,35 @@ class Main(threading.Thread):
                 if topic == b'get_system_tests':
                     pass
                 if topic == b'button_active_left_flipper':
-                    if message == True:
-                        main.button_lights.izquierda.on()
-                    else:
-                        main.button_lights.izquierda.off()
+                    if destination == self.tb.get_hostname():
+                        if message == True:
+                            main.button_lights.izquierda.on()
+                        else:
+                            main.button_lights.izquierda.off()
                 if topic == b'button_active_trade_goods':
-                    if message == True:
-                        main.button_lights.trueque.on()
-                    else:
-                        main.button_lights.trueque.off()
+                    if destination == self.tb.get_hostname():
+                        if message == True:
+                            main.button_lights.trueque.on()
+                        else:
+                            main.button_lights.trueque.off()
                 if topic == b'button_active_start':
-                    if message == True:
-                        main.button_lights.comienza.on()
-                    else:
-                        main.button_lights.comienza.off()
+                    if destination == self.tb.get_hostname():
+                        if message == True:
+                            main.button_lights.comienza.on()
+                        else:
+                            main.button_lights.comienza.off()
                 if topic == b'button_active_trade_money':
-                    if message == True:
-                        main.button_lights.dinero.on()
-                    else:
-                        main.button_lights.dinero.off()
+                    if destination == self.tb.get_hostname():
+                        if message == True:
+                            main.button_lights.dinero.on()
+                        else:
+                            main.button_lights.dinero.off()
                 if topic == b'button_active_right_flipper':
-                    if message == True:
-                        main.button_lights.derecha.on()
-                    else:
-                        main.button_lights.derecha.off()
+                    if destination == self.tb.get_hostname():
+                        if message == True:
+                            main.button_lights.derecha.on()
+                        else:
+                            main.button_lights.derecha.off()
                 if topic == b'playfield_lights':
                     pass
                 if topic == b'left_stack_launch':
