@@ -787,7 +787,7 @@ class Fake_Attraction_Mode(threading.Thread):
         while True:
             for station_ordinal in range(6):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-            time.sleep(2)
+            time.sleep(5)
 
 fake_attraction_mode = Fake_Attraction_Mode()
 
