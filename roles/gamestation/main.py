@@ -382,16 +382,6 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.mpf_bridge = MPF_Bridge(self.tb)
 
-
-        gamestation_lights.lights.pie_pop_center.on()        
-        gamestation_lights.lights.pie_pop_left.off()
-        gamestation_lights.lights.pie_rollover_left.on()
-        gamestation_lights.lights.pie_sling_left.off()
-        gamestation_lights.lights.pie_sling_right.on()
-        gamestation_lights.lights.pie_rollover_right.off()
-        gamestation_lights.lights.pie_spinner.on()
-        gamestation_lights.lights.pie_pop_right.off()
-
         self.gamestation_lights = lighting.Lights
 
         self.button_lights = Button_Lights()
