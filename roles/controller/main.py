@@ -811,7 +811,7 @@ class Fake_Attraction_Mode(threading.Thread):
             [8,1,7,1],
             [5,-1,4,-1],
             [3,-3,4,-3],
-            [1,-5,-4,2],
+            [1,-5,2,-5],
             [9,3,4,10],
         ]
         self.start()
@@ -859,7 +859,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
             time.sleep(3)
-            self.run_ball_motion_sim(0,2)
+            self.run_ball_motion_sim(4,2)
             time.sleep(3)
 fake_attraction_mode = Fake_Attraction_Mode()
 
