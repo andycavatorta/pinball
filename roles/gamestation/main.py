@@ -246,28 +246,28 @@ def rollover_handler(name, value):
     print("rollover_handler",name, value)
     if name == "rollover_outer_left":
         main.publish_to_controller("event_roll_outer_left", value)
-        if value == True:
+        if value == 1:
             main.gamestation_lights.pie_rollover_left.on()
         else:
             main.gamestation_lights.pie_rollover_left.off()
 
     if name == "rollover_inner_left":
         main.publish_to_controller("event_roll_inner_left", value)
-        if value == True:
+        if value == 1:
             main.gamestation_lights.pie_rollover_left.on()
         else:
             main.gamestation_lights.pie_rollover_left.off()
 
     if name == "rollover_inner_right":
         main.publish_to_controller("event_roll_inner_right", value)
-        if value == True:
+        if value == 1:
             main.gamestation_lights.pie_rollover_right.on()
         else:
             main.gamestation_lights.pie_rollover_right.off()
 
     if name == "rollover_outer_right":
         main.publish_to_controller("event_roll_outer_right", value)
-        if value == True:
+        if value == 1:
             main.gamestation_lights.pie_rollover_right.on()
         else:
             main.gamestation_lights.pie_rollover_right.off()
