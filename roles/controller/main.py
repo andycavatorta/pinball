@@ -845,7 +845,7 @@ class Fake_Attraction_Mode(threading.Thread):
         while True:
             for station_ordinal in range(6):
                 self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-                print(self.display_names[station_ordinals])
+                print(self.display_names[station_ordinal])
                 self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[station_ordinal])
                 #self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
             time.sleep(15)
