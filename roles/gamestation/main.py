@@ -521,45 +521,45 @@ class Main(threading.Thread):
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
                         group = self.gamestation_lights.sign_top
-                        if group_name = "trail_rollover_right":
+                        if group_name == "trail_rollover_right":
                             group = self.gamestation_lights.trail_rollover_right
-                        if group_name = "trail_rollover_right":
+                        if group_name == "trail_rollover_right":
                             group = self.gamestation_lights.trail_rollover_right
-                        if group_name = "trail_rollover_left":
+                        if group_name == "trail_rollover_left":
                             group = self.gamestation_lights.trail_rollover_left
-                        if group_name = "trail_sling_right":
+                        if group_name == "trail_sling_right":
                             group = self.gamestation_lights.trail_sling_right
-                        if group_name = "trail_sling_left":
+                        if group_name == "trail_sling_left":
                             group = self.gamestation_lights.trail_sling_left
-                        if group_name = "trail_pop_left":
+                        if group_name == "trail_pop_left":
                             group = self.gamestation_lights.trail_pop_left
-                        if group_name = "trail_pop_right":
+                        if group_name == "trail_pop_right":
                             group = self.gamestation_lights.trail_pop_right
-                        if group_name = "trail_pop_center":
+                        if group_name == "trail_pop_center":
                             group = self.gamestation_lights.trail_pop_center
-                        if group_name = "trail_spinner":
+                        if group_name == "trail_spinner":
                             group = self.gamestation_lights.trail_spinner
-                        if group_name = "pie_rollover_right":
+                        if group_name == "pie_rollover_right":
                             group = self.gamestation_lights.pie_rollover_right
-                        if group_name = "pie_rollover_left":
+                        if group_name == "pie_rollover_left":
                             group = self.gamestation_lights.pie_rollover_left
-                        if group_name = "pie_sling_right":
+                        if group_name == "pie_sling_right":
                             group = self.gamestation_lights.pie_sling_right
-                        if group_name = "pie_sling_left":
+                        if group_name == "pie_sling_left":
                             group = self.gamestation_lights.pie_sling_left
-                        if group_name = "pie_pop_left":
+                        if group_name == "pie_pop_left":
                             group = self.gamestation_lights.pie_pop_left
-                        if group_name = "pie_pop_right":
+                        if group_name == "pie_pop_right":
                             group = self.gamestation_lights.pie_pop_right
-                        if group_name = "pie_pop_center":
+                        if group_name == "pie_pop_center":
                             group = self.gamestation_lights.pie_pop_center
-                        if group_name = "pie_spinner":
+                        if group_name == "pie_spinner":
                             group = self.gamestation_lights.pie_spinner
-                        if group_name = "sign_arrow_left":
+                        if group_name == "sign_arrow_left":
                             group = self.gamestation_lights.sign_arrow_left
-                        if group_name = "sign_bottom_right":
+                        if group_name == "sign_bottom_right":
                             group = self.gamestation_lights.sign_bottom_right
-                        if group_name = "sign_top":
+                        if group_name == "sign_top":
                             group = self.gamestation_lights.sign_top
 
                         if animation_name == "off":
