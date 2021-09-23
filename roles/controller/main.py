@@ -806,8 +806,8 @@ class Fake_Attraction_Mode(threading.Thread):
         time.sleep(0.5)
 
     def normalize_to_range(self, num, max):
-        if num > max:
-            return num - max -1
+        if num > max-1:
+            return num - max
         if num < 0:
             return num + max
         return num
@@ -819,7 +819,7 @@ class Fake_Attraction_Mode(threading.Thread):
             time.sleep(5)
             for station_ordinal in range(5):
                 origin = self.carousel_fruit_index_offsets[station_ordinal]
-                destination = self.normalize_to_range(self.carousel_fruit_index_offsets[station_ordinal]-4)
+                destination = self.normalize_to_range(self.carousel_fruit_index_offsets[station_ordinal]-4, 5)
                 print(station_ordinal, origin, destination)
                 self.tb.publish("request_led_animations",["stroke_arc",[origin*2, destination*2]], self.carousel_names[station_ordinal])
                 time.sleep(2)
