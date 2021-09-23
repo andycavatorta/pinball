@@ -382,7 +382,8 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.mpf_bridge = MPF_Bridge(self.tb)
 
-        self.gamestation_lights = lighting.Lights
+
+        self.gamestation_lights = lighting.Lights()
 
         self.button_lights = Button_Lights()
 
