@@ -811,13 +811,13 @@ class Fake_Attraction_Mode(threading.Thread):
         start_pocket = self.carousel_start_end[start_carousel_ord][0]
         end_pocket = self.carousel_start_end[start_carousel_ord][1]
         carousel_name = self.carousel_names[start_carousel_ord]
-        self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,destination,end_pocket]], carousel_name)
+        self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
         time.sleep(1)
 
         start_pocket = self.carousel_start_end[end_carousel_ord][0]
         end_pocket = self.carousel_start_end[end_carousel_ord][1]
         carousel_name = self.carousel_names[end_carousel_ord]
-        self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,destination,end_pocket]], carousel_name)
+        self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
 
         """
         origin = random.randrange(0,4)
