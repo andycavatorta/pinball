@@ -820,7 +820,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 origin = self.carousel_fruit_index_offsets[station_ordinal]
                 destination = self.normalize_to_range(self.carousel_fruit_index_offsets[station_ordinal]-2)
                 print(station_ordinal, origin, destination)
-                self.tb.publish("request_led_animations",["stroke_arc",[origin, destination], self.carousel_names[station_ordinal])
+                self.tb.publish("request_led_animations",["stroke_arc",[origin, destination]], self.carousel_names[station_ordinal])
                 time.sleep(2)
             #self.run_ball_motion_sim("carouselcenter")
 
