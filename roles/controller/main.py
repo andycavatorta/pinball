@@ -850,17 +850,14 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="set_phrase",message="trueque",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                 time.sleep(0.1)
-            for station_ordinal in range(6):
-                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
-            for station_ordinal in range(6):
-                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
-            for station_ordinal in range(6):
-                self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+            for i in range(10):
+                for station_ordinal in range(6):
+                    self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+                    time.sleep(0.5)
 
             for station_ordinal in range(6):
                 self.tb.publish(topic="set_phrase",message="",destination=self.display_names[station_ordinal])
-                time.sleep(0.1)
-            self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
+                self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
             time.sleep(5)
             self.run_ball_motion_sim(0,2)
             time.sleep(5)
