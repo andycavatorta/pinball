@@ -929,12 +929,12 @@ class Fake_Attraction_Mode(threading.Thread):
                 #play animation
                 for station_ordinal in range(6):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
+                    self.tb.publish(topic="play_score",message="f_piano",destination=self.display_names[station_ordinal])
+                    self.tb.publish(topic="play_score",message="gsharp_piano",destination=self.display_names[station_ordinal])
                 for times in range(30):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
-                    self.tb.publish(topic="play_score",message="f_piano",destination=self.display_names[station_ordinal])
-                    self.tb.publish(topic="play_score",message="gsharp_piano",destination=self.display_names[station_ordinal])
             # fake trueque
 
             """
