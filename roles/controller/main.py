@@ -795,6 +795,13 @@ class Fake_Attraction_Mode(threading.Thread):
         threading.Thread.__init__(self)
         self.tb = main.tb # real dirty
         self.queue = queue.Queue()
+        self.scores_quiet = [
+            "c_piano":single_notes.c_piano,
+            "asharp_piano":single_notes.asharp_piano,
+            "gsharp_piano":single_notes.gsharp_piano,
+            "g_piano":single_notes.g_piano,
+            "f_piano":single_notes.f_piano,
+        ]
         self.carousel_names = [
             "carousel1",
             "carousel2",
@@ -931,12 +938,12 @@ class Fake_Attraction_Mode(threading.Thread):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
                 for station_ordinal in range(6):
                     time.sleep(0.03)
-                    self.tb.publish(topic="play_score",message="f_piano",destination=self.display_names[station_ordinal])
+                    self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
                 for station_ordinal in range(6):
-                    time.sleep(0.03)
-                    self.tb.publish(topic="play_score",message="gsharp_piano",destination=self.display_names[station_ordinal])
+                    time.sleep(0.05)
+                    self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
 
-                for station_ordinal in range(30):
+                for station_ordinal in range(60):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
