@@ -939,7 +939,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 """
 
 
-                for station_ordinal in range(100):
+                for station_ordinal in range(20):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
