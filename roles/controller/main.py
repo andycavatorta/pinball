@@ -794,6 +794,7 @@ class Fake_Attraction_Mode(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.tb = main.tb # real dirty
+        self.queue = queue.Queue()
         self.carousel_names = [
             "carousel1",
             "carousel2",
@@ -911,11 +912,31 @@ class Fake_Attraction_Mode(threading.Thread):
             return num + max
         return num
 
+    def add_to_queue(self, topic, message, origin):
+
+        # if topic=system_tests, update self.hosts[hostname].set_connected() 
+        self.queue.put((topic, message, origin))
+
+
     def run(self):
         while True:
+
+            try:
+                topic, message, origin = self.queue.get(False)
+                print(topic, message, origin)
+                
+            except queue.Empty:
+                #play animation
+                for station_ordinal in range(6):
+                    self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
+                for station_ordinal in range(6):
+                    self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
+                    time.sleep(0.2)
+
+
             # fake trueque
 
-
+            """
             ball_origin_carousel_ord = random.randrange(0,5)
             while True:
                 ball_destination_carousel_ord = random.randrange(0,5)
@@ -1025,7 +1046,7 @@ class Fake_Attraction_Mode(threading.Thread):
             self.tb.publish(topic="all_off",message="",destination=self.display_names[ball_origin_carousel_ord])
             self.tb.publish(topic="all_off",message="",destination=self.display_names[ball_destination_carousel_ord])
             self.run_ball_motion_sim(ball_origin_carousel_ord,ball_destination_carousel_ord)
-
+            """
 
 
 
