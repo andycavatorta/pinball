@@ -152,6 +152,13 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = Hosts.Hosts(self.tb)
 
+        self.scores_loud = [
+            "c_forte",
+            "asharp_forte",
+            "gsharp_forte",
+            "g_forte",
+            "f_forte",
+        ]
         self.game_modes = {
             "waiting_for_connections" : Mode_Waiting_For_Connections(self.tb,self.hosts,self.set_mode),
             "system_test" : Mode_System_Tests(self.tb,self.hosts,self.set_mode),
@@ -314,7 +321,15 @@ class Main(threading.Thread):
                 ### temporarily parsing here for demo
 
                 if topic==b"respond_mpf_event":
-                    print("respond_mpf_event", message, origin)
+                    print("respond_mpf_event", message, origin) 
+                    if message['component'] == 's_right_flipper' and message['new_state'] == 'active':
+                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
+
+                    if message['component'] == 's_left_flipper' and message['new_state'] == 'active':
+                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
+
+                    
+
                     fake_attraction_mode.add_to_queue(topic, message, origin)
                 # ERROR
 
