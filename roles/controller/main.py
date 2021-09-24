@@ -322,15 +322,24 @@ class Main(threading.Thread):
 
                 if topic==b"respond_mpf_event":
                     print("respond_mpf_event", message, origin) 
+                    fake_attraction_mode.add_to_queue(topic, message, origin)
                     if message['component'] == 's_right_flipper' and message['new_state'] == 'active':
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
                     if message['component'] == 's_left_flipper' and message['new_state'] == 'active':
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
-                    
+                    if message['component'] == 's_game_launch' and message['new_state'] == 'active':
+                        self.tb.publish(topic="play_score",message=self.scores_loud[0],destination=origin)
+                        time.sleep(0.075)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[1],destination=origin)
+                        time.sleep(0.075)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[2],destination=origin)
+                        time.sleep(0.075)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[3],destination=origin)
+                        time.sleep(0.075)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[4],destination=origin)
 
-                    fake_attraction_mode.add_to_queue(topic, message, origin)
                 # ERROR
 
                 # WAITING_FOR_CONNECTIONS
@@ -962,12 +971,14 @@ class Fake_Attraction_Mode(threading.Thread):
                 #play animation
                 for station_ordinal in range(6):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-                for station_ordinal in range(6):
-                    time.sleep(0.03)
-                    self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
-                for station_ordinal in range(6):
-                    time.sleep(0.05)
-                    self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
+                
+                if random.randrange(0,4) == 0:
+                    for station_ordinal in range(6):
+                        time.sleep(0.03)
+                        self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
+                    for station_ordinal in range(6):
+                        time.sleep(0.05)
+                        self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
 
                 for station_ordinal in range(30):
                     for station_ordinal in range(6):
