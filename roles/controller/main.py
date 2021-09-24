@@ -190,17 +190,17 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_mpf_event")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
 
-        self.tb.subscribe_to_topic("event_spinner")
-        self.tb.subscribe_to_topic("event_pop_left")
-        self.tb.subscribe_to_topic("event_pop_center")
-        self.tb.subscribe_to_topic("event_pop_right")
-        self.tb.subscribe_to_topic("event_sling_left")
-        self.tb.subscribe_to_topic("event_sling_right")
-        self.tb.subscribe_to_topic("event_roll_outer_left")
-        self.tb.subscribe_to_topic("event_roll_inner_left")
-        self.tb.subscribe_to_topic("event_roll_inner_right")
-        self.tb.subscribe_to_topic("event_roll_outer_right")
-        self.tb.subscribe_to_topic("event_trough_sensor")
+        #self.tb.subscribe_to_topic("event_spinner")
+        #self.tb.subscribe_to_topic("event_pop_left")
+        #self.tb.subscribe_to_topic("event_pop_center")
+        #self.tb.subscribe_to_topic("event_pop_right")
+        #self.tb.subscribe_to_topic("event_sling_left")
+        #self.tb.subscribe_to_topic("event_sling_right")
+        #self.tb.subscribe_to_topic("event_roll_outer_left")
+        #self.tb.subscribe_to_topic("event_roll_inner_left")
+        #self.tb.subscribe_to_topic("event_roll_inner_right")
+        #self.tb.subscribe_to_topic("event_roll_outer_right")
+        #self.tb.subscribe_to_topic("event_trough_sensor")
 
         """
         # SYSTEM READINESS
@@ -305,7 +305,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
 
-                if topic!=b"deadman" and topic!=b"respond_mpf_event":
+                if topic not in [b"deadman",b"respond_mpf_event"]:
                     self.hosts.dispatch(topic, message, origin, destination)
                     self.send_to_dashboard(topic, message)
                     self.game_mode.add_to_queue(topic, message, origin, destination)
