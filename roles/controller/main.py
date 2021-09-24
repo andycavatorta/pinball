@@ -327,7 +327,7 @@ class Main(threading.Thread):
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
                     if message['component'] == 's_left_flipper' and message['new_state'] == 'active':
-                        print("*****************", message)
+                        print("*****************", type(message), message)
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
                     if message['component'] == 's_game_launch' and message['new_state'] == 'active':
