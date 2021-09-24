@@ -933,11 +933,11 @@ class Fake_Attraction_Mode(threading.Thread):
                 if topic == b'respond_mpf_event':
                     if message['component'] == 's_left_launch' and message['new_state'] == 'active':
                         print("--------------------->",topic, message, origin)
-                        if origin == 'pinball5game';
+                        if origin == 'pinball5game':
                             destination = 'pinball3game'
-                        if origin == 'pinball3game';
+                        if origin == 'pinball3game':
                             destination = 'pinball5game'
-                        if origin == 'pinball4game';
+                        if origin == 'pinball4game':
                             destination = 'pinball1game'
                         self.run_ball_motion_sim(origin, destination)
             except queue.Empty:
