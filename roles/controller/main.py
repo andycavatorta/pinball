@@ -330,22 +330,23 @@ class Main(threading.Thread):
                         "pinbal4game":"pinbal4display",
                         "pinbal5game":"pinbal5display",
                     }
+
                     if message['component'] == 's_right_flipper' and message['new_state'] == 'active':
-                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=dest_map[origin])
 
                     if message['component'] == 's_left_flipper' and message['new_state'] == 'active':
-                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=dest_map[origin])
 
                     if message['component'] == 's_game_launch' and message['new_state'] == 'active':
-                        self.tb.publish(topic="play_score",message=self.scores_loud[0],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[0],destination=dest_map[origin])
                         time.sleep(0.075)
-                        self.tb.publish(topic="play_score",message=self.scores_loud[1],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[1],destination=dest_map[origin])
                         time.sleep(0.075)
-                        self.tb.publish(topic="play_score",message=self.scores_loud[2],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[2],destination=dest_map[origin])
                         time.sleep(0.075)
-                        self.tb.publish(topic="play_score",message=self.scores_loud[3],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[3],destination=dest_map[origin])
                         time.sleep(0.075)
-                        self.tb.publish(topic="play_score",message=self.scores_loud[4],destination=origin)
+                        self.tb.publish(topic="play_score",message=self.scores_loud[4],destination=dest_map[origin])
 
                 # ERROR
 
