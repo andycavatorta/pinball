@@ -78,9 +78,9 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.SPARKLE: 
                 while True:
                     for channel in self.channels:
-                        self.upstream_queue.put(self.levels[0], channel)
+                        self.upstream_queue.put([self.levels[0], channel])
                         time.sleep(self.action_times.SPARKLE)
-                        self.upstream_queue.put(self.levels[-1], channel)
+                        self.upstream_queue.put([self.levels[-1], channel])
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.THROB:
@@ -100,72 +100,73 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.ENERGIZE: 
                 for divisor in [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0]:
                     for channel in self.channels:
-                        self.upstream_queue.put(self.levels[0], channel)
+                        self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.ENERGIZE/divisor)
                     for channel in self.channels:
-                        self.upstream_queue.put(self.levels[0], channel)
+                        self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.ENERGIZE/divisor)
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BLINK: 
                 while True:
                     for channel in self.channels:
-                        self.upstream_queue.put(self.levels[-1], channel)
+                        self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.BLINK)
                     for channel in self.channels:
-                        self.upstream_queue.put(self.levels[0], channel)
+                        self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.BLINK)
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.STROKE_ON:
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.STROKE)
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.STROKE_OFF: 
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.STROKE)
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BACK_STROKE_ON: 
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                 for channel in reversed(self.channels):
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.STROKE)
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BACK_STROKE_OFF: 
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                 for channel in reversed(self.channels):
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                     time.sleep(self.action_times.STROKE)
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.TRACE: 
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[0], channel)
+                    self.upstream_queue.put([self.levels[0], channel])
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.TRACE)
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.BACK_TRACE:
                 for channel in self.channels:
-                    self.upstream_queue.put(self.levels[0], channel)
+                    
+                    self.upstream_queue.put([self.levels[0], channel])
                 for channel in reversed(self.channels):
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     time.sleep(self.action_times.TRACE)
-                    self.upstream_queue.put(self.levels[-1], channel)
+                    self.upstream_queue.put([self.levels[-1], channel])
                     if not self.action_queue.empty():
                         break
 
