@@ -557,6 +557,8 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.sign_arrow_left
                         if group_name == "sign_bottom_right":
                             group = self.gamestation_lights.sign_bottom_right
+                        if group_name == "sign_bottom_left":
+                            group = self.gamestation_lights.sign_bottom_left
                         if group_name == "sign_top":
                             group = self.gamestation_lights.sign_top
 
