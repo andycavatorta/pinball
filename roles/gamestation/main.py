@@ -438,8 +438,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("gutter_detect_ball")
         self.tb.subscribe_to_topic("gutter_launch")
         #self.tb.publish("connected", True)
-        self.button_lights.izquierda.on()
-        self.button_lights.derecha.on()
         self.start()
     
     def publish_to_controller(self, topic, message):
