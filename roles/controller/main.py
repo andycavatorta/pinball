@@ -187,7 +187,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("respond_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("respond_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("respond_visual_tests")
-        #self.tb.subscribe_to_topic("respond_mpf_event")
+        self.tb.subscribe_to_topic("respond_mpf_event")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
 
         self.tb.subscribe_to_topic("event_spinner")
@@ -913,6 +913,9 @@ class Fake_Attraction_Mode(threading.Thread):
 
     def run(self):
         while True:
+            # fake trueque
+
+
             ball_origin_carousel_ord = random.randrange(0,5)
             while True:
                 ball_destination_carousel_ord = random.randrange(0,5)
