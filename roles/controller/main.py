@@ -980,7 +980,6 @@ class Fake_Attraction_Mode(threading.Thread):
 
     def pie_on(self):
         for station_ordinal in range(6):
-        time.sleep(.3)
             self.tb.publish("playfield_lights",["trail_rollover_right","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_rollover_right","on"], self.gamestation_names[station_ordinal])
         time.sleep(.2)
