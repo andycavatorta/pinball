@@ -305,7 +305,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
 
-                if topic!=b"deadman":
+                if topic!=b"deadman" and topic!=b"respond_mpf_event":
                     self.hosts.dispatch(topic, message, origin, destination)
                     self.send_to_dashboard(topic, message)
                     self.game_mode.add_to_queue(topic, message, origin, destination)
