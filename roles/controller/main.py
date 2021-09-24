@@ -929,10 +929,10 @@ class Fake_Attraction_Mode(threading.Thread):
                 #play animation
                 for station_ordinal in range(6):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
-                for times in range(25):
+                for times in range(50):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
-                        time.sleep(0.2)
+                        time.sleep(0.1)
 
 
             # fake trueque
