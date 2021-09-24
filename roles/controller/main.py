@@ -796,11 +796,11 @@ class Fake_Attraction_Mode(threading.Thread):
         self.tb = main.tb # real dirty
         self.queue = queue.Queue()
         self.scores_quiet = [
-            "c_piano":single_notes.c_piano,
-            "asharp_piano":single_notes.asharp_piano,
-            "gsharp_piano":single_notes.gsharp_piano,
-            "g_piano":single_notes.g_piano,
-            "f_piano":single_notes.f_piano,
+            "c_piano",
+            "asharp_piano",
+            "gsharp_piano",
+            "g_piano",
+            "f_piano",
         ]
         self.carousel_names = [
             "carousel1",
