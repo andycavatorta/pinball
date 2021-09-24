@@ -934,11 +934,13 @@ class Fake_Attraction_Mode(threading.Thread):
                     if message['component'] == 's_left_launch' and message['new_state'] == 'active':
                         print("--------------------->",topic, message, origin)
                         if origin == 'pinball5game':
-                            origin_int = 5
-                            destination_int = 3
-                        if origin_int == 5:
-                            destination_int = 3
-                        if origin_int == 4:
+                            origin_int = 4
+                            destination_int = 2
+                        if origin == 'pinball3game':
+                            origin_int = 2
+                            destination_int = 4
+                        if origin == 'pinball4game':
+                            origin_int = 3
                             destination_int = 1
                         self.run_ball_motion_sim(origin_int, destination_int)
             except queue.Empty:
