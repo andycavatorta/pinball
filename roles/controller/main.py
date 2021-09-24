@@ -315,7 +315,7 @@ class Main(threading.Thread):
 
                 if topic==b"respond_mpf_event":
                     print("respond_mpf_event", message, origin)
-
+                    fake_attraction_mode.add_to_queue(topic, message, origin)
                 # ERROR
 
                 # WAITING_FOR_CONNECTIONS
