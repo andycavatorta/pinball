@@ -171,6 +171,8 @@ class Mode_System_Tests(threading.Thread):
         self.queue.put((topic, message, origin, destination))
 
     def run(self):
+        time.sleep(1)
+        """
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,1)
@@ -186,9 +188,8 @@ class Mode_System_Tests(threading.Thread):
                 getattr(self,topic)(message, origin, destination)
             except queue.Empty:
                 pass
-                """
                 if self.phase != self.PHASE_VISUAL_TESTS:
                     if self.timer + self.timeout_duration < time.time(): # if timeout condition
                         self.hosts.errors.set_timeout = [self.phase]
                         self.set_mode(self.game_mode_names.ERROR)
-                """
+        """
