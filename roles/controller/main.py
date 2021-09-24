@@ -944,6 +944,76 @@ class Fake_Attraction_Mode(threading.Thread):
         self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[end_carousel_ord])
         time.sleep(0.1)
 
+    def pie_off(self):
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_rollover_right","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_rollover_right","off"], self.gamestation_names[station_ordinal])
+        time.sleep(2)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_rollover_left","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_rollover_left","off"], self.gamestation_names[station_ordinal])
+        time.sleep(1.8)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_sling_right","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_sling_right","off"], self.gamestation_names[station_ordinal])
+        time.sleep(1.6)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_sling_left","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_sling_left","off"], self.gamestation_names[station_ordinal])
+        time.sleep(1.4)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_left","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_left","off"], self.gamestation_names[station_ordinal])
+        time.sleep(1.2)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_right","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_right","off"], self.gamestation_names[station_ordinal])
+        time.sleep(1)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_center","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_center","off"], self.gamestation_names[station_ordinal])
+        time.sleep(0.8)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_spinner","stroke_on"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_spinner","off"], self.gamestation_names[station_ordinal])
+        time.sleep(0.6)
+
+    def pie_on(self):
+        for station_ordinal in range(6):
+            time.sleep(3)
+            self.tb.publish("playfield_lights",["trail_rollover_right","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_rollover_right","on"], self.gamestation_names[station_ordinal])
+        time.sleep(2)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_rollover_left","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_rollover_left","on"], self.gamestation_names[station_ordinal])
+        time.sleep(1.8)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_sling_right","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_sling_right","on"], self.gamestation_names[station_ordinal])
+        time.sleep(1.6)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_sling_left","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_sling_left","on"], self.gamestation_names[station_ordinal])
+        time.sleep(1.4)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_left","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_left","on"], self.gamestation_names[station_ordinal])
+        time.sleep(1.2)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_right","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_right","on"], self.gamestation_names[station_ordinal])
+        time.sleep(1)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_pop_center","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_pop_center","on"], self.gamestation_names[station_ordinal])
+        time.sleep(0.8)
+        for station_ordinal in range(6):
+            self.tb.publish("playfield_lights",["trail_spinner","back_stroke_off"], self.gamestation_names[station_ordinal])
+            self.tb.publish("playfield_lights",["pie_spinner","on"], self.gamestation_names[station_ordinal])
+        time.sleep(0.6)
+
+
     def normalize_to_range(self, num, max):
         if num > max-1:
             return num - max
@@ -958,8 +1028,8 @@ class Fake_Attraction_Mode(threading.Thread):
 
 
     def run(self):
+        pie = False
         while True:
-
             try:
                 topic, message, origin = self.queue.get(False)
                 if topic == b'respond_mpf_event':
@@ -992,6 +1062,14 @@ class Fake_Attraction_Mode(threading.Thread):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
+
+                if random.randrange(0,8) == 0:
+                    if pie == True:
+                        self.pie_off()
+                        pie = False
+                    else:
+                        self.pie_on()
+                        pie = True
             # fake trueque
 
             """
