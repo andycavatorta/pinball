@@ -78,9 +78,9 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.SPARKLE: 
                 while True:
                     for channel in self.channels:
-                        self.upstream_queue.put([self.levels[0], channel])
+                        self.upstream_queue.put([self.levels[0], [channel]])
                         time.sleep(self.action_times.SPARKLE)
-                        self.upstream_queue.put([self.levels[-1], channel])
+                        self.upstream_queue.put([self.levels[-1], [channel]])
                     if not self.action_queue.empty():
                         break
             if action_name == self.action_names.THROB:
@@ -161,7 +161,7 @@ class Lights_Pattern(threading.Thread):
                         break
             if action_name == self.action_names.BACK_TRACE:
                 for channel in self.channels:
-                    
+
                     self.upstream_queue.put([self.levels[0], channel])
                 for channel in reversed(self.channels):
                     self.upstream_queue.put([self.levels[-1], channel])
