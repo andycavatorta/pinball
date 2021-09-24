@@ -163,7 +163,7 @@ class Mode_System_Tests(threading.Thread):
         # This is just responding to the events
         self.set_mode(self.game_mode_names.INVENTORY)
 
-    def request_current_sensor_nominal(self, message, origin, destination)
+    def request_current_sensor_nominal(self, message, origin, destination):
         # TODO: Make the ACTUAL test here.
         return True
 
