@@ -948,70 +948,70 @@ class Fake_Attraction_Mode(threading.Thread):
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_rollover_right","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_rollover_right","off"], self.gamestation_names[station_ordinal])
-        time.sleep(2)
+        time.sleep(.2)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_rollover_left","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_rollover_left","off"], self.gamestation_names[station_ordinal])
-        time.sleep(1.8)
+        time.sleep(.18)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_sling_right","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_sling_right","off"], self.gamestation_names[station_ordinal])
-        time.sleep(1.6)
+        time.sleep(.16)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_sling_left","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_sling_left","off"], self.gamestation_names[station_ordinal])
-        time.sleep(1.4)
+        time.sleep(.14)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_left","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_left","off"], self.gamestation_names[station_ordinal])
-        time.sleep(1.2)
+        time.sleep(.12)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_right","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_right","off"], self.gamestation_names[station_ordinal])
-        time.sleep(1)
+        time.sleep(.1)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_center","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_center","off"], self.gamestation_names[station_ordinal])
-        time.sleep(0.8)
+        time.sleep(.1)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_spinner","stroke_on"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_spinner","off"], self.gamestation_names[station_ordinal])
-        time.sleep(0.6)
+        time.sleep(.1)
 
     def pie_on(self):
         for station_ordinal in range(6):
-            time.sleep(3)
+        time.sleep(.3)
             self.tb.publish("playfield_lights",["trail_rollover_right","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_rollover_right","on"], self.gamestation_names[station_ordinal])
-        time.sleep(2)
+        time.sleep(.2)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_rollover_left","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_rollover_left","on"], self.gamestation_names[station_ordinal])
-        time.sleep(1.8)
+        time.sleep(.18)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_sling_right","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_sling_right","on"], self.gamestation_names[station_ordinal])
-        time.sleep(1.6)
+        time.sleep(.16)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_sling_left","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_sling_left","on"], self.gamestation_names[station_ordinal])
-        time.sleep(1.4)
+        time.sleep(.14)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_left","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_left","on"], self.gamestation_names[station_ordinal])
-        time.sleep(1.2)
+        time.sleep(.12)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_right","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_right","on"], self.gamestation_names[station_ordinal])
-        time.sleep(1)
+        time.sleep(.01)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_pop_center","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_pop_center","on"], self.gamestation_names[station_ordinal])
-        time.sleep(0.8)
+        time.sleep(0.08)
         for station_ordinal in range(6):
             self.tb.publish("playfield_lights",["trail_spinner","back_stroke_off"], self.gamestation_names[station_ordinal])
             self.tb.publish("playfield_lights",["pie_spinner","on"], self.gamestation_names[station_ordinal])
-        time.sleep(0.6)
+        time.sleep(0.06)
 
 
     def normalize_to_range(self, num, max):
