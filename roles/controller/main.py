@@ -940,7 +940,7 @@ class Fake_Attraction_Mode(threading.Thread):
                             destination_int = 3
                         if origin_int == 4:
                             destination_int = 1
-                        self.run_ball_motion_sim(origin, destination)
+                        self.run_ball_motion_sim(origin_int, destination_int)
             except queue.Empty:
                 #play animation
                 for station_ordinal in range(6):
@@ -952,7 +952,7 @@ class Fake_Attraction_Mode(threading.Thread):
                     time.sleep(0.05)
                     self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
 
-                for station_ordinal in range(60):
+                for station_ordinal in range(30):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
