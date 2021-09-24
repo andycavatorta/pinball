@@ -930,10 +930,14 @@ class Fake_Attraction_Mode(threading.Thread):
                 for station_ordinal in range(6):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
                 for station_ordinal in range(6):
+                    time.sleep(0.03)
                     self.tb.publish(topic="play_score",message="f_piano",destination=self.display_names[station_ordinal])
-                    time.sleep(0.02)
+                for station_ordinal in range(6):
+                    time.sleep(0.03)
                     self.tb.publish(topic="play_score",message="gsharp_piano",destination=self.display_names[station_ordinal])
-                    time.sleep(0.02)
+
+
+                for station_ordinal in range(6):
                     for station_ordinal in range(6):
                         self.tb.publish(topic="set_number",message=random.randrange(0,999),destination=self.display_names[station_ordinal])
                     time.sleep(0.3)
