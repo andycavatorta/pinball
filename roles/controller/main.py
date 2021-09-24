@@ -879,7 +879,9 @@ class Fake_Attraction_Mode(threading.Thread):
                 self.tb.publish(topic="all_off",message="",destination=self.display_names[station_ordinal])
                 self.tb.publish(topic="set_number",message=-1,destination=self.display_names[station_ordinal])
 
-
+            for station_ordinal in range(6):
+                self.tb.publish("playfield_lights",["sign_bottom_left","on"], self.gamestation_names[station_ordinal])
+                self.tb.publish("playfield_lights",["sign_bottom_right","on"], self.gamestation_names[station_ordinal])
 
             time.sleep(3)
             for station_ordinal in range(6):
