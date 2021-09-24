@@ -1071,7 +1071,7 @@ class Fake_Attraction_Mode(threading.Thread):
             time.sleep(3)
             self.run_ball_motion_sim(4,2)
             """
-            time.sleep(120)
+            #time.sleep(120)
 fake_attraction_mode = Fake_Attraction_Mode()
 
 
