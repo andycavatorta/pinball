@@ -324,11 +324,11 @@ class Main(threading.Thread):
                     print("respond_mpf_event", message, origin) 
                     fake_attraction_mode.add_to_queue(topic, message, origin)
                     dest_map = {
-                        "pinballgame":"pinballdisplay",
-                        "pinbal2game":"pinbal2display",
-                        "pinbal3game":"pinbal3display",
-                        "pinbal4game":"pinbal4display",
-                        "pinbal5game":"pinbal5display",
+                        "pinballlgame":"pinballldisplay",
+                        "pinball2game":"pinball2display",
+                        "pinball3game":"pinball3display",
+                        "pinball4game":"pinball4display",
+                        "pinball5game":"pinball5display",
                     }
 
                     if message['component'] == 's_right_flipper' and message['new_state'] == 'active':
