@@ -846,19 +846,63 @@ class Fake_Attraction_Mode(threading.Thread):
         end_pocket = self.carousel_start_end[start_carousel_ord][3]
         carousel_name = self.carousel_names[start_carousel_ord]
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
-        time.sleep(0.5)
+        self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="g_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="g_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="f_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+
 
         start_pocket = self.carouselcenter_fruit_led_map[start_carousel_ord]
         end_pocket =  self.carouselcenter_fruit_led_map[end_carousel_ord]
         carousel_name = self.carousel_names[5]
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
-        time.sleep(0.5)
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="g_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="g_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
 
 
         end_pocket = self.carousel_start_end[end_carousel_ord][0]
         start_pocket = self.carousel_start_end[end_carousel_ord][1]
         carousel_name = self.carousel_names[end_carousel_ord]
         self.tb.publish("request_led_animations",["stroke_arc",[start_pocket,end_pocket]], carousel_name)
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="asharp_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
+        self.tb.publish(topic="play_score",message="gsharp_mezzo",destination=self.display_names[start_carousel_ord])
+        self.tb.publish(topic="play_score",message="c_mezzo",destination=self.display_names[end_carousel_ord])
+        time.sleep(0.1)
 
     def normalize_to_range(self, num, max):
         if num > max-1:
@@ -1002,7 +1046,7 @@ class Fake_Attraction_Mode(threading.Thread):
             time.sleep(3)
             self.run_ball_motion_sim(4,2)
             """
-            time.sleep(30)
+            time.sleep(10)
 fake_attraction_mode = Fake_Attraction_Mode()
 
 
