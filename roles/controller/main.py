@@ -327,6 +327,7 @@ class Main(threading.Thread):
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
                     if message['component'] == 's_left_flipper' and message['new_state'] == 'active':
+                        print("*****************")
                         self.tb.publish(topic="play_score",message=self.scores_loud[random.randrange(0,5)],destination=origin)
 
                     if message['component'] == 's_game_launch' and message['new_state'] == 'active':
@@ -972,7 +973,7 @@ class Fake_Attraction_Mode(threading.Thread):
                 for station_ordinal in range(6):
                     self.tb.publish("request_led_animations",["stroke_ripple",[]], self.carousel_names[station_ordinal])
                 
-                if random.randrange(0,3) == 0:
+                if random.randrange(0,4) == 0:
                     for station_ordinal in range(6):
                         time.sleep(0.03)
                         self.tb.publish(topic="play_score",message=self.scores_quiet[random.randrange(0,5)],destination=self.display_names[station_ordinal])
