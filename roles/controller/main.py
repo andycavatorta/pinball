@@ -143,23 +143,23 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
         self.tb.subscribe_to_topic("response_carousel_ball_detected")
 
-        self.mode_error = Mode_Error(self.tb, self.hosts, self.set_current_mode)
-        self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode)
-        self.mode_system_test = Mode_System_Tests(self.tb, self.hosts, self.set_current_mode)
-        self.mode_inventory = Mode_Inventory(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_reset = Mode_Reset(self.tb, self.hosts, self.set_current_mode)
-        self.mode_attraction = Mode_Attraction(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_countdown = Mode_Countdown(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_barter_intro = Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_barter = Mode_Barter(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_money_intro = Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_money = Mode_mone(self.tb, self.hosts, self.set_current_mode)
-        #self.mode_ending = Mode_ending(self.tb, self.hosts, self.set_current_mode)
-
+        self.modes = {
+            "error":Mode_Error(self.tb, self.hosts, self.set_current_mode),
+            "waiting_for_connections":Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode),
+            "system_test":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
+            "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode),
+            "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode),
+            "reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
+            "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
+            "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
+            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
+            "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
+            "money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
+            "ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
+        }
         self.send_to_dashboard = dashboard.init(self.tb)
-        self.current_mode_name = ""
-        self.current_mode = ""
-        self.set_current_mode(self.mode_names.WAITING_FOR_CONNECTIONS)
+        self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
+        self.current_mode = self.modes["waiting_for_connections"].start()
         self.start()
     ##### THIRTYBIRDS CALLBACKS #####
     def network_message_handler(self, topic, message, origin, destination):
@@ -177,53 +177,53 @@ class Main(threading.Thread):
     def set_current_mode(self,mode_name):
         self.current_mode_name = mode_name
         if mode_name == self.mode_names.ERROR:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_error
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.WAITING_FOR_CONNECTIONS:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_waiting_for_connections
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.SYSTEM_TESTS:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_system_test
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.INVENTORY:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_inventory
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.RESET:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_reset
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.ATTRACTION:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_attraction
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.COUNTDOWN:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_countdown
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.BARTER_MODE_INTRO:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_barter_intro
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.BARTER_MODE:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_barter
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_money_intro
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.MONEY_MODE:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_money
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
         if mode_name == self.mode_names.ENDING:
-            self.current_mode.pause()
+            self.modes[self.current_mode].pause()
             self.current_mode = self.mode_ending
-            self.current_mode.start()
+            self.modes[self.current_mode].start()
     def get_current_mode(self):
         return self.current_mode
     ##### SAFETY ENABLE #####
