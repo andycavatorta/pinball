@@ -30,7 +30,7 @@ class Mode_Inventory(threading.Thread):
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
         self.phase = self.PHASE_ZERO
-        self.start()
+        #self.start()
         # self.hosts["pinballmatrix"].request_amt203_zeroed()
         # bypass inventory
         self.set_current_mode(self.game_mode_names.ATTRACTION)

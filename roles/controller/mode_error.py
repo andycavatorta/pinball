@@ -26,7 +26,7 @@ class Mode_Error(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
-        self.start()
+        #self.start()
 
     def reset(self):
         #retrieve error states from hosts
