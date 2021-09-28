@@ -273,6 +273,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("all_off")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
+        self.tb.subscribe_to_topic("request_current_sensor_nominal")
 
         self.tb.publish("connected", True)
         self.chime_player = Chime_Player()
@@ -289,6 +290,10 @@ class Main(threading.Thread):
             topic="respond_computer_details", 
             message=self.request_computer_details()
         )
+        self.tb.publish(
+            topic="respond_current_sensor_nominal",
+            message=self.request_current_sensor_nominal()
+        )
 
     def request_computer_details(self):
         return {
@@ -297,6 +302,10 @@ class Main(threading.Thread):
             "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
+
+    def request_current_sensor_nominal(self):
+        # TODO: Make the ACTUAL tests here.
+        return True
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -321,6 +330,12 @@ class Main(threading.Thread):
                     self.tb.publish(
                         topic="respond_computer_details", 
                         message=self.request_computer_details()
+                    )
+
+                if topic == b'request_current_sensor_nominal':
+                    self.tb.publish(
+                        topic="respond_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
                     )
 
                 if topic == b'play_score':
