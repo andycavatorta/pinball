@@ -784,7 +784,7 @@ class Hosts():
                 non_nominal_states.append(["pinballmatrix","sdc2160_closed_loop_error",channel, value])
 
         # sdc: check channel faults
-        channel_faults = self..pinballmatrix.get_sdc2160_channel_faults()
+        channel_faults = self.pinballmatrix.get_sdc2160_channel_faults()
         channel_faults_list = []
         for channel_name in channel_faults:
             channel = channel_faults[channel_name]
