@@ -147,7 +147,7 @@ class Main(threading.Thread):
         self.mode_waiting_for_connections = Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode)
         self.mode_system_test = Mode_System_Tests(self.tb, self.hosts, self.set_current_mode)
         self.mode_inventory = Mode_Inventory(self.tb, self.hosts, self.set_current_mode)
-        self.mode_reset = Mode_Reset(self.tb, self.hosts, self.set_current_mode)
+        #self.mode_reset = Mode_Reset(self.tb, self.hosts, self.set_current_mode)
         self.mode_attraction = Mode_Attraction(self.tb, self.hosts, self.set_current_mode)
         #self.mode_countdown = Mode_Countdown(self.tb, self.hosts, self.set_current_mode)
         #self.mode_barter_intro = Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode)
