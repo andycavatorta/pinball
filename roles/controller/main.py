@@ -51,7 +51,7 @@ import roles.controller.hosts as Hosts
 from http_server_root import dashboard
 
 from roles.controller.mode_error import Mode_Error
-from roles.controller.mode_waiting_For_connections import Mode_Waiting_For_Connections
+from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Connections
 from roles.controller.mode_system_tests import Mode_System_Tests
 from roles.controller.mode_inventory import Mode_Inventory
 from roles.controller.mode_attraction import Mode_Attraction
