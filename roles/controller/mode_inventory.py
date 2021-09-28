@@ -29,7 +29,7 @@ class Mode_Inventory(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
-        self.phase = PHASE_ZERO
+        self.phase = self.PHASE_ZERO
         self.start()
         # self.hosts["pinballmatrix"].request_amt203_zeroed()
         # bypass inventory
@@ -37,7 +37,7 @@ class Mode_Inventory(threading.Thread):
 
     def set_amt203_zeroed(self,amt203_zeroed):
         if all(amt203_zeroed): # when all report finished.
-            self.phase = PHASE_INVENTORY
+            self.phase = self.PHASE_INVENTORY
             # start inventory
 
     def add_to_queue(self, topic, message, origin, destination):
