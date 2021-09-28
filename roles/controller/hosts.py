@@ -159,7 +159,7 @@ class Carousel(Host):
         )
 
 class Matrix(Host):
-    def __init__(self, hostname, tb, main):
+    def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
         self.hostname = hostname
         self.tb = tb        
