@@ -111,7 +111,7 @@ class Controller(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
         self.hostname = hostname
-        self.safety_enable
+        self.safety_enable = False
         self.tb = tb
     def get_safety_enable(self):
         return self.safety_enable
