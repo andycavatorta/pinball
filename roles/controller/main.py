@@ -177,29 +177,29 @@ class Main(threading.Thread):
     def set_current_mode(self,mode_name):
         self.current_mode_name = mode_name
         if mode_name == self.mode_names.ERROR:
-        self.current_mode = self.mode_error
+            self.current_mode = self.mode_error
         if mode_name == self.mode_names.WAITING_FOR_CONNECTIONS:
-        self.current_mode = self.mode_waiting_for_connections
+            self.current_mode = self.mode_waiting_for_connections
         if mode_name == self.mode_names.SYSTEM_TESTS:
-        self.current_mode = self.mode_system_test
+            self.current_mode = self.mode_system_test
         if mode_name == self.mode_names.INVENTORY:
-        self.current_mode = self.mode_inventory
+            self.current_mode = self.mode_inventory
         if mode_name == self.mode_names.RESET:
-        self.current_mode = self.mode_reset
+            self.current_mode = self.mode_reset
         if mode_name == self.mode_names.ATTRACTION:
-        self.current_mode = self.mode_attraction
+            self.current_mode = self.mode_attraction
         if mode_name == self.mode_names.COUNTDOWN:
-        self.current_mode = self.mode_countdown
+            self.current_mode = self.mode_countdown
         if mode_name == self.mode_names.BARTER_MODE_INTRO:
-        self.current_mode = self.mode_barter_intro
+            self.current_mode = self.mode_barter_intro
         if mode_name == self.mode_names.BARTER_MODE:
-        self.current_mode = self.mode_barter
+            self.current_mode = self.mode_barter
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
-        self.current_mode = self.mode_money_intro
+            self.current_mode = self.mode_money_intro
         if mode_name == self.mode_names.MONEY_MODE:
-        self.current_mode = self.mode_money
+            self.current_mode = self.mode_money
         if mode_name == self.mode_names.ENDING:
-        self.current_mode = self.mode_ending
+            self.current_mode = self.mode_ending
     def get_current_mode(self):
         return self.current_mode
     ##### SAFETY ENABLE #####

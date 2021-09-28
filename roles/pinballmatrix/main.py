@@ -154,10 +154,6 @@ class Main(threading.Thread):
 
 
 
-
-
-
-
     def request_system_runtime_states(self):
         if self.high_power_init:
             """
