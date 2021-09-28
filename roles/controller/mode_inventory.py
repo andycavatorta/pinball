@@ -19,7 +19,7 @@ class Mode_Inventory(threading.Thread):
     PHASE_ZERO = "phase_zero"
     PHASE_INVENTORY = "phase_inventory"
     PHASE_POPULATE = "phase_populate"
-    def __init__(self, tb, hosts, mode_names, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
         self.tb = tb 
         self.hosts = hosts

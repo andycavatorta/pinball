@@ -22,7 +22,7 @@ class Mode_Attraction(threading.Thread):
 
 
     """
-    def __init__(self, tb, hosts, mode_names, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
         self.tb = tb 
         self.hosts = hosts
