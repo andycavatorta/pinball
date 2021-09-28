@@ -701,7 +701,7 @@ class Display(Host):
     def request_all_power_off(self):
         self.tb.publish(topic="request_all_power_off",message="")
 
-Hosts():
+class Hosts():
     def __init__(self, tb):
         self.tb = tb
         self.controller = Controller("controller", tb)
