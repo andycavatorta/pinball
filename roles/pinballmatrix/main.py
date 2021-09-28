@@ -136,6 +136,8 @@ class Main(threading.Thread):
         )
 
     def sync_relative_encoders_to_absolute_encoders(self):
+        return 
+        # temporarily disconnected for safety
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
         if self.high_power_init: # if power is on
             # add try/catch blocks and/or general system to track if hi power is on
