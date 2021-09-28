@@ -379,7 +379,7 @@ class Main(threading.Thread):
         }
         
     def request_current_sensor_present(self):
-        return 0
+        return True
         #return self.current_sensor.get_current()
 
     def request_current_sensor_value(self):
@@ -387,7 +387,7 @@ class Main(threading.Thread):
         #return self.current_sensor.get_current()
 
     def request_current_sensor_nominal(self):
-        return 0
+        return True
         #return self.current_sensor.get_current()
 
     def request_sdc2160_present(self):
