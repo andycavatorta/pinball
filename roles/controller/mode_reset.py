@@ -19,7 +19,7 @@ class Mode_Reset(threading.Thread):
         self.tb = tb 
         self.host_states = host_states
         self.queue = queue.Queue()
-        #self.start()
+        self.start()
     def calculate_steps(self):
         """
         How to represent the steps?

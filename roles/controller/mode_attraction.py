@@ -32,7 +32,7 @@ class Mode_Attraction(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
-        #self.start()
+        self.start()
 
     def setup(self):
         pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
