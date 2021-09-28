@@ -113,9 +113,9 @@ class Controller(Host):
         self.hostname = hostname
         self.safety_enable
         self.tb = tb
-    def get_safety_enable(self)
+    def get_safety_enable(self):
         return self.safety_enable
-    def set_safety_enable(self,safety_enable)
+    def set_safety_enable(self,safety_enable):
         self.safety_enable = safety_enable
 
 class Carousel(Host):
