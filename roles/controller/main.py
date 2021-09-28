@@ -46,7 +46,7 @@ from thirtybirds3.adapters.sensors import ina260_current_sensor
 import roles.controller.tests as tests
 
 import roles.controller.safety_enable as Safety_Enable
-import roles.controller.Hosts as Hosts
+import roles.controller.hosts as Hosts
 
 from http_server_root import dashboard
 
