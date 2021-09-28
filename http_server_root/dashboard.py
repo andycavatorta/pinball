@@ -56,8 +56,8 @@ class Message_Receiver(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.start()
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
+    def add_to_queue(self, topic, message,origin,destination):
+        self.queue.put((topic, message,origin,destination))
 
     def generate_system_status(self):
         status_report = self.tb_ref.hardware_management.get_system_status()
@@ -75,7 +75,7 @@ class Message_Receiver(threading.Thread):
 
     def run(self):
         while True:
-            topic, message = self.queue.get(block=True)
+            topic, message,origin,destination = self.queue.get(block=True)
             #print("topic, message",topic, message)
             message_json = json.dumps([str(topic), str(message)])
             self.websocket.sendToClients(self.websocket,message_json)
