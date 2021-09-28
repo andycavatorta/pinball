@@ -32,7 +32,6 @@ class Mode_Attraction(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
-        self.start()
 
     def setup(self):
         pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
@@ -169,7 +168,7 @@ class Mode_Attraction(threading.Thread):
                 button_cycle = next(cycle_attraction_buttons)
                 for name_val in button_cycle.items():
                     for pinball_hostname in pinball_hostnames:
-                        self.hosts[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
+                        self.hosts.hostname[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
 
                 topic, message, origin, destination = self.queue.get(True,0.1)
                 if isinstance(topic, bytes):
