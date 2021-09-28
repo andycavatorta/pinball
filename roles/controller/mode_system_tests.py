@@ -15,7 +15,7 @@ class Mode_System_Tests(threading.Thread):
     PHASE_DEVICE_STATES = "phase_device_states"
     PHASE_CHECK_CURRENT_LEAK = "phase_check_current_leak"
     PHASE_VISUAL_TESTS = "phase_visual_tests"
-    def __init__(self, tb, hosts, mode_names, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
         self.tb = tb
         self.hosts = hosts
