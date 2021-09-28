@@ -241,6 +241,13 @@ class Button_Lights():
         self.comienza = Button_Light(self.gpios[2])
         self.dinero = Button_Light(self.gpios[3])
         self.derecha = Button_Light(self.gpios[4])
+        self.names = {
+            "izquierda":self.izquierda,
+            "trueque":self.trueque,
+            "comienza":self.comienza,
+            "dinero":self.dinero,
+            "derecha":self.derecha
+        }
 
 def rollover_handler(name, value):
     print("rollover_handler",name, value)
@@ -425,6 +432,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("gamestation_all_off")
         self.tb.subscribe_to_topic("gamestation_get_amps")
         self.tb.subscribe_to_topic("get_system_tests")
+
+        self.tb.subscribe_to_topic("request_button_light_active")
         self.tb.subscribe_to_topic("button_active_left_flipper")
         self.tb.subscribe_to_topic("button_active_trade_goods")
         self.tb.subscribe_to_topic("button_active_start")
@@ -487,6 +496,15 @@ class Main(threading.Thread):
                     pass
                 if topic == b'get_system_tests':
                     pass
+
+                if topic == b'request_button_light_active':
+                    if destination == self.tb.get_hostname():
+                        button_name, button_state = message
+                        if button_state:
+                            main.button_lights.names[button_name].on()
+                        else:
+                            main.button_lights.names[button_name].off()
+
                 if topic == b'button_active_left_flipper':
                     if destination == self.tb.get_hostname():
                         if message == True:
