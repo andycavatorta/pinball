@@ -149,13 +149,13 @@ class Main(threading.Thread):
             "system_test":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
             "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode),
             "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode),
-            "reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
-            "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
-            "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
-            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
-            "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
-            "money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
-            "ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
+            #"reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
+            #"countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
+            #"barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
+            #"barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
+            #"money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
+            #"money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
+            #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
         self.send_to_dashboard = dashboard.init(self.tb)
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
