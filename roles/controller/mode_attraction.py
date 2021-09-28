@@ -26,7 +26,7 @@ class Mode_Attraction(threading.Thread):
         threading.Thread.__init__(self)
         self.tb = tb 
         self.hosts = hosts
-        self.mode_names = mode_names
+        self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
