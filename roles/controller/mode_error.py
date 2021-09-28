@@ -97,7 +97,7 @@ class Mode_Error(threading.Thread):
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
-    def request_current_sensor_nominal(self, message, origin, destination)
+    def request_current_sensor_nominal(self, message, origin, destination):
         # TODO: Make the ACTUAL test here.
         return True
 
