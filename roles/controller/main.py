@@ -189,7 +189,7 @@ class Main(threading.Thread):
         if mode_name == self.mode_names.SYSTEM_TESTS:
             print("1!!!!!!!!!!!!!!!!!!!")
             self.current_mode.end()
-            print("2!!!!!!!!!!!!!!!!!!!")
+            print("2!!!!!!!!!!!!!!!!!!!", self.mode_system_test)
             self.current_mode = self.mode_system_test
             print("3!!!!!!!!!!!!!!!!!!!")
             print(self.current_mode)
