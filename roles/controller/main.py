@@ -241,7 +241,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                if b"event" not in topic:
+                if "event" not in topic.decode('UTF-8'):
                     print("received:",topic, message, origin, destination)
                 if topic==b"event_mpf":
                     if message['component'] == 's_left_flipper':
