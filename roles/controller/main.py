@@ -159,7 +159,8 @@ class Main(threading.Thread):
         }
         self.send_to_dashboard = dashboard.init(self.tb)
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
-        self.current_mode = self.modes["waiting_for_connections"].start()
+        self.current_mode = self.modes["waiting_for_connections"]
+        self.current_mode.start()
         self.start()
     ##### THIRTYBIRDS CALLBACKS #####
     def network_message_handler(self, topic, message, origin, destination):
