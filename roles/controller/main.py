@@ -185,6 +185,8 @@ class Main(threading.Thread):
         if mode_name == self.mode_names.WAITING_FOR_CONNECTIONS:
             self.current_mode.end()
             self.current_mode = self.mode_waiting_for_connections
+            print(self.current_mode)
+            print(self.current_mode.begin())
             self.current_mode.begin()
         if mode_name == self.mode_names.SYSTEM_TESTS:
             self.current_mode.end()
