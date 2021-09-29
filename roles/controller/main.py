@@ -193,7 +193,7 @@ class Main(threading.Thread):
             print("++++++++++++++", self.current_mode)
             print("++++++++++++++")
             print("++++++++++++++")
-            self.modes[mode_name].pause()
+            #self.modes[mode_name].pause()
             print("++++++++++++++")
             print("++++++++++++++")
             print("++++++++++++++")
