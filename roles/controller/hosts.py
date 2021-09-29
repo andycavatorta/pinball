@@ -769,11 +769,12 @@ class Hosts():
             'pinballmatrix':self.pinballmatrix,
         }
     def get_all_host_connected(self):
-        print("get_all_host_connected", self.hostnames)
+        print("get_all_host_connected")
         for hostname in self.hostnames:
-            print(hostname, self.hostnames[hostname].get_connected())
-            if self.hostnames[hostname].get_connected() == False:
-                return False
+            if hostname != "controller":
+                print(hostname, self.hostnames[hostname].get_connected())
+                if self.hostnames[hostname].get_connected() == False:
+                    return False
         return True
 
     def request_all_computer_details(self):
