@@ -18,14 +18,20 @@ class Mode_Error(threading.Thread):
     """
     def __init__(self, tb, hosts, set_mode):
         threading.Thread.__init__(self)
+        self.active = False
         self.tb = tb 
         self.hosts = hosts
         self.set_mode = set_mode
         self.queue = queue.Queue()
         self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
         self.game_mode_names = settings.Game_Modes
-        self.timer = time.time()
-        self.timeout_duration = 120 #seconds
+        self.start()
+
+    def begin(self):
+        self.active = True
+
+    def end(self):
+        self.active = False
 
     def reset(self):
         #retrieve error states from hosts
@@ -102,25 +108,29 @@ class Mode_Error(threading.Thread):
 
     def run(self):
         while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True)
-                if isinstance(topic, bytes):
-                    topic = codecs.decode(topic, 'UTF-8')
-                if isinstance(message, bytes):
-                    message = codecs.decode(message, 'UTF-8')
-                if isinstance(origin, bytes):
-                    origin = codecs.decode(origin, 'UTF-8')
-                if isinstance(destination, bytes):
-                    destination = codecs.decode(destination, 'UTF-8')
-                getattr(self,topic)(
-                        message, 
-                        origin, 
-                        destination,
-                    )
-            except queue.Empty:
-                pass
-                #if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                #    self.set_mode(self.game_mode_names.ERROR)
+            if self.active:
+                try:
+                    topic, message, origin, destination = self.queue.get(True)
+                    if isinstance(topic, bytes):
+                        topic = codecs.decode(topic, 'UTF-8')
+                    if isinstance(message, bytes):
+                        message = codecs.decode(message, 'UTF-8')
+                    if isinstance(origin, bytes):
+                        origin = codecs.decode(origin, 'UTF-8')
+                    if isinstance(destination, bytes):
+                        destination = codecs.decode(destination, 'UTF-8')
+                    getattr(self,topic)(
+                            message, 
+                            origin, 
+                            destination,
+                        )
+                except queue.Empty:
+                    pass
+                    #if self.timer + self.timeout_duration < time.time(): # if timeout condition
+                    #    self.set_mode(self.game_mode_names.ERROR)
 
-            except AttributeError:
-                pass
+                except AttributeError:
+                    pass
+            else:
+                time.sleep(1)
+

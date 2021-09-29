@@ -17,6 +17,7 @@ class Mode_System_Tests(threading.Thread):
     PHASE_VISUAL_TESTS = "phase_visual_tests"
     def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
+        self.active = False
         self.tb = tb
         self.hosts = hosts
         self.set_mode = set_current_mode
@@ -26,6 +27,16 @@ class Mode_System_Tests(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 20 #seconds
+        self.start()
+
+    def begin(self):
+        self.active = True
+        self.timer = time.time()
+        self.phase = self.PHASE_COMPUTER_DETAILS
+        self.hosts.request_all_computer_details()
+
+    def end(self):
+        self.active = False
 
     def reset(self):
         self.timer = time.time()
@@ -171,25 +182,28 @@ class Mode_System_Tests(threading.Thread):
 
     def run(self):
         while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True,1)
-                #print("in Mode_System_Tests",topic, message, origin, destination)
-                if isinstance(topic, bytes):
-                    topic = codecs.decode(topic, 'UTF-8')
-                if isinstance(message, bytes):
-                    message = codecs.decode(message, 'UTF-8')
-                if isinstance(origin, bytes):
-                    origin = codecs.decode(origin, 'UTF-8')
-                if isinstance(destination, bytes):
-                    destination = codecs.decode(destination, 'UTF-8')
-                getattr(self,topic)(message, origin, destination)
-            except queue.Empty:
-                pass
-                """
-                if self.phase != self.PHASE_VISUAL_TESTS:
-                    if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                        self.hosts.errors.set_timeout = [self.phase]
-                        self.set_mode(self.game_mode_names.ERROR)
-                """
-            except AttributeError:
-                pass
+            if self.active:
+                try:
+                    topic, message, origin, destination = self.queue.get(True,1)
+                    #print("in Mode_System_Tests",topic, message, origin, destination)
+                    if isinstance(topic, bytes):
+                        topic = codecs.decode(topic, 'UTF-8')
+                    if isinstance(message, bytes):
+                        message = codecs.decode(message, 'UTF-8')
+                    if isinstance(origin, bytes):
+                        origin = codecs.decode(origin, 'UTF-8')
+                    if isinstance(destination, bytes):
+                        destination = codecs.decode(destination, 'UTF-8')
+                    getattr(self,topic)(message, origin, destination)
+                except queue.Empty:
+                    pass
+                    """
+                    if self.phase != self.PHASE_VISUAL_TESTS:
+                        if self.timer + self.timeout_duration < time.time(): # if timeout condition
+                            self.hosts.errors.set_timeout = [self.phase]
+                            self.set_mode(self.game_mode_names.ERROR)
+                    """
+                except AttributeError:
+                    pass
+            else:
+                time.sleep(1)

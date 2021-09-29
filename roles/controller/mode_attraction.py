@@ -24,14 +24,21 @@ class Mode_Attraction(threading.Thread):
     """
     def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
+        self.active = False
         self.tb = tb 
         self.hosts = hosts
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.timer = time.time()
         self.timeout_duration = 120 #seconds
+        self.start()
+
+    def begin(self):
+        self.active = True
+
+    def end(self):
+        self.active = False
 
     def setup(self):
         pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
@@ -143,9 +150,6 @@ class Mode_Attraction(threading.Thread):
             for state in states:
                 yield state
 
-    def reset(self):
-        self.timer = time.time()
-
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.get_all_host_connected() == True:
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
@@ -159,34 +163,43 @@ class Mode_Attraction(threading.Thread):
         cycle_attraction_phrase = self._cycle_attraction_phrase()
         cycle_attraction_playfield = self._cycle_attraction_playfield()
         cycle_attraction_chimes = self._cycle_attraction_chimes()
+        pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
+        display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
 
         while True:
-            pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
-            carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
-            display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-            try:
-                button_cycle = next(cycle_attraction_buttons)
-                for name_val in button_cycle.items():
-                    for pinball_hostname in pinball_hostnames:
-                        self.hosts.hostname[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
+            if self.active:
+                try:
+                    button_cycle = next(cycle_attraction_buttons)
+                    for name_val in button_cycle.items():
+                        for pinball_hostname in pinball_hostnames:
+                            self.hosts.hostname[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
 
-                topic, message, origin, destination = self.queue.get(True,0.1)
-                if isinstance(topic, bytes):
-                    topic = codecs.decode(topic, 'UTF-8')
-                if isinstance(message, bytes):
-                    message = codecs.decode(message, 'UTF-8')
-                if isinstance(origin, bytes):
-                    origin = codecs.decode(origin, 'UTF-8')
-                if isinstance(destination, bytes):
-                    destination = codecs.decode(destination, 'UTF-8')
-                getattr(self,topic)(
-                        message, 
-                        origin, 
-                        destination,
-                    )
+                    topic, message, origin, destination = self.queue.get(True,0.1)
+                    if isinstance(topic, bytes):
+                        topic = codecs.decode(topic, 'UTF-8')
+                    if isinstance(message, bytes):
+                        message = codecs.decode(message, 'UTF-8')
+                    if isinstance(origin, bytes):
+                        origin = codecs.decode(origin, 'UTF-8')
+                    if isinstance(destination, bytes):
+                        destination = codecs.decode(destination, 'UTF-8')
+                    getattr(self,topic)(
+                            message, 
+                            origin, 
+                            destination,
+                        )
 
-            except queue.Empty:
-                pass
-            except AttributeError:
-                pass
+                except queue.Empty:
+                    pass
+                except AttributeError:
+                    pass
+            else:
+                time.sleep(1)
+                cycle_attraction_buttons = self._cycle_attraction_buttons()
+                cycle_attraction_numbers = self._cycle_attraction_numbers()
+                cycle_attraction_phrase = self._cycle_attraction_phrase()
+                cycle_attraction_playfield = self._cycle_attraction_playfield()
+                cycle_attraction_chimes = self._cycle_attraction_chimes()
+
 
