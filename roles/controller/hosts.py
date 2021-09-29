@@ -424,11 +424,11 @@ class Pinball(Host):
         self.left_stack_inventory = -1
         self.right_stack_inventory = -1
         self.gutter_ball_detected = False
-        self.troughsensor_value
-        self.roll_outer_left
-        self.roll_outer_right
-        self.roll_inner_right
-        self.roll_inner_left
+        self.troughsensor_value = False
+        self.roll_outer_left = False
+        self.roll_outer_right = False
+        self.roll_inner_right = False
+        self.roll_inner_left = False
         self.barter_points = -1
         self.money_points = -1
         self.current_sensor_present= False
