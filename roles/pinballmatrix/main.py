@@ -79,12 +79,12 @@ class Main(threading.Thread):
 
         self.absolute_encoders_zeroed = False
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("respond_high_power_enabled")
+        self.tb.subscribe_to_topic("response_high_power_enabled")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
-        self.tb.subscribe_to_topic("respond_current_sensor_present")
-        self.tb.subscribe_to_topic("respond_current_sensor_value")
-        self.tb.subscribe_to_topic("respond_current_sensor_nominal")
+        self.tb.subscribe_to_topic("response_current_sensor_present")
+        self.tb.subscribe_to_topic("response_current_sensor_value")
+        self.tb.subscribe_to_topic("response_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_sdc2160_present")
         self.tb.subscribe_to_topic("request_sdc2160_faults")
         self.tb.subscribe_to_topic("request_amt203_present")
@@ -168,7 +168,7 @@ class Main(threading.Thread):
                         collected_faults[controller_ordinal][fault_type] = faults_d[fault_type]
             if fault_detected:
                 self.tb.publish(
-                    topic="respond_sdc2160_controller_faults", 
+                    topic="response_sdc2160_controller_faults", 
                     message=collected_faults
                 )
 
@@ -202,16 +202,16 @@ class Main(threading.Thread):
                 all_sdc2160_channel_faults[carousel_name] = collected_faults
             if len(all_sdc2160_channel_faults.keys()) > 0:
                 self.tb.publish(
-                    topic="respond_sdc2160_channel_faults", 
+                    topic="response_sdc2160_channel_faults", 
                     message=all_sdc2160_channel_faults
                 )
             """
             self.tb.publish(
-                topic="respond_sdc2160_relative_position", 
+                topic="response_sdc2160_relative_position", 
                 message=self.request_sdc2160_relative_position()
             )
             self.tb.publish(
-                topic="respond_sdc2160_closed_loop_error", 
+                topic="response_sdc2160_closed_loop_error", 
                 message=self.request_sdc2160_closed_loop_error()
             )
 
@@ -220,7 +220,7 @@ class Main(threading.Thread):
         current_sensor_value = self.request_current_sensor_value()
         if current_sensor_value > 0 :
             self.tb.publish(
-                topic="respond_current_sensor_value", 
+                topic="response_current_sensor_value", 
                 message=current_sensor_value
             )
 
@@ -234,7 +234,7 @@ class Main(threading.Thread):
 
         if len(collected_computer_details.keys()) > 0:
             self.tb.publish(
-                topic="respond_computer_details", 
+                topic="response_computer_details", 
                 message=collected_computer_details
             )
         if self.high_power_init:
@@ -242,14 +242,14 @@ class Main(threading.Thread):
             amt203_present = self.request_amt203_present()
             if not all(amt203_present):
                 self.tb.publish(
-                    topic="respond_amt203_present", 
+                    topic="response_amt203_present", 
                     message=amt203_present
                 )
 
             sdc2160_present = self.request_sdc2160_present()
             if not all(sdc2160_present):
                 self.tb.publish(
-                    topic="respond_sdc2160_present", 
+                    topic="response_sdc2160_present", 
                     message=sdc2160_present
                 )
 
@@ -264,7 +264,7 @@ class Main(threading.Thread):
                         collected_faults[controller_ordinal][fault_type] = faults_d[fault_type]
             if fault_detected:
                 self.tb.publish(
-                    topic="respond_sdc2160_controller_faults", 
+                    topic="response_sdc2160_controller_faults", 
                     message=collected_faults
                 )
 
@@ -298,44 +298,44 @@ class Main(threading.Thread):
                 all_sdc2160_channel_faults[carousel_name] = collected_faults
             if len(all_sdc2160_channel_faults.keys()) > 0:
                 self.tb.publish(
-                    topic="respond_sdc2160_channel_faults", 
+                    topic="response_sdc2160_channel_faults", 
                     message=all_sdc2160_channel_faults
                 )
 
             self.tb.publish(
-                topic="respond_sdc2160_relative_position", 
+                topic="response_sdc2160_relative_position", 
                 message=self.request_sdc2160_relative_position()
             )
             self.tb.publish(
-                topic="respond_amt203_absolute_position", 
+                topic="response_amt203_absolute_position", 
                 message=self.request_amt203_absolute_position()
             )
 
     def request_system_tests(self):
         # INA260 current
         self.tb.publish(
-            topic="respond_current_sensor_value", 
+            topic="response_current_sensor_value", 
             message=self.request_current_sensor_value()
         )
         # computer details
         self.tb.publish(
-            topic="respond_computer_details", 
+            topic="response_computer_details", 
             message=self.request_computer_details()
         )
         # motor controllers present
         self.tb.publish(
-            topic="respond_sdc2160_present", 
+            topic="response_sdc2160_present", 
             message=self.request_sdc2160_present()
         )
         # motor controllers faults
 
         self.tb.publish(
-            topic="respond_sdc2160_controller_faults",
+            topic="response_sdc2160_controller_faults",
             message=self.request_sdc2160_controller_faults()
         )
         #board "get_runtime_fault_flags" True
         self.tb.publish(
-           topic="respond_sdc2160_channel_faults", 
+           topic="response_sdc2160_channel_faults", 
             message={
                 "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
                 "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
@@ -347,17 +347,17 @@ class Main(threading.Thread):
         )
 
         self.tb.publish(
-           topic="respond_amt203_present", 
+           topic="response_amt203_present", 
             message=self.request_amt203_present()
         )               
         # absolute encoder value
         self.tb.publish(
-            topic="respond_amt203_absolute_position", 
+            topic="response_amt203_absolute_position", 
             message=self.request_amt203_absolute_position()
         )
         # relative encoder value
         self.tb.publish(
-            topic="respond_sdc2160_relative_position", 
+            topic="response_sdc2160_relative_position", 
             message=self.request_sdc2160_relative_position()
         )
 
@@ -487,7 +487,7 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == b'connected':
                     pass
-                if topic == b'respond_high_power_enabled':
+                if topic == b'response_high_power_enabled':
                     time.sleep(2)
                     if message: #transition for high power
                         if not self.high_power_init:# if this is the first transition to high power
@@ -510,35 +510,35 @@ class Main(threading.Thread):
 
                 if topic == b'request_computer_details':
                     self.tb.publish(
-                        topic="respond_computer_details", 
+                        topic="response_computer_details", 
                         message=self.request_computer_details()
                     )
                 if topic == b'request_current_sensor_value':
                     self.tb.publish(
-                        topic="respond_current_sensor_value", 
+                        topic="response_current_sensor_value", 
                         message=self.request_current_sensor_value()
                     )                    
                 if topic == b'request_sdc2160_present':
                     self.tb.publish(
-                        topic="respond_sdc2160_present", 
+                        topic="response_sdc2160_present", 
                         message=self.request_sdc2160_present()
                     )                    
                 if topic == b'request_sdc2160_faults':
                     pass
                 if topic == b'request_amt203_present':
                     self.tb.publish(
-                        topic="respond_amt203_present", 
+                        topic="response_amt203_present", 
                         message=self.request_amt203_present()
                     )                    
                 if topic == b'request_amt203_zeroed':
                     self.tb.publish(
-                        topic="respond_amt203_zeroed", 
+                        topic="response_amt203_zeroed", 
                         message=self.request_amt203_zeroed()
                     )
                 if topic == b'request_amt203_absolute_position':
                     fruit_id = message
                     self.tb.publish(
-                        topic="respond_amt203_absolute_position", 
+                        topic="response_amt203_absolute_position", 
                         message=self.request_amt203_absolute_position(fruit_id)
                     )
                 if topic == b'request_sdc2160_relative_position':
