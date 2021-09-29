@@ -776,7 +776,8 @@ class Hosts():
         return True
 
     def request_all_computer_details(self):
-        self.tb.publish("request_computer_details",None)
+        print("~~request_computer_details~~")
+        self.tb.publish("request_computer_details",True)
 
     def get_all_computer_details_received(self):
         absent_list = []
