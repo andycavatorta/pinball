@@ -176,7 +176,7 @@ class Main(threading.Thread):
         self.queue.put((topic, message, origin, destination))
     ##### MODE MANAGEMENT #####
     def set_current_mode(self,mode_name):
-        print("set_current_mode",mode_name)
+        print("set_current_mode",mode_name, self.mode_names.SYSTEM_TESTS)
         self.current_mode_name = mode_name
         if mode_name == self.mode_names.ERROR:
             self.current_mode.end()
