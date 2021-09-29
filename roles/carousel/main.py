@@ -121,11 +121,11 @@ class Main(threading.Thread):
     def request_system_tests(self):
         # computer details
         self.tb.publish(
-            topic="respond_computer_details", 
+            topic="response_computer_details", 
             message=self.request_computer_details()
         )
         self.tb.publish(
-            topic="respond_current_sensor_nominal",
+            topic="response_current_sensor_nominal",
             message=self.request_current_sensor_nominal()
         )
 
@@ -160,12 +160,12 @@ class Main(threading.Thread):
                     self.request_system_tests()
                 if topic == b'request_computer_details':
                     self.tb.publish(
-                        topic="respond_computer_details", 
+                        topic="response_computer_details", 
                         message=self.request_computer_details()
                     )
                 if topic == b'request_current_sensor_nominal':
                     self.tb.publish(
-                        topic="respond_current_sensor_nominal",
+                        topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
                     )
                 if topic == b'carousel_all_off':
