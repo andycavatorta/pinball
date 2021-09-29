@@ -180,56 +180,51 @@ class Main(threading.Thread):
         self.current_mode_name = mode_name
         if mode_name == self.mode_names.ERROR:
             self.current_mode.end()
-            self.current_mode = self.mode_error
+            self.current_mode = self.modes["error"]
             self.current_mode.begin()
         if mode_name == self.mode_names.WAITING_FOR_CONNECTIONS:
             self.current_mode.end()
-            self.current_mode = self.mode_waiting_for_connections
+            self.current_mode = self.modes["waiting_for_connections"]
             self.current_mode.begin()
         if mode_name == self.mode_names.SYSTEM_TESTS:
-            print("1!!!!!!!!!!!!!!!!!!!")
             self.current_mode.end()
-            print("2!!!!!!!!!!!!!!!!!!!", self.mode_system_test)
-            self.current_mode = self.mode_system_test
-            print("3!!!!!!!!!!!!!!!!!!!")
-            print(self.current_mode)
-            print(self.current_mode.begin())
+            self.current_mode = self.modes["system_test"]
             self.current_mode.begin()
         if mode_name == self.mode_names.INVENTORY:
             self.current_mode.end()
-            self.current_mode = self.mode_inventory
+            self.current_mode = self.modes["inventory"]
             self.current_mode.begin()
         if mode_name == self.mode_names.RESET:
             self.current_mode.end()
-            self.current_mode = self.mode_reset
+            self.current_mode = self.modes["reset"]
             self.current_mode.begin()
         if mode_name == self.mode_names.ATTRACTION:
             self.current_mode.end()
-            self.current_mode = self.mode_attraction
+            self.current_mode = self.modes["attraction"]
             self.current_mode.begin()
         if mode_name == self.mode_names.COUNTDOWN:
             self.current_mode.end()
-            self.current_mode = self.mode_countdown
+            self.current_mode = self.modes["countdown"]
             self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE_INTRO:
             self.current_mode.end()
-            self.current_mode = self.mode_barter_intro
+            self.current_mode = self.modes["barter_intro"]
             self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE:
             self.current_mode.end()
-            self.current_mode = self.mode_barter
+            self.current_mode = self.modes["barter"]
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
             self.current_mode.end()
-            self.current_mode = self.mode_money_intro
+            self.current_mode = self.modes["money_intro"]
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE:
             self.current_mode.end()
-            self.current_mode = self.mode_money
+            self.current_mode = self.modes["money"]
             self.current_mode.begin()
         if mode_name == self.mode_names.ENDING:
             self.current_mode.end()
-            self.current_mode = self.mode_ending
+            self.current_mode = self.modes["ending"]
             self.current_mode.begin()
     def get_current_mode(self):
         return self.current_mode
