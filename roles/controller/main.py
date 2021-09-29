@@ -168,7 +168,7 @@ class Main(threading.Thread):
     def exception_handler(self, exception):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
-        self.add_to_queue("respond_host_connected",status,hostname, False)
+        self.add_to_queue(b"respond_host_connected",status,hostname, False)
         # update self.hosts[hostname].set_connected() 
         # self.add_to_queue(topic, message, origin, destination)
     def add_to_queue(self, topic, message, origin, destination):
@@ -232,7 +232,7 @@ class Main(threading.Thread):
     def safety_enable_handler(self, state_bool):
         # when all computers are present
         # when power turns on or off
-        self.add_to_queue("event_safety_enable", state_bool, "", "")
+        self.add_to_queue(b"event_safety_enable", state_bool, "", "")
 
     def run(self):
         while True:
