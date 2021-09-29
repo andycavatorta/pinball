@@ -872,6 +872,8 @@ class Hosts():
             destination = codecs.decode(destination, 'UTF-8')
         ##### ROUTE MESSAGE TO METHOD #####
 
+        if topic == "respond_host_connected":
+            self.hostnames[origin].set_connected(message)
         if topic == "connected":
             self.hostnames[origin].set_connected(message)
         if topic == "response_computer_details":
