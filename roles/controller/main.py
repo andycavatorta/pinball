@@ -188,7 +188,7 @@ class Main(threading.Thread):
             self.current_mode.begin()
         if mode_name == self.mode_names.SYSTEM_TESTS:
             self.current_mode.end()
-            self.current_mode = self.modes["system_test"]
+            self.current_mode = self.modes["system_tests"]
             self.current_mode.begin()
         if mode_name == self.mode_names.INVENTORY:
             self.current_mode.end()
