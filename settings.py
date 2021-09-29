@@ -74,7 +74,7 @@ class Roles():
 class Game_Modes:
     ERROR = "error"
     WAITING_FOR_CONNECTIONS = "waiting_for_connections"
-    SYSTEM_TESTS = "system_test"
+    SYSTEM_TESTS = "system_tests"
     INVENTORY = "inventory"
     RESET = "reset"
     ATTRACTION = "attraction"

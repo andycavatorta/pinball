@@ -64,7 +64,7 @@ class Main(threading.Thread):
     class mode_names:
         ERROR = "error"
         WAITING_FOR_CONNECTIONS = "waiting_for_connections"
-        SYSTEM_TESTS = "system_test"
+        SYSTEM_TESTS = "system_tests"
         INVENTORY = "inventory"
         RESET = "reset"
         ATTRACTION = "attraction"
@@ -146,7 +146,7 @@ class Main(threading.Thread):
         self.modes = {
             "error":Mode_Error(self.tb, self.hosts, self.set_current_mode),
             "waiting_for_connections":Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode),
-            "system_test":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
+            "system_tests":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
             "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode),
             "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode),
             #"reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
