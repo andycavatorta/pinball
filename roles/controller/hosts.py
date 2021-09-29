@@ -769,7 +769,9 @@ class Hosts():
             'pinballmatrix':self.pinballmatrix,
         }
     def get_all_host_connected(self):
+        print("get_all_host_connected")
         for hostname in self.hostname:
+            print(hostname, self.hostname[hostname].get_connected())
             if self.hostname[hostname].get_connected() == False:
                 return False
         return True
