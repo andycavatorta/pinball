@@ -424,9 +424,21 @@ class Pinball(Host):
         self.left_stack_inventory = -1
         self.right_stack_inventory = -1
         self.gutter_ball_detected = False
+        self.troughsensor_value
+        self.roll_outer_left
+        self.roll_outer_right
+        self.roll_inner_right
+        self.roll_inner_left
         self.barter_points = -1
         self.money_points = -1
         self.current_sensor_present= False
+        self.playfield_switch_active = {
+            "trough_sensor":False,
+            "roll_outer_left":False,
+            "roll_inner_left":False,
+            "roll_outer_right":False,
+            "roll_inner_right":False,
+        }
         self.button_light_active = {
             "izquierda":False,
             "trueque":False,
@@ -538,6 +550,7 @@ class Pinball(Host):
     def get_money_points(self):
         return self.money_points
     ### TROUGH ###
+
     def request_troughsensor_value(self):
         self.tb.publish(topic="request_troughsensor_value", message="",destination=self.hostname)
     def set_troughsensor_value(self,troughsensor_value):
@@ -550,22 +563,35 @@ class Pinball(Host):
             message=True,
             destination=self.hostname
         )
-    def set_gutter_ball_detected(self,gutter_ball_detected):
-        self.gutter_ball_detected = gutter_ball_detected
-    def get_gutter_ball_detected(self):
-        return self.gutter_ball_detected
     def request_barter_points(self): 
         self.tb.publish(
             topic="request_barter_points", 
             message="",
             destination=self.hostname
         )
+    def set_roll_outer_left(self,roll_outer_left):
+        self.roll_outer_left = roll_outer_left
+
+    def set_roll_outer_right(self,roll_outer_right):
+        self.roll_outer_right = roll_outer_right
+
+    def set_roll_inner_right(self,roll_inner_right):
+        self.roll_inner_right = roll_inner_right
+
+    def set_roll_inner_left(self,roll_inner_left):
+        self.roll_inner_left = roll_inner_left
+
+    def get_gutter_ball_detected(self):
+        return self.gutter_ball_detected
     def request_gutter_ball_detected(self): 
         self.tb.publish(
             topic="request_gutter_ball_detected", 
             message="",
             destination=self.hostname
         )
+
+
+
 
     def request_button_switch_active(self, button_name, state_bool): 
         self.tb.publish(
@@ -904,7 +930,7 @@ class Hosts():
         if topic == "event_roll_outer_right":
             self.hostname[origin].set_roll_outer_right(message)
         if topic == "event_trough_sensor":
-            self.hostname[origin].set_trough_sensor(message)
+            self.hostname[origin].set_troughsensor_value(message)
         if topic == "event_left_stack_ball_present":
             self.hostname[origin].set_left_stack_ball_present(message)
         if topic == "event_right_stack_ball_present":
