@@ -776,7 +776,6 @@ class Hosts():
         return True
 
     def request_all_computer_details(self):
-        print("~~request_computer_details~~")
         self.tb.publish("request_computer_details",True)
 
     def get_all_computer_details_received(self):

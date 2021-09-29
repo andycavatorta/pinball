@@ -41,7 +41,7 @@ INVENTORY
     request_fruit_tube_sensor
     cmd_fruit_tube_launch
 
-    respond to topics for tube solenoids and optical sensors
+    response to topics for tube solenoids and optical sensors
 
 ATTRACTION
     play animations on playfield
@@ -366,7 +366,7 @@ class MPF_Bridge(threading.Thread):
             try:
               message = self.socket.recv()
               print(f"Received msg#: {message}")
-              self.tb.publish("respond_mpf_event", eval(message.decode('utf-8')))
+              self.tb.publish("response_mpf_event", eval(message.decode('utf-8')))
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print("got except90j")
@@ -420,11 +420,11 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
 
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("respond_high_power_enabled")
+        self.tb.subscribe_to_topic("response_high_power_enabled")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
-        self.tb.subscribe_to_topic("respond_current_sensor_present")
-        self.tb.subscribe_to_topic("respond_current_sensor_value")
+        self.tb.subscribe_to_topic("response_current_sensor_present")
+        self.tb.subscribe_to_topic("response_current_sensor_value")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_visual_tests")
 
@@ -482,12 +482,12 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == b'request_computer_details':
                     self.tb.publish(
-                        topic="respond_computer_details", 
+                        topic="response_computer_details", 
                         message=self.request_computer_details()
                     )
                 if topic == b'request_current_sensor_nominal':
                     self.tb.publish(
-                        topic="respond_current_sensor_nominal",
+                        topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
                     )
                 if topic == b'gamestation_all_off':
