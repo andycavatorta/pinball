@@ -365,6 +365,7 @@ class Matrix(Host):
     def request_sdc2160_relative_position(self, fruit_id):
         self.tb.publish(topic="request_sdc2160_relative_position", message="")
     def set_sdc2160_relative_position(self, relative_position, fruit_id = -1):
+        print("set_sdc2160_relative_position",relative_position, fruit_id)
         if fruit_id == -1:
             self.sdc2160_relative_position = relative_position
         else:
