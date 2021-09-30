@@ -438,7 +438,7 @@ class Matrix(Host):
         return self.target_position_confirmed
 
     def response_high_power_enabled(self): 
-        self.tb.publish(topic="response_high_power_enabled", message="")
+        self.tb.publish(topic="response_high_power_enabled", message=True)
 
 
 

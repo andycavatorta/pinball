@@ -588,21 +588,25 @@ class Main(threading.Thread):
                     pass
 
                 if topic == b'response_high_power_enabled':
+                    print("---------")
                     time.sleep(2)
+                    print("---------")
                     if message: #transition for high power
+                    print("---------")
                         if not self.high_power_init:# if this is the first transition to high power
+                            print("---------")
                             self.create_controllers_and_motors()
                             self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
                             self.high_power_init = True
-                            self.sync_relative_encoders_to_absolute_encoders()
+                            #self.sync_relative_encoders_to_absolute_encoders()
                             time.sleep(5)
 
-                            self.cmd_rotate_fruit_to_target("carousel_1", 0, "front")
-                            self.cmd_rotate_fruit_to_target("carousel_2", 1, "front")
-                            self.cmd_rotate_fruit_to_target("carousel_3", 2, "front")
-                            self.cmd_rotate_fruit_to_target("carousel_4", 3, "front")
-                            self.cmd_rotate_fruit_to_target("carousel_5", 4, "front")
-                            self.cmd_rotate_fruit_to_target("carousel_6", 5, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_1", 0, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_2", 1, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_3", 2, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_4", 3, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_5", 4, "front")
+                            #self.cmd_rotate_fruit_to_target("carousel_6", 5, "front")
 
 
                 if topic == b'request_current_sensor_nominal':
