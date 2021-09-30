@@ -7,7 +7,7 @@ import threading
 import time
 
 class Animation(threading.Thread):
-    def __init__(self, tb, hosts, set_current_mode):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
