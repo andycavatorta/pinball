@@ -757,7 +757,7 @@ class Hosts():
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
-        self.dispatch(b"response_computer_details", self.controller.get_computer_details(), "controller", "controller"):
+        self.dispatch(b"response_computer_details", self.controller.get_computer_details(), "controller", "controller")
 
         self.mode_countdown_states = {
             "comienza_button_order":[]
