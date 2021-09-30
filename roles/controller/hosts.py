@@ -781,6 +781,7 @@ class Hosts():
         for name in host_list:
             if self.hostnames[name].get_computer_details_received() == False:
                 absent_list.append(name)
+        print("-------------absent_list",absent_list)
         return len(absent_list) == 0
 
     def get_all_current_sensor_present(self):
