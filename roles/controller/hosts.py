@@ -795,7 +795,7 @@ class Hosts():
         # to do : add controller
         names = ['pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
-            if self.hostnames[name].get_response_current_sensor_value() == False:
+            if self.hostnames[name].get_current_sensor_value() == False:
                 return False
         return True
 
