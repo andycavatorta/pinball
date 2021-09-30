@@ -108,20 +108,28 @@ class Mode_System_Tests(threading.Thread):
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
+            print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",5, 0.2)
+                print("_check_all_device_states_",1)
                 if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
                     self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",6, 0.2)
+                    print("_check_all_device_states_",2)
                     if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",7, 0.2)
+                        print("_check_all_device_states_",3)
                         if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
                             self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",8, 0.2)
+                            print("_check_all_device_states_",4)
                             if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
                                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 0.2)
+                                print("_check_all_device_states_",5)
                                 if self.hosts.get_all_current_sensor_populated() == True:
                                     self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",0, 1)
+                                    print("_check_all_device_states_",6)
                                     if self.hosts.pinballmatrix.get_amt203_zeroed() == True:
                                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",1, 1)
+                                        print("_check_all_device_states_",7)
                                         if len(self.hosts.get_all_non_nominal_states()) == 0:
                                             print("")
                                             print("===========PHASE_CHECK_CURRENT_LEAK============")
