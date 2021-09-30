@@ -209,6 +209,7 @@ class Mode_System_Tests(threading.Thread):
                     if isinstance(destination, bytes):
                         destination = codecs.decode(destination, 'UTF-8')
                     getattr(self,topic)(message, origin, destination)
+                    print("getattr(self,topic)",getattr(self,topic))
                 except queue.Empty:
                     pass
                     """
