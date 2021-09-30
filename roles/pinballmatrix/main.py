@@ -95,7 +95,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("request_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("request_target_position_confirmed")
-        self.tb.subscribe_to_topic("request_visual_tests")
+        #self.tb.subscribe_to_topic("request_visual_tests") # not yet implemented
         self.tb.subscribe_to_topic("cmd_rotate_fruit_to_target")
 
         self.start()

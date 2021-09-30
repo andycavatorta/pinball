@@ -422,6 +422,10 @@ class Matrix(Host):
     def get_target_position_confirmed(self):
         return self.target_position_confirmed
 
+    def response_high_power_enabled(self): 
+        self.tb.publish(topic="response_high_power_enabled", message="")
+
+
 
 class Pinball(Host):
     def __init__(self, hostname, tb):
@@ -840,10 +844,23 @@ class Hosts():
             destination = codecs.decode(destination, 'UTF-8')
         ##### ROUTE MESSAGE TO METHOD #####
 
-        if topic == "respond_host_connected":
+        if topic == "connected" or topic == "respond_host_connected":
             self.hostnames[origin].set_connected(message)
-        if topic == "connected":
-            self.hostnames[origin].set_connected(message)
+        if topic == "event_carousel_ball_detected":
+            self.hostnames[origin].set_carousel_ball_detected(message)
+        if topic == "event_carousel_error":
+            self.hostnames[origin].set_carousel_error(message)
+        if topic == "event_carousel_target_reached":
+            self.hostnames[origin].set_carousel_target_reached(message)
+        if topic == "event_left_stack_ball_present":
+            self.hostnames[origin].set_left_stack_ball_present(message)
+
+
+
+
+
+
+
         if topic == "response_computer_details":
             self.hostnames[origin].set_computer_details(message)
         if topic == "response_current_sensor_present":
@@ -904,8 +921,6 @@ class Hosts():
             self.hostnames[origin].set_roll_outer_right(message)
         if topic == "event_trough_sensor":
             self.hostnames[origin].set_troughsensor_value(message)
-        if topic == "event_left_stack_ball_present":
-            self.hostnames[origin].set_left_stack_ball_present(message)
         if topic == "event_right_stack_ball_present":
             self.hostnames[origin].set_right_stack_ball_present(message)
         if topic == "event_left_stack_motion_detected":
@@ -916,14 +931,10 @@ class Hosts():
             self.hostnames[origin].set_carousel_absolute(message)
         if topic == "response_carousel_relative":
             self.hostnames[origin].set_carousel_relative(message)
-        if topic == "event_carousel_target_reached":
-            self.hostnames[origin].set_carousel_target_reached(message)
-        if topic == "event_carousel_error":
-            self.hostnames[origin].set_carousel_error(message)
-        if topic == "event_carousel_ball_detected":
-            self.hostnames[origin].set_carousel_ball_detected(message)
         if topic == "response_carousel_ball_detected":
             self.hostnames[origin].set_carousel_ball_detected(message)
+        if topic == "response_high_power_enabled":
+            self.hostnames[origin].response_high_power_enabled(message)
 
     ##### AGGREGATED STATES #####
 
