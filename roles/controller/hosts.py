@@ -775,13 +775,19 @@ class Hosts():
 
     def get_all_computer_details_received(self):
         absent_list = []
+        print("1 -------------absent_list",absent_list)
         host_keys  = self.hostname.keys()
+        print("2 -------------absent_list",absent_list)
         host_list  = list(host_keys)
+        print("3 -------------absent_list",absent_list)
         host_list.remove("controller")
+        print("4 -------------absent_list",absent_list)
         for name in host_list:
+            print("5 -------------absent_list",absent_list)
             if self.hostnames[name].get_computer_details_received() == False:
+                print("6 -------------absent_list",absent_list)
                 absent_list.append(name)
-        print("-------------absent_list",absent_list)
+        print("7 -------------absent_list",absent_list)
         return len(absent_list) == 0
 
     def get_all_current_sensor_present(self):
