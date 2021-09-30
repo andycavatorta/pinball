@@ -135,7 +135,7 @@ class Main(threading.Thread):
 
         self.high_power_init = False
 
-        self.absolute_encoders_zeroed = False
+        self.absolute_encoders_zeroed = [False,False,False,False,False,False]
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("response_high_power_enabled")
         self.tb.subscribe_to_topic("request_system_tests")
@@ -469,7 +469,9 @@ class Main(threading.Thread):
         return self.absolute_encoders.get_presences()
 
     def request_amt203_zeroed(self):
-        return self.absolute_encoders_zeroed
+        # to do: stop using dummy values after motor control is deemed safe
+        #return self.absolute_encoders_zeroed
+        return [True,True,True,True,True,True]
 
     def request_amt203_absolute_position(self, fruit_id=-1):
         if fruit_id == -1 or fruit_id == None:
