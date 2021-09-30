@@ -799,24 +799,16 @@ class Hosts():
 
     def get_all_non_nominal_states(self):
         non_nominal_states = []
-        print("+++++++++++++++",0)
         closed_loop_error = self.pinballmatrix.get_sdc2160_closed_loop_error()
-        print("+++++++++++++++",1)
         closed_loop_error_list = []
-        print("+++++++++++++++",2)
         for channel_value in enumerate(closed_loop_error):
-            print("+++++++++++++++",3)
             channel, value = channel_value
-            print("+++++++++++++++",4)
             if value > 100:
                 closed_loop_error_list.append([channel, value])
                 non_nominal_states.append(["pinballmatrix","sdc2160_closed_loop_error",channel, value])
-        print("+++++++++++++++",5)
         # sdc: check channel faults
         channel_faults = self.pinballmatrix.get_sdc2160_channel_faults()
-        print("+++++++++++++++",6)
         channel_faults_list = []
-        print("+++++++++++++++",7)
         for channel_name in channel_faults:
             channel = channel_faults[channel_name]
             if channel["temperature"] > 40:
@@ -837,37 +829,40 @@ class Hosts():
                 if runtime_status_flags[flag_name] != 0:
                     channel_faults_list.append(flag_name, channel_name,runtime_status_flags[flag_name])
                     non_nominal_states.append(["pinballmatrix",channel_name,flag_name, runtime_status_flags[flag_name]])
-        print("+++++++++++++++",8)
         # sdc: check controller faults
         controller_errors_list = []
-        print("+++++++++++++++",9)
         controller_faults_list = self.pinballmatrix.get_sdc2160_controller_faults()
-        print("+++++++++++++++",10)
         controller_faults = {
             "carousel1and2":controller_faults_list[0],
             "carousel3and4":controller_faults_list[1],
             "carousel5and6":controller_faults_list[2],
         }
-        print("+++++++++++++++",11)
         for controller_name in controller_faults:
             controller = controller_faults[controller_name]
             for fault_name in controller:
                 if controller[fault_name] != 0:
                     controller_errors_list.append([fault_name, controller_name,controller[fault_name]])
                     non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
-        print("+++++++++++++++",12)
         computer_details_errors = []
-        print("+++++++++++++++",13)
+        print("+++++++++++++++",1)
         for hostname in self.hostname:
+            print("+++++++++++++++",2)
             deets = self.hostnames[hostname].get_computer_details()
+            print("+++++++++++++++",3)
             if deets["cpu_temp"] > 60:
+                print("+++++++++++++++",4)
                 computer_details_errors.append([hostname,"cpu_temp", deets["cpu_temp"]])
+                print("+++++++++++++++",5)
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
+                print("+++++++++++++++",6)
             if deets["df"][0] < 500000000:
+                print("+++++++++++++++",7)
                 computer_details_errors.append([hostname,"df", deets["df"]])
+                print("+++++++++++++++",8)
                 non_nominal_states.append([hostname,"computer_details","df", deets["df"]])
+                print("+++++++++++++++",9)
         # all: check current sensors
-        print("+++++++++++++++",14)
+        print("+++++++++++++++",10)
         return non_nominal_states
 
     def dispatch(self, topic, message, origin, destination):
