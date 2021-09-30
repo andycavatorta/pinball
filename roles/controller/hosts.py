@@ -799,6 +799,14 @@ class Hosts():
                 return False
         return True
 
+    def get_all_current_sensor_nominal(self):
+        # to do : add controller
+        names = ['pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
+        for name in names:
+            if self.hostnames[name].get_current_sensor_nominal() == False:
+                return False
+        return True
+
     def get_all_non_nominal_states(self):
         non_nominal_states = []
         closed_loop_error = self.pinballmatrix.get_sdc2160_closed_loop_error()
