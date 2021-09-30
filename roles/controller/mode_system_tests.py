@@ -34,6 +34,7 @@ class Mode_System_Tests(threading.Thread):
         self.timer = time.time()
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.hosts.pinballmatrix.response_high_power_enabled()
+        time.sleep(5)
         self.hosts.request_all_computer_details()
 
     def end(self):
