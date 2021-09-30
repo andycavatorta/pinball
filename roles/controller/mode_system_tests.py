@@ -59,8 +59,6 @@ class Mode_System_Tests(threading.Thread):
         # if self.hosts responds that all self.hosts have reported details
         #     send request for hardware presence
         if self.phase == self.PHASE_COMPUTER_DETAILS:
-            print("---------------------",self.phase,self.PHASE_COMPUTER_DETAILS,self.phase == self.PHASE_COMPUTER_DETAILS)
-            print("self.hosts.get_all_computer_details_received()",self.hosts.get_all_computer_details_received())
             if self.hosts.get_all_computer_details_received() == True:
                 print("")
                 print("===========PHASE_DEVICE_PRESENCE============")

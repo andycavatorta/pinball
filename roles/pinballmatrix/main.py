@@ -583,7 +583,11 @@ class Main(threading.Thread):
                         message=self.request_sdc2160_present()
                     )    
                 if topic == b'request_sdc2160_relative_position':
-                    pass
+                    self.tb.publish(
+                        topic="response_sdc2160_relative_position", 
+                        message=self.request_sdc2160_relative_position()
+                    )    
+                    
                 if topic == b'request_target_position_confirmed':
                     pass
 
