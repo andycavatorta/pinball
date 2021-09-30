@@ -208,6 +208,7 @@ class Mode_System_Tests(threading.Thread):
                         origin = codecs.decode(origin, 'UTF-8')
                     if isinstance(destination, bytes):
                         destination = codecs.decode(destination, 'UTF-8')
+                    print("topic",topic)
                     print("getattr(self,topic)",getattr(self,topic))
                     getattr(self,topic)(
                             message, 
