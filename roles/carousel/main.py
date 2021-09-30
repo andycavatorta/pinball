@@ -1,3 +1,31 @@
+"""
+topics subscribed:
+    request_carousel_detect_ball
+    request_solenoids_present
+    cmd_carousel_eject_ball
+    cmd_carousel_lights
+    request_carousel_all_off
+
+    request_computer_details
+    request_system_tests
+    connected
+
+topics published:
+    event_carousel_ball_detected
+    response_carousel_ball_detected
+
+    connected
+    deadman
+    response_computer_details
+    response_visual_tests
+
+to do: 
+    add callback to Solenoids for change in ball detection
+    request_solenoids_present
+    request_carousel_detect_ball
+
+"""
+
 import adafruit_tlc5947
 import board
 import busio
@@ -27,61 +55,6 @@ from roles.carousel import fade_led_test
 
 GPIO.setmode(GPIO.BCM)
 
-
-###########################
-# S Y S T E M   T E S T S #
-###########################
-
-# Check communication with TLC5947
-
-##################################################
-# LOGGING AND REPORTING #
-##################################################
-
-# EXCEPTION
-
-# STATUS MESSAGES
-
-# LOCAL LOGGING / ROTATION
-
-##################################################
-# MAIN, TB, STATES, AND TOPICS #
-##################################################
-
-
-##########
-# STATES #
-##########
-
-class Game_Mode():
-    def __init__(self):
-        self.modes = settings.Game_Modes
-        self.mode = self.game_modes.WAITING_FOR_CONNECTIONS
-    def get_mode(self):
-        return self.mode
-    def set_mode(self, mode_ref):
-        self.mode = mode_ref
-
-###################
-# HARDWARE SETUP  #
-###################
-
-# set up motor controllers
-# set up references to motors
-# set up proxies for carousels?
-
-################################################
-# HARDWARE SEMANTICS (flatter map of callable methods) #
-################################################
-
-# carousel class is pretty flat already.  Use as-is.
-
-#############################################
-# ROUTINES (time, events, multiple systems) # 
-#############################################
-
-#############################################
-
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
     def __init__(self):
@@ -103,15 +76,14 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.solenoids = Solenoids()
         self.lighting = lighting
-        self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("cmd_carousel_all_off")
-        self.tb.subscribe_to_topic("request_carousel_detect_ball")
-        self.tb.subscribe_to_topic("cmd_carousel_lights")
         self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
-        self.tb.subscribe_to_topic("request_system_tests")
+        self.tb.subscribe_to_topic("cmd_carousel_lights")
+        self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("request_carousel_detect_ball")
         self.tb.subscribe_to_topic("request_computer_details")
-        self.tb.subscribe_to_topic("request_current_sensor_nominal")
-
+        self.tb.subscribe_to_topic("request_solenoids_present")
+        self.tb.subscribe_to_topic("request_system_tests")
         self.start()
 
     def request_system_tests(self):
@@ -119,10 +91,6 @@ class Main(threading.Thread):
         self.tb.publish(
             topic="response_computer_details", 
             message=self.request_computer_details()
-        )
-        self.tb.publish(
-            topic="response_current_sensor_nominal",
-            message=self.request_current_sensor_nominal()
         )
 
     def request_computer_details(self):
@@ -133,9 +101,13 @@ class Main(threading.Thread):
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
 
-    def request_current_sensor_nominal(self):
-        # TODO: Make the ACTUAL tests here.
-        return True
+    def request_solenoids_present(self):
+            # to do: finish
+            return [True,True,True,True,True]
+
+    def request_carousel_detect_ball(self):
+            # to do: finish
+            return [True,True,True,True,True]
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -152,40 +124,40 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'request_system_tests':
-                    self.request_system_tests()
-                if topic == b'request_computer_details':
-                    self.tb.publish(
-                        topic="response_computer_details", 
-                        message=self.request_computer_details()
-                    )
-                if topic == b'request_current_sensor_nominal':
-                    self.tb.publish(
-                        topic="response_current_sensor_nominal",
-                        message=self.request_current_sensor_nominal()
-                    )
                 if topic == b'cmd_carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
-                if topic == b'request_carousel_detect_ball':
-                    pass
-                if topic == b'carousel_get_amps':
-                    pass
                 if topic == b'cmd_carousel_eject_ball':
                     self.solenoids.add_to_queue('eject_ball', message) # message is fruit_id between 0 and 4
-                if topic == b'get_system_tests':
-                    pass
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
-                        animation_name, params = message
+                        animation_name, group, params = message
                         if animation_name == "clear_all":
                             self.lighting.clear_all()
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
                         if animation_name == "pulse_fruit":
-                            self.lighting.pulse_fruit(params[0])
+                            self.lighting.pulse_fruit(group)
                         if animation_name == "stroke_arc":
-                            self.lighting.stroke_arc(params[0],params[1])
-
+                            self.lighting.stroke_arc(group, params)
+                        if animation_name == "set_spoke":
+                            self.lighting.set_spoke(group, params)
+                if topic == b'request_carousel_detect_ball':
+                    self.tb.publish(
+                        topic="response_carousel_ball_detected", 
+                        message=self.request_carousel_detect_ball()
+                    )
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="response_computer_details", 
+                        message=self.request_computer_details()
+                    )
+                if topic == b'request_solenoids_present':
+                    self.tb.publish(
+                        topic="response_solenoids_present", 
+                        message=self.request_solenoids_present()
+                    )
+                if topic == b'request_system_tests':
+                    self.request_system_tests()
 
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()

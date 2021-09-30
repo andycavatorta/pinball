@@ -94,17 +94,17 @@ class Host():
         return self.pinball_git_timestamp
     def get_tb_git_timestamp(self):
         return self.tb_git_timestamp
-    def set_response_current_sensor_present(self,response_current_sensor_present):
+    def set_current_sensor_present(self,response_current_sensor_present):
         self.response_current_sensor_present
-    def set_response_current_sensor_value(self,response_current_sensor_value):
+    def set_current_sensor_value(self,response_current_sensor_value):
         self.response_current_sensor_value
-    def set_response_current_sensor_nominal(self,response_current_sensor_nominal):
+    def set_current_sensor_nominal(self,response_current_sensor_nominal):
         self.response_current_sensor_nominal
-    def get_response_current_sensor_present(self):
+    def get_current_sensor_present(self):
         return self.response_current_sensor_present
-    def get_response_current_sensor_value(self):
+    def get_current_sensor_value(self):
         return self.response_current_sensor_value
-    def get_response_current_sensor_nominal(self):
+    def get_current_sensor_nominal(self):
         return self.response_current_sensor_nominal
 
 class Controller(Host):
@@ -152,10 +152,10 @@ class Carousel(Host):
         self.tb.publish(topic="cmd_carousel_eject_ball",message=True,destination=self.hostname)
     def request_system_tests(self):
         self.tb.publish(topic="request_system_tests",message=True,destination=self.hostname)
-    def cmd_carousel_lights(self, group, animation):
+    def cmd_carousel_lights(self, animation, group=None, params=None):
         self.tb.publish(
             topic="cmd_carousel_lights", 
-            message=[group, animation],
+            message=[animation, group, params],
             destination=self.hostname
         )
     def cmd_carousel_all_off(self):
@@ -528,19 +528,19 @@ class Pinball(Host):
         )
 
     ### RIGHT TUBE ###
-    def request_rightttube_present(self):
-        self.tb.publish(topic="request_rightttube_present", message="",destination=self.hostname)
-    def set_rightttube_present(self,rightttube_present):
-        self.rightttube_present = rightttube_present
-    def get_rightttube_present(self):
-        return self.rightttube_present
-    def set_rightttube_value(self,rightttube_value):
-        self.rightttube_value = rightttube_value
-    def get_rightttube_value(self):
-        return self.rightttube_value
-    def cmd_rightttube_launch(self):
+    def request_righttube_present(self):
+        self.tb.publish(topic="request_righttube_present", message="",destination=self.hostname)
+    def set_righttube_present(self,righttube_present):
+        self.righttube_present = righttube_present
+    def get_righttube_present(self):
+        return self.righttube_present
+    def set_righttube_value(self,righttube_value):
+        self.righttube_value = righttube_value
+    def get_righttube_value(self):
+        return self.righttube_value
+    def cmd_righttube_launch(self):
         self.tb.publish(
-            topic="cmd_rightttube_launch", 
+            topic="cmd_righttube_launch", 
             message=True,
             destination=self.hostname
         )
@@ -750,6 +750,11 @@ class Hosts():
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
+
+        self.mode_countdown_states = {
+            "comienza_button_order":[]
+        }
+
     def get_all_host_connected(self):
         for hostname in self.hostnames:
             if hostname != "controller":
@@ -859,49 +864,49 @@ class Hosts():
         if topic == "event_carousel_error":
             self.hostnames[origin].set_carousel_error(message)
         if topic == "event_carousel_target_reached":
-            self.hostnames[origin].set_carousel_target_reached(message)
-        if topic == "event_flipper_left":
-            self.hostnames[origin].event_flipper_left(message)
-        if topic == "event_flipper_right":
-            self.hostnames[origin].event_flipper_right(message)
-        if topic == "event_gamestation_button":
-            self.hostnames[origin].event_gamestation_button(message)
-        if topic == "event_kicker":
-            self.hostnames[origin].event_kicker(message)
+            self.hostnames[origin].set_target_position_confirmed(message)
+        #if topic == "event_button_izquierda": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_izquierda(message)
+        #if topic == "event_button_derecha": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_derecha(message)
+        #if topic == "event_gamestation_button": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_gamestation_button(message)
+        #if topic == "event_button_comienza": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_comienza(message)
         if topic == "event_left_stack_ball_present":
-            self.hostnames[origin].set_left_stack_ball_present(message)
-        if topic == "event_left_stack_motion_detected":
-            self.hostnames[origin].set_left_stack_motion_detected(message)
-        if topic == "event_pop_1":
-            self.hostnames[origin].set_pop_left(message)
-        if topic == "event_pop_2":
-            self.hostnames[origin].set_pop_center(message)
-        if topic == "event_pop_3":
-            self.hostnames[origin].set_pop_right(message)
+            self.hostnames[origin].set_lefttube_value(message)
+        #if topic == "event_left_stack_motion_detected": # unclear what state data should be stored here
+        #    self.hostnames[origin].set_left_stack_motion_detected(message)
+        #if topic == "event_pop_1": # unclear what state data should be stored here
+        #    self.hostnames[origin].set_pop_left(message)
+        #if topic == "event_pop_2": # unclear what state data should be stored here
+        #    self.hostnames[origin].set_pop_center(message)
+        #if topic == "event_pop_3": # unclear what state data should be stored here
+        #    self.hostnames[origin].set_pop_right(message)
         if topic == "event_right_stack_ball_present":
-            self.hostnames[origin].set_right_stack_ball_present(message)
-        if topic == "event_right_stack_motion_detected":
-            self.hostnames[origin].set_right_stack_motion_detected(message)
-        if topic == "event_roll_inner_left":
-            self.hostnames[origin].set_roll_inner_left(message)
-        if topic == "event_roll_inner_right":
-            self.hostnames[origin].set_roll_inner_right(message)
-        if topic == "event_roll_outer_left":
-            self.hostnames[origin].set_roll_outer_left(message)
-        if topic == "event_roll_outer_right":
-            self.hostnames[origin].set_roll_outer_right(message
-        if topic == "event_slingshot_left":
-            self.hostnames[origin].event_slingshot_left(message)
-        if topic == "event_slingshot_right":
-            self.hostnames[origin].event_slingshot_right(message)
-        if topic == "event_spinner":
-            self.hostnames[origin].set_spinner(message)
+            self.hostnames[origin].set_righttube_value(message)
+        #if topic == "event_right_stack_motion_detected": # unclear what state data should be stored here
+        #    self.hostnames[origin].set_right_stack_motion_detected(message)
+        #if topic == "event_roll_inner_left":
+        #    self.hostnames[origin].set_roll_inner_left(message)
+        #if topic == "event_roll_inner_right":
+        #    self.hostnames[origin].set_roll_inner_right(message)
+        #if topic == "event_roll_outer_left":
+        #    self.hostnames[origin].set_roll_outer_left(message)
+        #if topic == "event_roll_outer_right":
+        #    self.hostnames[origin].set_roll_outer_right(message
+        #if topic == "event_slingshot_left":
+        #    self.hostnames[origin].event_slingshot_left(message)
+        #if topic == "event_slingshot_right":
+        #    self.hostnames[origin].event_slingshot_right(message)
+        #if topic == "event_spinner":
+        #    self.hostnames[origin].set_spinner(message)
         if topic == "event_trough_sensor":
             self.hostnames[origin].set_troughsensor_value(message)
-        if topic == "event_tube_left":
-            self.hostnames[origin].event_tube_left(message)
-        if topic == "event_tube_right":
-            self.hostnames[origin].event_tube_right(message)
+        #if topic == "event_button_trueque":
+        #    self.hostnames[origin].event_button_trueque(message)
+        #if topic == "event_button_dinero":
+        #    self.hostnames[origin].event_button_dinero(message)
         if topic == "response_amt203_absolute_position":
             self.hostnames[origin].set_amt203_absolute_position(message)
         if topic == "response_amt203_present":
@@ -909,11 +914,11 @@ class Hosts():
         if topic == "response_amt203_zeroed":
             self.hostnames[origin].set_amt203_zeroed(message)
         if topic == "response_carousel_absolute":
-            self.hostnames[origin].set_carousel_absolute(message)
+            self.hostnames[origin].set_amt203_absolute_position(message)
         if topic == "response_carousel_ball_detected":
             self.hostnames[origin].set_carousel_ball_detected(message)
         if topic == "response_carousel_relative":
-            self.hostnames[origin].set_carousel_relative(message)
+            self.hostnames[origin].set_sdc2160_relative_position(message)
         if topic == "response_computer_details":
             self.hostnames[origin].set_computer_details(message)
         if topic == "response_current_sensor_nominal":

@@ -47,13 +47,13 @@ class Mode_System_Tests(threading.Thread):
         print("")
         #self.tb.publish("request_computer_details",None)
 
-    def respond_host_connected(self, message, origin, destination):
+    def response_host_connected(self, message, origin, destination):
         # inappropriate response
         # if message is False, change mode back to Wait_For_Connections
         if message == False:
             self.set_mode(self.game_mode_names.WAITING_FOR_CONNECTIONS)
 
-    def respond_computer_details(self, message, origin, destination):
+    def response_computer_details(self, message, origin, destination):
         # if self.hosts responds that all self.hosts have reported details
         #     send request for hardware presence
         if self.phase == self.PHASE_COMPUTER_DETAILS:
@@ -61,6 +61,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 print("===========PHASE_DEVICE_PRESENCE============")
                 print("")
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",1, 0.2)
                 self.phase = self.PHASE_DEVICE_PRESENCE
                 self.tb.publish("request_amt203_present",None)
                 self.tb.publish("request_sdc2160_present",None)
@@ -70,8 +71,11 @@ class Mode_System_Tests(threading.Thread):
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
             if self.hosts.pinballmatrix.get_amt203_present() == True:
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",2, 0.2)
                 if self.hosts.pinballmatrix.get_sdc2160_present() == True:
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",3, 0.2)
                     if self.hosts.get_all_current_sensor_present() == True:
+                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",4, 0.2)
                         print("")
                         print("===========PHASE_DEVICE_STATES============")
                         print("")
@@ -88,25 +92,32 @@ class Mode_System_Tests(threading.Thread):
                         time.sleep(10)
                         self.timer = time.time()
 
-    def respond_amt203_present(self, message, origin, destination):
+    def response_amt203_present(self, message, origin, destination):
         self._check_presence_()
 
-    def respond_sdc2160_present(self, message, origin, destination):
+    def response_sdc2160_present(self, message, origin, destination):
         self._check_presence_()
 
-    def respond_current_sensor_present(self, message, origin, destination):
+    def response_current_sensor_present(self, message, origin, destination):
         self._check_presence_()
 
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",5, 0.2)
                 if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",6, 0.2)
                     if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
+                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",7, 0.2)
                         if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
+                            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",8, 0.2)
                             if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
+                                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 0.2)
                                 if self.hosts.get_all_current_sensor_populated() == True:
+                                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",0, 1)
                                     if self.hosts.pinballmatrix.get_amt203_zeroed() == True:
+                                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",1, 1)
                                         if len(self.hosts.get_all_non_nominal_states()) == 0:
                                             print("")
                                             print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -121,54 +132,56 @@ class Mode_System_Tests(threading.Thread):
                                             print("")
                                             self.set_mode(self.game_mode_names.ERROR)
 
-    def respond_current_sensor_nominal(self, message, origin, destination):
+    def response_current_sensor_nominal(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         if self.hosts.get_all_current_sensor_value() == True:
-            print("")
-            print("===========PHASE_VISUAL_TESTS============")
-            print("")
-            self.timer = time.time()
-            self.phase = self.PHASE_VISUAL_TESTS
-            self.tb.publish("request_visual_tests",None)
+            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",2, 1)
+            self.set_current_mode(self.game_mode_names.INVENTORY)
+            #print("")
+            #print("===========PHASE_VISUAL_TESTS============")
+            #print("")
+            #self.timer = time.time()
+            #self.phase = self.PHASE_VISUAL_TESTS
+            #self.tb.publish("request_visual_tests",None)
 
-    def respond_current_sensor_value(self, message, origin, destination):
+    def response_current_sensor_value(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_amt203_absolute_position(self, message, origin, destination):
+    def response_amt203_absolute_position(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_sdc2160_relative_position(self, message, origin, destination):
+    def response_sdc2160_relative_position(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_sdc2160_channel_faults(self, message, origin, destination):
+    def response_sdc2160_channel_faults(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_sdc2160_controller_faults(self, message, origin, destination):
+    def response_sdc2160_controller_faults(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_sdc2160_closed_loop_error(self, message, origin, destination):
+    def response_sdc2160_closed_loop_error(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
 
-    def respond_amt203_zeroed(self, message, origin, destination):
+    def response_amt203_zeroed(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self._check_all_device_states_()
 
-    def respond_visual_tests(self, message, origin, destination):
+    def response_visual_tests(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
         self.set_mode(self.game_mode_names.INVENTORY)

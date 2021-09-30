@@ -37,8 +37,22 @@ class Mode_Inventory(threading.Thread):
         #self.set_current_mode(self.game_mode_names.ATTRACTION)
 
     def begin(self):
-        self.timer = time.time()
+        #self.timer = time.time()
         self.active = True
+        #skipping zeroing, inventory, and set_balls_for_game
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",3, 1)
+        time.sleep(0.1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",4, 1)
+        time.sleep(0.1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",5, 1)
+        time.sleep(0.1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",7, 1)
+        time.sleep(0.1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",8, 1)
+        time.sleep(0.1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 1)
+        time.sleep(0.1)
+        self.set_current_mode(self.game_mode_names.ATTRACTION)
 
     def end(self):
         self.active = False

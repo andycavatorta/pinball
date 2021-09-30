@@ -7,6 +7,30 @@ to do:
         request_display_leds_present
         request_display_solenoids_present
 
+topics subscribed:
+    cmd_all_off
+    cmd_play_score
+    cmd_set_number
+    cmd_set_phrase
+    connected
+    request_computer_details
+    request_current_sensor_nominal
+    request_current_sensor_present
+    request_current_sensor_value
+    request_display_leds_present
+    request_display_solenoids_present
+    request_system_tests
+
+topics published:
+
+    connected
+    response_computer_details
+    response_current_sensor_nominal*
+    response_current_sensor_present*
+    response_current_sensor_value*
+    response_display_leds_present
+    response_display_solenoids_present
+
 """
 import importlib
 import os
@@ -279,8 +303,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("cmd_set_number")
         self.tb.subscribe_to_topic("request_display_leds_present")
         self.tb.subscribe_to_topic("request_display_solenoids_present")
-
-
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
@@ -338,6 +360,14 @@ class Main(threading.Thread):
         # TODO: Make the ACTUAL tests here.
         return True
 
+    def request_current_sensor_present(self):
+        # TODO: Make the ACTUAL tests here.
+        return True
+
+    def request_current_sensor_value(self):
+        # TODO: Make the ACTUAL tests here.
+        return 0.0
+
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
@@ -354,8 +384,21 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'request_system_tests':
-                    self.request_system_tests()
+                if topic == b'cmd_all_off':
+                    self.acrylic_display.set_all_off()
+                    self.chime_player.stop_all_chime_power()
+
+                if topic == b'cmd_play_score':
+                    if destination == self.tb.get_hostname():
+                        self.chime_player.play_score(message)
+
+                if topic == b'cmd_set_number':
+                    if destination == self.tb.get_hostname():
+                        self.acrylic_display.set_number(message)
+                        
+                if topic == b'cmd_set_phrase':
+                    if destination == self.tb.get_hostname():
+                        self.acrylic_display.set_phrase(message)
 
                 if topic == b'request_computer_details':
                     self.tb.publish(
@@ -367,6 +410,18 @@ class Main(threading.Thread):
                     self.tb.publish(
                         topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
+                    )
+
+                if topic == b'request_current_sensor_present':
+                    self.tb.publish(
+                        topic="response_current_sensor_present",
+                        message=self.request_current_sensor_present()
+                    )
+
+                if topic == b'request_current_sensor_value':
+                    self.tb.publish(
+                        topic="response_current_sensor_value",
+                        message=self.request_current_sensor_value()
                     )
 
                 if topic == b'request_display_leds_present':
@@ -381,30 +436,8 @@ class Main(threading.Thread):
                         message=self.request_display_solenoids_present()
                     )
 
-                if topic == b'cmd_play_score':
-                    if destination == self.tb.get_hostname():
-                        self.chime_player.play_score(message)
-
-                if topic == b'cmd_set_phrase':
-                    if destination == self.tb.get_hostname():
-                        self.acrylic_display.set_phrase(message)
-
-                if topic == b'cmd_set_number':
-                    if destination == self.tb.get_hostname():
-                        self.acrylic_display.set_number(message)
-                        
-                if topic == b'get_current':
-                    tb.publish('measured_amps', self.power_sensor.get_current())
-
-                if topic == b'all_off':
-                    self.acrylic_display.set_all_off()
-                    self.chime_player.stop_all_chime_power()
-
-                if topic == b'':
-                    tb.publish('', [])
-
-                if topic == b'':
-                    tb.publish('', [])
+                if topic == b'request_system_tests':
+                    self.request_system_tests()
 
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()

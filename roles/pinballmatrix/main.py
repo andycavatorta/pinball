@@ -1,3 +1,61 @@
+"""
+to do:
+    event_carousel_error
+    event_carousel_target_reached
+    response_carousel_absolute
+    response_carousel_relative
+
+
+topics subscribed:
+    cmd_rotate_fruit_to_target
+    connected
+    deadman
+    request_amt203_absolute_position
+    request_amt203_present
+    request_amt203_zeroed
+    request_motor_details
+    request_sdc2160_channel_faults
+    request_sdc2160_closed_loop_error
+    request_sdc2160_controller_faults
+    request_sdc2160_faults
+    request_sdc2160_present
+    request_sdc2160_relative_position
+    request_target_position_confirmed
+    request_computer_details
+    request_current_sensor_present
+    request_current_sensor_value
+    request_current_sensor_nominal
+    request_system_tests
+    connected
+
+
+
+
+topics published:
+    connected
+    event_carousel_error
+    event_carousel_target_reached
+    request_computer_details
+    request_current_sensor_nominal
+    request_current_sensor_present
+    request_current_sensor_value
+    request_system_tests
+    response_amt203_absolute_position
+    response_amt203_present
+    response_amt203_zeroed
+    response_carousel_absolute
+    response_carousel_relative
+    response_computer_details
+    response_current_sensor_value
+    response_sdc2160_channel_faults
+    response_sdc2160_closed_loop_error
+    response_sdc2160_controller_faults
+    response_sdc2160_present
+    response_sdc2160_relative_position
+
+
+"""
+
 import importlib
 import mido
 import os
@@ -376,18 +434,17 @@ class Main(threading.Thread):
             "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
         }
         
-    def request_current_sensor_present(self):
-        return True
-        #return self.current_sensor.get_current()
-
-    def request_current_sensor_value(self):
-        return 0
-        #return self.current_sensor.get_current()
-
     def request_current_sensor_nominal(self):
+        #TODO: Do the ACTUAL tests here.
         return True
-        #return self.current_sensor.get_current()
-
+        
+    def request_current_sensor_present(self):
+        #TODO: Do the ACTUAL tests here.
+        return True
+        
+    def request_current_sensor_value(self):
+        #TODO: Do the ACTUAL tests here.
+        return 0.0
     def request_sdc2160_present(self):
         present = {
             "carousel1and2":"",
@@ -485,8 +542,51 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True,5)
                 print(topic, message)
+
+                if topic == b'cmd_rotate_fruit_to_target':
+                    carousel_name, fruit_id, target_name = message
+                    self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
                 if topic == b'connected':
                     pass
+                if topic == b'request_amt203_absolute_position':
+                    fruit_id = message
+                    self.tb.publish(
+                        topic="response_amt203_absolute_position", 
+                        message=self.request_amt203_absolute_position(fruit_id)
+                    )
+                if topic == b'request_amt203_present':
+                    self.tb.publish(
+                        topic="response_amt203_present", 
+                        message=self.request_amt203_present()
+                    )                  
+                if topic == b'request_amt203_zeroed':
+                    self.tb.publish(
+                        topic="response_amt203_zeroed", 
+                        message=self.request_amt203_zeroed()
+                    )
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="response_computer_details", 
+                        message=self.request_computer_details()
+                    )
+                if topic == b'request_sdc2160_channel_faults':
+                    pass
+                if topic == b'request_sdc2160_closed_loop_error':
+                    pass
+                if topic == b'request_sdc2160_controller_faults':
+                    pass             
+                if topic == b'request_sdc2160_faults':
+                    pass                  
+                if topic == b'request_sdc2160_present':
+                    self.tb.publish(
+                        topic="response_sdc2160_present", 
+                        message=self.request_sdc2160_present()
+                    )    
+                if topic == b'request_sdc2160_relative_position':
+                    pass
+                if topic == b'request_target_position_confirmed':
+                    pass
+
                 if topic == b'response_high_power_enabled':
                     time.sleep(2)
                     if message: #transition for high power
@@ -505,53 +605,24 @@ class Main(threading.Thread):
                             self.cmd_rotate_fruit_to_target("carousel_6", 5, "front")
 
 
-                if topic == b'request_system_tests':
-                    self.request_system_tests()
-
-                if topic == b'request_computer_details':
+                if topic == b'request_current_sensor_nominal':
                     self.tb.publish(
-                        topic="response_computer_details", 
-                        message=self.request_computer_details()
+                        topic="response_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
+                    )
+                if topic == b'request_current_sensor_present':
+                    self.tb.publish(
+                        topic="response_current_sensor_present",
+                        message=self.request_current_sensor_present()
                     )
                 if topic == b'request_current_sensor_value':
                     self.tb.publish(
-                        topic="response_current_sensor_value", 
+                        topic="response_current_sensor_value",
                         message=self.request_current_sensor_value()
-                    )                    
-                if topic == b'request_sdc2160_present':
-                    self.tb.publish(
-                        topic="response_sdc2160_present", 
-                        message=self.request_sdc2160_present()
-                    )                    
-                if topic == b'request_sdc2160_faults':
-                    pass
-                if topic == b'request_amt203_present':
-                    self.tb.publish(
-                        topic="response_amt203_present", 
-                        message=self.request_amt203_present()
-                    )                    
-                if topic == b'request_amt203_zeroed':
-                    self.tb.publish(
-                        topic="response_amt203_zeroed", 
-                        message=self.request_amt203_zeroed()
                     )
-                if topic == b'request_amt203_absolute_position':
-                    fruit_id = message
-                    self.tb.publish(
-                        topic="response_amt203_absolute_position", 
-                        message=self.request_amt203_absolute_position(fruit_id)
-                    )
-                if topic == b'request_sdc2160_relative_position':
-                    pass
-                if topic == b'request_sdc2160_channel_faults':
-                    pass
-                if topic == b'request_sdc2160_controller_faults':
-                    pass
-                if topic == b'request_target_position_confirmed':
-                    pass
-                if topic == b'cmd_rotate_fruit_to_target':
-                    carousel_name, fruit_id, target_name = message
-                    self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
+
+                if topic == b'request_system_tests':
+                    self.request_system_tests()
 
             except queue.Empty as e:
                 #self.request_system_faults()

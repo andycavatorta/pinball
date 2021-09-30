@@ -103,11 +103,11 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_mpf")
         """
         MPF events will be parsed into tb messages with topics
-            event_flipper_left
-            event_flipper_right
-            event_kicker
-            event_tube_right
-            event_tube_left
+            event_button_izquierda
+            event_button_derecha
+            event_button_comienza
+            event_button_dinero
+            event_button_trueque
             event_pop_1
             event_pop_2
             event_pop_3
@@ -260,15 +260,15 @@ class Main(threading.Thread):
                     print("received:",topic, message, origin, destination)
                 if topic==b"event_mpf":
                     if message['component'] == 's_left_flipper':
-                        topic = "event_flipper_left"
+                        topic = "event_button_izquierda"
                     if message['component'] == 's_left_launch':
-                        topic = "event_flipper_right"
+                        topic = "event_button_derecha"
                     if message['component'] == 's_game_launch':
-                        topic = "event_kicker"
+                        topic = "event_button_comienza"
                     if message['component'] == 's_right_launch':
-                        topic = "event_tube_right"
+                        topic = "event_button_dinero"
                     if message['component'] == 's_right_flipper':
-                        topic = "event_tube_left"
+                        topic = "event_button_trueque"
                     if message['component'] == 's_pop_bumper_1':
                         topic = "event_pop_1"
                     if message['component'] == 's_pop_bumper_2':
