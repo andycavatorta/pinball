@@ -93,24 +93,27 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("deadman")
         #system tests
+        self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("response_computer_details")
+        self.tb.subscribe_to_topic("response_current_sensor_nominal")
         self.tb.subscribe_to_topic("response_current_sensor_present")
         self.tb.subscribe_to_topic("response_current_sensor_value")
-        self.tb.subscribe_to_topic("response_current_sensor_nominal")
-        self.tb.subscribe_to_topic("response_amt203_present")
-        self.tb.subscribe_to_topic("response_amt203_zeroed")
-        self.tb.subscribe_to_topic("response_amt203_absolute_position")
-        self.tb.subscribe_to_topic("response_sdc2160_present")
-        self.tb.subscribe_to_topic("response_sdc2160_relative_position")
-        self.tb.subscribe_to_topic("response_sdc2160_channel_faults")
-        self.tb.subscribe_to_topic("response_sdc2160_controller_faults")
-        self.tb.subscribe_to_topic("response_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("response_visual_tests")
-        self.tb.subscribe_to_topic("request_current_sensor_nominal")
         # pinball events
         self.tb.subscribe_to_topic("event_mpf")
         """
         MPF events will be parsed into tb messages with topics
+            event_flipper_left
+            event_flipper_right
+            event_kicker
+            event_tube_right
+            event_tube_left
+            event_pop_1
+            event_pop_2
+            event_pop_3
+            event_slingshot_left
+            event_slingshot_right
+
             event_spinner
             event_pop_left
             event_pop_center
@@ -123,21 +126,32 @@ class Main(threading.Thread):
             event_button_dinero
             event_button_derecho
         """
-        self.tb.subscribe_to_topic("event_roll_outer_left")
+        
+        self.tb.subscribe_to_topic("event_left_stack_ball_present")
+        self.tb.subscribe_to_topic("event_gamestation_button")
+        self.tb.subscribe_to_topic("event_left_stack_motion_detected")
+        self.tb.subscribe_to_topic("event_right_stack_ball_present")
+        self.tb.subscribe_to_topic("event_right_stack_motion_detected")
         self.tb.subscribe_to_topic("event_roll_inner_left")
         self.tb.subscribe_to_topic("event_roll_inner_right")
+        self.tb.subscribe_to_topic("event_roll_outer_left")
         self.tb.subscribe_to_topic("event_roll_outer_right")
         self.tb.subscribe_to_topic("event_trough_sensor")
-        self.tb.subscribe_to_topic("event_left_stack_ball_present")
-        self.tb.subscribe_to_topic("event_right_stack_ball_present")
-        self.tb.subscribe_to_topic("event_left_stack_motion_detected")
-        self.tb.subscribe_to_topic("event_right_stack_motion_detected")
+        self.tb.subscribe_to_topic("event_spinner")
 
         # ENCODERS & MOTORS
+        self.tb.subscribe_to_topic("event_carousel_error")
+        self.tb.subscribe_to_topic("event_carousel_target_reached")
+        self.tb.subscribe_to_topic("response_amt203_absolute_position")
+        self.tb.subscribe_to_topic("response_amt203_present")
+        self.tb.subscribe_to_topic("response_amt203_zeroed")
         self.tb.subscribe_to_topic("response_carousel_absolute")
         self.tb.subscribe_to_topic("response_carousel_relative")
-        self.tb.subscribe_to_topic("event_carousel_target_reached")
-        self.tb.subscribe_to_topic("event_carousel_error")
+        self.tb.subscribe_to_topic("response_sdc2160_channel_faults")
+        self.tb.subscribe_to_topic("response_sdc2160_closed_loop_error")
+        self.tb.subscribe_to_topic("response_sdc2160_controller_faults")
+        self.tb.subscribe_to_topic("response_sdc2160_present")
+        self.tb.subscribe_to_topic("response_sdc2160_relative_position")
         
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("event_carousel_ball_detected")

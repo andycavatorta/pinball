@@ -123,6 +123,7 @@ class Carousel(Host):
         Host.__init__(self, hostname)
         self.hostname = hostname
         self.tb = tb
+        self.carousel_error = {}
         self.solenoids_present = [
             False,
             False,
@@ -143,9 +144,9 @@ class Carousel(Host):
         self.solenoids_present = solenoids_present
     def get_solenoids_present(self):
         return self.solenoids_present
-    def set_balls_present(self, balls_present):
+    def set_carousel_ball_detected(self, balls_present):
         self.balls_present = balls_present
-    def get_balls_present(self):
+    def get_carousel_ball_detected(self):
         return self.balls_present
     def request_eject_ball(self, fruit_id):
         self.tb.publish(topic="cmd_carousel_eject_ball",message=True,destination=self.hostname)
@@ -163,6 +164,13 @@ class Carousel(Host):
             message=True,
             destination=self.hostname
         )
+    def set_carousel_error(self,carousel_error):
+        self.carousel_error = carousel_error
+
+    def get_carousel_error(self,carousel_error):
+        return self.carousel_error
+
+
 
 
 class Matrix(Host):
@@ -852,89 +860,82 @@ class Hosts():
             self.hostnames[origin].set_carousel_error(message)
         if topic == "event_carousel_target_reached":
             self.hostnames[origin].set_carousel_target_reached(message)
+        if topic == "event_flipper_left":
+            self.hostnames[origin].event_flipper_left(message)
+        if topic == "event_flipper_right":
+            self.hostnames[origin].event_flipper_right(message)
+        if topic == "event_gamestation_button":
+            self.hostnames[origin].event_gamestation_button(message)
+        if topic == "event_kicker":
+            self.hostnames[origin].event_kicker(message)
         if topic == "event_left_stack_ball_present":
             self.hostnames[origin].set_left_stack_ball_present(message)
-
-
-
-
-
-
-
-        if topic == "response_computer_details":
-            self.hostnames[origin].set_computer_details(message)
-        if topic == "response_current_sensor_present":
-            self.hostnames[origin].set_current_sensor_present(message)
-        if topic == "response_current_sensor_value":
-            self.hostnames[origin].set_current_sensor_value(message)
-        if topic == "response_current_sensor_nominal":
-            self.hostnames[origin].set_current_sensor_nominal(message)
-        if topic == "response_current_sensor_nominal":
-            self.hostnames[origin].set_current_sensor_nominal(message)
-        if topic == "response_amt203_present":
-            self.hostnames[origin].set_amt203_present(message)
-        if topic == "response_amt203_zeroed":
-            self.hostnames[origin].set_amt203_zeroed(message)
-        if topic == "response_amt203_absolute_position":
-            self.hostnames[origin].set_amt203_absolute_position(message)
-        if topic == "response_sdc2160_present":
-            self.hostnames[origin].set_sdc2160_present(message)
-        if topic == "response_sdc2160_relative_position":
-            self.hostnames[origin].set_sdc2160_relative_position(message)
-        if topic == "response_sdc2160_channel_faults":
-            self.hostnames[origin].set_sdc2160_channel_faults(message)
-        if topic == "response_sdc2160_controller_faults":
-            self.hostnames[origin].set_sdc2160_controller_faults(message)
-        if topic == "response_sdc2160_closed_loop_error":
-            self.hostnames[origin].set_sdc2160_closed_loop_error(message)
-        if topic == "response_visual_tests":
-            self.hostnames[origin].set_visual_tests(message)
-        if topic == "event_spinner":
-            self.hostnames[origin].set_spinner(message)
-        if topic == "event_pop_left":
+        if topic == "event_left_stack_motion_detected":
+            self.hostnames[origin].set_left_stack_motion_detected(message)
+        if topic == "event_pop_1":
             self.hostnames[origin].set_pop_left(message)
-        if topic == "event_pop_center":
+        if topic == "event_pop_2":
             self.hostnames[origin].set_pop_center(message)
-        if topic == "event_pop_right":
+        if topic == "event_pop_3":
             self.hostnames[origin].set_pop_right(message)
-        if topic == "event_sling_left":
-            self.hostnames[origin].set_sling_left(message)
-        if topic == "event_sling_right":
-            self.hostnames[origin].set_sling_right(message)
-        if topic == "event_button_izquierda":
-            self.hostnames[origin].set_button_izquierda(message)
-        if topic == "event_button_trueque":
-            self.hostnames[origin].set_button_trueque(message)
-        if topic == "event_button_comienza":
-            self.hostnames[origin].set_button_comienza(message)
-        if topic == "event_button_dinero":
-            self.hostnames[origin].set_button_dinero(message)
-        if topic == "event_button_derecho":
-            self.hostnames[origin].set_button_derecho(message)
-        if topic == "event_roll_outer_left":
-            self.hostnames[origin].set_roll_outer_left(message)
+        if topic == "event_right_stack_ball_present":
+            self.hostnames[origin].set_right_stack_ball_present(message)
+        if topic == "event_right_stack_motion_detected":
+            self.hostnames[origin].set_right_stack_motion_detected(message)
         if topic == "event_roll_inner_left":
             self.hostnames[origin].set_roll_inner_left(message)
         if topic == "event_roll_inner_right":
             self.hostnames[origin].set_roll_inner_right(message)
+        if topic == "event_roll_outer_left":
+            self.hostnames[origin].set_roll_outer_left(message)
         if topic == "event_roll_outer_right":
-            self.hostnames[origin].set_roll_outer_right(message)
+            self.hostnames[origin].set_roll_outer_right(message
+        if topic == "event_slingshot_left":
+            self.hostnames[origin].event_slingshot_left(message)
+        if topic == "event_slingshot_right":
+            self.hostnames[origin].event_slingshot_right(message)
+        if topic == "event_spinner":
+            self.hostnames[origin].set_spinner(message)
         if topic == "event_trough_sensor":
             self.hostnames[origin].set_troughsensor_value(message)
-        if topic == "event_right_stack_ball_present":
-            self.hostnames[origin].set_right_stack_ball_present(message)
-        if topic == "event_left_stack_motion_detected":
-            self.hostnames[origin].set_left_stack_motion_detected(message)
-        if topic == "event_right_stack_motion_detected":
-            self.hostnames[origin].set_right_stack_motion_detected(message)
+        if topic == "event_tube_left":
+            self.hostnames[origin].event_tube_left(message)
+        if topic == "event_tube_right":
+            self.hostnames[origin].event_tube_right(message)
+        if topic == "response_amt203_absolute_position":
+            self.hostnames[origin].set_amt203_absolute_position(message)
+        if topic == "response_amt203_present":
+            self.hostnames[origin].set_amt203_present(message)
+        if topic == "response_amt203_zeroed":
+            self.hostnames[origin].set_amt203_zeroed(message)
         if topic == "response_carousel_absolute":
             self.hostnames[origin].set_carousel_absolute(message)
-        if topic == "response_carousel_relative":
-            self.hostnames[origin].set_carousel_relative(message)
         if topic == "response_carousel_ball_detected":
             self.hostnames[origin].set_carousel_ball_detected(message)
+        if topic == "response_carousel_relative":
+            self.hostnames[origin].set_carousel_relative(message)
+        if topic == "response_computer_details":
+            self.hostnames[origin].set_computer_details(message)
+        if topic == "response_current_sensor_nominal":
+            self.hostnames[origin].set_current_sensor_nominal(message)
+        if topic == "response_current_sensor_present":
+            self.hostnames[origin].set_current_sensor_present(message)
+        if topic == "response_current_sensor_value":
+            self.hostnames[origin].set_current_sensor_value(message)
         if topic == "response_high_power_enabled":
             self.hostnames[origin].response_high_power_enabled(message)
+        if topic == "response_sdc2160_channel_faults":
+            self.hostnames[origin].set_sdc2160_channel_faults(message)
+        if topic == "response_sdc2160_closed_loop_error":
+            self.hostnames[origin].set_sdc2160_closed_loop_error(message)
+        if topic == "response_sdc2160_controller_faults":
+            self.hostnames[origin].set_sdc2160_controller_faults(message)
+        if topic == "response_sdc2160_present":
+            self.hostnames[origin].set_sdc2160_present(message)
+        if topic == "response_sdc2160_relative_position":
+            self.hostnames[origin].set_sdc2160_relative_position(message)
+        #if topic == "response_visual_tests":
+        #    self.hostnames[origin].set_visual_tests(message)
 
     ##### AGGREGATED STATES #####
 

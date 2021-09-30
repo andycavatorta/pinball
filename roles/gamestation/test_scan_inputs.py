@@ -12,7 +12,7 @@ class GPIO_Switch():
     def __init__(self, gpio_pin):
         self.gpio_pin = gpio_pin
         self.last_value = 0
-        GPIO.setup(self.gpio_pin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
+        GPIO.setup(self.gpio_pin, GPIO.IN, pull_up_down = GPIO.PUD_DOWN )
     def read(self):
         value = GPIO.input(self.gpio_pin)
         if self.last_value == value:

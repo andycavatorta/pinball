@@ -291,7 +291,7 @@ def trough_sensor_handler(name, value):
         main.button_lights.comienza.off()
 
 def button_handler(name, value):
-    main.publish_to_controller(self, name, value)
+    main.publish_to_controller("event_gamestation_button", [name, value])
 
 
 
