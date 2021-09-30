@@ -46,7 +46,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.get_all_host_connected() == True:
             #self.hosts.hostnames["carouselcenter"].cmd_carousel_all_off()
-            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",0, 0.2)
+            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",0, 0.1)
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def add_to_queue(self, topic, message, origin, destination):

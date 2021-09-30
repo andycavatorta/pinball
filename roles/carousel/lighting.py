@@ -82,7 +82,7 @@ def set_spoke(id, level):
     print("lighting.set_spoke",id, level,int(level*65536))
     radial_spoke = radial_spokes[id]
     for led in radial_spoke:
-        pins[led].duty_cycle = int(level*65536)
+        pins[led].duty_cycle = int(level*65535)
 
 def fade_spoke(id, start_level, end_level, fade_period = 0.1):
     animation_frame_period = 0.01
