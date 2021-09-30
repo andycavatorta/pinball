@@ -1,3 +1,13 @@
+"""
+to do: 
+   finish system tests for:
+        request_current_sensor_present
+        request_current_sensor_value
+        request_current_sensor_nominal
+        request_display_leds_present
+        request_display_solenoids_present
+
+"""
 import importlib
 import os
 import queue
@@ -220,13 +230,9 @@ class Chime_Player(threading.Thread):
             try:
                 #score_name = self.current_score.get(True)
                 #score = scores[score_name]
-                print("a")
                 score = self.current_score.get(True)
-                print("b")
                 score = scores[score]
-                print("c")                
                 default_beat_period = score["default_beat_period"]
-                print("d")
                 beats = score["beats"]
                 interrupt = False
                 for beat in beats:
@@ -267,13 +273,19 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
         self.hostname = self.tb.get_hostname()
 
-        self.tb.subscribe_to_topic("play_score")
-        self.tb.subscribe_to_topic("set_phrase")
-        self.tb.subscribe_to_topic("set_number")
-        self.tb.subscribe_to_topic("all_off")
+        self.tb.subscribe_to_topic("cmd_all_off")
+        self.tb.subscribe_to_topic("cmd_play_score")
+        self.tb.subscribe_to_topic("cmd_set_phrase")
+        self.tb.subscribe_to_topic("cmd_set_number")
+        self.tb.subscribe_to_topic("request_display_leds_present")
+        self.tb.subscribe_to_topic("request_display_solenoids_present")
+
+
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
+        self.tb.subscribe_to_topic("request_current_sensor_present")
+        self.tb.subscribe_to_topic("request_current_sensor_value")
 
         self.tb.publish("connected", True)
         self.chime_player = Chime_Player()
@@ -287,13 +299,32 @@ class Main(threading.Thread):
     def request_system_tests(self):
         # computer details
         self.tb.publish(
-            topic="response_computer_details", 
-            message=self.request_computer_details()
-        )
-        self.tb.publish(
             topic="response_current_sensor_nominal",
             message=self.request_current_sensor_nominal()
         )
+        self.tb.publish(
+            topic="response_display_leds_present", 
+            message=self.request_display_leds_present()
+        )
+        self.tb.publish(
+            topic="response_display_solenoids_present", 
+            message=self.response_display_solenoids_present()
+        )
+
+    def request_display_solenoids_present(self):
+        # This needs to be finished after the current sensor works
+        return [True,True,True,True,True]
+
+    def request_display_leds_present(self):
+        # This needs to be finished after the current sensor works
+        return {
+                "phrases":[True,True,True,True,True],
+                "numerals":{
+                    "a":[True,True,True,True,True,True,True,True,True,True],
+                    "b":[True,True,True,True,True,True,True,True,True,True],
+                    "c":[True,True,True,True,True,True,True,True,True,True],
+                }
+            }
 
     def request_computer_details(self):
         return {
@@ -338,15 +369,27 @@ class Main(threading.Thread):
                         message=self.request_current_sensor_nominal()
                     )
 
-                if topic == b'play_score':
+                if topic == b'request_display_leds_present':
+                    self.tb.publish(
+                        topic="response_display_leds_present", 
+                        message=self.request_display_leds_present()
+                    )
+                    
+                if topic == b'request_display_solenoids_present':
+                    self.tb.publish(
+                        topic="response_display_solenoids_present", 
+                        message=self.request_display_solenoids_present()
+                    )
+
+                if topic == b'cmd_play_score':
                     if destination == self.tb.get_hostname():
                         self.chime_player.play_score(message)
 
-                if topic == b'set_phrase':
+                if topic == b'cmd_set_phrase':
                     if destination == self.tb.get_hostname():
                         self.acrylic_display.set_phrase(message)
 
-                if topic == b'set_number':
+                if topic == b'cmd_set_number':
                     if destination == self.tb.get_hostname():
                         self.acrylic_display.set_number(message)
                         
@@ -356,6 +399,13 @@ class Main(threading.Thread):
                 if topic == b'all_off':
                     self.acrylic_display.set_all_off()
                     self.chime_player.stop_all_chime_power()
+
+                if topic == b'':
+                    tb.publish('', [])
+
+                if topic == b'':
+                    tb.publish('', [])
+
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))

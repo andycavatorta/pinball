@@ -104,17 +104,13 @@ class Main(threading.Thread):
         self.solenoids = Solenoids()
         self.lighting = lighting
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("carousel_all_off")
-        self.tb.subscribe_to_topic("carousel_detect_ball")
-        self.tb.subscribe_to_topic("carousel_get_amps")
-        self.tb.subscribe_to_topic("carousel_lights")
-        self.tb.subscribe_to_topic("eject_ball")
-        self.tb.subscribe_to_topic("get_system_tests")
+        self.tb.subscribe_to_topic("cmd_carousel_all_off")
+        self.tb.subscribe_to_topic("request_carousel_detect_ball")
+        self.tb.subscribe_to_topic("cmd_carousel_lights")
+        self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
-
-        self.tb.subscribe_to_topic("request_led_animations")
 
         self.start()
 
@@ -168,19 +164,17 @@ class Main(threading.Thread):
                         topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
                     )
-                if topic == b'carousel_all_off':
+                if topic == b'cmd_carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
-                if topic == b'carousel_detect_ball':
+                if topic == b'request_carousel_detect_ball':
                     pass
                 if topic == b'carousel_get_amps':
                     pass
-                if topic == b'carousel_lights':
-                    pass
-                if topic == b'eject_ball':
+                if topic == b'cmd_carousel_eject_ball':
                     self.solenoids.add_to_queue('eject_ball', message) # message is fruit_id between 0 and 4
                 if topic == b'get_system_tests':
                     pass
-                if topic == b'request_led_animations':
+                if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
                         animation_name, params = message
                         if animation_name == "clear_all":

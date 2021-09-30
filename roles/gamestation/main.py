@@ -303,7 +303,7 @@ class GPIO_Input():
         self.pin = pin
         self.callback = callback
         self.previous_state = -1 # so first read changes state and reports to callback
-        GPIO.setup(self.pin, GPIO.IN)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     def scan(self):
         new_state = GPIO.input(self.pin)
         #if self.name == "rollover_outer_left":
@@ -420,33 +420,28 @@ class Main(threading.Thread):
         self.queue = queue.Queue()
 
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("response_high_power_enabled")
+        #self.tb.subscribe_to_topic("request_visual_tests") # not implemented yet
+
+        self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
+        self.tb.subscribe_to_topic("cmd_kicker_launch") # to do: finish code -  might not be used
+        self.tb.subscribe_to_topic("cmd_lefttube_launch")# to do: finish code -  might not be used
+        self.tb.subscribe_to_topic("cmd_playfield_lights")
+        self.tb.subscribe_to_topic("cmd_rightttube_launch")# to do: finish code -  might not be used
+        self.tb.subscribe_to_topic("request_button_light_active")
+        self.tb.subscribe_to_topic("request_button_switch_active") # to do: finish code -  this de/activates reactions to buttons
+        self.tb.subscribe_to_topic("request_lefttube_present")
+        self.tb.subscribe_to_topic("request_rightttube_present")
+        self.tb.subscribe_to_topic("request_troughsensor_value")
+
+        # common for all hosts
+
         self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
-        self.tb.subscribe_to_topic("response_current_sensor_present")
-        self.tb.subscribe_to_topic("response_current_sensor_value")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
-        self.tb.subscribe_to_topic("request_visual_tests")
+        self.tb.subscribe_to_topic("request_current_sensor_present")
+        self.tb.subscribe_to_topic("request_current_sensor_value")
 
-        # old ones that need to be checked and/or updated
-        self.tb.subscribe_to_topic("gamestation_all_off")
-        self.tb.subscribe_to_topic("gamestation_get_amps")
-        self.tb.subscribe_to_topic("get_system_tests")
-
-        self.tb.subscribe_to_topic("request_button_light_active")
-        self.tb.subscribe_to_topic("button_active_left_flipper")
-        self.tb.subscribe_to_topic("button_active_trade_goods")
-        self.tb.subscribe_to_topic("button_active_start")
-        self.tb.subscribe_to_topic("button_active_trade_money")
-        self.tb.subscribe_to_topic("button_active_right_flipper")
-        self.tb.subscribe_to_topic("playfield_lights")
-        self.tb.subscribe_to_topic("left_stack_launch")
-        self.tb.subscribe_to_topic("right_stack_launch")
-        self.tb.subscribe_to_topic("left_stack_detect_ball")
-        self.tb.subscribe_to_topic("right_stack_detect_ball")
-        self.tb.subscribe_to_topic("gutter_detect_ball")
-        self.tb.subscribe_to_topic("gutter_launch")
-        #self.tb.publish("connected", True)
+        self.tb.publish("connected", True)
         self.start()
     
     def publish_to_controller(self, topic, message):
@@ -463,6 +458,14 @@ class Main(threading.Thread):
     def request_current_sensor_nominal(self):
         #TODO: Do the ACTUAL tests here.
         return True
+        
+    def request_current_sensor_present(self):
+        #TODO: Do the ACTUAL tests here.
+        return True
+        
+    def request_current_sensor_value(self):
+        #TODO: Do the ACTUAL tests here.
+        return 0.0
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
@@ -490,12 +493,20 @@ class Main(threading.Thread):
                         topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
                     )
-                if topic == b'gamestation_all_off':
-                    pass
-                if topic == b'gamestation_get_amps':
-                    pass
-                if topic == b'get_system_tests':
-                    pass
+                if topic == b'request_current_sensor_present':
+                    self.tb.publish(
+                        topic="response_current_sensor_present",
+                        message=self.request_current_sensor_present()
+                    )
+                if topic == b'request_current_sensor_value':
+                    self.tb.publish(
+                        topic="response_current_sensor_value",
+                        message=self.request_current_sensor_value()
+                    )
+                if topic == b'cmd_all_off':
+                    # to do: finish - turn off all solenoids and lights
+                    if destination == self.tb.get_hostname():
+                        pass
 
                 if topic == b'request_button_light_active':
                     if destination == self.tb.get_hostname():
@@ -505,37 +516,33 @@ class Main(threading.Thread):
                         else:
                             main.button_lights.names[button_name].off()
 
-                if topic == b'button_active_left_flipper':
+                if topic == b'request_lefttube_present':
                     if destination == self.tb.get_hostname():
-                        if message == True:
-                            main.button_lights.izquierda.on()
-                        else:
-                            main.button_lights.izquierda.off()
-                if topic == b'button_active_trade_goods':
+                        self.tb.publish(
+                            topic="response_lefttube_present",
+                            message=True
+                        )
+
+                if topic == b'request_rightttube_present':
                     if destination == self.tb.get_hostname():
-                        if message == True:
-                            main.button_lights.trueque.on()
-                        else:
-                            main.button_lights.trueque.off()
-                if topic == b'button_active_start':
+                        self.tb.publish(
+                            topic="response_rightttube_present",
+                            message=True
+                        )
+
+
+                if topic == b'request_rightttube_present':
                     if destination == self.tb.get_hostname():
-                        if message == True:
-                            main.button_lights.comienza.on()
-                        else:
-                            main.button_lights.comienza.off()
-                if topic == b'button_active_trade_money':
-                    if destination == self.tb.get_hostname():
-                        if message == True:
-                            main.button_lights.dinero.on()
-                        else:
-                            main.button_lights.dinero.off()
-                if topic == b'button_active_right_flipper':
-                    if destination == self.tb.get_hostname():
-                        if message == True:
-                            main.button_lights.derecha.on()
-                        else:
-                            main.button_lights.derecha.off()
-                if topic == b'playfield_lights':
+                        self.tb.publish(
+                            topic="response_rightttube_present",
+                            message=True
+                        )
+
+
+request_troughsensor_value
+
+
+                if topic == b'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
                         group = self.gamestation_lights.sign_top
@@ -605,10 +612,6 @@ class Main(threading.Thread):
                         if animation_name == "back_trace":
                             group.back_trace()
 
-                if topic == b'left_stack_launch':
-                    pass
-                if topic == b'right_stack_launch':
-                    pass
                 if topic == b'left_stack_detect_ball':
                     pass
                 if topic == b'right_stack_detect_ball':

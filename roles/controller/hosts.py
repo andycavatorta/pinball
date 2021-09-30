@@ -148,7 +148,7 @@ class Carousel(Host):
     def get_balls_present(self):
         return self.balls_present
     def request_eject_ball(self, fruit_id):
-        self.tb.publish(topic="carousel_eject_ball",message=True,destination=self.hostname)
+        self.tb.publish(topic="cmd_carousel_eject_ball",message=True,destination=self.hostname)
     def request_system_tests(self):
         self.tb.publish(topic="request_system_tests",message=True,destination=self.hostname)
     def cmd_carousel_lights(self, group, animation):
@@ -157,6 +157,13 @@ class Carousel(Host):
             message=[group, animation],
             destination=self.hostname
         )
+    def cmd_carousel_all_off(self):
+        self.tb.publish(
+            topic="cmd_carousel_all_off", 
+            message=True,
+            destination=self.hostname
+        )
+
 
 class Matrix(Host):
     def __init__(self, hostname, tb):
@@ -483,8 +490,6 @@ class Pinball(Host):
         self.lefttube_present = lefttube_present
     def get_lefttube_present(self):
         return self.lefttube_present
-    def request_lefttube_value(self):
-        self.tb.publish(topic="request_lefttube_value", message="",destination=self.hostname)
     def set_lefttube_value(self,lefttube_value):
         self.lefttube_value = lefttube_value
     def get_lefttube_value(self):
@@ -493,12 +498,6 @@ class Pinball(Host):
         self.tb.publish(
             topic="cmd_lefttube_launch", 
             message=True,
-            destination=self.hostname
-        )
-    def request_left_stack_inventory(self): 
-        self.tb.publish(
-            topic="request_left_stack_inventory", 
-            message="",
             destination=self.hostname
         )
     def set_left_stack_inventory(self,left_stack_inventory):
@@ -523,8 +522,6 @@ class Pinball(Host):
         self.rightttube_present = rightttube_present
     def get_rightttube_present(self):
         return self.rightttube_present
-    def request_rightttube_value(self):
-        self.tb.publish(topic="request_rightttube_value", message="",destination=self.hostname)
     def set_rightttube_value(self,rightttube_value):
         self.rightttube_value = rightttube_value
     def get_rightttube_value(self):
@@ -535,21 +532,12 @@ class Pinball(Host):
             message=True,
             destination=self.hostname
         )
-    def request_right_stack_inventory(self): 
-        self.tb.publish(
-            topic="request_right_stack_inventory", 
-            message="",
-            destination=self.hostname
-        )
     def set_right_stack_inventory(self,right_stack_inventory):
         self.right_stack_inventory = right_stack_inventory
     def get_right_stack_inventory(self):
         return self.right_stack_inventory
     def set_money_points(self,money_points):
         self.money_points = money_points
-    def get_money_points(self):
-        return self.money_points
-    ### TROUGH ###
 
     def request_troughsensor_value(self):
         self.tb.publish(topic="request_troughsensor_value", message="",destination=self.hostname)
@@ -563,12 +551,6 @@ class Pinball(Host):
             message=True,
             destination=self.hostname
         )
-    def request_barter_points(self): 
-        self.tb.publish(
-            topic="request_barter_points", 
-            message="",
-            destination=self.hostname
-        )
     def set_roll_outer_left(self,roll_outer_left):
         self.roll_outer_left = roll_outer_left
 
@@ -580,18 +562,6 @@ class Pinball(Host):
 
     def set_roll_inner_left(self,roll_inner_left):
         self.roll_inner_left = roll_inner_left
-
-    def get_gutter_ball_detected(self):
-        return self.gutter_ball_detected
-    def request_gutter_ball_detected(self): 
-        self.tb.publish(
-            topic="request_gutter_ball_detected", 
-            message="",
-            destination=self.hostname
-        )
-
-
-
 
     def request_button_switch_active(self, button_name, state_bool): 
         self.tb.publish(
@@ -617,7 +587,7 @@ class Pinball(Host):
 
     def cmd_gamestation_all_off(self, state_bool):
         self.tb.publish(
-            topic="cmd_gamestation_all_off", 
+            topic="cmd_all_off", 
             message=state_bool,
             destination=self.hostname
         )
@@ -692,11 +662,11 @@ class Display(Host):
         }
     def request_score(self, score_name):
         self.current_score_name = score_name
-        self.tb.publish(topic="play_score",message=score_name,destination=self.hostname)
+        self.tb.publish(topic="cmd_play_score",message=score_name,destination=self.hostname)
 
     def request_phrase(self, phrase_key):
         self.current_phrase_key = phrase_key
-        self.tb.publish(topic="set_phrase",message=phrase_key,destination=self.hostname)
+        self.tb.publish(topic="cmd_set_phrase",message=phrase_key,destination=self.hostname)
     def set_phrase(self,phrase_key): # in case phrase is set through method othe than self.request_phrase
         self.current_phrase_key = phrase_key
     def get_phrase(self):
@@ -704,28 +674,28 @@ class Display(Host):
 
     def request_number(self, number):
         self.current_number = number
-        self.tb.publish(topic="set_number",message=number,destination=self.hostname)
+        self.tb.publish(topic="cmd_set_number",message=number,destination=self.hostname)
     def set_number(self, number):
         self.current_number = number
     def get_number(self):
         return self.current_number
 
     def request_leds_present(self):
-        self.tb.publish(topic="request_leds_present", message="",destination="pinball1display")
+        self.tb.publish(topic="request_display_leds_present", message="",destination="pinball1display")
     def set_leds_present(self,leds_present):
         self.leds_present = leds_present
     def get_leds_present(self):
         return self.leds_present
 
     def request_solenoids_present(self):
-        self.tb.publish(topic="request_solenoids_present", message="",destination="pinball1display")
+        self.tb.publish(topic="request_display_solenoids_present", message="",destination="pinball1display")
     def set_solenoids_present(self,solenoids_present):
         self.solenoids_present = solenoids_present
     def get_solenoids_present(self):
         return self.solenoids_present
 
-    def request_all_power_off(self):
-        self.tb.publish(topic="request_all_power_off",message="")
+    def cmd_all_off(self):
+        self.tb.publish(topic="cmd_all_off",message="")
 
 class Hosts():
     def __init__(self, tb):
