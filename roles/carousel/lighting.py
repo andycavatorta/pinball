@@ -79,6 +79,7 @@ def set_group(id, level):
         pins[led].duty_cycle = level
 
 def set_spoke(id, level):
+    print("lighting.set_spoke",id, level,int(level*65536))
     radial_spoke = radial_spokes[id]
     for led in radial_spoke:
         pins[led].duty_cycle = int(level*65536)
