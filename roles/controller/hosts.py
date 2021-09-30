@@ -797,6 +797,7 @@ class Hosts():
         for name in names:
             if self.hostnames[name].get_response_current_sensor_value() == False:
                 return False
+        return True
 
     def get_all_non_nominal_states(self):
         non_nominal_states = []
