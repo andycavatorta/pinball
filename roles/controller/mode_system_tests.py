@@ -145,7 +145,7 @@ class Mode_System_Tests(threading.Thread):
     def response_current_sensor_nominal(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
         # This is just responding to the events
-        if self.hosts.get_all_current_sensor_value() == True:
+        if self.hosts.get_all_current_sensor_nominal() == True:
             self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",2, 1)
             self.set_current_mode(self.game_mode_names.INVENTORY)
             #print("")
