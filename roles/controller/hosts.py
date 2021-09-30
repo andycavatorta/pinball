@@ -792,7 +792,8 @@ class Hosts():
         return True
 
     def get_all_current_sensor_value(self):
-        names = ['carousel1','pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
+        # to do : add controller
+        names = ['pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
             if self.hostnames[name].get_response_current_sensor_value() == False:
                 return False
@@ -844,25 +845,15 @@ class Hosts():
                     controller_errors_list.append([fault_name, controller_name,controller[fault_name]])
                     non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
         computer_details_errors = []
-        print("+++++++++++++++",1)
         for hostname in self.hostnames:
-            print("+++++++++++++++",2)
             deets = self.hostnames[hostname].get_computer_details()
-            print("+++++++++++++++",3)
             if deets["cpu_temp"] > 60:
-                print("+++++++++++++++",4)
                 computer_details_errors.append([hostname,"cpu_temp", deets["cpu_temp"]])
-                print("+++++++++++++++",5)
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
-                print("+++++++++++++++",6)
             if deets["df"][0] < 500000000:
-                print("+++++++++++++++",7)
                 computer_details_errors.append([hostname,"df", deets["df"]])
-                print("+++++++++++++++",8)
                 non_nominal_states.append([hostname,"computer_details","df", deets["df"]])
-                print("+++++++++++++++",9)
         # all: check current sensors
-        print("+++++++++++++++",10)
         return non_nominal_states
 
     def dispatch(self, topic, message, origin, destination):
