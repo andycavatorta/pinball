@@ -845,7 +845,7 @@ class Hosts():
                     non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
         computer_details_errors = []
         print("+++++++++++++++",1)
-        for hostname in self.hostname:
+        for hostname in self.hostnames:
             print("+++++++++++++++",2)
             deets = self.hostnames[hostname].get_computer_details()
             print("+++++++++++++++",3)
