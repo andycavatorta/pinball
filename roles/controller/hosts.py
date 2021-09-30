@@ -117,6 +117,13 @@ class Controller(Host):
         return self.safety_enable
     def set_safety_enable(self,safety_enable):
         self.safety_enable = safety_enable
+    def get_computer_details(self):
+        return {
+            "df":self.tb.get_system_disk(),
+            "cpu_temp":self.tb.get_core_temp(),
+            "pinball_git_timestamp":self.tb.app_get_git_timestamp(),
+            "tb_git_timestamp":self.tb.tb_get_git_timestamp(),
+        }
 
 class Carousel(Host):
     def __init__(self, hostname, tb):
@@ -750,6 +757,7 @@ class Hosts():
             'pinball5game':self.pinball5game,
             'pinballmatrix':self.pinballmatrix,
         }
+        self.dispatch(b"response_computer_details":, self.controller.get_computer_details(), "controller", "controller"):
 
         self.mode_countdown_states = {
             "comienza_button_order":[]
