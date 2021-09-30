@@ -572,6 +572,10 @@ class Main(threading.Thread):
                 if topic == b'request_sdc2160_channel_faults':
                     pass
                 if topic == b'request_sdc2160_closed_loop_error':
+                    self.tb.publish(
+                        topic="response_sdc2160_closed_loop_error", 
+                        message=self.request_sdc2160_closed_loop_error()
+                    )    
                     pass
                 if topic == b'request_sdc2160_controller_faults':
                     pass             
