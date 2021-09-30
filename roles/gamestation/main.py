@@ -1,3 +1,59 @@
+"""
+to do:
+    response_current_sensor_nominal 
+    response_current_sensor_present 
+    response_current_sensor_value 
+    event_left_stack_ball_present
+    event_left_stack_motion_detected
+    event_right_stack_ball_present
+    event_right_stack_motion_detected
+    response_lefttube_present
+    response_rightttube_present
+
+topics subscribed:
+    cmd_all_off
+    cmd_kicker_launch
+    cmd_lefttube_launch
+    cmd_playfield_lights
+    cmd_rightttube_launch
+    request_button_light_active
+    request_button_switch_active
+    request_computer_details
+    request_current_sensor_nominal
+    request_current_sensor_present
+    request_current_sensor_value
+    request_gutter_ball_detected
+    request_lefttube_present
+    request_rightttube_present
+    request_system_tests
+    request_troughsensor_value
+
+
+topics published:
+    connected
+    event_gamestation_button
+    event_left_stack_ball_present
+    event_left_stack_motion_detected
+    event_mpf
+    event_right_stack_ball_present
+    event_right_stack_motion_detected
+    event_roll_inner_left
+    event_roll_inner_right
+    event_roll_outer_left
+    event_roll_outer_right
+    event_spinner
+    event_trough_sensor
+    response_computer_details
+    response_current_sensor_nominal 
+    response_current_sensor_present 
+    response_current_sensor_value 
+    response_lefttube_present
+    response_rightttube_present
+    response_troughsensor_value
+    response_visual_tests
+
+"""
+
 import adafruit_tlc5947
 import board
 import busio
@@ -290,10 +346,6 @@ def trough_sensor_handler(name, value):
     else:
         main.button_lights.comienza.off()
 
-def button_handler(name, value):
-    main.publish_to_controller("event_gamestation_button", [name, value])
-
-
 
 
 
@@ -366,7 +418,7 @@ class MPF_Bridge(threading.Thread):
             try:
               message = self.socket.recv()
               print(f"Received msg#: {message}")
-              self.tb.publish("response_mpf_event", eval(message.decode('utf-8')))
+              self.tb.publish("event_mpf", eval(message.decode('utf-8')))
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print("got except90j")
@@ -483,65 +535,14 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'request_computer_details':
-                    self.tb.publish(
-                        topic="response_computer_details", 
-                        message=self.request_computer_details()
-                    )
-                if topic == b'request_current_sensor_nominal':
-                    self.tb.publish(
-                        topic="response_current_sensor_nominal",
-                        message=self.request_current_sensor_nominal()
-                    )
-                if topic == b'request_current_sensor_present':
-                    self.tb.publish(
-                        topic="response_current_sensor_present",
-                        message=self.request_current_sensor_present()
-                    )
-                if topic == b'request_current_sensor_value':
-                    self.tb.publish(
-                        topic="response_current_sensor_value",
-                        message=self.request_current_sensor_value()
-                    )
                 if topic == b'cmd_all_off':
                     # to do: finish - turn off all solenoids and lights
                     if destination == self.tb.get_hostname():
                         pass
-
-                if topic == b'request_button_light_active':
-                    if destination == self.tb.get_hostname():
-                        button_name, button_state = message
-                        if button_state:
-                            main.button_lights.names[button_name].on()
-                        else:
-                            main.button_lights.names[button_name].off()
-
-                if topic == b'request_lefttube_present':
-                    if destination == self.tb.get_hostname():
-                        self.tb.publish(
-                            topic="response_lefttube_present",
-                            message=True
-                        )
-
-                if topic == b'request_rightttube_present':
-                    if destination == self.tb.get_hostname():
-                        self.tb.publish(
-                            topic="response_rightttube_present",
-                            message=True
-                        )
-
-
-                if topic == b'request_rightttube_present':
-                    if destination == self.tb.get_hostname():
-                        self.tb.publish(
-                            topic="response_rightttube_present",
-                            message=True
-                        )
-
-
-request_troughsensor_value
-
-
+                if topic == b'cmd_kicker_launch':
+                    pass
+                if topic == b'cmd_lefttube_launch':
+                    pass
                 if topic == b'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
@@ -611,14 +612,59 @@ request_troughsensor_value
                             group.trace()
                         if animation_name == "back_trace":
                             group.back_trace()
-
-                if topic == b'left_stack_detect_ball':
+                if topic == b'cmd_rightttube_launch':
                     pass
-                if topic == b'right_stack_detect_ball':
+                if topic == b'request_button_light_active':
+                    if destination == self.tb.get_hostname():
+                        button_name, button_state = message
+                        if button_state:
+                            main.button_lights.names[button_name].on()
+                        else:
+                            main.button_lights.names[button_name].off()
+                if topic == b'request_button_switch_active':
                     pass
-                if topic == b'gutter_detect_ball':
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="response_computer_details", 
+                        message=self.request_computer_details()
+                    )
+                if topic == b'request_current_sensor_nominal':
+                    self.tb.publish(
+                        topic="response_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
+                    )
+                if topic == b'request_current_sensor_present':
+                    self.tb.publish(
+                        topic="response_current_sensor_present",
+                        message=self.request_current_sensor_present()
+                    )
+                if topic == b'request_current_sensor_value':
+                    self.tb.publish(
+                        topic="response_current_sensor_value",
+                        message=self.request_current_sensor_value()
+                    )
+                if topic == b'request_gutter_ball_detected':
                     pass
-                if topic == b'gutter_launch':
+                if topic == b'request_lefttube_present':
+                    if destination == self.tb.get_hostname():
+                        self.tb.publish(
+                            topic="response_lefttube_present",
+                            message=True
+                        )
+                if topic == b'request_rightttube_present':
+                    if destination == self.tb.get_hostname():
+                        self.tb.publish(
+                            topic="response_rightttube_present",
+                            message=True
+                        )
+                if topic == b'request_system_tests':
+                    if destination == self.tb.get_hostname():
+                        self.tb.publish(
+                            topic="response_system_tests",
+                            message=True
+                        )
+                    pass
+                if topic == b'request_troughsensor_value':
                     pass
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
