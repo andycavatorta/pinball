@@ -346,7 +346,9 @@ class Matrix(Host):
     def set_amt203_zeroed(self,amt203_zeroed):
         self.amt203_zeroed = amt203_zeroed
     def get_amt203_zeroed(self):
-        return False in self.amt203_zeroed
+        return True
+        to do: remove dummy value after finishing matrix config
+        #return False in self.amt203_zeroed
 
     def request_amt203_absolute_position(self, fruit_id):
         self.tb.publish(topic="request_amt203_absolute_position", message="")
