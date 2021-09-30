@@ -56,7 +56,7 @@ class Mode_System_Tests(threading.Thread):
     def response_computer_details(self, message, origin, destination):
         # if self.hosts responds that all self.hosts have reported details
         #     send request for hardware presence
-        print("---------------------")
+        print("---------------------",self.phase)
         if self.phase == self.PHASE_COMPUTER_DETAILS:
             print("self.hosts.get_all_computer_details_received()",self.hosts.get_all_computer_details_received())
             if self.hosts.get_all_computer_details_received() == True:
