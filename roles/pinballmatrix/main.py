@@ -570,7 +570,17 @@ class Main(threading.Thread):
                         message=self.request_computer_details()
                     )
                 if topic == b'request_sdc2160_channel_faults':
-                    pass
+                    self.tb.publish(
+                       topic="response_sdc2160_channel_faults", 
+                        message={
+                            "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
+                            "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
+                            "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
+                            "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
+                            "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
+                            "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
+                        }
+                    )
                 if topic == b'request_sdc2160_closed_loop_error':
                     self.tb.publish(
                         topic="response_sdc2160_closed_loop_error", 
@@ -578,7 +588,10 @@ class Main(threading.Thread):
                     )    
                     pass
                 if topic == b'request_sdc2160_controller_faults':
-                    pass             
+                    self.tb.publish(
+                        topic="response_sdc2160_controller_faults",
+                        message=self.request_sdc2160_controller_faults()
+                    )
                 if topic == b'request_sdc2160_faults':
                     pass                  
                 if topic == b'request_sdc2160_present':
