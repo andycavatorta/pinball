@@ -776,7 +776,7 @@ class Hosts():
     def get_all_computer_details_received(self):
         absent_list = []
         print("1 -------------absent_list",absent_list)
-        host_keys  = self.hostname.keys()
+        host_keys  = self.hostnames.keys()
         print("2 -------------absent_list",absent_list)
         host_list  = list(host_keys)
         print("3 -------------absent_list",absent_list)
