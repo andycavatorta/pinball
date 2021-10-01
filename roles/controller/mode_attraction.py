@@ -159,6 +159,7 @@ class Animation(threading.Thread):
         while True:
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
+                print("self.animation_frame_counter",self.animation_frame_counter)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -166,11 +167,12 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
                 if self.active:
-                        button_cycle = next(self.cycle_attraction_buttons)
-                        for name_val in button_cycle.items():
-                            for pinball_hostname in self.pinball_hostnames:
-                                self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
-                        self.animation_frame_counter += 1
+                    button_cycle = next(self.cycle_attraction_buttons)
+                    print("button_cycle",button_cycle)
+                    for name_val in button_cycle.items():
+                        for pinball_hostname in self.pinball_hostnames:
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
+                    self.animation_frame_counter += 1
                 else:
                     time.sleep(animaition_interval)
             except queue.Empty:
