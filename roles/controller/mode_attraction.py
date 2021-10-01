@@ -193,9 +193,12 @@ class Animation(threading.Thread):
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("")
                                 self.hosts.hostnames[hostname].request_number(random.randrange(0,1000))
+                            for i in range(5)
+                                self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
                         else:
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("juega")
+                            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
 
                     for frame_nudge in range(5):
                         if self.animation_frame_counter % 250 == frame_nudge:
