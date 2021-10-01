@@ -167,6 +167,8 @@ class Animation(threading.Thread):
                     self.begin()
                 if animation_command == "end":
                     self.end()
+            except queue.Empty:
+                
                 if self.active:
                     button_cycle = next(self.cycle_attraction_buttons)
                     print("button_cycle",button_cycle)
@@ -176,8 +178,6 @@ class Animation(threading.Thread):
                     self.animation_frame_counter += 1
                 else:
                     time.sleep(animaition_interval)
-            except queue.Empty:
-                pass
 
 
 
