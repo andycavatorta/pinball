@@ -71,8 +71,8 @@ class Animation(threading.Thread):
                 ["pie_pop_right","off"],
                 ["pie_spinner","on"],
                 ["pie_rollover_right","on"],
-                ["pie_sling_right","off"],
-                ["pie_sling_left","on"],
+                ["pie_sling_right","on"],
+                ["pie_sling_left","off"],
                 ["pie_rollover_left","on"],
                 ["pie_pop_left","on"],
                 ["pie_pop_center","on"],
@@ -179,14 +179,14 @@ class Animation(threading.Thread):
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
                     if self.animation_frame_counter % 25 == 0:
-                        print(self.animation_frame_counter)
-                        score_name = next(self.cycle_attraction_chimes)
-                        print(score_name)
-                        self.hosts.pinball1display.request_score(score_name)
-                        self.hosts.pinball2display.request_score(score_name)
-                        self.hosts.pinball3display.request_score(score_name)
-                        self.hosts.pinball4display.request_score(score_name)
-                        self.hosts.pinball5display.request_score(score_name)
+                        #print(self.animation_frame_counter)
+                        #score_name = next(self.cycle_attraction_chimes)
+                        #print(score_name)
+                        #self.hosts.pinball1display.request_score(score_name)
+                        #self.hosts.pinball2display.request_score(score_name)
+                        #self.hosts.pinball3display.request_score(score_name)
+                        #self.hosts.pinball4display.request_score(score_name)
+                        #self.hosts.pinball5display.request_score(score_name)
 
                     if self.animation_frame_counter % 4 == 0:
                         for hostname in self.pinball_hostnames:
