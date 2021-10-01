@@ -189,6 +189,11 @@ class Animation(threading.Thread):
                         self.hosts.pinball5display.request_score(score_name)
 
                     if self.animation_frame_counter % 4 == 0:
+                        for hostname in self.pinball_hostnames:
+                            light_states = next(self.cycle_attraction_playfield)
+                            for light_state in light_states:
+                                self.hosts.hostnames[hostname].cmd_playfield_lights(light_state[0],light_state[1])
+
                         if self.animation_frame_counter % 8 == 0:
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("")
