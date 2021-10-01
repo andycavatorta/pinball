@@ -15,6 +15,7 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.animaition_interval = 0.25
+        self.animation_frame_counter = 0
         self.start()
 
     def _cycle_attraction_buttons(self):
