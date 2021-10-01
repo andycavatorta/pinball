@@ -14,7 +14,7 @@ class Animation(threading.Thread):
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.animaition_interval = 0.2
+        self.animaition_interval = 0.25
         self.animation_frame_counter = 0
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
