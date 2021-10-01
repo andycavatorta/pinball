@@ -14,7 +14,7 @@ class Animation(threading.Thread):
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.animaition_interval = 0.25
+        self.animaition_interval = 0.2
         self.animation_frame_counter = 0
         self.active = False
         self.start()
@@ -156,7 +156,6 @@ class Animation(threading.Thread):
     def add_to_queue(self, animation_command): # ["begin"|"end"]
         self.queue.put(animation_command)
 
-
     def run(self):
         while True:
             try:
@@ -172,10 +171,17 @@ class Animation(threading.Thread):
                 
                 if self.active:
                     button_cycle = next(self.cycle_attraction_buttons)
-                    print("button_cycle",button_cycle)
                     for name_val in button_cycle.items():
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
+                    if self.animation_frame_counter % 25 == 0:
+                        score_name = next(self.cycle_attraction_chimes)
+                        self.hosts.pinball1display.request_score(score_name)
+                        self.hosts.pinball2display.request_score(score_name)
+                        self.hosts.pinball3display.request_score(score_name)
+                        self.hosts.pinball4display.request_score(score_name)
+                        self.hosts.pinball5display.request_score(score_name)
+
                     self.animation_frame_counter += 1
                 else:
                     time.sleep(self.animaition_interval)
