@@ -16,6 +16,7 @@ class Animation(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.animaition_interval = 0.25
         self.animation_frame_counter = 0
+        self.active = False
         self.start()
 
     def _cycle_attraction_buttons(self):
