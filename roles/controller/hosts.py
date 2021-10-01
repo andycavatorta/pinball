@@ -803,6 +803,7 @@ class Hosts():
         # to do : add controller
         names = ['pinball1display','pinball1game','pinball2game','pinball3game','pinball4game','pinball5game']
         for name in names:
+            print("get_all_current_sensor_nominal",name, self.hostnames[name].get_current_sensor_nominal())
             if self.hostnames[name].get_current_sensor_nominal() == False:
                 return False
         return True
