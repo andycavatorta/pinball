@@ -858,7 +858,7 @@ class Hosts():
         computer_details_errors = []
         for hostname in self.hostnames:
             deets = self.hostnames[hostname].get_computer_details()
-            if deets["cpu_temp"] > 60:
+            if deets["cpu_temp"] > 65:
                 computer_details_errors.append([hostname,"cpu_temp", deets["cpu_temp"]])
                 non_nominal_states.append([hostname,"computer_details","cpu_temp", deets["cpu_temp"]])
             if deets["df"][0] < 500000000:
