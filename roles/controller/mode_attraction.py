@@ -17,7 +17,11 @@ class Animation(threading.Thread):
         self.animaition_interval = 0.2
         self.animation_frame_counter = 0
         self.active = False
+        self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.start()
+
+        
+
 
     def _cycle_attraction_buttons(self):
         states = [
@@ -183,6 +187,68 @@ class Animation(threading.Thread):
                         self.hosts.pinball3display.request_score(score_name)
                         self.hosts.pinball4display.request_score(score_name)
                         self.hosts.pinball5display.request_score(score_name)
+
+                    if self.animation_frame_counter % 125 == 0:
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball1display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball2display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball3display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball4display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball5display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+
+                    if self.animation_frame_counter % 125 == 1:
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball1display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball2display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball3display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball4display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball5display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+
+                    if self.animation_frame_counter % 125 == 2:
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball1display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball2display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball3display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball4display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball5display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+
+                    if self.animation_frame_counter % 125 == 3:
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball1display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball2display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball3display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball4display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball5display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+
+                    if self.animation_frame_counter % 125 == 4:
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball1display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball2display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball3display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball4display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+                        if random.randrange(0,3) = 0:
+                            self.hosts.pinball5display.request_score(self.mezzo_chimes(random.randrange(0,5)))
+
+
 
                     self.animation_frame_counter += 1
                 else:
