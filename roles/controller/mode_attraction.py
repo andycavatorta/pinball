@@ -193,7 +193,7 @@ class Animation(threading.Thread):
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("")
                                 self.hosts.hostnames[hostname].request_number(random.randrange(0,1000))
-                            for i in range(5)
+                            for i in range(5):
                                 self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
                         else:
                             for hostname in self.display_hostnames:
