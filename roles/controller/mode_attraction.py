@@ -188,65 +188,21 @@ class Animation(threading.Thread):
                         self.hosts.pinball4display.request_score(score_name)
                         self.hosts.pinball5display.request_score(score_name)
 
-                    if self.animation_frame_counter % 125 == 0:
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball1display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball2display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball3display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball4display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball5display.request_score(self.mezzo_chimes[random.randrange(0,5)])
+                    if self.animation_frame_counter % 8 == 0:
+                        self.hosts.hostnames[hostname]request_number(random.randrange(0,1000))
+                        if self.animation_frame_counter % 4 == 0:
+                            for hostname in self.display_hostnames:
+                                self.hosts.hostnames[hostname]request_phrase("")
+                        else:
+                            for hostname in self.display_hostnames:
+                                self.hosts.hostnames[hostname]request_phrase("juega")
 
-                    if self.animation_frame_counter % 125 == 1:
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball1display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball2display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball3display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball4display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball5display.request_score(self.mezzo_chimes[random.randrange(0,5)])
+                    for frame_nudge in range(5):
+                        if self.animation_frame_counter % 250 == frame_nudge:
+                            for hostname in self.display_hostnames:
+                                if random.randrange(0,3) == 0:
+                                    self.hosts.hostnames[hostname]request_score(self.mezzo_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter % 125 == 2:
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball1display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball2display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball3display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball4display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball5display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-
-                    if self.animation_frame_counter % 125 == 3:
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball1display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball2display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball3display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball4display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball5display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-
-                    if self.animation_frame_counter % 125 == 4:
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball1display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball2display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball3display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball4display.request_score(self.mezzo_chimes[random.randrange(0,5)])
-                        if random.randrange(0,3) == 0:
-                            self.hosts.pinball5display.request_score(self.mezzo_chimes[random.randrange(0,5)])
 
 
 
