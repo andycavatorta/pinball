@@ -167,8 +167,8 @@ class Animation(threading.Thread):
                 if self.active:
                         button_cycle = next(self.cycle_attraction_buttons)
                         for name_val in button_cycle.items():
-                            for pinball_hostname in pinball_hostnames:
-                                self.hosts.hostname[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
+                            for self.pinball_hostname in pinball_hostnames:
+                                self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
                         self.animation_frame_counter += 1
                 else:
                     time.sleep(animaition_interval)
