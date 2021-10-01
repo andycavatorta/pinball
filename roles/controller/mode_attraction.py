@@ -144,7 +144,7 @@ class Animation(threading.Thread):
         self.cycle_attraction_chimes = self._cycle_attraction_chimes()
 
     def begin(self):
-        self.reset_animations()
+        self.reset_animation_cycles()
         self.active = True
 
     def end(self):
