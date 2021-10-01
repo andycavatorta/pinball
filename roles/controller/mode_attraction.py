@@ -178,11 +178,11 @@ class Animation(threading.Thread):
                         print(self.animation_frame_counter)
                         score_name = next(self.cycle_attraction_chimes)
                         print(score_name)
-                        self.hosts.pinball1display.request_score(score_name)
-                        self.hosts.pinball2display.request_score(score_name)
-                        self.hosts.pinball3display.request_score(score_name)
-                        self.hosts.pinball4display.request_score(score_name)
-                        self.hosts.pinball5display.request_score(score_name)
+                        self.hosts.pinball1display.request_score(message=score_name, destination="pinball1display")
+                        self.hosts.pinball2display.request_score(message=score_name, destination="pinball2display")
+                        self.hosts.pinball3display.request_score(message=score_name, destination="pinball3display")
+                        self.hosts.pinball4display.request_score(message=score_name, destination="pinball4display")
+                        self.hosts.pinball5display.request_score(message=score_name, destination="pinball5display")
 
                     self.animation_frame_counter += 1
                 else:
