@@ -95,11 +95,11 @@ class Host():
     def get_tb_git_timestamp(self):
         return self.tb_git_timestamp
     def set_current_sensor_present(self,response_current_sensor_present):
-        self.response_current_sensor_present
+        self.response_current_sensor_present = response_current_sensor_present
     def set_current_sensor_value(self,response_current_sensor_value):
-        self.response_current_sensor_value
+        self.response_current_sensor_value = response_current_sensor_value
     def set_current_sensor_nominal(self,response_current_sensor_nominal):
-        self.response_current_sensor_nominal
+        self.response_current_sensor_nominal = response_current_sensor_nominal
     def get_current_sensor_present(self):
         return self.response_current_sensor_present
     def get_current_sensor_value(self):
