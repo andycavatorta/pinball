@@ -18,6 +18,43 @@ class Animation(threading.Thread):
         self.animation_frame_counter = 0
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.digits_1 = [0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9]
+        self.digits_2 = [
+            [0,1,2],
+            [1,2,3],
+            [2,3,4],
+            [3,4,5],
+            [4,5,6],
+            [5,6,7],
+            [6,7,8],
+            [7,8,9],
+            [8,9,10],
+            [9,10,11],
+            [10,11,12],
+            [11,12,13],
+            [12,13,14],
+            [13,14,0],
+            [14,0,1]
+        ]
+        self.digits_3 = [
+            [0,3,6,9,12],
+            [1,4,7,10,13],
+            [2,5,8,11,14],
+            [3,6,9,12,0],
+            [4,7,10,13,1],
+            [5,8,11,14,2],
+            [6,9,12,0,3],
+            [7,10,13,1,4],
+            [8,11,14,2,5],
+            [9,12,0,3,6],
+            [10,13,1,4,7],
+            [11,14,2,5,8],
+            [12,0,3,4,9],
+            [13,1,4,5,10],
+            [14,2,5,8,11]
+        ]
+
+
         self.start()
 
         
@@ -203,10 +240,28 @@ class Animation(threading.Thread):
 
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("")
-                                self.hosts.hostnames[hostname].request_number(random.randrange(0,1000))
+                                
                         else:
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("juega")
+
+                    frame_3 = self.digits_3[self.animation_frame_counter % 15]
+                    a_places = self.digits_2[frame_3[0]]
+                    b_places = self.digits_2[frame_3[1]]
+                    c_places = self.digits_2[frame_3[2]]
+                    d_places = self.digits_2[frame_3[3]]
+                    e_places = self.digits_2[frame_3[4]]
+                    a_number = (self.digits_1[a_places[0]]*1) + (self.digits_1[a_places[1]]*10) + (self.digits_1[a_places[2]]*100)
+                    b_number = (self.digits_1[b_places[0]]*1) + (self.digits_1[b_places[1]]*10) + (self.digits_1[b_places[2]]*100)
+                    c_number = (self.digits_1[c_places[0]]*1) + (self.digits_1[c_places[1]]*10) + (self.digits_1[c_places[2]]*100)
+                    d_number = (self.digits_1[d_places[0]]*1) + (self.digits_1[d_places[1]]*10) + (self.digits_1[d_places[2]]*100)
+                    e_number = (self.digits_1[e_places[0]]*1) + (self.digits_1[e_places[1]]*10) + (self.digits_1[e_places[2]]*100)
+                    self.hosts.pinball1display.request_number(a_number)
+                    self.hosts.pinball2display.request_number(b_number)
+                    self.hosts.pinball3display.request_number(c_number)
+                    self.hosts.pinball4display.request_number(d_number)
+                    self.hosts.pinball5display.request_number(e_number)
+
 
                     for frame_nudge in range(5):
                         if self.animation_frame_counter % 250 == frame_nudge:
