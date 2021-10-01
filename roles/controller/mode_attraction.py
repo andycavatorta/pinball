@@ -18,7 +18,7 @@ class Animation(threading.Thread):
         self.animation_frame_counter = 0
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
-        self.digits_1 = [0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9]
+        self.digits_1 = [0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9]
         self.digits_2 = [
             [0,1,2],
             [1,2,3],
