@@ -7,9 +7,10 @@ import threading
 import time
 
 class Animation(threading.Thread):
-    def __init__(self):
+    def __init__(self, hosts):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+        self.hosts = hosts
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
@@ -203,7 +204,7 @@ class Mode_Attraction(threading.Thread):
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.timeout_duration = 120 #seconds
-        self.animation = Animation()
+        self.animation = Animation(hosts)
         self.hosts.mode_countdown_states["comienza_button_order"] = []
         self.start()
 
