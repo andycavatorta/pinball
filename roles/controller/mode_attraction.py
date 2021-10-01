@@ -178,7 +178,7 @@ class Animation(threading.Thread):
                     for name_val in button_cycle.items():
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
-                    if self.animation_frame_counter % 25 == 0:
+                    #if self.animation_frame_counter % 25 == 0:
                         #print(self.animation_frame_counter)
                         #score_name = next(self.cycle_attraction_chimes)
                         #print(score_name)
