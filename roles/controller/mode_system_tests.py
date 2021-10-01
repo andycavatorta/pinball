@@ -149,7 +149,7 @@ class Mode_System_Tests(threading.Thread):
             self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",2, 1)
             if self.active:
                 print("+++++++++++++++")
-                self.set_current_mode(self.game_mode_names.INVENTORY)
+                self.set_mode(self.game_mode_names.INVENTORY)
                 print("-----------------")
             #print("")
             #print("===========PHASE_VISUAL_TESTS============")
