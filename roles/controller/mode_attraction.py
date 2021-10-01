@@ -188,12 +188,11 @@ class Animation(threading.Thread):
                         self.hosts.pinball4display.request_score(score_name)
                         self.hosts.pinball5display.request_score(score_name)
 
-                    if self.animation_frame_counter % 8 == 0:
-                        for hostname in self.display_hostnames:
-                            self.hosts.hostnames[hostname].request_number(random.randrange(0,1000))
-                        if self.animation_frame_counter % 4 == 0:
+                    if self.animation_frame_counter % 4 == 0:
+                        if self.animation_frame_counter % 8 == 0:
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("")
+                                self.hosts.hostnames[hostname].request_number(random.randrange(0,1000))
                         else:
                             for hostname in self.display_hostnames:
                                 self.hosts.hostnames[hostname].request_phrase("juega")
