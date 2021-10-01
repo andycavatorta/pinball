@@ -26,8 +26,8 @@ class Animation(threading.Thread):
     def _cycle_attraction_buttons(self):
         states = [
             {"izquierda":True,"trueque":False,"comienza":False,"dinero":False,"derecha":True},
-            {"izquierda":False,"trueque":True,"comienza":False,"dinero":True,"derecha":False},
-            {"izquierda":False,"trueque":False,"comienza":True,"dinero":False,"derecha":False},
+            {"izquierda":True,"trueque":True,"comienza":False,"dinero":True,"derecha":True},
+            {"izquierda":False,"trueque":True,"comienza":True,"dinero":True,"derecha":False},
             {"izquierda":False,"trueque":False,"comienza":True,"dinero":False,"derecha":False},
             {"izquierda":False,"trueque":False,"comienza":False,"dinero":False,"derecha":False},
             {"izquierda":False,"trueque":False,"comienza":False,"dinero":False,"derecha":False},
