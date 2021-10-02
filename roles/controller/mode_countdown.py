@@ -115,8 +115,8 @@ class Animation(threading.Thread):
                     pitch_numeral = next(self.cycle_chimes)
                     if pitch_numeral != -1:
                         pitch_name = self.mezzo_chimes[pitch_numeral]
-                    for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_score(pitch_name)
+                        for display_hostname in self.display_hostnames:
+                            self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
 
                     """
