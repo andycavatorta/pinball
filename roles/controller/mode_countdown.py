@@ -37,7 +37,7 @@ class Animation(threading.Thread):
         for active: off
         for waiting: comienza blinking rapidly
     """
-    def __init__(self, hosts,set_current_mode):
+    def __init__(self, hosts,set_current_mode,game_mode_names):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = hosts
@@ -52,6 +52,7 @@ class Animation(threading.Thread):
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.set_current_mode = set_current_mode
+        self.game_mode_names = settings.Game_Modes
         self.start()
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.comienza_button_order: # if button already pushed
