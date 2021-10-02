@@ -98,7 +98,6 @@ class Animation(threading.Thread):
                         self.hosts.hostnames[display_hostname].request_number(int(countdown_seconds*10))
 
                     if countdown_seconds <=0:
-                        print("fuck fuck fuck")
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                         self.animation_frame_counter = 0
 
@@ -168,13 +167,6 @@ class Mode_Countdown(threading.Thread):
         if self.hosts.get_all_host_connected() == True:
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
-    def event_button_comienza(self, message, origin, destination): 
-        if origin not in self.hosts.mode_countdown_states["comienza_button_order"]:
-            self.hosts.mode_countdown_states["comienza_button_order"].append(origin)
-            self.animation.add_to_queue(origin)
-        if len(self.hosts.mode_countdown_states["comienza_button_order"]) >= 5:
-            self.set_mode(self.game_mode_names.BARTER_MODE_INTRO)
-
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
