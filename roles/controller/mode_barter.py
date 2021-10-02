@@ -69,25 +69,25 @@ class Station(threading.Thread):
                 "sling_left":False,
             }
             time.sleep(0.5)
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_left","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_middle","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_right","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_left","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_right","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_sling_left","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_sling_right","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("pie_spinner","off")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_left","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_middle","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_right","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_left","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_right","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_sling_left","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_sling_right","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
-            self.hosts[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_left","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_middle","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_right","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_left","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_right","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_spinner","off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_left","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_middle","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_right","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_left","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_right","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
             # blink tu fruta sign
-            self.hosts[self.origin].cmd_playfield_lights("sign_arrow_left","energize")
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("sign_arrow_left","energize")
             # ring chimes
             self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
             time.sleep(0.05)
@@ -150,24 +150,24 @@ class Station(threading.Thread):
         self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         if self.pie_segments_triggered["pop_left"] == False:
             self.pie_segments_triggered["pop_left"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_left","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_left","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_left","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_left","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_pop_2(self, message):
         self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         if self.pie_segments_triggered["pop_middle"] == False:
             self.pie_segments_triggered["pop_middle"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_middle","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_middle","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_middle","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_middle","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_pop_3(self, message):
         self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         if self.pie_segments_triggered["pop_right"] == False:
             self.pie_segments_triggered["pop_right"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_pop_right","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_pop_right","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_right","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_right","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_right_stack_ball_present(self, message):
@@ -187,8 +187,8 @@ class Station(threading.Thread):
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_left"] == False:
             self.pie_segments_triggered["rollover_left"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_roll_inner_right(self, message):
@@ -200,8 +200,8 @@ class Station(threading.Thread):
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_right"] == False:
             self.pie_segments_triggered["rollover_right"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_roll_outer_left(self, message):
@@ -217,8 +217,8 @@ class Station(threading.Thread):
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_left"] == False:
             self.pie_segments_triggered["rollover_left"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_roll_outer_right(self, message):
@@ -234,39 +234,39 @@ class Station(threading.Thread):
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_right"] == False:
             self.pie_segments_triggered["rollover_right"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_slingshot_left(self, message):
         self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         if self.pie_segments_triggered["sling_left"] == False:
             self.pie_segments_triggered["sling_left"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_sling_left","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_sling_left","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_left","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_left","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_slingshot_right(self, message):
         self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         if self.pie_segments_triggered["sling_right"] == False:
             self.pie_segments_triggered["sling_right"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_sling_right","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_sling_right","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_right","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_right","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
     def event_spinner(self, message):
         self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
         if self.pie_segments_triggered["spinner"] == False:
             self.pie_segments_triggered["spinner"] = True # store state
-            self.hosts[self.origin].cmd_playfield_lights("pie_spinner","on")# light animation
-            self.hosts[self.origin].cmd_playfield_lights("trail_spinner","back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_spinner","on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","back_stroke_off")# light segment
             self.check_pie_wholeness()
                 
     def event_trough_sensor(self, message):
         if message: # True or 1
-            self.hosts[self.origin].request_button_light_active("comienza", True)
+            self.hosts.hostnames[self.origin].request_button_light_active("comienza", True)
         else:
-            self.hosts[self.origin].request_button_light_active("comienza", False)
+            self.hosts.hostnames[self.origin].request_button_light_active("comienza", False)
         # to do: this is where trades will be triggered
 
     def add_to_queue(self, topic, message):

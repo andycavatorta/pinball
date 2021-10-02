@@ -192,17 +192,17 @@ class Animation(threading.Thread):
                 yield state
     def setup(self):
         for pinball_hostname in self.pinball_hostnames:
-            self.hosts[pinball_hostname].request_button_light_active("izquierda", False)
-            self.hosts[pinball_hostname].request_button_light_active("trueque", False)
-            self.hosts[pinball_hostname].request_button_light_active("comienza", False)
-            self.hosts[pinball_hostname].request_button_light_active("dinero", False)
-            self.hosts[pinball_hostname].request_button_light_active("derecha", False)
-            self.hosts[pinball_hostname].cmd_playfield_lights("all", "off")
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", False)
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all", "off")
         for carousel_hostname in self.carousel_hostnames:
-            self.hosts[carousel_hostname].cmd_carousel_lights("clear_all")
+            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
         for display_hostname in self.display_hostnames:
-            self.hosts[display_hostname].request_phrase("")
-            self.hosts[display_hostname].request_number(-1)
+            self.hosts.hostnames[display_hostname].request_phrase("")
+            self.hosts.hostnames[display_hostname].request_number(-1)
         self.reset_animation_cycles()
 
     def reset_animation_cycles(self):

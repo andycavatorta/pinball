@@ -98,6 +98,7 @@ class Animation(threading.Thread):
                         self.hosts.hostnames[display_hostname].request_number(int(countdown_seconds*10))
 
                     if countdown_seconds <=0:
+                        print("fuck fuck fuck")
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                         self.animation_frame_counter = 0
 
