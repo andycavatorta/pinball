@@ -93,7 +93,7 @@ class Animation(threading.Thread):
                         countdown_seconds = self.countdown_end_seconds - self.animation_frame_counter
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
-                        if countdown_seconds =< 0:
+                        if countdown_seconds <= 0:
                             self.set_mode(self.game_mode_names.BARTER_MODE_INTRO)
                     if self.animation_frame_counter % 2 == 0:
                         if self.animation_frame_counter % 4 == 0:
