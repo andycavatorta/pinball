@@ -257,7 +257,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                #print(topic, type(topic), topic.decode('UTF-8'))
+                print(topic, type(topic), topic.decode('UTF-8'))
                 if "event" not in topic.decode('UTF-8'):
                     print("received:",topic, message, origin, destination)
                 if topic==b"event_mpf":
