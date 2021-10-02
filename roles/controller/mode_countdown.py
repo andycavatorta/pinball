@@ -61,7 +61,7 @@ class Animation(threading.Thread):
         
         self.animation_countdown_counter = 300.0
         self.animation_interval_base = 0.1
-        self.animation_interval_factor = 4000.0
+        self.animation_interval_factor = 6000.0
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
@@ -69,17 +69,15 @@ class Animation(threading.Thread):
                 for button_name in self.button_names:
                     self.hosts.hostnames[pinball_hostname].request_button_light_active(button_name, False)
 
-
     def _cycle_chimes(self):
         states = [1,-1,2,3,-1,2,-1,1,0,-1,1,-1,4,3,-1,2,-1,1,0,-1]
         while True:
             for state in states:
                 yield state
 
-
     def begin(self):
         self.cycle_chimes = self._cycle_chimes()
-        self.animation_countdown_counter = 1000
+        self.animation_countdown_counter = 300
         self.active = True
 
     def end(self):
