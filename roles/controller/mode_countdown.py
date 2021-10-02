@@ -153,8 +153,6 @@ class Mode_Countdown(threading.Thread):
         if self.hosts.get_all_host_connected() == True:
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
-    def transition_mode(self):
-
     def event_button_comienza(self, message, origin, destination): 
         if origin not in self.hosts.mode_countdown_states["comienza_button_order"]:
             self.hosts.mode_countdown_states["comienza_button_order"].append(origin)
