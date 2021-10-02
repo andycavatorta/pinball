@@ -120,7 +120,7 @@ class Animation(threading.Thread):
 
                     if self.animation_countdown_counter % 4 == 0:
                         for fruit_id in range(4):
-                            self.hosts.carouselcenter.request_eject_ball(fruit_id)
+                            self.hosts.carousel1.request_eject_ball(fruit_id)
 
 
 
