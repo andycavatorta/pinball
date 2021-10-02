@@ -37,7 +37,7 @@ class Animation(threading.Thread):
         for active: off
         for waiting: comienza blinking rapidly
     """
-    def __init__(self, hosts):
+    def __init__(self, hosts,set_current_mode):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = hosts
@@ -51,6 +51,7 @@ class Animation(threading.Thread):
         self.comienza_button_order = [] # added here for thread safety
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.set_current_mode = set_current_mode
         self.start()
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.comienza_button_order: # if button already pushed
@@ -91,10 +92,11 @@ class Animation(threading.Thread):
                 if self.active:
                     if self.animation_frame_counter % 4 == 0:
                         countdown_seconds = self.countdown_end_seconds - self.animation_frame_counter
+                        print("+++",countdown_seconds,self.countdown_end_seconds, self.animation_frame_counter)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
                         if countdown_seconds <= 0:
-                            self.set_mode(self.game_mode_names.BARTER_MODE_INTRO)
+                            self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                     if self.animation_frame_counter % 2 == 0:
                         if self.animation_frame_counter % 4 == 0:
                             for display_hostname in self.display_hostnames:
@@ -139,7 +141,7 @@ class Mode_Countdown(threading.Thread):
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.timeout_duration = 120 #seconds
-        self.animation = Animation(hosts)
+        self.animation = Animation(hosts,set_current_mode)
         
         self.start()
 
