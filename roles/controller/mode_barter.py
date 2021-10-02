@@ -296,7 +296,7 @@ class Mode_Barter(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.countdown_seconds = 150
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.stations = {
             "pinball1game":Station("pinball1game",self.tb,self.hosts,),
             "pinball2game":Station("pinball2game",self.tb,self.hosts,),
@@ -310,6 +310,13 @@ class Mode_Barter(threading.Thread):
         self.active = True
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True)
+
 
     def end(self):
         self.active = False
