@@ -346,16 +346,13 @@ def trough_sensor_handler(name, value):
     else:
         main.button_lights.comienza.off()
 
-
-
-
 class GPIO_Input():
     def __init__(self, name, pin, callback):
         self.name = name
         self.pin = pin
         self.callback = callback
         self.previous_state = -1 # so first read changes state and reports to callback
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     def scan(self):
         new_state = GPIO.input(self.pin)
         #if self.name == "rollover_outer_left":
@@ -393,7 +390,7 @@ class Scan_GPIO_Inputs(threading.Thread):
             try:
                 for input in self.inputs:
                     input.scan()
-                time.sleep(0.01)
+                time.sleep(0.05)
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
