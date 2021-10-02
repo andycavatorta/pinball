@@ -257,7 +257,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                print("+", topic, type(topic), topic.decode('UTF-8'), message, origin)
+                #print("+", topic, type(topic), topic.decode('UTF-8'), message, origin)
                 if "event" not in topic.decode('UTF-8'):
                     print("received:",topic, message, origin, destination)
                 if topic==b"event_mpf":
@@ -282,8 +282,8 @@ class Main(threading.Thread):
                     if message['component'] == 's_right_slingshot_main':
                         topic = "event_slingshot_right"
                     message = message['new_state']
-                print("-", topic, message, origin)
-
+                #print("-", topic, message, origin)
+                print("self.current_mode",self.current_mode)
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.send_to_dashboard(topic, message, origin, destination)
                 self.current_mode.add_to_queue(topic, message, origin, destination)
