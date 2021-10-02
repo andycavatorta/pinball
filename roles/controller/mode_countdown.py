@@ -81,7 +81,7 @@ class Animation(threading.Thread):
 
     def run(self):
         while True:
-            animaition_interval = self.animation_interval_base + (self.animation_countdown_counter / self.animation_interval_factor = 5000.0)
+            animaition_interval = self.animation_interval_base + (self.animation_countdown_counter / self.animation_interval_factor)
             try:
                 animation_command = self.queue.get(True,animaition_interval)
                 if isinstance(animation_command, bytes):
