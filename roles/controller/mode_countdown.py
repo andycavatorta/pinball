@@ -59,9 +59,9 @@ class Animation(threading.Thread):
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
         
-        self.animation_countdown_counter = 1000.0
+        self.animation_countdown_counter = 300.0
         self.animation_interval_base = 0.1
-        self.animation_interval_factor = 2500.0
+        self.animation_interval_factor = 4000.0
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
@@ -114,9 +114,14 @@ class Animation(threading.Thread):
 
                     pitch_numeral = next(self.cycle_chimes)
                     if pitch_numeral != -1:
-                        pitch_name = self.mezzo_chimes[pitch_numeral]
+                        pitch_name = self.piano_chimes[pitch_numeral]
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_score(pitch_name)
+
+                    if self.animation_countdown_counter % 4 == 0:
+                        for fruit_id in range(5):
+                            self.hosts.carouselcenter.request_eject_ball(fruit_id)
+
 
 
                     """
