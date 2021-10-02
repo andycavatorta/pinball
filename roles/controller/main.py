@@ -88,7 +88,7 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
-        self.queue = queupublish_to_controllere.Queue()
+        self.queue = queue.Queue()
         self.safety_enable = Safety_Enable.Safety_Enable(self.safety_enable_handler)
         self.hosts = Hosts.Hosts(self.tb)
 
