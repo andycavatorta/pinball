@@ -119,7 +119,7 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
                     if self.animation_countdown_counter % 4 == 0:
-                        for fruit_id in range(5):
+                        for fruit_id in range(4):
                             self.hosts.carouselcenter.request_eject_ball(fruit_id)
 
 
