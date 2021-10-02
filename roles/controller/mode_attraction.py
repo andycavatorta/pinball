@@ -338,6 +338,7 @@ class Mode_Attraction(threading.Thread):
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def event_button_comienza(self, message, origin, destination): 
+        print("-----------------------------")
         self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
         self.set_mode(self.game_mode_names.COUNTDOWN)
 

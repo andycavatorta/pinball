@@ -283,7 +283,7 @@ class Main(threading.Thread):
                         topic = "event_slingshot_right"
                     message = message['new_state']
                 #print("-", topic, message, origin)
-                print("self.current_mode",self.current_mode)
+                #print("self.current_mode",self.current_mode)
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.send_to_dashboard(topic, message, origin, destination)
                 self.current_mode.add_to_queue(topic, message, origin, destination)
