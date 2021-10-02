@@ -171,7 +171,7 @@ class Main(threading.Thread):
             "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
             "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
             "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
-            "money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
+            "money":Mode_Money(self.tb, self.hosts, self.set_current_mode),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
         self.send_to_dashboard = dashboard.init(self.tb)
