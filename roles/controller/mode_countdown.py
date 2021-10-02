@@ -45,7 +45,7 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.button_names = ["izquierda","trueque","comienza","dinero","derecha"]
-        self.animaition_interval = 0.25
+        self.animaition_interval = 0.1
         self.countdown_end_seconds = 30
         self.animation_frame_counter = 0
         self.comienza_button_order = [] # added here for thread safety
@@ -90,9 +90,15 @@ class Animation(threading.Thread):
                 self.comienza_button_order.append(animation_command)
             except queue.Empty:
                 if self.active:
+                    # self.animation_frame_counter goes from 0 to 300 during countdown
+                    countdown_seconds = self.countdown_end_seconds - (self.animation_frame_counter / 10.0)
+                    for display_hostname in self.display_hostnames:
+                        self.hosts.hostnames[display_hostname].request_number(int(countdown_seconds*10))
+
+
+                    """
                     if self.animation_frame_counter % 4 == 0:
                         countdown_seconds = self.countdown_end_seconds - self.animation_frame_counter
-                        print("+++",countdown_seconds,self.countdown_end_seconds, self.animation_frame_counter)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
                         if countdown_seconds <= 0:
@@ -117,7 +123,7 @@ class Animation(threading.Thread):
                                 self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all", "off")
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
-
+                    """
                     self.animation_frame_counter += 1
                 else:
                     time.sleep(self.animaition_interval)
