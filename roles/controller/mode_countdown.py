@@ -60,7 +60,7 @@ class Animation(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         
         self.animation_countdown_counter = 1000.0
-        self.animation_interval_base = 0.1
+        self.animation_interval_base = 0.2
         self.animation_interval_factor = 5000.0
 
         self.start()
@@ -117,7 +117,7 @@ class Animation(threading.Thread):
                         pitch_name = self.mezzo_chimes[pitch_numeral]
                     for display_hostname in self.display_hostnames:
                         self.hosts.hostnames[display_hostname].request_score(pitch_name)
-                    
+
 
                     """
                     # self.animation_frame_counter goes from 0 to 300 during countdown
