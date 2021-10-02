@@ -27,11 +27,11 @@ class Mode_Barter_Intro(threading.Thread):
         self.start()
 
     def begin(self):
-        self.animation.add_to_queue("begin")
+        self.active = True
         self.set_current_mode(self.game_mode_names.BARTER_MODE)
         
     def end(self):
-        self.animation.add_to_queue("end")
+        self.active = False
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
