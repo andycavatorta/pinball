@@ -59,6 +59,7 @@ from roles.controller.mode_countdown import Mode_Countdown
 from roles.controller.mode_barter_intro import Mode_Barter_Intro
 from roles.controller.mode_barter import Mode_Barter
 from roles.controller.mode_money_intro import Mode_Money_Intro
+from roles.controller.mode_money import Mode_Money
 #from roles.controller.mode_dinero import Mode_Dinero
 #from roles.controller.mode_reset import Mode_Reset
 #from roles.controller.mode_ending import Mode_Ending
