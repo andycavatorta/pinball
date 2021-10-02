@@ -166,11 +166,11 @@ class Main(threading.Thread):
             "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode),
             "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode),
             #"reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
-            #"countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
-            #"barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
-            #"barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
-            #"money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
-            #"money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
+            "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
+            "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
+            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
+            "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
+            "money":Mode_mone(self.tb, self.hosts, self.set_current_mode),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
         self.send_to_dashboard = dashboard.init(self.tb)
