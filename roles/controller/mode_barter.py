@@ -46,6 +46,14 @@ class Station(threading.Thread):
             "rollover_left":False,
             "sling_left":False,
         }
+        self.display_hostname_map = {
+            "pinball1game":"pinball1display",
+            "pinball2game":"pinball2display",
+            "pinball3game":"pinball3display",
+            "pinball4game":"pinball4display",
+            "pinball5game":"pinball5display",
+        }
+        self.display_hostname = display_hostname_map[origin]
         self.start()
 
     def check_pie_wholeness(self):
@@ -81,38 +89,38 @@ class Station(threading.Thread):
             # blink tu fruta sign
             self.hosts[self.origin].cmd_playfield_lights("sign_arrow_left","energize")
             # ring chimes
-            self.hosts.hostnames[self.origin].request_score("f_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("g_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("c_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("f_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("g_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
             time.sleep(0.05)
-            self.hosts.hostnames[self.origin].request_score("c_mezzo")
+            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
             # to do 
 
     # event handlers
     def event_button_comienza(self, message):
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.1)
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         time.sleep(0.1)
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         time.sleep(0.1)
-        self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         time.sleep(0.1)
-        self.hosts.hostnames[self.origin].request_score("c_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
 
     def event_button_derecha(self, message):
         pass
@@ -139,7 +147,7 @@ class Station(threading.Thread):
         # to do
 
     def event_pop_1(self, message):
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         if self.pie_segments_triggered["pop_left"] == False:
             self.pie_segments_triggered["pop_left"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_pop_left","on")# light animation
@@ -147,7 +155,7 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_pop_2(self, message):
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         if self.pie_segments_triggered["pop_middle"] == False:
             self.pie_segments_triggered["pop_middle"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_pop_middle","on")# light animation
@@ -155,7 +163,7 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_pop_3(self, message):
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         if self.pie_segments_triggered["pop_right"] == False:
             self.pie_segments_triggered["pop_right"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_pop_right","on")# light animation
@@ -171,11 +179,11 @@ class Station(threading.Thread):
         # to do
 
     def event_roll_inner_left(self, message):
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_left"] == False:
             self.pie_segments_triggered["rollover_left"] = True # store state
@@ -184,11 +192,11 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_roll_inner_right(self, message):
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_right"] == False:
             self.pie_segments_triggered["rollover_right"] = True # store state
@@ -197,15 +205,15 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_roll_outer_left(self, message):
-        self.hosts.hostnames[self.origin].request_score("c_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_left"] == False:
             self.pie_segments_triggered["rollover_left"] = True # store state
@@ -214,15 +222,15 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_roll_outer_right(self, message):
-        self.hosts.hostnames[self.origin].request_score("c_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
         time.sleep(0.2)
-        self.hosts.hostnames[self.origin].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.2)
         if self.pie_segments_triggered["rollover_right"] == False:
             self.pie_segments_triggered["rollover_right"] = True # store state
@@ -231,7 +239,7 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_slingshot_left(self, message):
-        self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         if self.pie_segments_triggered["sling_left"] == False:
             self.pie_segments_triggered["sling_left"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_sling_left","on")# light animation
@@ -239,7 +247,7 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_slingshot_right(self, message):
-        self.hosts.hostnames[self.origin].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         if self.pie_segments_triggered["sling_right"] == False:
             self.pie_segments_triggered["sling_right"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_sling_right","on")# light animation
@@ -247,7 +255,7 @@ class Station(threading.Thread):
             self.check_pie_wholeness()
 
     def event_spinner(self, message):
-        self.hosts.hostnames[self.origin].request_score("c_mezzo")
+        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
         if self.pie_segments_triggered["spinner"] == False:
             self.pie_segments_triggered["spinner"] = True # store state
             self.hosts[self.origin].cmd_playfield_lights("pie_spinner","on")# light animation

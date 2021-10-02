@@ -67,6 +67,7 @@ class Animation(threading.Thread):
 
     def begin(self):
         self.reset_animation_cycles()
+        self.animation_frame_counter = 0
         self.active = True
 
     def end(self):
@@ -98,6 +99,7 @@ class Animation(threading.Thread):
 
                     if countdown_seconds <=0:
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+                        self.animation_frame_counter = 0
 
                     """
                     if self.animation_frame_counter % 4 == 0:
