@@ -298,11 +298,13 @@ class Mode_Money(threading.Thread):
         self.start()
 
     def begin(self):
+        self.active = True
         self.animation.add_to_queue("begin")
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
 
     def end(self):
+        self.active = False
         self.animation.add_to_queue("end")
 
     def event_button_comienza(self, message, origin, destination):
@@ -394,13 +396,14 @@ class Mode_Money(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
-                for display_hostname in self.display_hostnames:
-                    self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
-                if countdown_seconds <= 0:
-                    self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
-                if countdown_seconds % 10 == 0:
+                if self.active:
                     for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_score("c_mezzo")
-                        self.hosts.hostnames[display_hostname].request_score("f_mezzo")
-                        self.hosts.hostnames[display_hostname].request_score("gsharp_mezzo")
-                self.countdown_seconds =- 1
+                        self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
+                    if countdown_seconds <= 0:
+                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                    if countdown_seconds % 10 == 0:
+                        for display_hostname in self.display_hostnames:
+                            self.hosts.hostnames[display_hostname].request_score("c_mezzo")
+                            self.hosts.hostnames[display_hostname].request_score("f_mezzo")
+                            self.hosts.hostnames[display_hostname].request_score("gsharp_mezzo")
+                    self.countdown_seconds =- 1
