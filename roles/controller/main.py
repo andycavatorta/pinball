@@ -282,7 +282,7 @@ class Main(threading.Thread):
                     if message['component'] == 's_right_slingshot_main':
                         topic = "event_slingshot_right"
                     message = message['new_state']
-                print("-", topic, type(topic), topic.decode('UTF-8'), message, origin)
+                print("-", topic, message, origin)
 
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.send_to_dashboard(topic, message, origin, destination)
