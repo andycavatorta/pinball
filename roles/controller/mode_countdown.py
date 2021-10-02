@@ -157,7 +157,7 @@ class Mode_Countdown(threading.Thread):
         if origin not in self.hosts.mode_countdown_states["comienza_button_order"]:
             self.hosts.mode_countdown_states["comienza_button_order"].append(origin)
             self.animation.add_to_queue(origin)
-        if len(self.hosts.mode_countdown_states["comienza_button_order"]) => 5:
+        if len(self.hosts.mode_countdown_states["comienza_button_order"]) >= 5:
             self.set_mode(self.game_mode_names.BARTER_MODE_INTRO)
 
     def add_to_queue(self, topic, message, origin, destination):
