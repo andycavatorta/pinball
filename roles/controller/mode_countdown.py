@@ -69,7 +69,16 @@ class Animation(threading.Thread):
                 for button_name in self.button_names:
                     self.hosts.hostnames[pinball_hostname].request_button_light_active(button_name, False)
 
+
+    def _cycle_chimes(self):
+        states = [1,-1,2,3,-1,2,-1,1,0,-1,1,-1,4,3,-1,2,-1,1,0,-1]
+        while True:
+            for state in states:
+                yield state
+
+
     def begin(self):
+        self.cycle_chimes = self._cycle_chimes()
         self.animation_countdown_counter = 1000
         self.active = True
 
@@ -100,6 +109,15 @@ class Animation(threading.Thread):
                     if self.animation_countdown_counter % 10 == 0:
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(int(self.animation_countdown_counter/10))
+                    if self.animation_countdown_counter <=0:
+                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+
+                    pitch_numeral = next(self.cycle_chimes)
+                    if pitch_numeral != -1:
+                        pitch_name = self.mezzo_chimes[pitch_numeral]
+                    for display_hostname in self.display_hostnames:
+                        self.hosts.hostnames[display_hostname].request_score(pitch_name)
+                    
 
                     """
                     # self.animation_frame_counter goes from 0 to 300 during countdown
