@@ -46,7 +46,7 @@ class Station(threading.Thread):
             "rollover_left":False,
             "sling_left":False,
         }
-        self.display_hostname_map = {
+        display_hostname_map = {
             "pinball1game":"pinball1display",
             "pinball2game":"pinball2display",
             "pinball3game":"pinball3display",
