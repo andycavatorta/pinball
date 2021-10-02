@@ -61,7 +61,7 @@ class Animation(threading.Thread):
         
         self.animation_countdown_counter = 1000.0
         self.animation_interval_base = 0.2
-        self.animation_interval_factor = 5000.0
+        self.animation_interval_factor = 1000.0
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
