@@ -34,12 +34,6 @@ class Station(threading.Thread):
         self.hosts = hosts
         self.queue = queue.Queue()
 
-        # hardware
-        self.chimes
-        self.button_lights
-        self.button_switches
-        self.playfield_lights
-
         #states
         self.trade_required = False
         self.pie_segments_triggered = {
