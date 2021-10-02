@@ -36,6 +36,12 @@ class Animation(threading.Thread):
     buttons:
         for active: off
         for waiting: comienza blinking rapidly
+
+
+    animation counts down from 1000
+    animation frame counter decrements to 0
+    animation interval is a (base number + animation frame counter/factor) 
+
     """
     def __init__(self, hosts,set_current_mode):
         threading.Thread.__init__(self)
@@ -45,29 +51,26 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.button_names = ["izquierda","trueque","comienza","dinero","derecha"]
-        self.animaition_interval = 0.2
-        self.countdown_end_seconds = 30
-        self.animation_frame_counter = 0
+        self.piano_chimes = ["f_piano", "g_piano","gsharp_piano","asharp_piano","c_piano"]
+        self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.forte_chimes = ["f_forte", "g_forte","gsharp_forte","asharp_forte","c_forte"]
         self.comienza_button_order = [] # added here for thread safety
         self.active = False
-        self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
+        
+        self.animation_countdown_counter = 1000.0
+        self.animation_interval_base = 0.1
+        self.animation_interval_factor = 5000.0
+
         self.start()
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.comienza_button_order: # if button already pushed
                 for button_name in self.button_names:
                     self.hosts.hostnames[pinball_hostname].request_button_light_active(button_name, False)
 
-    def setup(self):
-        self.reset_animation_cycles()
-
-    def reset_animation_cycles(self):
-        self.animation_frame_counter = 0
-
     def begin(self):
-        self.reset_animation_cycles()
-        self.animation_frame_counter = 0
+        self.animation_countdown_counter = 1000
         self.active = True
 
     def end(self):
@@ -78,8 +81,9 @@ class Animation(threading.Thread):
 
     def run(self):
         while True:
+            animaition_interval = self.animation_interval_base + (self.animation_countdown_counter / self.animation_interval_factor = 5000.0)
             try:
-                animation_command = self.queue.get(True,self.animaition_interval)
+                animation_command = self.queue.get(True,animaition_interval)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -92,6 +96,12 @@ class Animation(threading.Thread):
                 self.comienza_button_order.append(animation_command)
             except queue.Empty:
                 if self.active:
+
+                    if self.animation_countdown_counter % 10 == 0:
+                        for display_hostname in self.display_hostnames:
+                            self.hosts.hostnames[display_hostname].request_number(int(self.animation_countdown_counter/10))
+
+                    """
                     # self.animation_frame_counter goes from 0 to 300 during countdown
                     countdown_seconds = self.countdown_end_seconds - (self.animation_frame_counter / 10.0)
                     for display_hostname in self.display_hostnames:
@@ -100,7 +110,7 @@ class Animation(threading.Thread):
                     if countdown_seconds <=0:
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                         self.animation_frame_counter = 0
-
+                    """
                     """
                     if self.animation_frame_counter % 4 == 0:
                         countdown_seconds = self.countdown_end_seconds - self.animation_frame_counter
@@ -129,9 +139,9 @@ class Animation(threading.Thread):
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
                     """
-                    self.animation_frame_counter += 1
+                    self.animation_countdown_counter -= 1
                 else:
-                    time.sleep(self.animaition_interval)
+                    time.sleep(1)
 
                 
 
