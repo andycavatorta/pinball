@@ -99,10 +99,11 @@ class Animation(threading.Thread):
                         if self.animation_frame_counter % 4 == 0:
                             for display_hostname in self.display_hostnames:
                                 self.hosts.hostnames[display_hostname].request_phrase("juega")
-                            if pinball_hostname not in self.comienza_button_order: # if button already pushed
-                                self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
-                            if pinball_hostname not in self.comienza_button_order: # if button already pushed
-                                self.hosts[pinball_hostname].cmd_playfield_lights("all", "on")
+
+                            for pinball_hostname in self.pinball_hostnames:
+                                if pinball_hostname not in self.comienza_button_order: # if button already pushed
+                                    self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
+                                    self.hosts[pinball_hostname].cmd_playfield_lights("all", "on")
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts[carousel_hostname].cmd_carousel_lights("light_all")
 
