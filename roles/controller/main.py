@@ -260,8 +260,8 @@ class Main(threading.Thread):
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
                 #print("+", topic, type(topic), topic.decode('UTF-8'), message, origin)
-                if "event" not in topic.decode('UTF-8'):
-                    print("received:",topic, message, origin, destination)
+                #if "event" not in topic.decode('UTF-8'):
+                #    print("received:",topic, message, origin, destination)
                 if topic==b"event_mpf":
                     if message['component'] == 's_left_flipper':
                         topic = "event_button_izquierda"

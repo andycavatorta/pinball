@@ -387,6 +387,7 @@ class Mode_Barter(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True, 1)
+                print("mode_barter",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
