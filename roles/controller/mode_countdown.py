@@ -45,7 +45,7 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.button_names = ["izquierda","trueque","comienza","dinero","derecha"]
-        self.animaition_interval = 0.1
+        self.animaition_interval = 0.2
         self.countdown_end_seconds = 30
         self.animation_frame_counter = 0
         self.comienza_button_order = [] # added here for thread safety
@@ -95,6 +95,8 @@ class Animation(threading.Thread):
                     for display_hostname in self.display_hostnames:
                         self.hosts.hostnames[display_hostname].request_number(int(countdown_seconds*10))
 
+                    if countdown_seconds <=0:
+                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
 
                     """
                     if self.animation_frame_counter % 4 == 0:
