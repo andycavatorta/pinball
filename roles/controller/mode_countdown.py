@@ -37,7 +37,7 @@ class Animation(threading.Thread):
         for active: off
         for waiting: comienza blinking rapidly
     """
-    def __init__(self, hosts,set_current_mode,game_mode_names):
+    def __init__(self, hosts,set_current_mode):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = hosts
