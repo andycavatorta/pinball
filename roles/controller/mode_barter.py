@@ -299,13 +299,11 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
-        self.animation.add_to_queue("begin")
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
 
     def end(self):
         self.active = False
-        self.animation.add_to_queue("end")
 
     def event_button_comienza(self, message, origin, destination):
         self.stations[origin].add_to_queue("event_button_comienza",message)
