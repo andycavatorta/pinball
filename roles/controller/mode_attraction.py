@@ -7,6 +7,10 @@ import threading
 import time
 
 class Animation(threading.Thread):
+    """
+    Attraction mode does not beg for attention
+    It should be slowly mesmerizing 
+    """
     def __init__(self, hosts):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
@@ -14,11 +18,11 @@ class Animation(threading.Thread):
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.animaition_interval = 0.25
+        self.animaition_interval = 0.35
         self.animation_frame_counter = 0
         self.active = False
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
-        self.digits_1 = [0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9]
+        self.digits_1 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 8, 7, 6, 5, 4, 3, 2, 1]
         self.digits_2 = [
             [0,1,2],
             [1,2,3],
@@ -33,33 +37,57 @@ class Animation(threading.Thread):
             [10,11,12],
             [11,12,13],
             [12,13,14],
-            [13,14,0],
-            [14,0,1]
+            [13,14,15],
+            [14,15,16],
+            [15,16,17],
+            [16,17,18],
+            [17,18,19],
+            [18,19,20],
+            [19,20,21],
+            [20,21,22],
+            [21,22,23],
+            [22,23,24],
+            [23,24,25],
+            [24,25,26],
+            [25,26,27],
+            [26,27,28],
+            [27,28,29],
+            [28,29,0],
+            [29,0,1],
         ]
         self.digits_3 = [
             [0,3,6,9,12],
             [1,4,7,10,13],
             [2,5,8,11,14],
-            [3,6,9,12,0],
-            [4,7,10,13,1],
-            [5,8,11,14,2],
-            [6,9,12,0,3],
-            [7,10,13,1,4],
-            [8,11,14,2,5],
-            [9,12,0,3,6],
-            [10,13,1,4,7],
-            [11,14,2,5,8],
-            [12,0,3,4,9],
-            [13,1,4,5,10],
-            [14,2,5,8,11]
+            [3,6,9,12,15],
+            [4,7,10,13,16],
+            [5,8,11,14,17],
+            [6,9,12,15,18],
+            [7,10,13,16,19],
+            [8,11,14,17,20],
+            [9,12,15,18,21],
+            [10,13,16,19,22],
+            [11,14,17,20,23],
+            [12,15,18,21,24],
+            [13,16,19,22,25],
+            [14,17,20,23,26],
+            [15,18,21,24,27],
+            [16,19,22,25,28],
+            [17,20,23,26,29],
+            [18,21,24,27,0],
+            [19,22,25,28,1],
+            [20,23,26,29,2],
+            [21,24,27,0,3],
+            [22,25,28,1,4],
+            [23,26,29,2,5],
+            [24,27,0,3,6],
+            [25,28,1,4,7],
+            [26,29,2,5,8],
+            [27,0,3,6,9],
+            [28,1,4,7,10],
+            [29,2,5,8,11]
         ]
-
-
         self.start()
-
-        
-
-
     def _cycle_attraction_buttons(self):
         states = [
             {"izquierda":True,"trueque":False,"comienza":False,"dinero":False,"derecha":True},
@@ -148,7 +176,6 @@ class Animation(threading.Thread):
         while True:
             for state in states:
                 yield state
-
     def _cycle_attraction_chimes(self):
         states = [
             "c_piano",
@@ -163,7 +190,6 @@ class Animation(threading.Thread):
         while True:
             for state in states:
                 yield state
-
     def setup(self):
         for pinball_hostname in self.pinball_hostnames:
             self.hosts[pinball_hostname].request_button_light_active("izquierda", False)
@@ -209,41 +235,23 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
             except queue.Empty:
-                
                 if self.active:
                     button_cycle = next(self.cycle_attraction_buttons)
                     for name_val in button_cycle.items():
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
-                    #if self.animation_frame_counter % 25 == 0:
-                        #print(self.animation_frame_counter)
-                        #score_name = next(self.cycle_attraction_chimes)
-                        #print(score_name)
-                        #self.hosts.pinball1display.request_score(score_name)
-                        #self.hosts.pinball2display.request_score(score_name)
-                        #self.hosts.pinball3display.request_score(score_name)
-                        #self.hosts.pinball4display.request_score(score_name)
-                        #self.hosts.pinball5display.request_score(score_name)
 
-                    if self.animation_frame_counter % 4 == 0:
+                    if self.animation_frame_counter % 5 == 0:
                         for hostname in self.pinball_hostnames:
                             light_states = next(self.cycle_attraction_playfield)
                             for light_state in light_states:
                                 self.hosts.hostnames[hostname].cmd_playfield_lights(light_state[0],light_state[1])
-
-                        if self.animation_frame_counter % 8 == 0:
-                            if self.animation_frame_counter % 16 == 0:
+                        if self.animation_frame_counter % 30 == 0:
+                            if self.animation_frame_counter % 15 == 0:
                                 for i in range(5):
                                     self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
                             else:
                                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
-
-                            for hostname in self.display_hostnames:
-                                self.hosts.hostnames[hostname].request_phrase("")
-                                
-                        else:
-                            for hostname in self.display_hostnames:
-                                self.hosts.hostnames[hostname].request_phrase("juega")
 
                     frame_3 = self.digits_3[self.animation_frame_counter % 15]
                     a_places = self.digits_2[frame_3[0]]
@@ -262,15 +270,36 @@ class Animation(threading.Thread):
                     self.hosts.pinball4display.request_number(d_number)
                     self.hosts.pinball5display.request_number(e_number)
 
+                    if a_places in [0,1,2,3,4,15,16,17,18,19]:
+                        self.hosts.pinball1display.request_phrase("juega")
+                    else:
+                        self.hosts.pinball1display.request_phrase("")
+
+                    if b_places in [0,1,2,3,4,15,16,17,18,19]:
+                        self.hosts.pinball2display.request_phrase("juega")
+                    else:
+                        self.hosts.pinball2display.request_phrase("")
+
+                    if c_places in [0,1,2,3,4,15,16,17,18,19]:
+                        self.hosts.pinball3display.request_phrase("juega")
+                    else:
+                        self.hosts.pinball3display.request_phrase("")
+
+                    if d_places in [0,1,2,3,4,15,16,17,18,19]:
+                        self.hosts.pinball4display.request_phrase("juega")
+                    else:
+                        self.hosts.pinball4display.request_phrase("")
+
+                    if e_places in [0,1,2,3,4,15,16,17,18,19]:
+                        self.hosts.pinball5display.request_phrase("juega")
+                    else:
+                        self.hosts.pinball5display.request_phrase("")
 
                     for frame_nudge in range(5):
-                        if self.animation_frame_counter % 250 == frame_nudge:
+                        if self.animation_frame_counter % 150 == frame_nudge:
                             for hostname in self.display_hostnames:
                                 if random.randrange(0,3) == 0:
                                     self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
-
-
-
 
                     self.animation_frame_counter += 1
                 else:
@@ -278,21 +307,10 @@ class Animation(threading.Thread):
 
 
 
-
-
-
-
-
-
-
 class Mode_Attraction(threading.Thread):
     """
-    just a single mode animation, waiting for comienza button
-    button_lights
-    playfield_lights
-    carousel_lights
-    acrylic_display
-    chimes
+    This class watches for incoming messages
+    Its only action will be to change the current mode
     """
     def __init__(self, tb, hosts, set_current_mode):
         threading.Thread.__init__(self)
@@ -309,6 +327,7 @@ class Mode_Attraction(threading.Thread):
         self.start()
 
     def begin(self):
+        self.hosts.mode_countdown_states["comienza_button_order"] = []
         self.animation.add_to_queue("begin")
 
     def end(self):
@@ -319,7 +338,7 @@ class Mode_Attraction(threading.Thread):
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def event_button_comienza(self, message, origin, destination): 
-        self.hosts.mode_countdown_states["comienza_button_order"] = [origin]
+        self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
         self.set_mode(self.game_mode_names.COUNTDOWN)
 
     def add_to_queue(self, topic, message, origin, destination):

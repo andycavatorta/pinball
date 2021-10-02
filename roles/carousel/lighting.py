@@ -112,6 +112,11 @@ def clear_all():
         for led in led_group:
             pins[led].duty_cycle = 0
 
+def light_all():
+    for led_group in led_groups:
+        for led in led_group:
+            pins[led].duty_cycle = duty_cycle_hi
+
 def stroke_arc(id1, id2):
     if id1 == id2:
         return

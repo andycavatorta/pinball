@@ -55,6 +55,8 @@ from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Conne
 from roles.controller.mode_system_tests import Mode_System_Tests
 from roles.controller.mode_inventory import Mode_Inventory
 from roles.controller.mode_attraction import Mode_Attraction
+from roles.controller.mode_countdown import Mode_Countdown
+from roles.controller.mode_barter_intro import Mode_Barter_Intro
 #from roles.controller.mode_trueque import Mode_Trueque
 #from roles.controller.mode_dinero import Mode_Dinero
 #from roles.controller.mode_reset import Mode_Reset
