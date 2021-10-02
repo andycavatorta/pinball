@@ -57,6 +57,7 @@ class Station(threading.Thread):
         self.start()
 
     def check_pie_wholeness(self):
+        return
         if all([True for k,v in self.pie_segments_triggered.items() if v == True]):
             self.pie_segments_triggered = {
                 "pop_left":False,
