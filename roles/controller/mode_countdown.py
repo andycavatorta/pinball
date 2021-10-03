@@ -134,6 +134,7 @@ class Animation(threading.Thread):
                         else:
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("light_all")
+                            for pinball_hostname in self.pinball_hostnames:
                                 self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","on")
 
 
