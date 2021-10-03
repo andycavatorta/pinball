@@ -133,6 +133,8 @@ class Main(threading.Thread):
                         animation_name, group, params = message
                         if animation_name == "clear_all":
                             self.lighting.clear_all()
+                        if animation_name == "light_all":
+                            self.lighting.light_all()
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
                         if animation_name == "pulse_fruit":
