@@ -242,16 +242,20 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
 
                     if self.animation_frame_counter % 5 == 0:
-                        for hostname in self.pinball_hostnames:
-                            light_states = next(self.cycle_attraction_playfield)
-                            for light_state in light_states:
-                                self.hosts.hostnames[hostname].cmd_playfield_lights(light_state[0],light_state[1])
+                        #for hostname in self.pinball_hostnames:
+                        #    light_states = next(self.cycle_attraction_playfield)
+                        #    for light_state in light_states:
+                        #        self.hosts.hostnames[hostname].cmd_playfield_lights(light_state[0],light_state[1])
                         if self.animation_frame_counter % 30 == 0:
                             if self.animation_frame_counter % 15 == 0:
                                 for i in range(5):
                                     self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
                             else:
                                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
+
+                    if self.animation_frame_counter % 100 == 0:
+                        for hostname in self.pinball_hostnames:
+                            self.hosts.hostnames[hostname].cmd_playfield_lights("all_radial","trace")
 
                     frame_3 = self.digits_3[self.animation_frame_counter % 30]
                     a_places = self.digits_2[frame_3[0]]
