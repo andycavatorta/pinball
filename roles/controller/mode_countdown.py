@@ -60,7 +60,7 @@ class Animation(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         
         self.animation_countdown_counter = 300.0
-        self.animation_interval_base = 0.1
+        self.animation_interval_base = 0.2
         self.animation_interval_factor = 6000.0
 
         self.start()
