@@ -61,7 +61,7 @@ class Animation(threading.Thread):
             "pinball4game":"carousel4",
             "pinball5game":"carousel5",
         }
-        self.comienza_button_order = [] # added here for thread safety
+        self.comienza_button_order = self.hosts.mode_countdown_states["comienza_button_order"] # to do: check thread safety
         self.active = False
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
@@ -205,7 +205,7 @@ class Mode_Countdown(threading.Thread):
 
     def begin(self):
         self.animation.add_to_queue("begin")
-        self.animation.mode_countdown_states = list(self.hosts.mode_countdown_states["comienza_button_order"])
+        #self.animation.comienza_button_order = list(self.hosts.mode_countdown_states["comienza_button_order"])
 
     def end(self):
         self.animation.add_to_queue("end")
