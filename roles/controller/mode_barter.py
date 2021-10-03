@@ -20,6 +20,69 @@ import settings
 import threading
 import time
 
+self.countdown = Countdown(hosts, set_current_mode)
+
+class Countdown(threading.Thread):
+    def __init__(self, hosts, set_current_mode):
+        threading.Thread.__init__(self)
+        self.hosts = hosts
+        self.set_current_mode = set_current_mode
+        self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
+        self.counter = 180
+
+    def begin(self):
+        self.active = True
+        self.counter = 180
+
+    def end(self):
+        self.active = False
+
+    def run(self):
+        if self.active == True:
+            for display_hostname in self.display_hostnames:
+                self.hosts.hostnames[display_hostname].request_number(self.counter)
+            if self.counter % 10 == 0:
+                for display_hostname in self.display_hostnames:
+                    self.hosts.hostnames[display_hostname].request_score("c_piano")
+                    self.hosts.hostnames[display_hostname].request_score("f_piano")
+                    self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
+            self.counter -= 1
+            if self.counter <= 0:
+                self.set_current_mode(self.game_mode_names.ATTRACTION)
+        time.sleep(1)
+
+class Pie():
+    def __init__(self, origin, hosts, pie_full_handler):
+        self.origin = origin
+        self.hosts = hosts
+        self.pie_full_handler = pie_full_handler
+        self.pie_segments_triggered = {
+            "pop_left":False,
+            "pop_middle":False,
+            "pop_right":False,
+            "spinner":False,
+            "sling_right":False,
+            "rollover_right":False,
+            "rollover_left":False,
+            "sling_left":False,
+        }
+        self.reset_pie()
+
+    def target_hit(self,target_name):
+        if self.pie_segments_triggered[target_name] == False:
+            self.pie_segments_triggered[target_name] = True
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_off")# light segment
+            if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
+                time.sleep(.33)
+                self.reset_pie()
+                self.pie_full_handler()
+
+    def reset_pie(self):
+        for target_name in self.pie_segments_triggered:
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_on")# light segment
+
 class Station(threading.Thread):
     """
     things that happen:
@@ -36,16 +99,6 @@ class Station(threading.Thread):
 
         #states
         self.trade_required = False
-        self.pie_segments_triggered = {
-            "pop_left":False,
-            "pop_middle":False,
-            "pop_right":False,
-            "spinner":False,
-            "sling_right":False,
-            "rollover_right":False,
-            "rollover_left":False,
-            "sling_left":False,
-        }
         display_hostname_map = {
             "pinball1game":"pinball1display",
             "pinball2game":"pinball2display",
@@ -54,62 +107,11 @@ class Station(threading.Thread):
             "pinball5game":"pinball5display",
         }
         self.display_hostname = display_hostname_map[origin]
+        self.pie = Pie(origin, hosts, pie_full_handler)
         self.start()
 
-    def check_pie_wholeness(self):
-        return
-        if all([True for k,v in self.pie_segments_triggered.items() if v == True]):
-            self.pie_segments_triggered = {
-                "pop_left":False,
-                "pop_middle":False,
-                "pop_right":False,
-                "spinner":False,
-                "sling_right":False,
-                "rollover_right":False,
-                "rollover_left":False,
-                "sling_left":False,
-            }
-            time.sleep(0.5)
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_left","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_middle","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_right","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_left","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_right","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_spinner","off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_left","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_middle","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_right","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_left","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_right","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","stroke_on")# light segment
-            # blink tu fruta sign
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("sign_arrow_left","energize")
-            # ring chimes
-            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-            time.sleep(0.05)
-            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
-            # to do 
+    def pie_full_handler(self):
+        self.hosts.hostnames[self.origin].cmd_playfield_lights("sign_arrow_left","on")
 
     # event handlers
     def event_button_comienza(self, message):
@@ -148,28 +150,19 @@ class Station(threading.Thread):
         # to do
 
     def event_pop_1(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-        if self.pie_segments_triggered["pop_left"] == False:
-            self.pie_segments_triggered["pop_left"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_left","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_left","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
+            self.pie.target_hit("pop_left")
 
     def event_pop_2(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-        if self.pie_segments_triggered["pop_middle"] == False:
-            self.pie_segments_triggered["pop_middle"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_middle","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_middle","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
+            self.pie.target_hit("pop_middle")
 
     def event_pop_3(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-        if self.pie_segments_triggered["pop_right"] == False:
-            self.pie_segments_triggered["pop_right"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_pop_right","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_right","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
+            self.pie.target_hit("pop_right")
 
     def event_right_stack_ball_present(self, message):
         pass
@@ -180,88 +173,63 @@ class Station(threading.Thread):
         # to do
 
     def event_roll_inner_left(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-        time.sleep(0.2)
-        if self.pie_segments_triggered["rollover_left"] == False:
-            self.pie_segments_triggered["rollover_left"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("rollover_left")
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
 
     def event_roll_inner_right(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-        time.sleep(0.2)
-        if self.pie_segments_triggered["rollover_right"] == False:
-            self.pie_segments_triggered["rollover_right"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("rollover_right")
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
 
     def event_roll_outer_left(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-        time.sleep(0.2)
-        if self.pie_segments_triggered["rollover_left"] == False:
-            self.pie_segments_triggered["rollover_left"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_left","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_left","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("rollover_left")
+            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
 
     def event_roll_outer_right(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
-        time.sleep(0.2)
-        self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
-        time.sleep(0.2)
-        if self.pie_segments_triggered["rollover_right"] == False:
-            self.pie_segments_triggered["rollover_right"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_rollover_right","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_rollover_right","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("rollover_right")
+            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
+            time.sleep(0.1)
+            self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
 
     def event_slingshot_left(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-        if self.pie_segments_triggered["sling_left"] == False:
-            self.pie_segments_triggered["sling_left"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_left","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_left","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("sling_left")
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
 
     def event_slingshot_right(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
-        if self.pie_segments_triggered["sling_right"] == False:
-            self.pie_segments_triggered["sling_right"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_sling_right","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_sling_right","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("sling_right")
+            self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
 
     def event_spinner(self, message):
-        self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
-        if self.pie_segments_triggered["spinner"] == False:
-            self.pie_segments_triggered["spinner"] = True # store state
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_spinner","on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_spinner","back_stroke_off")# light segment
-            self.check_pie_wholeness()
+        if message:
+            self.pie.target_hit("spinner")
+            self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
                 
     def event_trough_sensor(self, message):
         if message: # True or 1
@@ -393,7 +361,7 @@ class Mode_Barter(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True, 1)
+                topic, message, origin, destination = self.queue.get(True)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
@@ -411,8 +379,8 @@ class Mode_Barter(threading.Thread):
                 pass
             except queue.Empty:
                 if self.active:
-                    for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_number(self.countdown_seconds)
+                    #for display_hostname in self.display_hostnames:
+                    #    self.hosts.hostnames[display_hostname].request_number(self.countdown_seconds)
                     #if self.countdown_seconds <= 0:
                     #    self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
                     if self.countdown_seconds % 10 == 0:
