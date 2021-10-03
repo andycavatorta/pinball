@@ -255,7 +255,7 @@ class Animation(threading.Thread):
 
                     if self.animation_frame_counter % 100 == 0:
                         for hostname in self.pinball_hostnames:
-                            self.hosts.hostnames[hostname].cmd_playfield_lights("all_radial","trace")
+                            self.hosts.hostnames[hostname].cmd_playfield_lights("all_radial","single_dot")
 
                     frame_3 = self.digits_3[self.animation_frame_counter % 30]
                     a_places = self.digits_2[frame_3[0]]
