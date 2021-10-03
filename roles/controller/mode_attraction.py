@@ -253,7 +253,7 @@ class Animation(threading.Thread):
                             else:
                                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
 
-                    frame_3 = self.digits_3[self.animation_frame_counter % 15]
+                    frame_3 = self.digits_3[self.animation_frame_counter % 30]
                     a_places = self.digits_2[frame_3[0]]
                     b_places = self.digits_2[frame_3[1]]
                     c_places = self.digits_2[frame_3[2]]
