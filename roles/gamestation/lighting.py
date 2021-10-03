@@ -17,6 +17,7 @@ class Lights_Pattern(threading.Thread):
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
+        SINGLE_DOT = 0.125
 
     class action_names():
         ON = "on"
@@ -31,6 +32,7 @@ class Lights_Pattern(threading.Thread):
         BACK_STROKE_OFF = "back_stroke_off"
         TRACE = "trace"
         BACK_TRACE = "back_trace"
+        SINGLE_DOT = "single_dot"
 
     def __init__(self, channels, upstream_queue,):
         threading.Thread.__init__(self )
@@ -63,6 +65,8 @@ class Lights_Pattern(threading.Thread):
         self.action_queue.put([self.action_names.TRACE, self.channels])
     def back_trace(self):
         self.action_queue.put([self.action_names.BACK_TRACE, self.channels])
+    def single_dot(self):
+        self.action_queue.put([self.action_names.SINGLE_DOT, self.channels])
     def run(self):
         while True:
             # new actions in action_queue will override previous actions
@@ -169,6 +173,18 @@ class Lights_Pattern(threading.Thread):
                     self.upstream_queue.put([self.levels[-1], [channel]])
                     if not self.action_queue.empty():
                         break
+
+            if action_name == self.action_names.SINGLE_DOT: 
+                for channel in self.channels:
+                    self.upstream_queue.put([self.levels[0], [channel]])
+                for channel in self.channels:
+                    self.upstream_queue.put([self.levels[6], [channel]])
+                    time.sleep(self.action_times.SINGLE_DOT)
+                    self.upstream_queue.put([self.levels[0], [channel]])
+                    if not self.action_queue.empty():
+                        break
+
+
 
 class Lights(threading.Thread):
     class pattern_channels():

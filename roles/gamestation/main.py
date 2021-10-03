@@ -587,7 +587,7 @@ class Main(threading.Thread):
                         if group_name == "all_radial":
                             group = self.gamestation_lights.all_radial
 
-                            
+
 
                         if animation_name == "off":
                             group.off()
@@ -613,6 +613,8 @@ class Main(threading.Thread):
                             group.trace()
                         if animation_name == "back_trace":
                             group.back_trace()
+                        if animation_name == "single_dot":
+                            group.single_dot()
                 if topic == b'cmd_rightttube_launch':
                     pass
                 if topic == b'request_button_light_active':
