@@ -214,6 +214,9 @@ class Mode_Countdown(threading.Thread):
         if self.hosts.get_all_host_connected() == True:
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
+    def event_button_comienza(self, message, origin, destination): 
+        self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
+        
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
