@@ -108,7 +108,7 @@ class Station(threading.Thread):
             "pinball5game":"pinball5display",
         }
         self.display_hostname = display_hostname_map[origin]
-        self.pie = Pie(origin, hosts, pie_full_handler)
+        self.pie = Pie(origin, hosts, self.pie_full_handler)
         self.start()
 
     def pie_full_handler(self):
