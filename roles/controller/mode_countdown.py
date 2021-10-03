@@ -67,7 +67,7 @@ class Animation(threading.Thread):
         
         self.animation_countdown_counter = 300.0
         self.animation_interval_base = 0.2
-        self.animation_interval_factor = 6000.0
+        self.animation_interval_factor = 9000.0
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
@@ -125,17 +125,16 @@ class Animation(threading.Thread):
                     if self.animation_countdown_counter % 4 == 0:
                         for fruit_id in range(4):
                             self.hosts.carousel1.request_eject_ball(fruit_id)
-
-                    if self.animation_countdown_counter % 8 == 0:
-                        if self.animation_countdown_counter % 16 == 0:
+                        if self.animation_countdown_counter % 8 == 0:
                             for pinball_hostname in self.pinball_hostnames:
-                                print("comienza_button_order",self.hosts.mode_countdown_states["comienza_button_order"])
                                 if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
                                     carousel_hostname = self.carousel_hostname_map[pinball_hostname]
                                     self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
+                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
                         else:
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("light_all")
+                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","on")
 
 
                     """
