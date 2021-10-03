@@ -584,6 +584,10 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.sign_bottom_left
                         if group_name == "sign_top":
                             group = self.gamestation_lights.sign_top
+                        if group_name == "all_radial":
+                            group = self.gamestation_lights.all_radial
+
+                            
 
                         if animation_name == "off":
                             group.off()

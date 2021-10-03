@@ -130,12 +130,12 @@ class Animation(threading.Thread):
                                 if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
                                     carousel_hostname = self.carousel_hostname_map[pinball_hostname]
                                     self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
-                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
                         else:
                             for carousel_hostname in self.carousel_hostnames:
                                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("light_all")
                             for pinball_hostname in self.pinball_hostnames:
-                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","on")
+                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
 
 
                     """
