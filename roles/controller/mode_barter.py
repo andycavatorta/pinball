@@ -20,7 +20,7 @@ import settings
 import threading
 import time
 
-self.countdown = Countdown(hosts, set_current_mode)
+
 
 class Countdown(threading.Thread):
     def __init__(self, hosts, set_current_mode):
@@ -67,6 +67,7 @@ class Pie():
             "sling_left":False,
         }
         self.reset_pie()
+
 
     def target_hit(self,target_name):
         if self.pie_segments_triggered[target_name] == False:
@@ -260,6 +261,7 @@ class Mode_Barter(threading.Thread):
         self.hosts = hosts
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
+        self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.countdown_seconds = 150
