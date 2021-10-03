@@ -65,7 +65,7 @@ class Animation(threading.Thread):
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
         
-        self.animation_countdown_counter = 300.0
+        self.animation_countdown_counter = 200.0
         self.animation_interval_base = 0.2
         self.animation_interval_factor = 6000.0
 
@@ -83,7 +83,7 @@ class Animation(threading.Thread):
 
     def begin(self):
         self.cycle_chimes = self._cycle_chimes()
-        self.animation_countdown_counter = 300
+        self.animation_countdown_counter = 200
         self.active = True
 
     def end(self):

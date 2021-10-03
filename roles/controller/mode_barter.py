@@ -39,18 +39,19 @@ class Countdown(threading.Thread):
         self.active = False
 
     def run(self):
-        if self.active == True:
-            for display_hostname in self.display_hostnames:
-                self.hosts.hostnames[display_hostname].request_number(self.counter)
-            if self.counter % 10 == 0:
+        while True:
+            if self.active == True:
                 for display_hostname in self.display_hostnames:
-                    self.hosts.hostnames[display_hostname].request_score("c_piano")
-                    self.hosts.hostnames[display_hostname].request_score("f_piano")
-                    self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
-            self.counter -= 1
-            if self.counter <= 0:
-                self.set_current_mode(self.game_mode_names.ATTRACTION)
-        time.sleep(1)
+                    self.hosts.hostnames[display_hostname].request_number(self.counter)
+                if self.counter % 10 == 0:
+                    for display_hostname in self.display_hostnames:
+                        self.hosts.hostnames[display_hostname].request_score("c_piano")
+                        self.hosts.hostnames[display_hostname].request_score("f_piano")
+                        self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
+                self.counter -= 1
+                if self.counter <= 0:
+                    self.set_current_mode(self.game_mode_names.ATTRACTION)
+            time.sleep(1)
 
 class Pie():
     def __init__(self, origin, hosts, pie_full_handler):
