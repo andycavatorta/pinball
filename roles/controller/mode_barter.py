@@ -30,6 +30,7 @@ class Countdown(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.counter = 180
         self.active = False
+        self.game_mode_names = settings.Game_Modes
         self.start()
 
     def begin(self):
