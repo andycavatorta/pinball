@@ -61,7 +61,6 @@ class Animation(threading.Thread):
             "pinball4game":"carousel4",
             "pinball5game":"carousel5",
         }
-        self.comienza_button_order = self.hosts.mode_countdown_states["comienza_button_order"] # to do: check thread safety
         self.active = False
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
@@ -72,7 +71,7 @@ class Animation(threading.Thread):
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
-            if pinball_hostname in self.comienza_button_order: # if button already pushed
+            if pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]: # if button already pushed
                 for button_name in self.button_names:
                     self.hosts.hostnames[pinball_hostname].request_button_light_active(button_name, False)
 
@@ -107,7 +106,7 @@ class Animation(threading.Thread):
                     self.end()
                     continue
                 # the only remaining option would be comienza_button_order
-                self.comienza_button_order.append(animation_command)
+                self.hosts.mode_countdown_states["comienza_button_order"].append(animation_command)
             except queue.Empty:
                 if self.active:
 
@@ -130,7 +129,8 @@ class Animation(threading.Thread):
                     if self.animation_countdown_counter % 8 == 0:
                         if self.animation_countdown_counter % 16 == 0:
                             for pinball_hostname in self.pinball_hostnames:
-                                if pinball_hostname not in self.comienza_button_order:
+                                print("comienza_button_order",self.hosts.mode_countdown_states["comienza_button_order"])
+                                if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
                                     carousel_hostname = self.carousel_hostname_map[pinball_hostname]
                                     self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
                         else:
