@@ -67,7 +67,7 @@ class Animation(threading.Thread):
         
         self.animation_countdown_counter = 300.0
         self.animation_interval_base = 0.2
-        self.animation_interval_factor = 9000.0
+        self.animation_interval_factor = 12000.0
 
         self.start()
         for pinball_hostname in self.pinball_hostnames:
@@ -118,7 +118,11 @@ class Animation(threading.Thread):
 
                     pitch_numeral = next(self.cycle_chimes)
                     if pitch_numeral != -1:
-                        pitch_name = self.piano_chimes[pitch_numeral]
+                        if self.animation_countdown_counter > 100: 
+                            pitch_name = self.piano_chimes[pitch_numeral]
+                        else:
+                            pitch_name = self.mezzo_chimes[pitch_numeral]
+
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
@@ -216,7 +220,7 @@ class Mode_Countdown(threading.Thread):
     
     def event_button_comienza(self, message, origin, destination): 
         self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
-        
+
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
