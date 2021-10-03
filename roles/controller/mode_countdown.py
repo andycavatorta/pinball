@@ -54,6 +54,13 @@ class Animation(threading.Thread):
         self.piano_chimes = ["f_piano", "g_piano","gsharp_piano","asharp_piano","c_piano"]
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.forte_chimes = ["f_forte", "g_forte","gsharp_forte","asharp_forte","c_forte"]
+        self.carousel_hostname_map = {
+            "pinball1game":"carousel1",
+            "pinball2game":"carousel2",
+            "pinball3game":"carousel3",
+            "pinball4game":"carousel4",
+            "pinball5game":"carousel5",
+        }
         self.comienza_button_order = [] # added here for thread safety
         self.active = False
         self.set_current_mode = set_current_mode
@@ -120,6 +127,15 @@ class Animation(threading.Thread):
                         for fruit_id in range(4):
                             self.hosts.carousel1.request_eject_ball(fruit_id)
 
+                    if self.animation_countdown_counter % 8 == 0:
+                        if self.animation_countdown_counter % 16 == 0:
+                            for pinball_hostname in self.pinball_hostnames:
+                                if pinball_hostname not in self.comienza_button_order:
+                                    carousel_hostname = self.carousel_hostname_map[pinball_hostname]
+                                    self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
+                        else:
+                            for carousel_hostname in self.carousel_hostnames:
+                                self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("light_all")
 
 
                     """
