@@ -278,6 +278,7 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
+        self.countdown.begin()
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
         for pinball_hostname in self.pinball_hostnames:
@@ -289,6 +290,7 @@ class Mode_Barter(threading.Thread):
 
 
     def end(self):
+        self.countdown.end()
         self.active = False
 
     def event_button_comienza(self, message, origin, destination):
