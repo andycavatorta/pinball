@@ -58,6 +58,7 @@ class P3Jab:
         """Configure pops or slings."""
         switch_number = self._parse_switch_number(switch_number_str)
         coil_number = self._parse_coil_number(coil_number_str)
+        print(self.proc.driver_get_state(coil_number))
         rules = [pinproc.driver_state_pulse(self.proc.driver_get_state(coil_number).state(), pulse_ms)]
         self.proc.switch_update_rule(switch_number, "closed_nondebounced", {'notifyHost': False, 'reloadActive': False}, rules)
         self.proc.switch_update_rule(switch_number, "open_nondebounced", {'notifyHost': False, 'reloadActive': False}, [])
