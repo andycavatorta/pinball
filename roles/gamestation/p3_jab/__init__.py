@@ -25,6 +25,7 @@ class P3Jab:
 
     def pulse_coil(self, number_str: str, pulse_ms: int):
         """Pulse coil for pulse_ms."""
+        print(self._parse_coil_number(number_str))
         self.proc.driver_pulse(self._parse_coil_number(number_str), pulse_ms)
 
     @staticmethod
