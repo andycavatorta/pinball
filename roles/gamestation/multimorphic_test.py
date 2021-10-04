@@ -44,26 +44,26 @@ class Multimorphic(threading.Thread):
         self.p3.configure_switch_callback(self.switches["sling_right"], self.sling_right_handler)
         self.p3.configure_switch_callback(self.switches["trueque"], self.trueque_handler)
         # configure autofire
-        #self.p3.configure_pops_slings(self.switches["pop_left"], self.coils["pop_left"], 50)
+        self.p3.configure_pops_slings(self.switches["pop_left"], self.coils["pop_left"], 50)
         self.p3.configure_pops_slings(self.switches["pop_middle"], self.coils["pop_middle"], 50)
-        #self.p3.configure_pops_slings(self.switches["pop_right"], self.coils["pop_right"], 50)
-        #self.p3.configure_pops_slings(self.switches["sling_left"], self.coils["sling_left"], 10)
-        #self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 10)
+        self.p3.configure_pops_slings(self.switches["pop_right"], self.coils["pop_right"], 50)
+        self.p3.configure_pops_slings(self.switches["sling_left"], self.coils["sling_left"], 10)
+        self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 10)
         self.start()
 
     def enable_gameplay(self):
         pass
-        #self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
-        #self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
+        self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
+        self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
         self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
 
     def disable_gameplay(self):
         pass
-        #p3.clear_rule(self.switches["izquierda"])
-        #p3.clear_rule(self.switches["derecha"])
+        self.p3.clear_rule(self.switches["izquierda"])
+        self.p3.clear_rule(self.switches["derecha"])
         self.p3.clear_rule(self.switches["kicker"])
-        #p3.disable_coil(self.coils["derecha_hold"])
-        #p3.disable_coil(self.coils["derecha_hold"])
+        self.p3.disable_coil(self.coils["derecha_hold"])
+        self.p3.disable_coil(self.coils["derecha_hold"])
 
     def pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit
