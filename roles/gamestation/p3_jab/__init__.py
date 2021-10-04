@@ -19,7 +19,9 @@ class P3Jab:
     @staticmethod
     def _parse_coil_number(number_str: str):
         board_num, bank_num, coil_num = number_str.split("-", 2)
-        return board_num * 16 + bank_num * 8 + coil_num
+        #return board_num * 16 + bank_num * 8 + coil_num
+        return int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 + int(coil_num.strip(string.ascii_letters))
+
 
     def pulse_coil(self, number_str: str, pulse_ms: int):
         """Pulse coil for pulse_ms."""
