@@ -116,6 +116,8 @@ class Station(threading.Thread):
 
     # event handlers
     def event_button_comienza(self, message):
+        pass
+        """
         self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
         time.sleep(0.1)
         self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
@@ -125,6 +127,7 @@ class Station(threading.Thread):
         self.hosts.hostnames[self.display_hostname].request_score("asharp_mezzo")
         time.sleep(0.1)
         self.hosts.hostnames[self.display_hostname].request_score("c_mezzo")
+        """
 
     def event_button_derecha(self, message):
         pass

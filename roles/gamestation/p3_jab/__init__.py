@@ -2,6 +2,7 @@ from typing import Dict
 import pinproc
 import string
 
+
 class P3Jab:
 
     """Minimal shim for using the P3-Roc."""
@@ -10,6 +11,47 @@ class P3Jab:
         """Initialize platform."""
         self.proc = pinproc.PinPROC(pinproc.normalize_machine_type('pdb'))
         self.proc.reset(1)
+        # some magic stuff we don't understand but it has to be this way
+        for group_ctr in range(0, 4):
+            self.proc.driver_update_group_config(
+                group_ctr,
+                0,
+                group_ctr,
+                0,
+                0,
+                False,
+                True,
+                True,
+                True)
+
+        # enable banks for boards 0-7
+        for bank_num in range(0, 16):
+            self.proc.driver_update_group_config(
+                bank_num + 4,
+                0,
+                bank_num,
+                0,
+                0,
+                False,
+                True,
+                True,
+                True)
+
+        # reset all drivers to off
+        for i in range(0, 255):
+            state = {'driverNum': i,
+                     'outputDriveTime': 0,
+                     'polarity': True,
+                     'state': False,
+                     'waitForFirstTimeSlot': False,
+                     'timeslots': 0,
+                     'patterOnTime': 0,
+                     'patterOffTime': 0,
+                     'patterEnable': False,
+                     'futureEnable': False}
+
+            self.proc.driver_update_state(state)
+
         self.callbacks = {}     # type: Dict[str:callable]
 
     def get_switch_states(self):
@@ -20,16 +62,18 @@ class P3Jab:
     def _parse_coil_number(number_str: str):
         board_num, bank_num, coil_num = number_str.split("-", 2)
         #return board_num * 16 + bank_num * 8 + coil_num
-        return int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 + int(coil_num.strip(string.ascii_letters))
+        return (int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 +
+                int(coil_num.strip(string.ascii_letters)))
 
     def pulse_coil(self, number_str: str, pulse_ms: int):
         """Pulse coil for pulse_ms."""
-        self.proc.driver_pulse(self._parse_coil_number(number_str), pulse_ms)
+        self.proc.driver_pulse(self._parse_coil_number(number_str), int(pulse_ms))
 
     @staticmethod
     def _parse_switch_number(number_str: str):
         board_num, bank_num, switch_num = number_str.split("-", 2)
-        return int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 + int(switch_num.strip(string.ascii_letters))
+        return (int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 +
+                int(switch_num.strip(string.ascii_letters)))
 
     def configure_switch_callback(self, number_str: str, callback: callable):
         """Configure callback for switch on change."""
