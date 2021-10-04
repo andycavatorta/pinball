@@ -61,7 +61,7 @@ class Multimorphic(threading.Thread):
         pass
         #p3.clear_rule(self.switches["izquierda"])
         #p3.clear_rule(self.switches["derecha"])
-        p3.clear_rule(self.switches["kicker"])
+        self.p3.clear_rule(self.switches["kicker"])
         #p3.disable_coil(self.coils["derecha_hold"])
         #p3.disable_coil(self.coils["derecha_hold"])
 
