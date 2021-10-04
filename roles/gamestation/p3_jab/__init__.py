@@ -22,10 +22,9 @@ class P3Jab:
         #return board_num * 16 + bank_num * 8 + coil_num
         return int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 + int(coil_num.strip(string.ascii_letters))
 
-
     def pulse_coil(self, number_str: str, pulse_ms: int):
         """Pulse coil for pulse_ms."""
-        print(self._parse_coil_number(number_str))
+        print(self.proc.driver_get_state(self._parse_coil_number(number_str)))
         self.proc.driver_pulse(self._parse_coil_number(number_str), pulse_ms)
 
     @staticmethod
