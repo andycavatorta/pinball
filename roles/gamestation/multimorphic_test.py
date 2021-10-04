@@ -49,7 +49,7 @@ class Multimorphic(threading.Thread):
         #self.p3.configure_pops_slings(self.switches["pop_right"], self.coils["pop_right"], 50)
         #self.p3.configure_pops_slings(self.switches["sling_left"], self.coils["sling_left"], 10)
         #self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 10)
-        #self.start()
+        self.start()
 
     def enable_gameplay(self):
         pass
