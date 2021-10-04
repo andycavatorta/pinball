@@ -52,20 +52,22 @@ class Multimorphic(threading.Thread):
         self.start()
 
     def enable_gameplay(self):
+        pass
         self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
         self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
         self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
 
     def disable_gameplay(self):
-        p3.clear_rule(self.switches["izquierda"])
-        p3.clear_rule(self.switches["derecha"])
-        p3.clear_rule(self.switches["kicker"])
-        p3.disable_coil(self.coils["derecha_hold"])
-        p3.disable_coil(self.coils["derecha_hold"])
+        pass
+        self.p3.clear_rule(self.switches["izquierda"])
+        self.p3.clear_rule(self.switches["derecha"])
+        self.p3.clear_rule(self.switches["kicker"])
+        self.p3.disable_coil(self.coils["derecha_hold"])
+        self.p3.disable_coil(self.coils["derecha_hold"])
 
     def pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit
-            self.p3.pulse_coil(self.coils["coil_name"], duration_ms)
+            self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
     def izquierda_handler(self,event_state):
         self.callback("event_button_izquierda",event_state)
@@ -94,8 +96,8 @@ class Multimorphic(threading.Thread):
             time.sleep(.01)
 
 """
-multimorphic = Multimorphic(test_callback)
-
 def test_callback(event_name,event_state):
     print(event_name,event_state)
+
+multimorphic = Multimorphic(test_callback)
 """
