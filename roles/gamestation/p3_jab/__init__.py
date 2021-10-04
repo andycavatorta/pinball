@@ -27,6 +27,8 @@ class P3Jab:
     @staticmethod
     def _parse_switch_number(number_str: str):
         board_num, bank_num, switch_num = number_str.split("-", 2)
+        print(board_num, bank_num, switch_num)
+        print(board_num * 16 + bank_num * 8 + switch_num)
         return board_num * 16 + bank_num * 8 + switch_num
 
     def configure_switch_callback(self, number_str: str, callback: callable):
