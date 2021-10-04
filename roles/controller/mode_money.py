@@ -138,7 +138,7 @@ class Station(threading.Thread):
         pass
         # to do
 
-    def event_pop_1(self, message):
+    def event_pop_left(self, message):
         self.hosts.hostnames[self.origin].request_score("gsharp_mezzo")
         if self.pie_segments_triggered["pop_left"] == False:
             self.pie_segments_triggered["pop_left"] = True # store state
@@ -146,7 +146,7 @@ class Station(threading.Thread):
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_left","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
-    def event_pop_2(self, message):
+    def event_pop_middle(self, message):
         self.hosts.hostnames[self.origin].request_score("g_mezzo")
         if self.pie_segments_triggered["pop_middle"] == False:
             self.pie_segments_triggered["pop_middle"] = True # store state
@@ -154,7 +154,7 @@ class Station(threading.Thread):
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_pop_middle","back_stroke_off")# light segment
             self.check_pie_wholeness()
 
-    def event_pop_3(self, message):
+    def event_pop_right(self, message):
         self.hosts.hostnames[self.origin].request_score("f_mezzo")
         if self.pie_segments_triggered["pop_right"] == False:
             self.pie_segments_triggered["pop_right"] = True # store state
@@ -328,14 +328,14 @@ class Mode_Money(threading.Thread):
     def event_left_stack_motion_detected(self, message, origin, destination):
         self.stations[origin].add_to_queue("event_left_stack_motion_detected",message)
 
-    def event_pop_1(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_1",message)
+    def event_pop_left(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_left",message)
 
-    def event_pop_2(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_2",message)
+    def event_pop_middle(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_middle",message)
 
-    def event_pop_3(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_3",message)
+    def event_pop_right(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_right",message)
 
     def event_right_stack_ball_present(self, message, origin, destination):
         self.stations[origin].add_to_queue("event_right_stack_ball_present",message)

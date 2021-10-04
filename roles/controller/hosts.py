@@ -503,6 +503,12 @@ class Pinball(Host):
             "sign_top":None,
         }
 
+    def enable_gameplay(self):
+        self.tb.publish(topic="enable_gameplay", message="",destination=self.hostname)
+
+    def disable_gameplay(self):
+        self.tb.publish(topic="disable_gameplay", message="",destination=self.hostname)
+
     ### LEFT TUBE ###
     def request_lefttube_present(self):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
@@ -897,11 +903,11 @@ class Hosts():
             self.hostnames[origin].set_lefttube_value(message)
         #if topic == "event_left_stack_motion_detected": # unclear what state data should be stored here
         #    self.hostnames[origin].set_left_stack_motion_detected(message)
-        #if topic == "event_pop_1": # unclear what state data should be stored here
+        #if topic == "event_pop_left": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_left(message)
-        #if topic == "event_pop_2": # unclear what state data should be stored here
+        #if topic == "event_pop_middle": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_center(message)
-        #if topic == "event_pop_3": # unclear what state data should be stored here
+        #if topic == "event_pop_right": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_right(message)
         if topic == "event_right_stack_ball_present":
             self.hostnames[origin].set_righttube_value(message)

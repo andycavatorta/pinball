@@ -105,6 +105,18 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_visual_tests")
         # pinball events
         self.tb.subscribe_to_topic("event_mpf")
+
+        self.tb.subscribe_to_topic("event_button_comienza")
+        self.tb.subscribe_to_topic("event_button_derecha")
+        self.tb.subscribe_to_topic("event_button_dinero")
+        self.tb.subscribe_to_topic("event_button_izquierda")
+        self.tb.subscribe_to_topic("event_button_trueque")
+        self.tb.subscribe_to_topic("event_pop_left")
+        self.tb.subscribe_to_topic("event_pop_middle")
+        self.tb.subscribe_to_topic("event_pop_right")
+        self.tb.subscribe_to_topic("event_slingshot_left")
+        self.tb.subscribe_to_topic("event_slingshot_right")
+
         """
         MPF events will be parsed into tb messages with topics
             event_button_izquierda
@@ -112,9 +124,9 @@ class Main(threading.Thread):
             event_button_comienza
             event_button_dinero
             event_button_trueque
-            event_pop_1
-            event_pop_2
-            event_pop_3
+            event_pop_left
+            event_pop_middle
+            event_pop_right
             event_slingshot_left
             event_slingshot_right
 
@@ -274,11 +286,11 @@ class Main(threading.Thread):
                     if message['component'] == 's_right_flipper':
                         topic = "event_button_trueque"
                     if message['component'] == 's_pop_bumper_1':
-                        topic = "event_pop_1"
+                        topic = "event_pop_left"
                     if message['component'] == 's_pop_bumper_2':
-                        topic = "event_pop_2"
+                        topic = "event_pop_middle"
                     if message['component'] == 's_pop_bumper_3':
-                        topic = "event_pop_3"
+                        topic = "event_pop_right"
                     if message['component'] == 's_left_slingshot_main':
                         topic = "event_slingshot_left"
                     if message['component'] == 's_right_slingshot_main':

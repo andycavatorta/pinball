@@ -1,0 +1,130 @@
+==== from all computers ==== 
+
+connected
+deadman
+response_computer_details
+response_visual_tests
+
+response_current_sensor_present*
+response_current_sensor_value*
+response_current_sensor_nominal*
+
+==== to all computers ==== 
+
+request_computer_details
+request_current_sensor_present
+request_current_sensor_value
+request_current_sensor_nominal
+request_system_tests
+connected
+
+
+==== from carousel ==== 
+
+event_carousel_ball_detected
+response_carousel_ball_detected
+
+==== to carousel ==== 
+
+request_carousel_detect_ball
+request_solenoids_present
+cmd_carousel_eject_ball
+cmd_carousel_lights
+cmd_carousel_all_off
+
+
+==== from display ==== 
+
+response_display_leds_present
+response_display_solenoids_present
+
+==== to display ==== 
+cmd_all_off
+cmd_play_score
+cmd_set_phrase
+cmd_set_number
+request_display_leds_present
+request_display_solenoids_present
+
+==== from gamestation ==== 
+
+event_mpf 
+    -- unpacks into --
+event_button_izquierda
+event_button_derecha
+event_button_comienza
+event_button_dinero
+event_button_trueque
+event_pop_left
+event_pop_middle
+event_pop_right
+event_slingshot_left
+event_slingshot_right
+
+event_gamestation_button # now contained in event_mpf
+event_roll_outer_left
+event_roll_inner_left
+event_roll_inner_right
+event_roll_outer_right
+event_trough_sensor
+event_spinner
+
+event_left_stack_ball_present
+event_right_stack_ball_present
+event_left_stack_motion_detected
+event_right_stack_motion_detected
+
+response_lefttube_present
+response_rightttube_present
+
+==== to gamestation ==== 
+
+cmd_all_off
+cmd_kicker_launch
+cmd_lefttube_launch
+cmd_playfield_lights
+cmd_rightttube_launch
+disable_gameplay
+enable_gameplay
+request_button_light_active
+request_button_switch_active
+request_gutter_ball_detected
+request_lefttube_present
+request_rightttube_present
+request_troughsensor_value
+
+
+==== from matrix ==== 
+
+event_carousel_error
+event_carousel_target_reached
+response_amt203_absolute_position
+response_amt203_present
+response_amt203_zeroed
+response_carousel_absolute
+response_carousel_relative
+response_computer_details
+response_current_sensor_value
+response_sdc2160_channel_faults
+response_sdc2160_closed_loop_error
+response_sdc2160_controller_faults
+response_sdc2160_present
+response_sdc2160_relative_position
+
+
+==== to matrix ==== 
+
+cmd_rotate_fruit_to_target
+request_amt203_absolute_position
+request_amt203_present
+request_amt203_zeroed
+request_motor_details
+request_sdc2160_channel_faults
+request_sdc2160_closed_loop_error
+request_sdc2160_controller_faults
+request_sdc2160_faults
+request_sdc2160_present
+request_sdc2160_relative_position
+request_target_position_confirmed
+response_high_power_enabled
+

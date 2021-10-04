@@ -395,7 +395,6 @@ class Scan_GPIO_Inputs(threading.Thread):
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
-
 class MPF_Bridge(threading.Thread):
     def __init__(self, tb):
         threading.Thread.__init__(self)
@@ -482,6 +481,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_rightttube_present")
         self.tb.subscribe_to_topic("request_troughsensor_value")
 
+        self.tb.subscribe_to_topic("enable_gameplay")
+        self.tb.subscribe_to_topic("disable_gameplay")
         # common for all hosts
 
         self.tb.subscribe_to_topic("request_system_tests")

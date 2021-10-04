@@ -8,9 +8,7 @@ This module controls
     the countdown
     lights the trueque sign
 
-
 create abstractions for each station 
-
 """
 import codecs
 import os
@@ -19,8 +17,6 @@ import random
 import settings
 import threading
 import time
-
-
 
 class Countdown(threading.Thread):
     def __init__(self, hosts, set_current_mode):
@@ -154,17 +150,17 @@ class Station(threading.Thread):
         pass
         # to do
 
-    def event_pop_1(self, message):
+    def event_pop_left(self, message):
         if message:
             self.hosts.hostnames[self.display_hostname].request_score("gsharp_mezzo")
             self.pie.target_hit("pop_left")
 
-    def event_pop_2(self, message):
+    def event_pop_middle(self, message):
         if message:
             self.hosts.hostnames[self.display_hostname].request_score("g_mezzo")
             self.pie.target_hit("pop_middle")
 
-    def event_pop_3(self, message):
+    def event_pop_right(self, message):
         if message:
             self.hosts.hostnames[self.display_hostname].request_score("f_mezzo")
             self.pie.target_hit("pop_right")
@@ -291,7 +287,7 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True)
-
+            self.hosts.hostnames[pinball_hostname].enable_gameplay()
 
     def end(self):
         self.countdown.end()
@@ -318,14 +314,14 @@ class Mode_Barter(threading.Thread):
     def event_left_stack_motion_detected(self, message, origin, destination):
         self.stations[origin].add_to_queue("event_left_stack_motion_detected",message)
 
-    def event_pop_1(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_1",message)
+    def event_pop_left(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_left",message)
 
-    def event_pop_2(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_2",message)
+    def event_pop_middle(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_middle",message)
 
-    def event_pop_3(self, message, origin, destination):
-        self.stations[origin].add_to_queue("event_pop_3",message)
+    def event_pop_right(self, message, origin, destination):
+        self.stations[origin].add_to_queue("event_pop_right",message)
 
     def event_right_stack_ball_present(self, message, origin, destination):
         self.stations[origin].add_to_queue("event_right_stack_ball_present",message)

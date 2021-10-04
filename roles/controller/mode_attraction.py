@@ -215,6 +215,8 @@ class Animation(threading.Thread):
 
     def begin(self):
         self.reset_animation_cycles()
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
         self.active = True
 
     def end(self):
