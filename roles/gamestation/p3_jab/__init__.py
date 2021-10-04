@@ -1,5 +1,6 @@
 from typing import Dict
 import pinproc
+import string
 
 class P3Jab:
 
@@ -29,7 +30,12 @@ class P3Jab:
         board_num, bank_num, switch_num = number_str.split("-", 2)
         print(board_num, bank_num, switch_num)
         print(board_num * 16 + bank_num * 8 + switch_num)
+        print(int(board_num.strip(string.ascii_letters)) * 16 + int(bank_num.strip(string.ascii_letters)) * 8 + int(switch_num.strip(string.ascii_letters)))
         return board_num * 16 + bank_num * 8 + switch_num
+
+
+
+
 
     def configure_switch_callback(self, number_str: str, callback: callable):
         """Configure callback for switch on change."""
