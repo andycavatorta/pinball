@@ -5,7 +5,6 @@ to do:
     response_carousel_absolute
     response_carousel_relative
 
-
 topics subscribed:
     cmd_rotate_fruit_to_target
     connected
@@ -28,9 +27,6 @@ topics subscribed:
     request_system_tests
     connected
 
-
-
-
 topics published:
     connected
     event_carousel_error
@@ -52,8 +48,6 @@ topics published:
     response_sdc2160_controller_faults
     response_sdc2160_present
     response_sdc2160_relative_position
-
-
 """
 
 import importlib
