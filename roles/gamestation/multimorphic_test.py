@@ -55,13 +55,13 @@ class Multimorphic(threading.Thread):
         pass
         #self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
         #self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
-        #self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
+        self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
 
     def disable_gameplay(self):
         pass
         #p3.clear_rule(self.switches["izquierda"])
         #p3.clear_rule(self.switches["derecha"])
-        #p3.clear_rule(self.switches["kicker"])
+        p3.clear_rule(self.switches["kicker"])
         #p3.disable_coil(self.coils["derecha_hold"])
         #p3.disable_coil(self.coils["derecha_hold"])
 
