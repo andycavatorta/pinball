@@ -67,7 +67,7 @@ class Multimorphic(threading.Thread):
 
     def pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit
-            self.p3.pulse_coil(self.coils["coil_name"], duration_ms)
+            self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
     def izquierda_handler(self,event_state):
         self.callback("event_button_izquierda",event_state)
