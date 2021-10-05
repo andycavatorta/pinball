@@ -100,8 +100,10 @@ class Main(threading.Thread):
         # temporarily disconnected for safety
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
         if self.high_power_init == False: # if power is on
+            print("cannot sync_relative_encoders_to_absolute_encoders because self.high_power_init == False")
             return False
         if None in self.absolute_encoders_positions:
+            print("cannot sync_relative_encoders_to_absolute_encoders because None in self.absolute_encoders_positions",self.absolute_encoders_positions)
             return False
         # add try/catch blocks and/or general system to track if hi power is on
         for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
