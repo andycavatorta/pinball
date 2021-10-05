@@ -177,9 +177,7 @@ class Main(threading.Thread):
             self.high_power_init = True
             self.get_absolute_positions()
             self.create_controllers_and_motors()
-
-
-
+            self.sync_relative_encoders_to_absolute_encoders()
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
