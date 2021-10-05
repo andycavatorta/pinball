@@ -436,7 +436,7 @@ class Main(threading.Thread):
                 )
 
             if topic == b'response_high_power_enabled': 
-                self.response_high_power_enabled(message, True)
+                self.response_high_power_enabled(message)
 
 main = Main()
 
