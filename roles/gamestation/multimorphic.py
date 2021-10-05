@@ -98,4 +98,8 @@ def test_callback(event_name,event_state):
     print(event_name,event_state)
 
 multimorphic = Multimorphic(test_callback)
+
+multimorphic.pulse_coil("kicker", 25)
+
+multimorphic.enable_gameplay()
 """

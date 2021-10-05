@@ -6,6 +6,10 @@ hardware:
     platform: p3_roc
     driverboards: pdb
 
+p_roc:
+    debug: true
+    trace_bus: true
+
 switches:
     s_left_flipper:
         number: A0-B0-0

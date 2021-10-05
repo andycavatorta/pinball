@@ -285,7 +285,6 @@ lights = Lights()
 
 def test_all():
     while True:
-
         lights.sign_arrow_left.energize()
         time.sleep(2)
 
@@ -300,7 +299,6 @@ def test_all():
 
         lights.sign_arrow_left.blink()
         lights.sign_arrow_right.off()
-
 
         lights.trail_spinner.back_stroke_off()
         lights.trail_pop_right.back_stroke_on()
