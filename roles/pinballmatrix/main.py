@@ -332,110 +332,110 @@ class Main(threading.Thread):
         self.queue.put((topic, message, origin, destination))
     def run(self):
         while True:
-            try:
-                topic, message, origin, destination = self.queue.get(True)
+            topic, message, origin, destination = self.queue.get(True)
 
-                if topic == b'cmd_rotate_fruit_to_target':
-                    carousel_name, fruit_id, target_name = message
-                    self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
+            if topic == b'cmd_rotate_fruit_to_target':
+                carousel_name, fruit_id, target_name = message
+                self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
 
-                if topic == b'connected':
-                    pass               
+            if topic == b'connected':
+                pass               
 
-                if topic == b'request_amt203_absolute_position':
-                    self.tb.publish(
-                        topic="response_amt203_absolute_position", 
-                        message=self.absolute_encoders_positions
-                    )
+            if topic == b'request_amt203_absolute_position':
+                self.tb.publish(
+                    topic="response_amt203_absolute_position", 
+                    message=self.absolute_encoders_positions
+                )
 
-                if topic == b'request_amt203_present':
-                    self.tb.publish(
-                        topic="response_amt203_present", 
-                        message=self.absolute_encoders_presences
-                    )               
-                if topic == b'request_amt203_zeroed':
-                    self.tb.publish(
-                        topic="response_amt203_zeroed", 
-                        message=self.request_amt203_zeroed()
-                    )     
+            if topic == b'request_amt203_present':
+                self.tb.publish(
+                    topic="response_amt203_present", 
+                    message=self.absolute_encoders_presences
+                )               
+            if topic == b'request_amt203_zeroed':
+                self.tb.publish(
+                    topic="response_amt203_zeroed", 
+                    message=self.request_amt203_zeroed()
+                )     
 
-                if topic == b'request_computer_details':
-                    self.tb.publish(
-                        topic="response_computer_details", 
-                        message=self.request_computer_details()
-                    )
+            if topic == b'request_computer_details':
+                self.tb.publish(
+                    topic="response_computer_details", 
+                    message=self.request_computer_details()
+                )
 
-                if topic == b'request_current_sensor_nominal':
-                    self.tb.publish(
-                        topic="response_current_sensor_nominal",
-                        message=self.request_current_sensor_nominal()
-                    )
-                if topic == b'request_current_sensor_present':
-                    self.tb.publish(
-                        topic="response_current_sensor_present",
-                        message=self.request_current_sensor_present()
-                    )
-                if topic == b'request_current_sensor_value':
-                    self.tb.publish(
-                        topic="response_current_sensor_value",
-                        message=self.request_current_sensor_value()
-                    )
+            if topic == b'request_current_sensor_nominal':
+                self.tb.publish(
+                    topic="response_current_sensor_nominal",
+                    message=self.request_current_sensor_nominal()
+                )
+            if topic == b'request_current_sensor_present':
+                self.tb.publish(
+                    topic="response_current_sensor_present",
+                    message=self.request_current_sensor_present()
+                )
+            if topic == b'request_current_sensor_value':
+                self.tb.publish(
+                    topic="response_current_sensor_value",
+                    message=self.request_current_sensor_value()
+                )
 
-                if topic == b'request_motor_details':
-                    """
-                    to do : is this implemented?
-                    """
+            if topic == b'request_motor_details':
+                """
+                to do : is this implemented?
+                """
 
-                if topic == b'request_sdc2160_channel_faults':
-                    self.tb.publish(
-                       topic="response_sdc2160_channel_faults", 
-                        message={
-                            "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
-                            "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
-                            "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
-                            "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
-                            "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
-                            "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
-                        }
-                    )
+            if topic == b'request_sdc2160_channel_faults':
+                self.tb.publish(
+                   topic="response_sdc2160_channel_faults", 
+                    message={
+                        "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
+                        "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
+                        "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
+                        "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
+                        "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
+                        "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
+                    }
+                )
 
-                if topic == b'request_sdc2160_closed_loop_error':
-                    self.tb.publish(
-                        topic="response_sdc2160_closed_loop_error", 
-                        message=self.request_sdc2160_closed_loop_error()
-                    )    
+            if topic == b'request_sdc2160_closed_loop_error':
+                self.tb.publish(
+                    topic="response_sdc2160_closed_loop_error", 
+                    message=self.request_sdc2160_closed_loop_error()
+                )    
 
-                if topic == b'request_sdc2160_controller_faults':
-                    self.tb.publish(
-                        topic="response_sdc2160_controller_faults",
-                        message=self.request_sdc2160_controller_faults()
-                    )
+            if topic == b'request_sdc2160_controller_faults':
+                self.tb.publish(
+                    topic="response_sdc2160_controller_faults",
+                    message=self.request_sdc2160_controller_faults()
+                )
 
-                if topic == b'request_sdc2160_faults':
-                    pass
+            if topic == b'request_sdc2160_faults':
+                pass
 
-                if topic == b'request_sdc2160_present':
-                    self.tb.publish(
-                        topic="response_sdc2160_present", 
-                        message=self.request_sdc2160_present()
-                    )
+            if topic == b'request_sdc2160_present':
+                self.tb.publish(
+                    topic="response_sdc2160_present", 
+                    message=self.request_sdc2160_present()
+                )
 
-                if topic == b'request_sdc2160_relative_position':
-                    self.tb.publish(
-                        topic="response_sdc2160_relative_position", 
-                        message=self.request_sdc2160_relative_position()
-                    )    
+            if topic == b'request_sdc2160_relative_position':
+                self.tb.publish(
+                    topic="response_sdc2160_relative_position", 
+                    message=self.request_sdc2160_relative_position()
+                )    
 
-                if topic == b'request_system_tests':
-                    self.request_system_tests()
+            if topic == b'request_system_tests':
+                self.request_system_tests()
 
-                if topic == b'request_target_position_confirmed':
-                    self.tb.publish(
-                        topic="response_target_position_confirmed",
-                        message=self.request_target_position_confirmed()
-                    )
+            if topic == b'request_target_position_confirmed':
+                self.tb.publish(
+                    topic="response_target_position_confirmed",
+                    message=self.request_target_position_confirmed()
+                )
 
-                if topic == b'response_high_power_enabled': 
-                    self.response_high_power_enabled(message, True)
+            if topic == b'response_high_power_enabled': 
+                self.response_high_power_enabled(message, True)
 
+main = Main()
 
