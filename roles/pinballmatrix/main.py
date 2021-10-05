@@ -96,7 +96,6 @@ class Main(threading.Thread):
         return True
 
     def sync_relative_encoders_to_absolute_encoders(self):
-        return 
         # temporarily disconnected for safety
         print("0 - sync_relative_encoders_to_absolute_encoders")
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
