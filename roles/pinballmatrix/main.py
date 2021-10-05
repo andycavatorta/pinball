@@ -98,15 +98,20 @@ class Main(threading.Thread):
     def sync_relative_encoders_to_absolute_encoders(self):
         return 
         # temporarily disconnected for safety
+        print("0 - sync_relative_encoders_to_absolute_encoders")
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
+        print("1 - sync_relative_encoders_to_absolute_encoders")
         if self.high_power_init == False: # if power is on
             print("cannot sync_relative_encoders_to_absolute_encoders because self.high_power_init == False")
             return False
+        print("2 - sync_relative_encoders_to_absolute_encoders")
         if None in self.absolute_encoders_positions:
             print("cannot sync_relative_encoders_to_absolute_encoders because None in self.absolute_encoders_positions",self.absolute_encoders_positions)
             return False
         # add try/catch blocks and/or general system to track if hi power is on
+        print("3 - sync_relative_encoders_to_absolute_encoders")
         for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
+            print("4 - sync_relative_encoders_to_absolute_encoders")
             abs_ordinal, abs_position = abs_ordinal_position
             print(">>>",abs_ordinal,abs_position, self.controllers.motors[carousel_names[abs_ordinal]].get_encoder_counter_absolute(True))
             self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
@@ -177,13 +182,9 @@ class Main(threading.Thread):
     def response_high_power_enabled(self, message):
         if message: # if power on
             self.high_power_init = True
-            print("1111111111111111111111111")
             self.get_absolute_positions()
-            print("222222222222222222222222222")
             self.create_controllers_and_motors()
-            print("33333333333333333333333333333")
             self.sync_relative_encoders_to_absolute_encoders()
-            print("444444444444444444444444444")
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
