@@ -177,9 +177,13 @@ class Main(threading.Thread):
     def response_high_power_enabled(self, message):
         if message: # if power on
             self.high_power_init = True
+            print("1111111111111111111111111")
             self.get_absolute_positions()
+            print("222222222222222222222222222")
             self.create_controllers_and_motors()
+            print("33333333333333333333333333333")
             self.sync_relative_encoders_to_absolute_encoders()
+            print("444444444444444444444444444")
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
