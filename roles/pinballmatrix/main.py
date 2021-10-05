@@ -81,6 +81,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_target_position_confirmed")
         self.tb.subscribe_to_topic("response_high_power_enabled")
 
+        self.high_power_init = False
         ##### absolute encoder status #####
         self.absolute_encoders_presences = [False,False,False,False,False,False]
         self.absolute_encoders_positions = [None,None,None,None,None,None]
@@ -98,16 +99,20 @@ class Main(threading.Thread):
         return 
         # temporarily disconnected for safety
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
-        if self.high_power_init: # if power is on
-            # add try/catch blocks and/or general system to track if hi power is on
-            abs_positions = self.absolute_encoders.get_positions()
-            for abs_ordinal_position in enumerate(abs_positions):
-                abs_ordinal, abs_position = abs_ordinal_position
-                self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
-                time.sleep(0.5)
-                self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
-                #time.sleep(0.5)
-                #self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+        if self.high_power_init == False: # if power is on
+            return False
+        if None in self.absolute_encoders_positions:
+            return False
+        # add try/catch blocks and/or general system to track if hi power is on
+        for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
+            abs_ordinal, abs_position = abs_ordinal_position
+            print(">>>",abs_ordinal,abs_position, self.controllers.motors[carousel_names[abs_ordinal]].get_encoder_counter_absolute(True))
+            self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
+            time.sleep(0.5)
+            self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
+            print("<<<",abs_ordinal,abs_position, self.controllers.motors[carousel_names[abs_ordinal]].get_encoder_counter_absolute(True))
+            #time.sleep(0.5)
+            #self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         # calculate target position
@@ -176,7 +181,7 @@ class Main(threading.Thread):
 
 
         else: # if power off
-            self.high_power_init = True
+            self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
             self.absolute_encoders_positions = [None,None,None,None,None,None]
 
