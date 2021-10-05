@@ -179,15 +179,24 @@ class Main(threading.Thread):
         time.sleep(5)
 
     def response_high_power_enabled(self, message):
+        print(1)
         if message: # if power on
+            print(2)
             self.high_power_init = True
+            print(3)
             self.get_absolute_positions()
+            print(4)
             self.create_controllers_and_motors()
+            print(5)
             #self.sync_relative_encoders_to_absolute_encoders()
         else: # if power off
+            print(6)
             self.high_power_init = False
+            print(7)
             self.absolute_encoders_presences = [False,False,False,False,False,False]
+            print(8)
             self.absolute_encoders_positions = [None,None,None,None,None,None]
+            print(9)
 
     def request_amt203_zeroed(self):
         """
