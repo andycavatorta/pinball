@@ -124,9 +124,9 @@ class Main(threading.Thread):
         """
         this must not be called when the motors are in a PID mode of any kind
         """
-        self.absolute_encoders_presences = [True, True, True, True, True, True]
-        self.absolute_encoders_positions = [1,1,1,1,1,1]
-        return
+        #self.absolute_encoders_presences = [True, True, True, True, True, True]
+        #self.absolute_encoders_positions = [1,1,1,1,1,1]
+        #return
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
             time.sleep(0.5)
