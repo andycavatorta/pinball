@@ -189,7 +189,9 @@ class Main(threading.Thread):
             print(2)
             self.high_power_init = True
             print(3)
-            self.get_absolute_positions()
+            #self.get_absolute_positions()
+            self.absolute_encoders_presences = [True,True,True,True,True,True]
+            self.absolute_encoders_positions = [0,0,0,0,0,0]
             print(4)
             self.create_controllers_and_motors()
             print(5)
