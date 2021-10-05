@@ -346,7 +346,7 @@ class Main(threading.Thread):
     def run(self):
         while True:
             topic, message, origin, destination = self.queue.get(True)
-
+            print(topic, message, origin, destination)
             if topic == b'cmd_rotate_fruit_to_target':
                 carousel_name, fruit_id, target_name = message
                 self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
