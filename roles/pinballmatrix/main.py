@@ -140,17 +140,22 @@ class Main(threading.Thread):
         #return
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
+            print(10)
             time.sleep(0.5)
             self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+            print(11)
             time.sleep(0.5)
             # verify that encoders are present
             self.absolute_encoders_presences = self.absolute_encoders.get_presences()
+            print(12)
             time.sleep(0.5)
             # read absolute positions
             self.absolute_encoders_positions = self.absolute_encoders.get_positions()
+            print(13)
             time.sleep(0.5)
             # stop SPI interfaces - spidev.close()
             self.absolute_encoders.close()
+            print(14)
             time.sleep(0.5)
 
     def create_controllers_and_motors(self):
