@@ -201,7 +201,7 @@ class Animation(threading.Thread):
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_phrase("")
+            self.hosts.hostnames[display_hostname].request_phrase("juega")
             self.hosts.hostnames[display_hostname].request_number(-1)
         self.reset_animation_cycles()
 
