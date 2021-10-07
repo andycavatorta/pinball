@@ -65,7 +65,7 @@ class Animation(threading.Thread):
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
         
-        self.animation_countdown_counter = 150.0
+        self.animation_countdown_counter = 100.0
         self.animation_interval_base = 0.2
         self.animation_interval_factor = 6000.0
 
@@ -83,7 +83,7 @@ class Animation(threading.Thread):
 
     def begin(self):
         self.cycle_chimes = self._cycle_chimes()
-        self.animation_countdown_counter = 150
+        self.animation_countdown_counter = 100
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].disable_gameplay()
         self.active = True
@@ -120,7 +120,7 @@ class Animation(threading.Thread):
 
                     pitch_numeral = next(self.cycle_chimes)
                     if pitch_numeral != -1:
-                        if self.animation_countdown_counter > 100: 
+                        if self.animation_countdown_counter > 50: 
                             pitch_name = self.piano_chimes[pitch_numeral]
                         else:
                             pitch_name = self.mezzo_chimes[pitch_numeral]

@@ -187,7 +187,7 @@ class Main(threading.Thread):
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
-        self.send_to_dashboard = dashboard.init(self.tb)
+        self.dashboard = dashboard.init(self.tb)
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
         self.current_mode = self.modes["waiting_for_connections"]
         self.current_mode.begin()
@@ -299,7 +299,7 @@ class Main(threading.Thread):
                 print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
                 self.hosts.dispatch(topic, message, origin, destination)
-                self.send_to_dashboard(topic, message, origin, destination)
+                self.dashboard(topic, message, origin, destination)
                 self.current_mode.add_to_queue(topic, message, origin, destination)
 
             except Exception as e:

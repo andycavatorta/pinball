@@ -83,45 +83,131 @@ function sendTrigger(command) {
     websocket.send(command)
 }
 
-
 function websocket_message_handler(evt) {
-    var topic_data = JSON.parse(evt.data);
-    // console.log("New Websocket Message")
-    //console.log(topic_data)
-    var action = topic_data[0]
-    var target = topic_data[1]
+    var topic_data_origin = JSON.parse(evt.data);
+    var topic = topic_data_origin[0];
+    var message = topic_data_origin[1];
+    var origin = topic_data_origin[2];
+    switch (topic) {
+      case "cmd_rotate_fruit_to_target":
+        break;
+      case "connected":
+        break;
+      case "event_button_comienza":
+        break;
+      case "event_button_derecha":
+        break;
+      case "event_button_dinero":
+        break;
+      case "event_button_izquierda":
+        break;
+      case "event_button_trueque":
+        break;
+      case "event_carousel_ball_detected":
+        break;
+      case "event_gamestation_button":
+        break;
+      case "event_left_stack_ball_present":
+        break;
+      case "event_left_stack_motion_detected":
+        break;
+      case "event_pop_left":
+        break;
+      case "event_pop_middle":
+        break;
+      case "event_pop_right":
+        break;
+      case "event_right_stack_ball_present":
+        break;
+      case "event_right_stack_motion_detected":
+        break;
+      case "event_roll_inner_left":
+        break;
+      case "event_roll_inner_right":
+        break;
+      case "event_roll_outer_left":
+        break;
+      case "event_roll_outer_right":
+        break;
+      case "event_slingshot_left":
+        break;
+      case "event_slingshot_right":
+        break;
+      case "event_spinner":
+        break;
+      case "event_trough_sensor":
+        break;
+      case "request_amt203_absolute_position":
+        break;
+      case "request_amt203_present":
+        break;
+      case "request_amt203_zeroed":
+        break;
+      case "request_motor_details":
+        break;
+      case "request_sdc2160_channel_faults":
+        break;
+      case "request_sdc2160_closed_loop_error":
+        break;
+      case "request_sdc2160_controller_faults":
+        break;
+      case "request_sdc2160_faults":
+        break;
+      case "request_sdc2160_present":
+        break;
+      case "request_sdc2160_relative_position":
+        break;
+      case "request_target_position_confirmed":
+        break;
+      case "response_carousel_ball_detected":
+        break;
+      case "response_computer_details":
+          hostmap[origin]["rpi"].set_value("df", message["df"])
+          hostmap[origin]["rpi"].set_value("temp", message["cpu_temp"])
+          hostmap[origin]["rpi"].set_value("pin git", message["pinball_git_timestamp"])
+          hostmap[origin]["rpi"].set_value("tb git", message["tb_git_timestamp"])
+        break;
+      case "response_current_sensor_nominal":
+        break;
+      case "response_current_sensor_present":
+        break;
+      case "response_current_sensor_value":
+        break;
+      case "response_display_leds_present":
+        break;
+      case "response_display_solenoids_present":
+        break;
+      case "response_high_power_enabled":
+        break;
+      case "response_lefttube_present":
+        break;
+      case "response_rightttube_present":
+        break;
+      case "response_visual_tests":
+        break;
 
-    var hostname = target[0]
-    var device = target[1]
-    var data_name = target[2]
-    var data_value = target[3]
-    switch (action) {
+
+
       case "update_status":
-
-          console.log("action>>>>>>",action);
-          console.log("hostname>>>>>>",hostname);
-          console.log("device>>>>>>",device);
-          console.log("data_name>>>>>>",data_name);
-          console.log("data_value>>>>>>",data_value);
         if (data_value == "status_absent"){
-          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_absent");
+          hostmap[origin][device].background_rectangle.setAttribute("class","theme_absent");
         }
         if (data_value == "status_present"){
-          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_present");
+          hostmap[origin][device].background_rectangle.setAttribute("class","theme_present");
         }
         if (data_value == "status_nominal"){
-          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_nominal");
+          hostmap[origin][device].background_rectangle.setAttribute("class","theme_nominal");
         }
         if (data_value == "status_fault"){
-          hostmap[hostname][device].background_rectangle.setAttribute("class","theme_fault");
+          hostmap[origin][device].background_rectangle.setAttribute("class","theme_fault");
         }
         break;
       case "update_value":
         if (device == "amps"){
-          hostmap[hostname][device].set_value(data_value);
+          hostmap[origin][device].set_value(data_value);
         }else{
 
-          hostmap[hostname][device].set_value(data_name, data_value);
+          hostmap[origin][device].set_value(data_name, data_value);
         }
         break;
       }
