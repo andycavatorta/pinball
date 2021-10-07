@@ -267,7 +267,7 @@ class Animation(threading.Thread):
                     self.hosts.pinball3display.request_number(c_number)
                     self.hosts.pinball4display.request_number(d_number)
                     self.hosts.pinball5display.request_number(e_number)
-
+                    """
                     if a_places in [0,1,2,3,4,15,16,17,18,19]:
                         self.hosts.pinball1display.request_phrase("juega")
                     else:
@@ -292,7 +292,7 @@ class Animation(threading.Thread):
                         self.hosts.pinball5display.request_phrase("juega")
                     else:
                         self.hosts.pinball5display.request_phrase("")
-
+                    """
                     for frame_nudge in range(5):
                         if self.animation_frame_counter % 150 == frame_nudge:
                             for hostname in self.display_hostnames:
