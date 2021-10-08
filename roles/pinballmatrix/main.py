@@ -224,7 +224,7 @@ class Main(threading.Thread):
         """
         to do: what does this mean now?
         """
-        return True
+        return self.absolute_encoders_zeroed
 
 
     ##### SETUP METHODS #####
