@@ -369,6 +369,7 @@ class Main(threading.Thread):
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
+        print(topic, message, origin, destination)
         self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
         print("exception_handler",exception)
@@ -379,7 +380,6 @@ class Main(threading.Thread):
     def run(self):
         while True:
             topic, message, origin, destination = self.queue.get(True)
-            print(topic, message, origin, destination)
             if topic == b'cmd_rotate_fruit_to_target':
                 carousel_name, fruit_id, target_name = message
                 self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
