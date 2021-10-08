@@ -23,6 +23,9 @@ from thirtybirds3.adapters.sensors.AMT203_encoder.AMT203_absolute_encoders impor
 import common.deadman as deadman
 import settings
 
+ 
+print("fasddddddddddddddddddddddddddddd")
+
 GPIO.setmode(GPIO.BCM)
 
 class Rotate_to_Position(threading.Thread):
@@ -498,3 +501,4 @@ class Main(threading.Thread):
                 self.response_high_power_enabled(message, True)
 
 
+main = Main()
