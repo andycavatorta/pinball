@@ -25,6 +25,43 @@ import settings
 
 GPIO.setmode(GPIO.BCM)
 
+class Rotate_to_Position(threading.Thread):
+    """
+    to do: 
+        add timeout feature
+        add error or fault messages
+    """
+    def __init__(self, motor, callback):
+        threading.Thread.__init__(self)
+        self.motor = motor
+        self.callback = callback
+        self.queue = queue.Queue()
+        self.start()
+
+    def add_to_queue(self, destination, speed=10, precision=100):
+        self.queue.put((destination, speed, precision))
+
+    def run(self):
+        while True:
+            destination, speed, precision = self.queue.get(True)
+            # get current position
+            current_position = self.motor.get_encoder_counter_absolute(True)
+            # calculate direction
+            speed = -abs(speed) if current_position >= destination else abs(speed)
+            # change mode to speed position
+            self.motor.set_operating_mode(6)
+            # set speed
+            self.motor.set_speed(speed)
+            if speed > 0:
+                while current_position < destination - precision:
+                    current_position = self.motor.get_encoder_counter_absolute(True)
+                    time.sleep(0.01)
+            if speed < 0:
+                while current_position > destination + precision:
+                    current_position = self.motor.get_encoder_counter_absolute(True)
+                    time.sleep(0.01)
+            self.callback(self.motor.name,"destination_reached", self.motor.get_encoder_counter_absolute(True))
+            
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -81,7 +118,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_target_position_confirmed")
         self.tb.subscribe_to_topic("response_high_power_enabled")
 
-        self.high_power_init = False
         ##### absolute encoder status #####
         self.absolute_encoders_presences = [False,False,False,False,False,False]
         self.absolute_encoders_positions = [None,None,None,None,None,None]
@@ -96,29 +132,19 @@ class Main(threading.Thread):
         return True
 
     def sync_relative_encoders_to_absolute_encoders(self):
+        return 
         # temporarily disconnected for safety
-        print("0 - sync_relative_encoders_to_absolute_encoders")
         carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
-        print("1 - sync_relative_encoders_to_absolute_encoders")
-        if self.high_power_init == False: # if power is on
-            print("cannot sync_relative_encoders_to_absolute_encoders because self.high_power_init == False")
-            return False
-        print("2 - sync_relative_encoders_to_absolute_encoders")
-        if None in self.absolute_encoders_positions:
-            print("cannot sync_relative_encoders_to_absolute_encoders because None in self.absolute_encoders_positions",self.absolute_encoders_positions)
-            return False
-        # add try/catch blocks and/or general system to track if hi power is on
-        print("3 - sync_relative_encoders_to_absolute_encoders")
-        for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
-            print("4 - sync_relative_encoders_to_absolute_encoders")
-            abs_ordinal, abs_position = abs_ordinal_position
-            print(">>>",abs_ordinal,abs_position, self.controllers.motors[carousel_names[abs_ordinal]].get_encoder_counter_absolute(True))
-            self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
-            time.sleep(0.5)
-            self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
-            print("<<<",abs_ordinal,abs_position, self.controllers.motors[carousel_names[abs_ordinal]].get_encoder_counter_absolute(True))
-            #time.sleep(0.5)
-            #self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+        if self.high_power_init: # if power is on
+            # add try/catch blocks and/or general system to track if hi power is on
+            abs_positions = self.absolute_encoders.get_positions()
+            for abs_ordinal_position in enumerate(abs_positions):
+                abs_ordinal, abs_position = abs_ordinal_position
+                self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
+                time.sleep(0.5)
+                self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
+                #time.sleep(0.5)
+                #self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         # calculate target position
@@ -135,28 +161,24 @@ class Main(threading.Thread):
         """
         this must not be called when the motors are in a PID mode of any kind
         """
-        #self.absolute_encoders_presences = [True, True, True, True, True, True]
-        #self.absolute_encoders_positions = [1,1,1,1,1,1]
-        #return
+
+        self.absolute_encoders_presences = [True,True,True,True,True,True]
+        self.absolute_encoders_positions = [0,0,0,0,0,0]
+        self.absolute_encoders_zeroed = [True,True,True,True,True,True]
+        return
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
-            print(10)
-            time.sleep(0.5)
-            self.absolute_encoders = AMT203(speed_hz=1953125,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
-            print(11)
-            time.sleep(0.5)
+            self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
+            time.sleep(3)
             # verify that encoders are present
             self.absolute_encoders_presences = self.absolute_encoders.get_presences()
-            print(12)
-            time.sleep(0.5)
+            time.sleep(2)
             # read absolute positions
             self.absolute_encoders_positions = self.absolute_encoders.get_positions()
-            print(13)
-            time.sleep(0.5)
+            time.sleep(2)
             # stop SPI interfaces - spidev.close()
             self.absolute_encoders.close()
-            print(14)
-            time.sleep(0.5)
+            time.sleep(1)
 
     def create_controllers_and_motors(self):
         """
@@ -184,32 +206,23 @@ class Main(threading.Thread):
         time.sleep(5)
 
     def response_high_power_enabled(self, message):
-        print(1)
         if message: # if power on
-            print(2)
             self.high_power_init = True
-            print(3)
-            #self.get_absolute_positions()
-            self.absolute_encoders_presences = [True,True,True,True,True,True]
-            self.absolute_encoders_positions = [0,0,0,0,0,0]
-            print(4)
+            self.get_absolute_positions()
             self.create_controllers_and_motors()
-            print(5)
-            #self.sync_relative_encoders_to_absolute_encoders()
+
+
+
         else: # if power off
-            print(6)
-            self.high_power_init = False
-            print(7)
+            self.high_power_init = True
             self.absolute_encoders_presences = [False,False,False,False,False,False]
-            print(8)
             self.absolute_encoders_positions = [None,None,None,None,None,None]
-            print(9)
 
     def request_amt203_zeroed(self):
         """
         to do: what does this mean now?
         """
-        return self.absolute_encoders_zeroed
+        return True
 
 
     ##### SETUP METHODS #####
@@ -263,6 +276,10 @@ class Main(threading.Thread):
             topic="response_sdc2160_relative_position", 
             message=self.request_sdc2160_relative_position()
         )
+
+
+
+
 
     ##### SYSTEM TESTS #####
 
@@ -361,110 +378,110 @@ class Main(threading.Thread):
         self.queue.put((topic, message, origin, destination))
     def run(self):
         while True:
-            topic, message, origin, destination = self.queue.get(True)
-            print(topic, message, origin, destination)
-            if topic == b'cmd_rotate_fruit_to_target':
-                carousel_name, fruit_id, target_name = message
-                self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
+            try:
+                topic, message, origin, destination = self.queue.get(True)
 
-            if topic == b'connected':
-                pass               
+                if topic == b'cmd_rotate_fruit_to_target':
+                    carousel_name, fruit_id, target_name = message
+                    self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
 
-            if topic == b'request_amt203_absolute_position':
-                self.tb.publish(
-                    topic="response_amt203_absolute_position", 
-                    message=self.absolute_encoders_positions
-                )
+                if topic == b'connected':
+                    pass               
 
-            if topic == b'request_amt203_present':
-                self.tb.publish(
-                    topic="response_amt203_present", 
-                    message=self.absolute_encoders_presences
-                )               
-            if topic == b'request_amt203_zeroed':
-                self.tb.publish(
-                    topic="response_amt203_zeroed", 
-                    message=self.request_amt203_zeroed()
-                )     
+                if topic == b'request_amt203_absolute_position':
+                    self.tb.publish(
+                        topic="response_amt203_absolute_position", 
+                        message=self.absolute_encoders_positions
+                    )
 
-            if topic == b'request_computer_details':
-                self.tb.publish(
-                    topic="response_computer_details", 
-                    message=self.request_computer_details()
-                )
+                if topic == b'request_amt203_present':
+                    self.tb.publish(
+                        topic="response_amt203_present", 
+                        message=self.absolute_encoders_presences
+                    )               
+                if topic == b'request_amt203_zeroed':
+                    self.tb.publish(
+                        topic="response_amt203_zeroed", 
+                        message=self.request_amt203_zeroed()
+                    )     
 
-            if topic == b'request_current_sensor_nominal':
-                self.tb.publish(
-                    topic="response_current_sensor_nominal",
-                    message=self.request_current_sensor_nominal()
-                )
-            if topic == b'request_current_sensor_present':
-                self.tb.publish(
-                    topic="response_current_sensor_present",
-                    message=self.request_current_sensor_present()
-                )
-            if topic == b'request_current_sensor_value':
-                self.tb.publish(
-                    topic="response_current_sensor_value",
-                    message=self.request_current_sensor_value()
-                )
+                if topic == b'request_computer_details':
+                    self.tb.publish(
+                        topic="response_computer_details", 
+                        message=self.request_computer_details()
+                    )
 
-            if topic == b'request_motor_details':
-                """
-                to do : is this implemented?
-                """
+                if topic == b'request_current_sensor_nominal':
+                    self.tb.publish(
+                        topic="response_current_sensor_nominal",
+                        message=self.request_current_sensor_nominal()
+                    )
+                if topic == b'request_current_sensor_present':
+                    self.tb.publish(
+                        topic="response_current_sensor_present",
+                        message=self.request_current_sensor_present()
+                    )
+                if topic == b'request_current_sensor_value':
+                    self.tb.publish(
+                        topic="response_current_sensor_value",
+                        message=self.request_current_sensor_value()
+                    )
 
-            if topic == b'request_sdc2160_channel_faults':
-                self.tb.publish(
-                   topic="response_sdc2160_channel_faults", 
-                    message={
-                        "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
-                        "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
-                        "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
-                        "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
-                        "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
-                        "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
-                    }
-                )
+                if topic == b'request_motor_details':
+                    """
+                    to do : is this implemented?
+                    """
 
-            if topic == b'request_sdc2160_closed_loop_error':
-                self.tb.publish(
-                    topic="response_sdc2160_closed_loop_error", 
-                    message=self.request_sdc2160_closed_loop_error()
-                )    
+                if topic == b'request_sdc2160_channel_faults':
+                    self.tb.publish(
+                       topic="response_sdc2160_channel_faults", 
+                        message={
+                            "carousel_1":self.request_sdc2160_channel_faults("carousel_1"),
+                            "carousel_2":self.request_sdc2160_channel_faults("carousel_2"),
+                            "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
+                            "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
+                            "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
+                            "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
+                        }
+                    )
 
-            if topic == b'request_sdc2160_controller_faults':
-                self.tb.publish(
-                    topic="response_sdc2160_controller_faults",
-                    message=self.request_sdc2160_controller_faults()
-                )
+                if topic == b'request_sdc2160_closed_loop_error':
+                    self.tb.publish(
+                        topic="response_sdc2160_closed_loop_error", 
+                        message=self.request_sdc2160_closed_loop_error()
+                    )    
 
-            if topic == b'request_sdc2160_faults':
-                pass
+                if topic == b'request_sdc2160_controller_faults':
+                    self.tb.publish(
+                        topic="response_sdc2160_controller_faults",
+                        message=self.request_sdc2160_controller_faults()
+                    )
 
-            if topic == b'request_sdc2160_present':
-                self.tb.publish(
-                    topic="response_sdc2160_present", 
-                    message=self.request_sdc2160_present()
-                )
+                if topic == b'request_sdc2160_faults':
+                    pass
 
-            if topic == b'request_sdc2160_relative_position':
-                self.tb.publish(
-                    topic="response_sdc2160_relative_position", 
-                    message=self.request_sdc2160_relative_position()
-                )    
+                if topic == b'request_sdc2160_present':
+                    self.tb.publish(
+                        topic="response_sdc2160_present", 
+                        message=self.request_sdc2160_present()
+                    )
 
-            if topic == b'request_system_tests':
-                self.request_system_tests()
+                if topic == b'request_sdc2160_relative_position':
+                    self.tb.publish(
+                        topic="response_sdc2160_relative_position", 
+                        message=self.request_sdc2160_relative_position()
+                    )    
 
-            if topic == b'request_target_position_confirmed':
-                self.tb.publish(
-                    topic="response_target_position_confirmed",
-                    message=self.request_target_position_confirmed()
-                )
+                if topic == b'request_system_tests':
+                    self.request_system_tests()
 
-            if topic == b'response_high_power_enabled': 
-                self.response_high_power_enabled(message)
+                if topic == b'request_target_position_confirmed':
+                    self.tb.publish(
+                        topic="response_target_position_confirmed",
+                        message=self.request_target_position_confirmed()
+                    )
 
-main = Main()
+                if topic == b'response_high_power_enabled': 
+                    self.response_high_power_enabled(message, True)
+
 
