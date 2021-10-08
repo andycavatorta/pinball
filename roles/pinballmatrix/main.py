@@ -83,9 +83,12 @@ roboteq_data_receiver = Roboteq_Data_Receiver()
 
 class Main(threading.Thread):
     def __init__(self):
+        print(1)
         threading.Thread.__init__(self)
+        print(2)
         ###### NETWORK #####
         self.queue = queue.Queue()
+        print(3)
         self.tb = thirtybirds.Thirtybirds(
             settings, 
             app_path,
@@ -93,10 +96,14 @@ class Main(threading.Thread):
             self.network_status_change_handler,
             self.exception_handler
         )
+        print(4)
         self.hostname = self.tb.get_hostname()
+        print(5)
         self.deadman = deadman.Deadman_Switch(self.tb)
+        print(6)
 
         self.chip_select_pins_for_abs_enc = [12,13,17,18,5,16]
+        print(7)
         ##### SUBSCRIPTIONS #####
         self.tb.subscribe_to_topic("cmd_rotate_fruit_to_target")
         self.tb.subscribe_to_topic("connected")
@@ -119,11 +126,17 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_high_power_enabled")
 
         ##### absolute encoder status #####
+        print(8)
         self.absolute_encoders_presences = [False,False,False,False,False,False]
+        print(9)
         self.absolute_encoders_positions = [None,None,None,None,None,None]
+        print(10)
         self.absolute_encoders_zeroed = [True,True,True,True,True,True]
+        print(11)
         time.sleep(1) # just being superstitious
+        print(12)
         self.start()
+        print(13)
 
     def request_target_position_confirmed(self, message):
         """
@@ -379,6 +392,7 @@ class Main(threading.Thread):
         self.queue.put((topic, message, origin, destination))
     def run(self):
         while True:
+            print("ffffffffffffffffffffffffff")
             topic, message, origin, destination = self.queue.get(True)
             if topic == b'cmd_rotate_fruit_to_target':
                 carousel_name, fruit_id, target_name = message
