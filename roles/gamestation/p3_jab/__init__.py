@@ -11,6 +11,22 @@ class P3Jab:
         """Initialize platform."""
         self.proc = pinproc.PinPROC(pinproc.normalize_machine_type('pdb'))
         self.proc.reset(1)
+
+        # reset all drivers to off
+        for i in range(0, 255):
+            state = {'driverNum': i,
+                     'outputDriveTime': 0,
+                     'polarity': True,
+                     'state': False,
+                     'waitForFirstTimeSlot': False,
+                     'timeslots': 0,
+                     'patterOnTime': 0,
+                     'patterOffTime': 0,
+                     'patterEnable': False,
+                     'futureEnable': False}
+
+            self.proc.driver_update_state(state)
+
         # some magic stuff we don't understand but it has to be this way
         for group_ctr in range(0, 4):
             self.proc.driver_update_group_config(
@@ -37,21 +53,35 @@ class P3Jab:
                 True,
                 True)
 
-        # reset all drivers to off
-        for i in range(0, 255):
-            state = {'driverNum': i,
-                     'outputDriveTime': 0,
-                     'polarity': True,
-                     'state': False,
-                     'waitForFirstTimeSlot': False,
-                     'timeslots': 0,
-                     'patterOnTime': 0,
-                     'patterOffTime': 0,
-                     'patterEnable': False,
-                     'futureEnable': False}
+        self.proc.driver_update_global_config(
+                                           False,
+                                           True,  # Polarity
+                                           False,  # N/A
+                                           False,  # N/A
+                                           1,  # N/A
+                                           0,
+                                           0,
+                                           False,  # Active low rows? No
+                                           False,  # N/A
+                                           False,  # Stern? No
+                                           False,  # Reset watchdog trigger
+                                           True,  # Enable watchdog
+                                           1000)
 
-            self.proc.driver_update_state(state)
-
+        self.proc.driver_update_global_config(
+                                           True,
+                                           True,  # Polarity
+                                           False,  # N/A
+                                           False,  # N/A
+                                           1,  # N/A
+                                           0,
+                                           0,
+                                           False,  # Active low rows? No
+                                           False,  # N/A
+                                           False,  # Stern? No
+                                           False,  # Reset watchdog trigger
+                                           True,  # Enable watchdog
+                                           1000)
         self.callbacks = {}     # type: Dict[str:callable]
 
     def get_switch_states(self):

@@ -1,5 +1,6 @@
 from functools import partial
 import p3_jab
+import queue
 import time
 import threading
 
@@ -34,6 +35,7 @@ class Multimorphic(threading.Thread):
             "sling_right":"A0-B1-5",
             "trueque":"A0-B0-1",
         }
+        self.queue = queue.Queue()
         # switches
         self.p3.configure_switch_callback(self.switches["dinero"], self.dinero_handler)
         self.p3.configure_switch_callback(self.switches["kicker"], self.kicker_handler)
@@ -51,22 +53,20 @@ class Multimorphic(threading.Thread):
         self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 10)
         self.start()
 
-    def enable_gameplay(self):
+    def _enable_gameplay(self):
         self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
         self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
         self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
 
-    def disable_gameplay(self):
+    def _disable_gameplay(self):
         self.p3.clear_rule(self.switches["izquierda"])
         self.p3.clear_rule(self.switches["derecha"])
         self.p3.clear_rule(self.switches["kicker"])
+        self.p3.disable_coil(self.coils["izquierda_hold"])
         self.p3.disable_coil(self.coils["derecha_hold"])
-        self.p3.disable_coil(self.coils["derecha_hold"])
-
-    def pulse_coil(self,coil_name, duration_ms):
+    def _pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
-
     def izquierda_handler(self,event_state):
         self.callback("event_button_izquierda",event_state)
     def trueque_handler(self,event_state):
@@ -87,11 +87,30 @@ class Multimorphic(threading.Thread):
         self.callback("event_slingshot_left",event_state)
     def sling_right_handler(self,event_state):
         self.callback("event_slingshot_right",event_state)
+    def enable_gameplay(self):
+        self.add_to_queue("enable_gameplay")
+
+        
+    def disable_gameplay(self):
+        self.add_to_queue("disable_gameplay")
+    def pulse_coil(self,coil_name, duration_ms):
+        self.add_to_queue("pulse_coil",[coil_name, duration_ms])
+    def add_to_queue(self, command, params=[]):
+        self.queue.put((command, params))
 
     def run(self):
         while True:
-            self.p3.poll()
-            time.sleep(.01)
+            try:
+                command, params = self.queue.get(True,0.01)
+                if command == "enable_gameplay":
+                    self._enable_gameplay()
+                if command == "disable_gameplay":
+                    self._disable_gameplay()
+                if command == "pulse_coil":
+                    self._pulse_coil(params[0],params[1])
+            except queue.Empty:
+                self.p3.poll()
+
 
 """
 def test_callback(event_name,event_state):
