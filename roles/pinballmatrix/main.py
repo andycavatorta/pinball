@@ -40,7 +40,7 @@ class Rotate_to_Position(threading.Thread):
         self.queue = queue.Queue()
         self.start()
 
-    def add_to_queue(self, destination, speed=10, precision=100):
+    def add_to_queue(self, destination, speed=70, precision=100):
         self.queue.put((destination, speed, precision))
 
     def run(self):
@@ -62,7 +62,7 @@ class Rotate_to_Position(threading.Thread):
                 while current_position > destination + precision:
                     current_position = self.motor.get_encoder_counter_absolute(True)
                     time.sleep(0.01)
-            self.callback(self.motor.name,"destination_reached", self.motor.get_encoder_counter_absolute(True))
+            self.callback("event_destination_reached", self.motor.get_encoder_counter_absolute(True), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
@@ -120,6 +120,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_target_position_confirmed")
         self.tb.subscribe_to_topic("response_high_power_enabled")
 
+
+        self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
         ##### absolute encoder status #####
         self.absolute_encoders_presences = [False,False,False,False,False,False]
         self.absolute_encoders_positions = [None,None,None,None,None,None]
@@ -134,19 +136,13 @@ class Main(threading.Thread):
         return True
 
     def sync_relative_encoders_to_absolute_encoders(self):
-        return 
-        # temporarily disconnected for safety
-        carousel_names =  ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
         if self.high_power_init: # if power is on
-            # add try/catch blocks and/or general system to track if hi power is on
+            # to do: try/catch blocks and/or general system to track if hi power is on
             abs_positions = self.absolute_encoders.get_positions()
             for abs_ordinal_position in enumerate(abs_positions):
                 abs_ordinal, abs_position = abs_ordinal_position
-                self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(0)
                 time.sleep(0.5)
-                self.controllers.motors[carousel_names[abs_ordinal]].set_encoder_counter(abs_position)
-                #time.sleep(0.5)
-                #self.controllers.motors[carousel_names[abs_ordinal]].set_operating_mode(3)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         # calculate target position
@@ -163,11 +159,6 @@ class Main(threading.Thread):
         """
         this must not be called when the motors are in a PID mode of any kind
         """
-
-        self.absolute_encoders_presences = [True,True,True,True,True,True]
-        self.absolute_encoders_positions = [0,0,0,0,0,0]
-        self.absolute_encoders_zeroed = [True,True,True,True,True,True]
-        return
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
             self.absolute_encoders = AMT203(speed_hz=5000,gpios_for_chip_select=self.chip_select_pins_for_abs_enc)
@@ -212,11 +203,16 @@ class Main(threading.Thread):
             self.high_power_init = True
             self.get_absolute_positions()
             self.create_controllers_and_motors()
-
-
+            self.sync_relative_encoders_to_absolute_encoders()
+            #for motor_name in self.motor_names:
+            #    self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
+            print("AMT values:",self.absolute_encoders_positions)
+            for motor_name in self.motor_names:
+                time.sleep(0.5)
+                print("sDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
 
         else: # if power off
-            self.high_power_init = True
+            self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
             self.absolute_encoders_positions = [None,None,None,None,None,None]
 
@@ -388,6 +384,11 @@ class Main(threading.Thread):
 
             if topic == b'connected':
                 pass               
+
+
+            if topic == b'event_destination_reached':
+                print(topic, message, origin, destination)
+                # to do: sent to controller
 
             if topic == b'request_amt203_absolute_position':
                 self.tb.publish(
