@@ -202,7 +202,7 @@ class Main(threading.Thread):
         if message: # if power on
             self.high_power_init = True
             #self.get_absolute_positions()
-            #self.create_controllers_and_motors()
+            self.create_controllers_and_motors()
             #self.sync_relative_encoders_to_absolute_encoders()
             #for motor_name in self.motor_names:
             #    self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
