@@ -138,8 +138,7 @@ class Main(threading.Thread):
     def sync_relative_encoders_to_absolute_encoders(self):
         if self.high_power_init: # if power is on
             # to do: try/catch blocks and/or general system to track if hi power is on
-            abs_positions = self.absolute_encoders.get_positions()
-            for abs_ordinal_position in enumerate(abs_positions):
+            for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
                 abs_ordinal, abs_position = abs_ordinal_position
                 time.sleep(0.5)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
@@ -161,7 +160,7 @@ class Main(threading.Thread):
         """
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
-            time.sleep(3)
+            time.sleep(2)
             self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
             time.sleep(3)
             # verify that encoders are present
