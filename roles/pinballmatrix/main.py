@@ -53,15 +53,18 @@ class Rotate_to_Position(threading.Thread):
             # change mode to speed position
             #self.motor.set_operating_mode(6)
             # set speed
-            self.motor.set_speed(speed)
+            # self.motor.set_speed(speed)
             if speed > 0:
                 while current_position < destination - precision:
                     current_position = self.motor.get_encoder_counter_absolute(True)
+                    print(destination, current_position, speed)
                     time.sleep(0.01)
             if speed < 0:
                 while current_position > destination + precision:
                     current_position = self.motor.get_encoder_counter_absolute(True)
+                    print(destination, current_position, speed)
                     time.sleep(0.01)
+            print("event_destination_reached")
             self.callback("event_destination_reached", self.motor.get_encoder_counter_absolute(True), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
@@ -145,7 +148,7 @@ class Main(threading.Thread):
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
-                
+
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         # calculate target position
@@ -208,8 +211,8 @@ class Main(threading.Thread):
             self.create_controllers_and_motors()
             self.get_absolute_positions()
             self.sync_relative_encoders_to_absolute_encoders()
-            #for motor_name in self.motor_names:
-            #    self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
+            for motor_name in self.motor_names:
+                self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
             print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
                 time.sleep(0.5)
