@@ -441,6 +441,9 @@ class Matrix(Host):
     def response_high_power_enabled(self): 
         self.tb.publish(topic="response_high_power_enabled", message=True)
 
+    def response_high_power_disabled(self): 
+        self.tb.publish(topic="response_high_power_enabled", message=False)
+
 
 
 class Pinball(Host):
