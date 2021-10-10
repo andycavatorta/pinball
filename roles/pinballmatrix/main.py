@@ -291,6 +291,7 @@ class Main(threading.Thread):
     ##### SYSTEM TESTS #####
 
     def request_computer_details(self):
+        print("!!!!!! 1")
         return {
             "df":self.tb.get_system_disk(),
             "cpu_temp":self.tb.get_core_temp(),
@@ -417,10 +418,12 @@ class Main(threading.Thread):
                 )     
 
             if topic == b'request_computer_details':
+                print("!!!!!! 0")
                 self.tb.publish(
                     topic="response_computer_details", 
                     message=self.request_computer_details()
                 )
+                print("!!!!!! 2")
 
             if topic == b'request_current_sensor_nominal':
                 self.tb.publish(
