@@ -51,7 +51,7 @@ class Rotate_to_Position(threading.Thread):
             # calculate direction
             speed = -abs(speed) if current_position >= destination else abs(speed)
             # change mode to speed position
-            self.motor.set_operating_mode(6)
+            #self.motor.set_operating_mode(6)
             # set speed
             self.motor.set_speed(speed)
             if speed > 0:
@@ -140,8 +140,12 @@ class Main(threading.Thread):
             # to do: try/catch blocks and/or general system to track if hi power is on
             for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
                 abs_ordinal, abs_position = abs_ordinal_position
-                time.sleep(0.5)
+                time.sleep(0.1)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(0)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_speed(0)
+                
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         # calculate target position
