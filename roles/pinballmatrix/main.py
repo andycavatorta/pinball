@@ -47,7 +47,7 @@ class Rotate_to_Position(threading.Thread):
         while True:
             destination, speed, precision = self.queue.get(True)
             # get current position
-            current_position = int(self.motor.get_encoder_counter_relative(True))
+            current_position = self.motor.get_encoder_counter_absolute(True)
             # calculate direction
             speed = -abs(speed) if current_position >= destination else abs(speed)
             # change mode to speed position
@@ -56,16 +56,16 @@ class Rotate_to_Position(threading.Thread):
             # self.motor.set_speed(speed)
             if speed > 0:
                 while current_position < destination - precision:
-                    current_position = int(self.motor.get_encoder_counter_relative(True))
+                    current_position = self.motor.get_encoder_counter_absolute(True)
                     print(destination, current_position, speed)
                     time.sleep(0.01)
             if speed < 0:
                 while current_position > destination + precision:
-                    current_position = int(self.motor.get_encoder_counter_relative(True))
+                    current_position = self.motor.get_encoder_counter_absolute(True)
                     print(destination, current_position, speed)
                     time.sleep(0.01)
             print("event_destination_reached")
-            self.callback("event_destination_reached", self.motor.get_encoder_counter_relative(True), self.motor.name, None)
+            self.callback("event_destination_reached", self.motor.get_encoder_counter_absolute(True), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
