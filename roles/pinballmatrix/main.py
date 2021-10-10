@@ -34,6 +34,7 @@ class Rotate_to_Position(threading.Thread):
         add error or fault messages
     """
     def __init__(self, motor, callback):
+        print(">>>>> Rotate_to_Position __init__")
         threading.Thread.__init__(self)
         self.motor = motor
         self.callback = callback
@@ -41,9 +42,11 @@ class Rotate_to_Position(threading.Thread):
         self.start()
 
     def add_to_queue(self, destination, speed=70, precision=100):
+        print(">>>>> Rotate_to_Position add_to_queue")
         self.queue.put((destination, speed, precision))
 
     def run(self):
+        print(">>>>> Rotate_to_Position run")
         while True:
             destination, speed, precision = self.queue.get(True)
             # get current position
@@ -69,14 +72,17 @@ class Rotate_to_Position(threading.Thread):
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
+        print(">>>>> Roboteq_Data_Receiver __init__")
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.start()
 
     def add_to_queue(self, message):
+        print(">>>>> Roboteq_Data_Receiver add_to_queue")
         self.queue.put(message)
 
     def run(self):
+        print(">>>>> Roboteq_Data_Receiver run")
         while True:
             message = self.queue.get(True)
             print("data",message)
@@ -88,6 +94,7 @@ roboteq_data_receiver = Roboteq_Data_Receiver()
 
 class Main(threading.Thread):
     def __init__(self):
+        print(">>>>> Main __init__")
         threading.Thread.__init__(self)
         ###### NETWORK #####
         self.queue = queue.Queue()
@@ -133,12 +140,14 @@ class Main(threading.Thread):
         self.start()
 
     def request_target_position_confirmed(self, message):
+        print(">>>>> Main request_target_position_confirmed")
         """
         to do: finish
         """
         return True
 
     def sync_relative_encoders_to_absolute_encoders(self):
+        print(">>>>> Main sync_relative_encoders_to_absolute_encoders")
         if self.high_power_init: # if power is on
             # to do: try/catch blocks and/or general system to track if hi power is on
             for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
@@ -151,6 +160,7 @@ class Main(threading.Thread):
 
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
+        print(">>>>> Main cmd_rotate_fruit_to_target")
         # calculate target position
         pass
         """
@@ -162,6 +172,7 @@ class Main(threading.Thread):
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
+        print(">>>>> Main get_absolute_positions")
         """
         this must not be called when the motors are in a PID mode of any kind
         """
@@ -181,6 +192,7 @@ class Main(threading.Thread):
             time.sleep(1)
 
     def create_controllers_and_motors(self):
+        print(">>>>> Main create_controllers_and_motors")
         """
         this code assumes this method can be run safely more than once, 
             as high power turns off and on
@@ -206,6 +218,7 @@ class Main(threading.Thread):
         time.sleep(2)
 
     def response_high_power_enabled(self, message):
+        print(">>>>> Main response_high_power_enabled")
         if message: # if power on
             self.high_power_init = True
             self.create_controllers_and_motors()
@@ -226,6 +239,7 @@ class Main(threading.Thread):
             self.absolute_encoders_positions = [None,None,None,None,None,None]
 
     def request_amt203_zeroed(self):
+        print(">>>>> Main request_amt203_zeroed")
         """
         to do: what does this mean now?
         """
@@ -235,6 +249,7 @@ class Main(threading.Thread):
     ##### SETUP METHODS #####
 
     def request_system_tests(self):
+        print(">>>>> Main request_system_tests")
         # INA260 current
         self.tb.publish(
             topic="response_current_sensor_value", 
@@ -291,7 +306,7 @@ class Main(threading.Thread):
     ##### SYSTEM TESTS #####
 
     def request_computer_details(self):
-        print("!!!!!! 1")
+        print(">>>>> Main request_computer_details")
         return {
             "df":self.tb.get_system_disk(),
             "cpu_temp":self.tb.get_core_temp(),
@@ -300,18 +315,22 @@ class Main(threading.Thread):
         }
 
     def request_current_sensor_nominal(self):
+        print(">>>>> Main request_current_sensor_nominal")
         #TODO: Do the ACTUAL tests here.
         return True
         
     def request_current_sensor_present(self):
+        print(">>>>> Main request_current_sensor_present")
         #TODO: Do the ACTUAL tests here.
         return True
         
     def request_current_sensor_value(self):
+        print(">>>>> Main request_current_sensor_value")
         #TODO: Do the ACTUAL tests here.
         return 0.0
 
     def request_sdc2160_channel_faults(self, motor_name):
+        print(">>>>> Main request_sdc2160_channel_faults")
         return {
             "temperature":self.controllers.motors[motor_name].get_temperature(True),
             "runtime_status_flags":self.controllers.motors[motor_name].get_runtime_status_flags(True),
@@ -321,6 +340,7 @@ class Main(threading.Thread):
         }
 
     def request_sdc2160_closed_loop_error(self, fruit_id=-1):
+        print(">>>>> Main request_sdc2160_closed_loop_error")
         if fruit_id == -1:
             return [
                 self.controllers.motors['carousel_1'].get_closed_loop_error(True),
@@ -335,6 +355,7 @@ class Main(threading.Thread):
             return self.controllers.motors[motor_name].get_closed_loop_error()
 
     def request_sdc2160_controller_faults(self):
+        print(">>>>> Main request_sdc2160_controller_faults")
         return [
             self.controllers.boards["carousel1and2"].get_runtime_fault_flags(True),
             self.controllers.boards["carousel3and4"].get_runtime_fault_flags(True),
@@ -342,9 +363,11 @@ class Main(threading.Thread):
         ]
 
     def request_sdc2160_faults(self):
+        print(">>>>> Main request_sdc2160_faults")
         pass
 
     def request_sdc2160_present(self):
+        print(">>>>> Main request_sdc2160_present")
         present = {
             "carousel1and2":"",
             "carousel3and4":"",
@@ -359,6 +382,7 @@ class Main(threading.Thread):
         return present
 
     def request_sdc2160_relative_position(self, fruit_id=-1):
+        print(">>>>> Main request_sdc2160_relative_position")
         if fruit_id == -1:
             return [
                 self.controllers.motors['carousel_1'].get_encoder_counter_absolute(True),
@@ -375,17 +399,23 @@ class Main(threading.Thread):
 
 
     def status_receiver(self, msg):
+        print(">>>>> Main status_receiver")
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
+        print(">>>>> Main network_message_handler")
         print(topic, message, origin, destination)
         self.add_to_queue(topic, message, origin, destination)
     def exception_handler(self, exception):
+        print(">>>>> Main exception_handler")
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
+        print(">>>>> Main network_status_change_handler")
         print("network_status_change_handler", status, hostname)
     def add_to_queue(self, topic, message, origin, destination):
+        print(">>>>> Main add_to_queue")
         self.queue.put((topic, message, origin, destination))
     def run(self):
+        print(">>>>> Main run")
         while True:
             topic, message, origin, destination = self.queue.get(True)
             if topic == b'cmd_rotate_fruit_to_target':
