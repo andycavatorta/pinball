@@ -203,7 +203,7 @@ class Main(threading.Thread):
                 "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
             }
         )
-        time.sleep(5)
+        time.sleep(2)
 
     def response_high_power_enabled(self, message):
         if message: # if power on
