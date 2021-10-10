@@ -211,10 +211,9 @@ class Main(threading.Thread):
             for motor_name in self.motor_names:
                 time.sleep(0.5)
                 print("sDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
-
-            self.absolute_encoders_presences = [True,True,True,True,True,True]
-            self.absolute_encoders_positions = [0,0,0,0,0,0]
-            self.absolute_encoders_zeroed = [True,True,True,True,True,True]
+            #self.absolute_encoders_presences = [True,True,True,True,True,True]
+            #self.absolute_encoders_positions = [0,0,0,0,0,0]
+            #self.absolute_encoders_zeroed = [True,True,True,True,True,True]
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
