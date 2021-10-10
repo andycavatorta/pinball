@@ -48,6 +48,7 @@ class Rotate_to_Position(threading.Thread):
             destination, speed, precision = self.queue.get(True)
             # get current position
             current_position = self.motor.get_encoder_counter_relative(True)
+            print("current_position=",current_position)
             # calculate direction
             speed = -abs(speed) if current_position >= destination else abs(speed)
             # change mode to speed position
