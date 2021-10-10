@@ -168,7 +168,7 @@ class Main(threading.Thread):
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
             time.sleep(1)
-            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16], speed_hz = 11718750)
+            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16], speed_hz = 5859375)
             time.sleep(2)
             # verify that encoders are present
             self.absolute_encoders_presences = self.absolute_encoders.get_presences()
