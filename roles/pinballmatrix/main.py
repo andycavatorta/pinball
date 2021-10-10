@@ -167,15 +167,15 @@ class Main(threading.Thread):
         """
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
+            time.sleep(1)
+            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16], speed_hz = 11718750)
             time.sleep(2)
-            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16], speed_hz = 5859375)
-            time.sleep(3)
             # verify that encoders are present
             self.absolute_encoders_presences = self.absolute_encoders.get_presences()
-            time.sleep(2)
+            time.sleep(1)
             # read absolute positions
             self.absolute_encoders_positions = self.absolute_encoders.get_positions()
-            time.sleep(2)
+            time.sleep(1)
             # stop SPI interfaces - spidev.close()
             self.absolute_encoders.close()
             time.sleep(1)
@@ -215,7 +215,7 @@ class Main(threading.Thread):
                 self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
             print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
-                time.sleep(0.5)
+                time.sleep(0.1)
                 print("sDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
             #self.absolute_encoders_presences = [True,True,True,True,True,True]
             #self.absolute_encoders_positions = [0,0,0,0,0,0]
