@@ -1,4 +1,39 @@
 """
+===== H A R D W A R E =====
+
+    x playfield sensors
+        tube_sensor_left
+        tube_sensor_right
+        trough_sensor
+        spinner
+        rollover_outer_left
+        rollover_inner_left
+        rollover_inner_right
+        rollover_outer_right
+
+    x playfield switches
+        izquierda
+        trueque
+        comienza
+        dinero
+        derecha
+
+        pop_left
+        pop_middle
+        pop_right
+        slingshot_left
+        slingshot_right
+
+    # playfield_button_lights
+
+    # playfield LEDs
+
+    Multimorphic / pinball
+
+    current_sensor
+
+===== TOPICS =====
+
 to do:
     response_current_sensor_nominal 
     response_current_sensor_present 
@@ -52,35 +87,7 @@ topics published:
     response_troughsensor_value
     response_visual_tests
 
-"""
-
-import adafruit_tlc5947
-import board
-import busio
-import digitalio
-import importlib
-import os
-import queue
-import RPi.GPIO as GPIO
-import sys
-import threading
-import time
-import traceback
-import zmq
-
-app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
-sys.path.append(os.path.split(app_path)[0])
-
-import settings
-import common.deadman as deadman
-from thirtybirds3 import thirtybirds
-
-import roles.gamestation.lighting as lighting
-
-GPIO.setmode(GPIO.BCM)
-
-"""
-actions for this module:
+===== ACTIONS =====
 
 WAITING_FOR_CONNECTIONS:
     find controller and connect
@@ -111,170 +118,50 @@ COUNTDOWN
 
 BARTER_MODE_INTRO
 
-
 BARTER_MODE
+
 MONEY_MODE_INTRO
+
 MONEY_MODE
+
 ENDING
 
 RESET
-    
 
-ERROR = "error"
-
-
-
-
-
+===== TO DO =====
 
 
 """
 
+import adafruit_tlc5947
+import board
+import busio
+import digitalio
+import importlib
+import os
+import queue
+import RPi.GPIO as GPIO
+import sys
+import threading
+import time
+import traceback
+import zmq
 
-###########################
-# S Y S T E M   T E S T S #
-###########################
+app_path = os.path.dirname((os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+sys.path.append(os.path.split(app_path)[0])
 
-# Check communication with TLC5947
-# Check MPF Bridge
-# measure 48V current
+import settings
+import common.deadman as deadman
+import multimorphic
+from thirtybirds3 import thirtybirds
 
-#################
-# HARDWARE INIT #
-#################
+import roles.gamestation.lighting as lighting
 
+GPIO.setmode(GPIO.BCM)
 
-"""
-launcher GPIOs 
-    left: 25
-    middle: 7
-    right: 8
-"""
-
-
-##################################################
-# SAFETY SYSTEMS #
-##################################################
-
-# DEADMAN SWITCH ( SEND ANY OUT-OF-BOUNDS VALUES FROM OTHER SYSTEMS)
-
-# COMPUTER STATUS REPORT 
-
-# 48V CURRENT METER current_sensor_handler
-
-##################################################
-# LOGGING AND REPORTING #
-##################################################
-
-# EXCEPTION
-
-# STATUS MESSAGES
-
-# LOCAL LOGGING / ROTATION
-
-##################################################
-# MAIN, TB, STATES, AND TOPICS #
-##################################################
-
-
-##########
-# STATES #
-##########
-
-
-
-
-##################################################
-# HARDWARE SEMANTICS (map of callable methods)#
-##################################################
-
-button_lights = {
-    "left_flipper":{
-        "gpio":None,
-        "off":None,
-        "on":None,
-        "blink":None
-    },
-    "trade_goods":{
-        "gpio":None,
-        "off":None,
-        "on":None,
-        "blink":None
-    },
-    "start":{
-        "gpio":None,
-        "off":None,
-        "on":None,
-        "blink":None
-    },
-    "trade_money":{
-        "gpio":None,
-        "off":None,
-        "on":None,
-        "blink":None
-    },
-    "right_flipper":{
-        "gpio":None,
-        "off":None,
-        "on":None,
-        "blink":None
-    },
-},
-  
-launchers = {
-    "barter":{
-        "launch":None,#(ms)
-        "get_count":None,
-        "is_count_known":None,
-        "is_ball_0_present":None,
-        "is_ball_19_present":None,
-    },
-    "money":{
-        "launch":None,#(ms)
-        "get_count":None,
-        "is_count_known":None,
-        "is_ball_0_present":None,
-        "is_ball_19_present":None,
-    },
-    "trough":{
-        "launch":None,#(ms)
-        "is_ball_present":None,
-    },
-}
-
-p3roc = {
-    "set_log_listener":None,
-    "gpios":{
-        "trough":None, #local gpio
-        "trueque":None, #local gpio
-        "dinero":None, #local gpio
-    }
-    # logging listener?
-}
-
-
-
-# BUTTONS / BUTTON LIGHTS
-    # ADD EVENT LISTENER
-
-# LAUNCHERS
-
-
-
-# ROLLOVERS
-
-# SPINNER
-
-# CURRENT SENSOR
-
-# TROUGH BALL SENSOR
-
-# TUBE BALL SENSORS
-
-
-#############################################
-# ROUTINES (time, events, multiple systems) # 
-#############################################
+###################################
+#### B U T T O N  L I G H T S #####
+###################################
 
 class Button_Light():
     def __init__(self, pin):
@@ -305,46 +192,9 @@ class Button_Lights():
             "derecha":self.derecha
         }
 
-def rollover_handler(name, value):
-    print("rollover_handler",name, value)
-    if name == "rollover_outer_left":
-        main.publish_to_controller("event_roll_outer_left", value)
-        if value == 1:
-            main.gamestation_lights.pie_rollover_left.on()
-        else:
-            main.gamestation_lights.pie_rollover_left.off()
-
-    if name == "rollover_inner_left":
-        main.publish_to_controller("event_roll_inner_left", value)
-        if value == 1:
-            main.gamestation_lights.pie_rollover_left.on()
-        else:
-            main.gamestation_lights.pie_rollover_left.off()
-
-    if name == "rollover_inner_right":
-        main.publish_to_controller("event_roll_inner_right", value)
-        if value == 1:
-            main.gamestation_lights.pie_rollover_right.on()
-        else:
-            main.gamestation_lights.pie_rollover_right.off()
-
-    if name == "rollover_outer_right":
-        main.publish_to_controller("event_roll_outer_right", value)
-        if value == 1:
-            main.gamestation_lights.pie_rollover_right.on()
-        else:
-            main.gamestation_lights.pie_rollover_right.off()
-
-def spinner_handler(name, value):
-    if name == "spinner":
-        main.publish_to_controller("event_spinner", value)
-
-def trough_sensor_handler(name, value):
-    main.publish_to_controller("event_trough_sensor", value)
-    if value == True:
-        main.button_lights.comienza.on()
-    else:
-        main.button_lights.comienza.off()
+###########################################
+#### P L A Y F I E L D  S E N S O R S #####
+###########################################
 
 class GPIO_Input():
     def __init__(self, name, pin, callback):
@@ -353,96 +203,51 @@ class GPIO_Input():
         self.callback = callback
         self.previous_state = -1 # so first read changes state and reports to callback
         GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    def scan(self):
+    def detect_change(self):
         new_state = GPIO.input(self.pin)
-        #if self.name == "rollover_outer_left":
-        #    print(new_state) 
         if self.previous_state != new_state:
             print(self.name)
             self.previous_state = new_state
-            self.callback(self.name,new_state)
+            self.callback("event_{}".format(self.name),new_state, self.name, None)
+    def get_state(self):
+        return [self.name, GPIO.input(self.pin)]
 
-class Scan_GPIO_Inputs(threading.Thread):
-    def __init__(
-            self,
-            rollover_handler,
-            spinner_handler,
-            trough_sensor_handler
-        ):
+class Playfield_Sensors(threading.Thread):
+    def __init__(self, callback):
         threading.Thread.__init__(self)
-
-        self.inputs = [ # name, gpio, last_state
-            GPIO_Input("rollover_outer_left", 12, rollover_handler),
-            GPIO_Input("rollover_inner_left", 16, rollover_handler),
-            GPIO_Input("rollover_inner_right", 20, rollover_handler),
-            GPIO_Input("rollover_outer_right", 21, rollover_handler),
-            GPIO_Input("spinner", 1, spinner_handler),
-            GPIO_Input("trough_sensor", 25, trough_sensor_handler),
+        self.callback = callback
+        self.sensors = [ # name, gpio, last_state
+            GPIO_Input("rollover_inner_left", 16, callback),
+            GPIO_Input("rollover_inner_right", 20, callback),
+            GPIO_Input("rollover_outer_left", 12, callback),
+            GPIO_Input("rollover_outer_right", 21, callback),
+            GPIO_Input("spinner", 1, callback),
+            GPIO_Input("trough_sensor", 25, callback),
+            GPIO_Input("tube_sensor_left", 17, callback),
+            GPIO_Input("tube_sensor_right", 27, callback),
         ]
         self.queue = queue.Queue()
         self.start()
 
-    def add_to_queue(self, topic, message, origin, destination):
-        self.queue.put((topic, message, origin, destination))
+    def request_playfield_states(self):
+        self.queue.put(True)
 
     def run(self):
         while True:
             try:
-                for input in self.inputs:
-                    input.scan()
+                self.queue.get(True,0.05)
+                states = []
+                for sensor in self.sensors:
+                    states.append(sensor.get_state())
+                self.callback("response_playfield_states",states, None, None)
+            except queue.Empty:
+                for sensor in self.sensors:
+                    sensor.detect_change()
                 time.sleep(0.05)
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 
-class MPF_Bridge(threading.Thread):
-    def __init__(self, tb):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.tb = tb
-        self.start()
-        self.context = zmq.Context()
-        self.socket = self.context.socket(zmq.PULL)
-        self.socket.bind("tcp://*:5555")
-
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
-
-    def run(self):
-        print("starting run of mpf bridge")
-        while True:
-            try:
-              message = self.socket.recv()
-              print(f"Received msg#: {message}")
-              self.tb.publish("event_mpf", eval(message.decode('utf-8')))
-            except Exception as e:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print("got except90j")
-                print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
-
-class System_Tests(threading.Thread):
-    """
-    tests performed:
-        read INA260
-        write to TLC5947
-        read socket messages from P3-ROC
-    """
-    def __init__(self, tb):
-        threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.tb = tb
-        self.start()
-
-    def add_to_queue(self, topic, message):
-        self.queue.put((topic, message))
-
-    def run(self):
-        while True:
-            #self.queue.get(True)
-            self.tb.publish("deadman", "safe")
-            time.sleep(1)
-
-
+##################
+#### M A I N #####
+##################
 
 class Main(threading.Thread):
     def __init__(self):
@@ -456,41 +261,51 @@ class Main(threading.Thread):
         )
         self.game_modes = settings.Game_Modes()
         self.game_mode = self.game_modes.WAITING_FOR_CONNECTIONS
-        #self.safety_enable = Safety_Enable(self.tb)
         self.deadman = deadman.Deadman_Switch(self.tb)
-        self.mpf_bridge = MPF_Bridge(self.tb)
-
-
         self.gamestation_lights = lighting.Lights()
-
         self.button_lights = Button_Lights()
-
+        self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
+        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
         self.queue = queue.Queue()
-
-        self.tb.subscribe_to_topic("connected")
-        #self.tb.subscribe_to_topic("request_visual_tests") # not implemented yet
-
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
         self.tb.subscribe_to_topic("cmd_kicker_launch") # to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_lefttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_playfield_lights")
+        self.tb.subscribe_to_topic("cmd_set_mode")
         self.tb.subscribe_to_topic("cmd_rightttube_launch")# to do: finish code -  might not be used
+        self.tb.subscribe_to_topic("connected")
+        self.tb.subscribe_to_topic("disable_gameplay")
+        self.tb.subscribe_to_topic("enable_gameplay")
+        self.tb.subscribe_to_topic("event_button_comienza")
+        self.tb.subscribe_to_topic("event_button_derecha")
+        self.tb.subscribe_to_topic("event_button_dinero")
+        self.tb.subscribe_to_topic("event_button_izquierda")
+        self.tb.subscribe_to_topic("event_button_trueque")
+        self.tb.subscribe_to_topic("event_pop_left")
+        self.tb.subscribe_to_topic("event_pop_middle")
+        self.tb.subscribe_to_topic("event_pop_right")
+        self.tb.subscribe_to_topic("event_rollover_inner_left")
+        self.tb.subscribe_to_topic("event_rollover_inner_right")
+        self.tb.subscribe_to_topic("event_rollover_outer_left")
+        self.tb.subscribe_to_topic("event_rollover_outer_right")
+        self.tb.subscribe_to_topic("event_slingshot_left")
+        self.tb.subscribe_to_topic("event_slingshot_right")
+        self.tb.subscribe_to_topic("event_spinner")
+        self.tb.subscribe_to_topic("event_trough_sensor")
+        self.tb.subscribe_to_topic("event_tube_sensor_left")
+        self.tb.subscribe_to_topic("event_tube_sensor_right")
         self.tb.subscribe_to_topic("request_button_light_active")
         self.tb.subscribe_to_topic("request_button_switch_active") # to do: finish code -  this de/activates reactions to buttons
-        self.tb.subscribe_to_topic("request_lefttube_present")
-        self.tb.subscribe_to_topic("request_rightttube_present")
-        self.tb.subscribe_to_topic("request_troughsensor_value")
-
-        self.tb.subscribe_to_topic("enable_gameplay")
-        self.tb.subscribe_to_topic("disable_gameplay")
-        # common for all hosts
-
-        self.tb.subscribe_to_topic("request_system_tests")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_current_sensor_present")
         self.tb.subscribe_to_topic("request_current_sensor_value")
-
+        self.tb.subscribe_to_topic("request_lefttube_present")
+        self.tb.subscribe_to_topic("request_rightttube_present")
+        self.tb.subscribe_to_topic("request_system_tests")
+        self.tb.subscribe_to_topic("request_troughsensor_value")
+        self.tb.subscribe_to_topic("request_visual_tests") # not implemented yet
+        self.tb.subscribe_to_topic("request_playfield_states")
         self.tb.publish("connected", True)
         self.start()
     
@@ -519,12 +334,16 @@ class Main(threading.Thread):
 
     def status_receiver(self, msg):
         print("status_receiver", msg)
+
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
+
     def exception_handler(self, exception):
         print("exception_handler",exception)
+
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
+
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
 
@@ -533,15 +352,21 @@ class Main(threading.Thread):
             try:
                 topic, message, origin, destination = self.queue.get(True)
                 print(topic, message)
-                if topic == b'cmd_all_off':
-                    # to do: finish - turn off all solenoids and lights
+
+                try: 
+                    topic = topic.decode('UTF-8')
+                except AttributeError:
+                    pass
+
+                if topic == 'cmd_all_off':
+                    self.multimorphic.disable_gameplay()
+                if topic == 'cmd_kicker_launch':
                     if destination == self.tb.get_hostname():
-                        pass
-                if topic == b'cmd_kicker_launch':
-                    pass
-                if topic == b'cmd_lefttube_launch':
-                    pass
-                if topic == b'cmd_playfield_lights':
+                        self.multimorphic.pulse_coil("kicker",25)
+                if topic == 'cmd_lefttube_launch':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.pulse_coil("trueque",25)
+                if topic == 'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
                         group = self.gamestation_lights.sign_top
@@ -587,9 +412,6 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.sign_top
                         if group_name == "all_radial":
                             group = self.gamestation_lights.all_radial
-
-
-
                         if animation_name == "off":
                             group.off()
                         if animation_name == "on":
@@ -616,101 +438,170 @@ class Main(threading.Thread):
                             group.back_trace()
                         if animation_name == "single_dot":
                             group.single_dot()
-                if topic == b'cmd_rightttube_launch':
+                if topic == 'cmd_set_mode': # this might not get used
                     pass
-                if topic == b'request_button_light_active':
+                if topic == 'cmd_rightttube_launch':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.pulse_coil("dinero",25)
+                if topic == 'connected':
+                    pass
+                if topic == 'disable_gameplay':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.disable_gameplay()
+                if topic == 'enable_gameplay':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_gameplay()
+                if topic == 'event_button_comienza':
+                    self.tb.publish(
+                        topic="event_button_comienza",
+                        message=True
+                    )
+                if topic == 'event_button_derecha':
+                    self.tb.publish(
+                        topic="event_button_derecha",
+                        message=True
+                    )
+                if topic == 'event_button_dinero':
+                    self.tb.publish(
+                        topic="event_button_dinero",
+                        message=True
+                    )
+                if topic == 'event_button_izquierda':
+                    self.tb.publish(
+                        topic="event_button_izquierda",
+                        message=True
+                    )
+                if topic == 'event_button_trueque':
+                    self.tb.publish(
+                        topic="event_button_trueque",
+                        message=True
+                    )
+                if topic == 'event_pop_left':
+                    self.tb.publish(
+                        topic="event_pop_left",
+                        message=True
+                    )
+                if topic == 'event_pop_middle':
+                    self.tb.publish(
+                        topic="event_pop_middle",
+                        message=True
+                    )
+                if topic == 'event_pop_right':
+                    self.tb.publish(
+                        topic="event_pop_right",
+                        message=True
+                    )
+                if topic == 'event_rollover_inner_left':
+                    self.tb.publish(
+                        topic="event_rollover_inner_left",
+                        message=True
+                    )
+                if topic == 'event_rollover_inner_right':
+                    self.tb.publish(
+                        topic="event_rollover_inner_right",
+                        message=True
+                    )
+                if topic == 'event_rollover_outer_left':
+                    self.tb.publish(
+                        topic="event_rollover_outer_left",
+                        message=True
+                    )
+                if topic == 'event_rollover_outer_right':
+                    self.tb.publish(
+                        topic="event_rollover_outer_right",
+                        message=True
+                    )
+                if topic == 'event_slingshot_left':
+                    self.tb.publish(
+                        topic="event_slingshot_left",
+                        message=True
+                    )
+                if topic == 'event_slingshot_right':
+                    self.tb.publish(
+                        topic="event_slingshot_right",
+                        message=True
+                    )
+                if topic == 'event_spinner':
+                    self.tb.publish(
+                        topic="event_spinner",
+                        message=True
+                    )
+                if topic == 'event_trough_sensor':
+                    self.tb.publish(
+                        topic="event_trough_sensor",
+                        message=True
+                    )
+                if topic == 'event_tube_sensor_left':
+                    self.tb.publish(
+                        topic="event_tube_sensor_left",
+                        message=True
+                    )
+                if topic == 'event_tube_sensor_right':
+                    self.tb.publish(
+                        topic="event_tube_sensor_right",
+                        message=True
+                    )
+                if topic == 'request_button_light_active':
                     if destination == self.tb.get_hostname():
                         button_name, button_state = message
                         if button_state:
-                            main.button_lights.names[button_name].on()
+                            self.button_lights.names[button_name].on()
                         else:
-                            main.button_lights.names[button_name].off()
-                if topic == b'request_button_switch_active':
+                            self.button_lights.names[button_name].off()
+                    
+                if topic == 'request_button_switch_active': # this might be subsumed by en/disable_gameplay
                     pass
-                if topic == b'request_computer_details':
+                if topic == 'request_computer_details':
                     self.tb.publish(
                         topic="response_computer_details", 
                         message=self.request_computer_details()
                     )
-                if topic == b'request_current_sensor_nominal':
+                if topic == 'request_current_sensor_nominal':
                     self.tb.publish(
                         topic="response_current_sensor_nominal",
                         message=self.request_current_sensor_nominal()
                     )
-                if topic == b'request_current_sensor_present':
+                if topic == 'request_current_sensor_present':
                     self.tb.publish(
                         topic="response_current_sensor_present",
                         message=self.request_current_sensor_present()
                     )
-                if topic == b'request_current_sensor_value':
+                if topic == 'request_current_sensor_value':
                     self.tb.publish(
                         topic="response_current_sensor_value",
                         message=self.request_current_sensor_value()
                     )
-                if topic == b'request_gutter_ball_detected':
-                    pass
-                if topic == b'request_lefttube_present':
+                if topic == 'request_lefttube_present':
                     if destination == self.tb.get_hostname():
                         self.tb.publish(
                             topic="response_lefttube_present",
                             message=True
                         )
-                if topic == b'request_rightttube_present':
+                if topic == 'request_rightttube_present':
                     if destination == self.tb.get_hostname():
                         self.tb.publish(
                             topic="response_rightttube_present",
                             message=True
                         )
-                if topic == b'request_system_tests':
+                if topic == 'request_system_tests':
                     if destination == self.tb.get_hostname():
                         self.tb.publish(
                             topic="response_system_tests",
                             message=True
                         )
+                if topic == 'request_troughsensor_value':
                     pass
-                if topic == b'request_troughsensor_value':
+                if topic == 'request_visual_tests':
                     pass
+                if topic == 'request_playfield_states':
+                    self.playfiels_sensors.request_playfield_states()
+                if topic == 'response_playfield_states':
+                    self.tb.publish(
+                        topic="response_playfield_states",
+                        message=message
+                    )
+
             except Exception as e:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 print(e, repr(traceback.format_exception(exc_type, exc_value,exc_traceback)))
 main = Main()
-
-        
-scan_gpio_inputs = Scan_GPIO_Inputs(
-    rollover_handler,
-    spinner_handler,
-    trough_sensor_handler,
-)
-"""
-while True:
-    time.sleep(0.2)
-    main.button_lights.izquierda.off()
-    main.button_lights.trueque.on()
-    time.sleep(0.2)
-    main.button_lights.trueque.off()
-    main.button_lights.comienza.on()
-    time.sleep(0.2)
-    main.button_lights.comienza.off()
-    main.button_lights.dinero.on()
-    time.sleep(0.2)
-    main.button_lights.dinero.off()
-    main.button_lights.derecha.on()
-    time.sleep(0.2)
-    main.button_lights.derecha.off()
-    main.button_lights.dinero.on()
-    time.sleep(0.2)
-    main.button_lights.dinero.off()
-    main.button_lights.comienza.on()
-    time.sleep(0.2)
-    main.button_lights.comienza.off()
-    main.button_lights.trueque.on()
-    time.sleep(0.2)
-    main.button_lights.trueque.off()
-    main.button_lights.izquierda.on()
-    time.sleep(0.2)
-"""
-        
-        
-        
-        
-        
