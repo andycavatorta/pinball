@@ -164,9 +164,9 @@ class Main(threading.Thread):
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
                 time.sleep(0.1)
-                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(6)
-                time.sleep(0.1)
-                self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
+                #self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(6)
+                #time.sleep(0.1)
+                #self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
 
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
