@@ -8,7 +8,7 @@ class Multimorphic(threading.Thread):
     def __init__(self, callback):
         threading.Thread.__init__(self)
         self.callback = callback
-        self.p3 = p3_jab.P3Jab()
+        self.p3 = p3_roc.P3Jab()
         self.switches = {
             "derecha":"A0-B0-4",
             "dinero":"A0-B0-3",
