@@ -1,5 +1,5 @@
 from functools import partial
-import p3_roc
+import roles.gamestation.p3_roc
 import queue
 import time
 import threading
