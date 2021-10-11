@@ -68,7 +68,14 @@ class Rotate_to_Position(threading.Thread):
                     print(destination, current_position, speed)
                     time.sleep(0.01)
             print("event_destination_reached")
-            self.callback("event_destination_reached", self.motor.get_encoder_counter_absolute(True), self.motor.name, None)
+            last_position = self.motor.get_encoder_counter_absolute(True)
+            while True: 
+                new_position = self.motor.get_encoder_counter_absolute(True)
+                if last_position == new_position:
+                    break
+                last_position = new_position
+
+            self.callback("event_destination_reached", last_position, self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
