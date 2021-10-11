@@ -68,13 +68,13 @@ class Rotate_to_Position(threading.Thread):
                     print(destination, current_position, speed)
                     time.sleep(0.01)
             print("event_destination_reached")
+            self.motor.set_motor_speed(0)
             last_position = self.motor.get_encoder_counter_absolute(True)
             while True: 
                 new_position = self.motor.get_encoder_counter_absolute(True)
                 if last_position == new_position:
                     break
                 last_position = new_position
-
             self.callback("event_destination_reached", last_position, self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
@@ -162,8 +162,8 @@ class Main(threading.Thread):
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(0)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
-                #self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
-                #self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
 
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
