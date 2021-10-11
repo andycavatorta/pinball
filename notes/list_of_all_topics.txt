@@ -92,6 +92,7 @@ request_gutter_ball_detected
 request_lefttube_present
 request_rightttube_present
 request_troughsensor_value
+cmd_set_mode
 
 
 ==== from matrix ==== 

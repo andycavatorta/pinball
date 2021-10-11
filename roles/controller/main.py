@@ -207,6 +207,7 @@ class Main(threading.Thread):
     ##### MODE MANAGEMENT #####
     def set_current_mode(self,mode_name):
         print("current_mode",self.current_mode,"new mode",mode_name)
+        self.tb.publish("cmd_set_mode",mode_name)
         self.current_mode_name = mode_name
         if mode_name == self.mode_names.ERROR:
             self.current_mode.end()
