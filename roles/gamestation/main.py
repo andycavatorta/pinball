@@ -152,7 +152,7 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 import common.deadman as deadman
-import multimorphic
+import roles.gamestation.multimorphic
 from thirtybirds3 import thirtybirds
 
 import roles.gamestation.lighting as lighting
