@@ -53,10 +53,8 @@ class Rotate_to_Position(threading.Thread):
             current_position = self.motor.get_encoder_counter_absolute(True)
             # calculate direction
             speed = -abs(speed) if current_position >= destination else abs(speed)
-            # change mode to speed position
-            #self.motor.set_operating_mode(6)
             # set speed
-            # self.motor.set_speed(speed)
+            self.motor.set_speed(speed)
             if speed > 0:
                 while current_position < destination - precision:
                     current_position = self.motor.get_encoder_counter_absolute(True)
@@ -161,8 +159,11 @@ class Main(threading.Thread):
                 abs_ordinal, abs_position = abs_ordinal_position
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(0)
+                time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
+                time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
+                time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
 
     
@@ -242,13 +243,14 @@ class Main(threading.Thread):
             #for motor_name in self.motor_names:
             #    time.sleep(0.1)
             #    print("SDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
-            self.absolute_encoders_presences = [True,True,True,True,True,True]
-            self.absolute_encoders_positions = [0,0,0,0,0,0]
-            self.absolute_encoders_zeroed = [True,True,True,True,True,True]
+            #self.absolute_encoders_presences = [True,True,True,True,True,True]
+            #self.absolute_encoders_positions = [0,0,0,0,0,0]
+            #self.absolute_encoders_zeroed = [True,True,True,True,True,True]
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
             self.absolute_encoders_positions = [None,None,None,None,None,None]
+            self.absolute_encoders_zeroed = [False,False,False,False,False,False]
 
     def request_amt203_zeroed(self):
         print(">>>>> Main request_amt203_zeroed")
