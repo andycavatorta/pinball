@@ -228,7 +228,7 @@ class Main(threading.Thread):
             self.high_power_init = True
             self.create_controllers_and_motors()
             self.get_absolute_positions()
-            #self.sync_relative_encoders_to_absolute_encoders()
+            self.sync_relative_encoders_to_absolute_encoders()
             #for motor_name in self.motor_names:
             #    self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
             #print("AMT values:",self.absolute_encoders_positions)
