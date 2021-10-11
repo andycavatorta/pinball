@@ -90,7 +90,7 @@ class Multimorphic(threading.Thread):
         self.callback("event_slingshot_right",event_state, "multimorphic", None)
 
     def enable_gameplay(self):
-        self.add_to_queue("event_enable_gameplay")
+        self.add_to_queue("enable_gameplay")
     def disable_gameplay(self):
         self.add_to_queue("disable_gameplay")
     def pulse_coil(self,coil_name, duration_ms):
@@ -102,6 +102,7 @@ class Multimorphic(threading.Thread):
         while True:
             try:
                 command, params = self.queue.get(True,0.01)
+                print()
                 if command == "enable_gameplay":
                     self._enable_gameplay()
                 if command == "disable_gameplay":
