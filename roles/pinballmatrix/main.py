@@ -158,6 +158,7 @@ class Main(threading.Thread):
             # to do: try/catch blocks and/or general system to track if hi power is on
             for abs_ordinal_position in enumerate(self.absolute_encoders_positions):
                 abs_ordinal, abs_position = abs_ordinal_position
+                print("sync_relative_encoders_to_absolute_encoders",abs_ordinal, abs_position)
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(0)
                 time.sleep(0.1)
