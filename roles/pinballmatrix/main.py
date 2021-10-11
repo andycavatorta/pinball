@@ -54,7 +54,7 @@ class Rotate_to_Position(threading.Thread):
             # calculate direction
             speed = -abs(speed) if current_position >= destination else abs(speed)
             # set speed
-            self.motor.set_speed(speed)
+            self.motor.set_motor_speed(speed)
             if speed > 0:
                 while current_position < destination - precision:
                     current_position = self.motor.get_encoder_counter_absolute(True)
