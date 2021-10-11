@@ -41,7 +41,7 @@ class Rotate_to_Position(threading.Thread):
         self.queue = queue.Queue()
         self.start()
 
-    def add_to_queue(self, destination, speed=70, precision=100):
+    def add_to_queue(self, destination, speed=50, precision=100):
         print(">>>>> Rotate_to_Position add_to_queue")
         self.queue.put((destination, speed, precision))
 
@@ -52,7 +52,7 @@ class Rotate_to_Position(threading.Thread):
             # get current position
             current_position = self.motor.get_encoder_counter_absolute(True)
             # calculate direction
-            speed = -abs(speed) if current_position >= destination else abs(speed)
+            speed = abs(speed) if current_position >= destination else -abs(speed)
             # set speed
             self.motor.set_motor_speed(speed)
             if speed > 0:
