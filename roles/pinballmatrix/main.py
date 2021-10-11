@@ -48,6 +48,7 @@ class Rotate_to_Position(threading.Thread):
     def run(self):
         print(">>>>> Rotate_to_Position run")
         while True:
+
             destination, speed, precision = self.queue.get(True)
             # get current position
             current_position = self.motor.get_encoder_counter_absolute(True)
@@ -162,7 +163,7 @@ class Main(threading.Thread):
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_encoder_counter(abs_position)
                 time.sleep(0.1)
-                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(1)
+                self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(6)
                 time.sleep(0.1)
                 self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
 
