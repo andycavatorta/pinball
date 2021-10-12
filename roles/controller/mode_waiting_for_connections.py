@@ -1,7 +1,4 @@
 """
-Modes are transient.
-
-
 """
 
 import codecs
@@ -33,12 +30,15 @@ class Mode_Waiting_For_Connections(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.start()
 
     def begin(self):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("clear_all")
         self.timer = time.time()
         self.active = True
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
 
     def end(self):
         self.active = False

@@ -449,19 +449,20 @@ class Matrix(Host):
 class Pinball(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
-        self.tb = tb
         self._48v_current = -1
-        self.left_stack_inventory = -1
-        self.right_stack_inventory = -1
+        self.barter_points = -1
+        self.current_sensor_present= False
+        self.gameplay_enabled = False
         self.gutter_ball_detected = False
-        self.troughsensor_value = False
+        self.left_stack_inventory = -1
+        self.money_points = -1
+        self.right_stack_inventory = -1
+        self.roll_inner_left = False
+        self.roll_inner_right = False
         self.roll_outer_left = False
         self.roll_outer_right = False
-        self.roll_inner_right = False
-        self.roll_inner_left = False
-        self.barter_points = -1
-        self.money_points = -1
-        self.current_sensor_present= False
+        self.tb = tb
+        self.troughsensor_value = False
         self.playfield_switch_active = {
             "trough_sensor":False,
             "roll_outer_left":False,
@@ -507,9 +508,11 @@ class Pinball(Host):
         }
 
     def enable_gameplay(self):
+        self.self.gameplay_enabled = True
         self.tb.publish(topic="enable_gameplay", message="",destination=self.hostname)
 
     def disable_gameplay(self):
+        self.self.gameplay_enabled = False
         self.tb.publish(topic="disable_gameplay", message="",destination=self.hostname)
 
     ### LEFT TUBE ###

@@ -23,8 +23,6 @@ from thirtybirds3.adapters.sensors.AMT203_encoder.AMT203_absolute_encoders impor
 import common.deadman as deadman
 import settings
 
- 
-
 GPIO.setmode(GPIO.BCM)
 
 class Rotate_to_Position(threading.Thread):
@@ -33,13 +31,20 @@ class Rotate_to_Position(threading.Thread):
         add timeout feature
         add error or fault messages
     """
-    def __init__(self, motor, callback):
+    def __init__(self, motor, absolute_encoder_first_value, callback):
         print(">>>>> Rotate_to_Position __init__")
         threading.Thread.__init__(self)
         self.motor = motor
+        self.absolute_encoder_first_value = absolute_encoder_first_value
+        self.relative_encoder_first_value = self.motor.get_encoder_counter_absolute(True)
+        self.abs_offest = self.absolute_encoder_first_value - self.relative_encoder_first_value
         self.callback = callback
         self.queue = queue.Queue()
         self.start()
+
+    def abs_position(self):
+        return self.motor.get_encoder_counter_absolute(True) - self.abs_offest
+
 
     def add_to_queue(self, destination, speed=50, precision=100):
         print(">>>>> Rotate_to_Position add_to_queue")
@@ -48,7 +53,6 @@ class Rotate_to_Position(threading.Thread):
     def run(self):
         print(">>>>> Rotate_to_Position run")
         while True:
-
             destination, speed, precision = self.queue.get(True)
             # get current position
             current_position = self.motor.get_encoder_counter_absolute(True)
@@ -152,6 +156,7 @@ class Main(threading.Thread):
         """
         return True
 
+    """
     def sync_relative_encoders_to_absolute_encoders(self):
         print(">>>>> Main sync_relative_encoders_to_absolute_encoders")
         if self.high_power_init: # if power is on
@@ -167,7 +172,7 @@ class Main(threading.Thread):
                 #self.controllers.motors[self.motor_names[abs_ordinal]].set_operating_mode(6)
                 #time.sleep(0.1)
                 #self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
-
+    """
     
     def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
         print(">>>>> Main cmd_rotate_fruit_to_target")
@@ -238,9 +243,9 @@ class Main(threading.Thread):
             self.high_power_init = True
             self.create_controllers_and_motors()
             self.get_absolute_positions()
-            self.sync_relative_encoders_to_absolute_encoders()
-            for motor_name in self.motor_names:
-                self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.add_to_queue)
+            #self.sync_relative_encoders_to_absolute_encoders()
+            for motor_ordinal, motor_name in enumerate(self.motor_names):
+                self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.absolute_encoders_positions[motor_ordinal], self.add_to_queue)
             #print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
                 time.sleep(0.1)

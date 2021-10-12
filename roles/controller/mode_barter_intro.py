@@ -1,4 +1,7 @@
 """
+turn off playfield leds
+turn off carousel leds
+
 
 
 """
@@ -24,11 +27,14 @@ class Mode_Barter_Intro(threading.Thread):
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.start()
 
     def begin(self):
         self.active = True
         self.set_current_mode(self.game_mode_names.BARTER_MODE)
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
         
     def end(self):
         self.active = False

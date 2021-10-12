@@ -1,3 +1,14 @@
+"""
+All displays off
+All carousel LEDs off
+All playfield LEDs off
+
+turn on all $ in carousels
+
+
+
+"""
+
 import codecs
 import os
 import queue
@@ -23,6 +34,7 @@ class Mode_System_Tests(threading.Thread):
         self.set_mode = set_current_mode
         self.queue = queue.Queue()
         self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
@@ -32,6 +44,8 @@ class Mode_System_Tests(threading.Thread):
     def begin(self):
         self.active = True
         self.timer = time.time()
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.hosts.pinballmatrix.response_high_power_enabled()
         time.sleep(10)

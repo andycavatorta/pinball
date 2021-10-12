@@ -272,31 +272,6 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                #print("+", topic, type(topic), topic.decode('UTF-8'), message, origin)
-                #if "event" not in topic.decode('UTF-8'):
-                #    print("received:",topic, message, origin, destination)
-                if topic==b"event_mpf":
-                    if message['component'] == 's_left_flipper':
-                        topic = "event_button_izquierda"
-                    if message['component'] == 's_left_launch':
-                        topic = "event_button_derecha"
-                    if message['component'] == 's_game_launch':
-                        topic = "event_button_comienza"
-                    if message['component'] == 's_right_launch':
-                        topic = "event_button_dinero"
-                    if message['component'] == 's_right_flipper':
-                        topic = "event_button_trueque"
-                    if message['component'] == 's_pop_bumper_1':
-                        topic = "event_pop_left"
-                    if message['component'] == 's_pop_bumper_2':
-                        topic = "event_pop_middle"
-                    if message['component'] == 's_pop_bumper_3':
-                        topic = "event_pop_right"
-                    if message['component'] == 's_left_slingshot_main':
-                        topic = "event_slingshot_left"
-                    if message['component'] == 's_right_slingshot_main':
-                        topic = "event_slingshot_right"
-                    message = message['new_state']
                 print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
                 self.hosts.dispatch(topic, message, origin, destination)

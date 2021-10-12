@@ -1,4 +1,34 @@
 """
+acrylic display
+    Juega blinks in time with countdown theme
+Chimes
+    countdown theme
+carousel leds
+    if comienza button pushed
+        all on
+    else 
+        all blink in time with countdown theme
+carousel motions
+    ?    
+carousel solenoid sounds
+    countdown theme 
+playfield leds
+    if comienza button pushed
+        all on
+    else 
+        all blink in time with countdown theme
+button lights
+    all off
+    if comienza button pushed
+        comienza button lights 
+    else
+        comienza button blink in time with countdown theme
+
+button switches
+    comienza button changes lighting
+
+"""
+"""
 countdown mode 
     run animation
         animate gamestations differently after their comienza button is pushed

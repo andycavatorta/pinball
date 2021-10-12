@@ -1,3 +1,8 @@
+"""
+
+
+
+"""
 import codecs
 import os
 import queue
@@ -27,6 +32,7 @@ class Mode_Inventory(threading.Thread):
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
@@ -53,6 +59,9 @@ class Mode_Inventory(threading.Thread):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 1)
         time.sleep(0.1)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        
 
     def end(self):
         self.active = False

@@ -1,3 +1,22 @@
+"""
+acrylic display
+    Juega - solid
+Chimes
+    intermittent, random motivs
+carousel leds
+    integrated "wave" animation
+carousel motions
+
+carousel solenoid sounds
+
+playfield leds
+    integrated "wave" animation
+button lights
+    integrated "wave" animation
+button switches
+    comienza triggers countdown
+
+"""
 import codecs
 import os
 import queue
