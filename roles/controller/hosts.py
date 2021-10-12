@@ -508,11 +508,11 @@ class Pinball(Host):
         }
 
     def enable_gameplay(self):
-        self.self.gameplay_enabled = True
+        self.gameplay_enabled = True
         self.tb.publish(topic="enable_gameplay", message="",destination=self.hostname)
 
     def disable_gameplay(self):
-        self.self.gameplay_enabled = False
+        self.gameplay_enabled = False
         self.tb.publish(topic="disable_gameplay", message="",destination=self.hostname)
 
     ### LEFT TUBE ###
