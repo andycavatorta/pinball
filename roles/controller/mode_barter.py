@@ -35,7 +35,7 @@ class Countdown(threading.Thread):
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].enable_gameplay()
         time.sleep(0.5)
-        for pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]
+        for pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]:
             self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
 
     def end(self):
