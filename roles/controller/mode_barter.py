@@ -24,6 +24,7 @@ class Countdown(threading.Thread):
         self.hosts = hosts
         self.set_current_mode = set_current_mode
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.counter = 180
         self.active = False
         self.game_mode_names = settings.Game_Modes
