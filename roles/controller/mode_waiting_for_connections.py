@@ -37,8 +37,8 @@ class Mode_Waiting_For_Connections(threading.Thread):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("clear_all")
         self.timer = time.time()
         self.active = True
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        #for pinball_hostname in self.pinball_hostnames:
+        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
 
     def end(self):
         self.active = False

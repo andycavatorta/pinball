@@ -44,8 +44,8 @@ class Mode_System_Tests(threading.Thread):
     def begin(self):
         self.active = True
         self.timer = time.time()
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        #for pinball_hostname in self.pinball_hostnames:
+        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.hosts.pinballmatrix.response_high_power_enabled()
         time.sleep(10)

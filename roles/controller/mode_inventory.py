@@ -59,8 +59,8 @@ class Mode_Inventory(threading.Thread):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 1)
         time.sleep(0.1)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        #for pinball_hostname in self.pinball_hostnames:
+        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
         
 
     def end(self):

@@ -33,8 +33,8 @@ class Mode_Barter_Intro(threading.Thread):
     def begin(self):
         self.active = True
         self.set_current_mode(self.game_mode_names.BARTER_MODE)
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        #for pinball_hostname in self.pinball_hostnames:
+        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
         
     def end(self):
         self.active = False
