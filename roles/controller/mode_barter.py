@@ -33,8 +33,6 @@ class Countdown(threading.Thread):
     def begin(self):
         self.active = True
         self.counter = 180
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].enable_gameplay()
         time.sleep(0.5)
         for pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]:
             self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
@@ -287,16 +285,16 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
-        self.countdown.begin()
-        for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_phrase("trueque")
         for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].enable_gameplay()
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True)
-            self.hosts.hostnames[pinball_hostname].enable_gameplay()
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[display_hostname].request_phrase("trueque")
+        self.countdown.begin()
 
     def end(self):
         self.countdown.end()
