@@ -83,7 +83,7 @@ class Speed_To_Position(threading.Thread):
                             break 
                     self.motor.set_motor_speed(0)
             time.sleep(0.2)
-            self.callback("event_destination_reached", self.get_position_with_offset(), self.motor.name, None)
+            self.callback(b"event_destination_reached", self.get_position_with_offset(), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
