@@ -2,9 +2,10 @@
 
 
 
+to-do: add serial safety after creating controllers
 
 """
-
+import math
 import os
 import queue
 import RPi.GPIO as GPIO
@@ -25,60 +26,64 @@ import settings
 
 GPIO.setmode(GPIO.BCM)
 
-class Rotate_to_Position(threading.Thread):
+class Speed_To_Position(threading.Thread):
     """
     to do: 
         add timeout feature
         add error or fault messages
     """
     def __init__(self, motor, absolute_encoder_first_value, callback):
-        print(">>>>> Rotate_to_Position __init__")
         threading.Thread.__init__(self)
         self.motor = motor
         self.absolute_encoder_first_value = absolute_encoder_first_value
         self.relative_encoder_first_value = self.motor.get_encoder_counter_absolute(True)
         self.abs_offest = self.absolute_encoder_first_value - self.relative_encoder_first_value
         self.callback = callback
+        self.encoder_resolution = 4096
         self.queue = queue.Queue()
+        self.timeout = time.time()
         self.start()
 
-    def abs_position(self):
+    def get_position_with_offset(self):
         return self.motor.get_encoder_counter_absolute(True) - self.abs_offest
 
+    def rotate_left_to_position(self, destination, limit_to_less_than_one_rotation=True):
+        self.add_to_queue("rotate_left_to_position",destination,limit_to_less_than_one_rotation)
 
-    def add_to_queue(self, destination, speed=50, precision=100):
-        print(">>>>> Rotate_to_Position add_to_queue")
-        self.queue.put((destination, speed, precision))
+    def rotate_right_to_position(self, destination, limit_to_less_than_one_rotation=True):
+        self.add_to_queue("rotate_right_to_position",destination,limit_to_less_than_one_rotation)
+
+    def rotate_to_position(self, destination, limit_to_less_than_one_rotation=True):
+        self.add_to_queue("rotate_to_position",destination,limit_to_less_than_one_rotation)
+
+    def add_to_queue(self, command, destination, limit_to_less_than_one_rotation):
+        self.queue.put((command, destination, limit_to_less_than_one_rotation))
 
     def run(self):
-        print(">>>>> Rotate_to_Position run")
         while True:
-            destination, speed, precision = self.queue.get(True)
+            command, destination, limit_to_less_than_one_rotation = self.queue.get(True)
             # get current position
-            current_position = self.motor.get_encoder_counter_absolute(True)
-            # calculate direction
-            speed = abs(speed) if current_position >= destination else -abs(speed)
-            # set speed
-            self.motor.set_motor_speed(speed)
-            if speed > 0:
-                while current_position < destination - precision:
-                    current_position = self.motor.get_encoder_counter_absolute(True)
-                    print(destination, current_position, speed)
-                    time.sleep(0.01)
-            if speed < 0:
-                while current_position > destination + precision:
-                    current_position = self.motor.get_encoder_counter_absolute(True)
-                    print(destination, current_position, speed)
-                    time.sleep(0.01)
-            print("event_destination_reached")
-            self.motor.set_motor_speed(0)
-            last_position = self.motor.get_encoder_counter_absolute(True)
-            while True: 
-                new_position = self.motor.get_encoder_counter_absolute(True)
-                if last_position == new_position:
-                    break
-                last_position = new_position
-            self.callback("event_destination_reached", last_position, self.motor.name, None)
+            current_position = self.get_position_with_offset()
+            if command == "rotate_to_position":
+                self.timeout = time.time() + 60
+                speed = 1 if destination > current_position else -1
+                self.motor.set_motor_speed(speed)
+                if speed == 1:
+                    while current_position < destination:
+                        current_position = self.get_position_with_offset()
+                        time.sleep(0.01)
+                        if time.time() > self.timeout:
+                            break 
+                    self.motor.set_motor_speed(0)
+                if speed == -1:
+                    while current_position > destination:
+                        current_position = self.get_position_with_offset()
+                        time.sleep(0.01)
+                        if time.time() > self.timeout:
+                            break 
+                    self.motor.set_motor_speed(0)
+            time.sleep(0.2)
+            self.callback("event_destination_reached", self.get_position_with_offset(), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
@@ -245,7 +250,7 @@ class Main(threading.Thread):
             self.get_absolute_positions()
             #self.sync_relative_encoders_to_absolute_encoders()
             for motor_ordinal, motor_name in enumerate(self.motor_names):
-                self.controllers.motors[motor_name].rotate_to_position = Rotate_to_Position(self.controllers.motors[motor_name], self.absolute_encoders_positions[motor_ordinal], self.add_to_queue)
+                self.controllers.motors[motor_name].speed_to_position = Speed_To_Position(self.controllers.motors[motor_name], self.absolute_encoders_positions[motor_ordinal], self.add_to_queue)
             #print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
                 time.sleep(0.1)
