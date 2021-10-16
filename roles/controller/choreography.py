@@ -116,7 +116,7 @@ class Choreography():
     Is Choreography threaded?
     the transfer function should return values synchronously
     """
-    def __init__(self, hosts):
+    def __init__(self, tb, hosts):
         self.hosts = hosts
 
     def transfer(self, batch):
