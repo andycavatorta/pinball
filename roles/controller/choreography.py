@@ -14,7 +14,7 @@ launch ball to carousel
 verify 
 
 """
-
+"""
 tubes = [
     station[4].tubes[1],
     station[4].tubes[0],
@@ -30,7 +30,7 @@ tubes = [
 
 
 ball_homes = {
-    coco:[tube_left,tube_right,coco,sandia,pina,naranja,mango]m
+    coco:[tube_left,tube_right,coco,sandia,pina,naranja,mango],
     sandia:[tube_left,tube_right,coco,sandia,pina,naranja,mango],
     pina:[tube_left,tube_right,coco,sandia,pina,naranja,mango],
     naranja:[tube_left,tube_right,coco,sandia,pina,naranja,mango],
@@ -42,7 +42,7 @@ transfer( # returns values and throws exceptions
         (coco.tube_left, mango.mango)# origin, destination
     ),# batch of transfer
 )
-
+"""
 """
 
 local abstractions for tubes, carousels, motors, etc
@@ -121,6 +121,11 @@ class Choreography():
 
     def transfer(self, batch):
         """
+        basic algorithms
+            
+
+
+
         cases for double transfer:
 
         cases for single transfer:
