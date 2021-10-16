@@ -118,6 +118,7 @@ class Choreography():
     """
     def __init__(self, tb, hosts):
         self.hosts = hosts
+        self.tb = tb
 
     def transfer(self, batch):
         """
