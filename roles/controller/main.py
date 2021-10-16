@@ -50,6 +50,8 @@ import roles.controller.hosts as Hosts
 
 from http_server_root import dashboard
 
+from roles.controller.choreography import Choreography
+
 from roles.controller.mode_error import Mode_Error
 from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Connections
 from roles.controller.mode_system_tests import Mode_System_Tests
@@ -156,6 +158,10 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_spinner")
 
         # ENCODERS & MOTORS
+        self.tb.subscribe_to_topic("event_destination_timeout")
+        self.tb.subscribe_to_topic("event_destination_stalled")
+        self.tb.subscribe_to_topic("event_destination_reached")
+
         self.tb.subscribe_to_topic("event_carousel_error")
         self.tb.subscribe_to_topic("event_carousel_target_reached")
         self.tb.subscribe_to_topic("response_amt203_absolute_position")
@@ -173,18 +179,20 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
         self.tb.subscribe_to_topic("response_carousel_ball_detected")
 
+        self.choreography = Choreography(self.tb, self.hosts)
+
         self.modes = {
-            "error":Mode_Error(self.tb, self.hosts, self.set_current_mode),
+            "error":Mode_Error(self.tb, self.hosts, self.set_current_mode, self.safety_enable.set_active),
             "waiting_for_connections":Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode),
             "system_tests":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
-            "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode),
-            "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode),
+            "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
-            "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode),
-            "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode),
-            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode),
-            "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode),
-            "money":Mode_Money(self.tb, self.hosts, self.set_current_mode),
+            "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
         self.dashboard = dashboard.init(self.tb)

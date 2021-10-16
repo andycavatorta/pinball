@@ -73,10 +73,11 @@ class Animation(threading.Thread):
     animation interval is a (base number + animation frame counter/factor) 
 
     """
-    def __init__(self, hosts,set_current_mode):
+    def __init__(self, hosts,set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = hosts
+        self.choreography = choreography
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]

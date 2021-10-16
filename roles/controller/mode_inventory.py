@@ -1,4 +1,106 @@
 """
+first sketch of inventory algorithm
+
+?? inventory balls in carousels
+
+##### empty the carousels #####
+
+# process outer carousels and adjacent tubes
+for each outer carousel
+    for ball in carousel
+        ?? while left tube is not full
+            !! transfer ball into left tube
+        ?? while right tube is not full
+            !! transfer ball into left tube    
+        continue
+
+# process center carousel
+for ball in center carousel
+    !! transfer ball through outer carousel to nearest available tube
+        
+# process outer carousel and neighboring tubes 
+for each outer carousel with
+    locate nearest available tube in adjacent game
+    transfer ball to tube in adjacent game
+
+##### empty one tube #####
+
+donor_tube = tubes[9]
+try
+    transfer ball from donor_tube to donor_tube.nearest_available_tube_right 
+except 
+    donor_tube.motion_not_detected
+    break
+except 
+    donor_tube.carousel.ball_not_received # what abstraction for the receiving carousel is correct?
+    break
+# donor_tube is now empty
+# donor_tube.ball_count is now known
+
+for tube in tubes[8:0] # counting down from tube 5 right
+    donor_tube = tube
+    receiver_tube = donor_tube.nearest_available_tube_left
+    while True
+        try
+            transfer ball from donor_tube to donor_tube 
+        except 
+            # capture case of overfilled receiver tube
+            receiver_tube.full
+            receiver_tube = donor_tube.nearest_available_tube
+            break
+        except 
+            # donor_tube.motion_not_detected never thrown if static ball is detected in sensor
+            # so, filled or overfilled tubes will not throw this exception
+            donor_tube.motion_not_detected
+            break
+        except 
+            donor_tube.carousel.ball_not_received # what abstraction for the receiving carousel is correct?
+            break
+        # donor_tube is now empty
+        # donor_tube.ball_count is now known
+
+
+
+
+
+
+donor_tube = None
+for gamestation in gamestations:
+    if gamestation.lefttube.get_empty() and gamestation.righttube.get_empty():
+        donor_tube = gamestation.lefttube
+            break
+
+# if there was no ideal candidate
+
+if not donor_tube
+    for gamestation in gamestations:
+        if gamestation.lefttube.get_empty() or gamestation.righttube.get_empty():
+            if gamestation.lefttube.get_empty()
+                donor_tube = gamestation.lefttube
+                break
+            else
+                donor_tube = gamestation.righttube
+                break
+
+while True
+    try
+        transfer ball from donor_tube to donor_tube.nearest_available_tube 
+    except 
+        motion_not_detected
+        break
+    except 
+        ball_not_received
+        break
+record empty state
+
+recipient_tube = donor_tube.breakref() # break reference
+donor_tube = donor_tube.get_adjacent_right()
+
+
+
+
+
+
 
 
 
@@ -24,11 +126,12 @@ class Mode_Inventory(threading.Thread):
     PHASE_ZERO = "phase_zero"
     PHASE_INVENTORY = "phase_inventory"
     PHASE_POPULATE = "phase_populate"
-    def __init__(self, tb, hosts, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.active = False
         self.tb = tb 
         self.hosts = hosts
+        self.choreography = choreography
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()

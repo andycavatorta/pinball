@@ -16,10 +16,11 @@ class Mode_Error(threading.Thread):
     evacuate fruits carousels into dinero tube via carousel
 
     """
-    def __init__(self, tb, hosts, set_mode):
+    def __init__(self, tb, hosts, set_mode,safety_enable_set_active):
         threading.Thread.__init__(self)
         self.active = False
         self.tb = tb 
+        self.safety_enable_set_active = safety_enable_set_active
         self.hosts = hosts
         self.set_mode = set_mode
         self.queue = queue.Queue()
@@ -29,6 +30,7 @@ class Mode_Error(threading.Thread):
 
     def begin(self):
         self.active = True
+        self.safety_enable_set_active(False)
 
     def end(self):
         self.active = False

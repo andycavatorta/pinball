@@ -18,11 +18,12 @@ class Mode_Barter_Intro(threading.Thread):
     This class watches for incoming messages
     Its only action will be to change the current mode
     """
-    def __init__(self, tb, hosts, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.active = False
         self.tb = tb 
         self.hosts = hosts
+        self.choreography = choreography
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()

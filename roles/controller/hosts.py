@@ -730,7 +730,7 @@ class Display(Host):
         self.tb.publish(topic="cmd_all_off",message="")
 
 class Hosts():
-    def __init__(self, tb):
+    def __init__(self, tb, ):
         self.tb = tb
         self.controller = Controller("controller", tb)
         self.carousel1 = Carousel("carousel1", tb)

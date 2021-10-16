@@ -8,8 +8,9 @@
 192.168.100.209  controller.local
 
 
+role_module.main.multimorphic.p3.pulse_coil("A0-B0-1", 40)
+role_module.main.multimorphic.p3.pulse_coil("A0-B0-5", 40)
 
-role_module.main.multimorphic.pulse_coil("")
 
 
 coils = ["A0-B0-0",
@@ -31,9 +32,14 @@ coils = ["A0-B0-0",
     ]
 
 for coil in coils:
-    role_module.main.multimorphic.pulse_coil(coil, 20)
+    role_module.main.multimorphic.p3.pulse_coil(coil, 40)
+    print(coil)
     time.sleep(1)
 
+
+for x in range(20):
+    time.sleep(5)
+    role_module.main.multimorphic.p3.pulse_coil("A0-B0-5", 20+(2*x))
 
 role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
 

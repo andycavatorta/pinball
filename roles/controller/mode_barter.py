@@ -19,9 +19,10 @@ import threading
 import time
 
 class Countdown(threading.Thread):
-    def __init__(self, hosts, set_current_mode):
+    def __init__(self, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.hosts = hosts
+        self.choreography = choreography
         self.set_current_mode = set_current_mode
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
@@ -71,7 +72,6 @@ class Pie():
             "sling_left":False,
         }
         self.reset_pie()
-
 
     def target_hit(self,target_name):
         if self.pie_segments_triggered[target_name] == False:

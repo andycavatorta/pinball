@@ -99,6 +99,10 @@ cmd_set_mode
 
 event_carousel_error
 event_carousel_target_reached
+event_destination_timeout
+event_destination_stalled
+event_destination_reached
+
 response_amt203_absolute_position
 response_amt203_present
 response_amt203_zeroed

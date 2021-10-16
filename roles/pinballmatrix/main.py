@@ -3,6 +3,8 @@
 
 
 to-do: add serial safety after creating controllers
+fix solenoid cross-wiring between carousel_4 and carouselcenter
+
 
 """
 import math
@@ -26,6 +28,51 @@ import settings
 
 GPIO.setmode(GPIO.BCM)
 
+position_calibration = {
+    "carousel_1" : {
+        "coco":{"front":500,"back":2625,"left":177,"right":775},
+        "naranja":{"front":1319,"back":3444,"left":996,"right":1594},
+        "mango":{"front":2138,"back":167,"left":1815,"right":2413},
+        "sandia":{"front":2960,"back":986,"left":2634,"right":3232},
+        "pina":{"front":3779,"back":1805,"left":3453,"right":4051},
+    },
+    "carousel_2" : {
+        "coco":{"front":0,"back":2125,"left":3773,"right":275},
+        "naranja":{"front":819,"back":2944,"left":496,"right":1094},
+        "mango":{"front":1638,"back":3763,"left":1315,"right":1913},
+        "sandia":{"front":2460,"back":486,"left":2134,"right":2732},
+        "pina":{"front":3279,"back":1305,"left":2953,"right":3551},
+    },
+    "carousel_3" : {
+        "coco":{"front":575,"back":2700,"left":252,"right":850},
+        "naranja":{"front":1394,"back":3519,"left":1071,"right":1669},
+        "mango":{"front":2213,"back":242,"left":1890,"right":2488},
+        "sandia":{"front":3035,"back":1061,"left":2709,"right":3307},
+        "pina":{"front":3854,"back":1880,"left":3528,"right":30},
+    },
+    "carousel_4" : {
+        "coco":{"front":1500,"back":3625,"left":1177,"right":1775},
+        "naranja":{"front":2319,"back":348,"left":1996,"right":2594},
+        "mango":{"front":3138,"back":1167,"left":2815,"right":3413},
+        "sandia":{"front":3960,"back":1986,"left":3634,"right":136},
+        "pina":{"front":683,"back":2805,"left":357,"right":955},
+    },
+    "carousel_5" : {
+        "coco":{"front":375,"back":2500,"left":52,"right":650},
+        "naranja":{"front":1194,"back":3319,"left":871,"right":1469},
+        "mango":{"front":2013,"back":42,"left":1690,"right":2288},
+        "sandia":{"front":2835,"back":861,"left":2509,"right":3107},
+        "pina":{"front":3654,"back":1680,"left":3328,"right":3926},
+    },
+    "carousel_center" : {
+        "coco":{"coco":1250,"naranja":431,"mango":3707,"sandia":2888,"pina":2069},
+        "naranja":{"coco":2069,"naranja":1250,"mango":431,"sandia":3707,"pina":2888},
+        "mango":{"coco":2888,"naranja":2069,"mango":1250,"sandia":431,"pina":3707},
+        "sandia":{"coco":3707,"naranja":2888,"mango":2069,"sandia":1250,"pina":431},
+        "pina":{"coco":431,"naranja":3707,"mango":2888,"sandia":2069,"pina":1250},
+    }
+}
+
 class Speed_To_Position(threading.Thread):
     """
     to do: 
@@ -47,11 +94,11 @@ class Speed_To_Position(threading.Thread):
     def get_position_with_offset(self):
         return self.motor.get_encoder_counter_absolute(True) - self.abs_offest
 
-    def rotate_left_to_position(self, destination, limit_to_less_than_one_rotation=True):
-        self.add_to_queue("rotate_left_to_position",destination,limit_to_less_than_one_rotation)
+    #def rotate_left_to_position(self, destination, limit_to_less_than_one_rotation=True):
+    #    self.add_to_queue("rotate_left_to_position",destination,limit_to_less_than_one_rotation)
 
-    def rotate_right_to_position(self, destination, limit_to_less_than_one_rotation=True):
-        self.add_to_queue("rotate_right_to_position",destination,limit_to_less_than_one_rotation)
+    #def rotate_right_to_position(self, destination, limit_to_less_than_one_rotation=True):
+    #    self.add_to_queue("rotate_right_to_position",destination,limit_to_less_than_one_rotation)
 
     def rotate_to_position(self, destination, limit_to_less_than_one_rotation=True):
         self.add_to_queue("rotate_to_position",destination,limit_to_less_than_one_rotation)
@@ -62,28 +109,42 @@ class Speed_To_Position(threading.Thread):
     def run(self):
         while True:
             command, destination, limit_to_less_than_one_rotation = self.queue.get(True)
-            # get current position
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
                 self.timeout = time.time() + 60
                 speed = 1 if destination > current_position else -1
                 self.motor.set_motor_speed(speed)
+                status = b"event_destination_reached"
                 if speed == 1:
                     while current_position < destination:
                         current_position = self.get_position_with_offset()
-                        time.sleep(0.01)
+                        self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
+                        runtime_status_flags = self.motor.get_runtime_status_flags()
+                        if runtime_status_flags['motor_stalled']:
+                            status = b"event_destination_stalled"
+                            self.motor.set_motor_speed(0)
+                            break 
                         if time.time() > self.timeout:
+                            status = b"event_destination_timeout"
+                            self.motor.set_motor_speed(0)
                             break 
                     self.motor.set_motor_speed(0)
                 if speed == -1:
                     while current_position > destination:
                         current_position = self.get_position_with_offset()
-                        time.sleep(0.01)
+                        self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
+                        runtime_status_flags = self.motor.get_runtime_status_flags()
+                        if runtime_status_flags['motor_stalled']:
+                            status = b"event_destination_stalled"
+                            self.motor.set_motor_speed(0)
+                            break
                         if time.time() > self.timeout:
+                            status = b"event_destination_timeout"
+                            self.motor.set_motor_speed(0)
                             break 
                     self.motor.set_motor_speed(0)
             time.sleep(0.2)
-            self.callback(b"event_destination_reached", self.get_position_with_offset(), self.motor.name, None)
+            self.callback(status, self.get_position_with_offset(), self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
@@ -148,6 +209,7 @@ class Main(threading.Thread):
 
         self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
         ##### absolute encoder status #####
+        self.position_calibration = position_calibration
         self.absolute_encoders_presences = [False,False,False,False,False,False]
         self.absolute_encoders_positions = [None,None,None,None,None,None]
         self.absolute_encoders_zeroed = [True,True,True,True,True,True]
@@ -179,16 +241,9 @@ class Main(threading.Thread):
                 #self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
     """
     
-    def cmd_rotate_fruit_to_target(self, carousel_name, fruit_id, target_name):
-        print(">>>>> Main cmd_rotate_fruit_to_target")
-        # calculate target position
-        pass
-        """
-        target_position = settings.Carousel_Fruit_Offsets[fruit_id] + settings.Carousel_Target_Positions[target_name]
-        current_position = self.controllers.motors[carousel_name].get_encoder_counter_absolute(True)
-        current_position = current_position % 4096
-        self.controllers.motors[carousel_name].go_to_absolute_position(current_position)
-        """
+    def cmd_rotate_fruit_to_target(self, carousel_name, fruit_name, position_name):
+        destination = self.position_calibration[carousel_name][fruit_name][position_name]
+        self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
@@ -451,10 +506,29 @@ class Main(threading.Thread):
             if topic == b'connected':
                 pass               
 
+            if topic == b"event_destination_timeout":
+                print(topic, message, origin, destination)
+                # to do: sent to controller
+                self.tb.publish(
+                    topic=topic, 
+                    message=message
+                )
+
+            if topic == b"event_destination_stalled":
+                print(topic, message, origin, destination)
+                # to do: sent to controller
+                self.tb.publish(
+                    topic=topic, 
+                    message=message
+                )
 
             if topic == b'event_destination_reached':
                 print(topic, message, origin, destination)
                 # to do: sent to controller
+                self.tb.publish(
+                    topic=topic, 
+                    message=message
+                )
 
             if topic == b'request_amt203_absolute_position':
                 self.tb.publish(
