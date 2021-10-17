@@ -155,8 +155,8 @@ class Carousel(Host):
         self.balls_present = balls_present
     def get_carousel_ball_detected(self):
         return self.balls_present
-    def request_eject_ball(self, fruit_id):
-        self.tb.publish(topic="cmd_carousel_eject_ball",message=True,destination=self.hostname)
+    def request_eject_ball(self, fruit_name):
+        self.tb.publish(topic="cmd_carousel_eject_ball",message=fruit_name,destination=self.hostname)
     def request_system_tests(self):
         self.tb.publish(topic="request_system_tests",message=True,destination=self.hostname)
     def cmd_carousel_lights(self, animation, group=None, params=None):

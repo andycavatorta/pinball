@@ -127,7 +127,8 @@ class Main(threading.Thread):
                 if topic == b'cmd_carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
                 if topic == b'cmd_carousel_eject_ball':
-                    self.solenoids.add_to_queue('eject', message) # message is fruit_id between 0 and 4
+                    if destination == self.tb.get_hostname():
+                        self.solenoids.add_to_queue('eject', message) # message fruit name
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
                         animation_name, group, params = message

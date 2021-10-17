@@ -10,6 +10,13 @@ class Solenoids(threading.Thread):
         self.eject_pulse_time = 0.05
         GPIO.setmode(GPIO.BCM)
         self.solenoid_pins = [1,2,3,4,5] # todo: update later
+        self.fruit_names = {
+            "coco":1,
+            "naranja":2,
+            "mango":3,
+            "sandia":4,
+            "pina":5,
+        }
         for solenoid_pin in self.solenoid_pins:
             GPIO.setup(solenoid_pin, GPIO.OUT)
             GPIO.output(solenoid_pin, GPIO.LOW)
@@ -21,15 +28,16 @@ class Solenoids(threading.Thread):
                 self.add_to_queue("eject",fruit_id)
                 time.sleep(.5)
 
-    def add_to_queue(self, action, fruit_id = None):
-        self.queue.put((action, fruit_id))
+    def add_to_queue(self, action, fruit_name):
+        self.queue.put((action, fruit_name))
 
     def run(self):
         while True:
-            action, fruit_id = self.queue.get(True)
-            print(action, fruit_id)
+            action, fruit_name = self.queue.get(True)
+            print(action, fruit_name)
             if action == "eject":
-                solenoid_pin = self.solenoid_pins[fruit_id]
+                solenoid_pin = self.fruit_names[fruit_name]
+                #solenoid_pin = self.solenoid_pins[fruit_id]
                 try:
                     GPIO.output(solenoid_pin, GPIO.HIGH)
                     time.sleep(self.eject_pulse_time)
