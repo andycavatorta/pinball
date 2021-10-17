@@ -136,7 +136,7 @@ class Main(threading.Thread):
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
                         if animation_name == "solid":
-                            self.lighting.set_spoke(group, params)
+                            self.lighting.solid(group, params)
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
                         topic="response_carousel_ball_detected", 
