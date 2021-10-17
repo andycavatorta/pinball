@@ -358,13 +358,13 @@ class Matrix(Host):
 
     def get_destination_reached(self, motor_name):
         motor = self.motor_by_carousel_name[motor_name]
-        return motor.["target_reached"]
+        return motor["target_reached"]
     def get_destination_stalled(self, motor_name):
         motor = self.motor_by_carousel_name[motor_name]
-        return motor.["stalled"]
+        return motor["stalled"]
     def get_destination_timeout(self, motor_name):
         motor = self.motor_by_carousel_name[motor_name]
-        return motor.["timeout"]
+        return motor["timeout"]
 
     def get_motor_details(self, property, fruit_id):
         return self.motors[fruit_id][property]
