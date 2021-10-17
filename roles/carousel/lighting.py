@@ -86,9 +86,9 @@ def fade_group(pin_numbers, start_level, end_level, fade_period = 0.1):
 def stroke_ripple():
     solid("all", 0)
     for group in sequences["radial"]:
-        fade_group(group, 0, levels[8],0.05)
+        fade_group(group, 0, levels[8], 0.05)
     for group in sequences["radial"]:
-        fade_group(group, levels[8],0.05)
+        fade_group(group, levels[8], 0, 0.05)
     solid("all", 0)
 
 #############################################
