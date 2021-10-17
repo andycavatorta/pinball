@@ -96,7 +96,7 @@ routines -
     local tube to remote tube
     2x (local tube to remote tube)
 """
-class Routine_Home(self):
+class Routine_Home():
     """
     set all carousels to their home positions
     """
