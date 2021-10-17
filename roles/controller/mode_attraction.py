@@ -262,13 +262,13 @@ class Animation(threading.Thread):
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active(name_val[0], name_val[1])
 
-                    if self.animation_frame_counter % 15 == 0:
-                        if self.animation_frame_counter % 30 == 0:
-                            for i in range(5):
-                                self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
-                                self.hosts.hostnames[self.pinball_hostnames[i]].cmd_playfield_lights("all_radial","single_dot")
-                        else:
-                            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
+                    #if self.animation_frame_counter % 15 == 0:
+                    #    if self.animation_frame_counter % 30 == 0:
+                    #        for i in range(5):
+                    #            self.hosts.hostnames[self.carousel_hostnames[i]].cmd_carousel_lights("stroke_ripple")
+                    #            self.hosts.hostnames[self.pinball_hostnames[i]].cmd_playfield_lights("all_radial","single_dot")
+                    #    else:
+                    #        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("stroke_ripple")
 
                     frame_3 = self.digits_3[self.animation_frame_counter % 30]
                     a_places = self.digits_2[frame_3[0]]

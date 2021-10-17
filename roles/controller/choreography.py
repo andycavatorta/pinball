@@ -123,9 +123,6 @@ class Choreography():
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","coco","coco")
  
-
-
-
     def transfer(self, batch):
         """
         basic algorithms
@@ -215,7 +212,7 @@ class Choreography():
         """
         # work on single-transfer case first
 
-
+    def dispatch(self, ): #wreceives commands and feedback info
 
 
 

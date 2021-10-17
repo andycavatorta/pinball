@@ -89,7 +89,7 @@ class Speed_To_Position(threading.Thread):
         self.encoder_resolution = 4096
         self.queue = queue.Queue()
         self.timeout_timer = time.time()
-        self.timeout_timeout = 30 # seconds
+        self.timeout_timeout = 60 # seconds
         self.start()
 
     def get_position_with_offset(self):
