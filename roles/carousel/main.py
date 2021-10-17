@@ -129,20 +129,13 @@ class Main(threading.Thread):
                 if topic == b'cmd_carousel_eject_ball':
                     if destination == self.tb.get_hostname():
                         self.solenoids.add_to_queue('eject', message) # message fruit name
+
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
                         animation_name, group, params = message
-                        if animation_name == "clear_all":
-                            self.lighting.clear_all()
-                        if animation_name == "light_all":
-                            self.lighting.light_all()
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
-                        if animation_name == "pulse_fruit":
-                            self.lighting.pulse_fruit(group)
-                        if animation_name == "stroke_arc":
-                            self.lighting.stroke_arc(group, params)
-                        if animation_name == "set_spoke":
+                        if animation_name == "solid":
                             self.lighting.set_spoke(group, params)
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
