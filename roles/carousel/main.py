@@ -135,7 +135,7 @@ class Main(threading.Thread):
                         animation_name, group, params = message
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
-                        if animation_name == "solid":
+                        if animation_name in [b"solid","solid"]:
                             self.lighting.solid(group, params)
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
