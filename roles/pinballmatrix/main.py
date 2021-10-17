@@ -28,17 +28,13 @@ import settings
 
 GPIO.setmode(GPIO.BCM)
 
-
-
-
-
 position_calibration = {
     "carousel_1" : {
-        "coco":{"front":1500,"back":3625,"left":1177,"right":1775},
-        "naranja":{"front":2319,"back":348,"left":1996,"right":2594},
-        "mango":{"front":3138,"back":1167,"left":2815,"right":3413},
-        "sandia":{"front":3960,"back":1986,"left":3634,"right":136},
-        "pina":{"front":683,"back":2805,"left":357,"right":955},
+        "coco":{"front"3625:,"back":1500,"left":3302,"right":3900},
+        "naranja":{"front":348,"back":2319,"left":25,"right":623},
+        "mango":{"front":1167,"back":3138,"left":844,"right":1442},
+        "sandia":{"front":1986,"back":3960,"left":1663,"right":2261},
+        "pina":{"front":2805,"back":683,"left":2482,"right":3080},
     },
     "carousel_2" : {
         "coco":{"front":0,"back":2125,"left":3773,"right":275},
