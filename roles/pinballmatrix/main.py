@@ -88,7 +88,8 @@ class Speed_To_Position(threading.Thread):
         self.callback = callback
         self.encoder_resolution = 4096
         self.queue = queue.Queue()
-        self.timeout = time.time()
+        self.timeout_timer = time.time()
+        self.timeout_timeout = 15 # seconds
         self.start()
 
     def get_position_with_offset(self):
@@ -111,7 +112,7 @@ class Speed_To_Position(threading.Thread):
             command, destination, limit_to_less_than_one_rotation = self.queue.get(True)
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
-                self.timeout = time.time() + 60
+                self.timeout_timer = time.time() + self.timeout_timeout
                 speed = 1 if destination > current_position else -1
                 slop = -25 if destination > current_position else 25 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
@@ -125,13 +126,13 @@ class Speed_To_Position(threading.Thread):
                         status = b"event_destination_stalled"
                         self.motor.set_motor_speed(0)
                         break 
-                    if time.time() > self.timeout:
+                    if time.time() > self.timeout_timer:
                         status = b"event_destination_timeout"
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
             time.sleep(0.2)
-            self.callback(status, self.get_position_with_offset(), self.motor.name, None)
+            self.callback(status, [self.get_position_with_offset(),self.get_position_with_offset()-destination], self.motor.name, None)
             
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):

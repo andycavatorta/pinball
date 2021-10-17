@@ -8,8 +8,6 @@ import threading
 import time
 
 
-
-
 SCK = board.SCK
 MOSI = board.MOSI
 LATCH = digitalio.DigitalInOut(board.D26)

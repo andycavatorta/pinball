@@ -96,31 +96,35 @@ routines -
     local tube to remote tube
     2x (local tube to remote tube)
 """
-class Routine_Home():
+
+class Choreography(): 
     """
-    set all carousels to their home positions
+    
+
     """
     def __init__(self, tb, hosts):
         self.hosts = hosts
         self.tb = tb
+        self.expected = {} # a list of expected return values
+
+    def home(self):
+        self.expected = {
+            "carousel_1":[b"event_destination_reached",None],
+            "carousel_2":[b"event_destination_reached",None],
+            "carousel_3":[b"event_destination_reached",None],
+            "carousel_4":[b"event_destination_reached",None],
+            "carousel_5":[b"event_destination_reached",None],
+            "carousel_center":[b"event_destination_reached",None],
+        }
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","coco","coco")
+ 
 
 
-
-
-class Choreography(): 
-    """
-    Is Choreography threaded?
-    the transfer function should return values synchronously
-    """
-    def __init__(self, tb, hosts):
-        self.hosts = hosts
-        self.tb = tb
 
     def transfer(self, batch):
         """
@@ -210,9 +214,6 @@ class Choreography():
 
         """
         # work on single-transfer case first
-        transaction = batch[0]
-        origin, destination = transaction
-
 
 
 
