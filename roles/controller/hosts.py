@@ -177,9 +177,6 @@ class Carousel(Host):
     def get_carousel_error(self,carousel_error):
         return self.carousel_error
 
-
-
-
 class Matrix(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)

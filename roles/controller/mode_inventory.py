@@ -149,17 +149,17 @@ class Mode_Inventory(threading.Thread):
         #self.timer = time.time()
         self.active = True
         #skipping zeroing, inventory, and set_balls_for_game
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",3, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_4",8)
         time.sleep(0.1)
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",4, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_5",8)
         time.sleep(0.1)
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",5, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_6",8)
         time.sleep(0.1)
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",7, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_7",8)
         time.sleep(0.1)
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",8, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_8",8)
         time.sleep(0.1)
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",9, 1)
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_9",8)
         time.sleep(0.1)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
         #for pinball_hostname in self.pinball_hostnames:

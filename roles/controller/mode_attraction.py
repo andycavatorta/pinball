@@ -218,7 +218,7 @@ class Animation(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", False)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all", "off")
         for carousel_hostname in self.carousel_hostnames:
-            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
+            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("solid","all",0)
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_number(-1)
             self.hosts.hostnames[display_hostname].request_phrase("juega")

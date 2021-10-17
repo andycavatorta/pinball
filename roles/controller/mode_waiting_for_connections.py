@@ -34,7 +34,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
         self.start()
 
     def begin(self):
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("clear_all")
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","all",0)
         self.timer = time.time()
         self.active = True
         #for pinball_hostname in self.pinball_hostnames:
@@ -46,7 +46,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
     def respond_host_connected(self, message, origin, destination): 
         if self.hosts.get_all_host_connected() == True:
             #self.hosts.hostnames["carouselcenter"].cmd_carousel_all_off()
-            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("set_spoke",0, 0.1)
+            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_0",8)
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def add_to_queue(self, topic, message, origin, destination):
