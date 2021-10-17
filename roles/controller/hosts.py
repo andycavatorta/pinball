@@ -845,7 +845,8 @@ class Hosts():
                 channel_faults_list.append("closed_loop_error", channel_name,channel["closed_loop_error"])
                 non_nominal_states.append(["pinballmatrix",channel_name,"closed_loop_error", channel["closed_loop_error"]])
             if channel["stall_detection"] != False:
-                channel_faults_list.append(["stall_detection", channel_name,channel["stall_detection"]])
+                msg = ["stall_detection", channel_name,channel["stall_detection"]]
+                channel_faults_list.append(msg)
                 non_nominal_states.append(["pinballmatrix",channel_name,"stall_detection", channel["stall_detection"]])
             if channel["motor_amps"] > 6:
                 channel_faults_list.append(["motor_amps",channel_name, channel["motor_amps"]])
