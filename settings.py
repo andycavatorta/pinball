@@ -209,7 +209,7 @@ class Roboteq:
             #"encoder_ppr_value":4096,
             # todo: more variable names will be added as needed
         },
-        "carousel_6":{
+        "carousel_center":{
             "mcu_id":"100:1042:107610164:876103217:1124222537",
             "channel":"2",
             #"motor_acceleration_rate":600, # Min:0, Max:500000, Default: 10000 = 1000.0 RPM/s

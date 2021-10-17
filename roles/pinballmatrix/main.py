@@ -113,36 +113,23 @@ class Speed_To_Position(threading.Thread):
             if command == "rotate_to_position":
                 self.timeout = time.time() + 60
                 speed = 1 if destination > current_position else -1
+                slop = -25 if destination > current_position else 25 # loose attempt to stop before overshooting
+                destination_adjusted = destination + slop
                 self.motor.set_motor_speed(speed)
                 status = b"event_destination_reached"
-                if speed == 1:
-                    while current_position < destination:
-                        current_position = self.get_position_with_offset()
-                        self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
-                        runtime_status_flags = self.motor.get_runtime_status_flags()
-                        if runtime_status_flags['motor_stalled']:
-                            status = b"event_destination_stalled"
-                            self.motor.set_motor_speed(0)
-                            break 
-                        if time.time() > self.timeout:
-                            status = b"event_destination_timeout"
-                            self.motor.set_motor_speed(0)
-                            break 
-                    self.motor.set_motor_speed(0)
-                if speed == -1:
-                    while current_position > destination:
-                        current_position = self.get_position_with_offset()
-                        self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
-                        runtime_status_flags = self.motor.get_runtime_status_flags()
-                        if runtime_status_flags['motor_stalled']:
-                            status = b"event_destination_stalled"
-                            self.motor.set_motor_speed(0)
-                            break
-                        if time.time() > self.timeout:
-                            status = b"event_destination_timeout"
-                            self.motor.set_motor_speed(0)
-                            break 
-                    self.motor.set_motor_speed(0)
+                while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
+                    current_position = self.get_position_with_offset()
+                    #self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
+                    runtime_status_flags = self.motor.get_runtime_status_flags()
+                    if runtime_status_flags['motor_stalled']:
+                        status = b"event_destination_stalled"
+                        self.motor.set_motor_speed(0)
+                        break 
+                    if time.time() > self.timeout:
+                        status = b"event_destination_timeout"
+                        self.motor.set_motor_speed(0)
+                        break 
+                self.motor.set_motor_speed(0)
             time.sleep(0.2)
             self.callback(status, self.get_position_with_offset(), self.motor.name, None)
             
@@ -186,7 +173,7 @@ class Main(threading.Thread):
 
         self.chip_select_pins_for_abs_enc = [12,13,17,18,5,16]
         ##### SUBSCRIPTIONS #####
-        self.tb.subscribe_to_topic("cmd_rotate_fruit_to_target")
+        self.tb.subscribe_to_topic("cmd_rotate_carousel_to_target")
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("request_amt203_absolute_position")
         self.tb.subscribe_to_topic("request_amt203_present")
@@ -206,8 +193,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_target_position_confirmed")
         self.tb.subscribe_to_topic("response_high_power_enabled")
 
-
-        self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_6")
+        self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center")
         ##### absolute encoder status #####
         self.position_calibration = position_calibration
         self.absolute_encoders_presences = [False,False,False,False,False,False]
@@ -241,7 +227,7 @@ class Main(threading.Thread):
                 #self.controllers.motors[self.motor_names[abs_ordinal]].set_motor_speed(0)
     """
     
-    def cmd_rotate_fruit_to_target(self, carousel_name, fruit_name, position_name):
+    def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
         destination = self.position_calibration[carousel_name][fruit_name][position_name]
         self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
 
@@ -292,7 +278,7 @@ class Main(threading.Thread):
                 "carousel_3":settings.Roboteq.MOTORS["carousel_3"],
                 "carousel_4":settings.Roboteq.MOTORS["carousel_4"],
                 "carousel_5":settings.Roboteq.MOTORS["carousel_5"],
-                "carousel_6":settings.Roboteq.MOTORS["carousel_6"],
+                "carousel_center":settings.Roboteq.MOTORS["carousel_center"],
             }
         )
         time.sleep(2)
@@ -361,7 +347,7 @@ class Main(threading.Thread):
                 "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
                 "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
                 "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
-                "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
+                "carousel_center":self.request_sdc2160_channel_faults("carousel_center"),
             }
         )
 
@@ -429,10 +415,10 @@ class Main(threading.Thread):
                 self.controllers.motors['carousel_3'].get_closed_loop_error(True),
                 self.controllers.motors['carousel_4'].get_closed_loop_error(True),
                 self.controllers.motors['carousel_5'].get_closed_loop_error(True),
-                self.controllers.motors['carousel_6'].get_closed_loop_error(True),
+                self.controllers.motors['carousel_center'].get_closed_loop_error(True),
             ]
         else:
-            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
+            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_center'][fruit_id]
             return self.controllers.motors[motor_name].get_closed_loop_error()
 
     def request_sdc2160_controller_faults(self):
@@ -471,10 +457,10 @@ class Main(threading.Thread):
                 self.controllers.motors['carousel_3'].get_encoder_counter_absolute(True),
                 self.controllers.motors['carousel_4'].get_encoder_counter_absolute(True),
                 self.controllers.motors['carousel_5'].get_encoder_counter_absolute(True),
-                self.controllers.motors['carousel_6'].get_encoder_counter_absolute(True),
+                self.controllers.motors['carousel_center'].get_encoder_counter_absolute(True),
             ]
         else:
-            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6'][fruit_id]
+            motor_name = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_center'][fruit_id]
             return self.controllers.motors[motor_name].get_encoder_counter_absolute()
 
 
@@ -499,9 +485,9 @@ class Main(threading.Thread):
         print(">>>>> Main run")
         while True:
             topic, message, origin, destination = self.queue.get(True)
-            if topic == b'cmd_rotate_fruit_to_target':
+            if topic == b'cmd_rotate_carousel_to_target':
                 carousel_name, fruit_id, target_name = message
-                self.cmd_rotate_fruit_to_target(carousel_name, fruit_id, target_name)
+                self.cmd_rotate_carousel_to_target(carousel_name, fruit_id, target_name)
 
             if topic == b'connected':
                 pass               
@@ -583,7 +569,7 @@ class Main(threading.Thread):
                         "carousel_3":self.request_sdc2160_channel_faults("carousel_3"),
                         "carousel_4":self.request_sdc2160_channel_faults("carousel_4"),
                         "carousel_5":self.request_sdc2160_channel_faults("carousel_5"),
-                        "carousel_6":self.request_sdc2160_channel_faults("carousel_6"),
+                        "carousel_center":self.request_sdc2160_channel_faults("carousel_center"),
                     }
                 )
 

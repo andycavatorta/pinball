@@ -608,7 +608,7 @@ function init() {
       carousel_3 :new Status_Block(canvas, [block_grid_x[8],block_grid_y[4]], "MOTOR 3", ["amps","temp","pid error","status","stall","θ target"]),
       carousel_4 :new Status_Block(canvas, [block_grid_x[9],block_grid_y[4]], "MOTOR 4", ["amps","temp","pid error","status","stall","θ target"]),
       carousel_5 :new Status_Block(canvas, [block_grid_x[10],block_grid_y[4]], "MOTOR 5", ["amps","temp","pid error","status","stall","θ target"]),
-      carousel_6 :new Status_Block(canvas, [block_grid_x[11],block_grid_y[4]], "MOTOR CENTER", ["amps","temp","pid error","status","stall","θ target"]),
+      carousel_center :new Status_Block(canvas, [block_grid_x[11],block_grid_y[4]], "MOTOR CENTER", ["amps","temp","pid error","status","stall","θ target"]),
       amps:new Amps_Block(canvas, [block_grid_x[6],block_grid_y[1]], "MOTORS AMPS", 0),
     },
     carousel1:{

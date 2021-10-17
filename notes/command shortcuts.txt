@@ -41,13 +41,15 @@ for x in range(20):
     time.sleep(5)
     role_module.main.multimorphic.p3.pulse_coil("A0-B0-5", 20+(2*x))
 
+role_module.main.multimorphic.p3.pulse_coil("A0-B0-1", 40)
+
 role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
 
 
 role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
 role_module.main.controllers.motors["carousel_4"].set_operating_mode(3)
 role_module.main.controllers.motors["carousel_5"].set_operating_mode(3)
-role_module.main.controllers.motors["carousel_6"].set_operating_mode(3)
+role_module.main.controllers.motors["carousel_center"].set_operating_mode(3)
 
 role_module.main.controllers.boards['carousel3and4'].save_configuration_in_eeprom()
 role_module.main.controllers.boards['carousel5and6'].save_configuration_in_eeprom()
@@ -64,7 +66,7 @@ role_module.main.controllers.motors["carousel_4"].set_pid_proportional_gain(1)
 role_module.main.controllers.motors["carousel_1"].go_to_absolute_position(4000)
 
 
-role_module.main.controllers.motors["carousel_6"].set_pid_proportional_gain(10)
+role_module.main.controllers.motors["carousel_center"].set_pid_proportional_gain(10)
 
 
 role_module.main.controllers.motors["carousel_1"].absolute_encoder.get_position()
@@ -72,7 +74,7 @@ role_module.main.controllers.motors["carousel_2"].absolute_encoder.get_position(
 role_module.main.controllers.motors["carousel_3"].absolute_encoder.get_position()
 role_module.main.controllers.motors["carousel_4"].absolute_encoder.get_position()
 role_module.main.controllers.motors["carousel_5"].absolute_encoder.get_position()
-role_module.main.controllers.motors["carousel_6"].absolute_encoder.get_position()
+role_module.main.controllers.motors["carousel_center"].absolute_encoder.get_position()
 
 
 
@@ -85,7 +87,7 @@ motor 6: good?
 
 while True: 
     displays = role_module.tests.Displays(role_module.main.tb)
-    displays.circular_countown()
+    displays.circular_countown()et_operating_mode
 
 
 while True:

@@ -420,16 +420,20 @@ class Matrix(Host):
             return False
         return True
 
+    """
     def request_rotate_fruit_to_angle(self, fruit_id, degrees):
         self.target_position[fruit_id] = degrees
         self.set_target_position_confirmed(fruit_id,False)
-        self.tb.publish(topic="cmd_rotate_fruit_to_target", message=[fruit_id, degrees])
+        self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[fruit_id, degrees])
 
     def request_rotate_fruit_to_target(self, fruit_id, position_name):
         named_position_degrees = self.named_position[position_name]
         fruit_id_offset_degrees = self.fruit_positions[fruit_id]
         degrees = named_position_degrees + fruit_id_offset_degrees
-        self.cmd_rotate_fruit_to_target(1, degrees)
+        self.cmd_rotate_carousel_to_target(1, degrees)
+    """
+    def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
+        self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
 
     def request_target_position_confirmed(self): 
         self.tb.publish(topic="request_target_position_confirmed", message="")

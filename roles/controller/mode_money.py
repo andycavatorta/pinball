@@ -27,11 +27,12 @@ class Station(threading.Thread):
 
     to do: initialize state of lights, buttons, carousel
     """
-    def __init__(self, origin, tb, hosts):
+    def __init__(self, origin, tb, hosts, choreography):
         threading.Thread.__init__(self)
         self.origin = origin
         self.tb = tb
         self.hosts = hosts
+        self.choreography = choreography
         self.queue = queue.Queue()
 
         #states

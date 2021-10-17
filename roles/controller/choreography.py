@@ -96,17 +96,19 @@ routines -
     local tube to remote tube
     2x (local tube to remote tube)
 """
-class Carousel():
+class Routine_Home(self):
     """
-
+    set all carousels to their home positions
     """
-    def __init__(
-            self, 
-            name,
-            absolute_relative_offset
-        ):
-        self.name = name
-        self.absolute_relative_offset = absolute_relative_offset
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","coco","coco")
 
 
 

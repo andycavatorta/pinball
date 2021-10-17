@@ -33,7 +33,7 @@ class Mode_System_Tests(threading.Thread):
         self.hosts = hosts
         self.set_mode = set_current_mode
         self.queue = queue.Queue()
-        self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_6']
+        self.motor_names = ['carousel_1','carousel_2','carousel_3','carousel_4','carousel_5','carousel_center']
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.phase = self.PHASE_COMPUTER_DETAILS
         self.game_mode_names = settings.Game_Modes
