@@ -89,7 +89,7 @@ class Speed_To_Position(threading.Thread):
         self.encoder_resolution = 4096
         self.queue = queue.Queue()
         self.timeout_timer = time.time()
-        self.timeout_timeout = 15 # seconds
+        self.timeout_timeout = 30 # seconds
         self.start()
 
     def get_position_with_offset(self):
@@ -110,11 +110,12 @@ class Speed_To_Position(threading.Thread):
     def run(self):
         while True:
             command, destination, limit_to_less_than_one_rotation = self.queue.get(True)
+            retry_stalled_motor = 0
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
                 speed = 1 if destination > current_position else -1
-                slop = -25 if destination > current_position else 25 # loose attempt to stop before overshooting
+                slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
                 self.motor.set_motor_speed(speed)
                 status = b"event_destination_reached"
@@ -124,8 +125,12 @@ class Speed_To_Position(threading.Thread):
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
                         status = b"event_destination_stalled"
-                        self.motor.set_motor_speed(0)
-                        break 
+                        if retry_stalled_motor >=0:
+                            retry_stalled_motor += 1
+                            self.motor.set_motor_speed(speed)
+                        else:
+                            self.motor.set_motor_speed(0)
+                            break 
                     if time.time() > self.timeout_timer:
                         status = b"event_destination_timeout"
                         self.motor.set_motor_speed(0)
