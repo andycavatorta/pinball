@@ -27,12 +27,11 @@ class Station(threading.Thread):
 
     to do: initialize state of lights, buttons, carousel
     """
-    def __init__(self, origin, tb, hosts, choreography):
+    def __init__(self, origin, tb, hosts):
         threading.Thread.__init__(self)
         self.origin = origin
         self.tb = tb
         self.hosts = hosts
-        self.choreography = choreography
         self.queue = queue.Queue()
 
         #states
@@ -291,11 +290,11 @@ class Mode_Money(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
 
         self.stations = {
-            "pinball1game":Station("pinball1game",self.tb,self.hosts,),
-            "pinball2game":Station("pinball2game",self.tb,self.hosts,),
-            "pinball3game":Station("pinball3game",self.tb,self.hosts,),
-            "pinball4game":Station("pinball4game",self.tb,self.hosts,),
-            "pinball5game":Station("pinball5game",self.tb,self.hosts,),
+            "pinball1game":Station("pinball1game",self.tb,self.hosts),
+            "pinball2game":Station("pinball2game",self.tb,self.hosts),
+            "pinball3game":Station("pinball3game",self.tb,self.hosts),
+            "pinball4game":Station("pinball4game",self.tb,self.hosts),
+            "pinball5game":Station("pinball5game",self.tb,self.hosts),
         }
         self.start()
 
