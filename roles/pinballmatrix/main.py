@@ -30,11 +30,11 @@ GPIO.setmode(GPIO.BCM)
 
 position_calibration = {
     "carousel_1" : {
-        "coco":{"front":500,"back":2625,"left":177,"right":775},
-        "naranja":{"front":1319,"back":3444,"left":996,"right":1594},
-        "mango":{"front":2138,"back":167,"left":1815,"right":2413},
-        "sandia":{"front":2960,"back":986,"left":2634,"right":3232},
-        "pina":{"front":3779,"back":1805,"left":3453,"right":4051},
+        "coco":{"front":1500,"back":3625,"left":1177,"right":1775},
+        "naranja":{"front":2319,"back":348,"left":1996,"right":2594},
+        "mango":{"front":3138,"back":1167,"left":2815,"right":3413},
+        "sandia":{"front":3960,"back":1986,"left":3634,"right":136},
+        "pina":{"front":683,"back":2805,"left":357,"right":955},
     },
     "carousel_2" : {
         "coco":{"front":0,"back":2125,"left":3773,"right":275},
@@ -51,11 +51,11 @@ position_calibration = {
         "pina":{"front":3854,"back":1880,"left":3528,"right":30},
     },
     "carousel_4" : {
-        "coco":{"front":1500,"back":3625,"left":1177,"right":1775},
-        "naranja":{"front":2319,"back":348,"left":1996,"right":2594},
-        "mango":{"front":3138,"back":1167,"left":2815,"right":3413},
-        "sandia":{"front":3960,"back":1986,"left":3634,"right":136},
-        "pina":{"front":683,"back":2805,"left":357,"right":955},
+        "coco":{"front":500,"back":2625,"left":177,"right":775},
+        "naranja":{"front":1319,"back":3444,"left":996,"right":1594},
+        "mango":{"front":2138,"back":167,"left":1815,"right":2413},
+        "sandia":{"front":2960,"back":986,"left":2634,"right":3232},
+        "pina":{"front":3779,"back":1805,"left":3453,"right":4051},
     },
     "carousel_5" : {
         "coco":{"front":375,"back":2500,"left":52,"right":650},
