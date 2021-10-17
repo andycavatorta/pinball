@@ -237,7 +237,7 @@ class Mode_Countdown(threading.Thread):
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.timeout_duration = 120 #seconds
-        self.animation = Animation(hosts,set_current_mode)
+        self.animation = Animation(hosts,set_current_mode,choreography)
         
         self.start()
 
