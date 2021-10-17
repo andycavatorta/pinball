@@ -120,17 +120,17 @@ class Speed_To_Position(threading.Thread):
                 destination_adjusted = destination + slop
                 self.callback(
                     b"event_destination_reached", 
-                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.callback(
                     b"event_destination_stalled", 
-                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.callback(
                     b"event_destination_timeout", 
-                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.motor.set_motor_speed(speed)
