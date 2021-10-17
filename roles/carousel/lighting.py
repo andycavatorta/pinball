@@ -64,8 +64,11 @@ levels = [
 ]
 
 def solid(group, level):
+    print("---3", group, level)
     pin_numbers = groups[group]
+    print("---5", group, level)
     for pin_number in pin_numbers:
+        print("---3", pin_number)
         pins[pin_number].duty_cycle = level
 
 def fade_group(pin_numbers, start_level, end_level, fade_period = 0.1):

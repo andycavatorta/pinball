@@ -133,9 +133,12 @@ class Main(threading.Thread):
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
                         animation_name, group, params = message
+                        print(animation_name, group, params)
                         if animation_name == "stroke_ripple":
+                            print("---1")
                             self.lighting.stroke_ripple()
                         if animation_name in [b"solid","solid"]:
+                            print("---2")
                             self.lighting.solid(group, params)
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
