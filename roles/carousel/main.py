@@ -126,11 +126,14 @@ class Main(threading.Thread):
                 print(topic, message)
                 if topic == b'cmd_carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
+                print(2, topic, message)
                 if topic == b'cmd_carousel_eject_ball':
                     if destination == self.tb.get_hostname():
                         self.solenoids.add_to_queue('eject', message) # message fruit name
+                print(3,topic, message)
 
                 if topic == b'cmd_carousel_lights':
+                    print(self.tb.get_hostname())
                     if destination == self.tb.get_hostname():
                         animation_name, group, params = message
                         print(animation_name, group, params)
@@ -140,6 +143,7 @@ class Main(threading.Thread):
                         if animation_name in [b"solid","solid"]:
                             print("---2")
                             self.lighting.solid(group, params)
+                print(4 ,topic, message)
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
                         topic="response_carousel_ball_detected", 
