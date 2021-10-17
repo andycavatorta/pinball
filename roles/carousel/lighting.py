@@ -49,14 +49,6 @@ groups = {
 sequences = {
     "spokes":["spoke_0","spoke_1","spoke_2","spoke_3","spoke_4","spoke_5","spoke_6","spoke_7","spoke_8","spoke_9"],
     "radial":["peso","inner_circle","outer_circle"],
-    "":,
-    "":,
-    "":,
-    "":,
-    "":,
-    "":,
-    "":,
-    "":,
 }
 levels = [
     0,
