@@ -19,10 +19,9 @@ import threading
 import time
 
 class Countdown(threading.Thread):
-    def __init__(self, hosts, set_current_mode, choreography):
+    def __init__(self, hosts, set_current_mode):
         threading.Thread.__init__(self)
         self.hosts = hosts
-        self.choreography = choreography
         self.set_current_mode = set_current_mode
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
@@ -261,13 +260,14 @@ class Mode_Barter(threading.Thread):
     This class watches for incoming messages
     Its only action will be to change the current mode
     """
-    def __init__(self, tb, hosts, set_current_mode):
+    def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.active = False
         self.tb = tb 
         self.hosts = hosts
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
+        self.choreography = choreography
         self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
