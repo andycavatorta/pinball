@@ -169,7 +169,7 @@ class Speed_To_Position(threading.Thread):
                     True if discrepancy < self.discrepancy_threshold else Falses, 
                     self.get_position_with_offset(), 
                     discrepancy
-                ]
+                ],
                 self.motor.name, 
                 None)
 
