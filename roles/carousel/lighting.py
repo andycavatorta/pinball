@@ -64,24 +64,24 @@ levels = [
 ]
 
 def solid(group, level):
-    print("---3", group, level)
     pin_numbers = groups[group]
-    print("---5", group, level)
+    duty_cycle = levels[level]
     for pin_number in pin_numbers:
-        print("---3", pin_number)
-        pins[pin_number].duty_cycle = level
+        pins[pin_number].duty_cycle = duty_cycle
 
 def fade_group(pin_numbers, start_level, end_level, fade_period = 0.1):
+    start_duty_cycle = levels[start_level]
+    end_duty_cycle = levels[end_level]
     animation_frame_period = 0.01
     increment_count = int(fade_period / animation_frame_period)
-    increment_size = int(float(end_level-start_level)/float(increment_count))
+    increment_size = int(float(end_duty_cycle-start_duty_cycle)/float(increment_count))
     for increment_ordinal in range(increment_count):
-        current_level = start_level + (increment_ordinal * increment_size)
+        current_level = start_duty_cycle + (increment_ordinal * increment_size)
         for pin_number in pin_numbers:
             pins[pin_number].duty_cycle = int(current_level)
         time.sleep(animation_frame_period/2)
     for pin_number in pin_numbers:
-        pins[pin_number].duty_cycle = int(end_level)
+        pins[pin_number].duty_cycle = int(end_duty_cycle)
 
 def stroke_ripple():
     solid("all", 0)
