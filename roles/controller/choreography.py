@@ -212,7 +212,7 @@ class Choreography():
         """
         # work on single-transfer case first
 
-    def dispatch(self, ): #wreceives commands and feedback info
+    #def dispatch(self, ): #wreceives commands and feedback info
 
 
 
