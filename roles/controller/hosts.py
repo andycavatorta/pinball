@@ -253,7 +253,10 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
             {
                 "current":0,
@@ -261,7 +264,10 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
             {
                 "current":0,
@@ -269,7 +275,10 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
             {
                 "current":0,
@@ -277,7 +286,10 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
             {
                 "current":0,
@@ -285,7 +297,10 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
             {
                 "current":0,
@@ -293,9 +308,20 @@ class Matrix(Host):
                 "pid_error":0,
                 "status":0,
                 "target":0,
-                "discrepancy":0
+                "discrepancy":0,
+                "target_reached":[False,0],
+                "stalled":[False,0],
+                "timeout":[False,0],
             },
         ]
+        self.motor_by_carousel_name = {
+            "carousel1":self.motors[0],
+            "carousel2":self.motors[0],
+            "carousel3":self.motors[0],
+            "carousel4":self.motors[0],
+            "carousel5":self.motors[0],
+            "carouselcenter":self.motors[0],
+        }
         self.target_position = [
             0,0,0,0,0,0
         ]
@@ -317,135 +343,134 @@ class Matrix(Host):
         }
         self.fruit_positions = [0,0,0,0,0,0]
 
-    def request_sdc2160_present(self):
-        self.tb.publish(topic="request_sdc2160_present", message="")
-    def set_sdc2160_present(self,presence):
-        self.sdc2160_present = presence
-    def get_sdc2160_present(self):
-        return all(self.sdc2160_present.values())
-
-    def request_sdc2160_faults(self):
-        self.tb.publish(topic="request_sdc2160_faults", message="")
-    def set_sdc2160_faults(self,sdc2160_present):
-        self.sdc2160_faults = sdc2160_faults
-    def get_sdc2160_faults(self):
-        return self.sdc2160_faults
-
-    def request_amt203_present(self):
-        self.tb.publish(topic="request_amt203_present", message="")
-    def set_amt203_present(self,amt203_present):
-        self.amt203_present = amt203_present
-    def get_amt203_present(self):
-        return all(self.amt203_present)
-
-    def request_amt203_zeroed(self): # this is a command, not a query
-        self.tb.publish(topic="request_amt203_zeroed", message="")
-    def set_amt203_zeroed(self,amt203_zeroed):
-        self.amt203_zeroed = amt203_zeroed
-    def get_amt203_zeroed(self):
-        return False not in self.amt203_zeroed
-
-    def request_amt203_absolute_position(self, fruit_id):
-        self.tb.publish(topic="request_amt203_absolute_position", message="")
-    def set_amt203_absolute_position(self, absolute_position, fruit_id=-1):
-        if fruit_id == -1 or fruit_id == None:
-            self.amt203_absolute_position = absolute_position
-        else:
-            self.amt203_absolute_position[fruit_id] = absolute_position
+    def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
+        self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
     def get_amt203_absolute_position_populated(self):
         if None in self.amt203_absolute_position:
             return False
         return True
+    def get_amt203_present(self):
+        return all(self.amt203_present)
+    def get_amt203_zeroed(self):
+        return False not in self.amt203_zeroed
 
+    def get_destination_reached(self, motor_name):
+        motor = self.motor_by_carousel_name[motor_name]
+        return motor.["target_reached"]
+    def get_destination_stalled(self, motor_name):
+        motor = self.motor_by_carousel_name[motor_name]
+        return motor.["stalled"]
+    def get_destination_timeout(self, motor_name):
+        motor = self.motor_by_carousel_name[motor_name]
+        return motor.["timeout"]
+
+    def get_motor_details(self, property, fruit_id):
+        return self.motors[fruit_id][property]
+    def get_sdc2160_channel_faults(self):
+        return self.sdc2160_channel_faults
+    def get_sdc2160_closed_loop_error(self):
+        return self.sdc2160_closed_loop_error
+    def get_sdc2160_controller_faults(self):
+        return self.sdc2160_controller_faults
+    def get_sdc2160_faults(self):
+        return self.sdc2160_faults
+    def get_sdc2160_present(self):
+        return all(self.sdc2160_present.values())
+    def get_sdc2160_relative_position(self, fruit_id=-1):
+        if fruit_id == -1:
+            return self.sdc2160_relative_position
+        else:
+            return self.sdc2160_relative_position[fruit_id]
+    def get_target_position_confirmed(self):
+        return self.target_position_confirmed
+    def request_amt203_absolute_position(self, fruit_id):
+        self.tb.publish(topic="request_amt203_absolute_position", message="")
+    def request_amt203_present(self):
+        self.tb.publish(topic="request_amt203_present", message="")
+    def request_amt203_zeroed(self): # this is a command, not a query
+        self.tb.publish(topic="request_amt203_zeroed", message="")
+    def request_motor_details(self, property, fruit_id):
+        self.tb.publish(topic="request_motor_details", message=[property, fruit_id])
+    def request_sdc2160_channel_faults(self): 
+        self.tb.publish(topic="request_sdc2160_channel_faults", message="")
+    def request_sdc2160_closed_loop_error(self): 
+        self.tb.publish(topic="request_sdc2160_closed_loop_error", message="")
+    def request_sdc2160_controller_faults(self): 
+        self.tb.publish(topic="request_sdc2160_controller_faults", message="")
+    def request_sdc2160_faults(self):
+        self.tb.publish(topic="request_sdc2160_faults", message="")
+    def request_sdc2160_present(self):
+        self.tb.publish(topic="request_sdc2160_present", message="")
     def request_sdc2160_relative_position(self, fruit_id):
         self.tb.publish(topic="request_sdc2160_relative_position", message="")
+    def request_target_position_confirmed(self): 
+        self.tb.publish(topic="request_target_position_confirmed", message="")
+    def response_high_power_disabled(self): 
+        self.tb.publish(topic="response_high_power_enabled", message=False)
+    def response_high_power_enabled(self): 
+        self.tb.publish(topic="response_high_power_enabled", message=True)
+    def sdc2160_channel_faults_populated(self):
+        if None in self.sdc2160_channel_faults:
+            return False
+        return True
+    def sdc2160_closed_loop_error_populated(self):
+        if None in self.sdc2160_closed_loop_error:
+            return False
+        return True
+    def sdc2160_controller_faults_populated(self):
+        if None in self.sdc2160_controller_faults:
+            return False
+        return True
+    def sdc2160_relative_position_populated(self):
+        if None in self.sdc2160_relative_position:
+            return False
+        return True
+    def set_amt203_absolute_position(self, absolute_position, fruit_id=-1):
+        if fruit_id == -1 or fruit_id == None:
+            self.amt203_absolute_position = absolute_position
+        else:
+            self.amt203_absolute_position[fruit_id] = absolute_position
+    def set_amt203_present(self,amt203_present):
+        self.amt203_present = amt203_present
+    def set_amt203_zeroed(self,amt203_zeroed):
+        self.amt203_zeroed = amt203_zeroed
+    def set_destination_reached(self, motor_name, reached, position, position_error):
+        motor = self.motor_by_carousel_name[motor_name]
+        motor["target"] = position + position_error
+        motor["discrepancy"] = position_error
+        motor["target_reached"] = [reached, time.time()]
+    def set_destination_stalled(self, motor_name, stalled, position, position_error):
+        motor = self.motor_by_carousel_name[motor_name]
+        motor["target"] = position + position_error
+        motor["discrepancy"] = position_error
+        motor["stalled"] = [stalled, time.time()]
+    def set_destination_timeout(self, motor_name, timeout, position, position_error):
+        motor = self.motor_by_carousel_name[motor_name]
+        motor["target"] = position + position_error
+        motor["discrepancy"] = position_error
+        motor["timeout"] = [timeout, time.time()]
+    def set_motor_details(self, property, fruit_id, value):
+        self.motors[fruit_id][property] = value
+    def set_sdc2160_channel_faults(self,sdc2160_channel_faults):
+        self.sdc2160_channel_faults = sdc2160_channel_faults
+    def set_sdc2160_closed_loop_error(self,sdc2160_closed_loop_error):
+        self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
+    def set_sdc2160_controller_faults(self,sdc2160_controller_faults):
+        self.sdc2160_controller_faults = sdc2160_controller_faults
+    def set_sdc2160_faults(self,sdc2160_present):
+        self.sdc2160_faults = sdc2160_faults
+    def set_sdc2160_present(self,presence):
+        self.sdc2160_present = presence
     def set_sdc2160_relative_position(self, relative_position, fruit_id = -1):
         print("set_sdc2160_relative_position",relative_position, fruit_id)
         if fruit_id == -1:
             self.sdc2160_relative_position = relative_position
         else:
             self.sdc2160_relative_position[fruit_id] = relative_position
-    def get_sdc2160_relative_position(self, fruit_id=-1):
-        if fruit_id == -1:
-            return self.sdc2160_relative_position
-        else:
-            return self.sdc2160_relative_position[fruit_id]
-    def sdc2160_relative_position_populated(self):
-        if None in self.sdc2160_relative_position:
-            return False
-        return True
-
-    def request_motor_details(self, property, fruit_id):
-        self.tb.publish(topic="request_motor_details", message=[property, fruit_id])
-    def set_motor_details(self, property, fruit_id, value):
-        self.motors[fruit_id][property] = value
-    def get_motor_details(self, property, fruit_id):
-        return self.motors[fruit_id][property]
-
-    def request_sdc2160_controller_faults(self): 
-        self.tb.publish(topic="request_sdc2160_controller_faults", message="")
-    def set_sdc2160_controller_faults(self,sdc2160_controller_faults):
-        self.sdc2160_controller_faults = sdc2160_controller_faults
-    def get_sdc2160_controller_faults(self):
-        return self.sdc2160_controller_faults
-    def sdc2160_controller_faults_populated(self):
-        if None in self.sdc2160_controller_faults:
-            return False
-        return True
-
-    def request_sdc2160_channel_faults(self): 
-        self.tb.publish(topic="request_sdc2160_channel_faults", message="")
-    def set_sdc2160_channel_faults(self,sdc2160_channel_faults):
-        self.sdc2160_channel_faults = sdc2160_channel_faults
-    def get_sdc2160_channel_faults(self):
-        return self.sdc2160_channel_faults
-    def sdc2160_channel_faults_populated(self):
-        if None in self.sdc2160_channel_faults:
-            return False
-        return True
-
-    def request_sdc2160_closed_loop_error(self): 
-        self.tb.publish(topic="request_sdc2160_closed_loop_error", message="")
-    def set_sdc2160_closed_loop_error(self,sdc2160_closed_loop_error):
-        self.sdc2160_closed_loop_error = sdc2160_closed_loop_error
-    def get_sdc2160_closed_loop_error(self):
-        return self.sdc2160_closed_loop_error
-    def sdc2160_closed_loop_error_populated(self):
-        if None in self.sdc2160_closed_loop_error:
-            return False
-        return True
-
-    """
-    def request_rotate_fruit_to_angle(self, fruit_id, degrees):
-        self.target_position[fruit_id] = degrees
-        self.set_target_position_confirmed(fruit_id,False)
-        self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[fruit_id, degrees])
-
-    def request_rotate_fruit_to_target(self, fruit_id, position_name):
-        named_position_degrees = self.named_position[position_name]
-        fruit_id_offset_degrees = self.fruit_positions[fruit_id]
-        degrees = named_position_degrees + fruit_id_offset_degrees
-        self.cmd_rotate_carousel_to_target(1, degrees)
-    """
-    def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
-
-    def request_target_position_confirmed(self): 
-        self.tb.publish(topic="request_target_position_confirmed", message="")
     def set_target_position_confirmed(self,fruit_id,state_bool):
         self.target_position_confirmed[fruit_id] = state_bool
-    def get_target_position_confirmed(self):
-        return self.target_position_confirmed
-
-    def response_high_power_enabled(self): 
-        self.tb.publish(topic="response_high_power_enabled", message=True)
-
-    def response_high_power_disabled(self): 
-        self.tb.publish(topic="response_high_power_enabled", message=False)
-
-
 
 class Pinball(Host):
     def __init__(self, hostname, tb):
@@ -890,23 +915,35 @@ class Hosts():
         if isinstance(destination, bytes):
             destination = codecs.decode(destination, 'UTF-8')
         ##### ROUTE MESSAGE TO METHOD #####
-
         if topic == "connected" or topic == "respond_host_connected":
             self.hostnames[origin].set_connected(message)
+        #if topic == "event_button_comienza": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_comienza(message)
+        #if topic == "event_button_derecha": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_derecha(message)
+        #if topic == "event_button_dinero":
+        #    self.hostnames[origin].event_button_dinero(message)
+        #if topic == "event_button_izquierda": # unclear what state data should be stored here
+        #    self.hostnames[origin].event_button_izquierda(message)
+        #if topic == "event_button_trueque":
+        #    self.hostnames[origin].event_button_trueque(message)
         if topic == "event_carousel_ball_detected":
             self.hostnames[origin].set_carousel_ball_detected(message)
         if topic == "event_carousel_error":
             self.hostnames[origin].set_carousel_error(message)
         if topic == "event_carousel_target_reached":
             self.hostnames[origin].set_target_position_confirmed(message)
-        #if topic == "event_button_izquierda": # unclear what state data should be stored here
-        #    self.hostnames[origin].event_button_izquierda(message)
-        #if topic == "event_button_derecha": # unclear what state data should be stored here
-        #    self.hostnames[origin].event_button_derecha(message)
+        if topic == "event_destination_reached":
+            motor_name, reached, position, position_error = message
+            self.hostnames[origin].set_destination_reached(motor_name, reached, position, position_error)
+        if topic == "event_destination_stalled":
+            motor_name, stalled, position, position_error = message
+            self.hostnames[origin].set_destination_stalled(motor_name, stalled, position, position_error)
+        if topic == "event_destination_timeout":
+            motor_name, timeout, position, position_error = message
+            self.hostnames[origin].set_destination_timeout(motor_name, timeout, position, position_error)
         #if topic == "event_gamestation_button": # unclear what state data should be stored here
         #    self.hostnames[origin].event_gamestation_button(message)
-        #if topic == "event_button_comienza": # unclear what state data should be stored here
-        #    self.hostnames[origin].event_button_comienza(message)
         if topic == "event_left_stack_ball_present":
             self.hostnames[origin].set_lefttube_value(message)
         #if topic == "event_left_stack_motion_detected": # unclear what state data should be stored here
@@ -937,10 +974,6 @@ class Hosts():
         #    self.hostnames[origin].set_spinner(message)
         if topic == "event_trough_sensor":
             self.hostnames[origin].set_troughsensor_value(message)
-        #if topic == "event_button_trueque":
-        #    self.hostnames[origin].event_button_trueque(message)
-        #if topic == "event_button_dinero":
-        #    self.hostnames[origin].event_button_dinero(message)
         if topic == "response_amt203_absolute_position":
             self.hostnames[origin].set_amt203_absolute_position(message)
         if topic == "response_amt203_present":

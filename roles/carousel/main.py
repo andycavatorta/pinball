@@ -133,7 +133,7 @@ class Main(threading.Thread):
                 print(3,topic, message)
 
                 if topic == b'cmd_carousel_lights':
-                    print(self.tb.get_hostname())
+                    print(self.tb.get_hostname(),destination)
                     if destination == self.tb.get_hostname():
                         animation_name, group, params = message
                         print(animation_name, group, params)

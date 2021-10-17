@@ -90,6 +90,7 @@ class Speed_To_Position(threading.Thread):
         self.queue = queue.Queue()
         self.timeout_timer = time.time()
         self.timeout_timeout = 60 # seconds
+        self.discrepancy_threshold = 25
         self.start()
 
     def get_position_with_offset(self):
@@ -117,6 +118,21 @@ class Speed_To_Position(threading.Thread):
                 speed = 1 if destination > current_position else -1
                 slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
+                self.callback(
+                    b"event_destination_reached", 
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    self.motor.name, 
+                    None)
+                self.callback(
+                    b"event_destination_stalled", 
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    self.motor.name, 
+                    None)
+                self.callback(
+                    b"event_destination_timeout", 
+                    [False, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                    self.motor.name, 
+                    None)
                 self.motor.set_motor_speed(speed)
                 status = b"event_destination_reached"
                 while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
@@ -124,7 +140,11 @@ class Speed_To_Position(threading.Thread):
                     #self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
-                        status = b"event_destination_stalled"
+                        self.callback(
+                            b"event_destination_stalled", 
+                            [True, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                            self.motor.name, 
+                            None)
                         if retry_stalled_motor >=0:
                             retry_stalled_motor += 1
                             self.motor.set_motor_speed(speed)
@@ -132,13 +152,27 @@ class Speed_To_Position(threading.Thread):
                             self.motor.set_motor_speed(0)
                             break 
                     if time.time() > self.timeout_timer:
-                        status = b"event_destination_timeout"
+                        self.callback(
+                            b"event_destination_timeout", 
+                            [True, self.get_position_with_offset(), self.get_position_with_offset()-destination]
+                            self.motor.name, 
+                            None)
+
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
             time.sleep(0.2)
-            self.callback(status, [self.get_position_with_offset(),self.get_position_with_offset()-destination], self.motor.name, None)
-            
+            discrepancy = self.get_position_with_offset()-destination
+            self.callback(
+                b"event_destination_reached", 
+                [
+                    True if discrepancy < self.discrepancy_threshold else Falses, 
+                    self.get_position_with_offset(), 
+                    discrepancy
+                ]
+                self.motor.name, 
+                None)
+
 class Roboteq_Data_Receiver(threading.Thread):
     def __init__(self):
         print(">>>>> Roboteq_Data_Receiver __init__")
