@@ -78,6 +78,7 @@ class Animation(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = hosts
         self.choreography = choreography
+        self.fruit_names = ["coco", "naranja", "mango", "sandia", "pina"]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
@@ -160,8 +161,8 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
                     if self.animation_countdown_counter % 4 == 0:
-                        for fruit_id in range(4):
-                            self.hosts.carouselcenter.request_eject_ball(fruit_id)
+                        for self.fruit_name in self.fruit_names:
+                            self.hosts.carousel1.request_eject_ball(self.fruit_name)
                         if self.animation_countdown_counter % 8 == 0:
                             for pinball_hostname in self.pinball_hostnames:
                                 if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
