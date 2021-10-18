@@ -295,7 +295,7 @@ class Animation(threading.Thread):
                                     self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
                     if self.animation_frame_counter % 1550 == 0:                              
                         for motor_name in self.motor_names:
-                            print("carousel_position", animation_frame_counter, carousel_position)
+                            print("carousel_position", self.animation_frame_counter, carousel_position)
                             if carousel_position == "left":
                                 if motor_name == "carousel_center":
                                     self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
