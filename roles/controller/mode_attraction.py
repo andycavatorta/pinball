@@ -36,6 +36,7 @@ class Animation(threading.Thread):
         self.hosts = hosts
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
+        self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.animaition_interval = 0.35
         self.animation_frame_counter = 0
@@ -245,6 +246,7 @@ class Animation(threading.Thread):
         self.queue.put(animation_command)
 
     def run(self):
+        carousel_position = "left"
         while True:
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
@@ -291,6 +293,20 @@ class Animation(threading.Thread):
                             for hostname in self.display_hostnames:
                                 if random.randrange(0,3) == 0:
                                     self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                            for motor_name in self.motor_names:
+                                if carousel_position == "left":
+                                    if motor_name == "carousel_center":
+                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
+                                    else:
+                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","left")
+                                    carousel_position = "right"
+                                else:
+                                    if motor_name == "carousel_center":
+                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","pina")
+                                    else:
+                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","right")
+                                    carousel_position = "left"
+
 
                     self.animation_frame_counter += 1
                 else:
