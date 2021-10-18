@@ -315,12 +315,12 @@ class Matrix(Host):
             },
         ]
         self.motor_by_carousel_name = {
-            "carousel1":self.motors[0],
-            "carousel2":self.motors[0],
-            "carousel3":self.motors[0],
-            "carousel4":self.motors[0],
-            "carousel5":self.motors[0],
-            "carouselcenter":self.motors[0],
+            "carousel_1":self.motors[0],
+            "carousel_2":self.motors[0],
+            "carousel_3":self.motors[0],
+            "carousel_4":self.motors[0],
+            "carousel_5":self.motors[0],
+            "carousel_center":self.motors[0],
         }
         self.target_position = [
             0,0,0,0,0,0
@@ -933,6 +933,8 @@ class Hosts():
             self.hostnames[origin].set_carousel_error(message)
         if topic == "event_carousel_target_reached":
             self.hostnames[origin].set_target_position_confirmed(message)
+
+
         if topic == "event_destination_reached":
             motor_name, reached, position, position_error = message
             self.hostnames[origin].set_destination_reached(motor_name, reached, position, position_error)
@@ -942,6 +944,8 @@ class Hosts():
         if topic == "event_destination_timeout":
             motor_name, timeout, position, position_error = message
             self.hostnames[origin].set_destination_timeout(motor_name, timeout, position, position_error)
+
+
         #if topic == "event_gamestation_button": # unclear what state data should be stored here
         #    self.hostnames[origin].event_gamestation_button(message)
         if topic == "event_left_stack_ball_present":
