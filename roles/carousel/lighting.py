@@ -85,10 +85,10 @@ def fade_group(pin_numbers, start_level, end_level, fade_period = 0.1):
 
 def pulse_group(group_name):
     pin_numbers = groups[group_name]
-    fade_group(pin_numbers, 0, duty_cycle_hi,0.05)
-    fade_group(pin_numbers, duty_cycle_hi,0, 0.05)
-    fade_group(pin_numbers, 0, duty_cycle_hi,0.05)
-    fade_group(pin_numbers, duty_cycle_hi,0, 0.05)
+    fade_group(pin_numbers, 0, levels[8],0.05)
+    fade_group(pin_numbers, levels[8],0, 0.05)
+    fade_group(pin_numbers, 0, levels[8],0.05)
+    fade_group(pin_numbers, levels[8],0, 0.05)
 
 def stroke_ripple():
     solid("all", 0)
