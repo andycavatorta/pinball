@@ -140,7 +140,7 @@ class Speed_To_Position(threading.Thread):
                     if runtime_status_flags['motor_stalled']:
                         self.callback(
                             "event_destination_stalled", 
-                            [self.motor.name, True,True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                            [self.motor.name, True,self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
                         if retry_stalled_motor <=3:
