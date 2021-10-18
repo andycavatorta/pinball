@@ -50,7 +50,7 @@ topics subscribed:
     cmd_kicker_launch
     cmd_lefttube_launch
     cmd_playfield_lights
-    cmd_rightttube_launch
+    cmd_righttube_launch
     request_button_light_active
     request_button_switch_active
     request_computer_details
@@ -273,7 +273,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("cmd_lefttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_playfield_lights")
         self.tb.subscribe_to_topic("cmd_set_mode")
-        self.tb.subscribe_to_topic("cmd_rightttube_launch")# to do: finish code -  might not be used
+        self.tb.subscribe_to_topic("cmd_righttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("connected")
         self.tb.subscribe_to_topic("disable_gameplay")
         self.tb.subscribe_to_topic("enable_gameplay")
@@ -444,7 +444,7 @@ class Main(threading.Thread):
                             group.single_dot()
                 if topic == 'cmd_set_mode': # this might not get used
                     pass
-                if topic == 'cmd_rightttube_launch':
+                if topic == 'cmd_righttube_launch':
                     if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
                         if destination == self.tb.get_hostname():
                             self.multimorphic.pulse_coil("dinero",25)
