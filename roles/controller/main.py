@@ -285,17 +285,17 @@ class Main(threading.Thread):
                 #print("self.current_mode",self.current_mode)
 
                 if topic == b'event_destination_timeout':
-                    origin, state, position, error = message
+                    motor_name, state, position, error = message
                     if state == True:
-                        print('event_destination_timeout',origin, state, position, error)
+                        print('event_destination_timeout',motor_name, state, position, error)
                 if topic == b'event_destination_stalled':
-                    origin, state, position, error = message
+                    motor_name, state, position, error = message
                     if state == True:
-                        print('event_destination_stalled',origin, state, position, error)
+                        print('event_destination_stalled',motor_name, state, position, error)
                 if topic == b'event_destination_reached':
-                    origin, state, position, error = message
+                    motor_name, state, position, error = message
                     if state == True:
-                        print('event_destination_reached',origin, state, position, error)
+                        print('event_destination_reached',motor_name, state, position, error)
 
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.dashboard(topic, message, origin, destination)
