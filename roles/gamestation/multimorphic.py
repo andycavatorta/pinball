@@ -24,7 +24,7 @@ class Multimorphic(threading.Thread):
         self.coils = {
             "derecha_hold":"A0-B1-3",
             "derecha_main":"A0-B1-2",
-            "dinero":"A0-B0-6",
+            "dinero":"A0-B0-1",
             "izquierda_hold":"A0-B1-1",
             "izquierda_main":"A0-B1-0",
             "kicker":"A0-B0-0",
@@ -33,7 +33,7 @@ class Multimorphic(threading.Thread):
             "pop_right":"A0-B0-4",
             "sling_left":"A0-B1-4",
             "sling_right":"A0-B1-5",
-            "trueque":"A0-B0-1",
+            "trueque":"A0-B0-5",
         }
         self.queue = queue.Queue()
         # switches
