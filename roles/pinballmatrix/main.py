@@ -145,7 +145,7 @@ class Speed_To_Position(threading.Thread):
                             [True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             self.motor.name, 
                             None)
-                        if retry_stalled_motor >=0:
+                        if retry_stalled_motor <=3:
                             retry_stalled_motor += 1
                             self.motor.set_motor_speed(speed)
                         else:
