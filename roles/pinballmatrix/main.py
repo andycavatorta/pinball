@@ -165,7 +165,7 @@ class Speed_To_Position(threading.Thread):
                 "event_destination_reached", 
                 [
                     self.motor.name, 
-                    True if discrepancy < self.discrepancy_threshold else Falses, 
+                    True if discrepancy < self.discrepancy_threshold else False, 
                     self.get_position_with_offset(), 
                     discrepancy
                 ],
