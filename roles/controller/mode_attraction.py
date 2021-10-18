@@ -296,15 +296,15 @@ class Animation(threading.Thread):
                             for motor_name in self.motor_names:
                                 if carousel_position == "left":
                                     if motor_name == "carousel_center":
-                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
+                                        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
                                     else:
-                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","left")
+                                        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","left")
                                     carousel_position = "right"
                                 else:
                                     if motor_name == "carousel_center":
-                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","pina")
+                                        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","pina")
                                     else:
-                                        role_module.main.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","right")
+                                        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","right")
                                     carousel_position = "left"
 
 
