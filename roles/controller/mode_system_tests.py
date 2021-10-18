@@ -77,7 +77,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 print("===========PHASE_DEVICE_PRESENCE============")
                 print("")
-                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_2",2)
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_2",5)
                 self.phase = self.PHASE_DEVICE_PRESENCE
                 self.tb.publish("request_amt203_present",None)
                 self.tb.publish("request_sdc2160_present",None)
@@ -87,11 +87,11 @@ class Mode_System_Tests(threading.Thread):
     def _check_presence_(self):
         if self.phase == self.PHASE_DEVICE_PRESENCE:
             if self.hosts.pinballmatrix.get_amt203_present() == True:
-                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_3",2)
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_3",5)
                 if self.hosts.pinballmatrix.get_sdc2160_present() == True:
-                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_4",2)
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_4",5)
                     if self.hosts.get_all_current_sensor_present() == True:
-                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_5",2)
+                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_5",5)
                         print("")
                         print("===========PHASE_DEVICE_STATES============")
                         print("")
@@ -122,19 +122,19 @@ class Mode_System_Tests(threading.Thread):
         if self.phase == self.PHASE_DEVICE_STATES:
             print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
-                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_6",2)
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_6",5)
                 print("_check_all_device_states_",1)
                 if self.hosts.pinballmatrix.sdc2160_relative_position_populated() == True:
-                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_7",2)
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_7",5)
                     print("_check_all_device_states_",2)
                     if self.hosts.pinballmatrix.sdc2160_closed_loop_error_populated() == True:
-                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_8",2)
+                        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_8",5)
                         print("_check_all_device_states_",3)
                         if self.hosts.pinballmatrix.sdc2160_channel_faults_populated() == True:
-                            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_9",2)
+                            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_9",5)
                             print("_check_all_device_states_",4)
                             if self.hosts.pinballmatrix.sdc2160_controller_faults_populated() == True:
-                                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_10",2)
+                                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_10",5)
                                 print("_check_all_device_states_",5)
                                 if self.hosts.get_all_current_sensor_populated() == True:
                                     self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_1",8)

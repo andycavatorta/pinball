@@ -161,7 +161,7 @@ class Animation(threading.Thread):
 
                     if self.animation_countdown_counter % 4 == 0:
                         for fruit_id in range(4):
-                            self.hosts.carousel1.request_eject_ball(fruit_id)
+                            self.hosts.carouselcenter.request_eject_ball(fruit_id)
                         if self.animation_countdown_counter % 8 == 0:
                             for pinball_hostname in self.pinball_hostnames:
                                 if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
