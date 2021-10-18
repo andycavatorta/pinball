@@ -547,7 +547,7 @@ class Main(threading.Thread):
                     message=message
                 )
 
-            if topic == b'event_destination_reached':
+            if topic == 'event_destination_reached':
                 print(topic, message, origin, destination)
                 # to do: sent to controller
                 self.tb.publish(
