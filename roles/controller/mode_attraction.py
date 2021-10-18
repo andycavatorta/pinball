@@ -301,13 +301,15 @@ class Animation(threading.Thread):
                                     self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
                                 else:
                                     self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","left")
-                                carousel_position = "right"
                             else:
                                 if motor_name == "carousel_center":
                                     self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","pina")
                                 else:
                                     self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(motor_name,"pina","right")
-                                carousel_position = "left"
+                        if carousel_position == "left":
+                            carousel_position = "left"
+                        else:
+                            carousel_position = "right"
 
 
                     self.animation_frame_counter += 1
