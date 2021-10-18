@@ -135,7 +135,7 @@ class Main(threading.Thread):
                         if animation_name == "stroke_ripple":
                             self.lighting.stroke_ripple()
                         if animation_name == "pulse_group":
-                            self.lighting.pulse_group(group, params)
+                            self.lighting.pulse_group(group)
                         if animation_name in [b"solid","solid"]:
                             self.lighting.solid(group, params)
                 if topic == b'request_carousel_detect_ball':
