@@ -119,29 +119,28 @@ class Speed_To_Position(threading.Thread):
                 slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
                 self.callback(
-                    b"event_destination_reached", 
+                    "event_destination_reached", 
                     [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.callback(
-                    b"event_destination_stalled", 
+                    "event_destination_stalled", 
                     [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.callback(
-                    b"event_destination_timeout", 
+                    "event_destination_timeout", 
                     [False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     self.motor.name, 
                     None)
                 self.motor.set_motor_speed(speed)
-                status = b"event_destination_reached"
                 while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
-                    #self.callback(b"event_destination_set", [current_position,destination], self.motor.name, None)
+                    #self.callback("event_destination_set", [current_position,destination], self.motor.name, None)
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
                         self.callback(
-                            b"event_destination_stalled", 
+                            "event_destination_stalled", 
                             [True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             self.motor.name, 
                             None)
@@ -153,7 +152,7 @@ class Speed_To_Position(threading.Thread):
                             break 
                     if time.time() > self.timeout_timer:
                         self.callback(
-                            b"event_destination_timeout", 
+                            "event_destination_timeout", 
                             [True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             self.motor.name, 
                             None)
@@ -164,7 +163,7 @@ class Speed_To_Position(threading.Thread):
             time.sleep(0.2)
             discrepancy = self.get_position_with_offset()-destination
             self.callback(
-                b"event_destination_reached", 
+                "event_destination_reached", 
                 [
                     True if discrepancy < self.discrepancy_threshold else Falses, 
                     self.get_position_with_offset(), 
@@ -532,20 +531,22 @@ class Main(threading.Thread):
             if topic == b'connected':
                 pass               
 
-            if topic == b"event_destination_timeout":
+            if topic == "event_destination_timeout":
                 print(topic, message, origin, destination)
                 # to do: sent to controller
                 self.tb.publish(
                     topic=topic, 
-                    message=message
+                    message=message,
+                    origin=origin
                 )
 
-            if topic == b"event_destination_stalled":
+            if topic == "event_destination_stalled":
                 print(topic, message, origin, destination)
                 # to do: sent to controller
                 self.tb.publish(
                     topic=topic, 
-                    message=message
+                    message=message,
+                    origin=origin
                 )
 
             if topic == b'event_destination_reached':
@@ -553,7 +554,8 @@ class Main(threading.Thread):
                 # to do: sent to controller
                 self.tb.publish(
                     topic=topic, 
-                    message=message
+                    message=message,
+                    origin=origin
                 )
 
             if topic == b'request_amt203_absolute_position':
