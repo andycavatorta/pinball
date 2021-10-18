@@ -340,7 +340,7 @@ class Mode_Attraction(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print("in attraction:",topic, message, origin, destination)
+                #print("in attraction:",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):

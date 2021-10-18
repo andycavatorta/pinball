@@ -281,8 +281,22 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                print("main-", topic, message, origin)
+                #print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
+
+                if topic == b'event_destination_timeout':
+                    origin, state, position, error = message
+                    if state == True:
+                        print('event_destination_timeout',origin, state, position, error)
+                if topic == b'event_destination_stalled':
+                    origin, state, position, error = message
+                    if state == True:
+                        print('event_destination_stalled',origin, state, position, error)
+                if topic == b'event_destination_reached':
+                    origin, state, position, error = message
+                    if state == True:
+                        print('event_destination_reached',origin, state, position, error)
+
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.dashboard(topic, message, origin, destination)
                 self.current_mode.add_to_queue(topic, message, origin, destination)
