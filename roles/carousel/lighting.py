@@ -87,8 +87,6 @@ def pulse_group(group_name):
     pin_numbers = groups[group_name]
     fade_group(pin_numbers, 0, 8, 0.05)
     fade_group(pin_numbers, 8, 0, 0.05)
-    fade_group(pin_numbers, 0, 8, 0.05)
-    fade_group(pin_numbers, 8, 0, 0.05)
 
 def stroke_ripple():
     solid("all", 0)
