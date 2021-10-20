@@ -23,6 +23,29 @@ function degrees_to_radians(radians){
   return radians * Math.PI / 180;
 }
 
+function format_date(date_string){
+  var epoch_ms = Date.parse(date_string);
+  var dt = new Date(epoch_ms);
+  var year = dt.getFullYear();
+  var month = dt.getMonth() + 1;
+  var date = dt.getDate() +1;
+  var hours = dt.getHours();
+  var minutes = dt.getMinutes();
+  var seconds = dt.getSeconds();
+  return year+":"+month+":"+date+" "+hours+":"+minutes+":"+seconds;
+}
+
+
+function format_df(df_string){
+  df_a = df_string.split(",");
+  df_1 = parseInt(df_a[0]);
+  df_2 = parseInt(df_a[1]);
+  df_1 = df_1 / 1000000000;
+  df_2 = df_2 / 1000000000;
+  return df_1+"GB/"+df_2+"GB"
+
+}
+
 function makeColor(num, den, error) { // receive numerator, denominator, error of interval
   error = Math.abs(error);
   var hex_a = ["00","11","22","33","44","55","66","77","88","99","aa","bb","cc","dd","ee","ff","ff"];
@@ -122,11 +145,11 @@ function websocket_message_handler(evt) {
         hostmap[origin][lookup[motor_name]].set_value("θ relative", position);
         hostmap[origin][lookup[motor_name]].set_value("discrepancy", disparity);
         if (reached){
-          hostmap[origin][motor_name].set_value("status", "started");
-          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_nominal");
-        }else{
           hostmap[origin][motor_name].set_value("status", "finished");
           hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin][motor_name].set_value("status", "started");
+          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_nominal");
         }
         break;
       case "event_destination_stalled":
@@ -278,10 +301,10 @@ function websocket_message_handler(evt) {
         //var balls_by_fruit = message[0];
         break;
       case "response_computer_details":
-          hostmap[origin]["rpi"].set_value("df", message["df"])
+          hostmap[origin]["rpi"].set_value("df", format_df(message["df"]))
           hostmap[origin]["rpi"].set_value("temp", message["cpu_temp"])
-          hostmap[origin]["rpi"].set_value("pin git", message["pinball_git_timestamp"])
-          hostmap[origin]["rpi"].set_value("tb git", message["tb_git_timestamp"])
+          hostmap[origin]["rpi"].set_value("pin git", format_date(message["pinball_git_timestamp"]))
+          hostmap[origin]["rpi"].set_value("tb git", format_date(message["tb_git_timestamp"]))
         break;
       case "response_current_sensor_nominal":
         break;
