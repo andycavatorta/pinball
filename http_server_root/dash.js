@@ -36,7 +36,8 @@ function format_date(date_string){
 }
 
 
-function format_df(df_string){
+function format_df(df_a){
+  console.log(df_a)
   df_a = df_string.split(",");
   df_1 = parseInt(df_a[0]);
   df_2 = parseInt(df_a[1]);
