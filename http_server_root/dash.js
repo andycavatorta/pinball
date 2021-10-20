@@ -43,7 +43,6 @@ function format_df(df_a){
   df_1 = df_1 / 1000000000;
   df_2 = df_2 / 1000000000;
   return df_1+"GB/"+df_2+"GB"
-
 }
 
 function makeColor(num, den, error) { // receive numerator, denominator, error of interval
