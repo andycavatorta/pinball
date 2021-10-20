@@ -21,8 +21,10 @@ to_do:
     standardize verbs in topic names
         request_, response_, event_
 
-"""
+codecs.decode(origin, 'UTF-8')
 
+"""
+import codecs
 import datetime
 import importlib
 import json
@@ -272,7 +274,7 @@ class Main(threading.Thread):
                     print('event_destination_reached',message)
 
                 self.hosts.dispatch(topic, message, origin, destination)
-                self.dashboard(topic, message, origin, destination)
+                self.dashboard(codecs.decode(topic,'UTF-8'), message, origin, destination)
                 self.current_mode.add_to_queue(topic, message, origin, destination)
 
             except Exception as e:
