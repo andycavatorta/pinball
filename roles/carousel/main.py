@@ -51,9 +51,58 @@ import common.deadman as deadman
 import roles.carousel.lighting as lighting
 from roles.carousel.solenoids import Solenoids as Solenoids
 
-from roles.carousel import fade_led_test
-
 GPIO.setmode(GPIO.BCM)
+
+###########################################
+#### P L A Y F I E L D  S E N S O R S #####
+###########################################
+
+class GPIO_Input():
+    def __init__(self, name, pin, callback):
+        self.name = name
+        self.pin = pin
+        self.callback = callback
+        self.previous_state = -1 # so first read changes state and reports to callback
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    def detect_change(self):
+        new_state = GPIO.input(self.pin)
+        if self.previous_state != new_state:
+            self.previous_state = new_state
+            self.tb.publish("response_carousel_ball_detected",{self.name:new_state})
+    def get_state(self):
+        return [self.name, GPIO.input(self.pin)]
+
+class Inductive_Sensors(threading.Thread):
+    def __init__(self, tb):
+        threading.Thread.__init__(self)
+        self.tb = tb
+        self.sensors = [ # name, gpio, last_state
+            GPIO_Input("coco", 14, callback),
+            GPIO_Input("naranja", 15, callback),
+            GPIO_Input("mango", 18, callback),
+            GPIO_Input("sandia", 23, callback),
+            GPIO_Input("pina", 24, callback),
+        ]
+        self.queue = queue.Queue()
+        self.start()
+    def request_playfield_states(self):
+        self.queue.put(True)
+    def run(self):
+        while True:
+            try:
+                self.queue.get(True,0.1)
+                states = {}
+                for sensor_name in self.sensors:
+                    states[sensor_name] = self.sensors[sensor_name].get_state()
+                self.tb.publish("response_carousel_ball_detected",states)
+            except queue.Empty:
+                for sensor in self.sensors:
+                    sensor.detect_change()
+                time.sleep(0.1)
+
+##################
+#### M A I N #####
+##################
 
 # Main handles network send/recv and can see all other classes directly
 class Main(threading.Thread):
@@ -76,6 +125,7 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.solenoids = Solenoids()
         self.lighting = lighting
+        self.inductive_sensors = Inductive_Sensors(self.tb)
         self.tb.subscribe_to_topic("cmd_carousel_all_off")
         self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
         self.tb.subscribe_to_topic("cmd_carousel_lights")
