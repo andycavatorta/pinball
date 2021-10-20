@@ -9,18 +9,9 @@ import socketserver
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 tb_path = os.path.dirname(os.path.realpath(__file__))
-
-STATUS_PRESENT = "status_present"
-STATUS_ABSENT = "status_absent"
-STATUS_NOMINAL = "status_nominal"
-STATUS_FAULT = "status_fault"
-
 clients = []
-class SimpleChat(WebSocket):
 
-    # There may be a more graceful way of doing this
-    def setTBRef(self, tb_ref):
-        self.tb_ref = tb_ref
+class SimpleChat(WebSocket):
 
     def handleMessage(self):
        #print("got ws message", self.data)
@@ -47,37 +38,21 @@ class SimpleChat(WebSocket):
 class Message_Receiver(threading.Thread):
     def __init__(
             self, 
-            tb_ref,
             _websocket
             ):
-        self.tb_ref = tb_ref
         self.websocket = _websocket
-        self.websocket.setTBRef(self.websocket, tb_ref)
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.start()
+
     def add_to_queue(self, topic, message,origin,destination):
         self.queue.put((topic, message,origin,destination))
-
-    def generate_system_status(self):
-        status_report = self.tb_ref.hardware_management.get_system_status()
-        status_report["tb_git_timestamp"] = self.tb_ref.tb_get_git_timestamp()
-        status_report["tb_scripts_version"] = self.tb_ref.tb_get_scripts_version()
-        status_report["app_git_timestamp"] = self.tb_ref.app_get_git_timestamp()
-        status_report["app_scripts_version("] = self.tb_ref.app_get_scripts_version()
-        status_report["hostname"] = self.tb_ref.get_hostname()
-        status_report["local_ip"] = self.tb_ref.get_local_ip()
-        status_report["global_ip"] = self.tb_ref.get_global_ip()
-        status_report["online_status"] = self.tb_ref.get_online_status()
-        status_report["connections"] = self.tb_ref.check_connections()
-        status_report["msg_timestamp"] = str(datetime.datetime.now().isoformat(' ', 'seconds'))
-        self.add_to_queue("status",status_report)
 
     def run(self):
         while True:
             topic, message,origin,destination = self.queue.get(block=True)
             #print("topic, message",topic, message)
-            message_json = json.dumps([str(topic), str(message), str(origin)])
+            message_json = json.dumps([str(topic), message, str(origin)])
             self.websocket.sendToClients(self.websocket,message_json)
             """
             try:
@@ -97,22 +72,14 @@ def status_receiver(message):
 def exception_receiver(message):
     message_receiver.add_to_queue("exception_event",message)
 
-
-def init(tb_ref):
+def init():
     global message_receiver
     server_address = ('0.0.0.0', 8080)
-    #server_address = ('0.0.0.0', 8080)
     httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    os.chdir(tb_path)  # optional
-    #httpd.serve_forever()
     httpd_thread = threading.Thread(target=httpd.serve_forever)
     httpd_thread.start()    
-
-    #server = SimpleWebSocketServer('', 8001, SimpleChat)
     server = SimpleWebSocketServer('', 8001, SimpleChat)
     server_thread = threading.Thread(target=server.serveforever)
     server_thread.start()
-    message_receiver = Message_Receiver(tb_ref, server.websocketclass)
+    message_receiver = Message_Receiver(server.websocketclass)
     return message_receiver.add_to_queue
-
-

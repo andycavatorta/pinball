@@ -61,7 +61,7 @@ class Multimorphic(threading.Thread):
         self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 20)
 
     def _disable_gameplay(self):
-        self.p3.clear_rule(self.switches["dinero"])
+        self.p3.clear_rule(self.switches["trueque"])
         self.p3.clear_rule(self.switches["dinero"])
         self.p3.clear_rule(self.switches["kicker"])
         self.p3.disable_coil(self.coils["izquierda_hold"])

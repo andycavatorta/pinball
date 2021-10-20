@@ -85,13 +85,12 @@ function sendTrigger(command) {
 
 function websocket_message_handler(evt) {
     var topic_data_origin = JSON.parse(evt.data);
+    console.log(topic_data_origin)
     var topic = topic_data_origin[0];
-    var message = topic_data_origin[1];
+    var message = eval(topic_data_origin[1]);
     var origin = topic_data_origin[2];
     switch (topic) {
-      case "cmd_rotate_fruit_to_target":
-        break;
-      case "connected":
+      case "deadman":
         break;
       case "event_button_comienza":
         break;
@@ -105,7 +104,70 @@ function websocket_message_handler(evt) {
         break;
       case "event_carousel_ball_detected":
         break;
-      case "event_gamestation_button":
+      case "event_carousel_error":
+        break;
+      case "event_destination_reached":
+        var motor_name = message[0];
+        var reached = message[1];
+        var position = message[2];
+        var disparity = message[3];
+        var lookup = {
+          carousel_1:"amt_1",
+          carousel_2:"amt_2",
+          carousel_3:"amt_3",
+          carousel_4:"amt_4",
+          carousel_5:"amt_5",
+          carousel_center:"amt_6",
+        }
+        hostmap[origin][lookup[motor_name]].set_value("θ relative", position);
+        hostmap[origin][lookup[motor_name]].set_value("discrepancy", disparity);
+        if (reached){
+          hostmap[origin][motor_name].set_value("status", "started");
+          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin][motor_name].set_value("status", "finished");
+          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_present");
+        }
+        break;
+      case "event_destination_stalled":
+        var motor_name = message[0];
+        var stalled = message[1];
+        var position = message[2];
+        var disparity = message[3];
+        var lookup = {
+          carousel_1:"amt_1",
+          carousel_2:"amt_2",
+          carousel_3:"amt_3",
+          carousel_4:"amt_4",
+          carousel_5:"amt_5",
+          carousel_center:"amt_6",
+        }
+        hostmap[origin][lookup[motor_name]].set_value("θ relative", position);
+        hostmap[origin][lookup[motor_name]].set_value("discrepancy", disparity);
+        if (stalled){
+          hostmap[origin][motor_name].set_value("stall", stalled);
+          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_fault");
+        }
+        break;
+      case "event_destination_timeout":
+        var motor_name = message[0];
+        var timeout = message[1];
+        var position = message[2];
+        var disparity = message[3];
+        var lookup = {
+          carousel_1:"amt_1",
+          carousel_2:"amt_2",
+          carousel_3:"amt_3",
+          carousel_4:"amt_4",
+          carousel_5:"amt_5",
+          carousel_center:"amt_6",
+        }
+        hostmap[origin][lookup[motor_name]].set_value("θ relative", position);
+        hostmap[origin][lookup[motor_name]].set_value("discrepancy", disparity);
+        if (timeout){
+          hostmap[origin][motor_name].set_value("status", "timeout");
+          hostmap[origin][motor_name].background_rectangle.setAttribute("class","theme_fault");
+        }
         break;
       case "event_left_stack_ball_present":
         break;
@@ -137,29 +199,83 @@ function websocket_message_handler(evt) {
         break;
       case "event_trough_sensor":
         break;
-      case "request_amt203_absolute_position":
+      case "request_current_sensor_nominal":
         break;
-      case "request_amt203_present":
+      case "response_amt203_absolute_position":
+        hostmap[origin].amt_1.set_value("θ absolute", message[0]);
+        hostmap[origin].amt_2.set_value("θ absolute", message[1]);
+        hostmap[origin].amt_3.set_value("θ absolute", message[2]);
+        hostmap[origin].amt_4.set_value("θ absolute", message[3]);
+        hostmap[origin].amt_5.set_value("θ absolute", message[4]);
+        hostmap[origin].amt_6.set_value("θ absolute", message[5]);
         break;
-      case "request_amt203_zeroed":
+      case "response_amt203_present":
+        if (message[0]){
+          hostmap[origin].amt_1.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_1.background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (message[1]){
+          hostmap[origin].amt_2.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_2.background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (message[2]){
+          hostmap[origin].amt_3.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_3.background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (message[3]){
+          hostmap[origin].amt_4.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_4.background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (message[4]){
+          hostmap[origin].amt_5.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_5.background_rectangle.setAttribute("class","theme_absent");
+        }
+        if (message[5]){
+          hostmap[origin].amt_6.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].amt_6.background_rectangle.setAttribute("class","theme_absent");
+        }
         break;
-      case "request_motor_details":
-        break;
-      case "request_sdc2160_channel_faults":
-        break;
-      case "request_sdc2160_closed_loop_error":
-        break;
-      case "request_sdc2160_controller_faults":
-        break;
-      case "request_sdc2160_faults":
-        break;
-      case "request_sdc2160_present":
-        break;
-      case "request_sdc2160_relative_position":
-        break;
-      case "request_target_position_confirmed":
+      case "response_amt203_zeroed":
+        if (message[0]){
+          hostmap[origin].amt_1.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_1.background_rectangle.setAttribute("class","theme_fault");
+        }
+        if (message[1]){
+          hostmap[origin].amt_2.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_2.background_rectangle.setAttribute("class","theme_fault");
+        }
+        if (message[2]){
+          hostmap[origin].amt_3.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_3.background_rectangle.setAttribute("class","theme_fault");
+        }
+        if (message[3]){
+          hostmap[origin].amt_4.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_4.background_rectangle.setAttribute("class","theme_fault");
+        }
+        if (message[4]){
+          hostmap[origin].amt_5.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_5.background_rectangle.setAttribute("class","theme_fault");
+        }
+        if (message[5]){
+          hostmap[origin].amt_6.background_rectangle.setAttribute("class","theme_nominal");
+        }else{
+          hostmap[origin].amt_6.background_rectangle.setAttribute("class","theme_fault");
+        }
         break;
       case "response_carousel_ball_detected":
+        //var carousel_name = origin;
+        //var balls_by_fruit = message[0];
         break;
       case "response_computer_details":
           hostmap[origin]["rpi"].set_value("df", message["df"])
@@ -173,20 +289,76 @@ function websocket_message_handler(evt) {
         break;
       case "response_current_sensor_value":
         break;
-      case "response_display_leds_present":
+      case "respond_host_connected":
+        if (message){
+          hostmap[origin].rpi.background_rectangle.setAttribute("class","theme_present");
+        }else{
+          hostmap[origin].rpi.background_rectangle.setAttribute("class","theme_absent");
+        }
         break;
-      case "response_display_solenoids_present":
+      case "response_sdc2160_channel_faults":
+        var motor = message[0];
+        hostmap[origin].carousel_1.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_1.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_1.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_1.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_1.set_value("stall", motor["stall_detection"]);
+        var motor = message[1];
+        hostmap[origin].carousel_2.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_2.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_2.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_2.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_2.set_value("stall", motor["stall_detection"]);
+        var motor = message[2];
+        hostmap[origin].carousel_3.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_3.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_3.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_3.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_3.set_value("stall", motor["stall_detection"]);
+        var motor = message[3];
+        hostmap[origin].carousel_4.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_4.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_4.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_4.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_4.set_value("stall", motor["stall_detection"]);
+        var motor = message[4];
+        hostmap[origin].carousel_5.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_5.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_5.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_5.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_5.set_value("stall", motor["stall_detection"]);
+        var motor = message[5];
+        hostmap[origin].carousel_center.set_value("amps", motor["motor_amps"]);
+        hostmap[origin].carousel_center.set_value("temp", motor["temperature"]);
+        hostmap[origin].carousel_center.set_value("pid error", motor["closed_loop_error"]);
+        hostmap[origin].carousel_center.set_value("status", motor["runtime_status_flags"]);
+        hostmap[origin].carousel_center.set_value("stall", motor["stall_detection"]);
         break;
-      case "response_high_power_enabled":
+      case "response_sdc2160_closed_loop_error":
         break;
-      case "response_lefttube_present":
+      case "response_sdc2160_controller_faults":
+        console.log("response_sdc2160_controller_faults", message);
         break;
-      case "response_rightttube_present":
+      case "response_sdc2160_present":
+        var carousel1and2 = message["carousel1and2"]
+        var carousel3and4 = message["carousel3and4"]
+        var carousel5and6 = message["carousel5and6"]
+        if (carousel1and2==""){
+          hostmap[origin].sdc_1_2.background_rectangle.setAttribute("class","theme_absent");
+        }else{
+          hostmap[origin].sdc_1_2.background_rectangle.setAttribute("class","theme_nominal");
+        }
+        if (carousel3and4==""){
+          hostmap[origin].sdc_3_4.background_rectangle.setAttribute("class","theme_absent");
+        }else{
+          hostmap[origin].sdc_3_4.background_rectangle.setAttribute("class","theme_nominal");
+        }
+        if (carousel5and6==""){
+          hostmap[origin].sdc_5_6.background_rectangle.setAttribute("class","theme_absent");
+        }else{
+          hostmap[origin].sdc_5_6.background_rectangle.setAttribute("class","theme_nominal");
+        }
         break;
-      case "response_visual_tests":
-        break;
-
-
 
       case "update_status":
         if (data_value == "status_absent"){
@@ -538,7 +710,6 @@ function init() {
   interface.mode_title = create_text(canvas, "MODE: WAITING_FOR_CONNECTIONS", {class:"title_text",id:"mode_title"})
   interface.high_power_title = create_text(canvas, "HIGH POWER: OFF", {class:"title_text",id:"high_power_title"})
   interface.carousel_panel = new Carousel_Panel([1850,1200],canvas);
-
 
   hostmap = {
     controller:{

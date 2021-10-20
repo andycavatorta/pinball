@@ -118,32 +118,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_pop_right")
         self.tb.subscribe_to_topic("event_slingshot_left")
         self.tb.subscribe_to_topic("event_slingshot_right")
-
-        """
-        MPF events will be parsed into tb messages with topics
-            event_button_izquierda
-            event_button_derecha
-            event_button_comienza
-            event_button_dinero
-            event_button_trueque
-            event_pop_left
-            event_pop_middle
-            event_pop_right
-            event_slingshot_left
-            event_slingshot_right
-
-            event_spinner
-            event_pop_left
-            event_pop_center
-            event_pop_right
-            event_sling_left
-            event_sling_right
-            event_button_izquierda
-            event_button_trueque
-            event_button_comienza
-            event_button_dinero
-            event_button_derecho
-        """
         
         self.tb.subscribe_to_topic("event_left_stack_ball_present")
         self.tb.subscribe_to_topic("event_gamestation_button")
@@ -195,7 +169,7 @@ class Main(threading.Thread):
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
         }
-        self.dashboard = dashboard.init(self.tb)
+        self.dashboard = dashboard.init()
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
         self.current_mode = self.modes["waiting_for_connections"]
         self.current_mode.begin()
