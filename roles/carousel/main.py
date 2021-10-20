@@ -58,11 +58,11 @@ GPIO.setmode(GPIO.BCM)
 ###########################################
 
 class GPIO_Input():
-    def __init__(self, name, pin, callback):
+    def __init__(self, name, pin, tb):
         self.name = name
         self.pin = pin
-        self.callback = callback
-        self.previous_state = -1 # so first read changes state and reports to callback
+        self.tb = tb
+        self.previous_state = -1 # so first read changes state and reports to tb
         GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
@@ -77,11 +77,11 @@ class Inductive_Sensors(threading.Thread):
         threading.Thread.__init__(self)
         self.tb = tb
         self.sensors = [ # name, gpio, last_state
-            GPIO_Input("coco", 14, callback),
-            GPIO_Input("naranja", 15, callback),
-            GPIO_Input("mango", 18, callback),
-            GPIO_Input("sandia", 23, callback),
-            GPIO_Input("pina", 24, callback),
+            GPIO_Input("coco", 14, tb),
+            GPIO_Input("naranja", 15, tb),
+            GPIO_Input("mango", 18, tb),
+            GPIO_Input("sandia", 23, tb),
+            GPIO_Input("pina", 24, tb),
         ]
         self.queue = queue.Queue()
         self.start()
