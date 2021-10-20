@@ -42,7 +42,7 @@ function format_df(df_a){
   df_2 = parseInt(df_a[1]);
   df_1 = df_1 / 1000000000;
   df_2 = df_2 / 1000000000;
-  return df_1.toFixed(2)+"GB/"+df_2.toFixed(2)+"GB"
+  return df_1.toFixed(2)+"/"+df_2.toFixed(2)+"GB"
 }
 
 function makeColor(num, den, error) { // receive numerator, denominator, error of interval
@@ -319,37 +319,37 @@ function websocket_message_handler(evt) {
         }
         break;
       case "response_sdc2160_channel_faults":
-        var motor = message[0];
+        var motor = message["carousel_1"];
         hostmap[origin].carousel_1.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_1.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_1.set_value("pid error", motor["closed_loop_error"]);
         hostmap[origin].carousel_1.set_value("status", motor["runtime_status_flags"]);
         hostmap[origin].carousel_1.set_value("stall", motor["stall_detection"]);
-        var motor = message[1];
+        var motor = message["carousel_2"];
         hostmap[origin].carousel_2.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_2.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_2.set_value("pid error", motor["closed_loop_error"]);
         hostmap[origin].carousel_2.set_value("status", motor["runtime_status_flags"]);
         hostmap[origin].carousel_2.set_value("stall", motor["stall_detection"]);
-        var motor = message[2];
+        var motor = message["carousel_3"];
         hostmap[origin].carousel_3.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_3.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_3.set_value("pid error", motor["closed_loop_error"]);
         hostmap[origin].carousel_3.set_value("status", motor["runtime_status_flags"]);
         hostmap[origin].carousel_3.set_value("stall", motor["stall_detection"]);
-        var motor = message[3];
+        var motor = message["carousel_4"];
         hostmap[origin].carousel_4.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_4.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_4.set_value("pid error", motor["closed_loop_error"]);
         hostmap[origin].carousel_4.set_value("status", motor["runtime_status_flags"]);
         hostmap[origin].carousel_4.set_value("stall", motor["stall_detection"]);
-        var motor = message[4];
+        var motor = message["carousel_5"];
         hostmap[origin].carousel_5.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_5.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_5.set_value("pid error", motor["closed_loop_error"]);
         hostmap[origin].carousel_5.set_value("status", motor["runtime_status_flags"]);
         hostmap[origin].carousel_5.set_value("stall", motor["stall_detection"]);
-        var motor = message[5];
+        var motor = message["carousel_center"];
         hostmap[origin].carousel_center.set_value("amps", motor["motor_amps"]);
         hostmap[origin].carousel_center.set_value("temp", motor["temperature"]);
         hostmap[origin].carousel_center.set_value("pid error", motor["closed_loop_error"]);
