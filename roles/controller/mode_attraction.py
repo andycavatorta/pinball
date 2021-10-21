@@ -293,8 +293,8 @@ class Animation(threading.Thread):
                             for hostname in self.display_hostnames:
                                 if random.randrange(0,3) == 0:
                                     self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                    """
                     if self.animation_frame_counter % 50 == 0:
-                        
                         for motor_name in self.motor_names:
                             print("carousel_position", self.animation_frame_counter, carousel_position)
                             if carousel_position == "left":
@@ -311,7 +311,7 @@ class Animation(threading.Thread):
                             carousel_position = "left"
                         else:
                             carousel_position = "right"
-
+                    """
 
                     self.animation_frame_counter += 1
                 else:

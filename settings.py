@@ -40,7 +40,6 @@ class Carousel_center_Positions:
 
 Carousel_Fruit_Offsets = [0, -819, -1638, 1638, 819, 0]
 
-
 class Nominal_Ranges_For_Tests:
     minimum_disk_free = 500000000
     maximum_cpu_temperature = 90

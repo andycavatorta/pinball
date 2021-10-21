@@ -1,9 +1,25 @@
-#waiting
+#waiting_for_connections
+    light up carousels based on which computers are connected
+        center: carousel
+        inner radius: 
+
+#system_tests
+    phase 2
+
+#power_tests
+    phase 2
+
+#human_tests
+    phase 2
 
    
-#attration mode: 
-    ready lights blink in a cycle around gamestations.
-    quiet / sparse motif plays
+#attration mode
+    all multimorphic reactions off
+    new led animation code for carousels
+    new 'wave' animation
+    
+
+
 
 #first ready light pushed: 
     ready light on
