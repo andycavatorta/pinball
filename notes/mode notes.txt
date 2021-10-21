@@ -12,12 +12,51 @@
 #human_tests
     phase 2
 
+#inventory mode
+    phase 2
    
 #attration mode
     all multimorphic reactions off
     new led animation code for carousels
     new 'wave' animation
+
+    new bottom-left sign "two or more players required"
+    if comienza button pushed:
+        start countdown mode
+
+#countdown mode
+    countdown animation
+        5/4 musical theme
+        blink new bottom-left sign "two or more players required"
+        on station with comienza button pushed
+            comienza button off
+            all lights on and unblinking
+        else
+            blink Comienza button quickly
+            blink new bottom-left sign "two or more players required"
+    acrylic display counds down numbers
+        maybe moderately fast?
+    Juega sign
+    if two or more stations have comienza button pushed
+        proceed to barter intro
+    else
+        turn off all lights, blink the bottom left light.  
+        play fail sound
+        return to attraction mode
+
+# barter intro mode 
+    phase 2
+    ? any signage ?
+
+# barter mode
+    button lights:
+    playfield leds:
+    carousels
+    multimorphic reactions:
+    acrylic display:
     
+
+
 
 
 
