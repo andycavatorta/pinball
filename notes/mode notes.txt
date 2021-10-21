@@ -1,7 +1,8 @@
 #waiting_for_connections
     light up carousels based on which computers are connected
         center: carousel
-        inner radius: 
+        inner radius: game
+        outer radius: display
 
 #system_tests
     phase 2
@@ -49,13 +50,16 @@
     ? any signage ?
 
 # barter mode
-    button lights:
-    playfield leds:
-    carousels
-    multimorphic reactions:
-    acrylic display:
-    
+    start phase:
+        button lights:
+        playfield leds:
+        carousels
+        multimorphic reactions:
+        acrylic display:
+        musical theme:
 
+    
+    
 
 
 
