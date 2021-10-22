@@ -7,7 +7,7 @@ import queue
 import random
 import settings
 import threading
-import time6
+import time
 
 class Animation(threading.Thread):
     """
