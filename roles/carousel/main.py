@@ -124,7 +124,7 @@ class Main(threading.Thread):
         )
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.solenoids = Solenoids()
-        self.lighting = lighting
+        self.lighting = lighting.Lights()
         self.inductive_sensors = Inductive_Sensors(self.tb)
         self.tb.subscribe_to_topic("cmd_carousel_all_off")
         self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
