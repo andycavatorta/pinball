@@ -30,23 +30,89 @@ class Mode_Waiting_For_Connections(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
-        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.all_hostnames = [
+            "controller",
+            "pinball1game",
+            "pinball2game",
+            "pinball3game",
+            "pinball4game",
+            "pinball5game",
+            "pinball1display",
+            "pinball2display",
+            "pinball3display",
+            "pinball4display",
+            "pinball5display",
+            "pinballmatrix",
+            "carousel1",
+            "carousel2",
+            "carousel3",
+            "carousel4",
+            "carousel5",
+            "carouselcenter"]
+        self.connected_hostnames = ["controller"]
         self.start()
 
     def begin(self):
-        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","all",0)
+        self.connected_hostnames = ["controller"]
+
+        self.hosts.hostnames["carousel1"].cmd_carousel_lights("all","off")
+        self.hosts.hostnames["carousel2"].cmd_carousel_lights("all","off")
+        self.hosts.hostnames["carousel3"].cmd_carousel_lights("all","off")
+        self.hosts.hostnames["carousel4"].cmd_carousel_lights("all","off")
+        self.hosts.hostnames["carousel5"].cmd_carousel_lights("all","off")
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all","off")
+        #self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","all",0)
         self.timer = time.time()
         self.active = True
-        #for pinball_hostname in self.pinball_hostnames:
+        #for pinball_hostname in self.connected_hostnames:
         #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
 
     def end(self):
         self.active = False
 
     def respond_host_connected(self, message, origin, destination): 
+        self.connected_hostnames.append(origin)
+        for pinball_hostname in self.connected_hostnames: # cycle through all of these on each connection because carousels may connect after other hosts
+            if pinball_hostname == "controller":
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinball1game":
+                self.hosts.hostnames["carousel1"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "pinball2game":
+                self.hosts.hostnames["carousel2"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "pinball3game":
+                self.hosts.hostnames["carousel3"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "pinball4game":
+                self.hosts.hostnames["carousel4"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "pinball5game":
+                self.hosts.hostnames["carousel5"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "pinball1display":
+                self.hosts.hostnames["carousel1"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinball2display":
+                self.hosts.hostnames["carousel2"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinball3display":
+                self.hosts.hostnames["carousel3"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinball4display":
+                self.hosts.hostnames["carousel4"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinball5display":
+                self.hosts.hostnames["carousel5"].cmd_carousel_lights("inner_circle","on")
+            if pinball_hostname == "pinballmatrix":
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","on")
+            if pinball_hostname == "carousel1":
+                self.hosts.hostnames["carousel1"].cmd_carousel_lights("peso","on")
+            if pinball_hostname == "carousel2":
+                self.hosts.hostnames["carousel2"].cmd_carousel_lights("peso","on")
+            if pinball_hostname == "carousel3":
+                self.hosts.hostnames["carousel3"].cmd_carousel_lights("peso","on")
+            if pinball_hostname == "carousel4":
+                self.hosts.hostnames["carousel4"].cmd_carousel_lights("peso","on")
+            if pinball_hostname == "carousel5":
+                self.hosts.hostnames["carousel5"].cmd_carousel_lights("peso","on")
+            if pinball_hostname == "carouselcenter":
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("peso","on")
+
         if self.hosts.get_all_host_connected() == True:
             #self.hosts.hostnames["carouselcenter"].cmd_carousel_all_off()
-            self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_1",8)
+            #self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("solid","spoke_1",8)
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def add_to_queue(self, topic, message, origin, destination):

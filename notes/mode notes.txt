@@ -17,48 +17,243 @@
     phase 2
    
 #attration mode
-    all multimorphic reactions off
-    new led animation code for carousels
-    new 'wave' animation
-
-    new bottom-left sign "two or more players required"
-    if comienza button pushed:
-        start countdown mode
+    signs:
+        bottom left sign on
+    button lights:
+        izquierda: part of wave animation
+        trueque: part of wave animation
+        comienza: blinking
+        dinero: part of wave animation
+        derecho: part of wave animation
+    button actions:
+        all P3 actions off
+    light animation:
+        part of wave animation
+    chimes:
+        part of wave animations
+    phrase:
+        juega
+    numbers:
+        part of wave animation
 
 #countdown mode
-    countdown animation
-        5/4 musical theme
-        blink new bottom-left sign "two or more players required"
-        on station with comienza button pushed
-            comienza button off
-            all lights on and unblinking
-        else
-            blink Comienza button quickly
-            blink new bottom-left sign "two or more players required"
-    acrylic display counds down numbers
-        maybe moderately fast?
-    Juega sign
-    if two or more stations have comienza button pushed
-        proceed to barter intro
-    else
-        turn off all lights, blink the bottom left light.  
-        play fail sound
-        return to attraction mode
+    start countdown timer
+    playfield_State_1: comienza button not pushed        
+        signs:
+            bottom left sign blinks in rhythm A
+        button lights:
+            comienza button blinks in rhythm A
+        button actions:
+            all P3 actions off
+            if comienza button pushed:
+                game changes to playfield_state_2
+                if all games are in playfield_state_2:
+                    end countdown
+        light animation:
+            something energetic
+        chimes:
+            countdown theme
+        phrase:
+            Juega blinks in rhythm A
+        numbers:
+            fast countdown
+
+    playfield_state_2: comienza button pushed
+        signs:
+            bottom left sign blinks in rhythm A
+        button lights:
+            comienza button blinks in rhythm A
+        button actions:
+            none
+        light animation:
+            all lights on and steady
+        chimes:
+            countdown theme
+        phrase:
+            Juega blinks in rhythm A
+        numbers:
+            fast countdown
 
 # barter intro mode 
-    phase 2
-    ? any signage ?
+    start timer
+    playfield_State_1: has no player
+        signs:
+            signs off
+        button lights:
+            all off
+        button actions:
+            all inactive
+        light animation:
+            playfield and carousel lights off
+        chimes:
+            n/a
+        phrase:
+            off
+        numbers:
+            off
+
+    playfield_State_2: has player
+        signs:
+            all off
+        button lights:
+            all off
+            comienza power-up animation in rhythm A
+        button actions:
+            all off
+        light animation:
+            playfield twinkle
+            carousel twinkle
+        chimes:
+            rising theme in rhythm A
+        phrase:
+            Dinero
+        numbers:
+            000
+
 
 # barter mode
-    start phase:
-        button lights:
-        playfield leds:
-        carousels
-        multimorphic reactions:
-        acrylic display:
-        musical theme:
+    start timer
+    playfield_State_1: has no player
+    playfield_State_2: trade not needed 
+    playfield_State_3: trade optional 
+    playfield_State_4: trade needed
+    playfield_State_5: trade requested/processing
+    playfield_State_6: trade succeeded
 
-    
+    playfield_State_1: has no player
+        signs:
+            signs off
+        button lights:
+            all off
+        button actions:
+            all inactive
+        light animation:
+            playfield and carousel lights off
+        chimes:
+            n/a
+        phrase:
+            off
+        numbers:
+            off
+
+    playfield_State_2: trade not needed 
+        signs:
+            all off
+        button lights:
+            izquierda: on
+            trueque: off
+            comienza: on if ball sensed
+            dinero: off
+            derecho: on
+        button actions:
+            all off except flippers and kicker
+        light animation:
+            fruit section accumulation
+        chimes:
+            game reactions
+        phrase:
+            trueque
+        numbers:
+            score
+
+    playfield_State_3a: trade partner while ball is in play
+        signs:
+        button lights:
+            izquierda: on
+            trueque: blinks in rhythm A
+            comienza: off
+            dinero: off
+            derecho: on
+        button actions:
+            izquierda: flipper
+            trueque: left tube
+            comienza: kicker
+            dinero: off
+            derecho: flipper
+        light animation:
+            fruit section accumulation
+        chimes:
+            game reactions
+            ding alternating with trading partner in rhythm A
+        phrase:
+            trueque blinks in rhythm A
+        numbers:
+            score
+
+    playfield_State_3b: trade partner while ball is in trough
+        signs:
+            bottom-right sign blinks in rhythm A-alt
+        button lights:
+            all off
+            trueque blinks in rhythm A
+        button actions:
+            all off
+            except truque -> left tube
+        light animation:
+            something with carousel in rhythm A
+        chimes:
+            ding alternating with trading partner in rhythm A
+        phrase:
+            trueque blinks in rhythm A
+        numbers:
+            score
+
+    playfield_State_4: trade needed
+        signs:
+            bottom-right sign blinks in rhythm A
+        button lights:
+            all off
+            trueque blinks in rhythm A
+        button actions:
+            all off
+            except truque -> left tube
+        light animation:
+            something with carousel in rhythm A
+        chimes:
+            ding alternating with trading partner in rhythm A
+        phrase:
+            dinero
+        numbers:
+            score
+
+    playfield_State_5: trade requested
+        signs:
+            bottom-right sign blinks in rhythm A
+        button lights:
+            all off
+            trueque blinks in rhythm A
+        button actions:
+            all off
+        light animation:
+            playfield - no change
+            carousel - 
+                animation of light pulse traveling from local carousel to center and waiting there in rhythm B
+            carousel solenoids for sound in rhythm B?
+        chimes:
+            trading theme in rhythm B
+        phrase:
+            dinero
+        numbers:
+            score
+
+    playfield_State_6: trade succeeded
+        signs:
+            all off
+        button lights:
+            all off
+        button actions:
+            all off
+        light animation:
+            received fruit bright throb in rhythm B
+        chimes:
+            power-up theme
+        phrase:
+            trueque blinks in rhythm B
+        numbers:
+            count-up in rhythm B * 10
+
+
+
     
 
 

@@ -159,10 +159,10 @@ class Carousel(Host):
         self.tb.publish(topic="cmd_carousel_eject_ball",message=fruit_name,destination=self.hostname)
     def request_system_tests(self):
         self.tb.publish(topic="request_system_tests",message=True,destination=self.hostname)
-    def cmd_carousel_lights(self, animation, group=None, params=None):
+    def cmd_carousel_lights(self, group, animation):
         self.tb.publish(
             topic="cmd_carousel_lights", 
-            message=[animation, group, params],
+            message=[group, animation],
             destination=self.hostname
         )
     def cmd_carousel_all_off(self):

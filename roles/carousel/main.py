@@ -181,13 +181,84 @@ class Main(threading.Thread):
 
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
-                        animation_name, group, params = message
-                        if animation_name == "stroke_ripple":
-                            self.lighting.stroke_ripple()
-                        if animation_name == "pulse_group":
-                            self.lighting.pulse_group(group)
-                        if animation_name in [b"solid","solid"]:
-                            self.lighting.solid(group, params)
+                        group_name, animation_name = message
+                        if group_name == "all":
+                            group = self.gamestation_lights.all
+                        if group_name == "peso":
+                            group = self.gamestation_lights.peso
+                        if group_name == "coco":
+                            group = self.gamestation_lights.coco
+                        if group_name == "naranja":
+                            group = self.gamestation_lights.naranja
+                        if group_name == "mango":
+                            group = self.gamestation_lights.mango
+                        if group_name == "sandia":
+                            group = self.gamestation_lights.sandia
+                        if group_name == "pina":
+                            group = self.gamestation_lights.pina
+                        if group_name == "spoke_1":
+                            group = self.gamestation_lights.spoke_1
+                        if group_name == "spoke_2":
+                            group = self.gamestation_lights.spoke_2
+                        if group_name == "spoke_3":
+                            group = self.gamestation_lights.spoke_3
+                        if group_name == "spoke_4":
+                            group = self.gamestation_lights.spoke_4
+                        if group_name == "spoke_5":
+                            group = self.gamestation_lights.spoke_5
+                        if group_name == "spoke_6":
+                            group = self.gamestation_lights.spoke_6
+                        if group_name == "spoke_7":
+                            group = self.gamestation_lights.spoke_7
+                        if group_name == "spoke_8":
+                            group = self.gamestation_lights.spoke_8
+                        if group_name == "spoke_9":
+                            group = self.gamestation_lights.spoke_9
+                        if group_name == "spoke_10":
+                            group = self.gamestation_lights.spoke_10
+                        if group_name == "inner_circle":
+                            group = self.gamestation_lights.inner_circle
+                        if group_name == "outer_circle":
+                            group = self.gamestation_lights.outer_circle
+
+                        if group_name == "ripple_1":
+                            group = self.gamestation_lights.ripple_1
+                        if group_name == "ripple_2":
+                            group = self.gamestation_lights.ripple_2
+                        if group_name == "ripple_3":
+                            group = self.gamestation_lights.ripple_3
+                        if group_name == "ripple_4":
+                            group = self.gamestation_lights.ripple_4
+                        if group_name == "ripple_5":
+                            group = self.gamestation_lights.ripple_5
+
+                        if animation_name == "off":
+                            group.off()
+                        if animation_name == "on":
+                            group.on()
+                        if animation_name == "sparkle":
+                            group.sparkle()
+                        if animation_name == "throb":
+                            group.throb()
+                        if animation_name == "energize":
+                            group.energize()
+                        if animation_name == "blink":
+                            group.blink()
+                        if animation_name == "stroke_on":
+                            group.stroke_on()
+                        if animation_name == "stroke_off":
+                            group.stroke_off()
+                        if animation_name == "back_stroke_on":
+                            group.back_stroke_on()
+                        if animation_name == "back_stroke_off":
+                            group.back_stroke_off()
+                        if animation_name == "trace":
+                            group.trace()
+                        if animation_name == "back_trace":
+                            group.back_trace()
+                        if animation_name == "single_dot":
+                            group.single_dot()
+
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
                         topic="response_carousel_ball_detected", 
