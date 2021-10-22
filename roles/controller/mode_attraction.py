@@ -376,7 +376,6 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[display_hostname].request_number(444)
                         self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
-                    if self.animation_frame_counter == 0:
 
                     if self.animation_frame_counter == 130: # 13 seconds
                         self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
