@@ -77,7 +77,6 @@ class Animation(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = hosts
-        self.choreography = choreography
         self.fruit_names = ["coco", "naranja", "mango", "sandia", "pina"]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
@@ -237,9 +236,7 @@ class Mode_Countdown(threading.Thread):
         self.choreography = choreography
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.timeout_duration = 120 #seconds
         self.animation = Animation(hosts,set_current_mode,choreography)
-        
         self.start()
 
     def begin(self):
