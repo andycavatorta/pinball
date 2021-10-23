@@ -94,7 +94,8 @@ class Animation(threading.Thread):
                 if self.active:
                     print("mode_attraction.run 4",self.animation_frame_counter)
                     if self.animation_frame_counter == 0: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("peso","throb")
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(999)
@@ -105,13 +106,17 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
 
                     if self.animation_frame_counter == 5: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 6:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","throb")
 
                     if self.animation_frame_counter == 10: # 1 second
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(888)
                         self.hosts.hostnames["carousel1"].cmd_carousel_lights("ripple_coco_1","throb")
@@ -128,7 +133,9 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carousel5"].cmd_carousel_lights("ripple_pina_2","throb")
 
                     if self.animation_frame_counter == 15: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 17:
                         self.hosts.hostnames["carousel1"].cmd_carousel_lights("ripple_coco_3","throb")
@@ -138,7 +145,9 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carousel5"].cmd_carousel_lights("ripple_pina_3","throb")
 
                     if self.animation_frame_counter == 20: # 2 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(777)
                         self.hosts.hostnames["carousel1"].cmd_carousel_lights("ripple_coco_4","throb")
@@ -155,14 +164,20 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carousel5"].cmd_carousel_lights("ripple_pina_5","throb")
 
                     if self.animation_frame_counter == 25: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                           
+                        for pinball_hostname in self.pinball_hostnames
+                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 27:
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_1","throb")
 
                     if self.animation_frame_counter == 30: # 3 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(666)
                         for pinball_hostname in self.pinball_hostnames:
@@ -173,14 +188,18 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_3","throb")
 
                     if self.animation_frame_counter == 35: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 37:
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_4","throb")
 
                     if self.animation_frame_counter == 40: # 4 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(555)
                         for pinball_hostname in self.pinball_hostnames:
@@ -191,14 +210,18 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_6","throb")
 
                     if self.animation_frame_counter == 45: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 47:
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_7","throb")
 
                     if self.animation_frame_counter == 50: # 5 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(444)
                         for pinball_hostname in self.pinball_hostnames:
@@ -209,14 +232,18 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_9","throb")
 
                     if self.animation_frame_counter == 55: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 57:
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_10","throb")
 
                     if self.animation_frame_counter == 60: # 6 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(333)
                         for pinball_hostname in self.pinball_hostnames:
@@ -227,14 +254,18 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_12","throb")
 
                     if self.animation_frame_counter == 65: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 67:
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_13","throb")
 
                     if self.animation_frame_counter == 70: # 7 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(222)
                         for pinball_hostname in self.pinball_hostnames:
@@ -245,7 +276,9 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_15","throb")
 
                     if self.animation_frame_counter == 75: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
 
                     if self.animation_frame_counter == 77:
@@ -253,7 +286,9 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_16","throb")
 
                     if self.animation_frame_counter == 80: # 8 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(111)
                         for pinball_hostname in self.pinball_hostnames:
@@ -264,10 +299,14 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("ripple_18","throb")
 
                     if self.animation_frame_counter == 85: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 90: # 9 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(000)
                         for pinball_hostname in self.pinball_hostnames:
@@ -311,7 +350,9 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero",True if random.randrange(0,3) == 0 else False)
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha",True if random.randrange(0,3) == 0 else False)
 
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 96:
                         for pinball_hostname in self.pinball_hostnames:
@@ -342,7 +383,9 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha",True if random.randrange(0,3) == 0 else False)
 
                     if self.animation_frame_counter == 100: # 10 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda",False)
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque",False)
@@ -350,44 +393,60 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha",False)
 
                     if self.animation_frame_counter == 105: # 0 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
                     if self.animation_frame_counter == 110: # 11 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(111)
 
                     if self.animation_frame_counter == 115: 
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(222)
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 120: # 12 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(333)
 
                     if self.animation_frame_counter == 125: 
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(444)
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 130: # 13 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(555)
 
                     if self.animation_frame_counter == 135: 
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(666)
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 139: 
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(777)
 
                     if self.animation_frame_counter == 140: # 14 seconds
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("peso","energize")
 
                     if self.animation_frame_counter == 143: 
@@ -395,7 +454,9 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[display_hostname].request_number(888)
 
                     if self.animation_frame_counter == 145: 
-                        self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
+                        
+                        for pinball_hostname in self.pinball_hostnames
+                            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 147:
                         for display_hostname in self.display_hostnames:
@@ -406,8 +467,6 @@ class Animation(threading.Thread):
                         self.animation_frame_counter = 0
                 else:
                     time.sleep(self.animaition_interval)
-
-
 
 class Mode_Attraction(threading.Thread):
     """
