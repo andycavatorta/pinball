@@ -26,6 +26,7 @@ class Animation(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.animaition_interval = 0.35
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.start()
 
         ### bang ###
         # chime
