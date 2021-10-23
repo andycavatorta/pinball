@@ -443,8 +443,8 @@ class Mode_Attraction(threading.Thread):
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         # phrase: juega
         print("mode_attraction.begin 3")
-        for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[pinball_hostname].request_phrase("juega")
+        #for display_hostname in self.display_hostnames:
+        #    self.hosts.hostnames[pinball_hostname].request_phrase("juega")
         # ensure carousels are in correct position
         print("mode_attraction.begin 4")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
