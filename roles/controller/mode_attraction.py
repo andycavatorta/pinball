@@ -26,6 +26,7 @@ class Animation(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.animaition_interval = 0.35
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.active = False
         self.start()
 
         ### bang ###
@@ -98,8 +99,6 @@ class Animation(threading.Thread):
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
-
-
 
                     if self.animation_frame_counter == 3:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
