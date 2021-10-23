@@ -163,10 +163,7 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carousel4"].cmd_carousel_lights("ripple_sandia_5","throb")
                         self.hosts.hostnames["carousel5"].cmd_carousel_lights("ripple_pina_5","throb")
 
-                    if self.animation_frame_counter == 25: # 0 seconds
-                        
-                        for pinball_hostname in self.pinball_hostnames:
-                           
+                    if self.animation_frame_counter == 25: # 0 seconds                        
                         for pinball_hostname in self.pinball_hostnames:
                              self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
                         
