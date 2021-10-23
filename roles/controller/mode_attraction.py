@@ -24,7 +24,6 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.animaition_interval = 0.35
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.active = False
         self.start()
@@ -69,6 +68,7 @@ class Animation(threading.Thread):
         # ---- carouselcenter: peso energize
 
     def begin(self):
+        print("mode_attraction.begin")
         self.animation_frame_counter = 0
         self.active = True
 
@@ -81,7 +81,9 @@ class Animation(threading.Thread):
     def run(self):
         while True:
             try:
+                print("mode_attraction.run 1")
                 animation_command = self.queue.get(True,self.animaition_interval)
+                print("mode_attraction.run 2",animation_command)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -89,7 +91,9 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
             except queue.Empty:
+                print("mode_attraction.run 3")
                 if self.active:
+                    print("mode_attraction.run 4",self.animation_frame_counter)
                     if self.animation_frame_counter == 0: # 0 seconds
                         self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("peso","throb")
@@ -411,6 +415,7 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter >= 150: # 15 seconds
                         self.animation_frame_counter = 0
                 else:
+                    print("mode_attraction.run 6")
                     time.sleep(self.animaition_interval)
 
 
