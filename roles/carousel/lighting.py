@@ -197,7 +197,7 @@ class Lights(threading.Thread):
         SPOKE_6 = [14,15]
         SPOKE_7 = [16,17]
         SPOKE_8 = [18,19]
-        SPOKE_9 = [20,21],
+        SPOKE_9 = [20,21]
         SPOKE_10 = [22,23]
         RIPPLE_NARANJA_1 = [12,15]
         RIPPLE_NARANJA_2 = [13,14]
