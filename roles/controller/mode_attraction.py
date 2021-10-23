@@ -68,12 +68,10 @@ class Animation(threading.Thread):
         # ---- carouselcenter: peso energize
 
     def begin(self):
-        print("mode_attraction.begin")
         self.animation_frame_counter = 0
         self.active = True
 
     def end(self):
-        print("mode_attraction.end")
         self.active = False
 
     def add_to_queue(self, animation_command): # ["begin"|"end"]
@@ -83,7 +81,6 @@ class Animation(threading.Thread):
         while True:
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
-                print("mode_attraction.run 2",animation_command)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -92,7 +89,6 @@ class Animation(threading.Thread):
                     self.end()
             except queue.Empty:
                 if self.active:
-                    print("mode_attraction.run 4",self.animation_frame_counter)
                     if self.animation_frame_counter == 0: # 0 seconds
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
@@ -102,11 +98,27 @@ class Animation(threading.Thread):
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+
+                    if self.animation_frame_counter == 2:
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+
                     if self.animation_frame_counter == 3:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+
+                    if self.animation_frame_counter == 4: # 0 seconds
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 5: # 0 seconds
-                        
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])                        
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
@@ -489,36 +501,24 @@ class Mode_Attraction(threading.Thread):
         self.start()
 
     def begin(self):
-        print("mode_attraction.begin 1")
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
             self.hosts.hostnames[pinball_hostname].disable_gameplay()
-        print("mode_attraction.begin 2")
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         # phrase: juega
-        print("mode_attraction.begin 3")
         #for display_hostname in self.display_hostnames:
         #    self.hosts.hostnames[pinball_hostname].request_phrase("juega")
         # ensure carousels are in correct position
-        print("mode_attraction.begin 4")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
-        print("mode_attraction.begin 5")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")        
-        print("mode_attraction.begin 6")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")        
-        print("mode_attraction.begin 7")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")        
-        print("mode_attraction.begin 8")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")        
-        print("mode_attraction.begin 9")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")        
-        print("mode_attraction.begin 10")
         self.hosts.mode_countdown_states["comienza_button_order"] = []
-        print("mode_attraction.begin 11")
         self.animation.add_to_queue("begin")
-        print("mode_attraction.begin 12")
 
     def end(self):
         self.animation.add_to_queue("end")
