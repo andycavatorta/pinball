@@ -127,9 +127,7 @@ class Animation(threading.Thread):
 
     def run(self):
         while True:
-            animaition_interval = self.animation_interval_base + (self.animation_countdown_counter / self.animation_interval_factor)
             try:
-                animation_command = self.queue.get(True,animaition_interval)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -143,76 +141,6 @@ class Animation(threading.Thread):
             except queue.Empty:
                 if self.active:
 
-                    if self.animation_countdown_counter % 10 == 0:
-                        for display_hostname in self.display_hostnames:
-                            self.hosts.hostnames[display_hostname].request_number(int(self.animation_countdown_counter/10))
-                    if self.animation_countdown_counter <=0:
-                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
-
-                    pitch_numeral = next(self.cycle_chimes)
-                    if pitch_numeral != -1:
-                        if self.animation_countdown_counter > 50: 
-                            pitch_name = self.piano_chimes[pitch_numeral]
-                        else:
-                            pitch_name = self.mezzo_chimes[pitch_numeral]
-
-                        for display_hostname in self.display_hostnames:
-                            self.hosts.hostnames[display_hostname].request_score(pitch_name)
-
-                    if self.animation_countdown_counter % 4 == 0:
-                        #for self.fruit_name in self.fruit_names:
-                        #    self.hosts.carousel5.request_eject_ball(self.fruit_name)
-                        if self.animation_countdown_counter % 8 == 0:
-                            for pinball_hostname in self.pinball_hostnames:
-                                if pinball_hostname not in self.hosts.mode_countdown_states["comienza_button_order"]:
-                                    carousel_hostname = self.carousel_hostname_map[pinball_hostname]
-                                    self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("solid","all",8)
-                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
-                        else:
-                            for carousel_hostname in self.carousel_hostnames:
-                                self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("solid","all",8)
-                            for pinball_hostname in self.pinball_hostnames:
-                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
-
-
-                    """
-                    # self.animation_frame_counter goes from 0 to 300 during countdown
-                    countdown_seconds = self.countdown_end_seconds - (self.animation_frame_counter / 10.0)
-                    for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_number(int(countdown_seconds*10))
-
-                    if countdown_seconds <=0:
-                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
-                        self.animation_frame_counter = 0
-                    """
-                    """
-                    if self.animation_frame_counter % 4 == 0:
-                        countdown_seconds = self.countdown_end_seconds - self.animation_frame_counter
-                        for display_hostname in self.display_hostnames:
-                            self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
-                        if countdown_seconds <= 0:
-                            self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
-                    if self.animation_frame_counter % 2 == 0:
-                        if self.animation_frame_counter % 4 == 0:
-                            for display_hostname in self.display_hostnames:
-                                self.hosts.hostnames[display_hostname].request_phrase("juega")
-
-                            for pinball_hostname in self.pinball_hostnames:
-                                if pinball_hostname not in self.comienza_button_order: # if button already pushed
-                                    self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
-                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all", "on")
-                            for carousel_hostname in self.carousel_hostnames:
-                                self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("light_all")
-
-                        else:
-                            for display_hostname in self.display_hostnames:
-                                self.hosts.hostnames[display_hostname].request_phrase("")
-                            if pinball_hostname not in self.comienza_button_order: # if button already pushed
-                                self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False)
-                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all", "off")
-                            for carousel_hostname in self.carousel_hostnames:
-                                self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("clear_all")
-                    """
                     self.animation_countdown_counter -= 1
                 else:
                     time.sleep(1)
