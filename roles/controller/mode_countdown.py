@@ -95,12 +95,8 @@ class Animation(threading.Thread):
         self.active = False
         self.set_current_mode = set_current_mode
         self.game_mode_names = settings.Game_Modes
-        
-        self.animation_countdown_counter = 100.0
-        self.animation_interval_base = 0.2
-        self.animation_interval_factor = 6000.0
 
-        self.start()
+        #self.start()
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]: # if button already pushed
                 for button_name in self.button_names:
@@ -156,7 +152,6 @@ class Mode_Countdown(threading.Thread):
     """
     def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
-        self.active = False
         self.tb = tb 
         self.hosts = hosts
         self.mode_names = settings.Game_Modes
@@ -168,8 +163,9 @@ class Mode_Countdown(threading.Thread):
         self.start()
 
     def begin(self):
+        print("mode_countdown.begin")
         self.animation.add_to_queue("begin")
-        #self.animation.comienza_button_order = list(self.hosts.mode_countdown_states["comienza_button_order"])
+        self.animation_frame_counter = 0
 
     def end(self):
         self.animation.add_to_queue("end")
@@ -203,4 +199,5 @@ class Mode_Countdown(threading.Thread):
                     )
             except AttributeError:
                 pass
+
 
