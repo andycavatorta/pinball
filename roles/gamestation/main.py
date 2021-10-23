@@ -264,7 +264,7 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.gamestation_lights = lighting.Lights()
         self.button_lights = Button_Lights()
-        if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete 
+        if self.tb.get_hostname() not in ["pinball1game"]:# to do: this is a hack to keep the system booting while these two games are not complete 
             self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
         self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
         self.queue = queue.Queue()

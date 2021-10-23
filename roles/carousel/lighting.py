@@ -103,7 +103,7 @@ class Lights_Pattern(threading.Thread):
                         self.upstream_queue.put([self.levels[0], [channel]])
                     time.sleep(self.action_times.ENERGIZE/divisor)
                     for channel in self.channels:
-                        self.upstream_queue.put([self.levels[0], [channel]])
+                        self.upstream_queue.put([self.levels[6], [channel]])
                     time.sleep(self.action_times.ENERGIZE/divisor)
                     if not self.action_queue.empty():
                         break
