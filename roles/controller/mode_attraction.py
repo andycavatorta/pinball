@@ -81,7 +81,6 @@ class Animation(threading.Thread):
     def run(self):
         while True:
             try:
-                print("mode_attraction.run 1")
                 animation_command = self.queue.get(True,self.animaition_interval)
                 print("mode_attraction.run 2",animation_command)
                 if isinstance(animation_command, bytes):
@@ -91,7 +90,6 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
             except queue.Empty:
-                print("mode_attraction.run 3")
                 if self.active:
                     print("mode_attraction.run 4",self.animation_frame_counter)
                     if self.animation_frame_counter == 0: # 0 seconds
@@ -415,7 +413,6 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter >= 150: # 15 seconds
                         self.animation_frame_counter = 0
                 else:
-                    print("mode_attraction.run 6")
                     time.sleep(self.animaition_interval)
 
 
