@@ -73,7 +73,7 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter % 3==0: # 1 second intervals
                         pitch_numeral = next(self.cycle_chimes)
                         if pitch_numeral != -1:
-                                pitch_name = self.mezzo_chimes[pitch_numeral]
+                            pitch_name = self.mezzo_chimes[pitch_numeral]
                             for display_hostname in self.display_hostnames:
                                 self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
