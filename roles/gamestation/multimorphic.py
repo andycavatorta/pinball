@@ -54,7 +54,7 @@ class Multimorphic(threading.Thread):
         self.start()
 
     def _enable_gameplay(self):
-        self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["derecha_hold"], 25)
+        self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
         self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
         self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
         self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 20)
@@ -66,9 +66,36 @@ class Multimorphic(threading.Thread):
         self.p3.clear_rule(self.switches["kicker"])
         self.p3.disable_coil(self.coils["izquierda_hold"])
         self.p3.disable_coil(self.coils["derecha_hold"])
+
     def _pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
+
+    def _enable_trueque(self, enable_bool):
+        if enable_bool:
+            self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 20)
+        else:
+            self.p3.clear_rule(self.switches["trueque"])
+    def _enable_dinero(self, enable_bool):
+        if enable_bool:
+            self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 20)
+        else:
+            self.p3.clear_rule(self.switches["dinero"])
+    def _enable_kicker(self, enable_bool):
+        if enable_bool:
+            self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 20)
+        else:
+            self.p3.clear_rule(self.switches["kicker"])
+    def _enable_izquierda(self, enable_bool):
+        if enable_bool:
+            self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
+        else:
+            self.p3.clear_rule(self.switches["izquierda"])
+    def _enable_derecha(self, enable_bool):
+        if enable_bool:
+            self.p3.configure_flipper(self.switches["izquierda"], self.coils["derecha_main"], self.coils["derecha_hold"], 25)
+        else:
+            self.p3.clear_rule(self.switches["derecha"])
 
     def izquierda_handler(self,event_state):
         self.callback("event_button_izquierda",event_state, "multimorphic", None)
@@ -111,6 +138,18 @@ class Multimorphic(threading.Thread):
                     self._disable_gameplay()
                 if command == "pulse_coil":
                     self._pulse_coil(params[0],params[1])
+
+                if command == "enable_trueque_coil":
+                    self._enable_trueque(params)
+                if command == "enable_dinero_coil":
+                    self.enable_dinero(params)
+                if command == "enable_kicker_coil":
+                    self.enable_kicker(params)
+                if command == "enable_izquierda_coil":
+                    self.enable_izquierda(params)
+                if command == "enable_derecha_coil":
+                    self.enable_derecha(params)
+
             except queue.Empty:
                 self.p3.poll()
 

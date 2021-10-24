@@ -269,6 +269,11 @@ class Main(threading.Thread):
         self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
+        self.tb.subscribe_to_topic("cmd_enable_derecha_coil")
+        self.tb.subscribe_to_topic("cmd_enable_dinero_coil")
+        self.tb.subscribe_to_topic("cmd_enable_izquierda_coil")
+        self.tb.subscribe_to_topic("cmd_enable_kicker_coil")
+        self.tb.subscribe_to_topic("cmd_enable_trueque_coil")
         self.tb.subscribe_to_topic("cmd_kicker_launch") # to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_lefttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_playfield_lights")
@@ -309,7 +314,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_playfield_states")
         self.tb.publish("connected", True)
         self.start()
-    
+
     def publish_to_controller(self, topic, message):
         self.tb.publish(topic, message)
 
@@ -362,6 +367,27 @@ class Main(threading.Thread):
                 if topic == 'cmd_all_off':
                     if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
                         self.multimorphic.disable_gameplay()
+
+                if topic == 'cmd_enable_derecha_coil':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_trueque_coil(message)
+
+                if topic == 'cmd_enable_dinero_coil':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_dinero_coil(message)
+
+                if topic == 'cmd_enable_izquierda_coil':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_kicker(message)
+
+                if topic == 'cmd_enable_kicker_coil':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_izquierda(message)
+
+                if topic == 'cmd_enable_trueque_coil':
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_derecha(message)
+
                 if topic == 'cmd_kicker_launch':
                     if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
                         if destination == self.tb.get_hostname():

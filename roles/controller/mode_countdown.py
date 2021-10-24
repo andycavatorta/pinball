@@ -1,49 +1,3 @@
-"""
-acrylic display
-    Juega blinks in time with countdown theme
-Chimes
-    countdown theme
-carousel leds
-    if comienza button pushed
-        all on
-    else 
-        all blink in time with countdown theme
-carousel motions
-    ?    
-carousel solenoid sounds
-    countdown theme 
-playfield leds
-    if comienza button pushed
-        all on
-    else 
-        all blink in time with countdown theme
-button lights
-    all off
-    if comienza button pushed
-        comienza button lights 
-    else
-        comienza button blink in time with countdown theme
-
-button switches
-    comienza button changes lighting
-
-"""
-"""
-countdown mode 
-    run animation
-        animate gamestations differently after their comienza button is pushed
-    
-    events:
-        countdown ends
-        comienza button pushed
-        all comienza button pushed
-
-    record which gamestations are active
-
-    when countdown ends or all buttons are pushed
-        transition to BARTER_MODE_INTRO
-
-"""
 import codecs
 import os
 import queue
@@ -53,26 +7,6 @@ import threading
 import time
 
 class Animation(threading.Thread):
-    """
-    chimes: descending
-    phrase: juega
-    numbers: countdown
-    carousel lights
-        for active: lit up and solid
-        for waiting: blinking
-    playfield:
-        for active: lit up and solid
-        for waiting: blinking 
-    buttons:
-        for active: off
-        for waiting: comienza blinking rapidly
-
-
-    animation counts down from 1000
-    animation frame counter decrements to 0
-    animation interval is a (base number + animation frame counter/factor) 
-
-    """
     def __init__(self, hosts,set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
@@ -94,36 +28,32 @@ class Animation(threading.Thread):
         }
         self.active = False
         self.set_current_mode = set_current_mode
+        self.comienza_button_order = []
         self.game_mode_names = settings.Game_Modes
-
-        #self.start()
-        for pinball_hostname in self.pinball_hostnames:
-            if pinball_hostname in self.hosts.mode_countdown_states["comienza_button_order"]: # if button already pushed
-                for button_name in self.button_names:
-                    self.hosts.hostnames[pinball_hostname].request_button_light_active(button_name, False)
-
-    def _cycle_chimes(self):
-        states = [1,-1,2,3,-1,2,-1,1,0,-1,1,-1,4,3,-1,2,-1,1,0,-1]
-        while True:
-            for state in states:
-                yield state
+        self.animation_frame_counter = 0
+        self.animation_interval = 0.1 # seconds
+        self.animation_frame_counter_limit = 1000
 
     def begin(self):
-        self.cycle_chimes = self._cycle_chimes()
-        self.animation_countdown_counter = 100
-        #for pinball_hostname in self.pinball_hostnames:
-        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[pinball_hostname].request_phrase("juega")
+        self.cycle_chimes = self._cycle_chimes() # start from beginning if interrupted last time
+        self.animation_frame_counter = 0
         self.active = True
 
     def end(self):
         self.active = False
 
-    def add_to_queue(self, animation_command): # ["begin"|"end"]
-        self.queue.put(animation_command)
+    def add_to_queue(self, animation_command,data): # ["begin"|"end"]
+        self.queue.put([dataanimation_command,data])
 
     def run(self):
         while True:
             try:
+                #
+                animation_command,data = self.queue.get(True,self.animaition_interval)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -132,18 +62,43 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
                     continue
-                # the only remaining option would be comienza_button_order
-                self.hosts.mode_countdown_states["comienza_button_order"].append(animation_command)
+                if animation_command == "set_comienza_buttons":
+                    if len(data) == 5:
+                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+                    self.comienza_button_order = data
+                    continue
             except queue.Empty:
                 if self.active:
 
-                    self.animation_countdown_counter -= 1
+                    if self.animation_frame_counter % 3==0: # 1 second intervals
+                        pitch_numeral = next(self.cycle_chimes)
+                        if pitch_numeral != -1:
+                                pitch_name = self.mezzo_chimes[pitch_numeral]
+                            for display_hostname in self.display_hostnames:
+                                self.hosts.hostnames[display_hostname].request_score(pitch_name)
+
+                    if self.animation_frame_counter % 10 ==0: # 1 second intervals
+                        for display_hostname in self.display_hostnames:
+                            self.hosts.hostnames[display_hostname].request_number(int(self.animation_frame_counter/10))
+
+                        if self.animation_frame_counter % 20 ==0: # alternate seconds A
+                            for pinball_hostname in self.pinball_hostnames:
+                                # lower left sign on
+                                if pinball_hostname not in self.comienza_button_order: # if comienza button pushed
+                                    # all lights on and steady
+                                    # comienza button on
+                        else: # alternate seconds B
+                            for pinball_hostname in self.pinball_hostnames:
+                                # lower left sign on
+                                # all lights on and steady
+                                # comienza button off
+
+
+                    self.animation_frame_counter += 1
+                    if self.animation_frame_counter > self.animation_frame_counter_limit:
+                        self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                 else:
-                    time.sleep(1)
-
-                
-
-
+                    time.sleep(0.5)
 
 class Mode_Countdown(threading.Thread):
     """
@@ -164,18 +119,23 @@ class Mode_Countdown(threading.Thread):
 
     def begin(self):
         print("mode_countdown.begin")
-        self.animation.add_to_queue("begin")
-        self.animation_frame_counter = 0
+        self.animation.add_to_queue("set_comienza_buttons",list(self.hosts.mode_countdown_states["comienza_button_order"]))
+        self.animation.add_to_queue("begin",None)
+        self.animation.animation_frame_counter = 0
 
     def end(self):
-        self.animation.add_to_queue("end")
+        print("mode_countdown.end")
+        self.animation.add_to_queue("end",None)
 
     def respond_host_connected(self, message, origin, destination): 
+        # is a host is connected here, that means it was disconnected. must re-run system tests
         if self.hosts.get_all_host_connected() == True:
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def event_button_comienza(self, message, origin, destination): 
         self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
+        self.animation.add_to_queue("set_comienza_buttons",list(self.hosts.mode_countdown_states["comienza_button_order"]))
+
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
@@ -183,7 +143,9 @@ class Mode_Countdown(threading.Thread):
     def run(self):
         while True:
             try:
+                # all messages received by controller come here
                 topic, message, origin, destination = self.queue.get(True)
+                # convert byte strings to strings
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
@@ -192,12 +154,12 @@ class Mode_Countdown(threading.Thread):
                     origin = codecs.decode(origin, 'UTF-8')
                 if isinstance(destination, bytes):
                     destination = codecs.decode(destination, 'UTF-8')
+                # if topic equals a local method, call it
                 getattr(self,topic)(
                         message, 
                         origin, 
                         destination,
                     )
             except AttributeError:
+                # if topic does not equal a local method
                 pass
-
-

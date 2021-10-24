@@ -60,9 +60,9 @@
 
     playfield_state_2: comienza button pushed
         signs:
-            bottom left sign blinks in rhythm A
+            all off
         button lights:
-            comienza button blinks in rhythm A
+            all off
         button actions:
             none
         light animation:
