@@ -27,7 +27,6 @@ class Animation(threading.Thread):
         self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
         self.active = False
         self.start()
-so energize
 
     def begin(self):
         self.animation_frame_counter = 0
