@@ -32,7 +32,7 @@ class Game():
         self.game_name = game_name
         self.carousel_name = carousel_name
         self.display_name = display_name
-        self.state = self.state.NO_PLAYER # default overwritten after creation
+        self.state = states.NO_PLAYER # default overwritten after creation
         self.score = 0
         self.trade_initated = False
         self.trade_initated = False
