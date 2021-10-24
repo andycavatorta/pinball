@@ -732,8 +732,8 @@ class Mode_Barter(threading.Thread):
         self.hosts = hosts
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
-        self.choreography = choreography
-        self.countdown = Countdown(hosts, set_current_mode)
+        #self.choreography = choreography
+        #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.countdown_seconds = 150
