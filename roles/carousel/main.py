@@ -221,16 +221,61 @@ class Main(threading.Thread):
                         if group_name == "outer_circle":
                             group = self.lighting.outer_circle
 
-                        if group_name == "ripple_1":
-                            group = self.lighting.ripple_1
+                        if group_name == "ripple_1":    
+                            if self.tb.get_hostname() == "carousel1":
+                                group = self.lighting.ripple_coco_1
+                            if self.tb.get_hostname() == "carousel2":
+                                group = self.lighting.ripple_naranja_1
+                            if self.tb.get_hostname() == "carousel3":
+                                group = self.lighting.ripple_mango_1
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_sandia_1
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_coco_1
                         if group_name == "ripple_2":
-                            group = self.lighting.ripple_2
+                            if self.tb.get_hostname() == "carousel1":
+                                group = self.lighting.ripple_coco_2
+                            if self.tb.get_hostname() == "carousel2":
+                                group = self.lighting.ripple_naranja_2
+                            if self.tb.get_hostname() == "carousel3":
+                                group = self.lighting.ripple_mango_2
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_sandia_2
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_coco_2
                         if group_name == "ripple_3":
-                            group = self.lighting.ripple_3
+                            if self.tb.get_hostname() == "carousel1":
+                                group = self.lighting.ripple_coco_3
+                            if self.tb.get_hostname() == "carousel2":
+                                group = self.lighting.ripple_naranja_3
+                            if self.tb.get_hostname() == "carousel3":
+                                group = self.lighting.ripple_mango_3
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_sandia_3
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_coco_3
                         if group_name == "ripple_4":
-                            group = self.lighting.ripple_4
+                            if self.tb.get_hostname() == "carousel1":
+                                group = self.lighting.ripple_coco_4
+                            if self.tb.get_hostname() == "carousel2":
+                                group = self.lighting.ripple_naranja_4
+                            if self.tb.get_hostname() == "carousel3":
+                                group = self.lighting.ripple_mango_4
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_sandia_4
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_coco_4
                         if group_name == "ripple_5":
-                            group = self.lighting.ripple_5
+                            if self.tb.get_hostname() == "carousel1":
+                                group = self.lighting.ripple_coco_5
+                            if self.tb.get_hostname() == "carousel2":
+                                group = self.lighting.ripple_naranja_5
+                            if self.tb.get_hostname() == "carousel3":
+                                group = self.lighting.ripple_mango_5
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_sandia_5
+                            if self.tb.get_hostname() == "carousel4":
+                                group = self.lighting.ripple_coco_5
 
                         if animation_name == "off":
                             group.off()
