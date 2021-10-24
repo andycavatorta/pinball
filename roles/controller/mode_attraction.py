@@ -43,9 +43,9 @@ class Animation(threading.Thread):
     def run(self):
         print("mode_attraction Animation.run 0")
         while True:
-            print("mode_attraction Animation.run 1")
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
+                print("animation_command", animation_command)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
@@ -53,7 +53,6 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
             except queue.Empty:
-                print("mode_attraction Animation.run 2")
                 if self.active:
                     print("mode_attraction Animation.run 3")
                     if self.animation_frame_counter == 0: # 0 seconds
@@ -527,24 +526,31 @@ class Mode_Attraction(threading.Thread):
         self.start()
 
     def begin(self):
+        print("mode_attraction Mode_Attraction.begin 1")
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
             self.hosts.hostnames[pinball_hostname].disable_gameplay()
+        print("mode_attraction Mode_Attraction.begin 2")
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         # phrase: juega
+        print("mode_attraction Mode_Attraction.begin 3")
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[pinball_hostname].request_phrase("juega")
         # ensure carousels are in correct position
+        print("mode_attraction Mode_Attraction.begin 4")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")        
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")        
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")        
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")        
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")        
+        print("mode_attraction Mode_Attraction.begin 5")
         self.hosts.mode_countdown_states["comienza_button_order"] = []
+        print("mode_attraction Mode_Attraction.begin 5")
         self.animation.add_to_queue("begin")
+        print("mode_attraction Mode_Attraction.begin 6")
 
     def end(self):
         self.animation.add_to_queue("end")
