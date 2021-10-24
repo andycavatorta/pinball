@@ -51,7 +51,7 @@ class Game():
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
             #button actions:
             self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", False) 
-            self.hosts.hostnames[self.game_name].request_button_light_active("trueque", False):
+            self.hosts.hostnames[self.game_name].request_button_light_active("trueque", False)
             self.hosts.hostnames[self.game_name].request_button_light_active("comienza", False) 
             self.hosts.hostnames[self.game_name].request_button_light_active("dinero", False)
             self.hosts.hostnames[self.game_name].request_button_light_active("derecha", False) 
