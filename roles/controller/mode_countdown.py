@@ -85,10 +85,12 @@ class Animation(threading.Thread):
                             for pinball_hostname in self.pinball_hostnames:
                                 # lower left sign on
                                 if pinball_hostname not in self.comienza_button_order: # if comienza button pushed
+                                    pass
                                     # all lights on and steady
                                     # comienza button on
                         else: # alternate seconds B
                             for pinball_hostname in self.pinball_hostnames:
+                                pass
                                 # lower left sign on
                                 # all lights on and steady
                                 # comienza button off
