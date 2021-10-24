@@ -29,17 +29,21 @@ class Animation(threading.Thread):
         self.start()
 
     def begin(self):
+        print("mode_attraction Animation.begin")
         self.animation_frame_counter = 0
         self.active = True
 
     def end(self):
+        print("mode_attraction Animation.end")
         self.active = False
 
     def add_to_queue(self, animation_command): # ["begin"|"end"]
         self.queue.put(animation_command)
 
     def run(self):
-        while True:
+        print("mode_attraction Animation.run 0")
+        while True
+            print("mode_attraction Animation.run 1"):
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
                 if isinstance(animation_command, bytes):
@@ -49,7 +53,9 @@ class Animation(threading.Thread):
                 if animation_command == "end":
                     self.end()
             except queue.Empty:
+                print("mode_attraction Animation.run 2")
                 if self.active:
+                    print("mode_attraction Animation.run 3")
                     if self.animation_frame_counter == 0: # 0 seconds
                         print("animation_frame_counter=",animation_frame_counter)
                         for pinball_hostname in self.pinball_hostnames:
