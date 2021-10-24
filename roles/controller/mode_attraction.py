@@ -54,7 +54,6 @@ class Animation(threading.Thread):
                     self.end()
             except queue.Empty:
                 if self.active:
-                    print("mode_attraction Animation.run 3")
                     if self.animation_frame_counter == 0: # 0 seconds
                         print("animation_frame_counter=",self.animation_frame_counter)
                         for pinball_hostname in self.pinball_hostnames:
