@@ -47,7 +47,7 @@ class Animation(threading.Thread):
         self.active = False
 
     def add_to_queue(self, animation_command,data): # ["begin"|"end"]
-        self.queue.put([dataanimation_command,data])
+        self.queue.put([animation_command,data])
 
     def run(self):
         while True:
