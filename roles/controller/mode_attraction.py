@@ -19,7 +19,7 @@ class Animation(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = hosts
         self.animation_frame_counter = 0
-        self.animaition_interval = 0.1
+        self.animaition_interval = 0.2
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
