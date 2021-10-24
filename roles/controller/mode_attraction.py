@@ -43,7 +43,7 @@ class Animation(threading.Thread):
     def run(self):
         print("mode_attraction Animation.run 0")
         while True:
-            print("mode_attraction Animation.run 1"):
+            print("mode_attraction Animation.run 1")
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
                 if isinstance(animation_command, bytes):
