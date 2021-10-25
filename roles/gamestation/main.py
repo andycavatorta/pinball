@@ -442,6 +442,44 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.sign_top
                         if group_name == "all_radial":
                             group = self.gamestation_lights.all_radial
+
+                        if group_name == "ripple_1":
+                            group = self.gamestation_lights.ripple_1
+                        if group_name == "ripple_2":
+                            group = self.gamestation_lights.ripple_2
+                        if group_name == "ripple_3":
+                            group = self.gamestation_lights.ripple_3
+                        if group_name == "ripple_4":
+                            group = self.gamestation_lights.ripple_4
+                        if group_name == "ripple_5":
+                            group = self.gamestation_lights.ripple_5
+                        if group_name == "ripple_6":
+                            group = self.gamestation_lights.ripple_6
+                        if group_name == "ripple_7":
+                            group = self.gamestation_lights.ripple_7
+                        if group_name == "ripple_8":
+                            group = self.gamestation_lights.ripple_8
+                        if group_name == "ripple_9":
+                            group = self.gamestation_lights.ripple_9
+                        if group_name == "ripple_10":
+                            group = self.gamestation_lights.ripple_10
+                        if group_name == "ripple_11":
+                            group = self.gamestation_lights.ripple_11
+                        if group_name == "ripple_12":
+                            group = self.gamestation_lights.ripple_12
+                        if group_name == "ripple_13":
+                            group = self.gamestation_lights.ripple_13
+                        if group_name == "ripple_14":
+                            group = self.gamestation_lights.ripple_14
+                        if group_name == "ripple_15":
+                            group = self.gamestation_lights.ripple_15
+                        if group_name == "ripple_16":
+                            group = self.gamestation_lights.ripple_16
+                        if group_name == "ripple_17":
+                            group = self.gamestation_lights.ripple_17
+                        if group_name == "ripple_18":
+                            group = self.gamestation_lights.ripple_18
+
                         if animation_name == "off":
                             group.off()
                         if animation_name == "on":
@@ -468,6 +506,8 @@ class Main(threading.Thread):
                             group.back_trace()
                         if animation_name == "single_dot":
                             group.single_dot()
+                        if animation_name == "wink":
+                            group.wink()
                 if topic == 'cmd_set_mode': # this might not get used
                     pass
                 if topic == 'cmd_righttube_launch':
