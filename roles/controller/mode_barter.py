@@ -103,6 +103,7 @@ class Game():
 
     def transition_to_state(self, state_name):
         if state_name == states.NO_PLAYER:
+            print(self.game_name, states.NO_PLAYER)
             """
             game is inactive because no player pressed comienza button during previous modes
             This state does not end until the game restarts
@@ -131,6 +132,7 @@ class Game():
             #next state: n/a until attraction or countdown modes
 
         if state_name == states.TRADE_NOT_NEEDED:
+            print(self.game_name, states.TRADE_NOT_NEEDED)
             """
             Regular pinball gameplay.
             Next states:
@@ -985,7 +987,6 @@ class Mode_Barter(threading.Thread):
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
             else:
                 game_ref.transition_to_state(states.NO_PLAYER)
-
 
     def end(self):
         self.countdown.end()
