@@ -31,7 +31,7 @@ class Animation(threading.Thread):
         self.comienza_button_order = []
         self.game_mode_names = settings.Game_Modes
         self.animation_frame_counter = 0
-        self.animation_interval = 0.05 # seconds
+        self.animation_interval = 0.66 # seconds
         self.animation_frame_counter_limit = 300
         self.start()
 
@@ -83,7 +83,7 @@ class Animation(threading.Thread):
                 if self.active:
 
                     for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_number(200-self.animation_frame_counter)
+                        self.hosts.hostnames[display_hostname].request_number(300-self.animation_frame_counter)
 
                     if self.animation_frame_counter % 3==0: # 1 second intervals
                         pitch_numeral = next(self.cycle_chimes)

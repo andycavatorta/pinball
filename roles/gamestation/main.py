@@ -368,11 +368,11 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_enable_derecha_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_trueque_coil(message)
+                        self.multimorphic.enable_trueque(message)
 
                 if topic == 'cmd_enable_dinero_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_dinero_coil(message)
+                        self.multimorphic.enable_dinero(message)
 
                 if topic == 'cmd_enable_izquierda_coil':
                     if destination == self.tb.get_hostname():
