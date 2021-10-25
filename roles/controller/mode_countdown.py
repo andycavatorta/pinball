@@ -33,6 +33,7 @@ class Animation(threading.Thread):
         self.animation_frame_counter = 0
         self.animation_interval = 0.1 # seconds
         self.animation_frame_counter_limit = 1000
+        self.start()
 
     def begin(self):
         for pinball_hostname in self.pinball_hostnames:
