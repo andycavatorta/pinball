@@ -478,12 +478,12 @@ class Mode_Attraction(threading.Thread):
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("juega")
         # ensure carousels are in correct position
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")        
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")        
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")        
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")        
-        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")        
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","sandia","sandia")
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")        
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_2","naranja","back")        
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")        
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")        
+        #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")        
         self.hosts.mode_countdown_states["comienza_button_order"] = []
         self.animation.add_to_queue("begin")
 
