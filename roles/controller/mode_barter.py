@@ -409,6 +409,7 @@ class Game():
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,self.animaition_interval)
+                # 
                 if topic == "event_button_comienza":
                     if self.state == states.NO_PLAYER:
                         pass
@@ -976,9 +977,16 @@ class Mode_Barter(threading.Thread):
         self.active = True
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
-        hostname_lookup = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        hostname_lookup = {
+            "pinball1game":0,
+            "pinball2game":1,
+            "pinball3game":2,
+            "pinball4game":3,
+            "pinball5game:"4
+        }
         for ordinal,game_ref in enumerate(self.games):
             hostname = hostname_lookup[ordinal]
+            print(hostname,hostname_lookup[ordinal],self.hosts.mode_countdown_states["comienza_button_order"])
             if hostname in self.hosts.mode_countdown_states["comienza_button_order"]:
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
             else:
