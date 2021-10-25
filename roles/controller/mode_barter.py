@@ -25,8 +25,45 @@ class states:
     TRADE_RESPONDER_START_TRADE = "TRADE_RESPONDER_START_TRADE"
     TRADE_SUCCEEDED = "TRADE_SUCCEEDED"
 
-class Game():
+class trade_roles:
+    INITIATOR = "initiator"
+    RESPONDER = "responder"
+    NONE = "none"
 
+class Pie():
+    def __init__(self, origin, hosts, pie_full_handler):
+        self.origin = origin
+        self.hosts = hosts
+        self.pie_full_handler = pie_full_handler
+        self.pie_segments_triggered = {
+            "pop_left":False,
+            "pop_middle":False,
+            "pop_right":False,
+            "spinner":False,
+            "sling_right":False,
+            "rollover_right":False,
+            "rollover_left":False,
+            "sling_left":False,
+        }
+        self.reset_pie()
+
+    def target_hit(self,target_name):
+        if self.pie_segments_triggered[target_name] == False:
+            self.pie_segments_triggered[target_name] = True
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_off")# light segment
+            if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
+                time.sleep(.33)
+                self.reset_pie()
+                self.pie_full_handler()
+
+    def reset_pie(self):
+        for target_name in self.pie_segments_triggered:
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_on")# light segment
+
+
+class Game():
     def __init__(self,hosts,game_name,carousel_name,display_name):
         self.hosts = hosts
         self.game_name = game_name
@@ -35,8 +72,8 @@ class Game():
         self.state = states.NO_PLAYER # default overwritten after creation
         self.score = 0
         self.trade_initated = False
-        self.trade_initated = False
-
+        self.trade_role = trade_roles.NONE # is this redundant?  is this not inferred in state?
+        self.pie = Pie(self.game_name, hosts, self.pie_full_handler)
         """
         todo: create animation cycles for each state and system to switch between them simply
             same as animation with counter?
@@ -45,27 +82,54 @@ class Game():
         are these methods about 
 
         """
+
+    def pie_full_handler(self):
+        # increment score
+        self.score += 100
+        if self.score > 999:
+            self.score = 999
+            # to do: transition to next mode
+        # update score
+        self.hosts.hostnames[self.display_name].request_number(self.score)
+        # alert matrix with new score
+        # to do: alert matrix
+
     def transition_to_state(self, state_name):
         if state_name == states.NO_PLAYER:
+            """
+            game is inactive because no player pressed comienza button during previous modes
+            This state does not end until the game restarts
+            """
             #button lights:
-            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
-            #button actions:
             self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", False) 
             self.hosts.hostnames[self.game_name].request_button_light_active("trueque", False)
             self.hosts.hostnames[self.game_name].request_button_light_active("comienza", False) 
             self.hosts.hostnames[self.game_name].request_button_light_active("dinero", False)
             self.hosts.hostnames[self.game_name].request_button_light_active("derecha", False) 
+            #button actions:
+            self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+            self.hosts.hostnames[self.game_name].enable_trueque_coil(False) # also initiate trade
+            self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+            self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+            self.hosts.hostnames[self.game_name].enable_derecha_coil(False)   
             #light animation:
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
             #chimes:# all off
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("trueque")
             #numbers:
-            self.hosts.hostnames[self.display_name].request_number(int(self.animation_frame_counter/10))
+            self.hosts.hostnames[self.display_name].request_number(0)
 
             #next state: n/a until attraction or countdown modes
 
         if state_name == states.TRADE_NOT_NEEDED:
+            """
+            Regular pinball gameplay.
+            Next states:
+                TRADE_NEEDED_BALL_IN_TROUGH : if ball in trough, local game has enough fruits to trade, and other game has enough fruits to trade
+                TRADE_NEEDED_BALL_IN_PLAY : if local game has enough to trade and other game enters TRADE_NEEDED_BALL_IN_TROUGH state
+            """
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left","off")
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","off")
@@ -92,9 +156,18 @@ class Game():
             #numbers:
                 # score
 
-            #next state: TRADE_NEEDED_BALL_IN_TROUGH or TRADE_NEEDED_BALL_IN_PLAY
+            #next state: 
 
         if state_name == states.TRADE_NEEDED_BALL_IN_TROUGH:
+            """
+            gameplay is off.
+            player is told their only option is to trade
+                how does the animation tell them who they can trade with?
+            Next states:
+                TRADE_INITIATOR_START_TRADE: if player pushes trueque button first
+                TRADE_RESPONDER_START_TRADE: if player pushes trueque button second
+                TRADE_RESPONDER_IGNORES : if other player is initiator and local player does not respond before timeout
+            """
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","on") # to do: add to blink cycle for this game
             #button lights:
@@ -118,9 +191,18 @@ class Game():
             self.hosts.hostnames[self.display_name].request_phrase("trueque")
             #numbers:
                 # score
-            #next state: TRADE_INITIATOR_START_TRADE (trueque button) | TRADE_RESPONDER_START_TRADE (trueque button)| TRADE_RESPONDER_IGNORES (timeout)
 
         if state_name == states.TRADE_NEEDED_BALL_IN_PLAY:
+            """
+            gameplay is still on
+            player has options to trade and to keep playing
+                how does the animation tell them about the trading option?
+            Next states:
+                TRADE_NEEDED_BALL_IN_TROUGH: if ball enters trough before timeout and before player pushes trueque
+                TRADE_INITIATOR_START_TRADE: if player pushes trueque button first
+                TRADE_RESPONDER_START_TRADE: if player pushes trueque button second
+                TRADE_RESPONDER_IGNORES : if other player is initiator and local player does not respond before timeout
+            """
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","on") # to do: add to blink cycle for this game
             #button lights:
@@ -142,10 +224,16 @@ class Game():
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("trueque")
             #numbers:
-            #next state: TRADE_NEEDED_BALL_IN_TROUGH | TRADE_INITIATOR_START_TRADE (trueque button) | TRADE_RESPONDER_START_TRADE (trueque button)| TRADE_RESPONDER_IGNORES (timeout)
 
         if state_name == states.TRADE_INITIATOR_START_TRADE:
-            # actions: start acceptance window timer, 
+            """
+            start acceptance timer.  does this live outside of the two games, in the container for the matrix? animations??
+            player has no options while trade request animation plays
+
+            Next states:
+                TRADE_INITIATOR_IGNORED : if acceptance timer timeout
+                TRADE_SUCCEEDED : if responder transitions out of TRADE_RESPONDER_START_TRADE into TRADE_SUCCEEDED
+            """
 
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","off") # to do: add to blink cycle for this game
@@ -176,9 +264,12 @@ class Game():
             #numbers:
                 # score
 
-            #next state: TRADE_INITIATOR_IGNORED (timeout) | TRADE_SUCCEEDED (after responder TRADE_RESPONDER_START_TRADE animation ends)
-
         if state_name == states.TRADE_INITIATOR_IGNORED:
+            """
+            short state that times out after animation and reduction of score
+            Next states:
+                TRADE_NOT_NEEDED
+            """
             #signs:
                 # none
             #button lights:
@@ -206,9 +297,13 @@ class Game():
             #numbers:
                 # score decreased decrementally during animation
 
-            #actions: change state to TRADE_NOT_NEEDED
-
         if state_name == states.TRADE_RESPONDER_IGNORES:
+            """
+            if the resonder does not respond for timeout
+            short state that times out after animation and reduction of score
+            Next states:
+                TRADE_NOT_NEEDED
+            """
             #signs:
                 # none
             #button lights:
@@ -236,9 +331,13 @@ class Game():
             #numbers:
                 # score decreased decrementally during animation
 
-            #next state: TRADE_NOT_NEEDED
-
         if state_name == states.TRADE_RESPONDER_START_TRADE:
+            """
+            short state that times out after animation and increase of score
+            Next states:
+                TRADE_NOT_NEEDED
+            """
+
             # actions: start acceptance window timer, 
 
             #signs:
@@ -274,6 +373,11 @@ class Game():
 
 
         if state_name == states.TRADE_SUCCEEDED: # same for initiator and responder
+            """
+            short state that times out after animation and increase of score
+            Next states:
+                TRADE_NOT_NEEDED
+            """
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","off") 
             #button lights:
@@ -435,11 +539,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            self.pie.target_hit("pop_left")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            self.pie.target_hit("pop_left")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -454,11 +562,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            self.pie.target_hit("pop_middle")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            self.pie.target_hit("pop_middle")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -473,11 +585,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                            self.pie.target_hit("pop_right")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                            self.pie.target_hit("pop_right")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -530,11 +646,24 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_left")
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_left")
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -549,11 +678,25 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_right")
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_right")
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -568,11 +711,31 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_left")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_left")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -587,11 +750,31 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_right")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("rollover_right")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                            time.sleep(0.1)
+                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -606,11 +789,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("sling_left")
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("sling_left")
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -625,11 +812,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("sling_right")
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("sling_right")
+                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -644,11 +835,15 @@ class Game():
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
+                        if message:
+                            self.pie.target_hit("spinner")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
+                        if message:
+                            self.pie.target_hit("spinner")
+                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
@@ -773,15 +968,16 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
-        for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].enable_gameplay()
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True)
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False)
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True)
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
+        hostname_lookup = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        for ordinal,game_ref in enumerate(self.games):
+            hostname = hostname_lookup[ordinal]
+            if hostname in self.hosts.mode_countdown_states["comienza_button_order"]:
+                game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
+            else:
+                game_ref.transition_to_state(states.NO_PLAYER)
+
 
     def end(self):
         self.countdown.end()

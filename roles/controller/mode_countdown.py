@@ -32,7 +32,7 @@ class Animation(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.animation_frame_counter = 0
         self.animation_interval = 0.1 # seconds
-        self.animation_frame_counter_limit = 1000
+        self.animation_frame_counter_limit = 100
         self.start()
 
     def _cycle_chimes(self):
@@ -81,6 +81,9 @@ class Animation(threading.Thread):
                     continue
             except queue.Empty:
                 if self.active:
+                    
+                    for display_hostname in self.display_hostnames:
+                        self.hosts.hostnames[display_hostname].request_number(100-self.animation_frame_counter)
 
                     if self.animation_frame_counter % 3==0: # 1 second intervals
                         pitch_numeral = next(self.cycle_chimes)
@@ -90,8 +93,6 @@ class Animation(threading.Thread):
                                 self.hosts.hostnames[display_hostname].request_score(pitch_name)
 
                     if self.animation_frame_counter % 10 ==0: # 1 second intervals
-                        for display_hostname in self.display_hostnames:
-                            self.hosts.hostnames[display_hostname].request_number(int(self.animation_frame_counter/10))
 
                         if self.animation_frame_counter % 20 ==0: # alternate seconds A
                             for pinball_hostname in self.pinball_hostnames:
