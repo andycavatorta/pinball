@@ -184,12 +184,12 @@ class Lights_Pattern(threading.Thread):
                         break
             if action_name == self.action_names.WINK:
                 for channel in self.channels:
-                    self.upstream_queue.put([level[7], [channel]])
+                    self.upstream_queue.put([self.levels[7], [channel]])
                 time.sleep(self.action_times.WINK)
                 if not self.action_queue.empty():
                     break
                 for channel in self.channels:
-                    self.upstream_queue.put([level[0], [channel]])
+                    self.upstream_queue.put([self.levels[0], [channel]])
                 time.sleep(self.action_times.WINK)
                 if not self.action_queue.empty():
                     break
