@@ -152,8 +152,8 @@ class Game():
             #button actions:
             self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
             self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-            self.hosts.hostnames[self.game_name].enable_dinero_coil(True)
-            self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+            self.hosts.hostnames[self.game_name].enable_kicker_coil(True)
+            self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
             self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
 
             #light animation:
