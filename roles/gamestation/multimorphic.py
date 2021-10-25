@@ -71,27 +71,27 @@ class Multimorphic(threading.Thread):
         if duration_ms < 50: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
-    def _enable_trueque(self, enable_bool):
+    def enable_trueque(self, enable_bool):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 20)
         else:
             self.p3.clear_rule(self.switches["trueque"])
-    def _enable_dinero(self, enable_bool):
+    def enable_dinero(self, enable_bool):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 20)
         else:
             self.p3.clear_rule(self.switches["dinero"])
-    def _enable_kicker(self, enable_bool):
+    def enable_kicker(self, enable_bool):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 20)
         else:
             self.p3.clear_rule(self.switches["kicker"])
-    def _enable_izquierda(self, enable_bool):
+    def enable_izquierda(self, enable_bool):
         if enable_bool:
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
         else:
             self.p3.clear_rule(self.switches["izquierda"])
-    def _enable_derecha(self, enable_bool):
+    def enable_derecha(self, enable_bool):
         if enable_bool:
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["derecha_main"], self.coils["derecha_hold"], 25)
         else:
@@ -140,7 +140,7 @@ class Multimorphic(threading.Thread):
                     self._pulse_coil(params[0],params[1])
 
                 if command == "enable_trueque_coil":
-                    self._enable_trueque(params)
+                    self.enable_trueque(params)
                 if command == "enable_dinero_coil":
                     self.enable_dinero(params)
                 if command == "enable_kicker_coil":
