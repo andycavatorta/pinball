@@ -76,7 +76,7 @@ class Lights_Pattern(threading.Thread):
         while True:
             # new actions in action_queue will override previous actions
             action_name, channel = self.action_queue.get(True)
-            print("action_name, channel", action_name, channel)
+            #print("action_name, channel", action_name, channel)
             if action_name == self.action_names.BACK_STROKE_OFF: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[-1], [channel]])
@@ -316,7 +316,7 @@ class Lights(threading.Thread):
         while True:
             level, channel_numbers = self.queue.get(True)
             #foo = self.queue.get(True)
-            print(level, channel_numbers)
+            #print(level, channel_numbers)
             for channel_number in channel_numbers:
                 self.channels[channel_number].duty_cycle = level
 
