@@ -35,6 +35,12 @@ class Animation(threading.Thread):
         self.animation_frame_counter_limit = 1000
         self.start()
 
+    def _cycle_chimes(self):
+        states = [1,-1,2,3,-1,2,-1,1,0,-1,1,-1,4,3,-1,2,-1,1,0,-1]
+        while True:
+            for state in states:
+                yield state
+
     def begin(self):
         print("mode_countdown Animation.begin 1")
         for pinball_hostname in self.pinball_hostnames:
