@@ -357,7 +357,7 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(topic, message)
+                #print(topic, message)
 
                 try: 
                     topic = topic.decode('UTF-8')
@@ -508,7 +508,7 @@ class Main(threading.Thread):
                             group.single_dot()
                         if animation_name == "wink":
                             group.wink()
-                            
+
                 if topic == 'cmd_set_mode': # this might not get used
                     pass
                 if topic == 'cmd_righttube_launch':
