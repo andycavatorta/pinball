@@ -145,7 +145,7 @@ class Animation(threading.Thread):
 
                     if self.animation_frame_counter == 23:
                         print("animation_frame_counter=",self.animation_frame_counter)
-                        self.hosts.hostnames["carousel1"].cmd_carousel_lights("ripple_1","throb")
+                        self.hosts.hostnames["carousel1"].cmd_carousel_lights("ripple_coco_5","throb")
                         self.hosts.hostnames["carousel2"].cmd_carousel_lights("ripple_naranja_5","throb")
                         self.hosts.hostnames["carousel3"].cmd_carousel_lights("ripple_mango_5","throb")
                         self.hosts.hostnames["carousel4"].cmd_carousel_lights("ripple_sandia_5","throb")
