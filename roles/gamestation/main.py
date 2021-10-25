@@ -356,7 +356,7 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                #print(topic, message)
+                print(topic, message, origin, destination)
 
                 try: 
                     topic = topic.decode('UTF-8')
