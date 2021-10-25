@@ -59,7 +59,7 @@ class Animation(threading.Thread):
         while True:
             try:
                 #
-                animation_command,data = self.queue.get(True,self.animaition_interval)
+                animation_command,data = self.queue.get(True,self.animation_interval)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
                 if animation_command == "begin":
