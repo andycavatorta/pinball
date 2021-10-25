@@ -173,7 +173,6 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print("topic, message, origin, destination",topic, message, origin, destination)
                 if topic == b'cmd_carousel_all_off':
                     self.solenoids.add_to_queue('all_off', None) 
                 if topic == b'cmd_carousel_eject_ball':
@@ -182,6 +181,7 @@ class Main(threading.Thread):
 
                 if topic == b'cmd_carousel_lights':
                     if destination == self.tb.get_hostname():
+                        print("topic, message, origin, destination",topic, message, origin, destination)
                         group_name, animation_name = message
                         if group_name == "all":
                             group = self.lighting.all
