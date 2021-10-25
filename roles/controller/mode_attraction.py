@@ -19,7 +19,7 @@ class Animation(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = hosts
         self.animation_frame_counter = 0
-        self.animaition_interval = 0.2
+        self.animaition_interval = 0.1
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
@@ -74,9 +74,6 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter == 3:
                         print("animation_frame_counter=",self.animation_frame_counter)
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
-                        for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 4: # 0 seconds
                         print("animation_frame_counter=",self.animation_frame_counter)
@@ -86,15 +83,21 @@ class Animation(threading.Thread):
 
                     if self.animation_frame_counter == 5: # 0 seconds
                         print("animation_frame_counter=",self.animation_frame_counter)
-                        for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])                        
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
                     if self.animation_frame_counter == 6:
                         print("animation_frame_counter=",self.animation_frame_counter)
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","throb")
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])                        
+
+                    if self.animation_frame_counter == 8:
+                        print("animation_frame_counter=",self.animation_frame_counter)
+                        for hostname in self.display_hostnames:
+                            if random.randrange(0,3) == 0:
+                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 10: # 1 second
                         print("animation_frame_counter=",self.animation_frame_counter)
