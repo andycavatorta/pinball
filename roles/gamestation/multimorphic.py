@@ -31,8 +31,8 @@ class Multimorphic(threading.Thread):
             "pop_left":"A0-B0-2",
             "pop_middle":"A0-B0-3",
             "pop_right":"A0-B0-4",
-            "sling_left":"A0-B1-4",
-            "sling_right":"A0-B1-5",
+            "sling_left":"A0-B1-5",
+            "sling_right":"A0-B1-4",
             "trueque":"A0-B0-5",
         }
         self.queue = queue.Queue()
