@@ -415,84 +415,37 @@ class Game():
                 # 
                 if topic == "event_button_comienza":
                     if self.state == states.NO_PLAYER:
+                        # no action
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
+                        # no action
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
+                        # no action
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
+                        # no action
                         pass
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
+                        # no action
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
+                        # no action
                         pass
                     if self.state == states.TRADE_RESPONDER_IGNORES:
+                        # no action
                         pass
                     if self.state == states.TRADE_RESPONDER_START_TRADE:
+                        # no action
                         pass
                     if self.state == states.TRADE_SUCCEEDED:
-                        pass
-                if topic == "event_button_derecha":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
-                if topic == "event_button_dinero":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
-                if topic == "event_button_izquierda":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                        # no action
                 if topic == "event_button_trueque":
                     if self.state == states.NO_PLAYER:
+                        # no action
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
+                        # no action
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
                         pass
@@ -501,8 +454,10 @@ class Game():
                     if self.state == states.TRADE_INITIATOR_START_TRADE:
                         pass
                     if self.state == states.TRADE_INITIATOR_IGNORED:
+                        # no action
                         pass
                     if self.state == states.TRADE_RESPONDER_IGNORES:
+                        # no action
                         pass
                     if self.state == states.TRADE_RESPONDER_START_TRADE:
                         pass

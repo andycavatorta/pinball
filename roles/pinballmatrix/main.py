@@ -404,10 +404,10 @@ class Main(threading.Thread):
             topic="response_sdc2160_relative_position", 
             message=self.request_sdc2160_relative_position()
         )
-
-
-
-
+        # engage emergency stop until encoder problem is solved
+        self.controllers.boards["carousel1and2"].emergency_stop()
+        self.controllers.boards["carousel3and4"].emergency_stop()
+        self.controllers.boards["carousel5and6"].emergency_stop()
 
     ##### SYSTEM TESTS #####
 
