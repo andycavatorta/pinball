@@ -264,8 +264,7 @@ class Main(threading.Thread):
         self.deadman = deadman.Deadman_Switch(self.tb)
         self.gamestation_lights = lighting.Lights()
         self.button_lights = Button_Lights()
-        if self.tb.get_hostname() not in ["pinball1game"]:# to do: this is a hack to keep the system booting while these two games are not complete 
-            self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
+        self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
         self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
@@ -365,7 +364,6 @@ class Main(threading.Thread):
                     pass
 
                 if topic == 'cmd_all_off':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
                         self.multimorphic.disable_gameplay()
 
                 if topic == 'cmd_enable_derecha_coil':
@@ -389,13 +387,11 @@ class Main(threading.Thread):
                         self.multimorphic.enable_derecha(message)
 
                 if topic == 'cmd_kicker_launch':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
-                        if destination == self.tb.get_hostname():
-                            self.multimorphic.pulse_coil("kicker",25)
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.pulse_coil("kicker",25)
                 if topic == 'cmd_lefttube_launch':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
-                        if destination == self.tb.get_hostname():
-                            self.multimorphic.pulse_coil("trueque",25)
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.pulse_coil("trueque",25)
                 if topic == 'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
@@ -512,19 +508,16 @@ class Main(threading.Thread):
                 if topic == 'cmd_set_mode': # this might not get used
                     pass
                 if topic == 'cmd_righttube_launch':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
-                        if destination == self.tb.get_hostname():
-                            self.multimorphic.pulse_coil("dinero",25)
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.pulse_coil("dinero",25)
                 if topic == 'connected':
                     pass
                 if topic == 'disable_gameplay':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
-                        if destination == self.tb.get_hostname():
-                            self.multimorphic.disable_gameplay()
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.disable_gameplay()
                 if topic == 'enable_gameplay':
-                    if self.tb.get_hostname() not in ["pinball1game", "pinball2game"]:# to do: this is a hack to keep the system booting while these two games are not complete
-                        if destination == self.tb.get_hostname():
-                            self.multimorphic.enable_gameplay()
+                    if destination == self.tb.get_hostname():
+                        self.multimorphic.enable_gameplay()
                 if topic == 'event_button_comienza':
                     self.tb.publish(
                         topic="event_button_comienza",
