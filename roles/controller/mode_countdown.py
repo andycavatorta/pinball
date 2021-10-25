@@ -31,7 +31,7 @@ class Animation(threading.Thread):
         self.comienza_button_order = []
         self.game_mode_names = settings.Game_Modes
         self.animation_frame_counter = 0
-        self.animation_interval = 0.5 # seconds
+        self.animation_interval = 0.05 # seconds
         self.animation_frame_counter_limit = 300
         self.start()
 
