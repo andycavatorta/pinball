@@ -14,6 +14,13 @@ import settings
 import threading
 import time
 
+"""
+class Matrix(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+"""
+
 class states:
     NO_PLAYER = "NO_PLAYER"
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
@@ -963,7 +970,6 @@ class Mode_Barter(threading.Thread):
             "pinball5game":self.games[4],
         }
         # need system above self.games to keep track of states of trades
-
         self.start()
 
     def begin(self):
@@ -984,70 +990,70 @@ class Mode_Barter(threading.Thread):
         self.active = False
 
     def event_button_comienza(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_button_comienza",message)
+        self.game_to_game[origin].add_to_queue("event_button_comienza",message)
 
     def event_button_derecha(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_button_derecha",message)
+        self.game_to_game[origin].add_to_queue("event_button_derecha",message)
 
     def event_button_dinero(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_button_dinero",message)
+        self.game_to_game[origin].add_to_queue("event_button_dinero",message)
 
     def event_button_izquierda(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_button_izquierda",message)
+        self.game_to_game[origin].add_to_queue("event_button_izquierda",message)
 
     def event_button_trueque(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_button_trueque",message)
+        self.game_to_game[origin].add_to_queue("event_button_trueque",message)
 
     def event_left_stack_ball_present(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_left_stack_ball_present",message)
+        self.game_to_game[origin].add_to_queue("event_left_stack_ball_present",message)
 
     def event_left_stack_motion_detected(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_left_stack_motion_detected",message)
+        self.game_to_game[origin].add_to_queue("event_left_stack_motion_detected",message)
 
     def event_pop_left(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_pop_left",message)
+        self.game_to_game[origin].add_to_queue("event_pop_left",message)
 
     def event_pop_middle(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_pop_middle",message)
+        self.game_to_game[origin].add_to_queue("event_pop_middle",message)
 
     def event_pop_right(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_pop_right",message)
+        self.game_to_game[origin].add_to_queue("event_pop_right",message)
 
     def event_right_stack_ball_present(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_right_stack_ball_present",message)
+        self.game_to_game[origin].add_to_queue("event_right_stack_ball_present",message)
 
     def event_right_stack_motion_detected(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_right_stack_motion_detected",message)
+        self.game_to_game[origin].add_to_queue("event_right_stack_motion_detected",message)
 
     def event_roll_inner_left(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_roll_inner_left",message)
+        self.game_to_game[origin].add_to_queue("event_roll_inner_left",message)
 
     def event_roll_inner_right(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_roll_inner_right",message)
+        self.game_to_game[origin].add_to_queue("event_roll_inner_right",message)
 
     def event_roll_outer_left(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_roll_outer_left",message)
+        self.game_to_game[origin].add_to_queue("event_roll_outer_left",message)
 
     def event_roll_outer_right(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_roll_outer_right",message)
+        self.game_to_game[origin].add_to_queue("event_roll_outer_right",message)
 
     def event_slingshot_left(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_slingshot_left",message)
+        self.game_to_game[origin].add_to_queue("event_slingshot_left",message)
 
     def event_slingshot_right(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_slingshot_right",message)
+        self.game_to_game[origin].add_to_queue("event_slingshot_right",message)
 
     def event_spinner(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_spinner",message)
+        self.game_to_game[origin].add_to_queue("event_spinner",message)
 
     def event_trough_sensor(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("event_trough_sensor",message)
+        self.game_to_game[origin].add_to_queue("event_trough_sensor",message)
 
     def response_lefttube_present(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("response_lefttube_present",message)
+        self.game_to_game[origin].add_to_queue("response_lefttube_present",message)
 
     def response_rightttube_present(self, message, origin, destination):
-        self.games[self.game_to_game[origin]].add_to_queue("response_rightttube_present",message)
+        self.game_to_game[origin].add_to_queue("response_rightttube_present",message)
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
