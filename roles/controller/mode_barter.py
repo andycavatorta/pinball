@@ -102,8 +102,9 @@ class Game():
         # to do: alert matrix
 
     def transition_to_state(self, state_name):
+        print(1, self.game_name, state_name)
         if state_name == states.NO_PLAYER:
-            print(self.game_name, states.NO_PLAYER)
+            print(2, self.game_name, states.NO_PLAYER)
             """
             game is inactive because no player pressed comienza button during previous modes
             This state does not end until the game restarts
@@ -132,7 +133,7 @@ class Game():
             #next state: n/a until attraction or countdown modes
 
         if state_name == states.TRADE_NOT_NEEDED:
-            print(self.game_name, states.TRADE_NOT_NEEDED)
+            print(3 ,self.game_name, states.TRADE_NOT_NEEDED)
             """
             Regular pinball gameplay.
             Next states:
