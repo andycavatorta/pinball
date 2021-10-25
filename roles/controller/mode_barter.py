@@ -982,7 +982,7 @@ class Mode_Barter(threading.Thread):
             "pinball2game":1,
             "pinball3game":2,
             "pinball4game":3,
-            "pinball5game:"4
+            "pinball5game":4
         }
         for ordinal,game_ref in enumerate(self.games):
             hostname = hostname_lookup[ordinal]
