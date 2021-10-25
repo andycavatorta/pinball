@@ -93,9 +93,9 @@ class Multimorphic(threading.Thread):
             self.p3.clear_rule(self.switches["izquierda"])
     def enable_derecha(self, enable_bool):
         if enable_bool:
-            self.p3.configure_flipper(self.switches["izquierda"], self.coils["derecha_main"], self.coils["derecha_hold"], 25)
+            self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
         else:
-            self.p3.clear_rule(self.switches["derecha"])
+            self.p3.clear_rule(self.switches["izquierda"])
 
     def izquierda_handler(self,event_state):
         self.callback("event_button_izquierda",event_state, "multimorphic", None)
@@ -131,7 +131,7 @@ class Multimorphic(threading.Thread):
         while True:
             try:
                 command, params = self.queue.get(True,0.01)
-                print()
+                print("multimorphic.py", command, params)
                 if command == "enable_gameplay":
                     self._enable_gameplay()
                 if command == "disable_gameplay":
