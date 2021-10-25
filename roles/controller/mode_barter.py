@@ -115,20 +115,27 @@ class Game():
             self.hosts.hostnames[self.game_name].request_button_light_active("comienza", False) 
             self.hosts.hostnames[self.game_name].request_button_light_active("dinero", False)
             self.hosts.hostnames[self.game_name].request_button_light_active("derecha", False) 
+            print(3, self.game_name, states.NO_PLAYER)
             #button actions:
             self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
             self.hosts.hostnames[self.game_name].enable_trueque_coil(False) # also initiate trade
             self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
             self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
             self.hosts.hostnames[self.game_name].enable_derecha_coil(False)   
+            print(4, self.game_name, states.NO_PLAYER)
             #light animation:
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            print(5, self.game_name, states.NO_PLAYER)
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
+            print(6, self.game_name, states.NO_PLAYER)
+
             #chimes:# all off
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            print(7, self.game_name, states.NO_PLAYER)
             #numbers:
             self.hosts.hostnames[self.display_name].request_number(0)
+            print(8, self.game_name, states.NO_PLAYER)
 
             #next state: n/a until attraction or countdown modes
 
