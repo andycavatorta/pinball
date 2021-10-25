@@ -363,27 +363,32 @@ class Main(threading.Thread):
                 except AttributeError:
                     pass
 
-                if topic == 'cmd_all_off':
-                        self.multimorphic.disable_gameplay()
+                #if topic == 'cmd_all_off':
+                #        self.multimorphic.disable_gameplay()
 
                 if topic == 'cmd_enable_derecha_coil':
                     if destination == self.tb.get_hostname():
+                        print(">>>>>>>>>1",destination,self.tb.get_hostname())
                         self.multimorphic.enable_trueque(message)
 
                 if topic == 'cmd_enable_dinero_coil':
                     if destination == self.tb.get_hostname():
+                        print(">>>>>>>>>2",destination,self.tb.get_hostname())
                         self.multimorphic.enable_dinero(message)
 
                 if topic == 'cmd_enable_izquierda_coil':
                     if destination == self.tb.get_hostname():
+                        print(">>>>>>>>>3",destination,self.tb.get_hostname())
                         self.multimorphic.enable_kicker(message)
 
                 if topic == 'cmd_enable_kicker_coil':
                     if destination == self.tb.get_hostname():
+                        print(">>>>>>>>>4",destination,self.tb.get_hostname())
                         self.multimorphic.enable_izquierda(message)
 
                 if topic == 'cmd_enable_trueque_coil':
                     if destination == self.tb.get_hostname():
+                        print(">>>>>>>>>5",destination,self.tb.get_hostname())
                         self.multimorphic.enable_derecha(message)
 
                 if topic == 'cmd_kicker_launch':
@@ -512,12 +517,12 @@ class Main(threading.Thread):
                         self.multimorphic.pulse_coil("dinero",25)
                 if topic == 'connected':
                     pass
-                if topic == 'disable_gameplay':
-                    if destination == self.tb.get_hostname():
-                        self.multimorphic.disable_gameplay()
-                if topic == 'enable_gameplay':
-                    if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_gameplay()
+                #if topic == 'disable_gameplay':
+                #    if destination == self.tb.get_hostname():
+                #        self.multimorphic.disable_gameplay()
+                #if topic == 'enable_gameplay':
+                #    if destination == self.tb.get_hostname():
+                #        self.multimorphic.enable_gameplay()
                 if topic == 'event_button_comienza':
                     self.tb.publish(
                         topic="event_button_comienza",
