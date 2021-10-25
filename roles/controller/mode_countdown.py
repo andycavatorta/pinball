@@ -36,12 +36,17 @@ class Animation(threading.Thread):
         self.start()
 
     def begin(self):
+        print("mode_countdown Animation.begin 1")
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
+        print("mode_countdown Animation.begin 1")
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[pinball_hostname].request_phrase("juega")
+            self.hosts.hostnames[display_hostname].request_phrase("juega")
+        print("mode_countdown Animation.begin 1")
         self.cycle_chimes = self._cycle_chimes() # start from beginning if interrupted last time
+        print("mode_countdown Animation.begin 1")
         self.animation_frame_counter = 0
+        print("mode_countdown Animation.begin 1")
         self.active = True
 
     def end(self):
@@ -121,10 +126,13 @@ class Mode_Countdown(threading.Thread):
         self.start()
 
     def begin(self):
-        print("mode_countdown.begin")
+        print("mode_countdown Mode_Countdown.begin 1")
         self.animation.add_to_queue("set_comienza_buttons",list(self.hosts.mode_countdown_states["comienza_button_order"]))
+        print("mode_countdown Mode_Countdown.begin 2")
         self.animation.add_to_queue("begin",None)
+        print("mode_countdown Mode_Countdown.begin 3")
         self.animation.animation_frame_counter = 0
+        print("mode_countdown Mode_Countdown.begin 4")
 
     def end(self):
         print("mode_countdown.end")
