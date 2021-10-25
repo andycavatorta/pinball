@@ -782,7 +782,6 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True)
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
-        self.countdown.begin()
 
     def end(self):
         self.countdown.end()
