@@ -440,6 +440,7 @@ class Game():
                         pass
                     if self.state == states.TRADE_SUCCEEDED:
                         # no action
+                        pass
                 if topic == "event_button_trueque":
                     if self.state == states.NO_PLAYER:
                         # no action
@@ -448,6 +449,7 @@ class Game():
                         # no action
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
+                        # no action
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         pass
