@@ -70,8 +70,9 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_on")# light segment
 
 
-class Game():
+class Game(threading.Thread):
     def __init__(self,hosts,game_name,carousel_name,display_name):
+        threading.Thread.__init__(self)
         self.hosts = hosts
         self.game_name = game_name
         self.carousel_name = carousel_name
@@ -89,7 +90,8 @@ class Game():
         are these methods about 
 
         """
-
+        self.start()
+        
     def pie_full_handler(self):
         # increment score
         self.score += 100
