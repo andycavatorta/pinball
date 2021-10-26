@@ -652,6 +652,10 @@ class Mode_Barter(threading.Thread):
         self.active = True
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+        for carousel_hostname in self.carousel_hostnames:
+            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         hostname_lookup = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         for ordinal,game_ref in enumerate(self.games):
             hostname = hostname_lookup[ordinal]
