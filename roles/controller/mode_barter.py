@@ -111,6 +111,7 @@ class Game(threading.Thread):
             # to do: transition to next mode
         # update score
         self.hosts.hostnames[self.display_name].request_number(self.score)
+        # matrix
         # alert matrix with new score
         # to do: alert matrix
 
