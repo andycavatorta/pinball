@@ -415,7 +415,7 @@ class Game(threading.Thread):
     def run(self):
         while True:
             try:
-                topic, message = self.queue.get(True,self.animaition_interval)
+                topic, message = self.queue.get(True)
                 print("mode_barter.py Game.run",topic, message)
                 if topic == "event_button_comienza":
                     if self.state == states.NO_PLAYER:
