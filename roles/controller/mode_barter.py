@@ -529,10 +529,13 @@ class Game(threading.Thread):
                     if self.state == states.TRADE_SUCCEEDED:
                         pass
                 if topic == "event_pop_middle":
+                    print(">>> event_pop_middle 1", self.state, message)
                     if self.state == states.NO_PLAYER:
                         pass
                     if self.state == states.TRADE_NOT_NEEDED:
+                        print(">>> event_pop_middle 2", self.state, message)
                         if message:
+                            print(">>> event_pop_middle 4", self.state, message)
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             self.pie.target_hit("pop_middle")
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
