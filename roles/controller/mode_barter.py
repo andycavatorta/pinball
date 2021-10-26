@@ -973,7 +973,7 @@ class Mode_Barter(threading.Thread):
         self.game_to_game[origin].add_to_queue("event_pop_left",message)
 
     def event_pop_middle(self, message, origin, destination):
-        print("mode_barter.py Mode_Barter.event_pop_middle",topic, message, origin, destination)
+        print("mode_barter.py Mode_Barter.event_pop_middle",message, origin, destination)
         self.game_to_game[origin].add_to_queue("event_pop_middle",message)
 
     def event_pop_right(self, message, origin, destination):
