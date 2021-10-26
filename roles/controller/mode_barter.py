@@ -408,8 +408,8 @@ class Game(threading.Thread):
             #phrase:
             #numbers:
 
-    def add_to_queue(self, topic, message, origin, destination):
-        self.queue.put((topic, message, origin, destination))
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
 
 
     def run(self):
