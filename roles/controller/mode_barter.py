@@ -14,12 +14,19 @@ import settings
 import threading
 import time
 
-"""
+
+
 class Matrix(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+        self.start()
 
-"""
+        # initiate_trade_if_possible
+        # initiate_trade (initiator_game, initiator_fruit,
+        # initiate         
+        # initiate         
+        # initiate         
 
 class states:
     NO_PLAYER = "NO_PLAYER"
@@ -105,6 +112,7 @@ class Game(threading.Thread):
         # to do: alert matrix
 
     def transition_to_state(self, state_name):
+        self.state = state_name
         print(1, self.game_name, state_name)
         if state_name == states.NO_PLAYER:
             """
@@ -410,7 +418,6 @@ class Game(threading.Thread):
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
-
 
     def run(self):
         while True:
