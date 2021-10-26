@@ -461,7 +461,7 @@ class Mode_Attraction(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timeout_duration = 120 #seconds
         self.animation = Animation(hosts)
-        self.hosts.mode_countdown_states["comienza_button_order"] = []
+        self.hosts.clear_games_with_players()
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
@@ -484,7 +484,7 @@ class Mode_Attraction(threading.Thread):
         #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_3","mango","back")        
         #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_4","sandia","back")        
         #self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_5","pina","back")        
-        self.hosts.mode_countdown_states["comienza_button_order"] = []
+        self.hosts.clear_games_with_players()
         self.animation.add_to_queue("begin")
 
     def end(self):
@@ -495,6 +495,7 @@ class Mode_Attraction(threading.Thread):
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def event_button_comienza(self, message, origin, destination): 
+        self.hosts.set_games_with_players(origin)
         self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
         self.set_current_mode(self.game_mode_names.COUNTDOWN)
 

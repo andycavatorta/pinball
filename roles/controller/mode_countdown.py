@@ -134,7 +134,9 @@ class Mode_Countdown(threading.Thread):
 
     def begin(self):
         print("mode_countdown Mode_Countdown.begin 1")
-        self.animation.add_to_queue("set_comienza_buttons",list(self.hosts.mode_countdown_states["comienza_button_order"]))
+
+        self.animation.add_to_queue("set_comienza_buttons",self.hosts.get_games_with_players())
+
         print("mode_countdown Mode_Countdown.begin 2")
         self.animation.add_to_queue("begin",None)
         print("mode_countdown Mode_Countdown.begin 3")
@@ -151,8 +153,8 @@ class Mode_Countdown(threading.Thread):
             self.set_current_mode(self.game_mode_names.SYSTEM_TESTS)
     
     def event_button_comienza(self, message, origin, destination): 
-        self.hosts.mode_countdown_states["comienza_button_order"].append(origin) 
-        self.animation.add_to_queue("set_comienza_buttons",list(self.hosts.mode_countdown_states["comienza_button_order"]))
+        self.hosts.set_games_with_players(origin)
+        self.animation.add_to_queue("set_comienza_buttons",self.hosts.get_games_with_players())
 
 
     def add_to_queue(self, topic, message, origin, destination):

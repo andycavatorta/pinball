@@ -69,7 +69,6 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"off")# light animation
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_on")# light segment
 
-
 class Game(threading.Thread):
     def __init__(self,hosts,game_name,carousel_name,display_name):
         threading.Thread.__init__(self)
@@ -91,7 +90,7 @@ class Game(threading.Thread):
 
         """
         self.start()
-        
+
     def pie_full_handler(self):
         # increment score
         self.score += 100
@@ -943,8 +942,7 @@ class Mode_Barter(threading.Thread):
         hostname_lookup = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         for ordinal,game_ref in enumerate(self.games):
             hostname = hostname_lookup[ordinal]
-            print(hostname,self.hosts.mode_countdown_states["comienza_button_order"])
-            if hostname in self.hosts.mode_countdown_states["comienza_button_order"]:
+            if hostname in self.hosts.get_games_with_players():
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
             else:
                 game_ref.transition_to_state(states.NO_PLAYER)

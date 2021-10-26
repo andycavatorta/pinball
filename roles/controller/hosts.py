@@ -821,9 +821,15 @@ class Hosts():
 
         self.games_with_players = []
 
-        self.mode_countdown_states = {
-            "comienza_button_order":[]
-        }
+    def clear_games_with_players(self):
+        self.games_with_players = []
+
+    def get_games_with_players(self):
+        return list(self.games_with_players)
+
+    def set_games_with_players(self,game_ordinal):
+        if game_ordinal not in self.games_with_players:
+            self.games_with_players.append(game_ordinal)
 
     def get_all_host_connected(self):
         for hostname in self.hostnames:
