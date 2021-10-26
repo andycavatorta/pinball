@@ -77,6 +77,7 @@ class Animation(threading.Thread):
                 if animation_command == "set_comienza_buttons":
                     if len(data) == 5:
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+                        
                     self.comienza_button_order = data
                     continue
             except queue.Empty:
