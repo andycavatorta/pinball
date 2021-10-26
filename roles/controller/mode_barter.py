@@ -405,12 +405,15 @@ class Game():
             #phrase:
             #numbers:
 
+    def add_to_queue(self, topic, message, origin, destination):
+        self.queue.put((topic, message, origin, destination))
+
 
     def run(self):
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True,self.animaition_interval)
-                print("mode_barter.py Game.run",topic, message, origin, destination)
+                topic, message = self.queue.get(True,self.animaition_interval)
+                print("mode_barter.py Game.run",topic, message)
                 if topic == "event_button_comienza":
                     if self.state == states.NO_PLAYER:
                         # no action
