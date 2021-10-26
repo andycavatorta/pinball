@@ -72,6 +72,8 @@ class Pie():
 class Game(threading.Thread):
     def __init__(self,hosts,game_name,carousel_name,display_name):
         threading.Thread.__init__(self)
+        self.queue = queue.Queue()
+
         self.hosts = hosts
         self.game_name = game_name
         self.carousel_name = carousel_name
