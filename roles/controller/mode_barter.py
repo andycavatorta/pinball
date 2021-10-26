@@ -104,7 +104,6 @@ class Game():
     def transition_to_state(self, state_name):
         print(1, self.game_name, state_name)
         if state_name == states.NO_PLAYER:
-            print(2, self.game_name, states.NO_PLAYER)
             """
             game is inactive because no player pressed comienza button during previous modes
             This state does not end until the game restarts
@@ -133,7 +132,6 @@ class Game():
             #next state: n/a until attraction or countdown modes
 
         if state_name == states.TRADE_NOT_NEEDED:
-            print(3 ,self.game_name, states.TRADE_NOT_NEEDED)
             """
             Regular pinball gameplay.
             Next states:
@@ -412,7 +410,7 @@ class Game():
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True,self.animaition_interval)
-                # 
+                print("mode_barter.py Game.run",topic, message, origin, destination)
                 if topic == "event_button_comienza":
                     if self.state == states.NO_PLAYER:
                         # no action
@@ -975,6 +973,7 @@ class Mode_Barter(threading.Thread):
         self.game_to_game[origin].add_to_queue("event_pop_left",message)
 
     def event_pop_middle(self, message, origin, destination):
+        print("mode_barter.py Mode_Barter.event_pop_middle",topic, message, origin, destination)
         self.game_to_game[origin].add_to_queue("event_pop_middle",message)
 
     def event_pop_right(self, message, origin, destination):
@@ -1023,6 +1022,7 @@ class Mode_Barter(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
+                print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):

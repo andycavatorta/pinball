@@ -819,6 +819,8 @@ class Hosts():
         }
         self.dispatch(b"response_computer_details", self.controller.get_computer_details(), "controller", "controller")
 
+        self.games_with_players = []
+
         self.mode_countdown_states = {
             "comienza_button_order":[]
         }
