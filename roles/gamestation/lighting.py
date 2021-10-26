@@ -194,14 +194,6 @@ class Lights_Pattern(threading.Thread):
                 if not self.action_queue.empty():
                     break
 
-
-
-
-
-
-
-
-
 class Lights(threading.Thread):
     class pattern_channels():
         TRAIL_ROLLOVER_RIGHT = [16,15,14,13,12]

@@ -65,8 +65,10 @@ class Pie():
         print("target_hit",target_name)
         if self.pie_segments_triggered[target_name] == False:
             self.pie_segments_triggered[target_name] = True
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"on")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_off")# light segment
+
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
+
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
                 time.sleep(.33)
                 self.reset_pie()
@@ -74,8 +76,8 @@ class Pie():
 
     def reset_pie(self):
         for target_name in self.pie_segments_triggered:
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail".join(target_name),"back_stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_on")# light segment
 
 class Game(threading.Thread):
     def __init__(self,hosts,game_name,carousel_name,display_name):
