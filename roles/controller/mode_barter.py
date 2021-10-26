@@ -62,6 +62,7 @@ class Pie():
         self.reset_pie()
 
     def target_hit(self,target_name):
+        print("target_hit",target_name)
         if self.pie_segments_triggered[target_name] == False:
             self.pie_segments_triggered[target_name] = True
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_".join(target_name),"on")# light animation
@@ -113,7 +114,6 @@ class Game(threading.Thread):
 
     def transition_to_state(self, state_name):
         self.state = state_name
-        print(1, self.game_name, state_name)
         if state_name == states.NO_PLAYER:
             """
             game is inactive because no player pressed comienza button during previous modes
@@ -424,209 +424,54 @@ class Game(threading.Thread):
             try:
                 topic, message = self.queue.get(True)
                 print("mode_barter.py Game.run",topic, message)
-                if topic == "event_button_comienza":
-                    if self.state == states.NO_PLAYER:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        # no action
-                        pass
                 if topic == "event_button_trueque":
-                    if self.state == states.NO_PLAYER:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        # no action
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        # no action
+                        # matrix:initiate trade or respond to trade
                         pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
+                        # matrix:initiate trade or respond to trade
                         pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        # no action
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+
                 if topic == "event_left_stack_ball_present":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
                 if topic == "event_left_stack_motion_detected":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
                 if topic == "event_pop_left":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                             self.pie.target_hit("pop_left")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                             self.pie.target_hit("pop_left")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_pop_middle":
-                    print(">>> event_pop_middle 1", self.state, message)
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        print(">>> event_pop_middle 2", self.state, message)
                         if message:
-                            print(">>> event_pop_middle 4", self.state, message)
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             self.pie.target_hit("pop_middle")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             self.pie.target_hit("pop_middle")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_pop_right":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                             self.pie.target_hit("pop_right")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                             self.pie.target_hit("pop_right")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_right_stack_ball_present":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
                 if topic == "event_right_stack_motion_detected":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
                 if topic == "event_roll_inner_left":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("rollover_left")
@@ -636,8 +481,6 @@ class Game(threading.Thread):
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("rollover_left")
@@ -646,19 +489,7 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_roll_inner_right":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("rollover_right")
@@ -668,8 +499,6 @@ class Game(threading.Thread):
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("rollover_right")
@@ -678,20 +507,7 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_roll_outer_left":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("rollover_left")
@@ -704,8 +520,6 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("rollover_left")
@@ -718,19 +532,7 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_roll_outer_right":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("rollover_right")
@@ -743,8 +545,6 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("rollover_right")
@@ -757,142 +557,43 @@ class Game(threading.Thread):
                             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                             time.sleep(0.1)
                             self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_slingshot_left":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("sling_left")
                             self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("sling_left")
                             self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_slingshot_right":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("sling_right")
                             self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("sling_right")
                             self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_spinner":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
                             self.pie.target_hit("spinner")
                             self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
                         if message:
                             self.pie.target_hit("spinner")
                             self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
                 if topic == "event_trough_sensor":
-                    if self.state == states.NO_PLAYER:
-                        pass
                     if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
+                        # matrix: initiate_trade_if_possible
                         pass
                 if topic == "response_lefttube_present":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
                 if topic == "response_rightttube_present":
-                    if self.state == states.NO_PLAYER:
-                        pass
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        pass
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_INITIATOR_IGNORED:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_IGNORES:
-                        pass
-                    if self.state == states.TRADE_RESPONDER_START_TRADE:
-                        pass
-                    if self.state == states.TRADE_SUCCEEDED:
-                        pass
+                    # to be completed in thorough version of game
+                    pass
             except queue.Empty:
                 pass
                 # animation goes here
@@ -962,9 +663,6 @@ class Mode_Barter(threading.Thread):
     def end(self):
         self.countdown.end()
         self.active = False
-
-    def event_button_comienza(self, message, origin, destination):
-        self.game_to_game[origin].add_to_queue("event_button_comienza",message)
 
     def event_button_derecha(self, message, origin, destination):
         self.game_to_game[origin].add_to_queue("event_button_derecha",message)
