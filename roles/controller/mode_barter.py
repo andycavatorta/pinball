@@ -617,6 +617,8 @@ class Mode_Barter(threading.Thread):
         self.countdown_seconds = 150
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
+
         self.games = [
             Game(self.hosts,"pinball1game","carousel1","pinball1display"),
             Game(self.hosts,"pinball2game","carousel2","pinball2display"),
