@@ -565,22 +565,22 @@ class Main(threading.Thread):
                     )
                 if topic == 'event_rollover_inner_left':
                     self.tb.publish(
-                        topic="event_rollover_inner_left",
+                        topic="event_roll_inner_left",
                         message=True
                     )
                 if topic == 'event_rollover_inner_right':
                     self.tb.publish(
-                        topic="event_rollover_inner_right",
+                        topic="event_roll_inner_right",
                         message=True
                     )
                 if topic == 'event_rollover_outer_left':
                     self.tb.publish(
-                        topic="event_rollover_outer_left",
+                        topic="event_roll_outer_left",
                         message=True
                     )
                 if topic == 'event_rollover_outer_right':
                     self.tb.publish(
-                        topic="event_rollover_outer_right",
+                        topic="event_roll_outer_right",
                         message=True
                     )
                 if topic == 'event_slingshot_left':
