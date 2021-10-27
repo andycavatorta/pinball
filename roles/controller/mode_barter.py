@@ -245,7 +245,7 @@ class Game(threading.Thread):
             #numbers:
                 # score
 
-            self.game_ref.pie.reset_pie()
+            self.pie.reset_pie()
             #next state: 
             print("mode_barter.py, Game transition_to_state 5")
             self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
