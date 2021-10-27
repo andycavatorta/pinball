@@ -804,18 +804,31 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
+        print("mode_barter.py, Mode_Barter begin 1")
         for display_hostname in self.display_hostnames:
+            print("mode_barter.py, Mode_Barter begin 2",display_hostname)
             self.hosts.hostnames[display_hostname].request_phrase("trueque")
+            print("mode_barter.py, Mode_Barter begin 3",display_hostname)
         for carousel_hostname in self.carousel_hostnames:
+            print("mode_barter.py, Mode_Barter begin 4",carousel_hostname)
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
+            print("mode_barter.py, Mode_Barter begin 5",carousel_hostname)
         for pinball_hostname in self.pinball_hostnames:
+            print("mode_barter.py, Mode_Barter begin 6",pinball_hostname)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+            print("mode_barter.py, Mode_Barter begin 7",pinball_hostname)
             game_ref = self.pinball_to_game[pinball_hostname]
+            print("mode_barter.py, Mode_Barter begin 8",game_ref)
             if pinball_hostname in self.hosts.get_games_with_players():
+                print("mode_barter.py, Mode_Barter begin 9",pinball_hostname)
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
+                print("mode_barter.py, Mode_Barter begin 10",pinball_hostname)
                 game_ref.pie.reset_pie()
+                print("mode_barter.py, Mode_Barter begin 11",pinball_hostname)
             else:
+                print("mode_barter.py, Mode_Barter begin 12",pinball_hostname)
                 game_ref.transition_to_state(states.NO_PLAYER)
+                print("mode_barter.py, Mode_Barter begin 13",pinball_hostname)
 
     def end(self):
         self.countdown.end()
