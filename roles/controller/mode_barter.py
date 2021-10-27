@@ -233,17 +233,22 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
 
             #light animation:
+            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
             # the pie
             # the collected fruits
             #chimes:
                 # game reactions
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
             #numbers:
                 # score
 
+            self.game_ref.pie.reset_pie()
             #next state: 
             print("mode_barter.py, Game transition_to_state 5")
+            self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
 
         if state_name == states.TRADE_NEEDED_BALL_IN_TROUGH:
             """
@@ -818,7 +823,6 @@ class Mode_Barter(threading.Thread):
             game_ref = self.pinball_to_game[pinball_hostname]
             if pinball_hostname in self.hosts.get_games_with_players():
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
-                game_ref.pie.reset_pie()
             else:
                 game_ref.transition_to_state(states.NO_PLAYER)
 
