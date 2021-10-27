@@ -15,7 +15,7 @@ class Lights_Pattern(threading.Thread):
         SINGLE_DOT = 0.125
         SPARKLE = 0.025
         STROKE = 0.125
-        THROB = 0.025
+        THROB = 0.05
         TRACE = 0.125
         WINK = 0.5
 
