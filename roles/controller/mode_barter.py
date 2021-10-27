@@ -201,7 +201,7 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
             #chimes:# all off
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
             self.hosts.hostnames[self.display_name].request_number(0)
 
@@ -240,7 +240,7 @@ class Game(threading.Thread):
             #chimes:
                 # game reactions
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
             #numbers:
                 # score
@@ -280,7 +280,7 @@ class Game(threading.Thread):
             #chimes:
                 # alternating ding between trading partners
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score
 
@@ -314,7 +314,7 @@ class Game(threading.Thread):
                 # some kind of carousel blinking
             #chimes:
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
 
         if state_name == states.TRADE_INITIATOR_START_TRADE:
@@ -352,7 +352,7 @@ class Game(threading.Thread):
             #chimes:
                 # ascending musical theme based on number of steps
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score
 
@@ -419,7 +419,7 @@ class Game(threading.Thread):
             #chimes:
                 # disappointment theme
             #phrase:
-            self.hosts.hostnames[self.display_name].request_phrase("trueque")
+            self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score decreased decrementally during animation
 
@@ -815,7 +815,7 @@ class Mode_Barter(threading.Thread):
     def begin(self):
         self.active = True
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_phrase("trueque")
+            self.hosts.hostnames[display_hostname].request_phrase("dinero")
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         for pinball_hostname in self.pinball_hostnames:
