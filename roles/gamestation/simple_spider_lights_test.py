@@ -6,7 +6,7 @@ import time
 
 SCK = board.SCK
 MOSI = board.MOSI
-LATCH = digitalio.DigitalInOut(board.D26)
+LATCH = digitalio.DigitalInOut(board.D22)
 
 number_of_boards = 3
 number_of_channels = number_of_boards * 24
