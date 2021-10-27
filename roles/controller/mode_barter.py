@@ -108,7 +108,7 @@ class Pie():
     def reset_pie(self):
         for target_name in self.pie_segments_triggered:
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"off")# light animation
-            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"stroke_on")# light segment
 
 class Game(threading.Thread):
     def __init__(self,fruit_name,hosts,game_name,carousel_name,display_name):
