@@ -469,7 +469,7 @@ class Mode_Attraction(threading.Thread):
 
     def begin(self):
         for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
             self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade

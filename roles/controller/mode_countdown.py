@@ -79,10 +79,10 @@ class Animation(threading.Thread):
                     print("games_with_players",games_with_players)
                     for pinball_hostname in self.pinball_hostnames:
                         if pinball_hostname in games_with_players:
-                            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","on")
+                            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
                             self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","on")
                         else:
-                            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+                            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
                             self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","off")
 
                     if len(data) == 5:

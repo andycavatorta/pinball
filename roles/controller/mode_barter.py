@@ -198,7 +198,7 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].enable_derecha_coil(False)   
             #light animation:
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
-            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
+            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial","off")
             #chimes:# all off
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
@@ -234,7 +234,7 @@ class Game(threading.Thread):
 
             #light animation:
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
-            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all","off")
+            self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial","off")
             # the pie
             # the collected fruits
             #chimes:
@@ -817,7 +817,7 @@ class Mode_Barter(threading.Thread):
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all","off")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             game_ref = self.pinball_to_game[pinball_hostname]
             if pinball_hostname in self.hosts.get_games_with_players():
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
