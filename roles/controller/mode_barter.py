@@ -241,14 +241,12 @@ class Game(threading.Thread):
                 # game reactions
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
-            self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
             #numbers:
                 # score
 
             self.pie.reset_pie()
             #next state: 
             print("mode_barter.py, Game transition_to_state 5")
-            self.hosts.hostnames[self.game_name].request_button_light_active("izquierda", True) 
 
         if state_name == states.TRADE_NEEDED_BALL_IN_TROUGH:
             """
