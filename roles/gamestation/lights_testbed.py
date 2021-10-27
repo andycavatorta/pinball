@@ -164,7 +164,6 @@ class Lights_Pattern(threading.Thread):
                     if not self.action_queue.empty():
                         break
 
-
             if action_name == self.action_names.BACK_STROKE_ON: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[0], channel])
@@ -174,7 +173,6 @@ class Lights_Pattern(threading.Thread):
                     if not self.action_queue.empty():
                         break
 
-                        
             if action_name == self.action_names.BACK_STROKE_OFF: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[-1], channel])
