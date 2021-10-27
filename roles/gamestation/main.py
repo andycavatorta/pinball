@@ -169,11 +169,9 @@ class Button_Light():
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
     def off(self):
-        print("Button_Light off",self.pin)
         GPIO.output(self.pin, GPIO.LOW)
         #print(self.pin, GPIO.LOW)
     def on(self):
-        print("Button_Light on",self.pin)
         GPIO.output(self.pin, GPIO.HIGH)
         #print(self.pin, GPIO.HIGH)
 
@@ -358,7 +356,7 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(topic, message, origin, destination)
+                #print(topic, message, origin, destination)
 
                 try: 
                     topic = topic.decode('UTF-8')
@@ -619,7 +617,7 @@ class Main(threading.Thread):
                     if destination == self.tb.get_hostname():
                         button_name, button_state = message
                         if button_state:
-                            print("if topic == 'request_button_light_active'",button_state)
+                            #print("if topic == 'request_button_light_active'",button_state)
                             self.button_lights.names[button_name].on()
                         else:
                             self.button_lights.names[button_name].off()
