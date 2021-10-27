@@ -3,7 +3,6 @@ import board
 import busio
 import digitalio
 import queue
-import RPi.GPIO as GPIO
 import threading
 import time
 import traceback
@@ -252,7 +251,7 @@ class Lights(threading.Thread):
         threading.Thread.__init__(self)
         self.channels = [0]*72
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
-        latch = digitalio.DigitalInOut(board.D5)
+        latch = digitalio.DigitalInOut(board.D22)
         self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
         
         for channel_number in range(len(self.channels)):
