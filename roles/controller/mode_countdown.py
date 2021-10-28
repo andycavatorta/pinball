@@ -64,7 +64,6 @@ class Animation(threading.Thread):
     def run(self):
         while True:
             try:
-                #
                 animation_command,data = self.queue.get(True,self.animation_interval)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
@@ -76,7 +75,7 @@ class Animation(threading.Thread):
                     continue
                 if animation_command == "set_comienza_buttons":
                     games_with_players = self.hosts.get_games_with_players()
-                    print("games_with_players",games_with_players)
+                    """
                     for pinball_hostname in self.pinball_hostnames:
                         if pinball_hostname in games_with_players:
                             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
@@ -84,26 +83,22 @@ class Animation(threading.Thread):
                         else:
                             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
                             self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","off")
-
+                    """
                     if len(data) == 5:
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                     self.comienza_button_order = data
                     continue
             except queue.Empty:
                 if self.active:
-
                     for display_hostname in self.display_hostnames:
                         self.hosts.hostnames[display_hostname].request_number(300-self.animation_frame_counter)
-
                     if self.animation_frame_counter % 3==0: # 1 second intervals
                         pitch_numeral = next(self.cycle_chimes)
                         if pitch_numeral != -1:
                             pitch_name = self.piano_chimes[pitch_numeral]
                             for display_hostname in self.display_hostnames:
                                 self.hosts.hostnames[display_hostname].request_score(pitch_name)
-
                     if self.animation_frame_counter % 10 ==0: # 1 second intervals
-
                         if self.animation_frame_counter % 20 ==0: # alternate seconds A
                             for pinball_hostname in self.pinball_hostnames:
                                 # lower left sign on
