@@ -506,7 +506,7 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
             self.hosts.hostnames[self.game_name].enable_derecha_coil(False)   
             #light animation:
-            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial","off")
             #chimes:# all off
             #phrase:
@@ -515,6 +515,8 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.display_name].request_number(0)
 
             #next state: n/a until attraction or countdown modes
+            self.pie.reset_pie()
+
 
             print("mode_barter.py, Game transition_to_state 3")
         if state_name == states.TRADE_NOT_NEEDED:
