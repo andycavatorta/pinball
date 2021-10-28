@@ -337,7 +337,8 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
 
-                time.sleep(.33)
+                self.hosts.hostnames[self.origin].cmd_playfield_lights("pie","energize")# light animation
+                time.sleep(.5)
                 self.reset_pie()
                 self.pie_full_handler()
 
