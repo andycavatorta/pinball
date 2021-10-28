@@ -19,6 +19,9 @@ class Lights_Pattern(threading.Thread):
 
     class action_names():
         ON = "on"
+        LOW = "low"
+        MED = "med"
+        HIGH = "high"
         OFF = "off"
         SPARKLE = "sparkle"
         THROB = "throb"
@@ -75,6 +78,16 @@ class Lights_Pattern(threading.Thread):
 
             if action_name == self.action_names.ON: 
                 self.upstream_queue.put([self.levels[6], channel])
+
+            if action_name == self.action_names.LOW: 
+                self.upstream_queue.put([self.levels[3], channel])
+            if action_name == self.action_names.MED: 
+                self.upstream_queue.put([self.levels[5], channel])
+            if action_name == self.action_names.HIGH: 
+                self.upstream_queue.put([self.levels[7], channel])
+
+
+
 
             if action_name == self.action_names.SPARKLE: 
                 while True:

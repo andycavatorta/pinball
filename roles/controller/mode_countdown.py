@@ -75,7 +75,6 @@ class Animation(threading.Thread):
                     continue
                 if animation_command == "set_comienza_buttons":
                     games_with_players = self.hosts.get_games_with_players()
-                    """
                     for pinball_hostname in self.pinball_hostnames:
                         if pinball_hostname in games_with_players:
                             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
@@ -83,7 +82,6 @@ class Animation(threading.Thread):
                         else:
                             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
                             self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","off")
-                    """
                     if len(data) == 5:
                         self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
                     self.comienza_button_order = data
