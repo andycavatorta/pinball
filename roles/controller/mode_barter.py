@@ -873,10 +873,11 @@ class Game(threading.Thread):
                 topic, message = self.queue.get(True)
                 print("mode_barter.py Game.run",topic, message)
                 if topic == "event_button_trueque":
-                    if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        self.parent_ref.matrix.initiate_or_respond(self)
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        self.parent_ref.matrix.initiate_or_respond(self)
+                    if message:
+                        if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
+                            self.parent_ref.matrix.initiate_or_respond(self)
+                        if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
+                            self.parent_ref.matrix.initiate_or_respond(self)
 
                 if topic == "event_left_stack_ball_present":
                     # to be completed in thorough version of game
