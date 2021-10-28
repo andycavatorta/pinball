@@ -16,19 +16,22 @@ import threading
 import time
 
 
+
+
+class trade_states:
+    NO_TRADE = "no_trade"
+    TRADE_INITIATED = "trade_initiated"
+    TRADE_IGNORED = "trade_ignored"
+    TRADE_RECIPROCATED = "trade_reciprocated"
+    TRADE_SUCCEEDED = "trade_succeeded"
+
+
 class Matrix(threading.Thread):
     """
     this class handles animations in the carousels.  and possiblly a little in playfields
     this class handles most transitions between states transition_to_state()
     """
     def __init__(self, hosts, games):
-        class trade_states():
-            NO_TRADE = "no_trade"
-            TRADE_INITIATED = "trade_initiated"
-            TRADE_IGNORED = "trade_ignored"
-            TRADE_RECIPROCATED = "trade_reciprocated"
-            TRADE_SUCCEEDED = "trade_succeeded"
-
         threading.Thread.__init__(self)
 
         self.hosts = hosts
@@ -257,7 +260,7 @@ class Matrix(threading.Thread):
                         highest_successful_trades = trade_candidate.successful_trades
 
             print("3 initiate_trade_if_possible", trade_candidates)
-            self.trade_state = self.trade_states.TRADE_INITIATED
+            self.trade_state = trade_states.TRADE_INITIATED
             self.trader_a_ref = trader_a_ref
             self.trader_b_ref = trader_b_ref
             trader_a_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
