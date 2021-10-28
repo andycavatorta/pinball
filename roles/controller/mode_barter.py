@@ -1059,7 +1059,7 @@ class Mode_Barter(threading.Thread):
             "pina":"pinball15game"
         }
         # need system above self.games to keep track of states of trades
-        self.matrix = Matrix(self.hosts), self.games
+        self.matrix = Matrix(self.hosts, self.games)
         self.start()
 
     def begin(self):
