@@ -518,7 +518,7 @@ class Pinball(Host):
             "trail_sling_left":None,
             "trail_pop_left":None,
             "trail_pop_right":None,
-            "trail_pop_center":None,
+            "trail_pop_middle":None,
             "trail_spinner":None,
             "pie_rollover_right":None,
             "pie_rollover_left":None,
@@ -526,7 +526,7 @@ class Pinball(Host):
             "pie_sling_left":None,
             "pie_pop_left":None,
             "pie_pop_right":None,
-            "pie_pop_center":None,
+            "pie_pop_middle":None,
             "pie_spinner":None,
             "sign_arrow_left":None,
             "sign_bottom_right":None,
@@ -984,7 +984,7 @@ class Hosts():
         #if topic == "event_pop_left": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_left(message)
         #if topic == "event_pop_middle": # unclear what state data should be stored here
-        #    self.hostnames[origin].set_pop_center(message)
+        #    self.hostnames[origin].set_pop_middle(message)
         #if topic == "event_pop_right": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_right(message)
         if topic == "event_right_stack_ball_present":

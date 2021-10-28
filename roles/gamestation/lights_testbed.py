@@ -254,7 +254,7 @@ class Lights(threading.Thread):
         self.trail_sling_left = Lights_Pattern(self.pattern_channels.TRAIL_SLING_LEFT, self.queue)
         self.trail_pop_left = Lights_Pattern(self.pattern_channels.TRAIL_POP_LEFT, self.queue)
         self.trail_pop_right = Lights_Pattern(self.pattern_channels.TRAIL_POP_RIGHT, self.queue)
-        self.trail_pop_center = Lights_Pattern(self.pattern_channels.TRAIL_POP_CENTER, self.queue)
+        self.trail_pop_middle = Lights_Pattern(self.pattern_channels.TRAIL_POP_CENTER, self.queue)
         self.trail_spinner = Lights_Pattern(self.pattern_channels.TRAIL_SPINNER, self.queue)
         self.pie_rollover_right = Lights_Pattern(self.pattern_channels.PIE_ROLLOVER_RIGHT, self.queue)
         self.pie_rollover_left = Lights_Pattern(self.pattern_channels.PIE_ROLLOVER_LEFT, self.queue)
@@ -262,7 +262,7 @@ class Lights(threading.Thread):
         self.pie_sling_left = Lights_Pattern(self.pattern_channels.PIE_SLING_LEFT, self.queue)
         self.pie_pop_left = Lights_Pattern(self.pattern_channels.PIE_POP_LEFT, self.queue)
         self.pie_pop_right = Lights_Pattern(self.pattern_channels.PIE_POP_RIGHT, self.queue)
-        self.pie_pop_center = Lights_Pattern(self.pattern_channels.PIE_POP_CENTER, self.queue)
+        self.pie_pop_middle = Lights_Pattern(self.pattern_channels.PIE_POP_CENTER, self.queue)
         self.pie_spinner = Lights_Pattern(self.pattern_channels.PIE_SPINNER, self.queue)
         self.sign_arrow_left = Lights_Pattern(self.pattern_channels.SIGN_ARROW_LEFT, self.queue)
         self.sign_arrow_right = Lights_Pattern(self.pattern_channels.SIGN_ARROW_RIGHT, self.queue)
@@ -289,7 +289,7 @@ def test_all():
         lights.sign_arrow_left.energize()
         time.sleep(2)
 
-        lights.pie_pop_center.on()        
+        lights.pie_pop_middle.on()        
         lights.pie_pop_left.off()
         lights.pie_rollover_left.on()
         lights.pie_sling_left.off()
@@ -303,7 +303,7 @@ def test_all():
 
         lights.trail_spinner.back_stroke_off()
         lights.trail_pop_right.back_stroke_on()
-        lights.trail_pop_center.back_stroke_off()
+        lights.trail_pop_middle.back_stroke_off()
         lights.trail_pop_left.back_stroke_on()
 
         lights.trail_rollover_right.stroke_on()
@@ -315,7 +315,7 @@ def test_all():
         lights.sign_arrow_right.energize()
         time.sleep(2)
 
-        lights.pie_pop_center.off()        
+        lights.pie_pop_middle.off()        
         lights.pie_pop_left.on()
         lights.pie_rollover_left.off()
         lights.pie_sling_left.on()
@@ -329,7 +329,7 @@ def test_all():
 
         lights.trail_spinner.stroke_off()
         lights.trail_pop_right.stroke_on()
-        lights.trail_pop_center.stroke_off()
+        lights.trail_pop_middle.stroke_off()
         lights.trail_pop_left.stroke_on()
 
         lights.trail_rollover_right.back_stroke_on()
@@ -375,7 +375,7 @@ lights.trail_rollover_left
 lights.trail_sling_right  +
 lights.trail_sling_left  +
 lights.trail_pop_left  -
-lights.trail_pop_center  ...
+lights.trail_pop_middle  ...
 lights.trail_pop_right  +
 lights.trail_spinner  +
 lights.pie_rollover_right +
@@ -384,7 +384,7 @@ lights.pie_sling_right  +
 lights.pie_sling_left  -
 lights.pie_pop_left  -
 lights.pie_pop_right  +
-lights.pie_pop_center  -
+lights.pie_pop_middle  -
 lights.pie_spinner  +
 lights.sign_arrow_left  +
 lights.sign_arrow_right  +
@@ -412,7 +412,7 @@ lights.trail_sling_right.off()
 lights.trail_sling_left.off()
 lights.trail_pop_left.off()
 lights.trail_pop_right.off()
-lights.trail_pop_center.off()
+lights.trail_pop_middle.off()
 lights.trail_spinner.off()
 lights.pie_rollover_right.off()
 lights.pie_rollover_left.off()
@@ -420,7 +420,7 @@ lights.pie_sling_right.off()
 lights.pie_sling_left.off()
 lights.pie_pop_left.off()
 lights.pie_pop_right.off()
-lights.pie_pop_center.off()
+lights.pie_pop_middle.off()
 lights.pie_spinner.off()
 lights.sign_arrow_left.off()
 lights.sign_arrow_right.off()

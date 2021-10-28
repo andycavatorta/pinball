@@ -413,8 +413,8 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.trail_pop_left
                         if group_name == "trail_pop_right":
                             group = self.gamestation_lights.trail_pop_right
-                        if group_name == "trail_pop_center":
-                            group = self.gamestation_lights.trail_pop_center
+                        if group_name == "trail_pop_middle":
+                            group = self.gamestation_lights.trail_pop_middle
                         if group_name == "trail_spinner":
                             group = self.gamestation_lights.trail_spinner
                         if group_name == "pie_rollover_right":
@@ -429,8 +429,8 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.pie_pop_left
                         if group_name == "pie_pop_right":
                             group = self.gamestation_lights.pie_pop_right
-                        if group_name == "pie_pop_center":
-                            group = self.gamestation_lights.pie_pop_center
+                        if group_name == "pie_pop_middle":
+                            group = self.gamestation_lights.pie_pop_middle
                         if group_name == "pie_spinner":
                             group = self.gamestation_lights.pie_spinner
                         if group_name == "sign_arrow_left":
