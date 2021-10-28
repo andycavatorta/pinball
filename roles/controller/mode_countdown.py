@@ -105,7 +105,7 @@ class Animation(threading.Thread):
                             for display_hostname in self.display_hostnames:
                                 self.hosts.hostnames[display_hostname].request_score(pitch_name)
                     if self.animation_frame_counter % 10 ==0: # 1 second intervals
-                        get_games_with_players = self.hosts.get_games_with_players():
+                        get_games_with_players = self.hosts.get_games_with_players()
                         if self.animation_frame_counter % 20 ==0: # alternate seconds A
                             for pinball_hostname in self.pinball_hostnames:
                                 self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
