@@ -233,8 +233,8 @@ class Matrix(threading.Thread):
                 ["cmd_carousel_lights",self.responder.carousel_name, fruit_name, "med"]
                 )
             fruit_path_after.append(animation_frame)
-        self.add_to_queue(fruit_path_momentary)
-        self.add_to_queue(fruit_path_after)
+        self.add_to_queue("animation",fruit_path_momentary)
+        self.add_to_queue("animation",fruit_path_after)
 
     def trade_responded_animation(self):
         fruit_path_momentary = []
