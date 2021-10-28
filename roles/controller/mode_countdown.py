@@ -109,7 +109,7 @@ class Animation(threading.Thread):
                         if self.animation_frame_counter % 20 ==0: # alternate seconds A
                             for pinball_hostname in self.pinball_hostnames:
                                 self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
-                                self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("all","on")
+                                self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","on")
                                 self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","off")
                                 if pinball_hostname not in get_games_with_players:
                                     self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False)
@@ -120,7 +120,7 @@ class Animation(threading.Thread):
                                 if pinball_hostname not in get_games_with_players:
                                     self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
                                     self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
-                                    self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("all","off")
+                                    self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname]].cmd_carousel_lights("all","off")
 
                     self.animation_frame_counter += 1
                     if self.animation_frame_counter > self.animation_frame_counter_limit:
