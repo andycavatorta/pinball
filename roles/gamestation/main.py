@@ -534,27 +534,27 @@ class Main(threading.Thread):
                 if topic == 'event_button_comienza':
                     self.tb.publish(
                         topic="event_button_comienza",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_button_derecha':
                     self.tb.publish(
                         topic="event_button_derecha",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_button_dinero':
                     self.tb.publish(
                         topic="event_button_dinero",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_button_izquierda':
                     self.tb.publish(
                         topic="event_button_izquierda",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_button_trueque':
                     self.tb.publish(
                         topic="event_button_trueque",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_pop_left':
                     self.tb.publish(
@@ -574,22 +574,22 @@ class Main(threading.Thread):
                 if topic == 'event_rollover_inner_left':
                     self.tb.publish(
                         topic="event_roll_inner_left",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_rollover_inner_right':
                     self.tb.publish(
                         topic="event_roll_inner_right",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_rollover_outer_left':
                     self.tb.publish(
                         topic="event_roll_outer_left",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_rollover_outer_right':
                     self.tb.publish(
                         topic="event_roll_outer_right",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_slingshot_left':
                     self.tb.publish(
