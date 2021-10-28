@@ -220,6 +220,7 @@ class Lights(threading.Thread):
         TRAIL_POP_CENTER = [69,68,67]
         TRAIL_POP_RIGHT =  [36,37,38]
         TRAIL_SPINNER = [39,40,41,42,43,44,45,46,47]
+        PIE = [27,28,29,54,55,56,24,25,26,57,58,59,51,52,52,48,49,50,33,34,35,30,31,32]
         PIE_ROLLOVER_RIGHT = [27,28,29]
         PIE_ROLLOVER_LEFT = [54,55,56]
         PIE_SLING_RIGHT = [24,25,26]
@@ -291,6 +292,7 @@ class Lights(threading.Thread):
         self.pie_pop_right = Lights_Pattern(self.pattern_channels.PIE_POP_RIGHT, self.queue)
         self.pie_pop_middle = Lights_Pattern(self.pattern_channels.PIE_POP_CENTER, self.queue)
         self.pie_spinner = Lights_Pattern(self.pattern_channels.PIE_SPINNER, self.queue)
+        self.pie = Lights_Pattern(self.pattern_channels.PIE, self.queue)
         self.ripple_1 = Lights_Pattern(self.pattern_channels.RIPPLE_1, self.queue)
         self.ripple_2 = Lights_Pattern(self.pattern_channels.RIPPLE_2, self.queue)
         self.ripple_3 = Lights_Pattern(self.pattern_channels.RIPPLE_3, self.queue)

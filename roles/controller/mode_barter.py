@@ -336,6 +336,7 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
+
                 time.sleep(.33)
                 self.reset_pie()
                 self.pie_full_handler()
@@ -1162,7 +1163,7 @@ class Mode_Barter(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
+                #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
