@@ -232,6 +232,7 @@ class Matrix(threading.Thread):
 
     def initiate_trade_if_possible(self, trader_a_ref):
         # if this game has enough fruits to trade. >1? >2?
+        print("-1 initiate_trade_if_possible",trader_a_ref.carousel_fruits)
         if len(trader_a_ref.carousel_fruits) > 1:
             # find trader_b game with lowest self.successful_trades that is eligible to trade
             print("0 initiate_trade_if_possible")
