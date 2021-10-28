@@ -994,7 +994,7 @@ class Game(threading.Thread):
                 if topic == "event_trough_sensor":
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
-                            trade_is_possible = self.parent_ref.matrix.initiate_trade_if_possible(self.game_name)
+                            trade_is_possible = self.parent_ref.matrix.initiate_trade_if_possible(self)
                             self.ball_in_trough = True
                         else:
                             self.ball_in_trough = False
