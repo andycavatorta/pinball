@@ -313,6 +313,7 @@ class Matrix(threading.Thread):
                 trader_b_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_PLAY)
 
     def initiate_or_respond(self,game_ref):
+        print("initiate_or_respond",game_ref.fruit_name)
         # this is where self.initiator and self.responder are assigned, 
         # using trader_a_ref and trader_b_ref to figure figure out who the trading partner is
         if self.initiator == None:
