@@ -232,7 +232,7 @@ class Matrix(threading.Thread):
 
     def initiate_trade_if_possible(self, trader_a_ref):
         # if this game has enough fruits to trade. >1? >2?
-        if len(trader_a_ref.carousel_fruits) >= 2:
+        if len(trader_a_ref.carousel_fruits) > 1:
             # find trader_b game with lowest self.successful_trades that is eligible to trade
             print("0 initiate_trade_if_possible")
             trade_candidates = []
@@ -240,7 +240,7 @@ class Matrix(threading.Thread):
                 game_ref = self.games[game_name]
                 if game_ref.fruit_name != trader_a_ref.fruit_name: # if these aren't the same
                     if game_ref.state == states.TRADE_NOT_NEEDED: # if this game is in play
-                        if len(game_ref.carousel_fruits) >= 2:
+                        if len(game_ref.carousel_fruits) > 1:
                             trade_candidates.append(game_ref)
             print("1 initiate_trade_if_possible", trade_candidates)
             if len(trade_candidates) == 0:
@@ -256,7 +256,7 @@ class Matrix(threading.Thread):
                         highest_successful_trades = trade_candidate.successful_trades
 
             print("3 initiate_trade_if_possible", trade_candidates)
-            self.trade_state = trade_states.TRADE_INITIATED
+            self.trade_state = self.trade_states.TRADE_INITIATED
             self.trader_a_ref = trader_a_ref
             self.trader_b_ref = trader_b_ref
             trader_a_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
