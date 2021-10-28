@@ -293,7 +293,7 @@ class Matrix(threading.Thread):
 
 
 
-class states:
+class states():
     NO_PLAYER = "NO_PLAYER"
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
     TRADE_NEEDED_BALL_IN_TROUGH = "TRADE_NEEDED_BALL_IN_TROUGH"
@@ -306,7 +306,7 @@ class states:
     WINNER = "winner"
     NOT_WINNER = "not_winner"
 
-class trade_roles:
+class trade_roles():
     INITIATOR = "initiator"
     RESPONDER = "responder"
     NONE = "none"
