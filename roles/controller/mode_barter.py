@@ -278,17 +278,16 @@ class Matrix(threading.Thread):
 
     def run(self):
         while True:
-            try:
-                topic, message = self.queue.get(True)
-                if topic == "animation":
-                    for frame in message:
-                        command, destination_hostname, device, value = frame
-                        if command == "cmd_carousel_lights":
-                            self.hosts.hostnames[destination_hostname].cmd_carousel_lights(device, value)
-                            time.sleep(self.animation_interval)
-                if topic == "transition":
-                    game_ref,state = message
-                    game_ref.transition_to_state(state)
+            topic, message = self.queue.get(True)
+            if topic == "animation":
+                for frame in message:
+                    command, destination_hostname, device, value = frame
+                    if command == "cmd_carousel_lights":
+                        self.hosts.hostnames[destination_hostname].cmd_carousel_lights(device, value)
+                        time.sleep(self.animation_interval)
+            if topic == "transition":
+                game_ref,state = message
+                game_ref.transition_to_state(state)
 
 
 class states:
