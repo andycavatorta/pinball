@@ -30,6 +30,18 @@ class Animation(threading.Thread):
 
     def begin(self):
         print("mode_attraction Animation.begin")
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False)
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", False) 
+            #button actions:
+            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
+            self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)   
         self.animation_frame_counter = 0
         self.active = True
 
