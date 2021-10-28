@@ -235,10 +235,9 @@ class Matrix(threading.Thread):
 
     def initiate_trade_if_possible(self, trader_a_ref):
         # if this game has enough fruits to trade. >1? >2?
-        print("-1 initiate_trade_if_possible",trader_a_ref.carousel_fruits)
+        print("0 initiate_trade_if_possible",trader_a_ref.carousel_fruits)
         if len(trader_a_ref.carousel_fruits) > 1:
             # find trader_b game with lowest self.successful_trades that is eligible to trade
-            print("0 initiate_trade_if_possible")
             trade_candidates = []
             for game_name in self.games:
                 game_ref = self.games[game_name]
@@ -246,25 +245,26 @@ class Matrix(threading.Thread):
                     if game_ref.state == states.TRADE_NOT_NEEDED: # if this game is in play
                         if len(game_ref.carousel_fruits) > 1:
                             trade_candidates.append(game_ref)
-            print("1 initiate_trade_if_possible", trade_candidates)
             if len(trade_candidates) == 0:
                 return
             if len(trade_candidates) == 1:
                 trader_b_ref = trade_candidates[0]
-                print("2 initiate_trade_if_possible", trade_candidates)
+            print("1 initiate_trade_if_possible", trade_candidates)
             if len(trade_candidates) > 1:
+                print("2 initiate_trade_if_possible")
                 highest_successful_trades = 0
+                print("3 initiate_trade_if_possible")
                 for trade_candidate in trade_candidates:
+                    print("4 initiate_trade_if_possible",trade_candidate)
                     if trade_candidate.successful_trades > highest_successful_trades:
+                        print("4 initiate_trade_if_possible",trade_candidate.successful_trades,highest_successful_trades)
                         trader_b_ref = trade_candidate
                         highest_successful_trades = trade_candidate.successful_trades
-
-            print("3 initiate_trade_if_possible", trade_candidates)
+            print("5 initiate_trade_if_possible")
             self.trade_state = trade_states.TRADE_INITIATED
             self.trader_a_ref = trader_a_ref
             self.trader_b_ref = trader_b_ref
             trader_a_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
-            print("4 initiate_trade_if_possible", trade_candidates)
             if trader_b_ref.ball_in_trough: # to do : not thread safe
                 trader_b_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
             else:

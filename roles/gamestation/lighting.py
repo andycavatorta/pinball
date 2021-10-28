@@ -124,7 +124,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.ENERGIZE: 
                 for divisor in [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0]:
                     for channel in self.channels:
-                        self.upstream_queue.put([self.levels[0], [channel]])
+                        self.upstream_queue.put([self.levels[7], [channel]])
                     time.sleep(self.action_times.ENERGIZE/divisor)
                     for channel in self.channels:
                         self.upstream_queue.put([self.levels[0], [channel]])
@@ -134,7 +134,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.OFF: 
                 self.upstream_queue.put([self.levels[0], channel])
             if action_name == self.action_names.ON: 
-                self.upstream_queue.put([self.levels[1], channel])
+                self.upstream_queue.put([self.levels[-1], channel])
 
             if action_name == self.action_names.LOW: 
                 self.upstream_queue.put([self.levels[3], channel])
