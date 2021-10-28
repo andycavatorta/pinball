@@ -291,9 +291,6 @@ class Matrix(threading.Thread):
                 game_ref,state = message
                 game_ref.transition_to_state(state)
 
-
-
-
 class states:
     NO_PLAYER = "NO_PLAYER"
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
@@ -396,17 +393,29 @@ class Game(threading.Thread):
                 break
 
     def increment_decrement_fruits(self,increment_decrement_bool):
+        print("1 increment_decrement_fruits",increment_decrement_bool)
         if len(self.carousel_fruits) > 4:
             return False
+        print("2 increment_decrement_fruits")
         if increment_decrement_bool: # incrementing
+            print("3 increment_decrement_fruits", self.carousel_fruits)
+            print("4 increment_decrement_fruits", len(self.carousel_fruits))
+            print("5 increment_decrement_fruits", self.fruit_order[len(self.carousel_fruits)])
+            print("6 increment_decrement_fruits", self.carousel_fruits)
             self.carousel_fruits.append(self.fruit_order[len(self.carousel_fruits)])
+            print("7 increment_decrement_fruits", self.carousel_fruits)
         else: # decrementing
             self.fruit_name.pop()
         for carousel_fruit_name in self.fruit_order:
-            if carousel_fruit_name in  self.carousel_fruits:
+            print("8 increment_decrement_fruits", carousel_fruit_name)
+            if carousel_fruit_name in self.carousel_fruits:
+                print("9 increment_decrement_fruits", carousel_fruit_name)
                 self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(carousel_fruit_name,"med")
+                print("10 increment_decrement_fruits", carousel_fruit_name)
             else:
+                print("11 increment_decrement_fruits", carousel_fruit_name)
                 self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(carousel_fruit_name,"off")
+                print("12 increment_decrement_fruits", carousel_fruit_name)
         return True
                 
     def pie_full_handler(self):
