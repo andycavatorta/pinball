@@ -384,13 +384,18 @@ class Game(threading.Thread):
         self.start()
 
     def increment_score(self, increment_value = 1):
+        print("0 increment_score")
         for iterator in range(increment_value):
+            print("1 increment_score")
             self.score += 1
+            print("2 increment_score")
             self.hosts.hostnames[self.display_name].request_number(self.score)
+            print("3 increment_score")
             time.sleep(0.01)
             if self.score == 999:
                 # to do: transition to states.WINNER and others to states.NOT_WINNER
                 break
+        print("4 increment_score")
 
     def increment_decrement_fruits(self,increment_decrement_bool):
         print("1 increment_decrement_fruits",increment_decrement_bool)
