@@ -276,7 +276,6 @@ class Matrix(threading.Thread):
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
 
-"""
     def run(self):
         while True:
             try:
@@ -288,9 +287,8 @@ class Matrix(threading.Thread):
                             self.hosts.hostnames[destination_hostname].cmd_carousel_lights(device, value)
                             time.sleep(self.animation_interval)
                 if topic == "transition":
-                    game_ref, state = message
+                    game_ref,state = message
                     game_ref.transition_to_state(state)
-"""
 
 
 class states:
