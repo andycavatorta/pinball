@@ -256,7 +256,7 @@ class Matrix(threading.Thread):
                 print("3 initiate_trade_if_possible")
                 for trade_candidate in trade_candidates:
                     print("4 initiate_trade_if_possible",trade_candidate)
-                    if trade_candidate.successful_trades > highest_successful_trades:
+                    if trade_candidate.successful_trades >= highest_successful_trades:
                         print("4 initiate_trade_if_possible",trade_candidate.successful_trades,highest_successful_trades)
                         trader_b_ref = trade_candidate
                         highest_successful_trades = trade_candidate.successful_trades
