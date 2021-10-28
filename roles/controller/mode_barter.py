@@ -114,49 +114,89 @@ class Matrix(threading.Thread):
         else:
             if origin_fruit == "coco":
                 if destination_fruit == "naranja":
-                    return ["coco", "naranja"].reverse()
+                    path = ["coco", "naranja"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "mango":
-                    return ["coco", "naranja", "mango"].reverse()
+                    path = ["coco", "naranja", "mango"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "sandia":
-                    return ["coco", "naranja", "mango","sandia"].reverse()
+                    path = ["coco", "naranja", "mango","sandia"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "pina":
-                    return ["coco", "naranja", "mango","sandia","pina"].reverse()
+                    path = ["coco", "naranja", "mango","sandia","pina"]
+                    path.reverse()
+                    return path
             if origin_fruit == "naranja":
                 if destination_fruit == "mango":
-                    return ["naranja","mango"].reverse()
+                    path = ["naranja","mango"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "sandia":
-                    return ["naranja","mango","sandia"].reverse()
+                    path = ["naranja","mango","sandia"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "pina":
-                    return ["naranja","mango","sandia","pina"].reverse()
+                    path = ["naranja","mango","sandia","pina"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "coco":
-                    return ["naranja","mango","sandia","pina","coco"].reverse()
+                    path = ["naranja","mango","sandia","pina","coco"]
+                    path.reverse()
+                    return path
             if origin_fruit == "mango":
                 if destination_fruit == "sandia":
-                    return ["mango","sandia"].reverse()
+                    path = ["mango","sandia"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "pina":
-                    return ["mango","sandia","pina"].reverse()
+                    path = ["mango","sandia","pina"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "coco":
-                    return ["mango","sandia","pina","coco"].reverse()
+                    path = ["mango","sandia","pina","coco"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "naranja":
-                    return ["mango","sandia","pina","coco","naranja"].reverse()
+                    path = ["mango","sandia","pina","coco","naranja"]
+                    path.reverse()
+                    return path
             if origin_fruit == "sandia":
                 if destination_fruit == "pina":
-                    return ["sandia","pina"].reverse()
+                    path = ["sandia","pina"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "coco":
-                    return ["sandia","pina","coco"].reverse()
+                    path = ["sandia","pina","coco"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "naranja":
-                    return ["sandia","pina","coco","naranja"].reverse()
+                    path = ["sandia","pina","coco","naranja"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "mango":
-                    return ["sandia","pina","coco","naranja","mango"].reverse()
+                    path = ["sandia","pina","coco","naranja","mango"]
+                    path.reverse()
+                    return path
             if origin_fruit == "pina":
                 if destination_fruit == "coco":
-                    return ["pina","coco"].reverse()
+                    path = ["pina","coco"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "naranja":
-                    return ["pina","coco","naranja"].reverse()
+                    path = ["pina","coco","naranja"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "mango":
-                    return ["pina","coco","naranja","mango"].reverse()
+                    path = ["pina","coco","naranja","mango"]
+                    path.reverse()
+                    return path
                 if destination_fruit == "sandia":
-                    return ["pina","coco","naranja","mango","sandia"].reverse()
+                    path = ["pina","coco","naranja","mango","sandia"]
+                    path.reverse()
+                    return path
 
     def trade_initiated_animation(self):
         self.rejection_countdown = 50 # 5 seconds
