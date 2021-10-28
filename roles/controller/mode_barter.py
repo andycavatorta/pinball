@@ -21,7 +21,7 @@ class Matrix(threading.Thread):
     this class handles animations in the carousels.  and possiblly a little in playfields
     this class handles most transitions between states transition_to_state()
     """
-    def __init__(self):
+    def __init__(self, hosts, games):
         class trade_states():
             NO_TRADE = "no_trade"
             TRADE_INITIATED = "trade_initiated"
@@ -29,7 +29,9 @@ class Matrix(threading.Thread):
             TRADE_RECIPROCATED = "trade_reciprocated"
             TRADE_SUCCEEDED = "trade_succeeded"
 
-        threading.Thread.__init__(self, games)
+        threading.Thread.__init__(self)
+
+        self.hosts = hosts
         self.games = games
         self.queue = queue.Queue()
         self.trade_state = trade_states.NO_TRADE
@@ -290,6 +292,8 @@ class Matrix(threading.Thread):
                 game_ref.transition_to_state(state)
 
 
+
+
 class states:
     NO_PLAYER = "NO_PLAYER"
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
@@ -342,7 +346,7 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"stroke_on")# light segment
 
 class Game(threading.Thread):
-    def __init__(self,fruit_name,hosts,game_name,carousel_name,display_name):
+    def __init__(self,fruit_name,hosts,game_name,carousel_name,display_name, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.fruit_name = fruit_name
@@ -797,9 +801,9 @@ class Game(threading.Thread):
                 print("mode_barter.py Game.run",topic, message)
                 if topic == "event_button_trueque":
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        matrix.initiate_or_respond(self)
+                        self.parent_ref.matrix.initiate_or_respond(self)
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        matrix.initiate_or_respond(self)
+                        self.parent_ref.matrix.initiate_or_respond(self)
 
                 if topic == "event_left_stack_ball_present":
                     # to be completed in thorough version of game
@@ -968,7 +972,7 @@ class Game(threading.Thread):
                 if topic == "event_trough_sensor":
                     if self.state == states.TRADE_NOT_NEEDED:
                         if message:
-                            trade_is_possible = matrix.initiate_trade_if_possible(self.game_name)
+                            trade_is_possible = self.parent_ref.matrix.initiate_trade_if_possible(self.game_name)
                             self.ball_in_trough = True
                         else:
                             self.ball_in_trough = False
@@ -1006,11 +1010,11 @@ class Mode_Barter(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
 
         self.games = {
-            "coco":Game("coco",self.hosts,"pinball1game","carousel1","pinball1display"),
-            "naranja":Game("naranja",self.hosts,"pinball2game","carousel2","pinball2display"),
-            "mango":Game("mango",self.hosts,"pinball3game","carousel3","pinball3display"),
-            "sandia":Game("sandia",self.hosts,"pinball4game","carousel4","pinball4display"),
-            "pina":Game("pina",self.hosts,"pinball5game","carousel5","pinball5display")
+            "coco":Game("coco",self.hosts,"pinball1game","carousel1","pinball1display",self),
+            "naranja":Game("naranja",self.hosts,"pinball2game","carousel2","pinball2display",self),
+            "mango":Game("mango",self.hosts,"pinball3game","carousel3","pinball3display",self),
+            "sandia":Game("sandia",self.hosts,"pinball4game","carousel4","pinball4display",self),
+            "pina":Game("pina",self.hosts,"pinball5game","carousel5","pinball5display",self)
         }
         self.display_to_game = {
             "pinball1display":self.games["coco"],
@@ -1055,6 +1059,7 @@ class Mode_Barter(threading.Thread):
             "pina":"pinball15game"
         }
         # need system above self.games to keep track of states of trades
+        self.matrix = Matrix(self.hosts), self.games
         self.start()
 
     def begin(self):
