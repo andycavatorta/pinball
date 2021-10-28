@@ -354,6 +354,7 @@ class Game(threading.Thread):
         self.game_name = game_name
         self.carousel_name = carousel_name
         self.display_name = display_name
+        self.parent_ref = parent_ref
         self.state = states.NO_PLAYER # default overwritten after creation
         self.score = 0
         self.ball_in_trough = True
@@ -1157,6 +1158,7 @@ class Mode_Barter(threading.Thread):
         self.queue.put((topic, message, origin, destination))
 
     def run(self):
+        time.sleep(5)
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
