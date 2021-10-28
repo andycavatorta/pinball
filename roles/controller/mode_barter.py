@@ -385,7 +385,6 @@ class Pie():
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
-
                 self.hosts.hostnames[self.origin].cmd_playfield_lights("pie","energize")# light animation
                 time.sleep(.5)
                 self.reset_pie()
@@ -506,7 +505,7 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
             self.hosts.hostnames[self.game_name].enable_derecha_coil(False)   
             #light animation:
-            #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial","off")
             #chimes:# all off
             #phrase:
@@ -544,7 +543,7 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
 
             #light animation:
-            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
+            #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all","off")
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial","off")
             # the pie
             # the collected fruits
