@@ -46,6 +46,12 @@ class Lights_Pattern(threading.Thread):
         self.action_queue.put([self.action_names.OFF, self.channels])
     def on(self):
         self.action_queue.put([self.action_names.ON, self.channels])
+    def med(self):
+        self.action_queue.put([self.action_names.MED, self.channels])
+    def low(self):
+        self.action_queue.put([self.action_names.LOW, self.channels])
+    def high(self):
+        self.action_queue.put([self.action_names.HIGH, self.channels])
     def sparkle(self):
         self.action_queue.put([self.action_names.SPARKLE, self.channels])
     def throb(self):
