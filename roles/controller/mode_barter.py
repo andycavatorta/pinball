@@ -55,6 +55,7 @@ class Matrix(threading.Thread):
         self.rejection_countdown = 0 # idling at zero
 
     def find_long_path_around_center_carousel(self, origin_fruit, destination_fruit):
+        print("find_long_path_around_center_carousel",origin_fruit, destination_fruit)
         cw = self.find_path_around_center_carousel(origin_fruit, destination_fruit, True)
         ccw = self.find_path_around_center_carousel(origin_fruit, destination_fruit, False)
         if (len(cw)>len(ccw)):
@@ -63,6 +64,7 @@ class Matrix(threading.Thread):
             return ccw
 
     def find_path_around_center_carousel(self, origin_fruit, destination_fruit, clockwise):
+        print("find_path_around_center_carousel",origin_fruit, destination_fruit, clockwise)
         if clockwise:
             if origin_fruit == "coco":
                 if destination_fruit == "naranja":
