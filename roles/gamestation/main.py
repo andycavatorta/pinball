@@ -417,6 +417,8 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.trail_pop_middle
                         if group_name == "trail_spinner":
                             group = self.gamestation_lights.trail_spinner
+                        if group_name == "pie":
+                            group = self.gamestation_lights.pie
                         if group_name == "pie_rollover_right":
                             group = self.gamestation_lights.pie_rollover_right
                         if group_name == "pie_rollover_left":
