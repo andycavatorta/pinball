@@ -24,7 +24,7 @@ class Animation(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+        self.piano_chimes = ["f_piano", "g_piano","gsharp_piano","asharp_piano","c_piano"]
         self.active = False
         self.start()
 
@@ -62,12 +62,12 @@ class Animation(threading.Thread):
                             self.hosts.hostnames[display_hostname].request_number(999)
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                                self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 2:
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                                self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 3:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
@@ -75,7 +75,7 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter == 4: # 0 seconds
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                                self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 5: # 0 seconds
                         for pinball_hostname in self.pinball_hostnames:
@@ -85,12 +85,12 @@ class Animation(threading.Thread):
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","throb")
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])                        
+                                self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])                        
 
                     if self.animation_frame_counter == 8:
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
-                                self.hosts.hostnames[hostname].request_score(self.mezzo_chimes[random.randrange(0,5)])
+                                self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 10: # 1 second
                         

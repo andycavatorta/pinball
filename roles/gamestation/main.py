@@ -485,6 +485,12 @@ class Main(threading.Thread):
                             group.off()
                         if animation_name == "on":
                             group.on()
+                        if animation_name == "low":
+                            group.low()
+                        if animation_name == "med":
+                            group.med()
+                        if animation_name == "high":
+                            group.high()
                         if animation_name == "sparkle":
                             group.sparkle()
                         if animation_name == "throb":

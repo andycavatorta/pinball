@@ -15,7 +15,7 @@ class Lights_Pattern(threading.Thread):
         SINGLE_DOT = 0.125
         SPARKLE = 0.025
         STROKE = 0.125
-        THROB = 0.035
+        THROB = 0.025
         TRACE = 0.125
         WINK = 0.5
 
@@ -26,6 +26,9 @@ class Lights_Pattern(threading.Thread):
         BLINK = "blink"
         ENERGIZE = "energize"
         OFF = "off"
+        LOW = "low"
+        MED = "med"
+        HIGH = "high"
         ON = "on"
         SINGLE_DOT = "single_dot"
         SPARKLE = "sparkle"
@@ -54,6 +57,12 @@ class Lights_Pattern(threading.Thread):
         self.action_queue.put([self.action_names.ENERGIZE, self.channels])
     def off(self):
         self.action_queue.put([self.action_names.OFF, self.channels])
+    def low(self):
+        self.action_queue.put([self.action_names.LOW, self.channels])
+    def med(self):
+        self.action_queue.put([self.action_names.MED, self.channels])
+    def high(self):
+        self.action_queue.put([self.action_names.HIGH, self.channels])
     def on(self):
         self.action_queue.put([self.action_names.ON, self.channels])
     def single_dot(self):
@@ -125,7 +134,15 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.OFF: 
                 self.upstream_queue.put([self.levels[0], channel])
             if action_name == self.action_names.ON: 
-                self.upstream_queue.put([self.levels[6], channel])
+                self.upstream_queue.put([self.levels[1], channel])
+
+            if action_name == self.action_names.LOW: 
+                self.upstream_queue.put([self.levels[3], channel])
+            if action_name == self.action_names.MED: 
+                self.upstream_queue.put([self.levels[5], channel])
+            if action_name == self.action_names.HIGH: 
+                self.upstream_queue.put([self.levels[7], channel])
+
             if action_name == self.action_names.SINGLE_DOT: 
                 for channel in self.channels:
                     self.upstream_queue.put([self.levels[0], [channel]])

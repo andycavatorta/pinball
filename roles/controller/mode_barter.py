@@ -22,12 +22,211 @@ class Matrix(threading.Thread):
     this class handles most transitions between states transition_to_state()
     """
     def __init__(self):
+        class trade_states():
+            NO_TRADE = "no_trade"
+            TRADE_INITIATED = "trade_initiated"
+            TRADE_IGNORED = "trade_ignored"
+            TRADE_RECIPROCATED = "trade_reciprocated"
+            TRADE_SUCCEEDED = "trade_succeeded"
+
         threading.Thread.__init__(self, games)
         self.games = games
         self.queue = queue.Queue()
+        self.trade_state = trade_states.NO_TRADE
         self.trader_a_ref = None
         self.trader_b_ref = None
+        self.initiator = None
+        self.responder = None
+        self.rejection_countdown = 0 # idling at zero
+        self.animation_interval = 0.2
         self.start()
+
+    def reset(self):
+        self.trade_state = trade_states.NO_TRADE
+        self.trader_a_ref = None
+        self.trader_b_ref = None
+        self.initiator = None
+        self.responder = None
+        self.rejection_countdown = 0 # idling at zero
+
+    def find_long_path_around_center_carousel(self, origin_fruit, destination_fruit):
+        cw = find_path_around_center_carousel(origin_fruit, destination_fruit, True)
+        ccw = find_path_around_center_carousel(origin_fruit, destination_fruit, False)
+        if (len(cw)>len(ccw)):
+            return cw
+        else:
+            return ccw
+
+    def find_path_around_center_carousel(self, origin_fruit, destination_fruit, clockwise):
+        if clockwise:
+            if origin_fruit == "coco":
+                if destination_fruit == "naranja":
+                    return ["coco", "naranja"]
+                if destination_fruit == "mango":
+                    return ["coco", "naranja", "mango"]
+                if destination_fruit == "sandia":
+                    return ["coco", "naranja", "mango","sandia"]
+                if destination_fruit == "pina":
+                    return ["coco", "naranja", "mango","sandia","pina"]
+            if origin_fruit == "naranja":
+                if destination_fruit == "mango":
+                    return ["naranja","mango"]
+                if destination_fruit == "sandia":
+                    return ["naranja","mango","sandia"]
+                if destination_fruit == "pina":
+                    return ["naranja","mango","sandia","pina"]
+                if destination_fruit == "coco":
+                    return ["naranja","mango","sandia","pina","coco"]
+            if origin_fruit == "mango":
+                if destination_fruit == "sandia":
+                    return ["mango","sandia"]
+                if destination_fruit == "pina":
+                    return ["mango","sandia","pina"]
+                if destination_fruit == "coco":
+                    return ["mango","sandia","pina","coco"]
+                if destination_fruit == "naranja":
+                    return ["mango","sandia","pina","coco","naranja"]
+            if origin_fruit == "sandia":
+                if destination_fruit == "pina":
+                    return ["sandia","pina"]
+                if destination_fruit == "coco":
+                    return ["sandia","pina","coco"]
+                if destination_fruit == "naranja":
+                    return ["sandia","pina","coco","naranja"]
+                if destination_fruit == "mango":
+                    return ["sandia","pina","coco","naranja","mango"]
+            if origin_fruit == "pina":
+                if destination_fruit == "coco":
+                    return ["pina","coco"]
+                if destination_fruit == "naranja":
+                    return ["pina","coco","naranja"]
+                if destination_fruit == "mango":
+                    return ["pina","coco","naranja","mango"]
+                if destination_fruit == "sandia":
+                    return ["pina","coco","naranja","mango","sandia"]
+        else:
+            if origin_fruit == "coco":
+                if destination_fruit == "naranja":
+                    return ["coco", "naranja"].reverse()
+                if destination_fruit == "mango":
+                    return ["coco", "naranja", "mango"].reverse()
+                if destination_fruit == "sandia":
+                    return ["coco", "naranja", "mango","sandia"].reverse()
+                if destination_fruit == "pina":
+                    return ["coco", "naranja", "mango","sandia","pina"].reverse()
+            if origin_fruit == "naranja":
+                if destination_fruit == "mango":
+                    return ["naranja","mango"].reverse()
+                if destination_fruit == "sandia":
+                    return ["naranja","mango","sandia"].reverse()
+                if destination_fruit == "pina":
+                    return ["naranja","mango","sandia","pina"].reverse()
+                if destination_fruit == "coco":
+                    return ["naranja","mango","sandia","pina","coco"].reverse()
+            if origin_fruit == "mango":
+                if destination_fruit == "sandia":
+                    return ["mango","sandia"].reverse()
+                if destination_fruit == "pina":
+                    return ["mango","sandia","pina"].reverse()
+                if destination_fruit == "coco":
+                    return ["mango","sandia","pina","coco"].reverse()
+                if destination_fruit == "naranja":
+                    return ["mango","sandia","pina","coco","naranja"].reverse()
+            if origin_fruit == "sandia":
+                if destination_fruit == "pina":
+                    return ["sandia","pina"].reverse()
+                if destination_fruit == "coco":
+                    return ["sandia","pina","coco"].reverse()
+                if destination_fruit == "naranja":
+                    return ["sandia","pina","coco","naranja"].reverse()
+                if destination_fruit == "mango":
+                    return ["sandia","pina","coco","naranja","mango"].reverse()
+            if origin_fruit == "pina":
+                if destination_fruit == "coco":
+                    return ["pina","coco"].reverse()
+                if destination_fruit == "naranja":
+                    return ["pina","coco","naranja"].reverse()
+                if destination_fruit == "mango":
+                    return ["pina","coco","naranja","mango"].reverse()
+                if destination_fruit == "sandia":
+                    return ["pina","coco","naranja","mango","sandia"].reverse()
+
+    def trade_initiated_animation(self):
+        self.rejection_countdown = 50 # 5 seconds
+        fruit_path_momentary = []
+        fruit_path_after = []
+        start_fruits = list(self.initiator.carousel_fruits) # break reference before reversing
+        start_fruits.reverse()
+        for fruit_name in start_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights",self.initiator.carousel_name, fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights",self.initiator.carousel_name, fruit_name, "med"]
+                )
+            fruit_path_after.append(animation_frame)
+        center_fruits = self.find_long_path_around_center_carousel(self.initiator.fruit_name, self.responder.fruit_name)
+        for fruit_name in center_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights","carouselcenter", fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights","carouselcenter", fruit_name, "off"]
+                )
+            fruit_path_after.append(animation_frame)
+        end_fruits = list(self.responder.carousel_fruits)
+        for fruit_name in end_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights",self.responder.carousel_name, fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights",self.responder.carousel_name, fruit_name, "med"]
+                )
+            fruit_path_after.append(animation_frame)
+        self.add_to_queue(fruit_path_momentary)
+        self.add_to_queue(fruit_path_after)
+
+    def trade_responded_animation(self):
+        fruit_path_momentary = []
+        fruit_path_after = []
+        start_fruits = list(self.responder.carousel_fruits) # break reference before reversing
+        start_fruits.reverse()
+        for fruit_name in start_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights",self.responder.carousel_name, fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights",self.responder.carousel_name, fruit_name, "med"]
+                )
+            fruit_path_after.append(animation_frame)
+        center_fruits = self.find_long_path_around_center_carousel(self.responder.fruit_name, self.initiator.fruit_name)
+        for fruit_name in center_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights","carouselcenter", fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights","carouselcenter", fruit_name, "off"]
+                )
+            fruit_path_after.append(animation_frame)
+        end_fruits = list(self.initiator.carousel_fruits)
+        for fruit_name in end_fruits:
+            animation_frame = (
+                ["cmd_carousel_lights",self.initiator.carousel_name, fruit_name, "throb"]
+                )
+            fruit_path_momentary.append(animation_frame)
+            animation_frame = (
+                ["cmd_carousel_lights",self.initiator.carousel_name, fruit_name, "med"]
+                )
+            fruit_path_after.append(animation_frame)
+        self.add_to_queue("animation",fruit_path_momentary)
+        self.add_to_queue("animation",fruit_path_after)
+        self.add_to_queue("transition",[self.initiator, states.TRADE_SUCCEEDED])
+        self.add_to_queue("transition",[self.responder, states.TRADE_SUCCEEDED])
 
     def initiate_trade_if_possible(self, trader_a_ref):
         # if this game has enough fruits to trade. >1? >2?
@@ -50,11 +249,48 @@ class Matrix(threading.Thread):
                     if trade_candidate.successful_trades > highest_successful_trades:
                         trader_b_ref = trade_candidate
                         highest_successful_trades = trade_candidate.successful_trades
+            # it's on
+            self.trade_state = trade_states.TRADE_INITIATED
+            self.trader_a_ref = trader_a_ref
+            self.trader_b_ref = trader_b_ref
             trader_a_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
             if trader_b_ref.ball_in_trough: # to do : not thread safe
                 trader_b_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_TROUGH)
             else:
                 trader_b_ref.transition_to_state(states.TRADE_NEEDED_BALL_IN_PLAY)
+
+    def initiate_or_respond(self,game_ref):
+        # this is where self.initiator and self.responder are assigned, 
+        # using trader_a_ref and trader_b_ref to figure figure out who the trading partner is
+        if self.initiator == None:
+            self.initiator = game_ref
+            # is game_ref trader_a_ref or trader_a_ref?
+            if game_ref.fruit_name == self.trader_a_ref.fruit_name:
+                self.responder = self.trader_b_ref
+            else:
+                self.responder = self.trader_a_ref
+            self.trade_initiated_animation()
+        else:
+            # game initiator and responder will be set by this point
+            self.trade_responded_animation()
+
+    def add_to_queue(self, topic, message):
+        self.queue.put((topic, message))
+
+    def run(self):
+        while True:
+            try:
+                topic, message = self.queue.get(True)
+                if topic == "animation":
+                    for frame in message:
+                        command, destination_hostname, device, value = frame
+                        if command == "cmd_carousel_lights":
+                            self.hosts.hostnames[destination_hostname].cmd_carousel_lights(device, value)
+                            time.sleep(self.animation_interval)
+                if topic == "transition":
+                    game_ref, state = message
+                    game_ref.transition_to_state(state)
+
 
 
 class states:
@@ -62,7 +298,7 @@ class states:
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
     TRADE_NEEDED_BALL_IN_TROUGH = "TRADE_NEEDED_BALL_IN_TROUGH"
     TRADE_NEEDED_BALL_IN_PLAY = "TRADE_NEEDED_BALL_IN_PLAY"
-    TRADE_INITIATOR_START_TRADE = "TRADE_INITIATOR_START_TRADE"
+    TRADE_INITIATOR_ST ART_TRADE = "TRADE_INITIATOR_START_TRADE"
     TRADE_INITIATOR_IGNORED = "TRADE_INITIATOR_IGNORED"
     TRADE_RESPONDER_IGNORES = "TRADE_RESPONDER_IGNORES"
     TRADE_RESPONDER_START_TRADE = "TRADE_RESPONDER_START_TRADE"
@@ -96,10 +332,8 @@ class Pie():
         print("target_hit",target_name)
         if self.pie_segments_triggered[target_name] == False:
             self.pie_segments_triggered[target_name] = True
-
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
-
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
                 time.sleep(.33)
                 self.reset_pie()
@@ -130,13 +364,13 @@ class Game(threading.Thread):
         if self.fruit_name == "coco":
             self.fruit_order = ["coco","naranja","mango","sandia","pina"]
         if self.fruit_name == "naranja":
-            self.fruit_order = ["coco","naranja","mango","sandia","pina"]
+            self.fruit_order = ["naranja","mango","sandia","pina","coco"]
         if self.fruit_name == "mango":
-            self.fruit_order = ["coco","naranja","mango","sandia","pina"]
+            self.fruit_order = ["mango","sandia","pina","coco","naranja"]
         if self.fruit_name == "sandia":
-            self.fruit_order = ["coco","naranja","mango","sandia","pina"]
+            self.fruit_order = ["sandia","pina","coco","naranja","mango"]
         if self.fruit_name == "pina":
-            self.fruit_order = ["coco","naranja","mango","sandia","pina"]
+            self.fruit_order = ["pina","coco","naranja","mango","sandia"]
 
         """
         todo: create animation cycles for each state and system to switch between them simply
@@ -166,7 +400,7 @@ class Game(threading.Thread):
             self.fruit_name.pop()
         for carousel_fruit_name in self.fruit_order:
             if carousel_fruit_name in  self.carousel_fruits:
-                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(carousel_fruit_name,"on")
+                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(carousel_fruit_name,"med")
             else:
                 self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(carousel_fruit_name,"off")
         return True
@@ -249,6 +483,7 @@ class Game(threading.Thread):
             print("mode_barter.py, Game transition_to_state 5")
 
         if state_name == states.TRADE_NEEDED_BALL_IN_TROUGH:
+            print("mode_barter.py, Game transition_to_state 6")
             """
             gameplay is off.
             player is told their only option is to trade
@@ -281,8 +516,10 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score
+            print("mode_barter.py, Game transition_to_state 7")
 
         if state_name == states.TRADE_NEEDED_BALL_IN_PLAY:
+            print("mode_barter.py, Game transition_to_state 8")
             """
             gameplay is still on
             player has options to trade and to keep playing
@@ -314,8 +551,10 @@ class Game(threading.Thread):
             #phrase:
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
+            print("mode_barter.py, Game transition_to_state 9")
 
         if state_name == states.TRADE_INITIATOR_START_TRADE:
+            print("mode_barter.py, Game transition_to_state 10")
             """
             start acceptance timer.  does this live outside of the two games, in the container for the matrix? animations??
             player has no options while trade request animation plays
@@ -353,8 +592,10 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score
+            print("mode_barter.py, Game transition_to_state 11")
 
         if state_name == states.TRADE_INITIATOR_IGNORED:
+            print("mode_barter.py, Game transition_to_state 12")
             """
             short state that times out after animation and reduction of score
             Next states:
@@ -386,8 +627,10 @@ class Game(threading.Thread):
                 # trueque
             #numbers:
                 # score decreased decrementally during animation
+            print("mode_barter.py, Game transition_to_state 13")
 
         if state_name == states.TRADE_RESPONDER_IGNORES:
+            print("mode_barter.py, Game transition_to_state 14")
             """
             if the resonder does not respond for timeout
             short state that times out after animation and reduction of score
@@ -420,8 +663,10 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.display_name].request_phrase("dinero")
             #numbers:
                 # score decreased decrementally during animation
+            print("mode_barter.py, Game transition_to_state 15")
 
         if state_name == states.TRADE_RESPONDER_START_TRADE:
+            print("mode_barter.py, Game transition_to_state 16")
             """
             short state that times out after animation and increase of score
             Next states:
@@ -460,9 +705,11 @@ class Game(threading.Thread):
                 # score
 
             #actions: change state to TRADE_SUCCEEDED
+            print("mode_barter.py, Game transition_to_state 17")
 
 
         if state_name == states.TRADE_SUCCEEDED: # same for initiator and responder
+            print("mode_barter.py, Game transition_to_state 18")
             """
             short state that times out after animation and increase of score
             Next states:
@@ -486,8 +733,10 @@ class Game(threading.Thread):
             #chimes:
             #phrase:
             #numbers:
+            print("mode_barter.py, Game transition_to_state 19")
 
         if state_name == states.WINNER: # same for initiator and responder
+            print("mode_barter.py, Game transition_to_state 20")
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","off") 
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left","off") 
@@ -511,8 +760,10 @@ class Game(threading.Thread):
                 # blink?
             #numbers:
                 # blink?
+            print("mode_barter.py, Game transition_to_state 21")
 
         if state_name == states.NOT_WINNER: # same for initiator and responder
+            print("mode_barter.py, Game transition_to_state 22")
             #signs:
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right","off") 
             self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left","off") 
@@ -536,6 +787,7 @@ class Game(threading.Thread):
                 # blink?
             #numbers:
                 # blink?
+            print("mode_barter.py, Game transition_to_state 23")
 
 
     def add_to_queue(self, topic, message):
@@ -548,11 +800,9 @@ class Game(threading.Thread):
                 print("mode_barter.py Game.run",topic, message)
                 if topic == "event_button_trueque":
                     if self.state == states.TRADE_NEEDED_BALL_IN_TROUGH:
-                        # matrix:initiate trade or respond to trade
-                        pass
+                        matrix.initiate_or_respond(self)
                     if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        # matrix:initiate trade or respond to trade
-                        pass
+                        matrix.initiate_or_respond(self)
 
                 if topic == "event_left_stack_ball_present":
                     # to be completed in thorough version of game
@@ -812,17 +1062,26 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
-        for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_phrase("dinero")
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[display_hostname].request_phrase("dinero")
+            self.hosts.hostnames[display_hostname].request_number(000)
+        time.sleep(0.2)
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[display_hostname].request_score("c_piano")
+            self.hosts.hostnames[display_hostname].request_score("f_piano")
+            self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
+        for pinball_hostname in self.pinball_hostnames:
             game_ref = self.pinball_to_game[pinball_hostname]
             if pinball_hostname in self.hosts.get_games_with_players():
                 game_ref.transition_to_state(states.TRADE_NOT_NEEDED)
+                self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
             else:
                 game_ref.transition_to_state(states.NO_PLAYER)
+
 
     def end(self):
         self.countdown.end()
