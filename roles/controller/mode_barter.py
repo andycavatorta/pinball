@@ -273,10 +273,10 @@ class Matrix(threading.Thread):
         else:
             # game initiator and responder will be set by this point
             self.trade_responded_animation()
-"""
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
 
+"""
     def run(self):
         while True:
             try:
@@ -298,7 +298,7 @@ class states:
     TRADE_NOT_NEEDED = "TRADE_NOT_NEEDED"
     TRADE_NEEDED_BALL_IN_TROUGH = "TRADE_NEEDED_BALL_IN_TROUGH"
     TRADE_NEEDED_BALL_IN_PLAY = "TRADE_NEEDED_BALL_IN_PLAY"
-    TRADE_INITIATOR_ST ART_TRADE = "TRADE_INITIATOR_START_TRADE"
+    TRADE_INITIATOR_START_TRADE = "TRADE_INITIATOR_START_TRADE"
     TRADE_INITIATOR_IGNORED = "TRADE_INITIATOR_IGNORED"
     TRADE_RESPONDER_IGNORES = "TRADE_RESPONDER_IGNORES"
     TRADE_RESPONDER_START_TRADE = "TRADE_RESPONDER_START_TRADE"
