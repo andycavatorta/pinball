@@ -43,7 +43,7 @@ class Matrix(threading.Thread):
         self.initiator = None
         self.responder = None
         self.rejection_countdown = 0 # idling at zero
-        self.animation_interval = 0.2
+        self.animation_interval = 0.25
         self.start()
 
     def reset(self):
@@ -449,7 +449,7 @@ class Game(threading.Thread):
         for iterator in range(increment_value):
             self.score += 1
             self.hosts.hostnames[self.display_name].request_number(self.score)
-            time.sleep(0.01)
+            time.sleep(0.05)
             if self.score == 999:
                 # to do: transition to states.WINNER and others to states.NOT_WINNER
                 break
@@ -481,7 +481,7 @@ class Game(threading.Thread):
         return True
                 
     def pie_full_handler(self):
-        self.increment_score(100)
+        self.increment_score(10)
         self.increment_decrement_fruits(True)
 
     def transition_to_state(self, state_name):
@@ -808,7 +808,10 @@ class Game(threading.Thread):
             #chimes:
             #phrase:
             #numbers:
+            self.increment_score(100)
+            time.sleep(5)
             print("mode_barter.py, Game transition_to_state 19")
+            self.transition_to_state(states.TRADE_NOT_NEEDED)
 
         if state_name == states.WINNER: # same for initiator and responder
             print("mode_barter.py, Game transition_to_state 20")
