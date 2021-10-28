@@ -234,7 +234,7 @@ class Matrix(threading.Thread):
         # if this game has enough fruits to trade. >1? >2?
         if len(trader_a_ref.carousel_fruits) >= 2:
             # find trader_b game with lowest self.successful_trades that is eligible to trade
-            print("0 initiate_trade_if_possible", trade_candidates)
+            print("0 initiate_trade_if_possible")
             trade_candidates = []
             for game_name in self.games:
                 game_ref = self.games[game_name]
