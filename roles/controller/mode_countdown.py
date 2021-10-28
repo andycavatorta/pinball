@@ -43,7 +43,18 @@ class Animation(threading.Thread):
 
     def begin(self):
         for pinball_hostname in self.pinball_hostnames:
-            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_right","on")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecho", False) 
+            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
+            self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
+            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
+
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("juega")
         self.cycle_chimes = self._cycle_chimes() # start from beginning if interrupted last time
@@ -93,20 +104,23 @@ class Animation(threading.Thread):
                             pitch_name = self.piano_chimes[pitch_numeral]
                             for display_hostname in self.display_hostnames:
                                 self.hosts.hostnames[display_hostname].request_score(pitch_name)
-                    if self.animation_frame_counter % 10 ==0: # 1 second intervals                    
+                    if self.animation_frame_counter % 10 ==0: # 1 second intervals
+                        get_games_with_players = self.hosts.get_games_with_players():
                         if self.animation_frame_counter % 20 ==0: # alternate seconds A
                             for pinball_hostname in self.pinball_hostnames:
-                                pass
-                                # lower left sign on
-                                    # all lights on and steady
-                                    # comienza button on
+                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","on")
+                                self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("all","on")
+                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","off")
+                                if pinball_hostname not in get_games_with_players:
+                                    self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False)
+
                         else: # alternate seconds B
                             for pinball_hostname in self.pinball_hostnames:
-                                pass
-                                # lower left sign on
-                                # all lights on and steady
-                                # comienza button off
-
+                                self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
+                                if pinball_hostname not in get_games_with_players:
+                                    self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True)
+                                    self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
+                                    self.hosts.hostnames[pinball_hostname].cmd_carousel_lights("all","off")
 
                     self.animation_frame_counter += 1
                     if self.animation_frame_counter > self.animation_frame_counter_limit:
