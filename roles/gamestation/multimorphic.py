@@ -71,29 +71,29 @@ class Multimorphic(threading.Thread):
         if duration_ms < 50: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
-    def enable_trueque(self, enable_bool):
+    def enable_trueque(self, enable_bool, miliseconds=20):
         if enable_bool:
-            self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 20)
+            self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["trueque"])
-    def enable_dinero(self, enable_bool):
+    def enable_dinero(self, enable_bool, miliseconds=20):
         if enable_bool:
-            self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 20)
+            self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["dinero"])
-    def enable_kicker(self, enable_bool):
+    def enable_kicker(self, enable_bool, miliseconds=20):
         if enable_bool:
-            self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 20)
+            self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["kicker"])
-    def enable_izquierda(self, enable_bool):
+    def enable_izquierda(self, enable_bool, miliseconds=25):
         if enable_bool:
-            self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
+            self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["izquierda"])
-    def enable_derecha(self, enable_bool):
+    def enable_derecha(self, enable_bool, miliseconds=25):
         if enable_bool:
-            self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 25)
+            self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["derecha"])
 

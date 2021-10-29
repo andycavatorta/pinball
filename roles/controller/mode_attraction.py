@@ -68,6 +68,7 @@ class Animation(threading.Thread):
                     self.end()
             except queue.Empty:
                 if self.active:
+                    play_chimes = True if random.randrange(0,5) == 0 else False
                     if self.animation_frame_counter == 0: # 0 seconds
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
@@ -75,38 +76,38 @@ class Animation(threading.Thread):
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(999)
                         for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0:
+                            if random.randrange(0,3) == 0 and play_chimes:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter == 2:
+                    if self.animation_frame_counter == 2 and play_chimes:
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter == 3:
+                    if self.animation_frame_counter == 3 and play_chimes:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("inner_circle","throb")
 
-                    if self.animation_frame_counter == 4: # 0 seconds
+                    if self.animation_frame_counter == 4 and play_chimes: # 0 seconds
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter == 5: # 0 seconds
+                    if self.animation_frame_counter == 5 and play_chimes: # 0 seconds
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",True)
 
-                    if self.animation_frame_counter == 6:
+                    if self.animation_frame_counter == 6 and play_chimes:
                         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","throb")
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])                        
 
-                    if self.animation_frame_counter == 8:
+                    if self.animation_frame_counter == 8 and play_chimes:
                         for hostname in self.display_hostnames:
                             if random.randrange(0,3) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter == 10: # 1 second
+                    if self.animation_frame_counter == 10 and play_chimes: # 1 second
                         
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)

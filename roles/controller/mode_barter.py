@@ -100,6 +100,8 @@ class Game(threading.Thread):
         for iterator in range(increment_value):
             self.score += 1
             self.hosts.hostnames[self.display_name].request_number(self.score)
+            if self.score % 10 == 0:
+                self.hosts.hostnames[self.display_name].request_score("f_piano")
             time.sleep(0.05)
             self.hosts.hostnames[self.game_name].barter_mode_score = int(self.score)
             if self.score == 999:
@@ -315,11 +317,11 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True) 
-            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True)
+            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True,20)
             self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
-            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True)
+            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True,20)
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True)
+            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,20)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             if pinball_hostname in self.hosts.get_games_with_players():
                 self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()

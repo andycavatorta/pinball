@@ -543,25 +543,25 @@ class Pinball(Host):
         self.gameplay_enabled = False
         self.tb.publish(topic="disable_gameplay", message="",destination=self.hostname)
 
-    def enable_trueque_coil(self, enable_bool):
+    def enable_trueque_coil(self, enable_bool, miliseconds=20):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_trueque_coil", message=enable_bool,destination=self.hostname)
+        self.tb.publish(topic="cmd_enable_trueque_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_dinero_coil(self, enable_bool):
+    def enable_dinero_coil(self, enable_bool, miliseconds=20):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_dinero_coil", message=enable_bool,destination=self.hostname)
+        self.tb.publish(topic="cmd_enable_dinero_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_kicker_coil(self, enable_bool):
+    def enable_kicker_coil(self, enable_bool, miliseconds=20):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_kicker_coil", message=enable_bool,destination=self.hostname)
+        self.tb.publish(topic="cmd_enable_kicker_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_izquierda_coil(self, enable_bool):
+    def enable_izquierda_coil(self, enable_bool, miliseconds=20):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_izquierda_coil", message=enable_bool,destination=self.hostname)
+        self.tb.publish(topic="cmd_enable_izquierda_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_derecha_coil(self, enable_bool):
+    def enable_derecha_coil(self, enable_bool, miliseconds=20):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_derecha_coil", message=enable_bool,destination=self.hostname)
+        self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
 
     ### LEFT TUBE ###
