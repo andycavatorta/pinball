@@ -400,7 +400,7 @@ class Mode_Barter(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True,1)
+                topic, message, origin, destination = self.queue.get(False)
                 #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
@@ -418,6 +418,7 @@ class Mode_Barter(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
+                time.sleep(1)
                 if self.active:
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:

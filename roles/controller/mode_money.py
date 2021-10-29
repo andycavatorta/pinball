@@ -406,7 +406,7 @@ class Mode_Money(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True,1)
+                topic, message, origin, destination = self.queue.get(False)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
@@ -423,6 +423,7 @@ class Mode_Money(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
+                time.sleep(1)
                 if self.active:
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
