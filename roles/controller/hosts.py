@@ -489,6 +489,8 @@ class Pinball(Host):
         self.roll_outer_right = False
         self.tb = tb
         self.troughsensor_value = False
+        self.barter_mode_score = 0
+        self.money_mode_score = 0
         self.playfield_switch_active = {
             "trough_sensor":False,
             "roll_outer_left":False,
@@ -818,7 +820,6 @@ class Hosts():
             'pinballmatrix':self.pinballmatrix,
         }
         self.dispatch(b"response_computer_details", self.controller.get_computer_details(), "controller", "controller")
-
         self.games_with_players = []
 
     def clear_games_with_players(self):

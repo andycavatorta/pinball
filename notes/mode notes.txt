@@ -1,3 +1,212 @@
+mode_waiting_for_connections
+    same
+
+mode_system_tests
+    same
+    set all motors to open loop mode
+
+mode_attraction
+    same
+
+
+mode_countdown
+    same
+
+
+mode_barter_intro
+    button lights:
+        izquierda: False 
+        trueque: False
+        comienza: False
+        dinero: False
+        derecho: False
+    button actions:
+        izquierda: None
+        trueque: None
+        comienza: None
+        dinero: None
+        derecho: None
+    playfield light animation:
+        signs: off
+        all off
+    carousel light animation:
+        all off
+        inner_circle energize
+        outer_circle energize
+    chimes:
+        ding ding ding
+    phrase:
+        trueque, blink
+    numbers:
+        000
+    timeout: transition to mode_barter
+
+mode_barter
+    begin:
+    #    launch ball
+    button lights:
+        izquierda: True
+        trueque: False
+        comienza: True
+        dinero: False
+        derecho: True
+    button actions:
+        izquierda: Flipper (lower power)
+        trueque: None
+        comienza: Kicker (lower power)
+        dinero: None
+        derecho: Flipper (lower power)
+    playfield light animation:
+        signs: off
+        pie mode!
+    carousel light animation:
+        peso off
+        inner_circle throb
+        outer_circle throb
+    chimes:
+        game mode, soft
+    phrase:
+        trueque
+    numbers:
+        000
+    timeout: transition to mode_money_intro
+
+mode_money_intro
+    button lights:
+        izquierda: False 
+        trueque: False
+        comienza: False
+        dinero: False
+        derecho: False
+    button actions:
+        izquierda: None
+        trueque: None
+        comienza: None
+        dinero: None
+        derecho: None
+    playfield light animation:
+        signs: off
+        all off
+    carousel light animation:
+        all off
+        inner_circle energize
+        outer_circle energize
+    chimes:
+        ding ding ding
+    phrase:
+        dinero, blink
+    numbers:
+        000
+    timeout: transition to mode_money
+
+
+mode_money
+    begin:
+        launch ball
+    button lights:
+        izquierda: True
+        trueque: False
+        comienza: True
+        dinero: False
+        derecho: True
+    button actions:
+        izquierda: Flipper (higher power)
+        trueque: None
+        comienza: Kicker (higher power)
+        dinero: None
+        derecho: Flipper (higher power)
+    playfield light animation:
+        signs: off
+        pie mode!
+    carousel light animation:
+        peso throb
+        inner_circle off
+        outer_circle off
+    chimes:
+        game mode
+    phrase:
+        dinero
+    numbers:
+        game mode
+    timeout: transition to mode_ending
+
+mode_ending
+    button lights:
+        izquierda: False 
+        trueque: False
+        comienza: False
+        dinero: False
+        derecho: False
+    button actions:
+        izquierda: None
+        trueque: None
+        comienza: None
+        dinero: None
+        derecho: None
+    playfield light animation:
+        signs: off
+        all off
+    carousel light animation:
+        alternating
+            A:
+                peso off
+                inner_circle throb
+                outer_circle throb
+            B:
+                peso throb
+                inner_circle off
+                outer_circle off
+    chimes:
+        alternating
+            A:
+                loud chord
+            B:
+                loud chord
+    phrase:
+        alternating
+            A:
+                trueque
+            B:
+                dinero
+    numbers:
+        alternating
+            A:
+                trueque score
+            B:
+                dinero score
+    timeout: transition to mode_reset
+
+mode_reset
+    button lights:
+        izquierda: False 
+        trueque: False
+        comienza: False
+        dinero: False
+        derecho: False
+    button actions:
+        izquierda: None
+        trueque: None
+        comienza: None
+        dinero: None
+        derecho: None
+    playfield light animation:
+        signs: off
+        all off
+    carousel light animation:
+        all off
+    chimes:
+        all off
+    phrase:
+        juega
+    numbers:
+        000
+    timeout: transition to mode_reset
+
+
+
+
+#####################
+
 #waiting_for_connections
     light up carousels based on which computers are connected
         center: carousel
@@ -16,7 +225,7 @@
 #inventory mode
     phase 2
    
-#attration mode
+#attration_mode
     signs:
         bottom left sign on
     button lights:

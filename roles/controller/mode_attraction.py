@@ -31,6 +31,8 @@ class Animation(threading.Thread):
     def begin(self):
         print("mode_attraction Animation.begin")
         for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].barter_mode_score = 0
+            self.hosts.hostnames[pinball_hostname].money_mode_score = 0
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False)
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False) 
