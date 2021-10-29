@@ -232,7 +232,7 @@ class Mode_Barter(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 60
+        self.mode_timer_limit = 30
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
