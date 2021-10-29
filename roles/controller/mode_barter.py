@@ -324,7 +324,6 @@ class Mode_Barter(threading.Thread):
 
     def end(self):
         self.active = False
-        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
 
     def event_button_derecha(self, message, origin, destination):
         self.pinball_to_game[origin].add_to_queue("event_button_derecha",message)
@@ -419,5 +418,5 @@ class Mode_Barter(threading.Thread):
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False
-                        time.sleep(1)
+                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
                         self.end()
