@@ -130,15 +130,18 @@ class Game(threading.Thread):
                         self.increment_score()
                         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                         self.pie.target_hit("pop_left")
+                        self.pie.target_hit("spinner")
                 if topic == "event_pop_middle":
                     if message:
                         self.increment_score()
                         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                         self.pie.target_hit("pop_middle")
+                        self.pie.target_hit("pop_right")
                 if topic == "event_pop_right":
                     if message:
                         self.increment_score()
                         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                        self.pie.target_hit("pop_middle")
                         self.pie.target_hit("pop_right")
                 if topic == "event_right_stack_ball_present":
                     # to be completed in thorough version of game
@@ -148,6 +151,7 @@ class Game(threading.Thread):
                     pass
                 if topic == "event_roll_inner_left":
                     if message:
+                        self.pie.target_hit("rollover_right")
                         self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                         time.sleep(0.1)
@@ -158,6 +162,7 @@ class Game(threading.Thread):
                 if topic == "event_roll_inner_right":
                     if message:
                         self.pie.target_hit("rollover_right")
+                        self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                         time.sleep(0.1)
                         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
@@ -166,6 +171,7 @@ class Game(threading.Thread):
 
                 if topic == "event_roll_outer_left":
                     if message:
+                        self.pie.target_hit("rollover_right")
                         self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         time.sleep(0.1)
@@ -179,6 +185,7 @@ class Game(threading.Thread):
                 if topic == "event_roll_outer_right":
                     if message:
                         self.pie.target_hit("rollover_right")
+                        self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         time.sleep(0.1)
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
@@ -192,16 +199,19 @@ class Game(threading.Thread):
                     if message:
                         self.increment_score()
                         self.pie.target_hit("sling_left")
+                        self.pie.target_hit("sling_right")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_slingshot_right":
                     if message:
                         self.increment_score()
+                        self.pie.target_hit("sling_left")
                         self.pie.target_hit("sling_right")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_spinner":
                     if message:
                         self.increment_score()
                         self.pie.target_hit("spinner")
+                        self.pie.target_hit("pop_left")
                         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 if topic == "event_trough_sensor":
                         pass
