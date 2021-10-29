@@ -65,7 +65,7 @@ from roles.controller.mode_barter import Mode_Barter
 from roles.controller.mode_money_intro import Mode_Money_Intro
 from roles.controller.mode_money import Mode_Money
 #from roles.controller.mode_dinero import Mode_Dinero
-#from roles.controller.mode_reset import Mode_Reset
+from roles.controller.mode_reset import Mode_Reset
 #from roles.controller.mode_ending import Mode_Ending
 
 class Main(threading.Thread):
@@ -81,7 +81,7 @@ class Main(threading.Thread):
         BARTER_MODE = "barter_mode"
         MONEY_MODE_INTRO = "money_mode_intro"
         MONEY_MODE = "money_mode"
-        ENDING = "ending"
+        RESET = "reset"
 
     def __init__(self):
         threading.Thread.__init__(self)
@@ -163,7 +163,7 @@ class Main(threading.Thread):
             "system_tests":Mode_System_Tests(self.tb, self.hosts, self.set_current_mode),
             "inventory":Mode_Inventory(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "attraction":Mode_Attraction(self.tb, self.hosts, self.set_current_mode, self.choreography),
-            #"reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
+            "reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode),
             "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
@@ -231,7 +231,6 @@ class Main(threading.Thread):
             self.current_mode = self.modes["barter"]
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
-            print("self.mode_names.MONEY_MODE_INTRO")
             self.current_mode.end()
             self.current_mode = self.modes["money_intro"]
             self.current_mode.begin()
@@ -239,9 +238,9 @@ class Main(threading.Thread):
             self.current_mode.end()
             self.current_mode = self.modes["money"]
             self.current_mode.begin()
-        if mode_name == self.mode_names.ENDING:
+        if mode_name == self.mode_names.RESET:
             self.current_mode.end()
-            self.current_mode = self.modes["ending"]
+            self.current_mode = self.modes["reset"]
             self.current_mode.begin()
     def get_current_mode(self):
         return self.current_mode
