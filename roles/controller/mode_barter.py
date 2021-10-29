@@ -107,8 +107,8 @@ class Game(threading.Thread):
                 break
                 
     def pie_full_handler(self):
-        self.increment_score(10)
-        self.increment_decrement_fruits(True)
+        self.increment_score(25)
+        #self.increment_decrement_fruits(True)
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
