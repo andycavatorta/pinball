@@ -401,7 +401,7 @@ class Mode_Money(threading.Thread):
                     for display_hostname in self.display_hostnames:
                         self.hosts.hostnames[display_hostname].request_number(countdown_seconds)
                     if countdown_seconds <= 0:
-                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                        self.set_current_mode(self.game_mode_names.RESET)
                     if countdown_seconds % 10 == 0:
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_score("c_mezzo")

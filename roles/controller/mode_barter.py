@@ -15,9 +15,6 @@ import settings
 import threading
 import time
 
-
-
-
 class Pie():
     def __init__(self, origin, hosts, pie_full_handler):
         self.origin = origin
@@ -420,5 +417,5 @@ class Mode_Barter(threading.Thread):
             except queue.Empty:
                 if self.active:
                     self.mode_timer += 1
-                    if self.mode_timer >= self.mode_timer:
+                    if self.mode_timer >= self.mode_timer_limit:
                         self.end()
