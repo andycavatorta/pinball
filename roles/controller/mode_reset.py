@@ -113,7 +113,7 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
                 self.hosts.hostnames[display_hostname].request_phrase("dinero")
-                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].hosts.barter_mode_score)
+                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].barter_mode_score)
 
             for carousel_hostname in self.carousel_hostnames:
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","off")
@@ -125,7 +125,7 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("trueque")
-                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].hosts.money_mode_score)
+                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].money_mode_score)
             for carousel_hostname in self.carousel_hostnames:
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","on")
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","off")
