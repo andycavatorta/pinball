@@ -294,8 +294,8 @@ class Mode_Barter(threading.Thread):
 
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","off")
-            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","throb")
-            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","throb")
+            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","on")
+            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","on")
 
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("trueque")

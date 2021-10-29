@@ -95,8 +95,9 @@ class Mode_Money_Intro(threading.Thread):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
-                self.hosts.hostnames[display_hostname].request_phrase("trueque")
+                self.hosts.hostnames[display_hostname].request_phrase("dinero")
             time.sleep(0.5)
+        time.sleep(3)
         self.set_current_mode(self.game_mode_names.MONEY_MODE)
         
     def end(self):
