@@ -75,7 +75,6 @@ class Game(threading.Thread):
         self.score = 0
         self.ball_in_trough = True
         self.trade_initated = False
-        self.trade_role = trade_roles.NONE # is this redundant?  is this not inferred in state?
         self.pie = Pie(self.game_name, hosts, self.pie_full_handler)
         self.carousel_fruits = []
         self.successful_trades = 0
