@@ -72,7 +72,6 @@ class Game(threading.Thread):
         self.carousel_name = carousel_name
         self.display_name = display_name
         self.parent_ref = parent_ref
-        self.state = states.NO_PLAYER # default overwritten after creation
         self.score = 0
         self.ball_in_trough = True
         self.trade_initated = False
@@ -108,7 +107,6 @@ class Game(threading.Thread):
             time.sleep(0.05)
             self.hosts.hostnames[self.game_name].barter_mode_score = int(self.score)
             if self.score == 999:
-                # to do: transition to states.WINNER and others to states.NOT_WINNER
                 self.parent_ref.end()
                 break
                 
@@ -133,38 +131,20 @@ class Game(threading.Thread):
                     # to be completed in thorough version of game
                     pass
                 if topic == "event_pop_left":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            self.pie.target_hit("pop_left")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            self.pie.target_hit("pop_left")
+                    if message:
+                        self.increment_score()
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                        self.pie.target_hit("pop_left")
                 if topic == "event_pop_middle":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            self.pie.target_hit("pop_middle")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            self.pie.target_hit("pop_middle")
+                    if message:
+                        self.increment_score()
+                        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                        self.pie.target_hit("pop_middle")
                 if topic == "event_pop_right":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                            self.pie.target_hit("pop_right")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                            self.pie.target_hit("pop_right")
+                    if message:
+                        self.increment_score()
+                        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                        self.pie.target_hit("pop_right")
                 if topic == "event_right_stack_ball_present":
                     # to be completed in thorough version of game
                     pass
@@ -172,126 +152,63 @@ class Game(threading.Thread):
                     # to be completed in thorough version of game
                     pass
                 if topic == "event_roll_inner_left":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.pie.target_hit("rollover_left")
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                    if message:
+                        self.pie.target_hit("rollover_left")
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.pie.target_hit("rollover_left")
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 if topic == "event_roll_inner_right":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.pie.target_hit("rollover_right")
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                    if message:
+                        self.pie.target_hit("rollover_right")
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.pie.target_hit("rollover_right")
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 if topic == "event_roll_outer_left":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.pie.target_hit("rollover_left")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.pie.target_hit("rollover_left")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                    if message:
+                        self.pie.target_hit("rollover_left")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 if topic == "event_roll_outer_right":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.pie.target_hit("rollover_right")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.pie.target_hit("rollover_right")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-                            time.sleep(0.1)
-                            self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+                    if message:
+                        self.pie.target_hit("rollover_right")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+                        time.sleep(0.1)
+                        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 if topic == "event_slingshot_left":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("sling_left")
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("sling_left")
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                    if message:
+                        self.increment_score()
+                        self.pie.target_hit("sling_left")
+                        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_slingshot_right":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("sling_right")
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("sling_right")
-                            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                    if message:
+                        self.increment_score()
+                        self.pie.target_hit("sling_right")
+                        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_spinner":
-                    if self.state == states.TRADE_NOT_NEEDED:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("spinner")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                    if self.state == states.TRADE_NEEDED_BALL_IN_PLAY:
-                        if message:
-                            self.increment_score()
-                            self.pie.target_hit("spinner")
-                            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+                    if message:
+                        self.increment_score()
+                        self.pie.target_hit("spinner")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 if topic == "event_trough_sensor":
-                    if self.state == states.TRADE_NOT_NEEDED:
                         pass
                 if topic == "response_lefttube_present":
                     # to be completed in thorough version of game
