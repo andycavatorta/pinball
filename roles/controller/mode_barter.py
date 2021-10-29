@@ -418,4 +418,7 @@ class Mode_Barter(threading.Thread):
                 if self.active:
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
+                        self.active = False
+                        print("asdfasdf")
+                        time.sleep(1)
                         self.end()
