@@ -233,8 +233,8 @@ class Main(threading.Thread):
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
             print("self.mode_names.MONEY_MODE_INTRO")
             self.current_mode.end()
-            #self.current_mode = self.modes["money_intro"]
-            #self.current_mode.begin()
+            self.current_mode = self.modes["money_intro"]
+            self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE:
             self.current_mode.end()
             self.current_mode = self.modes["money"]
