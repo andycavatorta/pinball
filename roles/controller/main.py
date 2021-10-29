@@ -222,19 +222,19 @@ class Main(threading.Thread):
             self.current_mode = self.modes["countdown"]
             self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE_INTRO:
-            print("self.mode_names.BARTER_MODE_INTRO")
             self.current_mode.end()
-            #self.current_mode = self.modes["barter_intro"]
-            #self.current_mode.begin()
+            self.current_mode = self.modes["barter_intro"]
+            self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE:
             self.current_mode.end()
             time.sleep(2)
             self.current_mode = self.modes["barter"]
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
+            print("self.mode_names.MONEY_MODE_INTRO")
             self.current_mode.end()
-            self.current_mode = self.modes["money_intro"]
-            self.current_mode.begin()
+            #self.current_mode = self.modes["money_intro"]
+            #self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE:
             self.current_mode.end()
             self.current_mode = self.modes["money"]
