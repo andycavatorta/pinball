@@ -73,7 +73,7 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
-            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecho", False) 
+            self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", False) 
             self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
