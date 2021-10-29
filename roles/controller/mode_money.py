@@ -305,7 +305,7 @@ class Mode_Money(threading.Thread):
 
         for pinball_hostname in self.pinball_hostnames:
             #self.hosts.hostnames[pinball_hostname].barter_mode_score = 0
-            #self.hosts.hostnames[pinball_hostname].money_mode_score = 0
+            self.hosts.hostnames[pinball_hostname].pie.request_score()
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", True) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True) 

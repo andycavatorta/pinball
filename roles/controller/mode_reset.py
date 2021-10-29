@@ -131,7 +131,7 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","off")
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","off")
             time.sleep(1)
-        time.sleep(15)
+        time.sleep(5)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
         
     def end(self):
