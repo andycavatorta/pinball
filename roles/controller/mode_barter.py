@@ -326,7 +326,6 @@ class Mode_Barter(threading.Thread):
                 self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
 
     def end(self):
-        self.countdown.end()
         self.active = False
         self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
 
