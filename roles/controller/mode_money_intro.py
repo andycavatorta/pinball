@@ -93,7 +93,7 @@ class Mode_Money_Intro(threading.Thread):
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","energize")
 
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.pinball_hostname_map[]].barter_mode_score)
+            self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.pinball_hostname_map[display_hostname]].barter_mode_score)
 
         for i in range(3):
             for display_hostname in self.display_hostnames:
