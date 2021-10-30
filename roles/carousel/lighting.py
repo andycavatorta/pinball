@@ -219,8 +219,10 @@ class Lights_Pattern(threading.Thread):
                     for radial_position in range(10):
                         outer_pin = self.channels[radial_position]
                         inner_pin = self.channels[radial_position + 10]
-                        outer_pin.duty_cycle = serpentine_edge_frame[radial_position]
-                        outer_pin.duty_cycle = serpentine_edge_frame[radial_position + 10]
+                        outer_level serpentine_edge_frame[radial_position]
+                        inner_level = serpentine_edge_frame[radial_position + 10]
+                        self.upstream_queue.put([self.levels[outer_level], [outer_pin]])
+                        self.upstream_queue.put([self.levels[inner_level], [inner_pin]])
                 time.sleep(self.action_times.SERPENTINE)
 
             if action_name == self.action_names.SERPENTINE_CENTER:
