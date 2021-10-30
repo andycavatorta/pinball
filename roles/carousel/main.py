@@ -221,7 +221,6 @@ class Main(threading.Thread):
                             group = self.lighting.inner_circle
                         if group_name == "outer_circle":
                             group = self.lighting.outer_circle
-
                         if group_name == "ripple_coco_1":
                             group = self.lighting.ripple_coco_1
                         if group_name == "ripple_naranja_1":
@@ -232,8 +231,6 @@ class Main(threading.Thread):
                             group = self.lighting.ripple_sandia_1
                         if group_name == "ripple_pina_1":
                             group = self.lighting.ripple_pina_1
-
-
                         if group_name == "ripple_coco_2":
                             group = self.lighting.ripple_coco_2
                         if group_name == "ripple_naranja_2":
@@ -244,8 +241,6 @@ class Main(threading.Thread):
                             group = self.lighting.ripple_sandia_2
                         if group_name == "ripple_pina_2":
                             group = self.lighting.ripple_pina_2
-
-
                         if group_name == "ripple_coco_3":
                             group = self.lighting.ripple_coco_3
                         if group_name == "ripple_naranja_3":
@@ -256,9 +251,6 @@ class Main(threading.Thread):
                             group = self.lighting.ripple_sandia_3
                         if group_name == "ripple_pina_3":
                             group = self.lighting.ripple_pina_3
-
-
-
                         if group_name == "ripple_coco_4":
                             group = self.lighting.ripple_coco_4
                         if group_name == "ripple_naranja_4":
@@ -269,8 +261,6 @@ class Main(threading.Thread):
                             group = self.lighting.ripple_sandia_4
                         if group_name == "ripple_pina_4":
                             group = self.lighting.ripple_pina_4
-
-
                         if group_name == "ripple_coco_5":
                             group = self.lighting.ripple_coco_5
                         if group_name == "ripple_naranja_5":
@@ -281,6 +271,34 @@ class Main(threading.Thread):
                             group = self.lighting.ripple_sandia_5
                         if group_name == "ripple_pina_5":
                             group = self.lighting.ripple_pina_5
+
+                        if group_name == "serpentine_edge_coco":
+                            group = self.lighting.serpentine_edge_coco
+
+                        if group_name == "serpentine_edge_naranja":
+                            group = self.lighting.serpentine_edge_naranja
+
+                        if group_name == "serpentine_edge_mango":
+                            group = self.lighting.serpentine_edge_mango
+
+                        if group_name == "serpentine_edge_sandia":
+                            group = self.lighting.serpentine_edge_sandia
+
+                        if group_name == "serpentine_edge_pina":
+                            group = self.lighting.serpentine_edge_pina
+
+                        if group_name == "serpentine_center_coco":
+                            group = self.lighting.serpentine_center_coco
+
+                        if group_name == "serpentine_center_naranja":
+                            group = self.lighting.serpentine_center_naranja
+
+                        if group_name == "serpentine_center_mango":
+                            group = self.lighting.serpentine_center_mango
+                        if group_name == "serpentine_center_sandia":
+                            group = self.lighting.serpentine_center_sandia
+                        if group_name == "serpentine_center_pina":
+                            group = self.lighting.serpentine_center_pina
 
                         if animation_name == "off":
                             group.off()
@@ -315,6 +333,11 @@ class Main(threading.Thread):
                             group.back_trace()
                         if animation_name == "single_dot":
                             group.single_dot()
+
+                        if animation_name == "serpentine_edge":
+                            group.serpentine_edge()
+                        if animation_name == "serpentine_center":
+                            group.serpentine_centers()
 
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
