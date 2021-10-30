@@ -271,8 +271,8 @@ class Lights_Pattern(threading.Thread):
                         self.upstream_queue.put([self.levels[outer_level], [outer_pin]])
                         self.upstream_queue.put([self.levels[inner_level], [inner_pin]])
                 time.sleep(self.action_times.SERPENTINE)
-                    if not self.action_queue.empty():
-                        break
+                if not self.action_queue.empty():
+                    break
 
             if action_name == self.action_names.SERPENTINE_CENTER:
                 for serpentine_center_frame in self.serpentine_center_frames:
@@ -285,8 +285,8 @@ class Lights_Pattern(threading.Thread):
                         self.upstream_queue.put([self.levels[outer_level], [outer_pin]])
                         self.upstream_queue.put([self.levels[inner_level], [inner_pin]])
                 time.sleep(self.action_times.SERPENTINE)
-                    if not self.action_queue.empty():
-                        break
+                if not self.action_queue.empty():
+                    break
 
             if action_name == self.action_names.SINGLE_DOT: 
                 for channel in self.channels:
