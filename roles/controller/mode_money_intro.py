@@ -65,6 +65,13 @@ class Mode_Money_Intro(threading.Thread):
             "pinball4game":"carousel4",
             "pinball5game":"carousel5",
         }
+        self.pinball_hostname_map = {
+            "pinball1display":"pinball1game",
+            "pinball2display":"pinball2game",
+            "pinball3display":"pinball3game",
+            "pinball4display":"pinball4game",
+            "pinball5display":"pinball5game",
+        }
         self.start()
 
     def begin(self):
@@ -84,17 +91,33 @@ class Mode_Money_Intro(threading.Thread):
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","energize")
+
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_number(0)
-        for i in range(5):
+            self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.pinball_hostname_map[]].barter_mode_score)
+
+        for i in range(3):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
-                self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
+                self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("")
             time.sleep(0.5)
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
+                self.hosts.hostnames[display_hostname].request_phrase("trueque")
+            time.sleep(0.5)
+
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[display_hostname].request_number(0)
+        for i in range(3):
+            for display_hostname in self.display_hostnames:
+                self.hosts.hostnames[display_hostname].request_score("g_piano")
+                self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
+                self.hosts.hostnames[display_hostname].request_phrase("")
+            time.sleep(0.5)
+            for display_hostname in self.display_hostnames:
+                self.hosts.hostnames[display_hostname].request_score("g_piano")
+                self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("dinero")
             time.sleep(0.5)
         time.sleep(3)

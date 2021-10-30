@@ -15,6 +15,7 @@ class Lights_Pattern(threading.Thread):
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
+        SERPENTINE = 0.2
         SINGLE_DOT = 0.125
 
     class action_names():
@@ -33,6 +34,10 @@ class Lights_Pattern(threading.Thread):
         BACK_STROKE_OFF = "back_stroke_off"
         TRACE = "trace"
         BACK_TRACE = "back_trace"
+
+        SERPENTINE_EDGE = "serpentine_edge"
+        SERPENTINE_CENTER = "serpentine_center"
+
         SINGLE_DOT = "single_dot"
 
     def __init__(self, channels, upstream_queue,):
@@ -41,6 +46,25 @@ class Lights_Pattern(threading.Thread):
         self.upstream_queue = upstream_queue
         self.channels = channels
         self.action_queue = queue.Queue()
+
+        self.serpentine_edge_frames = [
+            [2,2,2,2,2,2,2,2,2,2, 2,2,2,2,2,2,2,2,2,2],
+            [7,2,2,2,2,2,2,2,2,2, 2,2,2,2,2,2,2,2,2,2],
+            [7,7,2,2,2,2,2,2,2,2, 2,7,2,2,2,2,2,2,2,2],
+            [6,7,7,2,2,2,2,2,2,2, 2,7,7,2,2,2,2,2,2,2],
+            [5,6,7,7,2,2,2,2,2,2, 2,6,7,7,2,2,2,2,2,2],
+            [4,5,6,7,7,2,2,2,2,2, 2,5,6,7,7,2,2,2,2,2],
+            [3,4,5,6,7,7,2,2,2,2, 2,4,5,6,7,7,2,2,2,2],
+            [2,3,4,5,6,7,7,2,2,2, 2,3,4,5,6,7,7,2,2,2],
+            [2,2,3,4,5,6,7,7,2,2, 2,2,3,4,5,6,7,7,2,2],
+            [2,2,2,3,4,5,6,7,7,2, 2,2,2,3,4,5,6,7,6,2],
+            [2,2,2,2,3,4,5,6,7,7, 2,2,2,2,3,4,5,6,7,2],
+            [2,2,2,2,2,3,4,5,6,7, 2,2,2,2,2,3,4,5,6,2],
+            [2,2,2,2,2,2,3,4,5,6, 2,2,2,2,2,2,3,4,5,2],
+            [2,2,2,2,2,2,2,3,4,5, 2,2,2,2,2,2,2,3,4,2],
+            [2,2,2,2,2,2,2,2,3,4, 2,2,2,2,2,2,2,2,3,2],
+            [2,2,2,2,2,2,2,2,2,3, 2,2,2,2,2,2,2,2,2,2]
+        ]
         self.start()
     def off(self):
         self.action_queue.put([self.action_names.OFF, self.channels])
@@ -72,6 +96,11 @@ class Lights_Pattern(threading.Thread):
         self.action_queue.put([self.action_names.TRACE, self.channels])
     def back_trace(self):
         self.action_queue.put([self.action_names.BACK_TRACE, self.channels])
+    def serpentine_edge(self):
+        self.action_queue.put([self.action_names.SERPENTINE_EDGE, self.channels])
+    def serpentine_center(self):
+        self.action_queue.put([self.action_names.SERPENTINE_CENTER, self.channels])
+
     def single_dot(self):
         self.action_queue.put([self.action_names.SINGLE_DOT, self.channels])
     def run(self):
@@ -91,9 +120,6 @@ class Lights_Pattern(threading.Thread):
                 self.upstream_queue.put([self.levels[5], channel])
             if action_name == self.action_names.HIGH: 
                 self.upstream_queue.put([self.levels[7], channel])
-
-
-
 
             if action_name == self.action_names.SPARKLE: 
                 while True:
@@ -180,7 +206,6 @@ class Lights_Pattern(threading.Thread):
                         break
             if action_name == self.action_names.BACK_TRACE:
                 for channel in self.channels:
-
                     self.upstream_queue.put([self.levels[0], [channel]])
                 for channel in reversed(self.channels):
                     self.upstream_queue.put([self.levels[-1], [channel]])
@@ -188,6 +213,18 @@ class Lights_Pattern(threading.Thread):
                     self.upstream_queue.put([self.levels[-1], [channel]])
                     if not self.action_queue.empty():
                         break
+
+            if action_name == self.action_names.SERPENTINE_EDGE:
+                for serpentine_edge_frame in self.serpentine_edge_frames:
+                    for radial_position in range(10):
+                        outer_pin = self.channels[radial_position]
+                        inner_pin = self.channels[radial_position + 10]
+                        outer_pin.duty_cycle = serpentine_edge_frame[radial_position]
+                        outer_pin.duty_cycle = serpentine_edge_frame[radial_position + 10]
+                time.sleep(self.action_times.SERPENTINE)
+
+            if action_name == self.action_names.SERPENTINE_CENTER:
+                pass
 
             if action_name == self.action_names.SINGLE_DOT: 
                 for channel in self.channels:
@@ -245,6 +282,11 @@ class Lights(threading.Thread):
         RIPPLE_COCO_5 = [23,3,0,11,8,12]
         INNER_CIRCLE = [2, 1, 10, 9, 14, 13, 17, 18, 21, 22]
         OUTER_CIRCLE = [3, 0, 11, 8, 15, 12, 16, 19, 20, 23]
+        SERPENTINE_EDGE_COCO = [19,16,12,15.8,11,0,3,23,20,18,17,13,14,9,10,1,2,22,21]
+        SERPENTINE_EDGE_NARANJA = [12,15.8,11,0,3,23,20,19,16,13,14,9,10,1,2,22,21,18,17]
+        SERPENTINE_EDGE_MANGO = [8,11,0,3,23,20,19,16,12,15,9,10,1,2,22,21,18,17,13,14]
+        SERPENTINE_EDGE_SANDIA = [0,3,23,20,19,16,12,15,8,11,1,2,22,21,18,17,13,14,9,10]
+        SERPENTINE_EDGE_PINA = [23,20,19,16,12,15,8,11,0,3,22,21,18,17,13,14,9,10,1,2]
 
     def __init__(self):
         threading.Thread.__init__(self)
@@ -299,6 +341,12 @@ class Lights(threading.Thread):
         self.ripple_coco_5 = Lights_Pattern(self.pattern_channels.RIPPLE_COCO_5, self.queue)
         self.inner_circle = Lights_Pattern(self.pattern_channels.INNER_CIRCLE, self.queue)
         self.outer_circle = Lights_Pattern(self.pattern_channels.OUTER_CIRCLE, self.queue)
+        self.serpentine_edge_coco = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_COCO, self.queue)
+        self.serpentine_edge_naranja = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_NARANJA, self.queue)
+        self.serpentine_edge_mango = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_MANGO, self.queue)
+        self.serpentine_edge_sandia = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_SANDIA, self.queue)
+        self.serpentine_edge_pina = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_PINA, self.queue)
+
         self.start()
 
     def add_to_queue(self, level, channel_number):
@@ -310,56 +358,3 @@ class Lights(threading.Thread):
             #print(level, channel_numbers)
             for channel_number in channel_numbers:
                 self.channels[channel_number].duty_cycle = level
-
-"""
-sequences = {
-    "spokes":["spoke_1","spoke_2","spoke_3","spoke_4","spoke_5","spoke_6","spoke_7","spoke_8","spoke_9","spoke_10"],
-    "radial":["peso","inner_circle","outer_circle"],
-}
-
-levels = [
-    0,
-    50,
-    100,
-    1000,
-    5000,
-    10000,
-    20000,
-    30000,
-    50000,
-    65535,
-]
-
-def solid(group, level):
-    pin_numbers = groups[group]
-    duty_cycle = levels[level]
-    for pin_number in pin_numbers:
-        pins[pin_number].duty_cycle = duty_cycle
-
-def fade_group(pin_numbers, start_level, end_level, fade_period = 0.1):
-    start_duty_cycle = levels[start_level]
-    end_duty_cycle = levels[end_level]
-    animation_frame_period = 0.01
-    increment_count = int(fade_period / animation_frame_period)
-    increment_size = int(float(end_duty_cycle-start_duty_cycle)/float(increment_count))
-    for increment_ordinal in range(increment_count):
-        current_level = start_duty_cycle + (increment_ordinal * increment_size)
-        for pin_number in pin_numbers:
-            pins[pin_number].duty_cycle = int(current_level)
-        time.sleep(animation_frame_period/2)
-    for pin_number in pin_numbers:
-        pins[pin_number].duty_cycle = int(end_duty_cycle)
-
-def pulse_group(group_name):
-    pin_numbers = groups[group_name]
-    fade_group(pin_numbers, 0, 8, 0.05)
-    fade_group(pin_numbers, 8, 0, 0.05)
-
-def stroke_ripple():
-    solid("all", 0)
-    for group in sequences["radial"]:
-        fade_group(group, 0, levels[8], 0.05)
-    for group in sequences["radial"]:
-        fade_group(group, levels[8], 0, 0.05)
-    solid("all", 0)
-"""
