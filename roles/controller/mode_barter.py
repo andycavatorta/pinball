@@ -435,7 +435,7 @@ class Mode_Barter(threading.Thread):
                 if self.active:
                     if self.carousel_sequence_cursor >= 10:
                         self.carousel_sequence_cursor = 0
-                    for carousel_hostname in carousel_hostnames:
+                    for carousel_hostname in self.carousel_hostnames:
                         self.hosts.hostnames[carousel_hostname].cmd_carousel_lights(self.carousel_sequence[self.carousel_sequence_cursor][0],self.carousel_sequence[self.carousel_sequence_cursor][1])
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
