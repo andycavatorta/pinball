@@ -76,7 +76,7 @@ class Animation(threading.Thread):
                         for display_hostname in self.display_hostnames:
                             self.hosts.hostnames[display_hostname].request_number(999)
                         for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0 and play_chimes:
+                            if random.randrange(0,2) == 0 and play_chimes:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 2 and play_chimes:
@@ -89,7 +89,7 @@ class Animation(threading.Thread):
 
                     if self.animation_frame_counter == 4 and play_chimes: # 0 seconds
                         for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0:
+                            if random.randrange(0,4) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 5 and play_chimes: # 0 seconds
@@ -104,7 +104,7 @@ class Animation(threading.Thread):
 
                     if self.animation_frame_counter == 8 and play_chimes:
                         for hostname in self.display_hostnames:
-                            if random.randrange(0,3) == 0:
+                            if random.randrange(0,2) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
                     if self.animation_frame_counter == 10 and play_chimes: # 1 second

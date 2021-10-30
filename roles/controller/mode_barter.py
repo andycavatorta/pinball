@@ -234,7 +234,7 @@ class Mode_Barter(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 120
+        self.mode_timer_limit = 75
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
@@ -317,11 +317,11 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True) 
-            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True,20)
+            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True,15)
             self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
-            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True,20)
+            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True,15)
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,20)
+            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,15)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             if pinball_hostname in self.hosts.get_games_with_players():
                 self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
