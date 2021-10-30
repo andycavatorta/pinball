@@ -15,7 +15,7 @@ class Lights_Pattern(threading.Thread):
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
-        SERPENTINE = 0.2
+        SERPENTINE = 0.1
         SINGLE_DOT = 0.125
 
     class action_names():
