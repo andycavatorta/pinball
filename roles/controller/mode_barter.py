@@ -289,16 +289,16 @@ class Mode_Barter(threading.Thread):
             "pina":"pinball15game"
         }
         self.carousel_sequence = [
-            ["serpentine_center_coco","serpentine_center"],
-            ["serpentine_edge_coco","serpentine_edge"],
-            ["serpentine_center_naranja","serpentine_center"],
-            ["serpentine_edge_naranja","serpentine_edge"],
-            ["serpentine_center_mango","serpentine_center"],
-            ["serpentine_edge_mango","serpentine_edge"],
-            ["serpentine_center_sandia","serpentine_center"],
-            ["serpentine_edge_sandia","serpentine_edge"],
-            ["serpentine_center_pina","serpentine_center"],
-            ["serpentine_edge_pina","serpentine_edge"]
+            ["carouselcenter","serpentine_center_coco","serpentine_center"],
+            ["carousel1","serpentine_edge_coco","serpentine_edge"],
+            ["carouselcenter","serpentine_center_naranja","serpentine_center"],
+            ["carousel2","serpentine_edge_naranja","serpentine_edge"],
+            ["carouselcenter","serpentine_center_mango","serpentine_center"],
+            ["carousel3","serpentine_edge_mango","serpentine_edge"],
+            ["carouselcenter","serpentine_center_sandia","serpentine_center"],
+            ["carousel4","serpentine_edge_sandia","serpentine_edge"],
+            ["carouselcenter","serpentine_center_pina","serpentine_center"],
+            ["carousel5","serpentine_edge_pina","serpentine_edge"]
         ]
         self.carousel_sequence_cursor = 0
         self.start()
@@ -437,8 +437,7 @@ class Mode_Barter(threading.Thread):
                     if self.carousel_sequence_cursor >= 10:
                         self.carousel_sequence_cursor = 0
                     print(self.carousel_sequence[self.carousel_sequence_cursor][0])
-                    for carousel_hostname in self.carousel_hostnames:
-                        self.hosts.hostnames[carousel_hostname].cmd_carousel_lights(self.carousel_sequence[self.carousel_sequence_cursor][0],self.carousel_sequence[self.carousel_sequence_cursor][1])
+                    self.hosts.hostnames[self.carousel_sequence[self.carousel_sequence_cursor][0]].cmd_carousel_lights(self.carousel_sequence[self.carousel_sequence_cursor][1],self.carousel_sequence[self.carousel_sequence_cursor][2])
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False
