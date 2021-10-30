@@ -361,16 +361,16 @@ class Lights(threading.Thread):
             17, 18, 21, 22, 2, 1, 10, 9, 14, 13
         ]
         SERPENTINE_CENTER_MANGO = [
-            8,11,0,3,23,20,19,16,12,15,
-            9,10,1,2,22,21,18,17,13,14
+            15, 12, 16, 19, 20, 23, 3, 0, 11, 8,
+            14, 13, 17, 18, 21, 22, 2, 1, 10, 9
         ]
         SERPENTINE_CENTER_SANDIA = [
-            0,3,23,20,19,16,12,15,8,11,
-            1,2,22,21,18,17,13,14,9,10
+            11, 8, 15, 12, 16, 19, 20, 23, 3, 0,
+            10, 9, 14, 13, 17, 18, 21, 22, 2, 1
         ]
         SERPENTINE_CENTER_PINA = [
-            23,20,19,16,12,15,8,11,0,3,
-            22,21,18,17,13,14,9,10,1,2
+            3, 0, 11, 8, 15, 12, 16, 19, 20, 23,
+            2, 1, 10, 9, 14, 13, 17, 18, 21, 22
         ]
 
 
@@ -433,6 +433,12 @@ class Lights(threading.Thread):
         self.serpentine_edge_sandia = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_SANDIA, self.queue)
         self.serpentine_edge_pina = Lights_Pattern(self.pattern_channels.SERPENTINE_EDGE_PINA, self.queue)
 
+        self.serpentine_center_coco = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_COCO, self.queue)
+        self.serpentine_center_naranja = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_NARANJA, self.queue)
+        self.serpentine_center_mango = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_MANGO, self.queue)
+        self.serpentine_center_sandia = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_SANDIA, self.queue)
+        self.serpentine_center_pina = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_PINA, self.queue)
+                
         self.start()
 
     def add_to_queue(self, level, channel_number):
