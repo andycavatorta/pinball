@@ -15,7 +15,7 @@ class Lights_Pattern(threading.Thread):
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
-        SERPENTINE = 0.8
+        SERPENTINE = 0.4
         SINGLE_DOT = 0.125
 
     class action_names():
@@ -451,7 +451,7 @@ class Lights(threading.Thread):
         self.serpentine_center_mango = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_MANGO, self.queue)
         self.serpentine_center_sandia = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_SANDIA, self.queue)
         self.serpentine_center_pina = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_PINA, self.queue)
-                
+
         self.start()
 
     def add_to_queue(self, level, channel_number):

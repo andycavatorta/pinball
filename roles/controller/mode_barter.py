@@ -431,7 +431,7 @@ class Mode_Barter(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
-                time.sleep(3)
+                time.sleep(1)
                 if self.active:
                     self.carousel_sequence_cursor +=1
                     if self.carousel_sequence_cursor >= 10:
