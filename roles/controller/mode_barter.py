@@ -433,6 +433,7 @@ class Mode_Barter(threading.Thread):
             except queue.Empty:
                 time.sleep(1)
                 if self.active:
+                    self.carousel_sequence_cursor +=1
                     if self.carousel_sequence_cursor >= 10:
                         self.carousel_sequence_cursor = 0
                     for carousel_hostname in self.carousel_hostnames:
