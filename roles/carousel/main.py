@@ -289,10 +289,8 @@ class Main(threading.Thread):
 
                         if group_name == "serpentine_center_coco":
                             group = self.lighting.serpentine_center_coco
-
                         if group_name == "serpentine_center_naranja":
                             group = self.lighting.serpentine_center_naranja
-
                         if group_name == "serpentine_center_mango":
                             group = self.lighting.serpentine_center_mango
                         if group_name == "serpentine_center_sandia":
@@ -337,7 +335,7 @@ class Main(threading.Thread):
                         if animation_name == "serpentine_edge":
                             group.serpentine_edge()
                         if animation_name == "serpentine_center":
-                            group.serpentine_centers()
+                            group.serpentine_center()
 
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
