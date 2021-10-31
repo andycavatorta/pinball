@@ -433,11 +433,12 @@ class Mode_Barter(threading.Thread):
             except queue.Empty:
                 time.sleep(1)
                 if self.active:
-                    self.carousel_sequence_cursor +=1
-                    if self.carousel_sequence_cursor >= 10:
-                        self.carousel_sequence_cursor = 0
-                    print(self.carousel_sequence[self.carousel_sequence_cursor][0])
-                    self.hosts.hostnames[self.carousel_sequence[self.carousel_sequence_cursor][0]].cmd_carousel_lights(self.carousel_sequence[self.carousel_sequence_cursor][1],self.carousel_sequence[self.carousel_sequence_cursor][2])
+                    if self.mode_timer % 2 == 0:
+                        self.carousel_sequence_cursor +=1
+                        if self.carousel_sequence_cursor >= 10:
+                            self.carousel_sequence_cursor = 0
+                        print(self.carousel_sequence[self.carousel_sequence_cursor][0])
+                        self.hosts.hostnames[self.carousel_sequence[self.carousel_sequence_cursor][0]].cmd_carousel_lights(self.carousel_sequence[self.carousel_sequence_cursor][1],self.carousel_sequence[self.carousel_sequence_cursor][2])
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False

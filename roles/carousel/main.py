@@ -274,16 +274,12 @@ class Main(threading.Thread):
 
                         if group_name == "serpentine_edge_coco":
                             group = self.lighting.serpentine_edge_coco
-
                         if group_name == "serpentine_edge_naranja":
                             group = self.lighting.serpentine_edge_naranja
-
                         if group_name == "serpentine_edge_mango":
                             group = self.lighting.serpentine_edge_mango
-
                         if group_name == "serpentine_edge_sandia":
                             group = self.lighting.serpentine_edge_sandia
-
                         if group_name == "serpentine_edge_pina":
                             group = self.lighting.serpentine_edge_pina
 

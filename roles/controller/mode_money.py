@@ -425,6 +425,10 @@ class Mode_Money(threading.Thread):
             except queue.Empty:
                 time.sleep(1)
                 if self.active:
+                    if self.mode_timer % 4 == 0:
+                        for carousel_hostname in self.carousel_hostnames:
+                        self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","energize")
+
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False

@@ -15,7 +15,7 @@ class Lights_Pattern(threading.Thread):
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
-        SERPENTINE = 0.2
+        SERPENTINE = 0.3
         SINGLE_DOT = 0.125
 
     class action_names():
@@ -170,6 +170,7 @@ class Lights_Pattern(threading.Thread):
             if action_name == self.action_names.SPARKLE: 
                 while True:
                     for channel in self.channels:
+
                         self.upstream_queue.put([self.levels[0], [channel]])
                         time.sleep(self.action_times.SPARKLE)
                         self.upstream_queue.put([self.levels[-1], [channel]])
