@@ -32,7 +32,7 @@ class Animation(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.animation_frame_counter = 0
         self.animation_interval = 0.075 # seconds
-        self.animation_frame_counter_limit = 300
+        self.animation_frame_counter_limit = 200
         self.start()
 
     def _cycle_chimes(self):
@@ -97,7 +97,29 @@ class Animation(threading.Thread):
             except queue.Empty:
                 if self.active:
                     for display_hostname in self.display_hostnames:
-                        self.hosts.hostnames[display_hostname].request_number(300-self.animation_frame_counter)
+                        #input 0-200
+                        #output 999-888-777-666-555-444-333-222-111-000
+                        #ranges 0-19,20-39,40-59,60-79,80-99,100-119,120-139,140-159,160-179,180-200
+                        display_number = 000
+                        if 0 <= self.animation_frame_counter < 20:
+                            display_number = 999
+                        if 20<= self.animation_frame_counter < 40:
+                            display_number = 888
+                        if 40<= self.animation_frame_counter < 60:
+                            display_number = 777
+                        if 60<= self.animation_frame_counter < 80:
+                            display_number = 666
+                        if 80<= self.animation_frame_counter < 100:
+                            display_number = 555
+                        if 100<= self.animation_frame_counter < 120:
+                            display_number = 444
+                        if 120<= self.animation_frame_counter < 140:
+                            display_number = 333
+                        if 140<= self.animation_frame_counter < 160:
+                            display_number = 222
+                        if 160<= self.animation_frame_counter < 180:
+                            display_number = 111
+                        self.hosts.hostnames[display_hostname].request_number(display_number)
                     if self.animation_frame_counter % 3==0: # 1 second intervals
                         pitch_numeral = next(self.cycle_chimes)
                         if pitch_numeral != -1:

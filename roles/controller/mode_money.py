@@ -202,12 +202,16 @@ class Game(threading.Thread):
                         self.increment_score()
                         self.pie.target_hit("sling_left")
                         self.pie.target_hit("sling_right")
+                        self.pie.target_hit("rollover_right")
+                        self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_slingshot_right":
                     if message:
                         self.increment_score()
                         self.pie.target_hit("sling_left")
                         self.pie.target_hit("sling_right")
+                        self.pie.target_hit("rollover_right")
+                        self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_spinner":
                     if message:
@@ -428,7 +432,6 @@ class Mode_Money(threading.Thread):
                     if self.mode_timer % 4 == 0:
                         for carousel_hostname in self.carousel_hostnames:
                             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","energize")
-
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False

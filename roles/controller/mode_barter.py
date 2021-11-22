@@ -191,16 +191,20 @@ class Game(threading.Thread):
                         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                         time.sleep(0.1)
                         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+
                 if topic == "event_slingshot_left":
                     if message:
                         self.increment_score()
                         self.pie.target_hit("sling_left")
+                        self.pie.target_hit("rollover_left")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 if topic == "event_slingshot_right":
                     if message:
                         self.increment_score()
                         self.pie.target_hit("sling_right")
+                        self.pie.target_hit("rollover_right")
                         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                        
                 if topic == "event_spinner":
                     if message:
                         self.increment_score()
@@ -330,11 +334,11 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", True) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", True) 
-            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True,15)
+            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(True,20)
             self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
-            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True,15)
+            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(True,20)
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,15)
+            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,20)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             if pinball_hostname in self.hosts.get_games_with_players():
                 self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()

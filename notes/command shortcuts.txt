@@ -4,18 +4,17 @@ mezzo_chimes = ["f_mezzo", "g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
 forte_chimes = ["f_forte", "g_forte","gsharp_forte","asharp_forte","c_forte"]
 for display_hostname in display_hostnames:
     for chime in piano_chimes:
-        print(display_hostname, piano_chime)
+        print(display_hostname, chime)
         role_module.main.hosts.hostnames[display_hostname].request_number(chime)
-        time.sleep(5)
+        time.sleep(1)
     for chime in mezzo_chimes:
-        print(display_hostname, piano_chime)
+        print(display_hostname, chime)
         role_module.main.hosts.hostnames[display_hostname].request_number(chime)
-        time.sleep(5)
+        time.sleep(1)
     for chime in forte_chimes:
-        print(display_hostname, piano_chime)
+        print(display_hostname, chime)
         role_module.main.hosts.hostnames[display_hostname].request_number(chime)
-        time.sleep(5)
-
+        time.sleep(1)
 
 
 
