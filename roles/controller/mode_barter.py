@@ -340,7 +340,8 @@ class Mode_Barter(threading.Thread):
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_derecha_coil(True,20)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
-            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","on")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left","off")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_right","on")
             if pinball_hostname in self.hosts.get_games_with_players():
                 self.hosts.hostnames[pinball_hostname].cmd_kicker_launch()
 
