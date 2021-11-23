@@ -107,7 +107,7 @@ class Animation(threading.Thread):
                             if random.randrange(0,2) == 0:
                                 self.hosts.hostnames[hostname].request_score(self.piano_chimes[random.randrange(0,5)])
 
-                    if self.animation_frame_counter == 10 and play_chimes: # 1 second
+                    if self.animation_frame_counter == 10: # 1 second
                         
                         for pinball_hostname in self.pinball_hostnames:
                             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza",False)
