@@ -60,7 +60,6 @@ class Solenoids(threading.Thread):
             if action == "all_off":
                 for solenoid_pin in self.solenoid_pins:
                     GPIO.output(solenoid_pin, GPIO.LOW)
-
 solenoids = Solenoids()
 
 led_groups = [
@@ -70,7 +69,6 @@ led_groups = [
     [12,13,14,15],
     [16,17,18,19],
     [20,21,22,23]
-
 ]
 
 solenoid_map = (
@@ -90,9 +88,8 @@ while True:
         for solenoid_channel in solenoid_map[fruit_id]:
             print(solenoid_channel, fruit_id)
             solenoids.add_to_queue("eject",solenoid_channel)
-
         time.sleep(.4)
         for led in led_groups[fruit_id]:
             pins[led].duty_cycle = 0
-    time.sleep(15)
+    time.sleep(5)
 

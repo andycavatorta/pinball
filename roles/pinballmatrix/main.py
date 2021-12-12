@@ -238,6 +238,7 @@ class Main(threading.Thread):
         self.absolute_encoders_presences = [False,False,False,False,False,False]
         self.absolute_encoders_positions = [None,None,None,None,None,None]
         self.absolute_encoders_zeroed = [True,True,True,True,True,True]
+        self.already_called_once = False
         time.sleep(1) # just being superstitious
         self.start()
 
@@ -272,9 +273,11 @@ class Main(threading.Thread):
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
+        if self.already_called_once:
+            return
         print(">>>>> Main get_absolute_positions")
         """
-        this must not be called when the motors are in a PID mode of any kind
+        this must not be called when the motors are not in a PID mode of any kind
         """
         if self.high_power_init == True:
             # create SPI interfaces for AMT203
@@ -294,6 +297,7 @@ class Main(threading.Thread):
             print(">>>>> Main get_absolute_positions 3", self.absolute_encoders_positions)
             self.absolute_encoders.close()
             print(">>>>> Main get_absolute_positions 4", self.absolute_encoders)
+            self.already_called_once = True
             time.sleep(1)
 
     def create_controllers_and_motors(self):

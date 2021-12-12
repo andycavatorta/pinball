@@ -44,7 +44,7 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-from thirtybirds3.adapters.actuators import roboteq_command_wrapper
+#from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 #from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
