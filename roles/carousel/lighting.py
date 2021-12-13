@@ -393,7 +393,7 @@ class Lights(threading.Thread):
         self.channels = [0]*24
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
         latch = digitalio.DigitalInOut(board.D26)
-        self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
+        self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=1)
         for channel_number in range(len(self.channels)):
             self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
         self.queue = queue.Queue()

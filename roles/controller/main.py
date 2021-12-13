@@ -257,7 +257,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                #print("main-", topic, message, origin)
+                print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
 
                 if topic == b'event_destination_timeout':
