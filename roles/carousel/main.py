@@ -155,10 +155,6 @@ class Main(threading.Thread):
             # to do: finish
             return [True,True,True,True,True]
 
-    def request_carousel_detect_ball(self):
-            # to do: finish
-            return [True,True,True,True,True]
-
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
@@ -336,7 +332,7 @@ class Main(threading.Thread):
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
                         topic="response_carousel_ball_detected", 
-                        message=self.request_carousel_detect_ball()
+                        message=self.inductive_sensors.request_playfield_states()
                     )
                 if topic == b'request_computer_details':
                     self.tb.publish(
