@@ -330,10 +330,7 @@ class Main(threading.Thread):
                             group.serpentine_center()
 
                 if topic == b'request_carousel_detect_balls':
-                    self.tb.publish(
-                        topic="response_carousel_detect_balls", 
-                        message=self.inductive_sensors.response_carousel_detect_balls()
-                    )
+                    self.inductive_sensors.response_carousel_detect_balls()
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="response_computer_details", 
