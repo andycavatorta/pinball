@@ -63,7 +63,7 @@ class GPIO_Input():
         self.pin = pin
         self.tb = tb
         self.previous_state = -1 # so first read changes state and reports to tb
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
