@@ -85,7 +85,7 @@ class Inductive_Sensors(threading.Thread):
         ]
         self.queue = queue.Queue()
         self.start()
-    def request_playfield_states(self):
+    def response_carousel_detect_balls(self):
         self.queue.put(True)
     def run(self):
         while True:
@@ -94,7 +94,7 @@ class Inductive_Sensors(threading.Thread):
                 states = {}
                 for sensor_name in self.sensors:
                     states[sensor_name] = self.sensors[sensor_name].get_state()
-                self.tb.publish("response_carousel_ball_detected",states)
+                self.tb.publish("response_carousel_detect_balls",states)
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
@@ -130,7 +130,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
         self.tb.subscribe_to_topic("cmd_carousel_lights")
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("request_carousel_detect_ball")
+        self.tb.subscribe_to_topic("request_carousel_detect_balls")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_solenoids_present")
         self.tb.subscribe_to_topic("request_system_tests")
@@ -329,10 +329,10 @@ class Main(threading.Thread):
                         if animation_name == "serpentine_center":
                             group.serpentine_center()
 
-                if topic == b'request_carousel_detect_ball':
+                if topic == b'request_carousel_detect_balls':
                     self.tb.publish(
-                        topic="response_carousel_ball_detected", 
-                        message=self.inductive_sensors.request_playfield_states()
+                        topic="response_carousel_detect_balls", 
+                        message=self.inductive_sensors.response_carousel_detect_balls()
                     )
                 if topic == b'request_computer_details':
                     self.tb.publish(

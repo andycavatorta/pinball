@@ -153,7 +153,7 @@ class Main(threading.Thread):
         
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
-        self.tb.subscribe_to_topic("response_carousel_ball_detected")
+        self.tb.subscribe_to_topic("response_carousel_detect_balls")
 
         self.choreography = Choreography(self.tb, self.hosts)
 

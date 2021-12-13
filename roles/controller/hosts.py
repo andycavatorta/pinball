@@ -145,6 +145,8 @@ class Carousel(Host):
             False,
             False
         ]
+    def request_carousel_detect_balls(self):
+        self.tb.publish(topic="request_carousel_detect_balls",message=True,destination=self.hostname)
     def request_solenoids_present(self):
         self.tb.publish(topic="request_solenoids_present",message=True,destination=self.hostname)
     def set_solenoids_present(self, solenoids_present):
