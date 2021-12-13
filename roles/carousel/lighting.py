@@ -11,7 +11,7 @@ class Lights_Pattern(threading.Thread):
         SPARKLE = 0.025
         THROB = 0.025
         ENERGIZE = 0.25
-        BLINK = 0.25
+        BLINK = 0.50
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
