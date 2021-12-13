@@ -68,7 +68,7 @@ class GPIO_Input():
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            self.tb.publish("response_carousel_ball_detected",{self.name:new_state})
+            self.tb.publish("event_carousel_ball_detected",{self.name:new_state})
     def get_state(self):
         return [self.name, GPIO.input(self.pin)]
 
@@ -92,8 +92,8 @@ class Inductive_Sensors(threading.Thread):
             try:
                 self.queue.get(True,0.1)
                 states = {}
-                for sensor_name in self.sensors:
-                    states[sensor_name] = self.sensors[sensor_name].get_state()
+                for sensor in self.sensors:
+                    states[sensor.sensor_name] = sensor.get_state()
                 self.tb.publish("response_carousel_detect_balls",states)
             except queue.Empty:
                 for sensor in self.sensors:
