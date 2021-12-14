@@ -48,7 +48,17 @@ from thirtybirds3 import thirtybirds
 #from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
-import roles.carousel.lighting as lighting
+# CENTER CAROUSEL HACK BEGIN ---
+# Get my hostname
+import socket
+MY_HOSTNAME = socket.gethostname()
+# Import special module if I am the central carousel, or normal module if not
+if MY_HOSTNAME == "carouselcenter":
+    import roles.carousel.lighting_center as lighting
+else:
+    import roles.carousel.lighting as lighting
+# --- CENTER CAROUSEL HACK END
+
 from roles.carousel.solenoids import Solenoids as Solenoids
 
 GPIO.setmode(GPIO.BCM)
