@@ -51,14 +51,11 @@ import common.deadman as deadman
 # CENTER CAROUSEL HACK BEGIN ---
 # Get my hostname
 import socket
-# Import special module if I am the central carousel, or normal module if not
 MY_HOSTNAME = socket.gethostname()
-print(f"My hostname is: {MY_HOSTNAME}")
+# Import special module if I am the central carousel, or normal module if not
 if MY_HOSTNAME == "carouselcenter":
-    print("Yes, I imported the special thing")
     import roles.carousel.lighting_center as lighting
 else:
-    print("I did not import the special thing")
     import roles.carousel.lighting as lighting
 # --- CENTER CAROUSEL HACK END
 
