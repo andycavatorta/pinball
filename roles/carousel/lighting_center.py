@@ -6,6 +6,35 @@ import queue
 import threading
 import time
 
+# Special remap for weird central carousel LED wiring
+# CENTER_REMAP[intended_led] = corresponding_led_on_central_carousel
+CENTER_REMAP = [
+    11,
+    10,
+    9,
+    8,
+    7,
+    4,
+    5,
+    6,
+    15,
+    14,
+    13,
+    12,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    0,
+    1,
+    2,
+    3
+]
+
 class Lights_Pattern(threading.Thread):
     class action_times():
         SPARKLE = 0.025
@@ -462,5 +491,7 @@ class Lights(threading.Thread):
         while True:
             level, channel_numbers = self.queue.get(True)
             #print(level, channel_numbers)
-            for channel_number in channel_numbers:
-                self.channels[channel_number].duty_cycle = level
+            for intended_channel_number in channel_numbers:
+                # center carousel hack, see comment at top
+                center_channel_number = CENTER_REMAP[intended_channel_number]
+                self.channels[center_channel_number].duty_cycle = level
