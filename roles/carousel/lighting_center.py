@@ -9,10 +9,10 @@ import time
 # Special remap for weird central carousel LED wiring
 # CENTER_REMAP[intended_led] = corresponding_led_on_central_carousel
 CENTER_REMAP = [
-    20,
-    21,
-    22,
     23,
+    22,
+    21,
+    20,
     5,
     6,
     7,
