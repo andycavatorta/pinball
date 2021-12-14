@@ -223,8 +223,8 @@ class Playfield_Sensors(threading.Thread):
             GPIO_Input("rollover_outer_right", 21, callback),
             GPIO_Input("spinner", 1, callback),
             GPIO_Input("trough_sensor", 25, callback),
-            #GPIO_Input("tube_sensor_left", 17, callback),
-            #GPIO_Input("tube_sensor_right", 27, callback),
+            GPIO_Input("tube_sensor_left", 17, callback),
+            GPIO_Input("tube_sensor_right", 27, callback),
         ]
         self.queue = queue.Queue()
         self.start()
@@ -609,12 +609,12 @@ class Main(threading.Thread):
                 if topic == 'event_tube_sensor_left':
                     self.tb.publish(
                         topic="event_tube_sensor_left",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_tube_sensor_right':
                     self.tb.publish(
                         topic="event_tube_sensor_right",
-                        message=True
+                        message=message
                     )
                 if topic == 'request_button_light_active':
                     if destination == self.tb.get_hostname():

@@ -480,6 +480,8 @@ class Matrix(Host):
 class Pinball(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
+        self.left_tube_event_history=[]
+        self.right_tube_event_history=[]
         self._48v_current = -1
         self.barter_points = -1
         self.current_sensor_present= False
@@ -574,10 +576,29 @@ class Pinball(Host):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
     def set_lefttube_present(self,lefttube_present):
         self.lefttube_present = lefttube_present
+
     def get_lefttube_present(self):
         return self.lefttube_present
-    def set_lefttube_value(self,lefttube_value):
-        self.lefttube_value = lefttube_value
+
+    def clear_tube_sensor_left(self):
+        self.left_tube_event_history = []
+
+    def record_tube_sensor_left(self,sensor_value):
+        self.left_tube_event_history.append([sensor_value,time.time()])
+
+    def get_count_tube_sensor_events_left(self,timespan_s = 1.0):
+        request_time = time.time()
+        recent_events = []
+        left_tube_event_history_reversed = left_tube_event_history.reversed()
+        for event in left_tube_event_history_reversed:
+            if event[1] < request_time-timespan_s:
+                break
+            recent_events.append(event)
+        return len(recent_events)
+
+    def get_last_state_tube_sensor_events_left(self):
+        return self.left_tube_event_history(-1)
+
     def get_lefttube_value(self):
         return self.lefttube_value
     def cmd_lefttube_launch(self):
@@ -608,8 +629,20 @@ class Pinball(Host):
         self.righttube_present = righttube_present
     def get_righttube_present(self):
         return self.righttube_present
-    def set_righttube_value(self,righttube_value):
-        self.righttube_value = righttube_value
+
+    def clear_tube_sensor_right(self):
+        self.right_tube_event_history = []
+    def record_tube_sensor_right(self,sensor_value):
+        self.right_tube_event_history.append([sensor_value,time.time()])
+    def get_count_tube_sensor_events_right(self,timespan_s = 1.0):
+        request_time = time.time()
+        recent_events = []
+        right_tube_event_history_reversed = right_tube_event_history.reversed()
+        for event in right_tube_event_history_reversed:
+            if event[1] < request_time-timespan_s:
+                break
+            recent_events.append(event)
+        return len(recent_events)
     def get_righttube_value(self):
         return self.righttube_value
     def cmd_righttube_launch(self):
@@ -983,8 +1016,8 @@ class Hosts():
 
         #if topic == "event_gamestation_button": # unclear what state data should be stored here
         #    self.hostnames[origin].event_gamestation_button(message)
-        if topic == "event_left_stack_ball_present":
-            self.hostnames[origin].set_lefttube_value(message)
+        if topic == "event_tube_sensor_left":
+            self.hostnames[origin].record_tube_sensor_left(message)
         #if topic == "event_left_stack_motion_detected": # unclear what state data should be stored here
         #    self.hostnames[origin].set_left_stack_motion_detected(message)
         #if topic == "event_pop_left": # unclear what state data should be stored here
@@ -993,8 +1026,8 @@ class Hosts():
         #    self.hostnames[origin].set_pop_middle(message)
         #if topic == "event_pop_right": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_right(message)
-        if topic == "event_right_stack_ball_present":
-            self.hostnames[origin].set_righttube_value(message)
+        if topic == "event_tube_sensor_right":
+            self.hostnames[origin].record_tube_sensor_right(message)
         #if topic == "event_right_stack_motion_detected": # unclear what state data should be stored here
         #    self.hostnames[origin].set_right_stack_motion_detected(message)
         #if topic == "event_roll_inner_left":

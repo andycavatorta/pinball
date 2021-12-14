@@ -123,8 +123,44 @@ class Choreography():
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_1","coco","back")
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","coco","coco")
  
-    def transfer(self, batch):
+
+    def tranfer_from_tube_to_edge_carousel(self, station_fruit_name, tube_left_right, pocket_tube_name)
+
+
+    def tranfer_from_edge_carousel_to_tube(self, station_fruit_name, tube_left_right, pocket_tube_name)
+
+
+    def tranfer_from_edge_carousel_to_center_carousel(self, station_fruit_name, tube_left_right, pocket_tube_name)
+
+
+    def tranfer_from_center_carousel_to_edge_carousel(self, station_fruit_name, tube_left_right, pocket_tube_name)
+
+
+
+
+    def transfer_single(self, fruit_name, origin_game, destination_game):
         """
+
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        """
+        ###
+
+
+
         basic algorithms
             
 
