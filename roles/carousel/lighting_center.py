@@ -494,4 +494,5 @@ class Lights(threading.Thread):
             for intended_channel_number in channel_numbers:
                 # center carousel hack, see comment at top
                 center_channel_number = CENTER_REMAP[intended_channel_number]
+                printf(f"I changed {intended_channel_number} to {center_channel_number}")
                 self.channels[center_channel_number].duty_cycle = level
