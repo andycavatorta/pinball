@@ -73,12 +73,12 @@ class GPIO_Input():
         self.pin = pin
         self.tb = tb
         self.previous_state = -1 # so first read changes state and reports to tb
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            self.tb.publish("response_carousel_ball_detected",{self.name:new_state})
+            self.tb.publish("event_carousel_ball_detected",{self.name:new_state})
     def get_state(self):
         return [self.name, GPIO.input(self.pin)]
 
@@ -102,8 +102,8 @@ class Inductive_Sensors(threading.Thread):
             try:
                 self.queue.get(True,0.1)
                 states = {}
-                for sensor_name in self.sensors:
-                    states[sensor_name] = self.sensors[sensor_name].get_state()
+                for sensor in self.sensors:
+                    states[sensor.name] = sensor.get_state()
                 self.tb.publish("response_carousel_detect_balls",states)
             except queue.Empty:
                 for sensor in self.sensors:
@@ -340,10 +340,7 @@ class Main(threading.Thread):
                             group.serpentine_center()
 
                 if topic == b'request_carousel_detect_balls':
-                    self.tb.publish(
-                        topic="response_carousel_detect_balls", 
-                        message=self.inductive_sensors.response_carousel_detect_balls()
-                    )
+                    self.inductive_sensors.response_carousel_detect_balls()
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="response_computer_details", 

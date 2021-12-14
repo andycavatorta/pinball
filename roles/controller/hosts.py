@@ -138,25 +138,28 @@ class Carousel(Host):
             False,
             False
         ]
-        self.balls_present = [
-            False,
-            False,
-            False,
-            False,
-            False
-        ]
+        self.balls_present = {
+            "coco":False,
+            "naranja":False,
+            "mango":False,
+            "sandia":False,
+            "pina":False,
+        }
+
     def request_carousel_detect_balls(self):
         self.tb.publish(topic="request_carousel_detect_balls",message=True,destination=self.hostname)
+    def set_carousel_ball_detected(self, balls_present):
+        for ball_name in balls_present:
+            self.balls_present[ball_name] = balls_present[ball_name]
+    def get_carousel_ball_detected(self):
+        return self.balls_present
+
     def request_solenoids_present(self):
         self.tb.publish(topic="request_solenoids_present",message=True,destination=self.hostname)
     def set_solenoids_present(self, solenoids_present):
         self.solenoids_present = solenoids_present
     def get_solenoids_present(self):
         return self.solenoids_present
-    def set_carousel_ball_detected(self, balls_present):
-        self.balls_present = balls_present
-    def get_carousel_ball_detected(self):
-        return self.balls_present
     def request_eject_ball(self, fruit_name):
         self.tb.publish(topic="cmd_carousel_eject_ball",message=fruit_name,destination=self.hostname)
     def request_system_tests(self):
@@ -1018,7 +1021,7 @@ class Hosts():
             self.hostnames[origin].set_amt203_zeroed(message)
         if topic == "response_carousel_absolute":
             self.hostnames[origin].set_amt203_absolute_position(message)
-        if topic == "response_carousel_ball_detected":
+        if topic == "response_carousel_detect_balls":
             self.hostnames[origin].set_carousel_ball_detected(message)
         if topic == "response_carousel_relative":
             self.hostnames[origin].set_sdc2160_relative_position(message)
