@@ -96,6 +96,17 @@ routines -
     local tube to remote tube
     2x (local tube to remote tube)
 """
+class Fruit_Names():
+    COCO = "coco"
+    MANGO = "mango"
+    SANDIA = "sandia"
+    NARANJA = "naranja"
+    PINA = "pina"
+    ANY = "any"
+
+class Tube_Names():
+    TRUEQUE = "trueque"
+    DINARO = "dinero"
 
 class Choreography(): 
     """
@@ -124,10 +135,241 @@ class Choreography():
         self.hosts.pinballmatrix.cmd_rotate_carousel_to_target("carousel_center","coco","coco")
  
     def transfer(self, batch):
+        pass
+
+#############################################
+###  C H E C K S  A N D  R E M E D I E S  ###
+#############################################
+
+def check_if_tube_is_empty(station_fruit_name, tube_name):
+    pass
+
+def check_if_tube_is_full(station_fruit_name, tube_name):
+    pass
+
+def check_if_pocket_has_ball(carousel_name, fruit_name):
+    pass
+
+def check_if_carousel_position_is_within_tolerance(carousel_name):
+    pass
+
+def check_if_tube_ball_bounced():
+    pass
+
+def check_if_tube_ball_stuck():
+    pass
+
+def ():
+    pass
+
+########################
+###  E L E M E N T S ###
+########################
+
+class Transfer_Ball_From_Tube_To_Edge_Carousel():
+    def __init__(self, tb, hosts):
+        """
+        steps:
+        check if ball in tube
+        check if edge carousel pocket is empty
+        rotate edge carousel to tube
+        check if carousel position is precise enough
+        launch tube
+        sleep x ms
+        check if ball detected in pocket
+            remedy: tube ball not detected in pocket
+        report success 
+        """
+        self.hosts = hosts
+        self.tb = tb
+        self.steps = []
+    def begin(self, 
+            callback, 
+            station_fruit_name, 
+            tube_name, 
+            pocket_fruit_name, 
+            fanfare=None):
+        pass
+        """
+        """
+
+class Transfer_Ball_From_Edge_Carousel_To_Tube():
+    def __init__(self, tb, hosts):
+        """
+        steps:
+        check if tube has capacity
+        check if edge carousel pocket has ball
+        rotate edge carousel pocket to tube
+        check if carousel position is precise enough
+        eject ball
+        check if ball motion detected in tube
+        report success 
+        """
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            station_fruit_name, 
+            tube_name, 
+            pocket_fruit_name, 
+            fanfare=None):
+        pass
+
+class Transfer_Ball_From_Edge_Carousel_To_Center_Carousel():
+    def __init__(self, tb, hosts):
+        """
+        steps:
+        check if edge carousel pocket has ball
+        check if center carousel pocket is empty
+        rotate edge carousel pocket to center
+        rotate center carousel pocket to edge carousel
+        eject ball
+        check if edge carousel pocket has no ball
+        check if center carousel pocket has ball
+        report
+        """
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            station_fruit_name, 
+            edge_pocket_fruit_name, 
+            center_pocket_fruit_name, 
+            fanfare=None):
+        pass
+
+class Transfer_Ball_From_Center_Carousel_To_Edge_Carousel():
+    def __init__(self, tb, hosts):
+        """
+        steps:
+        check if edge carousel pocket has no ball
+        check if center carousel pocket has ball
+        rotate edge carousel pocket to center
+        rotate center carousel pocket to edge carousel
+        eject ball
+        check if edge carousel pocket has no ball
+        check if center carousel pocket has ball
+        report
+        """
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            station_fruit_name, 
+            edge_pocket_fruit_name=None, 
+            center_pocket_fruit_name=None, 
+            fanfare=None):
+            edge_pocket_fruit_name = edge_pocket_fruit_name or station_fruit_name 
+            center_pocket_fruit_name = center_pocket_fruit_name or station_fruit_name
+
+        pass
+
+##########################
+###  C O M P O U N D S ###
+##########################
+
+class Transfer_Ball_From_Local_Carousel_To_Remote_Carousel():
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+        self.steps = []
+    def begin(self, 
+            callback, 
+            origin_station_fruit_name, 
+            origin_pocket_fruit_name, 
+            center_pocket_fruit_name, 
+            destination_station_fruit_name, 
+            destination_pocket_fruit_name, 
+            fanfare=None):
+        pass
+        """
+        Transfer_Ball_From_Edge_Carousel_To_Center_Carousel
+        Transfer_Ball_From_Center_Carousel_To_Edge_Carousel
+        """
+
+class Transfer_Ball_From_Local_Tube_To_Remote_Carousel():
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            origin_tube_name,
+            origin_station_fruit_name, 
+            origin_pocket_fruit_name, 
+            center_pocket_fruit_name, 
+            destination_station_fruit_name, 
+            destination_pocket_fruit_name, 
+            fanfare=None):
+        pass
+        """
+        Transfer_Ball_From_Tube_To_Edge_Carousel
+        Transfer_Ball_From_Edge_Carousel_To_Center_Carousel
+        Transfer_Ball_From_Center_Carousel_To_Edge_Carousel
+        """
+
+class Transfer_Ball_From_Local_Carousel_To_Remote_Tube():
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            origin_station_fruit_name, 
+            origin_pocket_fruit_name, 
+            center_pocket_fruit_name, 
+            destination_station_fruit_name, 
+            destination_pocket_fruit_name,
+            remote_tube_name, 
+            fanfare=None):
+        pass
+        """
+        Transfer_Ball_From_Edge_Carousel_To_Center_Carousel
+        Transfer_Ball_From_Center_Carousel_To_Edge_Carousel
+        Transfer_Ball_From_Edge_Carousel_To_Tube
+        """
+
+class Transfer_Ball_From_Local_Tube_To_Remote_Tube():
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback,
+            origin_tube_name,
+            origin_station_fruit_name, 
+            origin_pocket_fruit_name, 
+            center_pocket_fruit_name, 
+            destination_station_fruit_name, 
+            destination_pocket_fruit_name, 
+            remote_tube_name, 
+            fanfare=None):
+        pass
+        """
+        Transfer_Ball_From_Tube_To_Edge_Carousel
+        Transfer_Ball_From_Edge_Carousel_To_Center_Carousel
+        Transfer_Ball_From_Center_Carousel_To_Edge_Carousel
+        Transfer_Ball_From_Edge_Carousel_To_Tube
+        """
+
+class Transfer_Ball_From_Local_Tube_To_Local_Tube():
+    def __init__(self, tb, hosts):
+        self.hosts = hosts
+        self.tb = tb
+    def begin(self, 
+            callback, 
+            origin_station_fruit_name, 
+            origin_tube_name, 
+            center_pocket_fruit_name, 
+            destination_tube_name, 
+            fanfare=None):
+        pass
+        """
+        Transfer_Ball_From_Tube_To_Edge_Carousel
+        Transfer_Ball_From_Edge_Carousel_To_Tube
+
+        """
+
         """
         basic algorithms
             
-
 
 
         cases for double transfer:
