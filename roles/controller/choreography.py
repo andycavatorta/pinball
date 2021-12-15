@@ -159,8 +159,6 @@ def check_if_tube_ball_bounced():
 def check_if_tube_ball_stuck():
     pass
 
-def ():
-    pass
 
 ########################
 ###  E L E M E N T S ###
