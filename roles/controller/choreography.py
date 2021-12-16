@@ -29,11 +29,11 @@ CAROUSEL_MOTOR_NAMES = [
 FRUITS = ["coco", "laranja", "mango", "sandia", "pina"]
 SIDES = ["left", "right"]
 STATION_NAMES = [
-    "pinballgame1",
-    "pinballgame2",
-    "pinballgame3",
-    "pinballgame4",
-    "pinballgame5"]
+    "pinball1game",
+    "pinball2game",
+    "pinball3game",
+    "pinball4game",
+    "pinball5game"]
 
 
 class Carousel(object):
