@@ -9,11 +9,11 @@ to pass balls between tubes and carousels
 import itertools
 import time
 
+# Constants
+NULLFUNC = lambda: None     # Empty function, makes conditional calls easier
+DEFAULT_TIMEOUT = 60.       # Default timeout for ball-handling elements
 
-# Empty function
-NULLFUNC = lambda: None
-
-# Lookup constants
+# Lookups
 CAROUSEL_CENTER_HOSTNAME = "carouselcenter"
 CAROUSEL_HOSTNAMES = [
     "carousel1",
@@ -41,7 +41,9 @@ STATION_NAMES = [
 
 class Carousel(object):
     """ hosts.Carousel wrapper that adds motion control and tube-awareness. """
-    def __init__(self, host_instance, matrix, tubes=[], timeout=60.):
+    def __init__(self, host_instance, matrix, 
+                 tubes=[], 
+                 timeout=DEFAULT_TIMEOUT):
         self.host_instance = host_instance
         self.matrix = matrix
         self.tubes = tubes
@@ -72,7 +74,7 @@ class Carousel(object):
         start_time = time.time()
         while not self.motor["target_reached"]:
             # Took too long
-            if time.time() - start_time > TIMEOUT:
+            if time.time() - start_time > self.timeout:
                 return False
             time.sleep(0.1)
         return True
@@ -127,7 +129,9 @@ class Carousel(object):
 class Tube(object):
     """ Convenience class to manage tubes via their hosts.Pinball staion 
         This version is aware of its parent carousel """
-    def __init__(self, station, side, carousel, max_inventory=6):
+    def __init__(self, station, side, carousel, 
+                 max_inventory=12, 
+                 timeout=DEFAULT_TIMEOUT):
         self.station = station
         self.side = side
         # HACK: should get this from fruit but whatever
@@ -174,7 +178,7 @@ class Tube(object):
 class Choreography(): 
     """ This does the things """
 
-    def __init__(self, tb, hosts):
+    def __init__(self, tb, hosts, timeout=DEFAULT_TIMEOUT):
         self.hosts = hosts
         self.tb = tb
         
@@ -184,17 +188,19 @@ class Choreography():
         # The Carousel and Tube objects here are aware of their neighbors
         # self.carousels = {fruit: Carousel}, ex: carousels["coco"]
         # self.tubes = {fruit: {side: Tube}}, ex: tubes["coco"]["left"]
-        self.carousels = {"center": Carousel(hosts.carouselcenter, self.matrix)}     
+        self.carousels = {"center": Carousel(
+            hosts.carouselcenter, self.matrix, timeout)}     
         self.tubes = {}         
         carousel_names = dict(zip(FRUITS, CAROUSEL_HOSTNAMES))
         station_names = dict(zip(FRUITS, STATION_NAMES))
         for fruit in FRUITS:
-            carousel = Carousel(hosts.hostnames[carousel_names[fruit]], self.matrix)
+            carousel = Carousel(
+                hosts.hostnames[carousel_names[fruit]], self.matrix, timeout)
             self.carousels[fruit] = carousel
             self.tubes[fruit] = {}
             station = hosts.hostnames[station_names[fruit]]
             for side in SIDES:
-                tube = Tube(station, side, carousel)
+                tube = Tube(station, side, carousel, timeout)
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
 
@@ -225,7 +231,7 @@ class Choreography():
         start_time = time.time()
         while not all(done):
             # Took too long
-            if time.time() - start_time > TIMEOUT:
+            if time.time() - start_time > self.timeout:
                 return False
             time.sleep(0.1)
             # Refresh motor statuses
