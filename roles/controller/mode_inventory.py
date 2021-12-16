@@ -192,3 +192,49 @@ class Mode_Inventory(threading.Thread):
             else:
                 time.sleep(1)
 
+"""
+inventory
+    empty center carousel
+        for each occupied center pocket
+            find closest available outer pocket
+                element: center carousel to outer carousel
+    empty outer carousels
+        for each outer carousel
+            for occupied pocket
+                if dinero tube not full
+                    element: carousel to adjacent tube
+                    continue
+                if trueque tube not full
+                    element: carousel to adjacent tube
+                    continue
+                find closest nonadjacent tube not full
+                    element: local carousel to remote carousel
+                    element: carousel to adjacent tube
+    empty each tube to establish zero-based counting
+        for origin_tube in tubes
+            destination_tube =  closest nonfull tube
+            try
+                if is_adjacent(origin_tube, destination_tube)
+                    local tube to local tube
+                else
+                    local tube to remote tube
+            except donor_tube.motion_not_detected
+                record zero value                        
+                break
+            except donor_tube.carousel.ball_not_received
+                record zero value                        
+                break
+
+trueque mode setup
+    equally distribute balls among games, with dinero tube as destination
+    transfer all balls in trueque tube to dinero tube
+local tube to local tube
+local tube to remote tube
+2x (local tube to remote tube)
+dinero mode set up 
+    equally distribute balls among games, with dinero tube as destination
+    transfer all balls in trueque tube to dinero tube
+local tube to local tube
+local tube to remote tube
+2x (local tube to remote tube)
+"""
