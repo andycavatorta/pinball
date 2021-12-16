@@ -179,8 +179,9 @@ class Choreography():
     """ This does the things """
 
     def __init__(self, tb, hosts, timeout=DEFAULT_TIMEOUT):
-        self.hosts = hosts
         self.tb = tb
+        self.hosts = hosts
+        self.timeout = timeout
         
         # Save reference to pinballmatrix for carousel rotation
         self.matrix = hosts.pinballmatrix        
@@ -189,18 +190,22 @@ class Choreography():
         # self.carousels = {fruit: Carousel}, ex: carousels["coco"]
         # self.tubes = {fruit: {side: Tube}}, ex: tubes["coco"]["left"]
         self.carousels = {"center": Carousel(
-            hosts.carouselcenter, self.matrix, timeout=timeout)}     
+            hosts.carouselcenter,
+            self.matrix,
+            timeout=self.timeout)}     
         self.tubes = {}         
         carousel_names = dict(zip(FRUITS, CAROUSEL_HOSTNAMES))
         station_names = dict(zip(FRUITS, STATION_NAMES))
         for fruit in FRUITS:
             carousel = Carousel(
-                hosts.hostnames[carousel_names[fruit]], self.matrix, timeout=timeout)
+                hosts.hostnames[carousel_names[fruit]],
+                self.matrix,
+                timeout=self.timeout)
             self.carousels[fruit] = carousel
             self.tubes[fruit] = {}
             station = hosts.hostnames[station_names[fruit]]
             for side in SIDES:
-                tube = Tube(station, side, carousel, timeout)
+                tube = Tube(station, side, carousel, timeout=self.timeout)
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
 
