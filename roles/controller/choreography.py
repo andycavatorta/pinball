@@ -142,7 +142,7 @@ class Tube(object):
         elif side == "right":
             self.callbacks = {
                 "request_detect_balls": station.get_right_stack_inventory,
-                "request_eject_ball": station.cmd_rightttube_launch           
+                "request_eject_ball": station.cmd_righttube_launch          
             }
         else:
             raise ValueError(f"Tube expected side right/left, got {side}")
