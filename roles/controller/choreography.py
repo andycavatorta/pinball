@@ -55,7 +55,7 @@ class Carousel(object):
         self.motor_name = motors_by_hostname[host_instance.hostname]
         self.motor = matrix.motor_by_carousel_name[self.motor_name]
     
-    def __getattribute__(self, attribute):
+    def __getattr__(self, attribute):
         """ Anything not intercepted here gets passed to host_instance """
         if attribute in self.__dict__:
             return self.getattr(attribute)
