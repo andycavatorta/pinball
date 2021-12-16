@@ -88,7 +88,7 @@ class Inductive_Sensors(threading.Thread):
         self.tb = tb
         self.sensors = [ # name, gpio, last_state
             GPIO_Input("coco", 14, tb),
-            GPIO_Input("naranja", 15, tb),
+            GPIO_Input("naranja", 20, tb),
             GPIO_Input("mango", 18, tb),
             GPIO_Input("sandia", 23, tb),
             GPIO_Input("pina", 24, tb),
