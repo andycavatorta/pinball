@@ -134,7 +134,7 @@ class Speed_To_Position(threading.Thread):
                     None,
                     None)
                 self.motor.set_motor_speed(speed)
-                print(speed, self.motor.name, self.motor)
+                print("DEBUG: ", speed, self.motor.name, self.motor)
                 while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
