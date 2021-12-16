@@ -199,15 +199,29 @@ class Choreography():
                 carousel.tubes.append(tube)
 
     # Multi-carousel movements -----------------------------------------------
-    
+
+    def process_carousels(self, carousels=None) -> list:
+        """ Helper function to make carousel input more versatile
+            Can specify carousels by instance, name, or None (all) """
+        # If None, assume we want all carousels
+        carousels = carousels or self.carousels
+        # If given only one item, ensure that it's a list
+        if not isinstance(carousels, (list, tuple)):
+            carousels = [carousels]
+        # If any are strings, assume they're fruit names for carousels
+        for i in range(len(carousels)):
+            if isinstance(carousels[i], str):
+                carousels[i] = self.carousels[carousel]
+        return carousels
+
     def wait_carousels(self, carousels=None) -> bool:
         """ Wait for list of carousels to finish moving.
             Checks all carousels by default. """
-        # Can't put carousels=self.carousels in method declaration
-        # because self isn't defined yet
-        carousels = carousels or self.carousels
-        start_time = time.time()
+        # Ensure carousels is a list of Carousel instances
+        carousels = self.process_carousels(carousels)
+        # Start waiting
         done = [False]
+        start_time = time.time()
         while not all(done):
             # Took too long
             if time.time() - start_time > TIMEOUT:
@@ -222,26 +236,29 @@ class Choreography():
         # Verify that each carousel has a fruit and a target
         if not len(carousels) == len(fruits) == len(targets):
             return False
+        # Ensure carousels is a list of Carousel instances
+        carousels = self.process_carousels(carousels)
         # Start all the moves
         for carousel, fruit, target in zip(carousels, fruits, targets):
             if not carousel.rotate_to_target(fruit, target, wait=False):
                 return False
+        # Optionally, wait for moves to finish
         if not wait:
             return True 
-        # Optionally, wait for moves to finish
         return wait_carousels(carousels)    
 
     def home_carousels(self, carousels=None, wait=True) -> bool:
         """ Send a list of carousels back to their home position.
             If no carousels specified, will home them all. """
-        carousels = carousels or self.carousels
+        # Ensure carousels is a list of Carousel instances
+        carousels = self.process_carousels(carousels)
         # Start all carousels homing at once
         for carousel in carousels:
             if not carousel.home(wait=False):
                 return False
+        # Optionally, wait for moves to finish
         if not wait:
             return True
-        # Optionally, wait for moves to finish
         return wait_carousels(carousels)      
 
     def align_pockets(self, vehicle1, fruit1, vehicle2, fruit2, wait=True) -> bool:
@@ -249,6 +266,7 @@ class Choreography():
         vehicles = (vehicle1, vehicle2)
         fruits = (fruit1, fruit2)
         # Figure out what's going where
+        # Kind of silly to have a loop but I like it
         carousels, fruits, targets = [], [], []
         for i in range(vehicles):
             if isinstance(vehicle, Carousel):
