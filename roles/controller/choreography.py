@@ -58,9 +58,7 @@ class Carousel(object):
     
     def __getattr__(self, attribute):
         """ Anything not intercepted here gets passed to host_instance """
-        if attribute in self.__dict__:
-            return self.getattr(attribute)
-        return self.host_instance.getattr(attribute)
+        return getattr(self.host_instance, attribute)
         
     # TODO
     def get_nearest_available_fruit(self, neighbor):
