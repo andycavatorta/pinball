@@ -133,17 +133,17 @@ class Roboteq:
     BOARDS = {
         "carousel1and2":{
             "mcu_id":"300:1058:3014688:1429493507:540422710",
-            "serial_data_watchdog":2000, #miliseconds
+            "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
         },
         "carousel3and4":{
             "mcu_id":"300:1058:2031663:1429493506:540422710",
-            "serial_data_watchdog":2000, #miliseconds
+            "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
         },
         "carousel5and6":{
             "mcu_id":"100:1042:107610164:876103217:1124222537",
-            "serial_data_watchdog":2000, #miliseconds
+            "serial_data_watchdog":0, #miliseconds
             "serial_echo":0, #0 = enabled, 1 is disabled
         }
     }
