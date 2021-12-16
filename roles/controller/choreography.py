@@ -12,6 +12,7 @@ import itertools
 NULLFUNC = lambda: None
 
 # Lookup constants
+CAROUSEL_CENTER_HOSTNAME = "carouselcenter"
 CAROUSEL_HOSTNAMES = [
     "carousel1",
     "carousel2",
@@ -48,7 +49,7 @@ class Carousel(object):
         fruits_by_hostname = dict(
             itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
         self.home_fruit = fruits_by_hostname[host_instance.hostname]       
-        self.home_target = "back" if host_instance.hostname is not "carouselcenter" else "coco"
+        self.home_target = "back" if host_instance.hostname is not CAROUSEL_CENTER_HOSTNAME else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
             itertools.zip_longest(CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, fillvalue="coco"))
