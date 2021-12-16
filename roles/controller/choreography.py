@@ -199,9 +199,12 @@ class Choreography():
 
     # Multi-carousel movements -----------------------------------------------
     
-    def wait_carousels(self, carousels=self.carousels) -> bool:
+    def wait_carousels(self, carousels=None) -> bool:
         """ Wait for list of carousels to finish moving.
             Checks all carousels by default. """
+        # Can't put carousels=self.carousels in method declaration
+        # because self isn't defined yet
+        carousels = carousels or self.carousels
         start_time = time.time()
         done = [False]
         while not all(done):
@@ -227,9 +230,10 @@ class Choreography():
         # Optionally, wait for moves to finish
         return wait_carousels(carousels)    
 
-    def home_carousels(self, carousels=self.carousels, wait=True) -> bool:
+    def home_carousels(self, carousels=None, wait=True) -> bool:
         """ Send a list of carousels back to their home position.
             If no carousels specified, will home them all. """
+        carousels = carousels or self.carousels
         # Start all carousels homing at once
         for carousel in carousels:
             if not carousel.home(wait=False):
@@ -457,9 +461,10 @@ class Choreography():
                     return False
         return True
 
-    def equalize_tubes(self, tubes=self.tubes) -> bool:
+    def equalize_tubes(self, tubes=None) -> bool:
         """ Equalize inventory between a list of tubes as best as possible
             Equalizes all tubes by default """
+        tubes = tubes or self.tubes
         # Equalize routine
         while True:
             # Sort tubes from fullest to emptiest
