@@ -193,7 +193,7 @@ class Choreography():
             self.tubes[fruit] = {}
             station = hosts.hostnames[station_names[fruit]]
             for side in SIDES:
-                tube = Tube(hosts, station, side, carousel)
+                tube = Tube(station, side, carousel)
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
 
