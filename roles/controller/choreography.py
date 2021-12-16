@@ -246,7 +246,7 @@ class Choreography():
         # Optionally, wait for moves to finish
         if not wait:
             return True 
-        return wait_carousels(carousels)    
+        return self.wait_carousels(carousels)    
 
     def home_carousels(self, carousels=None, wait=True) -> bool:
         """ Send a list of carousels back to their home position.
@@ -260,7 +260,7 @@ class Choreography():
         # Optionally, wait for moves to finish
         if not wait:
             return True
-        return wait_carousels(carousels)      
+        return self.wait_carousels(carousels)      
 
     def align_pockets(self, vehicle1, fruit1, vehicle2, fruit2, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
