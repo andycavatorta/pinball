@@ -120,7 +120,7 @@ class Speed_To_Position(threading.Thread):
                 destination_adjusted = destination + slop
                 self.callback(
                     "event_destination_reached", 
-                    [self.motor.name,False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                     None,
                     None)
                 self.callback(
@@ -134,6 +134,7 @@ class Speed_To_Position(threading.Thread):
                     None,
                     None)
                 self.motor.set_motor_speed(speed)
+                print(speed, self.motor.name, self.motor)
                 while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
@@ -143,7 +144,7 @@ class Speed_To_Position(threading.Thread):
                             [self.motor.name, True,self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
-                        if retry_stalled_motor <=3:
+                        if retry_stalled_motor <= 3:
                             retry_stalled_motor += 1
                             self.motor.set_motor_speed(speed)
                         else:
@@ -155,7 +156,6 @@ class Speed_To_Position(threading.Thread):
                             [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
-
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
