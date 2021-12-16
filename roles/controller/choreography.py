@@ -44,11 +44,11 @@ class Carousel(object):
         self.tubes = tubes
         self.timeout = timeout
         # Determine home parameters
-        # zip_longest puts "coco" with "centercarousel"
+        # zip_longest puts "coco" with "carouselcenter"
         fruits_by_hostname = dict(
             itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS, "coco"))
         self.home_fruit = fruits_by_hostname[host_instance.hostname]       
-        self.home_target = "back" if host_instance.hostname is not "centercarousel" else "coco"
+        self.home_target = "back" if host_instance.hostname is not "carouselcenter" else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
             itertools.zip_longest(CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, "coco"))
@@ -183,7 +183,7 @@ class Choreography():
         # The Carousel and Tube objects here are aware of their neighbors
         # self.carousels = {fruit: Carousel}, ex: carousels["coco"]
         # self.tubes = {fruit: {side: Tube}}, ex: tubes["coco"]["left"]
-        self.carousels = {"center": Carousel(hosts.centercarousel, self.matrix)}     
+        self.carousels = {"center": Carousel(hosts.carouselcenter, self.matrix)}     
         self.tubes = {}         
         carousel_names = dict(zip(FRUITS, CAROUSEL_HOSTNAMES))
         station_names = dict(zip(FRUITS, STATION_NAMES))
