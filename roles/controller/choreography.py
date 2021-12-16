@@ -5,7 +5,7 @@ to pass balls between tubes and carousels
 
 # itertools.zip_longest is useful for handling the center carousel. 
 # Ex: this pairs "coco" with "carouselcenter" after running out of fruit:
-# zip_longest(FRUITS, CAROUSEL_HOSTNAMES, "coco") 
+# zip_longest(FRUITS, CAROUSEL_HOSTNAMES, fillvalue="coco") 
 import itertools
 
 # Empty function
@@ -46,12 +46,12 @@ class Carousel(object):
         # Determine home parameters
         # zip_longest puts "coco" with "carouselcenter"
         fruits_by_hostname = dict(
-            itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS, "coco"))
+            itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
         self.home_fruit = fruits_by_hostname[host_instance.hostname]       
         self.home_target = "back" if host_instance.hostname is not "carouselcenter" else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
-            itertools.zip_longest(CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, "coco"))
+            itertools.zip_longest(CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, fillvalue="coco"))
         self.motor_name = motors_by_hostname[host_instance.hostname]
         self.motor = matrix.motor_by_carousel_name[self.motor_name]
     
