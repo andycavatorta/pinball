@@ -97,7 +97,7 @@ class Carousel(object):
             target_name = "back"
             
         # Do move and optionally wait
-        self.matrix.rotate_carousel_to_target(self.motor_name, fruit, target_name)        
+        self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name)        
         if not wait:
             return True
         return self.wait()
