@@ -189,13 +189,13 @@ class Choreography():
         # self.carousels = {fruit: Carousel}, ex: carousels["coco"]
         # self.tubes = {fruit: {side: Tube}}, ex: tubes["coco"]["left"]
         self.carousels = {"center": Carousel(
-            hosts.carouselcenter, self.matrix, timeout)}     
+            hosts.carouselcenter, self.matrix, timeout=timeout)}     
         self.tubes = {}         
         carousel_names = dict(zip(FRUITS, CAROUSEL_HOSTNAMES))
         station_names = dict(zip(FRUITS, STATION_NAMES))
         for fruit in FRUITS:
             carousel = Carousel(
-                hosts.hostnames[carousel_names[fruit]], self.matrix, timeout)
+                hosts.hostnames[carousel_names[fruit]], self.matrix, timeout=timeout)
             self.carousels[fruit] = carousel
             self.tubes[fruit] = {}
             station = hosts.hostnames[station_names[fruit]]
