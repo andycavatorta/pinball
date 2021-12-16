@@ -210,8 +210,9 @@ class Choreography():
             carousels = [carousels]
         # If any are strings, assume they're fruit names for carousels
         for i in range(len(carousels)):
-            if isinstance(carousels[i], str):
-                carousels[i] = self.carousels[carousel]
+            potential_name = carousels[i]
+            if isinstance(potential_name, str):
+                carousels[i] = self.carousels[potential_name]
         return carousels
 
     def wait_carousels(self, carousels=None) -> bool:
