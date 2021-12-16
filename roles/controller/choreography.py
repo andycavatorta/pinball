@@ -27,7 +27,7 @@ CAROUSEL_MOTOR_NAMES = [
     "carousel_4",
     "carousel_5",
     "carousel_center"]
-FRUITS = ["coco", "laranja", "mango", "sandia", "pina"]
+FRUITS = ["coco", "naranja", "mango", "sandia", "pina"]
 SIDES = ["left", "right"]
 STATION_NAMES = [
     "pinball1game",
