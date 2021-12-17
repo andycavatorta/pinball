@@ -268,19 +268,17 @@ class Choreography():
         # Ensure carousels is a list of Carousel instances
         carousels = self.process_carousels(carousels)
         # Start waiting
-        done = [False]
+        done = False
         start_time = time.time()
-        while not all(done):
-            # Took too long
+        while not done:
+            # Timeout
             if time.time() - start_time > self.timeout:
                 return False
             time.sleep(0.1)
             # Refresh motor statuses
-            done = []
             for carousel in carousels:
-                motor = carousel.motor
                 # motor.get_runtime_status_flags()
-                done.append(motor["target_reached"][0])
+                done &= carousel.motor["target_reached"][0]
         return True
 
     def rotate_carousels_to_targets(self, carousels, fruits, targets, wait=True) -> bool:
