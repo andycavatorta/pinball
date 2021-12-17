@@ -596,6 +596,9 @@ class Pinball(Host):
             recent_events.append(event)
         return len(recent_events)
 
+    def get_lefttube_full(self):
+        return self.get_last_state_tube_sensor_events_left()
+
     def get_last_state_tube_sensor_events_left(self):
         return self.left_tube_event_history(-1)
 

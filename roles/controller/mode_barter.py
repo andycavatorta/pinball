@@ -15,6 +15,14 @@ import settings
 import threading
 import time
 
+class Barter_States():
+    NO_BARTER = "no_barter"
+    ZERO_BUTTONS_PUSHED = "zero_buttons_pushed"
+    ONE_BUTTON_PUSHED = "one_button_pushed"
+    ONE_BUTTON_TIMEOUT = "one_button_timeout"
+    TWO_BUTTONS_PUSHED = "two_buttons_pushed"
+    BARTER_COMPLETE = "barter_complete"
+
 class Pie():
     def __init__(self, origin, hosts, pie_full_handler):
         self.origin = origin
@@ -61,6 +69,10 @@ class Pie():
 
 class Game(threading.Thread):
     def __init__(self,fruit_name,hosts,game_name,carousel_name,display_name, parent_ref):
+        """
+        This class is instantiated five times, once for each station.  
+
+        """
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.fruit_name = fruit_name
@@ -111,6 +123,40 @@ class Game(threading.Thread):
     def pie_full_handler(self):
         self.increment_score(25)
         #self.increment_decrement_fruits(True)
+
+    def earn_ball(self):
+        # pass ball from right tube to left tube
+        pass
+
+    def expire_ball(self):
+        # pass ball from left tube to right tube
+        pass
+
+    def disable_all_buttons(self):
+        pass
+
+    def enable_all_button(self):
+        pass
+
+
+    def pre_trade_attention_animation_frame_1(self, a_or_b):
+        if a_or_b == "a":
+            trader_a trueque button light on
+            trader_a chime dings
+            trader_a tu fruta light on
+        if a_or_b == "b":
+            trader_b trueque button light off
+            trader_b tu fruta light off
+
+    def pre_trade_attention_animation_frame_2(self, a_or_b):
+        if a_or_b == "a":
+            trader_a trueque button light off
+            trader_a tu fruta light off
+        if a_or_b == "b":
+            trader_b trueque button light on
+            trader_b chime dings
+            trader_b tu fruta light on
+
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
@@ -222,10 +268,158 @@ class Game(threading.Thread):
                 pass
                 # animation goes here
 
+class Barter_Manager(threading.Thread):
+    """
+    ??? transfer balls from right tube ???
+
+    Barter_States.NO_BARTER
+        if any game trough sensor
+            check if trade possible
+
+    Barter_States.ZERO_BUTTONS_PUSHED
+        start timer
+        disable buttons for trader_a
+        enable trueque button for trader_a
+        enable trueque button for trader_b
+        if trader_b trough sensor:
+            disable buttons for trader_b
+            enable trueque button for trader_b
+        start c animation
+        ends when one trueque button is pushed
+
+    Barter_States.ONE_BUTTON_PUSHED
+        start timer
+        fanfare
+        assign roles trader_first and trader_second to trader_a and trader_b
+        
+        start attention_2 animation
+            more urgent for trader_second            
+        
+        ends when timer expires or trader_second trueque button is pushed
+
+    Barter_States.ONE_BUTTON_TIMEOUT
+
+
+
+    Barter_States.TWO_BUTTONS_PUSHED
+        fanfare
+        launch trader_second ball
+        
+
+    Barter_States.BARTER_COMPLETE
+        restore button states
+
+
+
+    barter states:
+        no barter active
+        zero buttons pushed
+            trueque buttons and animations
+        one button pushed
+            assign roles trader_first and trader_second to trader_a and trader_b
+            trader_first launch ball to carousel
+        one button timeout
+        two buttons pushed
+
+        barter complete
+
+
+
+    """
+    def __init__(self, tb, hosts, set_current_mode, choreography):
+        threading.Thread.__init__(self)
+        self.trader_a_int = -1
+        self.trader_b_int = -1
+        self.minimum_ball_count_for_trade = 2
+        self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
+
+        self.start()
+
+    def attempt_to_start_barter(self, trader_a_int):
+        # if a trade is already happening
+        if self.trader_a_int > -1 or self.trader_b_int > -1:
+            return False
+        trader_b_int = self.get_traders(trader_a_int)
+        if trader_b_int == -1:
+            return False
+        # if we are this far, it's on.
+        self.trader_a_int = trader_a_int
+        self.trader_b_int = trader_b_int
+        self.barter_state_1
+
+    def disablebuttonsforbiftrough():
+        # trader_b: turn off all button actions except trueque
+        # trader_b: turn off all button lights except trueque
+
+    def barter_state_1(self):
+        # trader_a: turn off all button actions except trueque
+        # trader_a: turn off all button lights except trueque
+
+
+        # in trader_a's carousel, eject trader_b_fruit into dinero tube
+        # in trader_b's carousel, eject trader_a_fruit into dinero tube
+
+    def waiting_for_barter_frame_1a(self):
+        trader_a trueque button light on
+        trader_a chime dings
+        trader_a tu fruta light on
+        trader_b trueque button light off
+        trader_b tu fruta light off
+
+    def waiting_for_barter_frame_2b(self):
+        trader_b trueque button light on
+        trader_b chime dings
+        trader_b tu fruta light on
+        trader_a trueque button light off
+        trader_a tu fruta light off
+
+
+        note: must be able to move balls from right tube to left.   
+
+
+
+    def get_traders(self, trader_a_int):
+        trader_a_name = self.pinball_hostnames[trader_a_int]
+        if self.hosts.hostnames[trader_a_name].get_left_stack_inventory() < self.minimum_ball_count_for_trade:
+            return -1
+        list_of_other_players = self.hosts.get_games_with_players()
+        list_of_other_players.remove(trader_a_int)
+
+        if len(list_of_other_players) == 0:
+            return -1
+        if len(list_of_other_players) == 1:
+            return list_of_other_players[1]
+        for other_player_int in list_of_other_players:
+            other_player = self.pinball_hostnames[other_player_int]            
+            if other_player.get_tube_full():
+                list_of_other_players.remove(other_player_int)
+                if len(list_of_other_players) == 0:
+                    return -1
+                if len(list_of_other_players) == 1:
+                    return list_of_other_players[1]
+        for other_player_int in list_of_other_players:
+            other_player = self.pinball_hostnames[other_player_int]            
+            if other_player.get_left_stack_inventory() < self.minimum_ball_count_for_trade:
+                list_of_other_players.remove(other_player_int)
+                if len(list_of_other_players) == 0:
+                    return  -1
+                if len(list_of_other_players) == 1:
+                    return list_of_other_players[1]
+        # todo: select player(s) who has had the fewest chances to trade
+        return random.choice(list_of_other_players)
+
+
+
+
+
+
 class Mode_Barter(threading.Thread):
     """
     This class watches for incoming messages
-    Its only action will be to change the current mode
+    It handles transitions between modes and between the gameplay and trade actions
+
     """
     def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
@@ -242,6 +436,7 @@ class Mode_Barter(threading.Thread):
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
+        self.barter_manager = Barter_Manager(tb, hosts, set_current_mode, choreography)
 
         self.games = {
             "coco":Game("coco",self.hosts,"pinball1game","carousel1","pinball1display",self),
@@ -306,6 +501,7 @@ class Mode_Barter(threading.Thread):
         ]
         self.carousel_sequence_cursor = 0
         self.start()
+
 
     def begin(self):
         self.active = True
@@ -404,6 +600,8 @@ class Mode_Barter(threading.Thread):
         self.pinball_to_game[origin].add_to_queue("event_spinner",message)
 
     def event_trough_sensor(self, message, origin, destination):
+        if message == True:
+            self.barter_manager.attempt_to_start_barter(self.pinball_hostnames.index(origin_int))
         self.pinball_to_game[origin].add_to_queue("event_trough_sensor",message)
 
     def response_lefttube_present(self, message, origin, destination):
