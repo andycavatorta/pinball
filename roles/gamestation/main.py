@@ -197,12 +197,12 @@ class Button_Lights():
 ###########################################
 
 class GPIO_Input():
-    def __init__(self, name, pin, callback):
+    def __init__(self, name, pin, pullupdn, callback):
         self.name = name
         self.pin = pin
         self.callback = callback
         self.previous_state = -1 # so first read changes state and reports to callback
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=pullupdn)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
@@ -217,14 +217,14 @@ class Playfield_Sensors(threading.Thread):
         threading.Thread.__init__(self)
         self.callback = callback
         self.sensors = [ # name, gpio, last_state
-            GPIO_Input("rollover_inner_left", 16, callback),
-            GPIO_Input("rollover_inner_right", 20, callback),
-            GPIO_Input("rollover_outer_left", 12, callback),
-            GPIO_Input("rollover_outer_right", 21, callback),
-            GPIO_Input("spinner", 1, callback),
-            GPIO_Input("trough_sensor", 25, callback),
-            GPIO_Input("tube_sensor_left", 17, callback),
-            GPIO_Input("tube_sensor_right", 27, callback),
+            GPIO_Input("rollover_inner_left", 16, GPIO.PUD_DOWN, callback),
+            GPIO_Input("rollover_inner_right", 20, GPIO.PUD_DOWN, callback),
+            GPIO_Input("rollover_outer_left", 12, GPIO.PUD_DOWN, callback),
+            GPIO_Input("rollover_outer_right", 21, GPIO.PUD_DOWN, callback),
+            GPIO_Input("spinner", 1, GPIO.PUD_DOWN, callback),
+            GPIO_Input("trough_sensor", 25, GPIO.PUD_DOWN, callback),
+            GPIO_Input("tube_sensor_left", 17, GPIO.PUD_UP, callback),
+            GPIO_Input("tube_sensor_right", 27, GPIO.PUD_UP, callback),
         ]
         self.queue = queue.Queue()
         self.start()
@@ -243,7 +243,7 @@ class Playfield_Sensors(threading.Thread):
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
-                time.sleep(0.05)
+                time.sleep(0.02)
 
 ##################
 #### M A I N #####
