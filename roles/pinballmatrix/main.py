@@ -270,10 +270,10 @@ class Main(threading.Thread):
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
         try:
             destination = self.position_calibration[carousel_name][fruit_name][position_name]
+            self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
         except KeyError as e:
             print(e)
-            pass
-        self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
+            return
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
