@@ -186,8 +186,9 @@ class Tube(object):
         return self.inventory
     
     # TODO: verify ball was ejected
-    # def request_eject_ball(self, fruit=None):
-    #     return self.callbacks["request_eject_ball"]()
+    def request_eject_ball(self, fruit=None):
+        """ Accept and ignore if a fruit is passed in """
+        return self.callbacks["request_eject_ball"]()
         
     def is_empty(self):
         if self.inventory is not None:
