@@ -118,21 +118,22 @@ class Speed_To_Position(threading.Thread):
                 speed = 1 if destination > current_position else -1
                 slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
-                self.callback(
-                    "event_destination_reached", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
-                self.callback(
-                    "event_destination_stalled", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
-                self.callback(
-                    "event_destination_timeout", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
+                # Why are these here
+                # self.callback(
+                #     "event_destination_reached", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
+                # self.callback(
+                #     "event_destination_stalled", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
+                # self.callback(
+                #     "event_destination_timeout", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
                 self.motor.set_motor_speed(speed)
                 print("DEBUG: ", speed, self.motor.name, self.motor)
                 while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
