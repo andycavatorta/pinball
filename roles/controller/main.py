@@ -164,7 +164,7 @@ class Main(threading.Thread):
             "reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
-            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            # "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
