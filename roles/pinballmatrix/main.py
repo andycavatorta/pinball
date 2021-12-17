@@ -115,8 +115,9 @@ class Speed_To_Position(threading.Thread):
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
-                speed = 1 if destination > current_position else -1
-                slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
+                dir = 1 if destination > current_position else -1
+                speed = dir * 2
+                slop = dir * -30    # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
                 # Why are these here
                 # self.callback(
@@ -135,14 +136,13 @@ class Speed_To_Position(threading.Thread):
                 #     None,
                 #     None)
                 self.motor.set_motor_speed(speed)
-                print("DEBUG: ", speed, self.motor.name, self.motor)
-                while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
+                while (current_position < destination_adjusted) if speed > 0 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
                         self.callback(
                             "event_destination_stalled", 
-                            [self.motor.name, True,self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                            [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
                         if retry_stalled_motor <= 3:
