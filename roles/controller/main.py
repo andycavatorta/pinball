@@ -54,6 +54,7 @@ from http_server_root import dashboard
 
 from roles.controller.choreography import Choreography
 
+from roles.controller.mode_development import Mode_Development
 from roles.controller.mode_error import Mode_Error
 from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Connections
 from roles.controller.mode_system_tests import Mode_System_Tests
@@ -172,6 +173,7 @@ class Main(threading.Thread):
             "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
+            "development":Mode_Development(self.tb, self.hosts, self.set_current_mode, self.choreography)
         }
         self.dashboard = dashboard.init()
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS

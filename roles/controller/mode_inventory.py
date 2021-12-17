@@ -112,6 +112,7 @@ import settings
 import threading
 import time
 
+
 class Mode_Inventory(threading.Thread):
     """
     When this system boots, there is no way to know how many balls are in the tubes.  
@@ -145,15 +146,62 @@ class Mode_Inventory(threading.Thread):
         # bypass inventory
         #self.set_current_mode(self.game_mode_names.ATTRACTION)
 
+    def inventory(self):
+        choreo = self.choreography
+        self.active = True
+        
+        # Zeroing
+        pass
+        
+        # Inventory 
+        total_balls = 0
+        # Get flat list of all Tubes (instead of dicts)
+        tubes_all = []
+        for pair in choreo.tubes:
+            tubes_all += [pair["left"], pair["right"]]
+        # Check for any tubes that already know they're full
+        tubes_known = []
+        tubes_unknown = []
+        for tube in tubes_known:
+            if tube.is_full():
+                # is_full will set tube.inventory = tube.max_inventory
+                tubes_known.append(tube)
+            else:
+                tubes_unknown.append(tube)
+        # Check for empty tubes by shooting non-full tubes once
+        # TODO: move carousels to blocking positions?
+        tubes_empty = []
+        for tube in tubes_unknown:
+            # TODO: differentiate error from empty
+            if not tube.request_eject_ball():
+                tube.inventory = 0
+                tubes_empty.append(tube)
+                tubes_unknown.remove(tube)
+        # Dump carousels into unknown tubes, hoping to fill them
+        for tube in tubes_unknown:
+            for carousel in choreo.carousels:
+                choreo.transfer_all(carousel, tube)
+                if tube.is_full():
+                    tubes_unknown.remove(tube)
+                    tubes_known.append(tube)
+                    break
+        # Fill remaining unknown tubes until all are known
+        while tubes_unknown:
+            # Using pop() because tube will become known
+            tube_unknown = tubes_unknown.pop()
+            for tube_known in tubes_known:
+                choreo.transfer_all(tube_known, tube_unknown)
+                if tube_unknown.is_full():
+                    tubes_known.append(tube_unknown)
+
+        # Distribute balls equally and finish
+        return choreo.equalize_tubes()
+    
+    # TODO: Just stuffed everything in here for now, slowly getting more concrete
     def begin(self):
         #self.timer = time.time()
         self.active = True
-        #skipping zeroing, inventory, and set_balls_for_game
-        
         self.set_current_mode(self.game_mode_names.ATTRACTION)
-        #for pinball_hostname in self.pinball_hostnames:
-        #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
-        
 
     def end(self):
         self.active = False

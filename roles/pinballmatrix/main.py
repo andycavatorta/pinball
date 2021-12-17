@@ -115,33 +115,34 @@ class Speed_To_Position(threading.Thread):
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
-                speed = 1 if destination > current_position else -1
-                slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
+                dir = 1 if destination > current_position else -1
+                speed = dir * 2
+                slop = dir * -30    # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
-                self.callback(
-                    "event_destination_reached", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
-                self.callback(
-                    "event_destination_stalled", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
-                self.callback(
-                    "event_destination_timeout", 
-                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                    None,
-                    None)
+                # TODO: verify that these aren't doing anything
+                # self.callback(
+                #     "event_destination_reached", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
+                # self.callback(
+                #     "event_destination_stalled", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
+                # self.callback(
+                #     "event_destination_timeout", 
+                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                #     None,
+                #     None)
                 self.motor.set_motor_speed(speed)
-                print("DEBUG: ", speed, self.motor.name, self.motor)
-                while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
+                while (current_position < destination_adjusted) if speed > 0 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
                         self.callback(
                             "event_destination_stalled", 
-                            [self.motor.name, True,self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                            [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
                         if retry_stalled_motor <= 3:
@@ -159,7 +160,7 @@ class Speed_To_Position(threading.Thread):
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
-            time.sleep(0.2)
+            time.sleep(0.02)
             discrepancy = self.get_position_with_offset()-destination
             self.callback(
                 "event_destination_reached", 
@@ -268,8 +269,12 @@ class Main(threading.Thread):
     """
     
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        destination = self.position_calibration[carousel_name][fruit_name][position_name]
-        self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
+        try:
+            destination = self.position_calibration[carousel_name][fruit_name][position_name]
+            self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
+        except KeyError as e:
+            print(e)
+            return
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
@@ -409,9 +414,9 @@ class Main(threading.Thread):
             message=self.request_sdc2160_relative_position()
         )
         # engage emergency stop until encoder problem is solved
-        self.controllers.boards["carousel1and2"].emergency_stop()
-        self.controllers.boards["carousel3and4"].emergency_stop()
-        self.controllers.boards["carousel5and6"].emergency_stop()
+        # self.controllers.boards["carousel1and2"].emergency_stop()
+        # self.controllers.boards["carousel3and4"].emergency_stop()
+        # self.controllers.boards["carousel5and6"].emergency_stop()
 
     ##### SYSTEM TESTS #####
 

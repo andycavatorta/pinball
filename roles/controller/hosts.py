@@ -145,7 +145,6 @@ class Carousel(Host):
             "sandia":False,
             "pina":False,
         }
-
     def request_carousel_detect_balls(self):
         self.tb.publish(topic="request_carousel_detect_balls",message=True,destination=self.hostname)
     def set_carousel_ball_detected(self, balls_present):
@@ -153,7 +152,6 @@ class Carousel(Host):
             self.balls_present[ball_name] = balls_present[ball_name]
     def get_carousel_ball_detected(self):
         return self.balls_present
-
     def request_solenoids_present(self):
         self.tb.publish(topic="request_solenoids_present",message=True,destination=self.hostname)
     def set_solenoids_present(self, solenoids_present):
@@ -259,7 +257,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -270,7 +268,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -281,7 +279,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -292,7 +290,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -303,7 +301,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -314,7 +312,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -595,15 +593,13 @@ class Pinball(Host):
                 break
             recent_events.append(event)
         return len(recent_events)
-
     def get_lefttube_full(self):
         return self.get_last_state_tube_sensor_events_left()
 
     def get_last_state_tube_sensor_events_left(self):
         return self.left_tube_event_history(-1)
-
-    def get_lefttube_value(self):
-        return self.lefttube_value
+    # def get_lefttube_value(self):
+    #     return self.lefttube_value
     def cmd_lefttube_launch(self):
         self.tb.publish(
             topic="cmd_lefttube_launch", 
@@ -632,12 +628,11 @@ class Pinball(Host):
         self.righttube_present = righttube_present
     def get_righttube_present(self):
         return self.righttube_present
-
     def clear_tube_sensor_right(self):
         self.right_tube_event_history = []
     def record_tube_sensor_right(self,sensor_value):
         self.right_tube_event_history.append([sensor_value,time.time()])
-    def get_count_tube_sensor_events_right(self,timespan_s = 1.0):
+    def get_count_tube_sensor_events_right(self, timespan_s=1.0):
         request_time = time.time()
         recent_events = []
         right_tube_event_history_reversed = right_tube_event_history.reversed()
@@ -646,8 +641,8 @@ class Pinball(Host):
                 break
             recent_events.append(event)
         return len(recent_events)
-    def get_righttube_value(self):
-        return self.righttube_value
+    # def get_righttube_value(self):
+    #     return self.righttube_value
     def cmd_righttube_launch(self):
         self.tb.publish(
             topic="cmd_righttube_launch", 
