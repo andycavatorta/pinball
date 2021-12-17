@@ -163,7 +163,7 @@ class Mode_Inventory(threading.Thread):
         tubes_known = []
         tubes_unknown = []
         for tube in tubes_known:
-            if tube.is_full():
+            if tube.test_full():
                 # is_full will set tube.inventory = tube.max_inventory
                 tubes_known.append(tube)
             else:
@@ -172,8 +172,7 @@ class Mode_Inventory(threading.Thread):
         # TODO: move carousels to blocking positions?
         tubes_empty = []
         for tube in tubes_unknown:
-            # TODO: differentiate error from empty
-            if not tube.request_eject_ball():
+            if tube.test_empty():
                 tube.inventory = 0
                 tubes_empty.append(tube)
                 tubes_unknown.remove(tube)
