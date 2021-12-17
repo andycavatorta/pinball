@@ -243,7 +243,7 @@ class Playfield_Sensors(threading.Thread):
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
-                time.sleep(0.05)
+                time.sleep(0.02)
 
 ##################
 #### M A I N #####
