@@ -73,7 +73,7 @@ class Carousel(object):
         """ Wait for carousel to finish moving """
         start_time = time.time()
         # self.motor.get_runtime_status_flags()
-        while not self.motor["target_reached"]:
+        while not self.motor["target_reached"][0]:
             # Took too long
             if time.time() - start_time > self.timeout:
                 return False
@@ -84,7 +84,7 @@ class Carousel(object):
     def rotate_to_target(self, fruit, target, wait=True):
         """ Rotate fruit toward target and optionally wait to finish """
         # Abort if already moving
-        if not self.motor["target_reached"]:
+        if not self.motor["target_reached"][0]:
             return False
 
         # Get target name
@@ -280,7 +280,7 @@ class Choreography():
             for carousel in carousels:
                 motor = carousel.motor
                 # motor.get_runtime_status_flags()
-                done.append(motor["target_reached"])
+                done.append(motor["target_reached"][0])
         return True
 
     def rotate_carousels_to_targets(self, carousels, fruits, targets, wait=True) -> bool:
