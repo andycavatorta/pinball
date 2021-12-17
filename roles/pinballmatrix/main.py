@@ -236,8 +236,10 @@ class Main(threading.Thread):
         self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center")
         ##### absolute encoder status #####
         self.position_calibration = position_calibration
-        self.absolute_encoders_presences = [False,False,False,False,False,False]
-        self.absolute_encoders_positions = [None,None,None,None,None,None]
+        #self.absolute_encoders_presences = [False,False,False,False,False,False]
+        #self.absolute_encoders_positions = [None,None,None,None,None,None]
+        self.absolute_encoders_presences = [True,True,True,True,True,True]
+        self.absolute_encoders_positions = [0,0,0,0,0,0]
         self.absolute_encoders_zeroed = [True,True,True,True,True,True]
         self.already_called_once = False
         time.sleep(1) # just being superstitious
@@ -288,19 +290,19 @@ class Main(threading.Thread):
             # create SPI interfaces for AMT203
             time.sleep(3)
             print(">>>>> Main get_absolute_positions 0")
-            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
+            #self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
             time.sleep(3)
             # verify that encoders are present
             print(">>>>> Main get_absolute_positions 1", self.absolute_encoders)
-            self.absolute_encoders_presences = self.absolute_encoders.get_presences()
+            #self.absolute_encoders_presences = self.absolute_encoders.get_presences()
             time.sleep(3)
             # read absolute positions
             print(">>>>> Main get_absolute_positions 2", self.absolute_encoders_presences)
-            self.absolute_encoders_positions = self.absolute_encoders.get_positions()
+            #self.absolute_encoders_positions = self.absolute_encoders.get_positions()
             time.sleep(3)
             # stop SPI interfaces - spidev.close()
             print(">>>>> Main get_absolute_positions 3", self.absolute_encoders_positions)
-            self.absolute_encoders.close()
+            #self.absolute_encoders.close()
             print(">>>>> Main get_absolute_positions 4", self.absolute_encoders)
             self.already_called_once = True
             time.sleep(1)
@@ -340,13 +342,9 @@ class Main(threading.Thread):
             #self.sync_relative_encoders_to_absolute_encoders()
             for motor_ordinal, motor_name in enumerate(self.motor_names):
                 self.controllers.motors[motor_name].speed_to_position = Speed_To_Position(self.controllers.motors[motor_name], self.absolute_encoders_positions[motor_ordinal], self.add_to_queue)
-            #print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
                 time.sleep(0.1)
                 print("SDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
-            #self.absolute_encoders_presences = [True,True,True,True,True,True]
-            #self.absolute_encoders_positions = [0,0,0,0,0,0]
-            #self.absolute_encoders_zeroed = [True,True,True,True,True,True]
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
