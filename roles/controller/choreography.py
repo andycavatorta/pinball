@@ -167,6 +167,10 @@ class Tube(object):
         else:
             raise ValueError(f"Tube expected side right/left, got {side}")
     
+    def __getattr__(self, attribute):
+        """ Try to pass attribute requests to the right station attribute """
+        return getattr(self.station, self.callbacks[attribute])
+    
     # HACK: Takes a method that wraps a property and makes it a property again
     # Simpler to use inventory like a property
     @property
@@ -184,8 +188,8 @@ class Tube(object):
         return self.inventory
     
     # TODO: verify ball was ejected
-    def request_eject_ball(self, fruit=None):
-        return self.callbacks["request_eject_ball"]()
+    # def request_eject_ball(self, fruit=None):
+    #     return self.callbacks["request_eject_ball"]()
         
     def is_empty(self):
         if self.inventory is not None:
