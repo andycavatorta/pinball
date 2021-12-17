@@ -213,7 +213,10 @@ class Tube(object):
         if self.test_full(0.1):
             return False
         # Get latest event
-        last_event = self.callbacks["event_history"][-1]
+        try:
+            last_event = self.callbacks["event_history"][-1]
+        except IndexError:
+            return
         # Try to shoot a ball, then wait
         self.request_eject_ball(confirm=False)
         time.sleep(sleep_time)
@@ -222,7 +225,10 @@ class Tube(object):
     
     def test_full(self, sleep_time=1.):
         # Get latest event
-        beam_broken, timestamp = self.callbacks["event_history"][-1] 
+        try:
+            beam_broken, timestamp = self.callbacks["event_history"][-1] 
+        except IndexError:
+            return
         # Consider the tube full if the beam has stayed broken for a while
         time_elapsed = time.time() - timestamp
         if not beam_broken:
