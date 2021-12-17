@@ -62,7 +62,7 @@ from roles.controller.mode_inventory import Mode_Inventory
 from roles.controller.mode_attraction import Mode_Attraction
 from roles.controller.mode_countdown import Mode_Countdown
 from roles.controller.mode_barter_intro import Mode_Barter_Intro
-from roles.controller.mode_barter import Mode_Barter
+# from roles.controller.mode_barter import Mode_Barter
 from roles.controller.mode_money_intro import Mode_Money_Intro
 from roles.controller.mode_money import Mode_Money
 #from roles.controller.mode_dinero import Mode_Dinero
