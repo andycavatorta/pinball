@@ -72,11 +72,13 @@ class Carousel(object):
     def wait(self):
         """ Wait for carousel to finish moving """
         start_time = time.time()
+        self.motor.get_runtime_status_flags()
         while not self.motor["target_reached"]:
             # Took too long
             if time.time() - start_time > self.timeout:
                 return False
             time.sleep(0.1)
+            self.motor.get_runtime_status_flags()
         return True
     
     def rotate_to_target(self, fruit, target, wait=True):
@@ -240,7 +242,11 @@ class Choreography():
                 return False
             time.sleep(0.1)
             # Refresh motor statuses
-            done = [carousel.motor["target_reached"] for carousel in carousels]
+            done = []
+            for carousel in carousels:
+                motor = carousel.motor
+                motor.get_runtime_status_flags()
+                done.append(motor["target_reached"])
         return True
 
     def rotate_carousels_to_targets(self, carousels, fruits, targets, wait=True) -> bool:
