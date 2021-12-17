@@ -146,9 +146,7 @@ class Mode_Inventory(threading.Thread):
         # bypass inventory
         #self.set_current_mode(self.game_mode_names.ATTRACTION)
 
-    # TODO: Just stuffed everything in here for now, slowly getting more concrete
-    def begin(self):
-        #self.timer = time.time()
+    def inventory(self):
         choreo = self.choreography
         self.active = True
         
@@ -197,8 +195,12 @@ class Mode_Inventory(threading.Thread):
                     tubes_known.append(tube_unknown)
 
         # Distribute balls equally and finish
-        choreo.equalize_tubes()
-        self.active = False
+        return choreo.equalize_tubes()
+    
+    # TODO: Just stuffed everything in here for now, slowly getting more concrete
+    def begin(self):
+        #self.timer = time.time()
+        self.active = True
         self.set_current_mode(self.game_mode_names.ATTRACTION)
 
     def end(self):
