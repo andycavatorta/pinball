@@ -116,12 +116,12 @@ class Carousel(object):
     def is_empty(self, update=True):
         if update:
             self.request_detect_balls()
-        return not any(self.host_instance.balls_present)
+        return not any(self.host_instance.balls_present.values())
         
     def is_full(self, update=True):
         if update:
             self.request_detect_balls()
-        return all(self.host_instance.balls_present)
+        return all(self.host_instance.balls_present.values())
 
     def has_balls(self, update=True):
         """ Yep, that's what I'm calling it """
@@ -507,7 +507,7 @@ class Choreography():
         # If given a send carousel but no fruit, try to find an occupied pocket
         if isinstance(sender, Carousel) and send_fruit is None:
             sender.request_detect_balls()
-            for fruit, occupied in sender.balls_present:
+            for fruit, occupied in sender.balls_present.items():
                 if occupied:
                     send_fruit = fruit
                     break
