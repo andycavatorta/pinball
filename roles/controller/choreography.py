@@ -149,7 +149,6 @@ class Tube(object):
                 # "record_sensor": station.record_tube_sensor_left,
                 # "get_sensor_events": station.get_count_tube_sensor_events_left,
                 # "get_last_sensor_event": station.get_last_state_tube_sensor_events_left,
-                "get_value": station.get_lefttube_value,
                 # "launch": station.cmd_lefttube_launch,
                 "set_inventory": station.set_left_stack_inventory,
                 "get_inventory": station.get_left_stack_inventory,
@@ -158,7 +157,6 @@ class Tube(object):
             }
         elif side == "right":
             self.callbacks = {
-                "get_value": station.get_righttube_value,
                 "set_inventory": station.set_right_stack_inventory,
                 "get_inventory": station.get_right_stack_inventory,
                 "request_detect_balls": station.get_right_stack_inventory,
