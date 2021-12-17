@@ -119,7 +119,7 @@ class Speed_To_Position(threading.Thread):
                 speed = dir * 2
                 slop = dir * -30    # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
-                # Why are these here
+                # TODO: verify that these aren't doing anything
                 # self.callback(
                 #     "event_destination_reached", 
                 #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
@@ -414,9 +414,9 @@ class Main(threading.Thread):
             message=self.request_sdc2160_relative_position()
         )
         # engage emergency stop until encoder problem is solved
-        self.controllers.boards["carousel1and2"].emergency_stop()
-        self.controllers.boards["carousel3and4"].emergency_stop()
-        self.controllers.boards["carousel5and6"].emergency_stop()
+        # self.controllers.boards["carousel1and2"].emergency_stop()
+        # self.controllers.boards["carousel3and4"].emergency_stop()
+        # self.controllers.boards["carousel5and6"].emergency_stop()
 
     ##### SYSTEM TESTS #####
 
