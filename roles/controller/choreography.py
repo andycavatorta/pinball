@@ -172,7 +172,6 @@ class Tube(object):
         return getattr(self.station, self.callbacks[attribute])
     
     # HACK: Takes a method that wraps a property and makes it a property again
-    # Simpler to use inventory like a property
     @property
     def inventory(self):
         return self.callbacks["get_inventory"]()
@@ -184,10 +183,10 @@ class Tube(object):
     def request_detect_balls(self):
         """ Get inventory from parent station and save it.
             Inventory is also returned for convenience. """
-        self.inventory = self.callbacks["request_detect_balls"]()
+        self.inventory = self.callbacks["get_inventory"]()
         return self.inventory
 
-    def request_eject_ball(self, fruit=None, confirm=True):
+    def request_eject_ball(self, fruit=None, confirm=False):
         """ Accept and ignore if a fruit is passed in, for compatibility """
         # Try to eject
         self.callbacks["request_eject_ball"]()
@@ -237,14 +236,11 @@ class Tube(object):
     
     def is_empty(self):
         if self.inventory is not None:
-            return self.request_detect_balls() < 1
+            return inventory < 1
         
-    # TODO: just report if sensor is always blocked
     def is_full(self):
-        # If tube.is_full():
-        #    self.inventory = self.max_inventory
         if self.inventory is not None:
-            return self.request_detect_balls() > self.max_inventory - 1
+            return salf.inventory > self.max_inventory - 1
     
     def has_balls(self):
         if self.inventory is not None:
@@ -252,7 +248,7 @@ class Tube(object):
     
     # TODO
     def get_nearest_available_fruit(self, neighbor):
-        return True
+        return "coco"
         
 
 class Choreography(): 
