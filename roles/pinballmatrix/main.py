@@ -119,36 +119,21 @@ class Speed_To_Position(threading.Thread):
                 speed = dir * 2
                 slop = dir * -30    # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
-                # TODO: verify that these aren't doing anything
-                # self.callback(
-                #     "event_destination_reached", 
-                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                #     None,
-                #     None)
-                # self.callback(
-                #     "event_destination_stalled", 
-                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                #     None,
-                #     None)
-                # self.callback(
-                #     "event_destination_timeout", 
-                #     [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                #     None,
-                #     None)
                 self.motor.set_motor_speed(speed)
                 while (current_position < destination_adjusted) if speed > 0 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
-                        self.callback(
-                            "event_destination_stalled", 
-                            [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                            None,
-                            None)
                         if retry_stalled_motor <= 3:
                             retry_stalled_motor += 1
                             self.motor.set_motor_speed(speed)
+                            time.sleep(1)
                         else:
+                            self.callback(
+                                "event_destination_stalled", 
+                                [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                                None,
+                                None)
                             self.motor.set_motor_speed(0)
                             break 
                     if time.time() > self.timeout_timer:

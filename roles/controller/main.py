@@ -110,7 +110,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_visual_tests")
         # pinball events
         self.tb.subscribe_to_topic("event_mpf")
-
         self.tb.subscribe_to_topic("event_button_comienza")
         self.tb.subscribe_to_topic("event_button_derecha")
         self.tb.subscribe_to_topic("event_button_dinero")
@@ -121,7 +120,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_pop_right")
         self.tb.subscribe_to_topic("event_slingshot_left")
         self.tb.subscribe_to_topic("event_slingshot_right")
-        
         self.tb.subscribe_to_topic("event_left_stack_ball_present")
         self.tb.subscribe_to_topic("event_gamestation_button")
         self.tb.subscribe_to_topic("event_left_stack_motion_detected")
@@ -135,12 +133,10 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_tube_sensor_left")
         self.tb.subscribe_to_topic("event_tube_sensor_right")
         self.tb.subscribe_to_topic("event_spinner")
-
         # ENCODERS & MOTORS
         self.tb.subscribe_to_topic("event_destination_timeout")
         self.tb.subscribe_to_topic("event_destination_stalled")
         self.tb.subscribe_to_topic("event_destination_reached")
-
         self.tb.subscribe_to_topic("event_carousel_error")
         self.tb.subscribe_to_topic("event_carousel_target_reached")
         self.tb.subscribe_to_topic("response_amt203_absolute_position")
@@ -153,7 +149,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("response_sdc2160_present")
         self.tb.subscribe_to_topic("response_sdc2160_relative_position")
-        
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
         self.tb.subscribe_to_topic("response_carousel_detect_balls")
@@ -276,6 +271,10 @@ class Main(threading.Thread):
                     #motor_name, state, position, error = message
                     #if state == True:
                     print('event_destination_reached',message)
+                if topic == b'event_tube_sensor_right':
+                    pass
+                if topic == b'event_tube_sensor_left':
+                    pass
 
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.dashboard(codecs.decode(topic,'UTF-8'), message, origin, destination)
