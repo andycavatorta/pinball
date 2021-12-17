@@ -257,7 +257,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -268,7 +268,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -279,7 +279,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -290,7 +290,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -301,7 +301,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -312,7 +312,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[False,0],
+                "target_reached":[True,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -629,7 +629,7 @@ class Pinball(Host):
         self.right_tube_event_history = []
     def record_tube_sensor_right(self,sensor_value):
         self.right_tube_event_history.append([sensor_value,time.time()])
-    def get_count_tube_sensor_events_right(self,timespan_s = 1.0):
+    def get_count_tube_sensor_events_right(self, timespan_s=1.0):
         request_time = time.time()
         recent_events = []
         right_tube_event_history_reversed = right_tube_event_history.reversed()
