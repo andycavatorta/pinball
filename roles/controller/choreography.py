@@ -132,45 +132,75 @@ class Tube(object):
     """ Convenience class to manage tubes via their hosts.Pinball staion 
         This version is aware of its parent carousel """
     def __init__(self, station, side, carousel, 
-                 max_inventory=12, 
+                 max_inventory=12,
                  timeout=DEFAULT_TIMEOUT):
         self.station = station
         self.side = side
         # HACK: should get this from fruit but whatever
         self.carousel = carousel
         self.max_inventory = max_inventory
-        self.inventory = -1
         # Have to save references to a different set of commands based on side
         if side == "left":
             self.callbacks = {
+                # "request_present": station.request_lefttube_present,
+                # "set_present": station.set_lefttube_present,
+                # "get_present": station.get_lefttube_present,
+                # "clear_sensor": station.clear_tube_sensor_left,
+                # "record_sensor": station.record_tube_sensor_left,
+                # "get_sensor_events": station.get_count_tube_sensor_events_left,
+                # "get_last_sensor_event": station.get_last_state_tube_sensor_events_left,
+                "get_value": station.get_lefttube_value,
+                # "launch": station.cmd_lefttube_launch,
+                "set_inventory": station.set_left_stack_inventory,
+                "get_inventory": station.get_left_stack_inventory,
                 "request_detect_balls": station.get_left_stack_inventory,
-                "request_eject_ball": station.cmd_lefttube_launch
+                "request_eject_ball": station.cmd_lefttube_launch,
             }
         elif side == "right":
             self.callbacks = {
+                "get_value": station.get_righttube_value,
+                "set_inventory": station.set_right_stack_inventory,
+                "get_inventory": station.get_right_stack_inventory,
                 "request_detect_balls": station.get_right_stack_inventory,
-                "request_eject_ball": station.cmd_righttube_launch          
+                "request_eject_ball": station.cmd_righttube_launch,
             }
         else:
             raise ValueError(f"Tube expected side right/left, got {side}")
-                
+    
+    # HACK: Takes a method that wraps a property and makes it a property again
+    # Simpler to use inventory like a property
+    @property
+    def inventory(self):
+        return self.callbacks["get_inventory"]()
+    
+    @inventory.setter
+    def inventory(self, value):
+        self.callbacks["set_inventory"](value)
+    
     def request_detect_balls(self):
         """ Get inventory from parent station and save it.
             Inventory is also returned for convenience. """
         self.inventory = self.callbacks["request_detect_balls"]()
         return self.inventory
     
+    # TODO: verify ball was ejected
     def request_eject_ball(self, fruit=None):
         return self.callbacks["request_eject_ball"]()
         
     def is_empty(self):
-        return self.request_detect_balls() < 1
+        if self.inventory is not None:
+            return self.request_detect_balls() < 1
         
+    # TODO: just report if sensor is always blocked
     def is_full(self):
-        return self.request_detect_balls() > self.max_inventory - 1
+        # If tube.is_full():
+        #    self.inventory = self.max_inventory
+        if self.inventory is not None:
+            return self.request_detect_balls() > self.max_inventory - 1
     
     def has_balls(self):
-        return not self.is_empty()
+        if self.inventory is not None:
+            return not self.is_empty()
     
     # TODO
     def get_nearest_available_fruit(self, neighbor):
@@ -180,9 +210,10 @@ class Tube(object):
 class Choreography(): 
     """ This does the things """
 
-    def __init__(self, tb, hosts, timeout=DEFAULT_TIMEOUT):
+    def __init__(self, tb, hosts, total_balls=None, timeout=DEFAULT_TIMEOUT):
         self.tb = tb
         self.hosts = hosts
+        self.total_balls = total_balls
         self.timeout = timeout
         
         # Save reference to pinballmatrix for carousel rotation
@@ -427,9 +458,15 @@ class Choreography():
                  fanfare=None,
                  preserve_fruit=False) -> bool:
         """ Transfer one ball from sender to receiver. """
-        # Can't send from a carousel without knowing which pocket to send from
+        # If given a send carousel but no fruit, try to find an occupied pocket
         if isinstance(sender, Carousel) and send_fruit is None:
-            return False
+            sender.request_detect_balls()
+            for fruit, occupied in sender.balls_present:
+                if occupied:
+                    send_fruit = fruit
+                    break
+            else:
+                return False
         # Generate and run path from sender to receiver
         # Path is fruit-agnostic
         path = self.generate_path(sender, receiver)
@@ -439,8 +476,9 @@ class Choreography():
     
     def transfer_all(self, sender, receivers,
                      fanfare_start=None,
-                     fanfare_end=None) -> bool:
-        """ Move all balls from one vehicle to a list of receivers """
+                     fanfare_end=None) -> int:
+        """ Move all balls from one vehicle to a list of receivers 
+            Returns total transferred """
         # Easier to use empty fanfare funcs than a bunch of conditionals
         fanfare_start = fanfare_start or NULLFUNC
         fanfare_end = fanfare_end or NULLFUNC 
@@ -450,6 +488,7 @@ class Choreography():
         # Get first receiver
         receiver = receivers.pop(0)
         # Keep sending balls until sender is empty
+        total_transferred = 0
         fanfare_start()
         while sender.has_balls():
             # If transfer fails for any reason (like receiver full)...
@@ -457,12 +496,13 @@ class Choreography():
                 # ...return False if no receivers left. Sender is not empty.
                 if not receivers:
                     fanfare_end()
-                    return False
+                    return total_transferred
                 # Otherwise, move to next receiver
                 receiver = receivers.pop(0)
+            total_transferred += 1
         # We did it, sender is empty!
         fanfare_end()
-        return True
+        return total_transferred
     
     def purge_vehicle(self, vehicle) -> bool:
         """ Fast purge of a specified vehicle.
