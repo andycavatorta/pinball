@@ -348,7 +348,7 @@ class Matrix(Host):
 
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
         motor_name = self.motor_by_carousel_name[carousel_name]
-        self.motors[motor_name].["target_reached"] = False
+        self.motors[motor_name]["target_reached"] = False
         self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
