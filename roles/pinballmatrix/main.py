@@ -160,7 +160,7 @@ class Speed_To_Position(threading.Thread):
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
-            time.sleep(0.2)
+            time.sleep(0.02)
             discrepancy = self.get_position_with_offset()-destination
             self.callback(
                 "event_destination_reached", 
