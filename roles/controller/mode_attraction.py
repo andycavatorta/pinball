@@ -9,6 +9,7 @@ import settings
 import threading
 import time
 
+
 class Animation(threading.Thread):
     """
     Attraction mode does not beg for attention
@@ -19,7 +20,7 @@ class Animation(threading.Thread):
         self.queue = queue.Queue()
         self.hosts = hosts
         self.animation_frame_counter = 0
-        self.animaition_interval = 0.1
+        self.animation_interval = 0.1
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.motor_names = ["carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center",]
@@ -58,7 +59,7 @@ class Animation(threading.Thread):
         print("mode_attraction Animation.run 0")
         while True:
             try:
-                animation_command = self.queue.get(True, self.animaition_interval)
+                animation_command = self.queue.get(True, self.animation_interval)
                 print("animation_command", animation_command)
                 if isinstance(animation_command, bytes):
                     animation_command = codecs.decode(animation_command, 'UTF-8')
@@ -431,7 +432,7 @@ class Animation(threading.Thread):
                     if self.animation_frame_counter >= 150: # 15 seconds
                         self.animation_frame_counter = 0
                 else:
-                    time.sleep(self.animaition_interval)
+                    time.sleep(self.animation_interval)
 
 
 class Mode_Attraction(threading.Thread):
@@ -475,7 +476,7 @@ class Mode_Attraction(threading.Thread):
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("juega")
         # ensure carousels are in correct position
-        self.choreography.home_carousels()
+        # self.choreography.home_carousels()
         self.hosts.clear_games_with_players()
         self.animation.add_to_queue("begin")
 
@@ -514,4 +515,3 @@ class Mode_Attraction(threading.Thread):
                     )
             except AttributeError:
                 pass
-
