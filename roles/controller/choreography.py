@@ -408,7 +408,7 @@ class Choreography():
             if isinstance(vehicle, Carousel):
                 carousels.append(vehicle)
                 fruits_out.append(fruits[i])
-                targets.append(self.targets_by_vehicles[vehicles[1-i]])
+                targets.append(self.targets_by_vehicle[vehicles[1-i]])
         
         # Make it so
         return self.rotate_carousels_to_targets(carousels, fruits_out, targets, wait)
