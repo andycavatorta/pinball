@@ -33,7 +33,7 @@ position_calibration = {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left:"4237,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_2" : {
