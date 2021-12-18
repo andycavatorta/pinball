@@ -99,7 +99,7 @@ class Carousel(object):
         # Get target name
         # HACK: If target is an int, add backlash (debug)
         if isinstance(target, int):
-            target_name = target + 2048
+            target_name = target + 1024
         # If target is a string, assume that's the target
         elif isinstance(target, str):
             target_name = target

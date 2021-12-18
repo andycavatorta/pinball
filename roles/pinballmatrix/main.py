@@ -116,7 +116,7 @@ class Speed_To_Position(threading.Thread):
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
                 dir = 1 if destination > current_position else -1
-                speed = dir # * 3
+                speed = dir * 2
                 slop = -30    # loose attempt to stop before overshooting
                 # slop = dir * 4096 - speed * 30
                 destination_adjusted = destination + slop
