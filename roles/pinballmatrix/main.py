@@ -117,7 +117,7 @@ class Speed_To_Position(threading.Thread):
                 self.timeout_timer = time.time() + self.timeout_timeout
                 dir = 1 if destination > current_position else -1
                 speed = dir * 1
-                slop = dir * -60    # loose attempt to stop before overshooting
+                slop = dir * -90    # loose attempt to stop before overshooting
                 # slop = dir * 4096 - speed * 30
                 destination_adjusted = destination + slop
                 self.motor.set_motor_speed(speed)
