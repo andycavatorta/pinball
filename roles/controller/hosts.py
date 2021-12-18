@@ -319,11 +319,11 @@ class Matrix(Host):
         ]
         self.motor_by_carousel_name = {
             "carousel_1":self.motors[0],
-            "carousel_2":self.motors[0],
-            "carousel_3":self.motors[0],
-            "carousel_4":self.motors[0],
-            "carousel_5":self.motors[0],
-            "carousel_center":self.motors[0],
+            "carousel_2":self.motors[1],
+            "carousel_3":self.motors[2],
+            "carousel_4":self.motors[3],
+            "carousel_5":self.motors[4],
+            "carousel_center":self.motors[5],
         }
         self.target_position = [
             0,0,0,0,0,0
@@ -347,8 +347,7 @@ class Matrix(Host):
         self.fruit_positions = [0,0,0,0,0,0]
 
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        motor_name = self.motor_by_carousel_name[carousel_name]
-        self.motors[motor_name]["target_reached"] = False
+        self.motor_by_carousel_name[carousel_name]["target_reached"] = False
         self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
