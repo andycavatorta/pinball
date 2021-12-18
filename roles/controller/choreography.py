@@ -54,7 +54,8 @@ class Carousel(object):
         fruits_by_hostname = dict(
             itertools.zip_longest(
                 CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
-        self.home_fruit = fruits_by_hostname[host_instance.hostname]       
+        self.fruit = fruits_by_hostname[host_instance.hostname]
+        self.home_fruit = self.fruit       
         self.home_target = "back" if host_instance.hostname is not CAROUSEL_CENTER_HOSTNAME else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
@@ -309,27 +310,20 @@ class Choreography():
                 tube = Tube(station, side, carousel, timeout=self.timeout)
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
-        
+
+        # Also make flat lists available
+        self.all_carousels = list(self.carousels.values())
+        self.all_tubes = []
+        for pair in self.tubes.values():
+            self.all_tubes += [pair["left"], pair["right"]]
         self.all_vehicles = self.all_carousels + self.all_tubes
-        targets = FRUITS + ["back"]     # "back" is toward center
-        targets += [tube.side for tube in self.all_tubes]
+        targets = [c.fruit for c in self.all_carousels]
+        targets += [t.side for t in self.all_tubes]
         self.targets_by_vehicle = dict(zip(self.all_vehicles, targets))
+        print(self.targets_by_vehicle)
 
     # Helpers ----------------------------------------------------------------
     
-    @property
-    def all_tubes(self):
-        """ Returns self.tubes as a flat list instead of a dict """
-        tubes_all = []
-        for pair in self.tubes.values():
-            tubes_all += [pair["left"], pair["right"]]
-        return tubes_all
-    
-    @property
-    def all_carousels(self):
-        """ Returns self.carousels as a flat list instead of a dict """
-        return list(self.carousels.values())
-
     def process_carousels(self, carousels=None) -> list:
         """ Helper function to make carousel input more versatile
         Can specify carousels by instance, name, or None (all) """
@@ -409,7 +403,6 @@ class Choreography():
                 carousels.append(vehicle)
                 fruits_out.append(fruits[i])
                 targets.append(self.targets_by_vehicle[vehicles[1-i]])
-        
         # Make it so
         return self.rotate_carousels_to_targets(carousels, fruits_out, targets, wait)
     
