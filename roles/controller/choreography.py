@@ -133,6 +133,9 @@ class Carousel(object):
         return self.rotate_to_target(self.home_fruit, self.home_target, wait)
 
     # Queries ----------------------------------------------------------------
+    def request_detect_ball(self):
+        self.host_instance.request_carousel_detect_balls()
+    
     def is_empty(self, update=True):
         if update:
             self.request_detect_balls()
