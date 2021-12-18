@@ -50,13 +50,13 @@ class Carousel(object):
         self.timeout = timeout
         # Determine home parameters
         # zip_longest fills shortest list with fillvalue
-        # In this case, that puts "coco" with "carouselcenter"
+        # In this case, that puts None with "carouselcenter"
         fruits_by_hostname = dict(
-            itertools.zip_longest(
-                CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
+            itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS))
         self.fruit = fruits_by_hostname[host_instance.hostname]
-        self.home_fruit = self.fruit       
-        self.home_target = "back" if host_instance.hostname is not CAROUSEL_CENTER_HOSTNAME else "coco"
+        self.target = self.fruit or "back"  # How others target this
+        self.home_fruit = "coco"
+        self.home_target = "back" if self.fruit else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
             itertools.zip_longest(
@@ -318,9 +318,10 @@ class Choreography():
             self.all_tubes += [pair["left"], pair["right"]]
         self.all_vehicles = self.all_carousels + self.all_tubes
         targets = [c.fruit for c in self.all_carousels]
+        for i in range(len(targets)):
+            if targets[i] == "center"
         targets += [t.side for t in self.all_tubes]
         self.targets_by_vehicle = dict(zip(self.all_vehicles, targets))
-        print(self.targets_by_vehicle)
 
     # Helpers ----------------------------------------------------------------
     
