@@ -502,10 +502,10 @@ class Choreography():
         if current_carousel.hostname is not CAROUSEL_CENTER_HOSTNAME: 
             # ...a child tube, then that's next
             if isinstance(receiver, Tube) and receiver.carousel == current_carousel:
-                path.append[receiver]     
+                path.append(receiver)     
             # ...anything else, then we have to get there via the center
             else: 
-                path.append[self.carousels["center"]]
+                path.append(self.carousels["center"])
         # Is that the end?
         if path_complete():
             return path
