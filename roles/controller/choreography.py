@@ -317,9 +317,7 @@ class Choreography():
         for pair in self.tubes.values():
             self.all_tubes += [pair["left"], pair["right"]]
         self.all_vehicles = self.all_carousels + self.all_tubes
-        targets = [c.fruit for c in self.all_carousels]
-        for i in range(len(targets)):
-            if targets[i] == "center"
+        targets = [c.target for c in self.all_carousels]
         targets += [t.side for t in self.all_tubes]
         self.targets_by_vehicle = dict(zip(self.all_vehicles, targets))
 
