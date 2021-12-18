@@ -93,7 +93,8 @@ class Carousel(object):
     def rotate_to_target(self, fruit, target, wait=True):
         """ Rotate fruit toward target and optionally wait to finish """
         # Abort if already moving
-        if not self.motor["target_reached"][0]:
+        flag = self.motor["target_reached"]
+        if flag and not flag[0]:
             return False
 
         # Get target name
