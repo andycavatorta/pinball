@@ -499,7 +499,7 @@ class Choreography():
         # Now we're in a carousel no matter what.
         current_carousel = path[-1]
         # If it's an edge carousel and the destination is...
-        if current_carousel is not CENTER_CAROUSEL: 
+        if current_carousel.hostname is not CAROUSEL_CENTER_HOSTNAME: 
             # ...a child tube, then that's next
             if isinstance(receiver, Tube) and receiver.carousel == current_carousel:
                 path.append[receiver]     
@@ -556,7 +556,7 @@ class Choreography():
                  fanfare=None) -> bool:
         """ Transfer one ball from sender to receiver. """
         # If given a send carousel but no fruit, try to find an occupied pocket
-        if isinstance(sender, Carousel) and send_fruit is None:
+        if send_fruit is None and isinstance(sender, Carousel):
             sender.request_detect_balls()
             for fruit, occupied in sender.balls_present.items():
                 if occupied:
@@ -567,6 +567,8 @@ class Choreography():
         # Generate and run path from sender to receiver
         # Path is fruit-agnostic
         path = self.generate_path(sender, receiver)
+        print(path)
+        print(*[x.hostname for x in path])
         return self.do_path(path, start_fruit, fanfare, preserve_fruit)        
 
     # Multiple transfers -----------------------------------------------------
