@@ -275,19 +275,19 @@ class Main(threading.Thread):
             # create SPI interfaces for AMT203
             time.sleep(3)
             print(">>>>> Main get_absolute_positions 0")
-            #self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
+            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
             time.sleep(3)
             # verify that encoders are present
             print(">>>>> Main get_absolute_positions 1", self.absolute_encoders)
-            #self.absolute_encoders_presences = self.absolute_encoders.get_presences()
+            self.absolute_encoders_presences = self.absolute_encoders.get_presences()
             time.sleep(3)
             # read absolute positions
             print(">>>>> Main get_absolute_positions 2", self.absolute_encoders_presences)
-            #self.absolute_encoders_positions = self.absolute_encoders.get_positions()
+            self.absolute_encoders_positions = self.absolute_encoders.get_positions()
             time.sleep(3)
             # stop SPI interfaces - spidev.close()
             print(">>>>> Main get_absolute_positions 3", self.absolute_encoders_positions)
-            #self.absolute_encoders.close()
+            self.absolute_encoders.close()
             print(">>>>> Main get_absolute_positions 4", self.absolute_encoders)
             self.already_called_once = True
             time.sleep(1)
