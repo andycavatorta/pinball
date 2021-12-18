@@ -600,8 +600,6 @@ class Mode_Barter(threading.Thread):
         self.pinball_to_game[origin].add_to_queue("event_spinner",message)
 
     def event_trough_sensor(self, message, origin, destination):
-        if message == True:
-            self.barter_manager.attempt_to_start_barter(self.pinball_hostnames.index(origin_int))
         self.pinball_to_game[origin].add_to_queue("event_trough_sensor",message)
 
     def response_lefttube_present(self, message, origin, destination):
