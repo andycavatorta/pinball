@@ -570,25 +570,18 @@ class Pinball(Host):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-
     ### LEFT TUBE ###
     def request_lefttube_present(self):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
     def set_lefttube_present(self,lefttube_present):
         self.lefttube_present = lefttube_present
-
     def get_lefttube_present(self):
         return self.lefttube_present
-
     def clear_tube_sensor_left(self):
         self.left_tube_event_history = []
-
     def record_tube_sensor_left(self,sensor_value):
-        """ Sensor value 0 -> True, 1 -> False """
-        self.left_tube_event_history.append(
-            [sensor_value == 0, time.time()])
-
-    def get_count_tube_sensor_events_left(self,timespan_s = 1.0):
+        self.left_tube_event_history.append([sensor_value, time.time()])
+    def get_count_tube_sensor_events_left(self, timespan_s=1.0):
         request_time = time.time()
         recent_events = []
         left_tube_event_history_reversed = left_tube_event_history.reversed()
@@ -599,11 +592,8 @@ class Pinball(Host):
         return len(recent_events)
     def get_lefttube_full(self):
         return self.get_last_state_tube_sensor_events_left()
-
     def get_last_state_tube_sensor_events_left(self):
         return self.left_tube_event_history(-1)
-    # def get_lefttube_value(self):
-    #     return self.lefttube_value
     def cmd_lefttube_launch(self):
         self.tb.publish(
             topic="cmd_lefttube_launch", 
