@@ -181,7 +181,7 @@ class Tube(object):
         self.callbacks["set_inventory"](value)
     
     def get_latest_event(self):
-        # Get latest event
+        """ Return last event in tube history if there are any """
         try:
             latest_event = self.callbacks["event_history"][-1]
         except IndexError:
@@ -226,11 +226,11 @@ class Tube(object):
         self.request_eject_ball(confirm=False)
         time.sleep(sleep_time)
         # If nothing happened during that time, assume Tube is empty
-        return latest_time == self.get_latest_evet()[1]
+        return latest_time == self.get_latest_event()[1]
     
     def test_full(self, sleep_time=1.):
         # Get latest event and elapsed time
-        latest_status, latest_time = self.get_event_status()
+        latest_status, latest_time = self.get_latest_event()
         time_elapsed = time.time() - latest_time
         # If beam is not broken, tube is not full
         if not latest_status:
