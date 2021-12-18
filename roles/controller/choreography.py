@@ -309,6 +309,11 @@ class Choreography():
                 tube = Tube(station, side, carousel, timeout=self.timeout)
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
+        
+        self.vehicles_all = self.carousels_all + self.tubes_all
+        targets = FRUITS + "back"     # "back" is toward center
+        targets += [tube.side for tube in self.tubes]
+        self.targets_by_vehicle = dict(zip(self.vehicles_all, targets))
 
     # Helpers ----------------------------------------------------------------
     
@@ -395,20 +400,18 @@ class Choreography():
             return True
         return self.wait_carousels(carousels)      
 
-    def align_pockets(self, vehicle1, fruit1, vehicle2, fruit2, wait=True) -> bool:
+    def align_pockets(self, vehicles, fruits, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
-        vehicles = self.process_carousels([vehicle1, vehicle2])
-        fruits = (fruit1, fruit2)
         # Figure out what's going where
-        # Kind of silly to have a loop but I like it
-        carousels, fruits, targets = [], [], []
+        carousels, fruits_out, targets = [], [], []
         for i, vehicle in enumerate(vehicles):
             if isinstance(vehicle, Carousel):
                 carousels.append(vehicle)
-                fruits.append(fruits[i])
-                targets.append(vehicles[1-i])
+                fruits_out.append(fruits[i])
+                targets.append(self.targets_by_vehicles[vehicles[1-i]])
+        
         # Make it so
-        return self.rotate_carousels_to_targets(carousels, fruits, targets, wait)
+        return self.rotate_carousels_to_targets(carousels, fruits_out, targets, wait)
     
     # Single transfer between neighbors --------------------------------------
     
