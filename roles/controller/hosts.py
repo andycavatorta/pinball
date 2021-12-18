@@ -580,7 +580,7 @@ class Pinball(Host):
     def clear_tube_sensor_left(self):
         self.left_tube_event_history = []
     def record_tube_sensor_left(self,sensor_value):
-        self.left_tube_event_history.append([sensor_value==1, time.time()])
+        self.left_tube_event_history.append([sensor_value==0, time.time()])
     def get_count_tube_sensor_events_left(self, timespan_s=1.0):
         request_time = time.time()
         recent_events = []
@@ -608,12 +608,11 @@ class Pinball(Host):
         self.barter_points = barter_points
     def get_barter_points(self):
         return self.barter_points
-    def request_money_points(self): 
+    def request_barter_points(self): 
         self.tb.publish(
-            topic="request_money_points", 
+            topic="request_barter_points", 
             message="",
-            destination=self.hostname
-        )
+            destination=self.hostname)
 
     ### RIGHT TUBE ###
     def request_righttube_present(self):
@@ -625,7 +624,7 @@ class Pinball(Host):
     def clear_tube_sensor_right(self):
         self.right_tube_event_history = []
     def record_tube_sensor_right(self,sensor_value):
-        self.left_tube_event_history.append([sensor_value==1, time.time()])
+        self.left_tube_event_history.append([sensor_value==0, time.time()])
     def get_count_tube_sensor_events_right(self, timespan_s=1.0):
         request_time = time.time()
         recent_events = []
@@ -635,6 +634,10 @@ class Pinball(Host):
                 break
             recent_events.append(event)
         return len(recent_events)
+    def get_righttube_full(self):
+        return self.get_last_state_tube_sensor_events_right()
+    def get_last_state_tube_sensor_events_right(self):
+        return self.right_tube_event_history(-1)
     def cmd_righttube_launch(self):
         self.tb.publish(
             topic="cmd_righttube_launch", 
@@ -647,7 +650,15 @@ class Pinball(Host):
         return self.right_stack_inventory
     def set_money_points(self,money_points):
         self.money_points = money_points
-
+    def get_money_points(self):
+        return self.money_points
+    def request_money_points(self): 
+        self.tb.publish(
+            topic="request_money_points", 
+            message="",
+            destination=self.hostname)
+    
+    # Trough ---
     def request_troughsensor_value(self):
         self.tb.publish(topic="request_troughsensor_value", message="",destination=self.hostname)
     def set_troughsensor_value(self,troughsensor_value):
