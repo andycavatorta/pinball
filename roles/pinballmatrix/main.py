@@ -257,16 +257,16 @@ class Main(threading.Thread):
     """
     
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        try:
-            destination = self.position_calibration[carousel_name][fruit_name][position_name]
-        except KeyError as e:
-            print(e)
-            return
+        if isinstance(position_name, int):
+            destination = position_name
+        else:
+            try:
+                destination = self.position_calibration[carousel_name][fruit_name][position_name]
+            except KeyError as e:
+                print(e)
+                return
         motor = self.controllers.motors[carousel_name]
-        motor.speed_to_position.rotate_to_position(destination + 2048)
-        while not motor.get_runtime_status_flags(True)["target_reached"]:
-            time.sleep(0.05)
-        motor.speed_to_position.rotate_to_position(destination)                
+        motor.speed_to_position.rotate_to_position(destination)
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):

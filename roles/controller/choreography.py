@@ -97,8 +97,11 @@ class Carousel(object):
             return False
 
         # Get target name
-        # If target is a string, assume that's the target
+        # HACK: If target is an int, add backlash (debug)
         if isinstance(target, str):
+            target_name = target + 2048
+        # If target is a string, assume that's the target
+        elif isinstance(target, str):
             target_name = target
         # If target is a Tube, then target_name is the side the tube is on
         # Trying to rotate to a remote tube would be weird, but it would work
@@ -115,6 +118,9 @@ class Carousel(object):
         self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name)        
         if not wait:
             return True
+        
+        if isinstance(target, int)L:
+            self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name -2048)
         return self.wait()
     
     def home(self, wait=True):
