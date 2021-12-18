@@ -41,7 +41,7 @@ STATION_NAMES = [
 class Carousel(object):
     """ hosts.Carousel wrapper that adds motion control and tube-awareness. """
     def __init__(self, host_instance, matrix, 
-                 tubes=[], 
+                 tubes={}, 
                  timeout=DEFAULT_TIMEOUT):
         self.host_instance = host_instance
         self.matrix = matrix
@@ -62,16 +62,13 @@ class Carousel(object):
                 CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, fillvalue="coco"))
         self.motor_name = motors_by_hostname[host_instance.hostname]
         self.motor = matrix.motor_by_carousel_name[self.motor_name]
+        # Flat list of tubes (just two, but whatever)
+        self.all_tubes = self.tubes.values()
     
     def __getattr__(self, attribute):
         """ Anything not intercepted here gets passed to host_instance """
         return getattr(self.host_instance, attribute)
     
-    @property
-    def all_tubes(self):
-        """ Return both child tubes as a list instead of a dict """
-        return self.tubes.values()
-        
     # TODO
     def get_nearest_available_fruit(self, neighbor):
         return "coco"
@@ -317,7 +314,7 @@ class Choreography():
             for side in SIDES:
                 tube = Tube(station, side, carousel, timeout=self.timeout)
                 self.tubes[fruit][side] = tube
-                carousel.tubes.append(tube)
+                carousel.tubes[side] = tube
 
         # Also make flat lists available
         self.all_carousels = list(self.carousels.values())
@@ -405,7 +402,7 @@ class Choreography():
             return True
         return self.wait_carousels(carousels)      
 
-    def align_pockets(self, vehicles, fruits, wait=True) -> bool:
+    def align(self, vehicles, fruits, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
         # Figure out what's going where
         carousels, fruits_out, targets = [], [], []
@@ -441,7 +438,7 @@ class Choreography():
         # Prep any carousels involved and wait for them to finish
         # Fanfare starts when the movement starts
         fanfare_start()
-        if not self.align_pockets([sender, receiver], [send_fruit, receive_fruit]):
+        if not self.align([sender, receiver], [send_fruit, receive_fruit]):
             fanfare_end()
             return False
         # HACK: Bypass send verification
