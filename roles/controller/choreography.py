@@ -535,6 +535,8 @@ class Choreography():
                     next_fanfare, next_fanfare_end = fanfare
                 else:
                     next_fanfare_end = None
+            else:
+                next_fanfare, next_fanfare_end = None, None
             # Do the handoff and save the new pocket (in case of autoselect)
             current_fruit = self.handoff(
                 current_vehicle, 
