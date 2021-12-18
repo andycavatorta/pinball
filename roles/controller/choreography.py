@@ -311,7 +311,7 @@ class Choreography():
                 carousel.tubes.append(tube)
         
         self.all_vehicles = self.all_carousels + self.all_tubes
-        targets = FRUITS + "back"     # "back" is toward center
+        targets = FRUITS + ["back"]     # "back" is toward center
         targets += [tube.side for tube in self.tubes]
         self.targets_by_vehicle = dict(zip(self.all_vehicles, targets))
 
