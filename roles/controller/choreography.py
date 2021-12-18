@@ -321,7 +321,7 @@ class Choreography():
     def all_tubes(self):
         """ Returns self.tubes as a flat list instead of a dict """
         tubes_all = []
-        for pair in self.tubes:
+        for pair in self.tubes.values():
             tubes_all += [pair["left"], pair["right"]]
         return tubes_all
     
