@@ -139,23 +139,23 @@ class Game(threading.Thread):
         pass
 
 
-    def pre_trade_attention_animation_frame_1(self, a_or_b):
-        if a_or_b == "a":
-            trader_a trueque button light on
-            trader_a chime dings
-            trader_a tu fruta light on
-        if a_or_b == "b":
-            trader_b trueque button light off
-            trader_b tu fruta light off
-
-    def pre_trade_attention_animation_frame_2(self, a_or_b):
-        if a_or_b == "a":
-            trader_a trueque button light off
-            trader_a tu fruta light off
-        if a_or_b == "b":
-            trader_b trueque button light on
-            trader_b chime dings
-            trader_b tu fruta light on
+    # def pre_trade_attention_animation_frame_1(self, a_or_b):
+    #     if a_or_b == "a":
+    #         trader_a trueque button light on
+    #         trader_a chime dings
+    #         trader_a tu fruta light on
+    #     if a_or_b == "b":
+    #         trader_b trueque button light off
+    #         trader_b tu fruta light off
+    # 
+    # def pre_trade_attention_animation_frame_2(self, a_or_b):
+    #     if a_or_b == "a":
+    #         trader_a trueque button light off
+    #         trader_a tu fruta light off
+    #     if a_or_b == "b":
+    #         trader_b trueque button light on
+    #         trader_b chime dings
+    #         trader_b tu fruta light on
 
 
     def add_to_queue(self, topic, message):
@@ -361,22 +361,22 @@ class Barter_Manager(threading.Thread):
         # in trader_a's carousel, eject trader_b_fruit into dinero tube
         # in trader_b's carousel, eject trader_a_fruit into dinero tube
 
-    def waiting_for_barter_frame_1a(self):
-        trader_a trueque button light on
-        trader_a chime dings
-        trader_a tu fruta light on
-        trader_b trueque button light off
-        trader_b tu fruta light off
-
-    def waiting_for_barter_frame_2b(self):
-        trader_b trueque button light on
-        trader_b chime dings
-        trader_b tu fruta light on
-        trader_a trueque button light off
-        trader_a tu fruta light off
-
-
-        note: must be able to move balls from right tube to left.   
+    # def waiting_for_barter_frame_1a(self):
+    #     trader_a trueque button light on
+    #     trader_a chime dings
+    #     trader_a tu fruta light on
+    #     trader_b trueque button light off
+    #     trader_b tu fruta light off
+    # 
+    # def waiting_for_barter_frame_2b(self):
+    #     trader_b trueque button light on
+    #     trader_b chime dings
+    #     trader_b tu fruta light on
+    #     trader_a trueque button light off
+    #     trader_a tu fruta light off
+    # 
+    # 
+    #     note: must be able to move balls from right tube to left.   
 
 
 
