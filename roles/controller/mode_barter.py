@@ -283,6 +283,7 @@ class Barter_Manager(threading.Thread):
 
     def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
+        self.queue = queue.Queue()
         self.trader_a_int = -1
         self.trader_b_int = -1
         self.trader_first_button_int = -1
