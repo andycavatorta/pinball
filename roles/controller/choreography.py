@@ -10,7 +10,7 @@ import itertools
 import time
 
 # Constants
-DEFAULT_TIMEOUT = 10.       # Default timeout for ball-handling elements
+DEFAULT_TIMEOUT = 2.       # Default timeout for ball-handling elements
 
 # Lookups
 CAROUSEL_CENTER_HOSTNAME = "carouselcenter"
@@ -521,10 +521,10 @@ class Choreography():
         # Don't need to verify, path is complete.
         return path
     
-    def do_path(self, path, start_fruit=None, preserve_fruit=None, fanfare=None):
+    def do_path(self, path, send_fruit=None, xfer_fruit=None, fanfare=None):
         """ Run ball through a given path with optional fanfare """
         # Start from beginning of path   
-        current_vehicle, current_fruit = path.pop(0), start_fruit
+        current_vehicle, current_fruit = path.pop(0), send_fruit
         # For each path step...
         for next_vehicle in path:
             # Get optional fanfare
@@ -540,7 +540,7 @@ class Choreography():
                 current_vehicle, 
                 next_vehicle,
                 current_fruit, 
-                preserve_fruit, 
+                xfer_fruit, 
                 next_fanfare,
                 next_fanfare_end)
             # Abort if handoff failed
@@ -552,7 +552,7 @@ class Choreography():
 
     def transfer(self, sender, receiver,
                  send_fruit=None,
-                 preserve_fruit=False,
+                 xfer_fruit=None,
                  fanfare=None) -> bool:
         """ Transfer one ball from sender to receiver. """
         # If given a send carousel but no fruit, try to find an occupied pocket
@@ -567,9 +567,7 @@ class Choreography():
         # Generate and run path from sender to receiver
         # Path is fruit-agnostic
         path = self.generate_path(sender, receiver)
-        print(path)
-        print(*[x.hostname for x in path])
-        return self.do_path(path, start_fruit, fanfare, preserve_fruit)        
+        return self.do_path(path, send_fruit, xfer_fruit, fanfare)        
 
     # Multiple transfers -----------------------------------------------------
     
