@@ -446,23 +446,25 @@ class Choreography():
         # # Get starting inventory of receiver, for reference
         # if isinstance(receiver, Tube):
         #     start_inventory = receiver.request_update_balls()
-        # # Try to launch a few times
-        # n = 0
-        # while True:
-        #     # Launch!
-        #     sender.request_eject_ball(send_fruit)
-        #     time.sleep(1.)
-        #     # See if the receiver has indeed gotten the ball
-        #     receiver.request_detect_balls()
-        #     if isinstance(receiver, Tube) and receiver.inventory > start_inventory:
-        #         break
-        #     if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
-        #         break
-        #     # Don't try forever
-        #     if n > 9:
-        #         fanfare_end()
-        #         return False
-        #     n += 1
+        # Try to launch a few times
+        n = 0
+        while True:
+            # Launch!
+            sender.request_eject_ball(send_fruit)
+            # TODO: poll sooner than this
+            time.sleep(1.)
+            # See if the receiver has indeed gotten the ball
+            receiver.request_detect_balls()
+            # HACK: bypass check for Tubes -- should just look for an event
+            if isinstance(receiver, Tube) # and receiver.inventory > start_inventory:
+                break
+            if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
+                break
+            # Don't try forever
+            if n > 9:
+                fanfare_end()
+                return False
+            n += 1
         # We did it!
         fanfare_end()
         # Let caller know where the ball is now, in case of autoselect
