@@ -328,7 +328,7 @@ class Choreography():
     @property
     def all_carousels(self):
         """ Returns self.carousels as a flat list instead of a dict """
-        return self.carousels.values()
+        return list(self.carousels.values())
 
     def process_carousels(self, carousels=None) -> list:
         """ Helper function to make carousel input more versatile
