@@ -180,6 +180,14 @@ class Tube(object):
     def inventory(self, value):
         self.callbacks["set_inventory"](value)
     
+    def get_latest_event(self):
+        # Get latest event
+        try:
+            latest_event = self.callbacks["event_history"][-1]
+        except IndexError:
+            latest_event = None
+        return latest_event
+    
     def request_detect_balls(self):
         """ Get inventory from parent station and save it.
             Inventory is also returned for convenience. """
@@ -193,52 +201,47 @@ class Tube(object):
         if not confirm:
             return True
         # Get last event for reference (before ball gets there)
-        last_event = self.callbacks["event_history"][-1]
+        last_status, last_time = self.get_latest_event()
         # Wait for a new sensor_open event
-        new_event = None
+        # HACK need a constant
         timeout = 2
         start_time = time.time()
-        while new_event == last_event or new_event[0] == True:
+        new_time = None
+        while new_time == last_time or new_status == True:
             if time.time() - start_time > timeout:
                 return False
             time.sleep(0.02)
-            new_event = self.callbacks["event_history"][-1]
+            new_status, new_time = self.get_latest_event()
         # Verify that nothing else happens immediately afterward 
         # (ball doesn't immediately bounce back)
         time.sleep(0.2)
-        return new_event == self.callbacks["event_history"][-1] 
-        
+        return new_time == self.get_latest_event()[1] 
+    
     def test_empty(self, sleep_time=1.):
         # First see if it's full -- doesn't take long
         if self.test_full(0.1):
             return False
-        # Get latest event
-        try:
-            last_event = self.callbacks["event_history"][-1]
-        except IndexError:
-            return
+        latest_time = self.get_latest_event()[1]
         # Try to shoot a ball, then wait
         self.request_eject_ball(confirm=False)
         time.sleep(sleep_time)
         # If nothing happened during that time, assume Tube is empty
-        return last_event == self.callbacks["event_history"][-1]
+        return latest_time == self.get_latest_evet()[1]
     
     def test_full(self, sleep_time=1.):
-        # Get latest event
-        try:
-            beam_broken, timestamp = self.callbacks["event_history"][-1] 
-        except IndexError:
-            return
-        # Consider the tube full if the beam has stayed broken for a while
-        time_elapsed = time.time() - timestamp
-        if not beam_broken:
+        # Get latest event and elapsed time
+        latest_status, latest_time = self.get_event_status()
+        time_elapsed = time.time() - latest_time
+        # If beam is not broken, tube is not full
+        if not latest_status:
             return False
+        # If beam has been broken for a while, tube is full
         if time_elapsed > sleep_time:
             return True
-        # Wait a little longer if event was too recent
+        # If beam has only been broken recently, wait a little longer
         time.sleep(sleep_time - time_elapsed)
-        # Consider it full if a ball is still present
-        return self.callbacks["event_history"][-1][0]            
+        # If beam is still broken, tube is full
+        return self.get_latest_event()[0]
     
     def is_empty(self):
         if self.inventory is not None:
