@@ -119,7 +119,7 @@ class Carousel(object):
         if not wait:
             return True
         
-        if isinstance(target, int)L:
+        if isinstance(target, int):
             self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name -2048)
         return self.wait()
     
