@@ -264,7 +264,7 @@ class Main(threading.Thread):
             return
         motor = self.controllers.motors[carousel_name]
         motor.speed_to_position.rotate_to_position(destination + 2048)
-        while not motor["target_reached"]:
+        while not motor.get_runtime_status_flags(True)["target_reached"]:
             time.sleep(0.05)
         motor.speed_to_position.rotate_to_position(destination)                
 
