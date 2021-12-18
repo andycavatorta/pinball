@@ -415,6 +415,7 @@ class Choreography():
                 fanfare_start=None,
                 fanfare_end=None) -> bool:
         # Easier to use empty fanfare funcs than a bunch of conditionals
+        # Not sure why I can't just put NULLFUNC as a default value
         fanfare_start = fanfare_start or NULLFUNC
         fanfare_end = fanfare_end or NULLFUNC 
         # Determine receive fruit
@@ -527,8 +528,8 @@ class Choreography():
             # Do the handoff and save the new pocket (in case of autoselect)
             current_fruit = handoff(
                 current_vehicle, 
-                current_fruit, 
                 next_vehicle,
+                current_fruit, 
                 preserve_fruit, 
                 next_fanfare,
                 next_fanfare_end)
