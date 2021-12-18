@@ -10,7 +10,6 @@ import itertools
 import time
 
 # Constants
-NULLFUNC = lambda: None     # Empty function, makes conditional calls easier
 DEFAULT_TIMEOUT = 10.       # Default timeout for ball-handling elements
 
 # Lookups
@@ -324,6 +323,9 @@ class Choreography():
         targets += [t.side for t in self.all_tubes]
         self.targets_by_vehicle = dict(zip(self.all_vehicles, targets))
 
+        # Empty function, makes conditional callbacks easier
+        self.pass = lambda: None
+        
     # Helpers ----------------------------------------------------------------
     
     def process_carousels(self, carousels=None) -> list:
@@ -415,9 +417,8 @@ class Choreography():
                 fanfare_start=None,
                 fanfare_end=None) -> bool:
         # Easier to use empty fanfare funcs than a bunch of conditionals
-        # Not sure why I can't just put NULLFUNC as a default value
-        fanfare_start = fanfare_start or NULLFUNC
-        fanfare_end = fanfare_end or NULLFUNC 
+        fanfare_start = fanfare_start or self.pass
+        fanfare_end = fanfare_end or self.pass 
         # Determine receive fruit
         receive_fruit = receive_fruit or receiver.get_nearest_available_fruit(sender) 
         # Verify that sender and receiver are ready
@@ -567,8 +568,8 @@ class Choreography():
         """ Move all balls from one vehicle to a list of receivers 
             Returns total transferred, might be useful for inventory """
         # Easier to use empty fanfare funcs than a bunch of conditionals
-        fanfare_start = fanfare_start or NULLFUNC
-        fanfare_end = fanfare_end or NULLFUNC 
+        fanfare_start = fanfare_start or self.pass
+        fanfare_end = fanfare_end or self.pass 
         # If only one receiver is given, turn it into a list
         if not isinstance(receiver, (list, tuple)):
             receivers = [receivers]
