@@ -505,7 +505,7 @@ class Choreography():
                 path.append[receiver]     
             # ...anything else, then we have to get there via the center
             else: 
-                path.append[center_carousel]
+                path.append[self.carousels["center"]]
         # Is that the end?
         if path_complete():
             return path
