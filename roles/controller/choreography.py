@@ -49,14 +49,17 @@ class Carousel(object):
         self.tubes = tubes
         self.timeout = timeout
         # Determine home parameters
-        # zip_longest puts "coco" with "carouselcenter"
+        # zip_longest fills shortest list with fillvalue
+        # In this case, that puts "coco" with "carouselcenter"
         fruits_by_hostname = dict(
-            itertools.zip_longest(CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
+            itertools.zip_longest(
+                CAROUSEL_HOSTNAMES, FRUITS, fillvalue="coco"))
         self.home_fruit = fruits_by_hostname[host_instance.hostname]       
         self.home_target = "back" if host_instance.hostname is not CAROUSEL_CENTER_HOSTNAME else "coco"
         # Save reference to the appropriate motor
         motors_by_hostname = dict(
-            itertools.zip_longest(CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, fillvalue="coco"))
+            itertools.zip_longest(
+                CAROUSEL_HOSTNAMES, CAROUSEL_MOTOR_NAMES, fillvalue="coco"))
         self.motor_name = motors_by_hostname[host_instance.hostname]
         self.motor = matrix.motor_by_carousel_name[self.motor_name]
     
@@ -81,6 +84,7 @@ class Carousel(object):
             # self.motor.get_runtime_status_flags()
         return True
     
+    # TODO: verify move
     def rotate_to_target(self, fruit, target, wait=True):
         """ Rotate fruit toward target and optionally wait to finish """
         # Abort if already moving
@@ -185,7 +189,7 @@ class Tube(object):
         try:
             latest_event = self.callbacks["event_history"][-1]
         except IndexError:
-            latest_event = None
+            latest_event = [None, 0]
         return latest_event
     
     def request_detect_balls(self):
