@@ -350,7 +350,7 @@ class Barter_Manager(threading.Thread):
 
                                 self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("trueque", True)
                                 self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("trueque", True)
-                                if self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].get_troughsensor_value()
+                                if self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].get_troughsensor_value():
                                     self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("izquierda", False)
                                     self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("izquierda", False)
                                     self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("comienza", False)
