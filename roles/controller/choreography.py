@@ -66,6 +66,11 @@ class Carousel(object):
     def __getattr__(self, attribute):
         """ Anything not intercepted here gets passed to host_instance """
         return getattr(self.host_instance, attribute)
+    
+    @property
+    def all_tubes(self):
+        """ Return both child tubes as a list instead of a dict """
+        return self.tubes.values()
         
     # TODO
     def get_nearest_available_fruit(self, neighbor):
@@ -207,7 +212,7 @@ class Tube(object):
         # Get last event for reference (before ball gets there)
         last_status, last_time = self.get_latest_event()
         # Wait for a new sensor_open event
-        # HACK need a constant
+        # HACK timeout should be a constant
         timeout = 2
         start_time = time.time()
         new_time = None
@@ -279,10 +284,9 @@ class Choreography():
         # The Carousel and Tube objects here are aware of their neighbors
         # self.carousels = {fruit: Carousel}, ex: carousels["coco"]
         # self.tubes = {fruit: {side: Tube}}, ex: tubes["coco"]["left"]
-        self.carousels = {"center": Carousel(
-            hosts.carouselcenter,
-            self.matrix,
-            timeout=self.timeout)}     
+        self.carousels = {"center": Carousel(hosts.carouselcenter,
+                                             self.matrix,
+                                             timeout=self.timeout)}     
         self.tubes = {}         
         carousel_names = dict(zip(FRUITS, CAROUSEL_HOSTNAMES))
         station_names = dict(zip(FRUITS, STATION_NAMES))
@@ -299,22 +303,41 @@ class Choreography():
                 self.tubes[fruit][side] = tube
                 carousel.tubes.append(tube)
 
-    # Multi-carousel movements -----------------------------------------------
+    # Helpers ----------------------------------------------------------------
+    
+    @property
+    def all_tubes(self):
+        """ Returns self.tubes as a flat list instead of a dict """
+        tubes_all = []
+        for pair in choreo.tubes:
+            tubes_all += [pair["left"], pair["right"]]
+        return tubes_all
+    
+    @property
+    def all_carousels(self):
+        """ Returns self.carousels as a flat list instead of a dict """
+        return self.carousels.values()
 
     def process_carousels(self, carousels=None) -> list:
         """ Helper function to make carousel input more versatile
-            Can specify carousels by instance, name, or None (all) """
+        Can specify carousels by instance, name, or None (all) """
         # If None, assume we want all carousels
-        carousels = carousels or self.carousels
+        carousels = carousels or self.all_carousels
         # If given only one item, ensure that it's a list
         if not isinstance(carousels, (list, tuple)):
             carousels = [carousels]
-        # If any are strings, assume they're fruit names for carousels
+        # Remove any Tubes
+        for carousel in carousels:
+            if isinstance(carousel, Tube):
+                carousels.remove(carousel)
+        # Turn strings into Carousels assuming they're fruit names
         for i in range(len(carousels)):
             potential_name = carousels[i]
             if isinstance(potential_name, str):
                 carousels[i] = self.carousels[potential_name]
         return carousels
+
+    # Multi-carousel movements -----------------------------------------------
 
     def wait_carousels(self, carousels=None) -> bool:
         """ Wait for list of carousels to finish moving.
@@ -367,7 +390,7 @@ class Choreography():
 
     def align_pockets(self, vehicle1, fruit1, vehicle2, fruit2, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
-        vehicles = (vehicle1, vehicle2)
+        vehicles = process_carousels([vehicle1, vehicle2])
         fruits = (fruit1, fruit2)
         # Figure out what's going where
         # Kind of silly to have a loop but I like it
@@ -428,7 +451,7 @@ class Choreography():
             n += 1
         # We did it!
         fanfare_end()
-        # Let caller know where the ball is in case of autoselect
+        # Let caller know where the ball is now, in case of autoselect
         return receive_fruit
     
     # Single transfer along a path -------------------------------------------
@@ -480,7 +503,7 @@ class Choreography():
         return path
     
     def do_path(path, start_fruit=None, fanfare=None, preserve_fruit=None):
-        """ Implement a given path, with optional fanfare """
+        """ Run ball through a given path with optional fanfare """
         # Start from beginning of path   
         current_vehicle, current_fruit = path.pop(0), start_fruit
         # For each path step...
@@ -533,7 +556,7 @@ class Choreography():
                      fanfare_start=None,
                      fanfare_end=None) -> int:
         """ Move all balls from one vehicle to a list of receivers 
-            Returns total transferred """
+            Returns total transferred, might be useful for inventory """
         # Easier to use empty fanfare funcs than a bunch of conditionals
         fanfare_start = fanfare_start or NULLFUNC
         fanfare_end = fanfare_end or NULLFUNC 
@@ -559,50 +582,50 @@ class Choreography():
         fanfare_end()
         return total_transferred
     
+    # TODO: Optimize dump order
     def purge_vehicle(self, vehicle) -> bool:
-        """ Fast purge of a specified vehicle.
+        """ Fast-ish purge of a specified vehicle.
             - Center carousel will dump to edge carousels 
             - Edge carousels will dump to tubes 
             - Tubes will dump to other tubes """
-        # List of potential receivers
+        # Determine potential receivers
+        # Note that the sender itself is removed from receivers later
         receivers = []
-        # TODO: Optimize dump order
+        # If vehicle is a string, assume it's a fruit name for a Carousel
+        if isinstance(vehicle, str):
+            vehicle = self.carousels[vehicle]
         # If emptying center carousel, dump into edge carousels
         if vehicle is self.carousels["center"]:
-            receivers = self.carousels
+            receivers = self.all_carousels
+        # If emptying another carousel, dump into local tubes first then others
+        elif isinstance(vehicle, Carousel):
+            receivers = vehicle.all_tubes
+            for tube in self.all_tubes:
+                if tube not in receivers:
+                    receivers.append(tube)
         # If emptying a tube, dump into other local tube and then remote ones
-        if isinstance(vehicle, Carousel):
-            carousel = vehicle.carousel
-        # If emptying edge carousel, dump into local tubes first then others'
-        else:
-            receivers = carousel.tubes.values()
-            for potential_receiver in self.carousels:
-                receivers += potential_receiver.tubes.values()
+        elif isinstance(vehicle, Tube):
+            receivers = vehicle.carousel.all_tubes
+            for tube in self.all_tubes:
+                if tube not in receivers:
+                    receivers.append(tube)
         # Don't send anything to self or to center carousel
         for bad_receiver in (vehicle, self.carousels["center"]):
             if bad_receiver in receivers:
                 receivers.remove[bad_receiver]
-        
         # Dump into one receiver until full, then move to next
-        for fruit, occupied in carousel.balls_present.items():
-            if not occupied:
-                continue
-            if not self.transfer(carousel, receiver, fruit):
-                receivers.pop(0)
-                if len(receivers) == 0:
-                    return False
-        return True
+        return self.transfer_all(vehicle, receivers)
 
     def equalize_tubes(self, tubes=None) -> bool:
         """ Equalize inventory between a list of tubes as best as possible
             Equalizes all tubes by default """
-        tubes = tubes or self.tubes
+        tubes = tubes or self.all_tubes
         # Equalize routine
         while True:
-            # Sort tubes from fullest to emptiest
-            tubes.sort(key=lambda tube: tube.request_detect_balls(), reverse=True)
-            # Find transfer amount to bring max and min inventory within 1
-            max_tube, min_tube = tubes[0], tubes[-1]
+            # Sort tubes from emptiest to fullest
+            tubes.sort(key=lambda tube: tube.request_detect_balls())
+            # Find transfer amount to (try to) equalize max and min tubes
+            max_tube, min_tube = tubes[-1], tubes[0]
             to_transfer = floor((max_tube.inventory - min_tube.inventory) / 2)
             # If nothing left to transfer, we're done
             if not to_transfer:
@@ -611,3 +634,25 @@ class Choreography():
             for i in range(to_transfer):
                 if not self.transfer(max_tube, min_tube):
                     return False
+    
+    def distribute_to_tubes(self, senders=None, receivers=None, equalize=False) -> bool:
+        """ Distribute balls from senders into given tubes """
+        # If receivers not specified, assume it's all tubes
+        receivers = receivers or self.all_tubes
+        # If senders not specified, get list of everything that's not a sender
+        if not senders:
+            senders = self.all_carousels + self.all_tubes
+            for receiver in receivers:
+                if receiver in senders:
+                    senders.remove(receiver)
+        # Transfer balls from all senders into emptiest receiver tubes
+        for sender in senders:
+            while sender.has_balls():
+                receiver = min(receiver_tubes, key=lambda t: t.inventory)
+                if not transfer(sender, receiver):
+                    return False
+        # Optionally, equalize receiver tubes afterward
+        if not equalize:
+            return True
+        return self.equalize_tubes(receiver_tubes)
+            
