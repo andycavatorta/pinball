@@ -33,35 +33,35 @@ position_calibration = {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left"4237:,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_2" : {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left"4237:,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_3" : {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left"4237:,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_4" : {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left"4237:,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_5" : {
         "coco":{"front":2048,"back":0,"left":1780,"right":2280},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left"4237:,"right":4737},
+        "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_center" : {
@@ -116,7 +116,7 @@ class Speed_To_Position(threading.Thread):
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
                 dir = 1 if destination > current_position else -1
-                speed = dir # * 3
+                speed = dir * 1
                 slop = -30    # loose attempt to stop before overshooting
                 # slop = dir * 4096 - speed * 30
                 destination_adjusted = destination + slop
@@ -257,16 +257,16 @@ class Main(threading.Thread):
     """
     
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        try:
-            destination = self.position_calibration[carousel_name][fruit_name][position_name]
-        except KeyError as e:
-            print(e)
-            return
+        if isinstance(position_name, int):
+            destination = position_name
+        else:
+            try:
+                destination = self.position_calibration[carousel_name][fruit_name][position_name]
+            except KeyError as e:
+                print(e)
+                return
         motor = self.controllers.motors[carousel_name]
-        motor.speed_to_position.rotate_to_position(destination + 2048)
-        while not motor["target_reached"]:
-            time.sleep(0.05)
-        motor.speed_to_position.rotate_to_position(destination)                
+        motor.speed_to_position.rotate_to_position(destination)
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):

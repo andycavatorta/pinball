@@ -93,12 +93,16 @@ class Carousel(object):
     def rotate_to_target(self, fruit, target, wait=True):
         """ Rotate fruit toward target and optionally wait to finish """
         # Abort if already moving
-        if not self.motor["target_reached"][0]:
+        if not self.motor["target_reached"]:
             return False
 
         # Get target name
+        # HACK: If target is an int, add backlash (debug)
+        backlash = 1024
+        if isinstance(target, int):
+            target_name = target + backlash
         # If target is a string, assume that's the target
-        if isinstance(target, str):
+        elif isinstance(target, str):
             target_name = target
         # If target is a Tube, then target_name is the side the tube is on
         # Trying to rotate to a remote tube would be weird, but it would work
@@ -115,6 +119,9 @@ class Carousel(object):
         self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name)        
         if not wait:
             return True
+        
+        if isinstance(target_name, int):
+            self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name-backlash)
         return self.wait()
     
     def home(self, wait=True):
