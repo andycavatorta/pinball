@@ -270,10 +270,165 @@ class Game(threading.Thread):
 
 class Barter_Manager(threading.Thread):
     """
+    this class controls the transitions between barter states
+    and the action within each barter state
+    Barter_States.NO_BARTER
+    Barter_States.ZERO_BUTTONS_PUSHED
+    Barter_States.ONE_BUTTON_PUSHED
+    Barter_States.ONE_BUTTON_TIMEOUT
+    Barter_States.TWO_BUTTONS_PUSHED
+    Barter_States.BARTER_COMPLETE
+
+    """
+
+    def __init__(self, tb, hosts, set_current_mode, choreography):
+        threading.Thread.__init__(self)
+        self.trader_a_int = -1
+        self.trader_b_int = -1
+        self.trader_first_button_int = -1
+        self.trader_second_button_int = -1
+        self.minimum_ball_count_for_trade = 2
+        self.timestamp_for_timeout = 0
+        self.barter_state = Barter_States.NO_BARTER
+        self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
+        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter"]
+        self.fruit_names = ["coco","naranja","mango","sandia","pina"]
+        self.start()
+
+    def get_traders(self, trader_a_int):
+        trader_a_name = self.pinball_hostnames[trader_a_int]
+        if self.hosts.hostnames[trader_a_name].get_left_stack_inventory() < self.minimum_ball_count_for_trade:
+            return -1
+        list_of_other_players = self.hosts.get_games_with_players()
+        list_of_other_players.remove(trader_a_int)
+
+        if len(list_of_other_players) == 0:
+            return -1
+        if len(list_of_other_players) == 1:
+            return list_of_other_players[1]
+        for other_player_int in list_of_other_players:
+            other_player_name = self.pinball_hostnames[other_player_int]
+            if self.hosts.hostnames[other_player_name].get_left_stack_inventory() < self.minimum_ball_count_for_trade:
+                list_of_other_players.remove(other_player_int)
+                if len(list_of_other_players) == 0:
+                    return  -1
+                if len(list_of_other_players) == 1:
+                    return list_of_other_players[1]
+        # todo: select player(s) who has had the fewest chances to trade
+        return random.choice(list_of_other_players)
+
+    def add_to_queue(self, topic, message, origin):
+        self.queue.put((topic, message, origin))
+
+    def run(self):
+        time.sleep(1)
+        while True:
+            try;
+                topic, message, origin = self.queue.get(True,0.5)
+                # for incoming messages
+                if self.barter_state == Barter_States.NO_BARTER:
+                    if topic == "event_trough_sensor":
+                        if message == True:
+                            station_int = self.pinball_hostnames.index(origin)
+                            trader_b_int = self.get_traders(station_int)
+                            if trader_b_int > -1:
+                                # TRANSITION TO Barter_States.ZERO_BUTTONS_PUSHED
+                                self.trader_a_int = station_int
+                                self.trader_b_int = trader_b_int
+                                self.timestamp_for_timeout = time.time()
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_light_active("trueque", True)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_switch_active("trueque", True)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_light_active("izquierda", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_switch_active("izquierda", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_light_active("comienza", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_switch_active("comienza", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_light_active("dinero", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_switch_active("dinero", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_light_active("derecha", False)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_a_int]].request_button_switch_active("derecha", False)
+
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("trueque", True)
+                                self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("trueque", True)
+                                if self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]]get_troughsensor_value()
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("izquierda", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("izquierda", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("comienza", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("comienza", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("dinero", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("dinero", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("derecha", False)
+                                    self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("derecha", False)
+                                self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(
+                                    self.carousel_hostnames[self.trader_a_int], 
+                                    self.fruit_names[self.trader_b_int],
+                                    "left")
+                                self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(
+                                    self.carousel_hostnames[self.trader_b_int], 
+                                    self.fruit_names[self.trader_a_int],
+                                    "left")
+                                self.barter_state = Barter_States.ZERO_BUTTONS_PUSHED
+
+                if self.barter_state == Barter_States.ZERO_BUTTONS_PUSHED:
+                    if topic == "event_trough_sensor":
+                        station_int = self.pinball_hostnames.index(origin)
+                        if station_int == self.trader_b_int:
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("izquierda", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("izquierda", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("comienza", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("comienza", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("dinero", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("dinero", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_light_active("derecha", False)
+                            self.hosts.hostnames[self.pinball_hostnames[self.trader_b_int]].request_button_switch_active("derecha", False)
+                    if topic == "event_button_trueque": # this should only be self.trader_a_int, self.trader_b_int
+                        station_int = self.pinball_hostnames.index(origin)
+                        if station_int == self.trader_a_int:
+                            self.trader_first_button_int = trader_a_int
+                            self.trader_second_button_int = trader_b_int
+
+                            self.barter_state = Barter_States.ONE_BUTTON_PUSHED
+                            
+                        if station_int == self.trader_b_int:
+                            self.trader_first_button_int = trader_b_int
+                            self.trader_second_button_int = trader_a_int
+
+                            self.barter_state = Barter_States.ONE_BUTTON_PUSHED
+
+
+                if self.barter_state == Barter_States.ONE_BUTTON_PUSHED:
+                    pass
+                if self.barter_state == Barter_States.ONE_BUTTON_TIMEOUT:
+                    pass
+                if self.barter_state == Barter_States.TWO_BUTTONS_PUSHED:
+                    pass
+                if self.barter_state == Barter_States.BARTER_COMPLETE:
+                    pass
+
+            except queue.Empty:
+                # for animations and timers
+                if self.barter_state == Barter_States.NO_BARTER:
+                    pass
+                if self.barter_state == Barter_States.ZERO_BUTTONS_PUSHED:
+                    pass
+                if self.barter_state == Barter_States.ONE_BUTTON_PUSHED:
+                    pass
+                if self.barter_state == Barter_States.ONE_BUTTON_TIMEOUT:
+                    pass
+                if self.barter_state == Barter_States.TWO_BUTTONS_PUSHED:
+                    pass
+                if self.barter_state == Barter_States.BARTER_COMPLETE:
+                    pass
+        
+        
+    
+
+
+    """
     ??? transfer balls from right tube ???
 
     Barter_States.NO_BARTER
-        if any game trough sensor
+        if any game pie
             check if trade possible
 
     Barter_States.ZERO_BUTTONS_PUSHED
@@ -326,91 +481,6 @@ class Barter_Manager(threading.Thread):
 
 
     """
-    def __init__(self, tb, hosts, set_current_mode, choreography):
-        threading.Thread.__init__(self)
-        self.trader_a_int = -1
-        self.trader_b_int = -1
-        self.minimum_ball_count_for_trade = 2
-        self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
-        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
-        self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
-
-        self.start()
-
-    def attempt_to_start_barter(self, trader_a_int):
-        # if a trade is already happening
-        if self.trader_a_int > -1 or self.trader_b_int > -1:
-            return False
-        trader_b_int = self.get_traders(trader_a_int)
-        if trader_b_int == -1:
-            return False
-        # if we are this far, it's on.
-        self.trader_a_int = trader_a_int
-        self.trader_b_int = trader_b_int
-        self.barter_state_1
-
-    # def disablebuttonsforbiftrough():
-    #     # trader_b: turn off all button actions except trueque
-    #     # trader_b: turn off all button lights except trueque
-    # 
-    # def barter_state_1(self):
-    #     # trader_a: turn off all button actions except trueque
-        # trader_a: turn off all button lights except trueque
-
-
-        # in trader_a's carousel, eject trader_b_fruit into dinero tube
-        # in trader_b's carousel, eject trader_a_fruit into dinero tube
-
-    # def waiting_for_barter_frame_1a(self):
-    #     trader_a trueque button light on
-    #     trader_a chime dings
-    #     trader_a tu fruta light on
-    #     trader_b trueque button light off
-    #     trader_b tu fruta light off
-    # 
-    # def waiting_for_barter_frame_2b(self):
-    #     trader_b trueque button light on
-    #     trader_b chime dings
-    #     trader_b tu fruta light on
-    #     trader_a trueque button light off
-    #     trader_a tu fruta light off
-    # 
-    # 
-    #     note: must be able to move balls from right tube to left.   
-
-
-
-    def get_traders(self, trader_a_int):
-        trader_a_name = self.pinball_hostnames[trader_a_int]
-        if self.hosts.hostnames[trader_a_name].get_left_stack_inventory() < self.minimum_ball_count_for_trade:
-            return -1
-        list_of_other_players = self.hosts.get_games_with_players()
-        list_of_other_players.remove(trader_a_int)
-
-        if len(list_of_other_players) == 0:
-            return -1
-        if len(list_of_other_players) == 1:
-            return list_of_other_players[1]
-        for other_player_int in list_of_other_players:
-            other_player = self.pinball_hostnames[other_player_int]            
-            if other_player.get_tube_full():
-                list_of_other_players.remove(other_player_int)
-                if len(list_of_other_players) == 0:
-                    return -1
-                if len(list_of_other_players) == 1:
-                    return list_of_other_players[1]
-        for other_player_int in list_of_other_players:
-            other_player = self.pinball_hostnames[other_player_int]            
-            if other_player.get_left_stack_inventory() < self.minimum_ball_count_for_trade:
-                list_of_other_players.remove(other_player_int)
-                if len(list_of_other_players) == 0:
-                    return  -1
-                if len(list_of_other_players) == 1:
-                    return list_of_other_players[1]
-        # todo: select player(s) who has had the fewest chances to trade
-        return random.choice(list_of_other_players)
-
-
 
 
 
@@ -625,6 +695,8 @@ class Mode_Barter(threading.Thread):
                     origin = codecs.decode(origin, 'UTF-8')
                 if isinstance(destination, bytes):
                     destination = codecs.decode(destination, 'UTF-8')
+
+                self.barter_manager((message, origin, destination))
                 getattr(self,topic)(
                         message, 
                         origin, 
