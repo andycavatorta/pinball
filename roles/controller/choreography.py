@@ -315,7 +315,7 @@ class Choreography():
                 carousel.tubes.append(tube)
 
         # Also make flat lists available
-        self.all_carousels = list(self.carousels.items())
+        self.all_carousels = list(self.carousels.values())
         self.all_tubes = []
         for pair in self.tubes.values():
             self.all_tubes += [pair["left"], pair["right"]]
