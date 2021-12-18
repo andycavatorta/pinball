@@ -349,12 +349,12 @@ class Barter_Manager(threading.Thread):
         self.trader_b_int = trader_b_int
         self.barter_state_1
 
-    def disablebuttonsforbiftrough():
-        # trader_b: turn off all button actions except trueque
-        # trader_b: turn off all button lights except trueque
-
-    def barter_state_1(self):
-        # trader_a: turn off all button actions except trueque
+    # def disablebuttonsforbiftrough():
+    #     # trader_b: turn off all button actions except trueque
+    #     # trader_b: turn off all button lights except trueque
+    # 
+    # def barter_state_1(self):
+    #     # trader_a: turn off all button actions except trueque
         # trader_a: turn off all button lights except trueque
 
 
