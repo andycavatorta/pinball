@@ -11,7 +11,7 @@ import time
 
 # Constants
 NULLFUNC = lambda: None     # Empty function, makes conditional calls easier
-DEFAULT_TIMEOUT = 60.       # Default timeout for ball-handling elements
+DEFAULT_TIMEOUT = 10.       # Default timeout for ball-handling elements
 
 # Lookups
 CAROUSEL_CENTER_HOSTNAME = "carouselcenter"
@@ -397,7 +397,7 @@ class Choreography():
 
     def align_pockets(self, vehicle1, fruit1, vehicle2, fruit2, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
-        vehicles = process_carousels([vehicle1, vehicle2])
+        vehicles = self.process_carousels([vehicle1, vehicle2])
         fruits = (fruit1, fruit2)
         # Figure out what's going where
         # Kind of silly to have a loop but I like it
@@ -413,14 +413,14 @@ class Choreography():
     # Single transfer between neighbors --------------------------------------
     
     def handoff(sender, send_fruit, receiver, 
+                receive_fruit=None,
                 fanfare_start=None,
-                fanfare_end=None,
-                preserve_fruit=False) -> bool:
+                fanfare_end=None) -> bool:
         # Easier to use empty fanfare funcs than a bunch of conditionals
         fanfare_start = fanfare_start or NULLFUNC
         fanfare_end = fanfare_end or NULLFUNC 
         # Determine receive fruit
-        receive_fruit = preserve_fruit or receiver.get_nearest_available_fruit(sender) 
+        receive_fruit = receive_fruit or receiver.get_nearest_available_fruit(sender) 
         # Verify that sender and receiver are ready
         if isinstance(sender, Tube) and sender.is_empty():
             return False 
@@ -509,7 +509,7 @@ class Choreography():
         # Don't need to verify, path is complete.
         return path
     
-    def do_path(path, start_fruit=None, fanfare=None, preserve_fruit=None):
+    def do_path(path, start_fruit=None, preserve_fruit=None, fanfare=None):
         """ Run ball through a given path with optional fanfare """
         # Start from beginning of path   
         current_vehicle, current_fruit = path.pop(0), start_fruit
@@ -527,10 +527,10 @@ class Choreography():
             current_fruit = handoff(
                 current_vehicle, 
                 current_fruit, 
-                next_vehicle, 
+                next_vehicle,
+                preserve_fruit, 
                 next_fanfare,
-                next_fanfare_end,
-                preserve_fruit)
+                next_fanfare_end)
             # Abort if handoff failed
             if not current_fruit:
                 return False
@@ -540,8 +540,8 @@ class Choreography():
 
     def transfer(self, sender, receiver,
                  send_fruit=None,
-                 fanfare=None,
-                 preserve_fruit=False) -> bool:
+                 preserve_fruit=False
+                 fanfare=None) -> bool:
         """ Transfer one ball from sender to receiver. """
         # If given a send carousel but no fruit, try to find an occupied pocket
         if isinstance(sender, Carousel) and send_fruit is None:
