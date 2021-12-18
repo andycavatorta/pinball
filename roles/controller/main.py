@@ -62,7 +62,7 @@ from roles.controller.mode_inventory import Mode_Inventory
 from roles.controller.mode_attraction import Mode_Attraction
 from roles.controller.mode_countdown import Mode_Countdown
 from roles.controller.mode_barter_intro import Mode_Barter_Intro
-# from roles.controller.mode_barter import Mode_Barter
+from roles.controller.mode_barter import Mode_Barter
 from roles.controller.mode_money_intro import Mode_Money_Intro
 from roles.controller.mode_money import Mode_Money
 #from roles.controller.mode_dinero import Mode_Dinero
@@ -164,7 +164,7 @@ class Main(threading.Thread):
             "reset":Mode_Reset(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "countdown":Mode_Countdown(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "barter_intro":Mode_Barter_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
-            # "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
+            "barter":Mode_Barter(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
