@@ -412,7 +412,7 @@ class Choreography():
     
     # Single transfer between neighbors --------------------------------------
     
-    def handoff(sender, receiver, send_fruit, 
+    def handoff(self, sender, receiver, send_fruit, 
                 receive_fruit=None,
                 fanfare_start=None,
                 fanfare_end=None) -> bool:
