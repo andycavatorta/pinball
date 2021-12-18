@@ -98,7 +98,7 @@ class Carousel(object):
 
         # Get target name
         # HACK: If target is an int, add backlash (debug)
-        if isinstance(target, str):
+        if isinstance(target, int):
             target_name = target + 2048
         # If target is a string, assume that's the target
         elif isinstance(target, str):
@@ -119,8 +119,8 @@ class Carousel(object):
         if not wait:
             return True
         
-        if isinstance(target, int):
-            self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name -2048)
+        if isinstance(target_name, int):
+            self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name-2048)
         return self.wait()
     
     def home(self, wait=True):
