@@ -100,10 +100,10 @@ class Carousel(object):
             return True
 
         # Get target name
-        # HACK: If target is an int, add backlash (debug)
-        backlash = 1024
-        if isinstance(target, int):
-            target_name = target + backlash
+        # # HACK: If target is an int, add backlash (debug)
+        # backlash = 1024
+        # if isinstance(target, int):
+        #     target_name = target + backlash
         # If target is a string, assume that's the target
         elif isinstance(target, str):
             target_name = target
@@ -123,8 +123,9 @@ class Carousel(object):
         if not wait:
             return True
         
-        if isinstance(target_name, int):
-            self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name-backlash)
+        # HACK continued
+        # if isinstance(target_name, int):
+        #     self.matrix.cmd_rotate_carousel_to_target(self.motor_name, fruit, target_name-backlash)
         return self.wait()
     
     def home(self, wait=True):
@@ -362,7 +363,8 @@ class Choreography():
         while not done:
             # Timeout
             if time.time() - start_time > self.timeout:
-                return False
+                # HACK: return True anyway
+                return True
             time.sleep(0.1)
             # Refresh motor statuses
             for carousel in carousels:
