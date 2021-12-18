@@ -324,7 +324,7 @@ class Barter_Manager(threading.Thread):
     def run(self):
         time.sleep(1)
         while True:
-            try;
+            try:
                 topic, message, origin = self.queue.get(True,0.5)
                 # for incoming messages
                 if self.barter_state == Barter_States.NO_BARTER:
