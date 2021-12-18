@@ -436,7 +436,7 @@ class Choreography():
         # Prep any carousels involved and wait for them to finish
         # Fanfare starts when the movement starts
         fanfare_start()
-        if not align_pockets(sender, send_fruit, receiver, receive_fruit):
+        if not align_pockets([sender, receiver], [send_fruit, receive_fruit]):
             fanfare_end()
             return False
         # Get starting inventory of receiver, for reference
