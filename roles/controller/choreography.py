@@ -540,7 +540,7 @@ class Choreography():
 
     def transfer(self, sender, receiver,
                  send_fruit=None,
-                 preserve_fruit=False
+                 preserve_fruit=False,
                  fanfare=None) -> bool:
         """ Transfer one ball from sender to receiver. """
         # If given a send carousel but no fruit, try to find an occupied pocket
