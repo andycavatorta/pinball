@@ -456,7 +456,7 @@ class Choreography():
             # See if the receiver has indeed gotten the ball
             receiver.request_detect_balls()
             # HACK: bypass check for Tubes -- should just look for an event
-            if isinstance(receiver, Tube) # and receiver.inventory > start_inventory:
+            if isinstance(receiver, Tube): # and receiver.inventory > start_inventory:
                 break
             if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
                 break
