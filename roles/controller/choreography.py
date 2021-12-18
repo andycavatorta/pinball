@@ -245,7 +245,10 @@ class Tube(object):
         self.request_eject_ball(confirm=False)
         time.sleep(sleep_time)
         # If nothing happened during that time, assume Tube is empty
-        return latest_time == self.get_latest_event()[1]
+        empty = latest_time == self.get_latest_event()[1] 
+        if empty:
+            self.inventory = 0
+        return empty
     
     def test_full(self, sleep_time=1.):
         # Get latest event and elapsed time
@@ -274,9 +277,8 @@ class Tube(object):
         if self.inventory is not None:
             return not self.is_empty()
     
-    # TODO
-    def get_nearest_available_fruit(self, neighbor):
-        return "coco"
+    def get_nearest_available_fruit(self, neighbor=None):
+        return self.carousel.get_nearest_available_fruit(self.side)
         
 
 class Choreography(): 
@@ -434,7 +436,7 @@ class Choreography():
         # Prep any carousels involved and wait for them to finish
         # Fanfare starts when the movement starts
         fanfare_start()
-        if not align_pockets([sender, receiver], [send_fruit, receive_fruit]):
+        if not self.align_pockets([sender, receiver], [send_fruit, receive_fruit]):
             fanfare_end()
             return False
         # HACK: Bypass send verification
@@ -466,7 +468,7 @@ class Choreography():
     
     # Single transfer along a path -------------------------------------------
     
-    def generate_path(sender, receiver) -> list:
+    def generate_path(self, sender, receiver) -> list:
         ''' Given vehicles "sender" and "receiver", find a path from sender to 
             receiver and return it as a list of vehicles used to get there. 
             This path does not care which fruit is used on carousels. '''      
@@ -512,7 +514,7 @@ class Choreography():
         # Don't need to verify, path is complete.
         return path
     
-    def do_path(path, start_fruit=None, preserve_fruit=None, fanfare=None):
+    def do_path(self, path, start_fruit=None, preserve_fruit=None, fanfare=None):
         """ Run ball through a given path with optional fanfare """
         # Start from beginning of path   
         current_vehicle, current_fruit = path.pop(0), start_fruit
