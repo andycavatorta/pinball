@@ -85,7 +85,9 @@ class Carousel(object):
         while not self.motor["target_reached"][0]:
             # Took too long
             if time.time() - start_time > self.timeout:
-                return False
+                # HACK: always return True until I figure out how to make 
+                # return False
+                return True
             time.sleep(0.1)
             # self.motor.get_runtime_status_flags()
         return True
@@ -95,7 +97,8 @@ class Carousel(object):
         """ Rotate fruit toward target and optionally wait to finish """
         # Abort if already moving
         if not self.motor["target_reached"]:
-            return False
+            # HACK: return True until we figure out how to detect this better
+            return True
 
         # Get target name
         # HACK: If target is an int, add backlash (debug)
@@ -312,7 +315,7 @@ class Choreography():
                 carousel.tubes.append(tube)
 
         # Also make flat lists available
-        self.all_carousels = list(self.carousels.values())
+        self.all_carousels = list(self.carousels.items())
         self.all_tubes = []
         for pair in self.tubes.values():
             self.all_tubes += [pair["left"], pair["right"]]
@@ -407,7 +410,7 @@ class Choreography():
     
     # Single transfer between neighbors --------------------------------------
     
-    def handoff(sender, send_fruit, receiver, 
+    def handoff(sender, receiver, send_fruit, 
                 receive_fruit=None,
                 fanfare_start=None,
                 fanfare_end=None) -> bool:
@@ -417,40 +420,43 @@ class Choreography():
         # Determine receive fruit
         receive_fruit = receive_fruit or receiver.get_nearest_available_fruit(sender) 
         # Verify that sender and receiver are ready
-        if isinstance(sender, Tube) and sender.is_empty():
-            return False 
-        if isinstance(receiver, Tube) and receiver.is_full():
-            return False
-        if isinstance(sender, Carousel) and not sender.balls_present[send_fruit]:
-            return False
-        if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
-            return False 
+        # HACK: Bypass prep verification
+        # if isinstance(sender, Tube) and sender.is_empty():
+        #     return False 
+        # if isinstance(receiver, Tube) and receiver.is_full():
+        #     return False
+        # if isinstance(sender, Carousel) and not sender.balls_present[send_fruit]:
+        #     return False
+        # if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
+        #     return False 
         # Prep any carousels involved and wait for them to finish
         # Fanfare starts when the movement starts
         fanfare_start()
         if not align_pockets([sender, receiver], [send_fruit, receive_fruit]):
             fanfare_end()
             return False
-        # Get starting inventory of receiver, for reference
-        if isinstance(receiver, Tube):
-            start_inventory = receiver.request_update_balls()
-        # Try to launch a few times
-        n = 0
-        while True:
-            # Launch!
-            sender.request_eject_ball(send_fruit)
-            time.sleep(1.)
-            # See if the receiver has indeed gotten the ball
-            receiver.request_detect_balls()
-            if isinstance(receiver, Tube) and receiver.inventory > start_inventory:
-                break
-            if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
-                break
-            # Don't try forever
-            if n > 9:
-                fanfare_end()
-                return False
-            n += 1
+        # HACK: Bypass send verification
+        sender.request_eject_ball(send_fruit)
+        # # Get starting inventory of receiver, for reference
+        # if isinstance(receiver, Tube):
+        #     start_inventory = receiver.request_update_balls()
+        # # Try to launch a few times
+        # n = 0
+        # while True:
+        #     # Launch!
+        #     sender.request_eject_ball(send_fruit)
+        #     time.sleep(1.)
+        #     # See if the receiver has indeed gotten the ball
+        #     receiver.request_detect_balls()
+        #     if isinstance(receiver, Tube) and receiver.inventory > start_inventory:
+        #         break
+        #     if isinstance(receiver, Carousel) and receiver.balls_present[receive_fruit]:
+        #         break
+        #     # Don't try forever
+        #     if n > 9:
+        #         fanfare_end()
+        #         return False
+        #     n += 1
         # We did it!
         fanfare_end()
         # Let caller know where the ball is now, in case of autoselect
