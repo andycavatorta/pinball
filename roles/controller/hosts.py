@@ -149,7 +149,8 @@ class Carousel(Host):
         self.tb.publish(topic="request_carousel_detect_balls",message=True,destination=self.hostname)
     def set_carousel_ball_detected(self, balls_present):
         for ball_name in balls_present:
-            self.balls_present[ball_name] = balls_present[ball_name]
+            # HACK: invert balls_present so True == present
+            self.balls_present[ball_name] = balls_present[ball_name] == 0
     def get_carousel_ball_detected(self):
         return self.balls_present
     def request_solenoids_present(self):
