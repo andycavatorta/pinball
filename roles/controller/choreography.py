@@ -536,7 +536,7 @@ class Choreography():
                 else:
                     next_fanfare_end = None
             # Do the handoff and save the new pocket (in case of autoselect)
-            current_fruit = handoff(
+            current_fruit = self.handoff(
                 current_vehicle, 
                 next_vehicle,
                 current_fruit, 
@@ -589,7 +589,7 @@ class Choreography():
         fanfare_start()
         while sender.has_balls():
             # If transfer fails for any reason (like receiver full)...
-            if not transfer(sender, receiver):
+            if not self.transfer(sender, receiver):
                 # ...return False if no receivers left. Sender is not empty.
                 if not receivers:
                     fanfare_end()
@@ -668,7 +668,7 @@ class Choreography():
         for sender in senders:
             while sender.has_balls():
                 receiver = min(receiver_tubes, key=lambda t: t.inventory)
-                if not transfer(sender, receiver):
+                if not self.transfer(sender, receiver):
                     return False
         # Optionally, equalize receiver tubes afterward
         if not equalize:
