@@ -10,7 +10,7 @@ import itertools
 import time
 
 # Constants
-DEFAULT_TIMEOUT = 2.       # Default timeout for ball-handling elements
+DEFAULT_TIMEOUT = 10.       # Default timeout for ball-handling elements
 
 # Lookups
 CAROUSEL_CENTER_HOSTNAME = "carouselcenter"
