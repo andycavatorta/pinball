@@ -402,9 +402,9 @@ class Choreography():
         # Figure out what's going where
         # Kind of silly to have a loop but I like it
         carousels, fruits, targets = [], [], []
-        for i in range(len(vehicles)):
+        for i, vehicle in enumerate(vehicles):
             if isinstance(vehicle, Carousel):
-                carousels.append(vehicles[i])
+                carousels.append(vehicle)
                 fruits.append(fruits[i])
                 targets.append(vehicles[1-i])
         # Make it so
