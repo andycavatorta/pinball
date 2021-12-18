@@ -153,18 +153,14 @@ class Mode_Inventory(threading.Thread):
         # Zeroing
         pass
         
-        # Inventory 
-        total_balls = 0
         # Get flat list of all Tubes (instead of dicts)
-        tubes_all = []
-        for pair in choreo.tubes:
-            tubes_all += [pair["left"], pair["right"]]
+        tubes_all = choreo.all_tubes
         # Check for any tubes that already know they're full
         tubes_known = []
         tubes_unknown = []
         for tube in tubes_known:
             if tube.test_full():
-                # is_full will set tube.inventory = tube.max_inventory
+                # test_full can set tube.inventory = tube.max_inventory
                 tubes_known.append(tube)
             else:
                 tubes_unknown.append(tube)
