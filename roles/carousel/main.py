@@ -103,7 +103,7 @@ class Inductive_Sensors(threading.Thread):
                 self.queue.get(True,0.1)
                 states = {}
                 for sensor in self.sensors:
-                    states[sensor.name] = True if sensor.get_state() == 0 else False
+                    states[sensor.name] = False if sensor.get_state() else True
                 self.tb.publish("response_carousel_detect_balls",states)
             except queue.Empty:
                 for sensor in self.sensors:
