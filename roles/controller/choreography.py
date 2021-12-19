@@ -391,16 +391,18 @@ class Choreography():
     def home_carousels(self, carousels=None, wait=True) -> bool:
         """ Send a list of carousels back to their home position.
             If no carousels specified, will home them all. """
-        # Ensure carousels is a list of Carousel instances
         carousels = self.process_carousels(carousels)
-        # Start all carousels homing at once
+        fruits = [carousel.home_fruit for carousel in carousels]
+        targets = [carousel.home_target for carousel in carousels]
+        return self.rotate_carousels_to_targets(carousels, fruits, targets, wait)
+        
+    def home_carousels_radial(self, carousels=None, wait=True) -> bool:
+        carousels = self.process_carousels(carousels)
+        fruits, targets = [], []
         for carousel in carousels:
-            if not carousel.home(wait=False):
-                return False
-        # Optionally, wait for moves to finish
-        if not wait:
-            return True
-        return self.wait_carousels(carousels)      
+            fruits.append(carousel.fruit or carousel.home_fruit)
+            targets.append("back" if carousel.fruit else "coco")
+        return self.rotate_carousels_to_targets(carousels, fruits, targets, wait)
 
     def align(self, vehicles, fruits, wait=True) -> bool:
         """ Align pockets between two vehicles. Tubes are ignored. """
