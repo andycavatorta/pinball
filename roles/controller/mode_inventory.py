@@ -310,12 +310,20 @@ class Mode_Inventory(threading.Thread):
             if any(value == True for value in balls_detected.values()):
                 for fruit_name in self.fruit_names:
                     if balls_detected[fruit_name]: 
-                        success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "left")
-                        if success:
-                            self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "left")
-                        else:
-                            print("move_balls_from_edge_carousels_to_tubes",success, reason)
-                            return ["move_balls_from_edge_carousels_to_tubes",success, reason]
+                        if not self.hosts.hostnames[active_pinball].request_lefttube_full(True):
+                            success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "left")
+                            if success:
+                                self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "left")
+                            else:
+                                print("move_balls_from_edge_carousels_to_tubes",success, reason)
+                                return ["move_balls_from_edge_carousels_to_tubes",success, reason]
+                        if not self.hosts.hostnames[active_pinball].request_righttube_full(True):
+                            success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "right")
+                            if success:
+                                self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "right")
+                            else:
+                                print("move_balls_from_edge_carousels_to_tubes",success, reason)
+                                return ["move_balls_from_edge_carousels_to_tubes",success, reason]
 
     def move_balls_from_center_carousel_to_tubes(self, active_games):
         success, reason = self.rotate_carousel_to_position("carousel_center", "coco", "coco")
