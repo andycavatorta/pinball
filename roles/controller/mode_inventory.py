@@ -203,7 +203,7 @@ class Mode_Inventory(threading.Thread):
             self.hosts.hostnames[carousel_name].request_eject_ball(fruit_name)
             time.sleep(0.25)
             carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
-            if carousel_balls_detected[fruit_name] == False:
+            if carousel_balls_detected[fruit_name] == True:
                 if tube_left_right == "left":
                     if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left() > 0:
                         return [True,""]
