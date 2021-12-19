@@ -164,6 +164,7 @@ class Mode_Inventory(threading.Thread):
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
+        self.maximum_carousel_position_discrepancy = 100
         self.phase = self.PHASE_ZERO
         self.start()
         # self.hosts["pinballmatrix"].request_amt203_zeroed()
@@ -182,7 +183,12 @@ class Mode_Inventory(threading.Thread):
             time.sleep(.25)
             if time.time() - timeout_duration > start_time:
                 break
-        return self.hosts.pinballmatrix.get_destination_reached(carousel_name)
+        discrepancy = self.hosts.pinballmatrix.get_discrepancy(carousel_name)
+
+        if abs(discrepancy) > self.maximum_carousel_position_discrepancy:
+            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),"exceeded discrepancy"]
+        else:
+            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),""]
 
     def eject_ball_to_tube(
         self, 
