@@ -633,11 +633,15 @@ class Pinball(Host):
         self.right_tube_event_history.append([sensor_value==0, time.time()])
     def get_count_tube_sensor_events_right(self, timespan_s=1.0):
         request_time = time.time()
+        print("request_time",request_time)
         recent_events = []
         right_tube_event_history_reversed = reversed(self.right_tube_event_history)
+        print("right_tube_event_history_reversed",right_tube_event_history_reversed)
         for event in right_tube_event_history_reversed:
+            print("event",event)
             if event[1] < request_time-timespan_s:
                 break
+            print("--",event[1],request_time-timespan_s)
             recent_events.append(event)
         return len(recent_events)
     def get_righttube_full(self):
