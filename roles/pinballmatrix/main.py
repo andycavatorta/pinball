@@ -30,7 +30,7 @@ GPIO.setmode(GPIO.BCM)
 
 position_calibration = {
     "carousel_1" : {
-        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
+        "coco":{"front":2048,"back":0,"left":1790,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
