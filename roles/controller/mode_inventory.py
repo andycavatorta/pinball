@@ -319,7 +319,7 @@ class Mode_Inventory(threading.Thread):
             active_motor = self.motor_names[active_game_int]
             active_carousel = self.carousel_names[active_game_int]
             active_pinball = self.pinball_names[active_game_int]
-            active_fruit = self.self.fruit_names[active_game_int]
+            active_fruit = self.fruit_names[active_game_int]
             success, reason = self.rotate_carousel_to_position(active_carousel, active_fruit, "back")
             if not success:
                 print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
@@ -335,7 +335,7 @@ class Mode_Inventory(threading.Thread):
             active_motor = self.motor_names[active_game_int]
             active_carousel = self.carousel_names[active_game_int]
             active_pinball = self.pinball_names[active_game_int]
-            active_fruit = self.self.fruit_names[active_game_int]
+            active_fruit = self.fruit_names[active_game_int]
             number_of_balls_transfered = 0
             while True:
                 # move carousel pocket to origin tube
