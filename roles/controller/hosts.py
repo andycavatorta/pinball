@@ -360,6 +360,10 @@ class Matrix(Host):
     def get_amt203_zeroed(self):
         return False not in self.amt203_zeroed
 
+
+    def get_discrepancy(self, motor_name):
+        motor = self.motor_by_carousel_name[motor_name]
+        return motor["get_discrepancy"]
     def get_destination_reached(self, motor_name):
         motor = self.motor_by_carousel_name[motor_name]
         return motor["target_reached"]

@@ -191,7 +191,7 @@ class Mode_Inventory(threading.Thread):
         pinball_name, 
         tube_left_right, 
         retries=5):
-        # THIS FUNCTION DOES NOT ENSURE THAT THE CAROUSEL IS IN positions
+        # THIS FUNCTION DOES NOT ENSURE THAT THE CAROUSEL IS IN POSITION 
         # is there a ball in the pocket?
         carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
         if carousel_balls_detected[fruit_name] == False:
