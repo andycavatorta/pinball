@@ -263,21 +263,21 @@ class Mode_Inventory(threading.Thread):
         ):
         # is one carousel the carouselcenter?
         if origin_carousel_name == "carouselcenter" or destination_carousel_name == "carouselcenter":
-        # does origin_fruit_name pocket have a ball?
-        carousel_balls_detected = self.hosts.hostnames[origin_carousel_name].get_carousel_ball_detected()
-            if not carousel_balls_detected[origin_fruit_name]:
-                return [False,"no ball in origin"]
-        # is destination_fruit_name empty?
-        carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
-            if carousel_balls_detected[destination_fruit_name]:
-                return [False,"ball in destination"]
-        for i in range(retries):
-            self.hosts.hostnames[origin_carousel_name].request_eject_ball(origin_fruit_name)
-            time.sleep(1)
+            # does origin_fruit_name pocket have a ball?
+            carousel_balls_detected = self.hosts.hostnames[origin_carousel_name].get_carousel_ball_detected()
+                if not carousel_balls_detected[origin_fruit_name]:
+                    return [False,"no ball in origin"]
+            # is destination_fruit_name empty?
             carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
-            if carousel_balls_detected[destination_fruit_name]:
-                return [True,""] 
-        return [False,"transfer failed"]
+                if carousel_balls_detected[destination_fruit_name]:
+                    return [False,"ball in destination"]
+            for i in range(retries):
+                self.hosts.hostnames[origin_carousel_name].request_eject_ball(origin_fruit_name)
+                time.sleep(1)
+                carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
+                if carousel_balls_detected[destination_fruit_name]:
+                    return [True,""] 
+            return [False,"transfer failed"]
 
     ##########################################################
 
