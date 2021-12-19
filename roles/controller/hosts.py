@@ -597,8 +597,7 @@ class Pinball(Host):
     def record_tube_sensor_left(self,sensor_value):
         sensed_b = True if sensor_value==0 else False
         self.left_tube_event_history.append([sensed_b, time.time()])
-        print("self.left_tube_event_history",self.left_tube_event_history)
-    def get_count_tube_sensor_events_left(self, timespan_s=1.0):
+    def get_count_tube_sensor_events_left(self, timespan_s=3.0):
         end_time = time.time()
         start_time = end_time - timespan_s
         recent_event_count = 0
@@ -659,7 +658,7 @@ class Pinball(Host):
         self.right_tube_event_history = []
     def record_tube_sensor_right(self,sensor_value):
         self.right_tube_event_history.append([sensor_value==0, time.time()])
-    def get_count_tube_sensor_events_right(self, timespan_s=1.0):
+    def get_count_tube_sensor_events_right(self, timespan_s=3.0):
         end_time = time.time()
         start_time = end_time - timespan_s
         recent_event_count = 0
