@@ -599,16 +599,15 @@ class Pinball(Host):
         self.left_tube_event_history.append([sensed_b, time.time()])
         print("self.left_tube_event_history",self.left_tube_event_history)
     def get_count_tube_sensor_events_left(self, timespan_s=1.0):
-        request_time = time.time()
-        recent_events = []
-        left_tube_event_history_reversed = reversed(self.left_tube_event_history)
-        for event in left_tube_event_history_reversed:
-            if event[1] < request_time-timespan_s:
-                break
-            recent_events.append(event)
-        return len(recent_events)
+        end_time = time.time()
+        start_time = end_time - timespan_s
+        recent_event_count = 0
+        for event in self.left_tube_event_history:
+            if event[1] > start_time and event[1] < end_time:
+                recent_event_count += 1    
+        return recent_event_count
     def get_lefttube_full(self):
-        return self.get_last_state_tube_sensor_events_left()
+        return self.lefttube_full
     def get_last_state_tube_sensor_events_left(self):
         try:
             return self.left_tube_event_history[-1]
@@ -661,19 +660,13 @@ class Pinball(Host):
     def record_tube_sensor_right(self,sensor_value):
         self.right_tube_event_history.append([sensor_value==0, time.time()])
     def get_count_tube_sensor_events_right(self, timespan_s=1.0):
-        request_time = time.time()
-        print("request_time",request_time)
-        recent_events = []
-        right_tube_event_history_reversed = reversed(self.right_tube_event_history)
-        for r in right_tube_event_history_reversed:
-            print("right_tube_event_history_reversed",r)
-        for event in right_tube_event_history_reversed:
-            print("event",event)
-            if event[1] < request_time-timespan_s:
-                break
-            print("--",event[1],request_time-timespan_s)
-            recent_events.append(event)
-        return len(recent_events)
+        end_time = time.time()
+        start_time = end_time - timespan_s
+        recent_event_count = 0
+        for event in self.right_tube_event_history:
+            if event[1] > start_time and event[1] < end_time:
+                recent_event_count += 1    
+        return recent_event_count
     def get_righttube_full(self):
         return self.get_last_state_tube_sensor_events_right()
     def get_last_state_tube_sensor_events_right(self):
