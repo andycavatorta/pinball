@@ -83,7 +83,7 @@ class GPIO_Input():
         return [self.name, GPIO.input(self.pin)]
 
 class Inductive_Sensors(threading.Thread):
-    def __init__(self, tb):
+    def __init__(self, tb, callback):
         threading.Thread.__init__(self)
         self.tb = tb
         self.sensors = [ # name, gpio, last_state
@@ -173,6 +173,8 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
+        if status:
+            self.inductive_sensors.response_carousel_detect_balls()
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
     def run(self):

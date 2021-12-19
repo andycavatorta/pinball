@@ -454,6 +454,8 @@ class Mode_Inventory(threading.Thread):
                             origin, 
                             destination,
                         )
+                    if topic == "event_carousel_ball_detected":
+                        
                 except queue.Empty:
                     pass
                     #if self.timer + self.timeout_duration < time.time(): # if timeout condition
