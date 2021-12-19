@@ -256,15 +256,15 @@ class Mode_Inventory(threading.Thread):
             if carousel_balls_detected[fruit_name]: 
                 return [True,""]
             else:
-                time.sleep(0.75)
+                time.sleep(0.5)
                 self.hosts.hostnames[carousel_name].request_eject_ball(fruit_name)
-                time.sleep(1)
+                time.sleep(2)
                 if tube_left_right == "left":
-                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left(2) == 0:
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left(5) == 0:
                         return [False,"tube_empty"]
                 else:
-                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_right(2) == 0:
-                        return [True,"tube_empty"]
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_right(5) == 0:
+                        return [False,"tube_empty"]
         return [False,"ball_stuck"]
 
     def pass_ball_between_adjacent_carousels(
@@ -351,6 +351,7 @@ class Mode_Inventory(threading.Thread):
                     origin_tube)
                 if not success:
                     # detect empty tube and break while loop
+                    print(reason)
                     if reason == "tube_empty":
                         break
                     else:
@@ -367,9 +368,8 @@ class Mode_Inventory(threading.Thread):
                 if not success:
                     print("shuffle_all_balls_between_tubes_in_same_station", "eject_ball_to_tube", success, reason)
                     return ["shuffle_all_balls_between_tubes_in_same_station", "eject_ball_to_tube", success, reason]
-
                 number_of_balls_transfered +=1
-            game_and_count.append([active_game,number_of_balls_transfered])
+            game_and_count.append([active_game_int,number_of_balls_transfered])
         return game_and_count
 
 
