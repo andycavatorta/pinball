@@ -150,7 +150,7 @@ class Carousel(Host):
     def set_carousel_ball_detected(self, balls_present):
         for ball_name in balls_present:
             self.balls_present[ball_name] = balls_present[ball_name]
-            self.cmd_carousel_lights(ball_name,"high" if balls_present[ball_name] else "low")
+            self.cmd_carousel_lights(ball_name,"throb" if balls_present[ball_name] else "low")
 
     def get_carousel_ball_detected(self):
         return self.balls_present
