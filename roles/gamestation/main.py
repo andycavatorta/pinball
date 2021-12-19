@@ -254,7 +254,7 @@ class Playfield_Sensors(threading.Thread):
                     for i in range(4):
                         if self.sensors[7].get_state() == 1:
                             self.callback("response_righttube_full",False, None, None)
-                                continue
+                            continue
                         time.sleep(0.05)
                     self.callback("response_righttube_full",True, None, None)
 
