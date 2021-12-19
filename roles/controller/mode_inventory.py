@@ -136,7 +136,31 @@ class Mode_Inventory(threading.Thread):
         self.mode_names = settings.Game_Modes
         self.set_current_mode = set_current_mode
         self.queue = queue.Queue()
-        self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.pinball_names = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
+        self.carousel_names = [
+            "carousel1",
+            "carousel2",
+            "carousel3",
+            "carousel4",
+            "carousel5",
+            "carouselcenter",
+        ]
+        self.motor_names = [
+            "carousel_1",
+            "carousel_2",
+            "carousel_3",
+            "carousel_4",
+            "carousel_5",
+            "carousel_center",
+        ]
+        self.fruit_names = [
+            "coco",
+            "naranja",
+            "mango",
+            "sandia",
+            "pina",
+        ]
+        self.active_games = [1] # this is a short hack for excluding certain stations 
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
         self.timeout_duration = 120 #seconds
@@ -145,6 +169,196 @@ class Mode_Inventory(threading.Thread):
         # self.hosts["pinballmatrix"].request_amt203_zeroed()
         # bypass inventory
         #self.set_current_mode(self.game_mode_names.ATTRACTION)
+
+    def rotate_carousel_to_position(
+        self, 
+        carousel_name, 
+        fruit_name, 
+        position_name, 
+        timeout_duration=20):
+        start_time = time.time()
+        self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(carousel_name, fruit_name, position_name)
+        while not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]:
+            time.sleep(.25)
+            if time.time() - timeout_duration > start_time:
+                break
+        return self.hosts.pinballmatrix.get_destination_reached(carousel_name)
+
+    def eject_ball_to_tube(
+        self, 
+        carousel_name, 
+        fruit_name, 
+        pinball_name, 
+        tube_left_right, 
+        retries=5):
+        #is tube full?
+        if tube_left_right == "left":
+            if self.hosts.hostnames[pinball_name].get_lefttube_full():
+                return [False,"full"]
+        else:
+            if self.hosts.hostnames[pinball_name].get_righttube_full():
+                return [False,"full"]
+        # eject
+        for i in range(retries):
+            self.hosts.hostnames[carousel_name].request_eject_ball(fruit_name)
+            time.sleep(0.25)
+            carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
+            if carousel_balls_detected[fruit_name] == False:
+                if tube_left_right == "left":
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left() > 0:
+                        return [True,""]
+                else:
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_right() > 0:
+                        return [True,""]
+        return [False,None]
+
+    def launch_ball_to_carousel(
+        self, 
+        carousel_name, 
+        fruit_name, 
+        pinball_name, 
+        tube_left_right, 
+        retries=5):
+        # is carousel in position?
+
+        # is carousel pocket empty?
+        carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
+        if carousel_balls_detected[fruit_name]: 
+            return [False,"carousel pocket full"]
+        # is tube ball count > 0? -1 denotes ball count before inventory
+        if tube_left_right == "left":
+            if self.hosts.hostnames[pinball_name].get_left_stack_inventory() == 0: # -1 denotes ball count before inventory
+                return [False,"inventory zero"]
+        else:
+            if self.hosts.hostnames[pinball_name].get_right_stack_inventory() == 0: # -1 denotes ball count before inventory
+                return [False,"inventory zero"]
+        # launch tube 
+        for i in range(retries):
+            if tube_left_right == "left":
+                self.hosts.pinball1game.cmd_lefttube_launch()
+            else:
+                self.hosts.pinball1game.cmd_righttube_launch()
+            time.sleep(1)
+            carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
+            if carousel_balls_detected[fruit_name]: 
+                return [True,""]
+            else:
+                time.sleep(0.25)
+                self.hosts.hostnames[carousel_name].request_eject_ball(fruit_name)
+                time.sleep(1)
+                if tube_left_right == "left":
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left(2) == 0:
+                        return [False,"tube_empty"]
+                else:
+                    if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_right(2) == 0:
+                        return [True,"tube_empty"]
+        return [False,"ball_stuck"]
+
+    def pass_ball_between_adjacent_carousels(
+            origin_carousel_name,
+            origin_fruit_name,
+            destination_carousel_name,
+            destination_fruit_name,
+            retries = 5
+        ):
+        # is one carousel the carouselcenter?
+        if origin_carousel_name == "carouselcenter" or destination_carousel_name == "carouselcenter":
+            # does origin_fruit_name pocket have a ball?
+            carousel_balls_detected = self.hosts.hostnames[origin_carousel_name].get_carousel_ball_detected()
+            if not carousel_balls_detected[origin_fruit_name]:
+                return [False,"no ball in origin"]
+            # is destination_fruit_name empty?
+            carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
+            if carousel_balls_detected[destination_fruit_name]:
+                return [False,"ball in destination"]
+            for i in range(retries):
+                self.hosts.hostnames[origin_carousel_name].request_eject_ball(origin_fruit_name)
+                time.sleep(1)
+                carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
+                if carousel_balls_detected[destination_fruit_name]:
+                    return [True,""] 
+            return [False,"transfer failed"]
+
+    ##########################################################
+
+    def move_balls_from_edge_carousels_to_tubes(self, active_games):
+        for active_game_int in active_games:
+            active_motor = self.motor_names[active_game_int]
+            active_carousel = self.carousel_names[active_game_int]
+            active_pinball = self.pinball_names[active_game_int]
+            balls_detected = self.hosts.hostnames[active_carousel].get_carousel_ball_detected()
+            if any(value == True for value in balls_detected.values()):
+                for fruit_name in self.fruit_names:
+                    if balls_detected[fruit_name]: 
+                        success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "left")
+                        if success:
+                            self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "left")
+                        else:
+                            print("move_balls_from_edge_carousels_to_tubes",success, reason)
+                            return ["move_balls_from_edge_carousels_to_tubes",success, reason]
+
+    def move_balls_from_center_carousel_to_tubes(self, active_games):
+        success, reason = self.rotate_carousel_to_position("carousel_center", "coco", "coco")
+        if not success:
+            print("move_balls_from_center_carousel_to_tubes", "rotate_carousel_to_position", success, reason)
+            return ["move_balls_from_center_carousel_to_tubes", "rotate_carousel_to_position", success, reason]
+        for active_game_int in active_games:
+            active_motor = self.motor_names[active_game_int]
+            active_carousel = self.carousel_names[active_game_int]
+            active_pinball = self.pinball_names[active_game_int]
+            active_fruit = self.self.fruit_names[active_game_int]
+            success, reason = self.rotate_carousel_to_position(active_carousel, active_fruit, "back")
+            if not success:
+                print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
+                return ["move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason]
+            success, reason = self.pass_ball_between_adjacent_carousels("carousel_center",active_fruit,active_carousel,active_fruit)
+            if not success:
+                print("move_balls_from_center_carousel_to_tubes","pass_ball_between_adjacent_carousels",success, reason)
+                return ["move_balls_from_center_carousel_to_tubes","pass_ball_between_adjacent_carousels",success, reason]
+
+    def shuffle_all_balls_between_tubes_in_same_station(self, active_games, origin_tube, destination_tube):
+        game_and_count = []
+        for active_game_int in active_games:
+            active_motor = self.motor_names[active_game_int]
+            active_carousel = self.carousel_names[active_game_int]
+            active_pinball = self.pinball_names[active_game_int]
+            active_fruit = self.self.fruit_names[active_game_int]
+            number_of_balls_transfered = 0
+            while True:
+                # move carousel pocket to origin tube
+                success, reason = self.rotate_carousel_to_position(active_motor, active_fruit, origin_tube)
+                if not success:
+                    print("shuffle_all_balls_between_tubes_in_same_station", "rotate_carousel_to_position", success, reason)
+                    return ["shuffle_all_balls_between_tubes_in_same_station", "rotate_carousel_to_position", success, reason]
+                # launch ball from origin tube
+                success, reason = self.launch_ball_to_carousel(
+                    active_carousel, 
+                    active_fruit, 
+                    active_pinball, 
+                    origin_tube)
+                if not success:
+                    # detect empty tube and break while loop
+                    if reason == "tube_empty":
+                        break
+                    else:
+                        print("shuffle_all_balls_between_tubes_in_same_station", "launch_ball_to_carousel", success, reason)
+                        return ["shuffle_all_balls_between_tubes_in_same_station", "launch_ball_to_carousel", success, reason]
+                # move carousel pocket to destination_tube
+                success, reason = self.rotate_carousel_to_position(active_motor, active_fruit, destination_tube)
+                if not success:
+                    print("shuffle_all_balls_between_tubes_in_same_station", "rotate_carousel_to_position", success, reason)
+                    return ["shuffle_all_balls_between_tubes_in_same_station", "rotate_carousel_to_position", success, reason]
+
+                # eject ball from carousel pocket
+                success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, destination_tube)
+                if not success:
+                    print("shuffle_all_balls_between_tubes_in_same_station", "eject_ball_to_tube", success, reason)
+                    return ["shuffle_all_balls_between_tubes_in_same_station", "eject_ball_to_tube", success, reason]
+
+                number_of_balls_transfered +=1
+            game_and_count.append([active_game,number_of_balls_transfered])
+        return game_and_count
+
 
     def inventory(self):
         choreo = self.choreography
