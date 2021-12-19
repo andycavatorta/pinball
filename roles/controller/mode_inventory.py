@@ -179,27 +179,45 @@ class Mode_Inventory(threading.Thread):
         timeout_duration=20,
         retries=3):
         reached = False
+        print("00000000000000000",1)
         start_time = time.time()
+        print("00000000000000000",2)
         for i in range(retries):
+            print("00000000000000000",3)
             if reached == True:
+                print("00000000000000000",4)
                 return [True,0]
             self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(carousel_name, fruit_name, position_name)
+            print("00000000000000000",5)
             while not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]==True:
+                print("00000000000000000",6)
                 time.sleep(.25)
+                print("00000000000000000",7)
                 if time.time() - timeout_duration > start_time:
+                    print("00000000000000000",8)
                     break
             discrepancy = self.hosts.pinballmatrix.get_discrepancy(carousel_name)
+            print("00000000000000000",9)
             if abs(discrepancy) < self.maximum_carousel_position_discrepancy:
+                print("00000000000000000",10)
                 reached = True 
+                print("00000000000000000",11)
                 return [True,0]
             if not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]:
+                print("00000000000000000",12)
                 self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(carousel_name, fruit_name, "back")# because they are never turned to the back
+                print("00000000000000000",13)
                 while not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]==True:
+                    print("00000000000000000",14)
                     time.sleep(.25)
+                    print("00000000000000000",15)
                     if time.time() - timeout_duration > start_time:
+                        print("00000000000000000",16)
                         break
             else:
+                print("00000000000000000",18)
                 break
+        print("00000000000000000",19)
         return [self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0],discrepancy]
         #return [False,discrepancy]
 
