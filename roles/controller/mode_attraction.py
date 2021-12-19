@@ -476,7 +476,7 @@ class Mode_Attraction(threading.Thread):
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_phrase("juega")
         # ensure carousels are in correct position
-        # self.choreography.home_carousels()
+        self.choreography.home_carousels_radial()
         self.hosts.clear_games_with_players()
         self.animation.add_to_queue("begin")
 
