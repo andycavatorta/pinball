@@ -90,7 +90,7 @@ class Speed_To_Position(threading.Thread):
         self.queue = queue.Queue()
         self.timeout_timer = time.time()
         self.timeout_timeout = 60 # seconds
-        self.discrepancy_threshold = 25
+        self.discrepancy_threshold = 50
         self.start()
 
     def get_position_with_offset(self):
