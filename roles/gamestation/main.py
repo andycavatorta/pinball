@@ -259,7 +259,6 @@ class Playfield_Sensors(threading.Thread):
                             topic="response_lefttube_full",
                             message=True
                         )
-
                 if topic == "request_righttube_full":
                     found = False
                     for i in range(4):
@@ -276,7 +275,6 @@ class Playfield_Sensors(threading.Thread):
                             topic="response_righttube_full",
                             message=True
                         )
-
                 if topic == "request_playfield_states":
                     states = []
                     self.sensors
