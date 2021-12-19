@@ -243,7 +243,7 @@ class Mode_Inventory(threading.Thread):
             if carousel_balls_detected[fruit_name]: 
                 return [True,""]
             else:
-                time.sleep(0.25)
+                time.sleep(0.75)
                 self.hosts.hostnames[carousel_name].request_eject_ball(fruit_name)
                 time.sleep(1)
                 if tube_left_right == "left":
