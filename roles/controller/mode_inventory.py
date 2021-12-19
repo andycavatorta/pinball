@@ -410,7 +410,7 @@ class Mode_Inventory(threading.Thread):
     def begin(self):
         #self.timer = time.time()
         self.active = True
-        self.set_current_mode(self.game_mode_names.ATTRACTION)
+        #self.set_current_mode(self.game_mode_names.ATTRACTION)
 
     def end(self):
         self.active = False
