@@ -83,7 +83,7 @@ class GPIO_Input():
         return [self.name, GPIO.input(self.pin)]
 
 class Inductive_Sensors(threading.Thread):
-    def __init__(self, tb, callback):
+    def __init__(self, tb):
         threading.Thread.__init__(self)
         self.tb = tb
         self.sensors = [ # name, gpio, last_state
