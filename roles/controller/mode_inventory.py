@@ -311,14 +311,14 @@ class Mode_Inventory(threading.Thread):
                 for fruit_name in self.fruit_names:
                     if balls_detected[fruit_name]: 
                         if not self.hosts.hostnames[active_pinball].request_lefttube_full(True):
-                            success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "left")
+                            success, reason = self.rotate_carousel_to_position(active_motor, fruit_name, "left")
                             if success:
                                 self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "left")
                             else:
                                 print("move_balls_from_edge_carousels_to_tubes",success, reason)
                                 return ["move_balls_from_edge_carousels_to_tubes",success, reason]
                         if not self.hosts.hostnames[active_pinball].request_righttube_full(True):
-                            success, reason = self.rotate_carousel_to_position(active_carousel, fruit_name, "right")
+                            success, reason = self.rotate_carousel_to_position(active_motor, fruit_name, "right")
                             if success:
                                 self.eject_ball_to_tube(active_carousel, fruit_name, active_pinball, "right")
                             else:
