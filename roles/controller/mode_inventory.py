@@ -240,6 +240,7 @@ class Mode_Inventory(threading.Thread):
                 self.hosts.pinball1game.cmd_righttube_launch()
             time.sleep(1)
             carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
+            print("...............",carousel_balls_detected)
             if carousel_balls_detected[fruit_name]: 
                 return [True,""]
             else:
