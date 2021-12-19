@@ -245,7 +245,7 @@ class Playfield_Sensors(threading.Thread):
                 topic = self.queue.get(True,0.01)
                 if topic == "request_lefttube_full":
                     for i in range(4):
-                        if self.sensors[6].get_state() == 1:
+                        if self.sensors[6].get_state()[1] == 1:
                             self.tb.publish(
                                 topic="response_lefttube_full",
                                 message=False
@@ -259,7 +259,7 @@ class Playfield_Sensors(threading.Thread):
 
                 if topic == "request_righttube_full":
                     for i in range(4):
-                        if self.sensors[7].get_state() == 1:
+                        if self.sensors[7].get_state()[1] == 1:
                             self.tb.publish(
                                 topic="response_righttube_full",
                                 message=False
