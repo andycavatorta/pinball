@@ -78,7 +78,7 @@ class GPIO_Input():
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            self.tb.publish("event_carousel_ball_detected",{self.name:new_state})
+            self.tb.publish("event_carousel_ball_detected",{self.name: True if new_state==0 else False})
     def get_state(self):
         return [self.name, GPIO.input(self.pin)]
 
