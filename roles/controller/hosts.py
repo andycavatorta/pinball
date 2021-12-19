@@ -497,6 +497,9 @@ class Pinball(Host):
         self.troughsensor_value = False
         self.barter_mode_score = 0
         self.money_mode_score = 0
+        self.lefttube_full = None
+        self.righttube_full = None
+
         self.playfield_switch_active = {
             "trough_sensor":False,
             "roll_outer_left":False,
@@ -570,8 +573,19 @@ class Pinball(Host):
         self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
     ### LEFT TUBE ###
-    def request_lefttube_full(self):
+    def request_lefttube_full(self, block_for_response = False):
+        self.lefttube_full = None
         self.tb.publish(topic="request_lefttube_full", message="",destination=self.hostname)
+        if block_for_response:
+            time_end = time.time() + 1.5
+            while time.time() < time_end:
+                if self.lefttube_full != None:
+                    return self.lefttube_full
+            return None
+
+    def response_lefttube_full(self, full_b):
+        self.lefttube_full = full_b
+
     def request_lefttube_present(self):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
     def set_lefttube_present(self,lefttube_present):
@@ -619,8 +633,21 @@ class Pinball(Host):
             destination=self.hostname)
 
     ### RIGHT TUBE ###
-    def request_righttube_full(self):
+    def request_righttube_full(self, block_for_response = False):
+        self.righttube_full = None
         self.tb.publish(topic="request_righttube_full", message="",destination=self.hostname)
+        if block_for_response:
+            time_end = time.time() + 1.5
+            while time.time() < time_end:
+                if self.righttube_full != None:
+                    return self.righttube_full
+            return None
+
+    def response_righttube_full(self, full_b):
+        self.righttube_full = full_b
+
+
+
     def request_righttube_present(self):
         self.tb.publish(topic="request_righttube_present", message="",destination=self.hostname)
     def set_righttube_present(self,righttube_present):
@@ -1081,6 +1108,12 @@ class Hosts():
             self.hostnames[origin].set_current_sensor_value(message)
         if topic == "response_high_power_enabled":
             self.hostnames[origin].response_high_power_enabled(message)
+
+        if topic == "response_lefttube_full":
+            self.hostnames[origin].response_lefttube_full(message)
+        if topic == "response_righttube_full":
+            self.hostnames[origin].response_righttube_full(message)
+
         if topic == "response_sdc2160_channel_faults":
             self.hostnames[origin].set_sdc2160_channel_faults(message)
         if topic == "response_sdc2160_closed_loop_error":

@@ -229,18 +229,42 @@ class Playfield_Sensors(threading.Thread):
         self.queue = queue.Queue()
         self.start()
 
+    def request_lefttube_full(self): 
+        self.queue.put("request_lefttube_full")
+
+    def request_righttube_full(self): 
+        self.queue.put("request_righttube_full")
+
     def request_playfield_states(self):
-        self.queue.put(True)
+        self.queue.put("request_playfield_states")
 
     def run(self):
         while True:
             try:
-                #self.queue.get(True,0.01)
-                states = []
-                self.sensors
-                for sensor in self.sensors: 
-                    states.append(sensor.get_state())
-                self.callback("response_playfield_states",states, None, None)
+                topic = self.queue.get(True,0.01)
+                if topic == "request_lefttube_full":
+                    for i in range(4):
+                        if self.sensors[6].get_state() == 1:
+                            self.callback("response_lefttube_full",False, None, None)
+                                continue
+                        time.sleep(0.05)
+                    self.callback("response_lefttube_full",True, None, None)
+
+                if topic == "request_righttube_full":
+                    for i in range(4):
+                        if self.sensors[7].get_state() == 1:
+                            self.callback("response_righttube_full",False, None, None)
+                                continue
+                        time.sleep(0.05)
+                    self.callback("response_righttube_full",True, None, None)
+
+
+                if topic == "request_playfield_states":
+                    states = []
+                    self.sensors
+                    for sensor in self.sensors: 
+                        states.append(sensor.get_state())
+                    self.callback("response_playfield_states",states, None, None)
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
@@ -653,17 +677,10 @@ class Main(threading.Thread):
 
 
                 if topic == 'request_lefttube_full':
-                    if destination == self.tb.get_hostname():
-                        self.tb.publish(
-                            topic="response_lefttube_full",
-                            message=True
-                        )
+                    self.playfiels_sensors.request_lefttube_full()
                 if topic == 'request_righttube_full':
-                    if destination == self.tb.get_hostname():
-                        self.tb.publish(
-                            topic="response_righttube_full",
-                            message=True
-                        )
+                    self.playfiels_sensors.request_righttube_full()
+
 
 
                 if topic == 'request_lefttube_present':

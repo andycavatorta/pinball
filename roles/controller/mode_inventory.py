@@ -198,10 +198,10 @@ class Mode_Inventory(threading.Thread):
 
         #is tube full?
         if tube_left_right == "left":
-            if self.hosts.hostnames[pinball_name].get_lefttube_full():
+            if self.hosts.hostnames[pinball_name].request_lefttube_full(True):
                 return [False,"full"]
         else:
-            if self.hosts.hostnames[pinball_name].get_righttube_full():
+            if self.hosts.hostnames[pinball_name].request_righttube_full(True):
                 return [False,"full"]
         # eject
         for i in range(retries):
@@ -209,7 +209,6 @@ class Mode_Inventory(threading.Thread):
             time.sleep(0.4)
             carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
             if carousel_balls_detected[fruit_name] == False:
-                print(">>>", self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_right(2))
                 if tube_left_right == "left":
                     if self.hosts.hostnames[pinball_name].get_count_tube_sensor_events_left(2) > 0:
                         return [True,""]

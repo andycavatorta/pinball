@@ -144,6 +144,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_amt203_zeroed")
         self.tb.subscribe_to_topic("response_carousel_absolute")
         self.tb.subscribe_to_topic("response_carousel_relative")
+        self.tb.subscribe_to_topic("response_lefttube_full")
+        self.tb.subscribe_to_topic("response_righttube_full")
         self.tb.subscribe_to_topic("response_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("response_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("response_sdc2160_controller_faults")
