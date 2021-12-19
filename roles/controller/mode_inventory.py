@@ -223,8 +223,8 @@ class Mode_Inventory(threading.Thread):
 
         # is carousel pocket empty?
         carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
-            if carousel_balls_detected[fruit_name]: 
-                return [False,"carousel pocket full"]
+        if carousel_balls_detected[fruit_name]: 
+            return [False,"carousel pocket full"]
         # is tube ball count > 0? -1 denotes ball count before inventory
         if tube_left_right == "left":
             if self.hosts.hostnames[pinball_name].get_left_stack_inventory() == 0: # -1 denotes ball count before inventory
