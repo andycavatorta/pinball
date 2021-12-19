@@ -213,9 +213,10 @@ class GPIO_Input():
         return [self.name, GPIO.input(self.pin)]
 
 class Playfield_Sensors(threading.Thread):
-    def __init__(self, callback):
+    def __init__(self, callback, tb):
         threading.Thread.__init__(self)
         self.callback = callback
+        self.tb = tb
         self.sensors = [ # name, gpio, last_state
             GPIO_Input("rollover_inner_left", 16, GPIO.PUD_DOWN, callback),
             GPIO_Input("rollover_inner_right", 20, GPIO.PUD_DOWN, callback),
@@ -301,7 +302,7 @@ class Main(threading.Thread):
         self.gamestation_lights = lighting.Lights()
         self.button_lights = Button_Lights()
         self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
-        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
+        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue,self.tb)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
         self.tb.subscribe_to_topic("cmd_enable_derecha_coil")
