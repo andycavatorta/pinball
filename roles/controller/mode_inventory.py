@@ -186,9 +186,9 @@ class Mode_Inventory(threading.Thread):
         discrepancy = self.hosts.pinballmatrix.get_discrepancy(carousel_name)
 
         if abs(discrepancy) > self.maximum_carousel_position_discrepancy:
-            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),"exceeded discrepancy"]
+            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),discrepancy]
         else:
-            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),""]
+            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0],discrepancy]
 
     def eject_ball_to_tube(
         self, 
