@@ -235,8 +235,9 @@ class Playfield_Sensors(threading.Thread):
     def run(self):
         while True:
             try:
-                self.queue.get(True,0.05)
+                #self.queue.get(True,0.01)
                 states = []
+                self.sensors
                 for sensor in self.sensors:
                     states.append(sensor.get_state())
                 self.callback("response_playfield_states",states, None, None)
