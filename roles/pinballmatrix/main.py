@@ -277,26 +277,15 @@ class Main(threading.Thread):
         this must not be called when the motors are not in a PID mode of any kind
         """
         if self.high_power_init == True:
-            self.absolute_encoders_presences = [True]*6
-            # create SPI interfaces for AMT203
-            # time.sleep(3)
-            # print(">>>>> Main get_absolute_positions 0")
-            # self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
-            # time.sleep(3)
-            # # verify that encoders are present
-            # print(">>>>> Main get_absolute_positions 1", self.absolute_encoders)
-            # self.absolute_encoders_presences = self.absolute_encoders.get_presences()
-            # time.sleep(3)
-            # # read absolute positions
-            # print(">>>>> Main get_absolute_positions 2", self.absolute_encoders_presences)
-            # self.absolute_encoders_positions = self.absolute_encoders.get_positions()
-            # time.sleep(3)
-            # # stop SPI interfaces - spidev.close()
-            # print(">>>>> Main get_absolute_positions 3", self.absolute_encoders_positions)
-            # self.absolute_encoders.close()
-            # print(">>>>> Main get_absolute_positions 4", self.absolute_encoders)
-            # self.already_called_once = True
-            # time.sleep(1)
+            print(">>>>> Main -- get absolute encoders")
+            self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
+            print(">>>>> Main -- encoders: ", self.absolute_encoders)
+            self.absolute_encoders_presences = self.absolute_encoders.get_presences()
+            print(">>>>> Main -- encoder presence: ", self.absolute_encoders_presences)
+            self.absolute_encoders_positions = self.absolute_encoders.get_positions()
+            print(">>>>> Main -- encoder positions: ", self.absolute_encoders_positions)
+            self.absolute_encoders.close()
+            self.already_called_once = True
 
     def create_controllers_and_motors(self):
         print(">>>>> Main create_controllers_and_motors")
@@ -402,10 +391,6 @@ class Main(threading.Thread):
             topic="response_sdc2160_relative_position", 
             message=self.request_sdc2160_relative_position()
         )
-        # engage emergency stop until encoder problem is solved
-        # self.controllers.boards["carousel1and2"].emergency_stop()
-        # self.controllers.boards["carousel3and4"].emergency_stop()
-        # self.controllers.boards["carousel5and6"].emergency_stop()
 
     ##### SYSTEM TESTS #####
 
