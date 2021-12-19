@@ -593,7 +593,10 @@ class Pinball(Host):
     def get_lefttube_full(self):
         return self.get_last_state_tube_sensor_events_left()
     def get_last_state_tube_sensor_events_left(self):
-        return self.left_tube_event_history[-1]
+        try:
+            return self.left_tube_event_history[-1]
+        except IndexError:
+            return []
     def cmd_lefttube_launch(self):
         self.tb.publish(
             topic="cmd_lefttube_launch", 
@@ -637,7 +640,10 @@ class Pinball(Host):
     def get_righttube_full(self):
         return self.get_last_state_tube_sensor_events_right()
     def get_last_state_tube_sensor_events_right(self):
-        return self.right_tube_event_history[-1]
+        try:
+            return self.right_tube_event_history[-1]
+        except IndexError:
+            return []
     def cmd_righttube_launch(self):
         self.tb.publish(
             topic="cmd_righttube_launch", 
