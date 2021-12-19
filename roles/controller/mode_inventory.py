@@ -178,16 +178,20 @@ class Mode_Inventory(threading.Thread):
         position_name, 
         timeout_duration=20,
         retries=3):
+        reached = False
         start_time = time.time()
         for i in range(retries):
+            if reached == True:
+                break
             self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(carousel_name, fruit_name, position_name)
             while not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]==True:
                 time.sleep(.25)
                 if time.time() - timeout_duration > start_time:
                     break
             discrepancy = self.hosts.pinballmatrix.get_discrepancy(carousel_name)
-
-            #if abs(discrepancy) > self.maximum_carousel_position_discrepancy:
+            if abs(discrepancy) < self.maximum_carousel_position_discrepancy:
+                reached = True 
+                break
             if not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]:
                 self.hosts.pinballmatrix.cmd_rotate_carousel_to_target(carousel_name, fruit_name, "back")# because they are never turned to the back
                 while not self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0]==True:
