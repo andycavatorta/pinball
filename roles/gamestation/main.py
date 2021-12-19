@@ -252,7 +252,7 @@ class Playfield_Sensors(threading.Thread):
                                 message=False
                             )
                             found = True
-                            continue
+                            break
                         time.sleep(0.05)
                     if not found:
                         self.tb.publish(
@@ -269,7 +269,7 @@ class Playfield_Sensors(threading.Thread):
                                 message=False
                             )
                             found = True
-                            continue
+                            break
                         time.sleep(0.05)
                     if not found:
                         self.tb.publish(
