@@ -30,35 +30,35 @@ GPIO.setmode(GPIO.BCM)
 
 position_calibration = {
     "carousel_1" : {
-        "coco":{"front":2048,"back":0,"left":1760,"right":2280},
+        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_2" : {
-        "coco":{"front":2048,"back":0,"left":1760,"right":2280},
+        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_3" : {
-        "coco":{"front":2048,"back":0,"left":1760,"right":2280},
+        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_4" : {
-        "coco":{"front":2048,"back":0,"left":1760,"right":2280},
+        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
         "pina":{"front":5324,"back":3279,"left":5056,"right":5556},
     },
     "carousel_5" : {
-        "coco":{"front":2048,"back":0,"left":1760,"right":2280},
+        "coco":{"front":2048,"back":0,"left":1770,"right":2290},
         "naranja":{"front":2867,"back":819,"left":2599,"right":3099},
         "mango":{"front":3686,"back":1638,"left":3418,"right":3918},
         "sandia":{"front":4505,"back":2460,"left":4237,"right":4737},
