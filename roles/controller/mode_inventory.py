@@ -186,7 +186,7 @@ class Mode_Inventory(threading.Thread):
         discrepancy = self.hosts.pinballmatrix.get_discrepancy(carousel_name)
 
         if abs(discrepancy) > self.maximum_carousel_position_discrepancy:
-            return [self.hosts.pinballmatrix.get_destination_reached(carousel_name),discrepancy]
+            return [False,discrepancy]
         else:
             return [self.hosts.pinballmatrix.get_destination_reached(carousel_name)[0],discrepancy]
 
