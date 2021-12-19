@@ -191,6 +191,11 @@ class Mode_Inventory(threading.Thread):
         pinball_name, 
         tube_left_right, 
         retries=5):
+        # is there a ball in the pocket?
+        carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
+        if carousel_balls_detected[fruit_name] == False:
+            return [False,"no ball"]
+
         #is tube full?
         if tube_left_right == "left":
             if self.hosts.hostnames[pinball_name].get_lefttube_full():
