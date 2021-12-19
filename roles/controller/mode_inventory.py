@@ -442,8 +442,9 @@ class Mode_Inventory(threading.Thread):
                             destination,
                         )
                 except queue.Empty:
-                    if self.timer + self.timeout_duration < time.time(): # if timeout condition
-                        self.set_current_mode(self.game_mode_names.ERROR)
+                    pass
+                    #if self.timer + self.timeout_duration < time.time(): # if timeout condition
+                    #    self.set_current_mode(self.game_mode_names.ERROR)
                 except AttributeError:
                     pass
             else:
