@@ -268,7 +268,7 @@ class Playfield_Sensors(threading.Thread):
                         time.sleep(0.05)
                     self.tb.publish(
                         topic="response_righttube_full",
-                        message=False
+                        message=True
                     )
 
                 if topic == "request_playfield_states":
