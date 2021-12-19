@@ -103,7 +103,7 @@ class Inductive_Sensors(threading.Thread):
                 self.queue.get(True,0.1)
                 states = {}
                 for sensor in self.sensors:
-                    states[sensor.name] = sensor.get_state()
+                    states[sensor.name] = True if sensor.get_state() == 0 else False
                 self.tb.publish("response_carousel_detect_balls",states)
             except queue.Empty:
                 for sensor in self.sensors:
@@ -340,7 +340,8 @@ class Main(threading.Thread):
                             group.serpentine_center()
 
                 if topic == b'request_carousel_detect_balls':
-                    self.inductive_sensors.response_carousel_detect_balls()
+                    if destination == self.tb.get_hostname():
+                        self.inductive_sensors.response_carousel_detect_balls()
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="response_computer_details", 

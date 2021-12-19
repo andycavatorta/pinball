@@ -571,6 +571,8 @@ class Pinball(Host):
         self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
     ### LEFT TUBE ###
+    def request_lefttube_full(self):
+        self.tb.publish(topic="request_lefttube_full", message="",destination=self.hostname)
     def request_lefttube_present(self):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
     def set_lefttube_present(self,lefttube_present):
@@ -618,6 +620,8 @@ class Pinball(Host):
             destination=self.hostname)
 
     ### RIGHT TUBE ###
+    def request_righttube_full(self):
+        self.tb.publish(topic="request_righttube_full", message="",destination=self.hostname)
     def request_righttube_present(self):
         self.tb.publish(topic="request_righttube_present", message="",destination=self.hostname)
     def set_righttube_present(self,righttube_present):

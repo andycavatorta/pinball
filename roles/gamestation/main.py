@@ -238,7 +238,7 @@ class Playfield_Sensors(threading.Thread):
                 #self.queue.get(True,0.01)
                 states = []
                 self.sensors
-                for sensor in self.sensors:
+                for sensor in self.sensors: 
                     states.append(sensor.get_state())
                 self.callback("response_playfield_states",states, None, None)
             except queue.Empty:
@@ -306,6 +306,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_current_sensor_present")
         self.tb.subscribe_to_topic("request_current_sensor_value")
+        self.tb.subscribe_to_topic("request_lefttube_full")
+        self.tb.subscribe_to_topic("request_righttube_full")
         self.tb.subscribe_to_topic("request_lefttube_present")
         self.tb.subscribe_to_topic("request_rightttube_present")
         self.tb.subscribe_to_topic("request_system_tests")
@@ -648,6 +650,22 @@ class Main(threading.Thread):
                         topic="response_current_sensor_value",
                         message=self.request_current_sensor_value()
                     )
+
+
+                if topic == 'request_lefttube_full':
+                    if destination == self.tb.get_hostname():
+                        self.tb.publish(
+                            topic="response_lefttube_full",
+                            message=True
+                        )
+                if topic == 'request_righttube_full':
+                    if destination == self.tb.get_hostname():
+                        self.tb.publish(
+                            topic="response_righttube_full",
+                            message=True
+                        )
+
+
                 if topic == 'request_lefttube_present':
                     if destination == self.tb.get_hostname():
                         self.tb.publish(
