@@ -245,19 +245,30 @@ class Playfield_Sensors(threading.Thread):
                 if topic == "request_lefttube_full":
                     for i in range(4):
                         if self.sensors[6].get_state() == 1:
-                            self.callback("response_lefttube_full",False, None, None)
+                            self.tb.publish(
+                                topic="response_lefttube_full",
+                                message=False
+                            )
                             continue
                         time.sleep(0.05)
-                    self.callback("response_lefttube_full",True, None, None)
+                    self.tb.publish(
+                        topic="response_lefttube_full",
+                        message=True
+                    )
 
                 if topic == "request_righttube_full":
                     for i in range(4):
                         if self.sensors[7].get_state() == 1:
-                            self.callback("response_righttube_full",False, None, None)
+                            self.tb.publish(
+                                topic="response_righttube_full",
+                                message=False
+                            )
                             continue
                         time.sleep(0.05)
-                    self.callback("response_righttube_full",True, None, None)
-
+                    self.tb.publish(
+                        topic="response_righttube_full",
+                        message=False
+                    )
 
                 if topic == "request_playfield_states":
                     states = []
