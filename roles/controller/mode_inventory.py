@@ -176,7 +176,7 @@ class Mode_Inventory(threading.Thread):
         carousel_name, 
         fruit_name, 
         position_name, 
-        timeout_duration=20,
+        timeout_duration=60,
         retries=3):
         reached = False
         start_time = time.time()
