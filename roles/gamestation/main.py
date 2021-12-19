@@ -243,6 +243,7 @@ class Playfield_Sensors(threading.Thread):
         while True:
             try:
                 topic = self.queue.get(True,0.01)
+                found = False
                 if topic == "request_lefttube_full":
                     for i in range(4):
                         if self.sensors[6].get_state()[1] == 1:
@@ -250,26 +251,31 @@ class Playfield_Sensors(threading.Thread):
                                 topic="response_lefttube_full",
                                 message=False
                             )
+                            found = True
                             continue
                         time.sleep(0.05)
-                    self.tb.publish(
-                        topic="response_lefttube_full",
-                        message=True
-                    )
+                    if not found:
+                        self.tb.publish(
+                            topic="response_lefttube_full",
+                            message=True
+                        )
 
                 if topic == "request_righttube_full":
+                    found = False
                     for i in range(4):
                         if self.sensors[7].get_state()[1] == 1:
                             self.tb.publish(
                                 topic="response_righttube_full",
                                 message=False
                             )
+                            found = True
                             continue
                         time.sleep(0.05)
-                    self.tb.publish(
-                        topic="response_righttube_full",
-                        message=True
-                    )
+                    if not found:
+                        self.tb.publish(
+                            topic="response_righttube_full",
+                            message=True
+                        )
 
                 if topic == "request_playfield_states":
                     states = []
