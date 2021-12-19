@@ -410,12 +410,6 @@ class Mode_Inventory(threading.Thread):
     def begin(self):
         #self.timer = time.time()
         self.active = True
-        self.hosts.carousel1.response_carousel_detect_balls()
-        self.hosts.carousel2.response_carousel_detect_balls()
-        self.hosts.carousel3.response_carousel_detect_balls()
-        self.hosts.carousel4.response_carousel_detect_balls()
-        self.hosts.carousel5.response_carousel_detect_balls()
-        self.hosts.carouselcenter.response_carousel_detect_balls()
         #self.set_current_mode(self.game_mode_names.ATTRACTION)
 
     def end(self):
