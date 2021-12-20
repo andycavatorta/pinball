@@ -294,7 +294,7 @@ class Mode_Inventory(threading.Thread):
         print("destination_fruit_name",destination_fruit_name)
 
         # is one carousel the carouselcenter?
-        if (origin_carousel_name == "carousel_center" or destination_carousel_name == "carousel_center"):
+        if (origin_carousel_name == "carouselcenter" or destination_carousel_name == "carouselcenter"):
             # does origin_fruit_name pocket have a ball?
             carousel_balls_detected = self.hosts.hostnames[origin_carousel_name].get_carousel_ball_detected()
             if not carousel_balls_detected[origin_fruit_name]:
@@ -353,7 +353,7 @@ class Mode_Inventory(threading.Thread):
                 print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
                 return ["move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason]
             success, reason = self.pass_ball_between_adjacent_carousels(
-                "carousel_center",
+                "carouselcenter",
                 active_fruit,
                 active_carousel,
                 active_fruit)
