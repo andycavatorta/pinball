@@ -318,7 +318,7 @@ class Mode_Inventory(threading.Thread):
         for active_game_int in active_games:
             active_motor = self.motor_names[active_game_int]
             active_carousel = self.carousel_names[active_game_int]
-            active_pinball = self.pinball_names[active_game_intThat]
+            active_pinball = self.pinball_names[active_game_int]
             balls_detected = self.hosts.hostnames[active_carousel].get_carousel_ball_detected()
             if any(value == True for value in balls_detected.values()):
                 for fruit_name in self.fruit_names:
