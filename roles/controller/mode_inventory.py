@@ -259,9 +259,9 @@ class Mode_Inventory(threading.Thread):
         # launch tube 
         for i in range(retries):
             if tube_left_right == "left":
-                self.hosts.pinball1game.cmd_lefttube_launch()
+                self.hosts.hostnames[pinball_name].cmd_lefttube_launch()
             else:
-                self.hosts.pinball1game.cmd_righttube_launch()
+                self.hosts.hostnames[pinball_name].cmd_righttube_launch()
             time.sleep(1)
             carousel_balls_detected = self.hosts.hostnames[carousel_name].get_carousel_ball_detected()
             print("...............",carousel_balls_detected,fruit_name,carousel_balls_detected[fruit_name])
@@ -362,10 +362,10 @@ class Mode_Inventory(threading.Thread):
                 return ["move_balls_from_center_carousel_to_tubes","pass_ball_between_adjacent_carousels",success, reason]
             # rotate active_carousel to left tube
             self.rotate_carousel_to_position(active_motor, active_fruit, "left")
-            if self.hosts.hostnames[active_pinball].request_lefttube_full(True):
+            if not self.hosts.hostnames[active_pinball].request_lefttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "right")
                 return(success, reason)
-            if self.hosts.hostnames[active_pinball].request_righttube_full(True):
+            if not self.hosts.hostnames[active_pinball].request_righttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "left")
                 return(success, reason)
             return(False, "destination tubes are full")
