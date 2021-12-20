@@ -365,7 +365,7 @@ class Mode_Inventory(threading.Thread):
             if self.hosts.hostnames[active_pinball].request_lefttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "right")
                 return(success, reason)
-            if self.hosts.hostnames[active_pinbal]l.request_righttube_full(True):
+            if self.hosts.hostnames[active_pinball].request_righttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "left")
                 return(success, reason)
             return(False, "destination tubes are full")
