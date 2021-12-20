@@ -288,6 +288,11 @@ class Mode_Inventory(threading.Thread):
             retries = 5
         ):
 
+        print("origin_carousel_name",origin_carousel_name)
+        print("origin_fruit_name",origin_fruit_name)
+        print("destination_carousel_name",destination_carousel_name)
+        print("destination_fruit_name",destination_fruit_name)
+
         # is one carousel the carouselcenter?
         if (origin_carousel_name == "carousel_center" or destination_carousel_name == "carousel_center"):
             # does origin_fruit_name pocket have a ball?
