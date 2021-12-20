@@ -289,7 +289,7 @@ class Mode_Inventory(threading.Thread):
         ):
 
         # is one carousel the carouselcenter?
-        if not (origin_carousel_name == "carousel_center" or destination_carousel_name == "carousel_center"):
+        if (origin_carousel_name == "carousel_center" or destination_carousel_name == "carousel_center"):
             # does origin_fruit_name pocket have a ball?
             carousel_balls_detected = self.hosts.hostnames[origin_carousel_name].get_carousel_ball_detected()
             if not carousel_balls_detected[origin_fruit_name]:
