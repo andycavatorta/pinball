@@ -310,7 +310,7 @@ class Mode_Inventory(threading.Thread):
                 if carousel_balls_detected[destination_fruit_name]:
                     return [True,""] 
             return [False,"transfer failed"]
-        return [False,"one input must be carousel_center"]
+        return [False,"one input must be carouselcenter"]
 
     ##########################################################
 
@@ -344,8 +344,8 @@ class Mode_Inventory(threading.Thread):
             print("move_balls_from_center_carousel_to_tubes", "rotate_carousel_to_position", success, reason)
             return ["move_balls_from_center_carousel_to_tubes", "rotate_carousel_to_position", success, reason]
         for active_game_int in active_games:
-            active_motor = self.motor_names[active_game_int]
-            active_carousel = self.carousel_names[active_game_int]
+            active_motor = self.motor_names[active_game_int] # carousel_center
+            active_carousel = self.carousel_names[active_game_int] # carouselcenter
             active_pinball = self.pinball_names[active_game_int]
             active_fruit = self.fruit_names[active_game_int]
             success, reason = self.rotate_carousel_to_position(active_motor, active_fruit, "back")
@@ -353,7 +353,7 @@ class Mode_Inventory(threading.Thread):
                 print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
                 return ["move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason]
             success, reason = self.pass_ball_between_adjacent_carousels(
-                "carouselcenter",
+                "carousel_center",
                 active_fruit,
                 active_carousel,
                 active_fruit)
