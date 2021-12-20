@@ -348,7 +348,7 @@ class Mode_Inventory(threading.Thread):
             active_carousel = self.carousel_names[active_game_int]
             active_pinball = self.pinball_names[active_game_int]
             active_fruit = self.fruit_names[active_game_int]
-            success, reason = self.rotate_carousel_to_position(active_motor, active_fruit, "back")
+            success, reason = self.rotate_carousel_to_position(active_carousel, active_fruit, "back")
             if not success:
                 print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
                 return ["move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason]
