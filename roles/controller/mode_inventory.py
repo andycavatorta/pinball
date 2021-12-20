@@ -360,6 +360,15 @@ class Mode_Inventory(threading.Thread):
             if not success:
                 print("move_balls_from_center_carousel_to_tubes","pass_ball_between_adjacent_carousels",success, reason)
                 return ["move_balls_from_center_carousel_to_tubes","pass_ball_between_adjacent_carousels",success, reason]
+            # rotate active_carousel to left tube
+            self.rotate_carousel_to_position(active_motor, active_fruit, "left")
+            if self.hosts.hostnames[pinball_name].request_lefttube_full(True):
+                success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "right")
+                return(success, reason)
+            if self.hosts.hostnames[pinball_name].request_righttube_full(True):
+                success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "left")
+                return(success, reason)
+            return(False, "destination tubes are full")
 
     def shuffle_all_balls_between_tubes_in_same_station(self, active_games, origin_tube, destination_tube):
         game_and_count = []
