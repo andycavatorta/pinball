@@ -353,7 +353,7 @@ class Mode_Inventory(threading.Thread):
                 print("move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason)
                 return ["move_balls_from_center_carousel_to_tubes","rotate_carousel_to_position",success, reason]
             success, reason = self.pass_ball_between_adjacent_carousels(
-                "carousel_center",
+                "carouselcenter",
                 active_fruit,
                 active_carousel,
                 active_fruit)
