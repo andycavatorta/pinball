@@ -280,6 +280,7 @@ class Mode_Inventory(threading.Thread):
         return [False,"ball_stuck"]
 
     def pass_ball_between_adjacent_carousels(
+            self,
             origin_carousel_name,
             origin_fruit_name,
             destination_carousel_name,
