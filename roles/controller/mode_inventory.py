@@ -305,7 +305,7 @@ class Mode_Inventory(threading.Thread):
                 return [False,"ball in destination"]
             for i in range(retries):
                 self.hosts.hostnames[origin_carousel_name].request_eject_ball(origin_fruit_name)
-                time.sleep(1)
+                time.sleep(0.5)
                 carousel_balls_detected = self.hosts.hostnames[destination_carousel_name].get_carousel_ball_detected()
                 if carousel_balls_detected[destination_fruit_name]:
                     return [True,""] 
@@ -365,7 +365,7 @@ class Mode_Inventory(threading.Thread):
             if self.hosts.hostnames[active_pinball].request_lefttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "right")
                 return(success, reason)
-            if self.hosts.hostnames[active_pinball].request_righttube_full(True):
+            if self.hosts.hostnames[active_pinbal]l.request_righttube_full(True):
                 success, reason = self.eject_ball_to_tube(active_carousel, active_fruit, active_pinball, "left")
                 return(success, reason)
             return(False, "destination tubes are full")
