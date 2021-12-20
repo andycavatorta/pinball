@@ -887,6 +887,7 @@ class Hosts():
             'carousel4':self.carousel4,
             'carousel5':self.carousel5,
             'carouselcenter':self.carouselcenter,
+            'carousel_center':self.carousel_center,
             'pinball1display':self.pinball1display,
             'pinball2display':self.pinball2display,
             'pinball3display':self.pinball3display,
