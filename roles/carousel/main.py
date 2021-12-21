@@ -44,21 +44,11 @@ sys.path.append(os.path.split(app_path)[0])
 
 import settings
 from thirtybirds3 import thirtybirds
-#from thirtybirds3.adapters.actuators import roboteq_command_wrapper
+from thirtybirds3.adapters.actuators import roboteq_command_wrapper
 #from thirtybirds3.adapters.sensors.AMT203_encoder import AMT203_absolute_encoder
 import common.deadman as deadman
 
-# CENTER CAROUSEL HACK BEGIN ---
-# Get my hostname
-import socket
-MY_HOSTNAME = socket.gethostname()
-# Import special module if I am the central carousel, or normal module if not
-if MY_HOSTNAME == "carouselcenter":
-    import roles.carousel.lighting_center as lighting
-else:
-    import roles.carousel.lighting as lighting
-# --- CENTER CAROUSEL HACK END
-
+import roles.carousel.lighting as lighting
 from roles.carousel.solenoids import Solenoids as Solenoids
 
 GPIO.setmode(GPIO.BCM)
@@ -73,12 +63,12 @@ class GPIO_Input():
         self.pin = pin
         self.tb = tb
         self.previous_state = -1 # so first read changes state and reports to tb
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
             self.previous_state = new_state
-            self.tb.publish("event_carousel_ball_detected",{self.name: True if new_state==0 else False})
+            self.tb.publish("response_carousel_ball_detected",{self.name:new_state})
     def get_state(self):
         return [self.name, GPIO.input(self.pin)]
 
@@ -88,23 +78,23 @@ class Inductive_Sensors(threading.Thread):
         self.tb = tb
         self.sensors = [ # name, gpio, last_state
             GPIO_Input("coco", 14, tb),
-            GPIO_Input("naranja", 20, tb),
+            GPIO_Input("naranja", 15, tb),
             GPIO_Input("mango", 18, tb),
             GPIO_Input("sandia", 23, tb),
             GPIO_Input("pina", 24, tb),
         ]
         self.queue = queue.Queue()
         self.start()
-    def response_carousel_detect_balls(self):
+    def request_playfield_states(self):
         self.queue.put(True)
     def run(self):
         while True:
             try:
                 self.queue.get(True,0.1)
                 states = {}
-                for sensor in self.sensors:
-                    states[sensor.name] = True if sensor.get_state()[1]==0 else False
-                self.tb.publish("response_carousel_detect_balls",states)
+                for sensor_name in self.sensors:
+                    states[sensor_name] = self.sensors[sensor_name].get_state()
+                self.tb.publish("response_carousel_ball_detected",states)
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
@@ -140,7 +130,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("cmd_carousel_eject_ball")
         self.tb.subscribe_to_topic("cmd_carousel_lights")
         self.tb.subscribe_to_topic("connected")
-        self.tb.subscribe_to_topic("request_carousel_detect_balls")
+        self.tb.subscribe_to_topic("request_carousel_detect_ball")
         self.tb.subscribe_to_topic("request_computer_details")
         self.tb.subscribe_to_topic("request_solenoids_present")
         self.tb.subscribe_to_topic("request_system_tests")
@@ -165,6 +155,10 @@ class Main(threading.Thread):
             # to do: finish
             return [True,True,True,True,True]
 
+    def request_carousel_detect_ball(self):
+            # to do: finish
+            return [True,True,True,True,True]
+
     def status_receiver(self, msg):
         print("status_receiver", msg)
     def network_message_handler(self, topic, message, origin, destination):
@@ -173,8 +167,6 @@ class Main(threading.Thread):
         print("exception_handler",exception)
     def network_status_change_handler(self, status, hostname):
         print("network_status_change_handler", status, hostname)
-        if status:
-            self.inductive_sensors.response_carousel_detect_balls()
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
     def run(self):
@@ -341,9 +333,11 @@ class Main(threading.Thread):
                         if animation_name == "serpentine_center":
                             group.serpentine_center()
 
-                if topic == b'request_carousel_detect_balls':
-                    if destination == self.tb.get_hostname():
-                        self.inductive_sensors.response_carousel_detect_balls()
+                if topic == b'request_carousel_detect_ball':
+                    self.tb.publish(
+                        topic="response_carousel_ball_detected", 
+                        message=self.request_carousel_detect_ball()
+                    )
                 if topic == b'request_computer_details':
                     self.tb.publish(
                         topic="response_computer_details", 

@@ -197,12 +197,12 @@ class Button_Lights():
 ###########################################
 
 class GPIO_Input():
-    def __init__(self, name, pin, pullupdn, callback):
+    def __init__(self, name, pin, callback):
         self.name = name
         self.pin = pin
         self.callback = callback
         self.previous_state = -1 # so first read changes state and reports to callback
-        GPIO.setup(self.pin, GPIO.IN, pull_up_down=pullupdn)
+        GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     def detect_change(self):
         new_state = GPIO.input(self.pin)
         if self.previous_state != new_state:
@@ -213,78 +213,37 @@ class GPIO_Input():
         return [self.name, GPIO.input(self.pin)]
 
 class Playfield_Sensors(threading.Thread):
-    def __init__(self, callback, tb):
+    def __init__(self, callback):
         threading.Thread.__init__(self)
         self.callback = callback
-        self.tb = tb
         self.sensors = [ # name, gpio, last_state
-            GPIO_Input("rollover_inner_left", 16, GPIO.PUD_DOWN, callback),
-            GPIO_Input("rollover_inner_right", 20, GPIO.PUD_DOWN, callback),
-            GPIO_Input("rollover_outer_left", 12, GPIO.PUD_DOWN, callback),
-            GPIO_Input("rollover_outer_right", 21, GPIO.PUD_DOWN, callback),
-            GPIO_Input("spinner", 1, GPIO.PUD_DOWN, callback),
-            GPIO_Input("trough_sensor", 25, GPIO.PUD_DOWN, callback),
-            GPIO_Input("tube_sensor_left", 17, GPIO.PUD_UP, callback),
-            GPIO_Input("tube_sensor_right", 27, GPIO.PUD_UP, callback),
+            GPIO_Input("rollover_inner_left", 16, callback),
+            GPIO_Input("rollover_inner_right", 20, callback),
+            GPIO_Input("rollover_outer_left", 12, callback),
+            GPIO_Input("rollover_outer_right", 21, callback),
+            GPIO_Input("spinner", 1, callback),
+            GPIO_Input("trough_sensor", 25, callback),
+            #GPIO_Input("tube_sensor_left", 17, callback),
+            #GPIO_Input("tube_sensor_right", 27, callback),
         ]
         self.queue = queue.Queue()
         self.start()
 
-    def request_lefttube_full(self): 
-        self.queue.put("request_lefttube_full")
-
-    def request_righttube_full(self): 
-        self.queue.put("request_righttube_full")
-
     def request_playfield_states(self):
-        self.queue.put("request_playfield_states")
+        self.queue.put(True)
 
     def run(self):
         while True:
             try:
-                topic = self.queue.get(True,0.01)
-                found = False
-                if topic == "request_lefttube_full":
-                    for i in range(4):
-                        if self.sensors[6].get_state()[1] == 1:
-                            self.tb.publish(
-                                topic="response_lefttube_full",
-                                message=False
-                            )
-                            found = True
-                            break
-                        time.sleep(0.05)
-                    if not found:
-                        self.tb.publish(
-                            topic="response_lefttube_full",
-                            message=True
-                        )
-                if topic == "request_righttube_full":
-                    found = False
-                    for i in range(4):
-                        if self.sensors[7].get_state()[1] == 1:
-                            self.tb.publish(
-                                topic="response_righttube_full",
-                                message=False
-                            )
-                            found = True
-                            break
-                        time.sleep(0.05)
-                    if not found:
-                        self.tb.publish(
-                            topic="response_righttube_full",
-                            message=True
-                        )
-                if topic == "request_playfield_states":
-                    states = []
-                    self.sensors
-                    for sensor in self.sensors: 
-                        states.append(sensor.get_state())
-                    self.callback("response_playfield_states",states, None, None)
+                self.queue.get(True,0.05)
+                states = []
+                for sensor in self.sensors:
+                    states.append(sensor.get_state())
+                self.callback("response_playfield_states",states, None, None)
             except queue.Empty:
                 for sensor in self.sensors:
                     sensor.detect_change()
-                # time.sleep(0.02)
+                time.sleep(0.05)
 
 ##################
 #### M A I N #####
@@ -306,7 +265,7 @@ class Main(threading.Thread):
         self.gamestation_lights = lighting.Lights()
         self.button_lights = Button_Lights()
         self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
-        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue,self.tb)
+        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
         self.tb.subscribe_to_topic("cmd_enable_derecha_coil")
@@ -346,8 +305,6 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("request_current_sensor_nominal")
         self.tb.subscribe_to_topic("request_current_sensor_present")
         self.tb.subscribe_to_topic("request_current_sensor_value")
-        self.tb.subscribe_to_topic("request_lefttube_full")
-        self.tb.subscribe_to_topic("request_righttube_full")
         self.tb.subscribe_to_topic("request_lefttube_present")
         self.tb.subscribe_to_topic("request_rightttube_present")
         self.tb.subscribe_to_topic("request_system_tests")
@@ -652,12 +609,12 @@ class Main(threading.Thread):
                 if topic == 'event_tube_sensor_left':
                     self.tb.publish(
                         topic="event_tube_sensor_left",
-                        message=message
+                        message=True
                     )
                 if topic == 'event_tube_sensor_right':
                     self.tb.publish(
                         topic="event_tube_sensor_right",
-                        message=message
+                        message=True
                     )
                 if topic == 'request_button_light_active':
                     if destination == self.tb.get_hostname():
@@ -690,15 +647,6 @@ class Main(threading.Thread):
                         topic="response_current_sensor_value",
                         message=self.request_current_sensor_value()
                     )
-
-
-                if topic == 'request_lefttube_full':
-                    self.playfiels_sensors.request_lefttube_full()
-                if topic == 'request_righttube_full':
-                    self.playfiels_sensors.request_righttube_full()
-
-
-
                 if topic == 'request_lefttube_present':
                     if destination == self.tb.get_hostname():
                         self.tb.publish(

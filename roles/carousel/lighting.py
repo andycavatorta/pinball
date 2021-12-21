@@ -11,7 +11,7 @@ class Lights_Pattern(threading.Thread):
         SPARKLE = 0.025
         THROB = 0.025
         ENERGIZE = 0.25
-        BLINK = 0.50
+        BLINK = 0.25
         STROKE = 0.125
         BACK_TRACE = 0.125
         TRACE = 0.125
@@ -393,7 +393,7 @@ class Lights(threading.Thread):
         self.channels = [0]*24
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
         latch = digitalio.DigitalInOut(board.D26)
-        self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=1)
+        self.tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, num_drivers=3)
         for channel_number in range(len(self.channels)):
             self.channels[channel_number] = self.tlc5947.create_pwm_out(channel_number)
         self.queue = queue.Queue()

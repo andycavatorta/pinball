@@ -30,46 +30,46 @@ GPIO.setmode(GPIO.BCM)
 
 position_calibration = {
     "carousel_1" : {
-        "coco":{"front":2048,"back":0,"left":1830,"right":2280},
-        "naranja":{"front":2867,"back":819,"left":2649,"right":3099},
-        "mango":{"front":3686,"back":1638,"left":3468,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left":4287,"right":4737},
-        "pina":{"front":5324,"back":3279,"left":5116,"right":5556},
+        "coco":{"front":3625,"back":1500,"left":3302,"right":3900},
+        "naranja":{"front":348,"back":2319,"left":25,"right":623},
+        "mango":{"front":1167,"back":3138,"left":844,"right":1442},
+        "sandia":{"front":1986,"back":3960,"left":1663,"right":2261},
+        "pina":{"front":2805,"back":683,"left":2482,"right":3080},
     },
     "carousel_2" : {
-        "coco":{"front":2048,"back":0,"left":1830,"right":2280},
-        "naranja":{"front":2867,"back":819,"left":2649,"right":3099},
-        "mango":{"front":3686,"back":1638,"left":3468,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left":4287,"right":4737},
-        "pina":{"front":5324,"back":3279,"left":5116,"right":5556},
+        "coco":{"front":0,"back":2125,"left":3773,"right":275},
+        "naranja":{"front":819,"back":2944,"left":496,"right":1094},
+        "mango":{"front":1638,"back":3763,"left":1315,"right":1913},
+        "sandia":{"front":2460,"back":486,"left":2134,"right":2732},
+        "pina":{"front":3279,"back":1305,"left":2953,"right":3551},
     },
     "carousel_3" : {
-        "coco":{"front":2048,"back":0,"left":1830,"right":2280},
-        "naranja":{"front":2867,"back":819,"left":2649,"right":3099},
-        "mango":{"front":3686,"back":1638,"left":3468,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left":4287,"right":4737},
-        "pina":{"front":5324,"back":3279,"left":5116,"right":5556},
+        "coco":{"front":575,"back":2700,"left":252,"right":850},
+        "naranja":{"front":1394,"back":3519,"left":1071,"right":1669},
+        "mango":{"front":2213,"back":242,"left":1890,"right":2488},
+        "sandia":{"front":3035,"back":1061,"left":2709,"right":3307},
+        "pina":{"front":3854,"back":1880,"left":3528,"right":30},
     },
     "carousel_4" : {
-        "coco":{"front":2048,"back":0,"left":1830,"right":2280},
-        "naranja":{"front":2867,"back":819,"left":2649,"right":3099},
-        "mango":{"front":3686,"back":1638,"left":3468,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left":4287,"right":4737},
-        "pina":{"front":5324,"back":3279,"left":5116,"right":5556},
+        "coco":{"front":2596,"back":625,"left":2273,"right":2871},
+        "naranja":{"front":3415,"back":1444,"left":3092,"right":3690},
+        "mango":{"front":138,"back":2263,"left":3911,"right":413},
+        "sandia":{"front":960,"back":3082,"left":634,"right":1232},
+        "pina":{"front":1779,"back":3901,"left":1453,"right":2051},
     },
     "carousel_5" : {
-        "coco":{"front":2048,"back":0,"left":1830,"right":2280},
-        "naranja":{"front":2867,"back":819,"left":2649,"right":3099},
-        "mango":{"front":3686,"back":1638,"left":3468,"right":3918},
-        "sandia":{"front":4505,"back":2460,"left":4287,"right":4737},
-        "pina":{"front":5324,"back":3279,"left":5116,"right":5556},
+        "coco":{"front":375,"back":2500,"left":52,"right":650},
+        "naranja":{"front":1194,"back":3319,"left":871,"right":1469},
+        "mango":{"front":2013,"back":42,"left":1690,"right":2288},
+        "sandia":{"front":2835,"back":861,"left":2509,"right":3107},
+        "pina":{"front":3654,"back":1680,"left":3328,"right":3926},
     },
     "carousel_center" : {
-        "coco":{"coco":0,"naranja":3279,"mango":2460,"sandia":1638,"pina":819},
-        "naranja":{"coco":819,"naranja":0,"mango":3279,"sandia":2460,"pina":1638},
-        "mango":{"coco":1638,"naranja":819,"mango":0,"sandia":3279,"pina":2460},
-        "sandia":{"coco":2460,"naranja":1638,"mango":819,"sandia":0,"pina":3279},
-        "pina":{"coco":3279,"naranja":2460,"mango":1638,"sandia":819,"pina":0},
+        "coco":{"coco":1250,"naranja":431,"mango":3707,"sandia":2888,"pina":2069},
+        "naranja":{"coco":2069,"naranja":1250,"mango":431,"sandia":3707,"pina":2888},
+        "mango":{"coco":2888,"naranja":2069,"mango":1250,"sandia":431,"pina":3707},
+        "sandia":{"coco":3707,"naranja":2888,"mango":2069,"sandia":1250,"pina":431},
+        "pina":{"coco":431,"naranja":3707,"mango":2888,"sandia":2069,"pina":1250},
     }
 }
 
@@ -90,7 +90,7 @@ class Speed_To_Position(threading.Thread):
         self.queue = queue.Queue()
         self.timeout_timer = time.time()
         self.timeout_timeout = 60 # seconds
-        self.discrepancy_threshold = 50
+        self.discrepancy_threshold = 25
         self.start()
 
     def get_position_with_offset(self):
@@ -115,26 +115,38 @@ class Speed_To_Position(threading.Thread):
             current_position = self.get_position_with_offset()
             if command == "rotate_to_position":
                 self.timeout_timer = time.time() + self.timeout_timeout
-                dir = 1 if destination > current_position else -1
-                speed = dir * 1
-                slop = dir * -45    # loose attempt to stop before overshooting
-                # slop = dir * 4096 - speed * 30
+                speed = 1 if destination > current_position else -1
+                slop = -30   if destination > current_position else 30 # loose attempt to stop before overshooting
                 destination_adjusted = destination + slop
+                self.callback(
+                    "event_destination_reached", 
+                    [self.motor.name,False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                    None,
+                    None)
+                self.callback(
+                    "event_destination_stalled", 
+                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                    None,
+                    None)
+                self.callback(
+                    "event_destination_timeout", 
+                    [self.motor.name, False, self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                    None,
+                    None)
                 self.motor.set_motor_speed(speed)
-                while (current_position < destination_adjusted) if speed > 0 else (current_position > destination_adjusted):
+                while (current_position < destination_adjusted) if speed == 1 else (current_position > destination_adjusted):
                     current_position = self.get_position_with_offset()
                     runtime_status_flags = self.motor.get_runtime_status_flags()
                     if runtime_status_flags['motor_stalled']:
-                        if retry_stalled_motor <= 3:
+                        self.callback(
+                            "event_destination_stalled", 
+                            [self.motor.name, True,self.get_position_with_offset(), self.get_position_with_offset()-destination],
+                            None,
+                            None)
+                        if retry_stalled_motor <=3:
                             retry_stalled_motor += 1
                             self.motor.set_motor_speed(speed)
-                            time.sleep(1)
                         else:
-                            self.callback(
-                                "event_destination_stalled", 
-                                [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
-                                None,
-                                None)
                             self.motor.set_motor_speed(0)
                             break 
                     if time.time() > self.timeout_timer:
@@ -143,10 +155,11 @@ class Speed_To_Position(threading.Thread):
                             [self.motor.name, True, self.get_position_with_offset(), self.get_position_with_offset()-destination],
                             None,
                             None)
+
                         self.motor.set_motor_speed(0)
                         break 
                 self.motor.set_motor_speed(0)
-            time.sleep(0.02)
+            time.sleep(0.2)
             discrepancy = self.get_position_with_offset()-destination
             self.callback(
                 "event_destination_reached", 
@@ -222,12 +235,9 @@ class Main(threading.Thread):
         self.motor_names = ("carousel_1","carousel_2","carousel_3","carousel_4","carousel_5","carousel_center")
         ##### absolute encoder status #####
         self.position_calibration = position_calibration
-        #self.absolute_encoders_presences = [False,False,False,False,False,False]
-        #self.absolute_encoders_positions = [None,None,None,None,None,None]
-        self.absolute_encoders_presences = [True,True,True,True,True,True]
-        self.absolute_encoders_positions = [0,0,0,0,0,0]
+        self.absolute_encoders_presences = [False,False,False,False,False,False]
+        self.absolute_encoders_positions = [None,None,None,None,None,None]
         self.absolute_encoders_zeroed = [True,True,True,True,True,True]
-        self.already_called_once = False
         time.sleep(1) # just being superstitious
         self.start()
 
@@ -257,35 +267,34 @@ class Main(threading.Thread):
     """
     
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        if isinstance(position_name, int):
-            destination = position_name
-        else:
-            try:
-                destination = self.position_calibration[carousel_name][fruit_name][position_name]
-            except KeyError as e:
-                print(e)
-                return
-        motor = self.controllers.motors[carousel_name]
-        motor.speed_to_position.rotate_to_position(destination)
+        destination = self.position_calibration[carousel_name][fruit_name][position_name]
+        self.controllers.motors[carousel_name].speed_to_position.rotate_to_position(destination)
 
     ##### POWER-ON INIT #####
     def get_absolute_positions(self):
-        if self.already_called_once:
-            return
         print(">>>>> Main get_absolute_positions")
         """
-        this must not be called when the motors are not in a PID mode of any kind
+        this must not be called when the motors are in a PID mode of any kind
         """
         if self.high_power_init == True:
-            print(">>>>> Main -- get absolute encoders")
+            # create SPI interfaces for AMT203
+            time.sleep(3)
+            print(">>>>> Main get_absolute_positions 0")
             self.absolute_encoders = AMT203(gpios_for_chip_select=[12,13,17,18,5,16])
-            print(">>>>> Main -- encoders: ", self.absolute_encoders)
+            time.sleep(3)
+            # verify that encoders are present
+            print(">>>>> Main get_absolute_positions 1", self.absolute_encoders)
             self.absolute_encoders_presences = self.absolute_encoders.get_presences()
-            print(">>>>> Main -- encoder presence: ", self.absolute_encoders_presences)
+            time.sleep(3)
+            # read absolute positions
+            print(">>>>> Main get_absolute_positions 2", self.absolute_encoders_presences)
             self.absolute_encoders_positions = self.absolute_encoders.get_positions()
-            print(">>>>> Main -- encoder positions: ", self.absolute_encoders_positions)
+            time.sleep(3)
+            # stop SPI interfaces - spidev.close()
+            print(">>>>> Main get_absolute_positions 3", self.absolute_encoders_positions)
             self.absolute_encoders.close()
-            self.already_called_once = True
+            print(">>>>> Main get_absolute_positions 4", self.absolute_encoders)
+            time.sleep(1)
 
     def create_controllers_and_motors(self):
         print(">>>>> Main create_controllers_and_motors")
@@ -322,9 +331,13 @@ class Main(threading.Thread):
             #self.sync_relative_encoders_to_absolute_encoders()
             for motor_ordinal, motor_name in enumerate(self.motor_names):
                 self.controllers.motors[motor_name].speed_to_position = Speed_To_Position(self.controllers.motors[motor_name], self.absolute_encoders_positions[motor_ordinal], self.add_to_queue)
+            #print("AMT values:",self.absolute_encoders_positions)
             for motor_name in self.motor_names:
                 time.sleep(0.1)
                 print("SDC values",motor_name,self.controllers.motors[motor_name].get_encoder_counter_absolute(True))
+            #self.absolute_encoders_presences = [True,True,True,True,True,True]
+            #self.absolute_encoders_positions = [0,0,0,0,0,0]
+            #self.absolute_encoders_zeroed = [True,True,True,True,True,True]
         else: # if power off
             self.high_power_init = False
             self.absolute_encoders_presences = [False,False,False,False,False,False]
@@ -391,6 +404,10 @@ class Main(threading.Thread):
             topic="response_sdc2160_relative_position", 
             message=self.request_sdc2160_relative_position()
         )
+        # engage emergency stop until encoder problem is solved
+        self.controllers.boards["carousel1and2"].emergency_stop()
+        self.controllers.boards["carousel3and4"].emergency_stop()
+        self.controllers.boards["carousel5and6"].emergency_stop()
 
     ##### SYSTEM TESTS #####
 

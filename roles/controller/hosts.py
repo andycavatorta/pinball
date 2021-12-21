@@ -138,28 +138,23 @@ class Carousel(Host):
             False,
             False
         ]
-        self.balls_present = {
-            "coco":False,
-            "naranja":False,
-            "mango":False,
-            "sandia":False,
-            "pina":False,
-        }
-    def request_carousel_detect_balls(self):
-        self.tb.publish(topic="request_carousel_detect_balls",message=True,destination=self.hostname)
-    def set_carousel_ball_detected(self, balls_present):
-        for ball_name in balls_present:
-            self.balls_present[ball_name] = balls_present[ball_name]
-            self.cmd_carousel_lights(ball_name,"blink" if balls_present[ball_name] else "low")
-
-    def get_carousel_ball_detected(self):
-        return self.balls_present
+        self.balls_present = [
+            False,
+            False,
+            False,
+            False,
+            False
+        ]
     def request_solenoids_present(self):
         self.tb.publish(topic="request_solenoids_present",message=True,destination=self.hostname)
     def set_solenoids_present(self, solenoids_present):
         self.solenoids_present = solenoids_present
     def get_solenoids_present(self):
         return self.solenoids_present
+    def set_carousel_ball_detected(self, balls_present):
+        self.balls_present = balls_present
+    def get_carousel_ball_detected(self):
+        return self.balls_present
     def request_eject_ball(self, fruit_name):
         self.tb.publish(topic="cmd_carousel_eject_ball",message=fruit_name,destination=self.hostname)
     def request_system_tests(self):
@@ -259,7 +254,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -270,7 +265,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -281,7 +276,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -292,7 +287,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -303,7 +298,7 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
@@ -314,18 +309,18 @@ class Matrix(Host):
                 "status":0,
                 "target":0,
                 "discrepancy":0,
-                "target_reached":[True,0],
+                "target_reached":[False,0],
                 "stalled":[False,0],
                 "timeout":[False,0],
             },
         ]
         self.motor_by_carousel_name = {
             "carousel_1":self.motors[0],
-            "carousel_2":self.motors[1],
-            "carousel_3":self.motors[2],
-            "carousel_4":self.motors[3],
-            "carousel_5":self.motors[4],
-            "carousel_center":self.motors[5],
+            "carousel_2":self.motors[0],
+            "carousel_3":self.motors[0],
+            "carousel_4":self.motors[0],
+            "carousel_5":self.motors[0],
+            "carousel_center":self.motors[0],
         }
         self.target_position = [
             0,0,0,0,0,0
@@ -349,7 +344,6 @@ class Matrix(Host):
         self.fruit_positions = [0,0,0,0,0,0]
 
     def cmd_rotate_carousel_to_target(self, carousel_name, fruit_name, position_name):
-        self.motor_by_carousel_name[carousel_name]["target_reached"] = [False, time.time()]
         self.tb.publish(topic="cmd_rotate_carousel_to_target", message=[carousel_name, fruit_name, position_name])
     def get_amt203_absolute_position(self, fruit_id):
         return self.amt203_absolute_position[fruit_id]
@@ -362,10 +356,6 @@ class Matrix(Host):
     def get_amt203_zeroed(self):
         return False not in self.amt203_zeroed
 
-
-    def get_discrepancy(self, motor_name):
-        motor = self.motor_by_carousel_name[motor_name]
-        return motor["discrepancy"]
     def get_destination_reached(self, motor_name):
         motor = self.motor_by_carousel_name[motor_name]
         return motor["target_reached"]
@@ -485,8 +475,6 @@ class Matrix(Host):
 class Pinball(Host):
     def __init__(self, hostname, tb):
         Host.__init__(self, hostname)
-        self.left_tube_event_history=[]
-        self.right_tube_event_history=[]
         self._48v_current = -1
         self.barter_points = -1
         self.current_sensor_present= False
@@ -503,9 +491,6 @@ class Pinball(Host):
         self.troughsensor_value = False
         self.barter_mode_score = 0
         self.money_mode_score = 0
-        self.lefttube_full = None
-        self.righttube_full = None
-
         self.playfield_switch_active = {
             "trough_sensor":False,
             "roll_outer_left":False,
@@ -578,46 +563,18 @@ class Pinball(Host):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
+
     ### LEFT TUBE ###
-    def request_lefttube_full(self, block_for_response = False):
-        self.lefttube_full = None
-        self.tb.publish(topic="request_lefttube_full", message="",destination=self.hostname)
-        if block_for_response:
-            time_end = time.time() + 1.5
-            while time.time() < time_end:
-                if self.lefttube_full != None:
-                    return self.lefttube_full
-            return None
-
-    def response_lefttube_full(self, full_b):
-        self.lefttube_full = full_b
-
     def request_lefttube_present(self):
         self.tb.publish(topic="request_lefttube_present", message="",destination=self.hostname)
     def set_lefttube_present(self,lefttube_present):
         self.lefttube_present = lefttube_present
     def get_lefttube_present(self):
         return self.lefttube_present
-    def clear_tube_sensor_left(self):
-        self.left_tube_event_history = []
-    def record_tube_sensor_left(self,sensor_value):
-        sensed_b = True if sensor_value==0 else False
-        self.left_tube_event_history.append([sensed_b, time.time()])
-    def get_count_tube_sensor_events_left(self, timespan_s=3.0):
-        end_time = time.time()
-        start_time = end_time - timespan_s
-        recent_event_count = 0
-        for event in self.left_tube_event_history:
-            if event[1] > start_time and event[1] < end_time:
-                recent_event_count += 1    
-        return recent_event_count
-    def get_lefttube_full(self):
-        return self.lefttube_full
-    def get_last_state_tube_sensor_events_left(self):
-        try:
-            return self.left_tube_event_history[-1]
-        except IndexError:
-            return []
+    def set_lefttube_value(self,lefttube_value):
+        self.lefttube_value = lefttube_value
+    def get_lefttube_value(self):
+        return self.lefttube_value
     def cmd_lefttube_launch(self):
         self.tb.publish(
             topic="cmd_lefttube_launch", 
@@ -632,53 +589,24 @@ class Pinball(Host):
         self.barter_points = barter_points
     def get_barter_points(self):
         return self.barter_points
-    def request_barter_points(self): 
+    def request_money_points(self): 
         self.tb.publish(
-            topic="request_barter_points", 
+            topic="request_money_points", 
             message="",
-            destination=self.hostname)
+            destination=self.hostname
+        )
 
     ### RIGHT TUBE ###
-    def request_righttube_full(self, block_for_response = False):
-        self.righttube_full = None
-        self.tb.publish(topic="request_righttube_full", message="",destination=self.hostname)
-        if block_for_response:
-            time_end = time.time() + 1.5
-            while time.time() < time_end:
-                if self.righttube_full != None:
-                    return self.righttube_full
-            return None
-
-    def response_righttube_full(self, full_b):
-        self.righttube_full = full_b
-
-
-
     def request_righttube_present(self):
         self.tb.publish(topic="request_righttube_present", message="",destination=self.hostname)
     def set_righttube_present(self,righttube_present):
         self.righttube_present = righttube_present
     def get_righttube_present(self):
         return self.righttube_present
-    def clear_tube_sensor_right(self):
-        self.right_tube_event_history = []
-    def record_tube_sensor_right(self,sensor_value):
-        self.right_tube_event_history.append([sensor_value==0, time.time()])
-    def get_count_tube_sensor_events_right(self, timespan_s=3.0):
-        end_time = time.time()
-        start_time = end_time - timespan_s
-        recent_event_count = 0
-        for event in self.right_tube_event_history:
-            if event[1] > start_time and event[1] < end_time:
-                recent_event_count += 1    
-        return recent_event_count
-    def get_righttube_full(self):
-        return self.get_last_state_tube_sensor_events_right()
-    def get_last_state_tube_sensor_events_right(self):
-        try:
-            return self.right_tube_event_history[-1]
-        except IndexError:
-            return []
+    def set_righttube_value(self,righttube_value):
+        self.righttube_value = righttube_value
+    def get_righttube_value(self):
+        return self.righttube_value
     def cmd_righttube_launch(self):
         self.tb.publish(
             topic="cmd_righttube_launch", 
@@ -691,15 +619,7 @@ class Pinball(Host):
         return self.right_stack_inventory
     def set_money_points(self,money_points):
         self.money_points = money_points
-    def get_money_points(self):
-        return self.money_points
-    def request_money_points(self): 
-        self.tb.publish(
-            topic="request_money_points", 
-            message="",
-            destination=self.hostname)
-    
-    # Trough ---
+
     def request_troughsensor_value(self):
         self.tb.publish(topic="request_troughsensor_value", message="",destination=self.hostname)
     def set_troughsensor_value(self,troughsensor_value):
@@ -1043,6 +963,8 @@ class Hosts():
             self.hostnames[origin].set_carousel_error(message)
         if topic == "event_carousel_target_reached":
             self.hostnames[origin].set_target_position_confirmed(message)
+
+
         if topic == "event_destination_reached":
             motor_name, reached, position, position_error = message
             self.hostnames[origin].set_destination_reached(motor_name, reached, position, position_error)
@@ -1056,8 +978,8 @@ class Hosts():
 
         #if topic == "event_gamestation_button": # unclear what state data should be stored here
         #    self.hostnames[origin].event_gamestation_button(message)
-        if topic == "event_tube_sensor_left":
-            self.hostnames[origin].record_tube_sensor_left(message)
+        if topic == "event_left_stack_ball_present":
+            self.hostnames[origin].set_lefttube_value(message)
         #if topic == "event_left_stack_motion_detected": # unclear what state data should be stored here
         #    self.hostnames[origin].set_left_stack_motion_detected(message)
         #if topic == "event_pop_left": # unclear what state data should be stored here
@@ -1066,8 +988,8 @@ class Hosts():
         #    self.hostnames[origin].set_pop_middle(message)
         #if topic == "event_pop_right": # unclear what state data should be stored here
         #    self.hostnames[origin].set_pop_right(message)
-        if topic == "event_tube_sensor_right":
-            self.hostnames[origin].record_tube_sensor_right(message)
+        if topic == "event_right_stack_ball_present":
+            self.hostnames[origin].set_righttube_value(message)
         #if topic == "event_right_stack_motion_detected": # unclear what state data should be stored here
         #    self.hostnames[origin].set_right_stack_motion_detected(message)
         #if topic == "event_roll_inner_left":
@@ -1094,7 +1016,7 @@ class Hosts():
             self.hostnames[origin].set_amt203_zeroed(message)
         if topic == "response_carousel_absolute":
             self.hostnames[origin].set_amt203_absolute_position(message)
-        if topic == "response_carousel_detect_balls":
+        if topic == "response_carousel_ball_detected":
             self.hostnames[origin].set_carousel_ball_detected(message)
         if topic == "response_carousel_relative":
             self.hostnames[origin].set_sdc2160_relative_position(message)
@@ -1108,12 +1030,6 @@ class Hosts():
             self.hostnames[origin].set_current_sensor_value(message)
         if topic == "response_high_power_enabled":
             self.hostnames[origin].response_high_power_enabled(message)
-
-        if topic == "response_lefttube_full":
-            self.hostnames[origin].response_lefttube_full(message)
-        if topic == "response_righttube_full":
-            self.hostnames[origin].response_righttube_full(message)
-
         if topic == "response_sdc2160_channel_faults":
             self.hostnames[origin].set_sdc2160_channel_faults(message)
         if topic == "response_sdc2160_closed_loop_error":

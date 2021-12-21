@@ -54,7 +54,6 @@ from http_server_root import dashboard
 
 from roles.controller.choreography import Choreography
 
-from roles.controller.mode_development import Mode_Development
 from roles.controller.mode_error import Mode_Error
 from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Connections
 from roles.controller.mode_system_tests import Mode_System_Tests
@@ -110,6 +109,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_visual_tests")
         # pinball events
         self.tb.subscribe_to_topic("event_mpf")
+
         self.tb.subscribe_to_topic("event_button_comienza")
         self.tb.subscribe_to_topic("event_button_derecha")
         self.tb.subscribe_to_topic("event_button_dinero")
@@ -120,6 +120,7 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_pop_right")
         self.tb.subscribe_to_topic("event_slingshot_left")
         self.tb.subscribe_to_topic("event_slingshot_right")
+        
         self.tb.subscribe_to_topic("event_left_stack_ball_present")
         self.tb.subscribe_to_topic("event_gamestation_button")
         self.tb.subscribe_to_topic("event_left_stack_motion_detected")
@@ -130,13 +131,13 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_roll_outer_left")
         self.tb.subscribe_to_topic("event_roll_outer_right")
         self.tb.subscribe_to_topic("event_trough_sensor")
-        self.tb.subscribe_to_topic("event_tube_sensor_left")
-        self.tb.subscribe_to_topic("event_tube_sensor_right")
         self.tb.subscribe_to_topic("event_spinner")
+
         # ENCODERS & MOTORS
         self.tb.subscribe_to_topic("event_destination_timeout")
         self.tb.subscribe_to_topic("event_destination_stalled")
         self.tb.subscribe_to_topic("event_destination_reached")
+
         self.tb.subscribe_to_topic("event_carousel_error")
         self.tb.subscribe_to_topic("event_carousel_target_reached")
         self.tb.subscribe_to_topic("response_amt203_absolute_position")
@@ -144,16 +145,15 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("response_amt203_zeroed")
         self.tb.subscribe_to_topic("response_carousel_absolute")
         self.tb.subscribe_to_topic("response_carousel_relative")
-        self.tb.subscribe_to_topic("response_lefttube_full")
-        self.tb.subscribe_to_topic("response_righttube_full")
         self.tb.subscribe_to_topic("response_sdc2160_channel_faults")
         self.tb.subscribe_to_topic("response_sdc2160_closed_loop_error")
         self.tb.subscribe_to_topic("response_sdc2160_controller_faults")
         self.tb.subscribe_to_topic("response_sdc2160_present")
         self.tb.subscribe_to_topic("response_sdc2160_relative_position")
+        
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
-        self.tb.subscribe_to_topic("response_carousel_detect_balls")
+        self.tb.subscribe_to_topic("response_carousel_ball_detected")
 
         self.choreography = Choreography(self.tb, self.hosts)
 
@@ -170,7 +170,6 @@ class Main(threading.Thread):
             "money_intro":Mode_Money_Intro(self.tb, self.hosts, self.set_current_mode, self.choreography),
             "money":Mode_Money(self.tb, self.hosts, self.set_current_mode, self.choreography),
             #"ending":Mode_ending(self.tb, self.hosts, self.set_current_mode),
-            "development":Mode_Development(self.tb, self.hosts, self.set_current_mode, self.choreography)
         }
         self.dashboard = dashboard.init()
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
@@ -258,7 +257,7 @@ class Main(threading.Thread):
                 if topic==b"deadman":
                     self.safety_enable.add_to_queue(topic, message, origin, destination)
                     continue
-                print("main-", topic, message, origin)
+                #print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
 
                 if topic == b'event_destination_timeout':
@@ -273,10 +272,6 @@ class Main(threading.Thread):
                     #motor_name, state, position, error = message
                     #if state == True:
                     print('event_destination_reached',message)
-                if topic == b'event_tube_sensor_right':
-                    pass
-                if topic == b'event_tube_sensor_left':
-                    pass
 
                 self.hosts.dispatch(topic, message, origin, destination)
                 self.dashboard(codecs.decode(topic,'UTF-8'), message, origin, destination)

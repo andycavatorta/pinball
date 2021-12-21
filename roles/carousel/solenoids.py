@@ -7,7 +7,7 @@ class Solenoids(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
-        self.eject_pulse_time = 0.1
+        self.eject_pulse_time = 0.05
         GPIO.setmode(GPIO.BCM)
         self.solenoid_pins = [1,2,3,4,5] # todo: update later
         self.fruit_names = {
