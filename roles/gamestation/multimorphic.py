@@ -106,23 +106,31 @@ class Multimorphic(threading.Thread):
         print("izquierda button=",event_state)
         #self.callback("event_button_izquierda",event_state, "multimorphic", None)
     def trueque_handler(self,event_state):
+        print("trueque button=",event_state)
         self.callback("event_button_trueque",event_state, "multimorphic", None)
     def kicker_handler(self,event_state):
+        print("kicker button=",event_state)
         self.callback("event_button_comienza",event_state, "multimorphic", None)
     def dinero_handler(self,event_state):
+        print("dinero button=",event_state)
         self.callback("event_button_dinero",event_state, "multimorphic", None)
     def derecha_handler(self,event_state):
         print("derecha button=",event_state)
         #self.callback("event_button_derecha",event_state, "multimorphic", None)
     def pop_left_handler(self,event_state):
+        print("pop_left=",event_state)
         self.callback("event_pop_left",event_state, "multimorphic", None)
     def pop_middle_handler(self,event_state):
+        print("pop_middle=",event_state)
         self.callback("event_pop_middle",event_state, "multimorphic", None)
     def pop_right_handler(self,event_state):
+        print("pop_right=",event_state)
         self.callback("event_pop_right",event_state, "multimorphic", None)
     def sling_left_handler(self,event_state):
+        print("sling_left=",event_state)
         self.callback("event_slingshot_left",event_state, "multimorphic", None)
     def sling_right_handler(self,event_state):
+        print("sling_right=",event_state)
         self.callback("event_slingshot_right",event_state, "multimorphic", None)
 
     def enable_gameplay(self):
