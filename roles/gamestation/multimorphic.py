@@ -37,6 +37,11 @@ class Multimorphic(threading.Thread):
         }
         self.queue = queue.Queue()
         # switches
+
+
+        self.p3.configure_switch_callback(self.switches["derecha"], self.derecha_handler)
+        self.p3.configure_switch_callback(self.switches["izquierda"], self.izquierda_handler)
+
         self.p3.configure_switch_callback(self.switches["dinero"], self.dinero_handler)
         self.p3.configure_switch_callback(self.switches["kicker"], self.kicker_handler)
         self.p3.configure_switch_callback(self.switches["pop_left"], self.pop_left_handler)
@@ -86,19 +91,20 @@ class Multimorphic(threading.Thread):
             self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["kicker"])
-    def enable_izquierda(self, enable_bool, miliseconds=25):
+    def enable_izquierda(self, enable_bool, miliseconds=18):
         if enable_bool:
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["izquierda"])
-    def enable_derecha(self, enable_bool, miliseconds=25):
+    def enable_derecha(self, enable_bool, miliseconds=18):
         if enable_bool:
             self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["derecha"])
 
     def izquierda_handler(self,event_state):
-        self.callback("event_button_izquierda",event_state, "multimorphic", None)
+        print("izquierda button=",event_state)
+        #self.callback("event_button_izquierda",event_state, "multimorphic", None)
     def trueque_handler(self,event_state):
         self.callback("event_button_trueque",event_state, "multimorphic", None)
     def kicker_handler(self,event_state):
@@ -106,7 +112,8 @@ class Multimorphic(threading.Thread):
     def dinero_handler(self,event_state):
         self.callback("event_button_dinero",event_state, "multimorphic", None)
     def derecha_handler(self,event_state):
-        self.callback("event_button_derecha",event_state, "multimorphic", None)
+        print("derecha button=",event_state)
+        #self.callback("event_button_derecha",event_state, "multimorphic", None)
     def pop_left_handler(self,event_state):
         self.callback("event_pop_left",event_state, "multimorphic", None)
     def pop_middle_handler(self,event_state):
