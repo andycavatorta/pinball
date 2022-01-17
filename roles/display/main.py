@@ -181,7 +181,8 @@ class Acrylic_Display():
 
     def set_all_off(self):
         self.shift_register_states = [0x00] * len(self.shift_register_states)
-        self.shift_register_chain.write(self.shift_register_states)
+        self.shift_register_chain.write(self.get_inverted_shift_register_states())
+        #self.shift_register_chain.write(self.shift_register_states)
 
     def update_display(self):
         self.set_all_off()
@@ -189,7 +190,15 @@ class Acrylic_Display():
             self.generate_number_bytes()
         if self.current_phrase != "":
             self.generate_phrase_bytes()
-        self.shift_register_chain.write(self.shift_register_states)
+        self.shift_register_chain.write(self.get_inverted_shift_register_states())
+
+    def get_inverted_shift_register_states(self):
+        mask = 0b11111111
+        inverted_shift_register_states = []
+        for shift_register_state in self.shift_register_states:
+            inverted_shift_register_states.append(shift_register_state ^ mask)
+        return inverted_shift_register_states
+
 
 ###############
 # C H I M E S #
