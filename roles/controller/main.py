@@ -157,6 +157,8 @@ class Main(threading.Thread):
 
         self.choreography = Choreography(self.tb, self.hosts)
 
+        self.email_message_data = []
+        
         self.modes = {
             "error":Mode_Error(self.tb, self.hosts, self.set_current_mode, self.safety_enable.set_active),
             "waiting_for_connections":Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode),

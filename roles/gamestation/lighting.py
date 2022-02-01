@@ -311,6 +311,7 @@ class Lights(threading.Thread):
         self.ripple_17 = Lights_Pattern(self.pattern_channels.RIPPLE_17, self.queue)
         self.ripple_18 = Lights_Pattern(self.pattern_channels.RIPPLE_18, self.queue)
         self.sign_arrow_left = Lights_Pattern(self.pattern_channels.SIGN_ARROW_LEFT, self.queue)
+        self.sign_arrow_right = Lights_Pattern(self.pattern_channels.SIGN_ARROW_RIGHT, self.queue)
         self.sign_bottom_left = Lights_Pattern(self.pattern_channels.SIGN_BOTTOM_LEFT, self.queue)
         self.sign_bottom_right = Lights_Pattern(self.pattern_channels.SIGN_BOTTOM_RIGHT, self.queue)
         self.sign_top = Lights_Pattern(self.pattern_channels.SIGN_TOP, self.queue)

@@ -64,10 +64,82 @@ class Mode_Barter_Intro(threading.Thread):
             "pinball4game":"carousel4",
             "pinball5game":"carousel5",
         }
+        self.display_hostname_map = {
+            "pinball1game":"pinball1display",
+            "pinball2game":"pinball2display",
+            "pinball3game":"pinball3display",
+            "pinball4game":"pinball4display",
+            "pinball5game":"pinball5display",
+        }
+        self.fruit_hostname_map = {
+            "pinball1game":"coco",
+            "pinball2game":"naranja",
+            "pinball3game":"mango",
+            "pinball4game":"sandia",
+            "pinball5game":"pina",
+        }
         self.start()
+        
+    def chime_sequence_spooler(self, sequence):
+        for chime_names in sequence:
+            yield chime_names
 
+    def animation_fill_carousel(self):
+        fname = self.fruit_order[1]
+        self.carousel_fruits.add_fruit(fname)
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
+        time.sleep(0.4)
+
+        fname = self.fruit_order[2]
+        self.carousel_fruits.add_fruit(fname)
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
+        time.sleep(0.4)
+
+        fname = self.fruit_order[3]
+        self.carousel_fruits.add_fruit(fname)
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
+        time.sleep(0.4)
+
+        fname = self.fruit_order[4]
+        self.carousel_fruits.add_fruit(fname)
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
+        time.sleep(0.2)
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
+        time.sleep(0.4)
+        
     def begin(self):
         self.active = True
+        games_with_players = self.hosts.get_games_with_players()
+        pitch_order = ["f_mezzo","g_mezzo","gsharp_mezzo","asharp_mezzo","c_mezzo"]
+
         for pinball_hostname in self.pinball_hostnames:
             self.hosts.hostnames[pinball_hostname].request_button_light_active("izquierda", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("trueque", False) 
@@ -79,24 +151,61 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
+            self.hosts.hostnames[pinball_hostname].disable_gameplay(False)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
+
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
-            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","energize")
-            self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","energize")
+            #self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","energize")
+            #self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","energize")
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_number(0)
-        for i in range(5):
-            for display_hostname in self.display_hostnames:
-                self.hosts.hostnames[display_hostname].request_score("f_piano")
-                self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
-                self.hosts.hostnames[display_hostname].request_phrase("")
-            time.sleep(0.5)
-            for display_hostname in self.display_hostnames:
-                self.hosts.hostnames[display_hostname].request_score("f_piano")
-                self.hosts.hostnames[display_hostname].request_score("g_piano")
-                self.hosts.hostnames[display_hostname].request_phrase("trueque")
-            time.sleep(0.5)
+            self.hosts.hostnames[display_hostname].request_number(-1)
+            self.hosts.hostnames[display_hostname].request_phrase("")
+        ### A N I M A T I O N ###
+        chime_sequence = self.chime_sequence_spooler(["f_mezzo","c_mezzo","g_mezzo","c_mezzo","gsharp_mezzo","c_mezzo","g_mezzo","c_mezzo","gsharp_mezzo","c_mezzo","g_mezzo","c_mezzo"])
+        animation_interval = 0.4
+        # sign bottom left
+        for pinball_hostname in games_with_players:
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left", "on")
+            self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_number(0)
+            self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score(next(chime_sequence))
+            self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("trueque")
+        # off-beat
+        time.sleep(animation_interval)
+        for pinball_hostname in games_with_players:
+            self.hosts.hostnames[display_hostname].request_phrase("")
+            self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score(next(chime_sequence))
+        time.sleep(animation_interval)
+        # fill carousel
+        for pinball_hostname_for_fruit in games_with_players:
+            # for each fruit
+            for pinball_hostname_for_carousel in games_with_players:
+                if pinball_hostname_for_carousel == pinball_hostname_for_fruit:
+                    self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].cmd_carousel_lights(self.fruit_hostname_map[pinball_hostname_for_fruit],"mid")
+                    #self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].request_eject_ball(self.fruit_hostname_map[pinball_hostname_for_fruit])
+                    self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score(next(chime_sequence))
+                    self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("trueque")
+            time.sleep(animation_interval)
+            # off-beat
+            for pinball_hostname_for_carousel in games_with_players:
+                self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].cmd_carousel_lights(self.fruit_hostname_map[pinball_hostname_for_fruit],"on")
+                self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].request_eject_ball(self.fruit_hostname_map[pinball_hostname_for_fruit])
+                self.hosts.hostnames[self.display_hostname_map[pinball_hostname_for_carousel]].request_score(next(chime_sequence))
+                self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("")
+            time.sleep(animation_interval)
+        # extra beat
+        time.sleep(animation_interval)
+        # light this_fruit on each active carousel
+        for pinball_hostname_for_fruit in games_with_players:
+            # for each fruit
+            for pinball_hostname_for_carousel in games_with_players:
+                if pinball_hostname_for_carousel == pinball_hostname_for_fruit:
+                    self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].cmd_carousel_lights(self.fruit_hostname_map[pinball_hostname_for_fruit],"on")
+                    self.hosts.hostnames[self.carousel_hostname_map[pinball_hostname_for_carousel]].request_eject_ball(self.fruit_hostname_map[pinball_hostname_for_fruit])
+                    self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score("f_mezzo")
+                    self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("trueque")
+        time.sleep(animation_interval)
+
         self.set_current_mode(self.game_mode_names.BARTER_MODE)
         
     def end(self):
