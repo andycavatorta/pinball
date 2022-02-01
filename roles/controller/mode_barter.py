@@ -1265,8 +1265,6 @@ class Mode_Barter(threading.Thread):
         self.active = True
         self.mode_timer = 0
 
-        self.fruit_name_from_pinball_hostname[pinball_hostname]
-
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.pinball_hostnames_with_players:
                 game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
