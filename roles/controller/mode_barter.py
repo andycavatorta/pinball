@@ -1017,6 +1017,7 @@ class Game(threading.Thread):
         self.trade_initated = b
 
     def set_phase(self, phase_name):
+        print("set_phase", phase_name)
         if phase_name == phase_names.NOPLAYER:
             self.current_phase = self.phase_noplayer
             self.current_phase.setup()
