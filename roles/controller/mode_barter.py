@@ -426,7 +426,7 @@ class Phase_Invitor(threading.Thread):
         self.set_trade_initiated(False)
         self.timeout_limit = 6
         self.trueque_button_pressed = False
-        self.add_to_queue("stop")
+        self.add_to_queue("stop", True)
         self.phase_name = phase_names.INVITOR
         self.start()
 
