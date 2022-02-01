@@ -84,6 +84,9 @@ class Mode_Barter_Intro(threading.Thread):
         for chime_names in sequence:
             yield chime_names
 
+
+
+
     def animation_fill_carousel(self):
         fname = self.fruit_order[1]
         self.carousel_fruits.add_fruit(fname)
@@ -134,7 +137,7 @@ class Mode_Barter_Intro(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        
+
     def begin(self):
         self.active = True
         games_with_players = self.hosts.get_games_with_players()
@@ -151,7 +154,7 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
-            self.hosts.hostnames[pinball_hostname].disable_gameplay(False)
+            self.hosts.hostnames[pinball_hostname].disable_gameplay()
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
 
         for carousel_hostname in self.carousel_hostnames:
