@@ -275,7 +275,6 @@ class Phase_Pinball(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
-        self.start()
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
@@ -287,6 +286,7 @@ class Phase_Pinball(threading.Thread):
         self.get_trade_option = parent_ref.get_trade_option
         self.carousel_fruits = parent_ref.carousel_fruits
         self.phase_name = phase_names.PINBALL
+        self.start()
 
     def setup(self):
         self.trading_partner = None
@@ -989,6 +989,7 @@ class Game(threading.Thread):
         self.pie = Pie(self.game_name, hosts, self.pie_full_handler)
         self.successful_trades = 0
         self.get_trading_partner =  parent_ref.get_trading_partner
+        self.get_trade_option = parent_ref.get_trade_option
         if self.fruit_name == "coco":
             self.fruit_order = ["coco","naranja","mango","sandia","pina"]
         if self.fruit_name == "naranja":
