@@ -1125,8 +1125,6 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
 
-
-
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
 
@@ -1136,8 +1134,11 @@ class Game(threading.Thread):
                 topic, message = self.queue.get(True)
                 #if topic == "set_phase":
                 #    self.set_phase(message)
-                if self.current_phase:
-                    self.current_phase.respond(topic, message)
+                if topic == "animation_fill_carousel":
+                    self.animation_fill_carousel()
+                else:
+                    if self.current_phase:
+                        self.current_phase.respond(topic, message)
 
             except queue.Empty:
                 pass
@@ -1196,6 +1197,13 @@ class Mode_Barter(threading.Thread):
             "pinball3game":self.games["mango"],
             "pinball4game":self.games["sandia"],
             "pinball5game":self.games["pina"],
+        }
+        self.fruit_name_from_pinball_hostname = {
+            "pinball1game":"coco",
+            "pinball2game":"naranja",
+            "pinball3game":"mango",
+            "pinball4game":"sandia",
+            "pinball5game":"pina",
         }
         self.fruit_to_display = {
             "coco":"pinball1display",
@@ -1257,12 +1265,15 @@ class Mode_Barter(threading.Thread):
         self.active = True
         self.mode_timer = 0
 
+        self.fruit_name_from_pinball_hostname[pinball_hostname]
+
         for pinball_hostname in self.pinball_hostnames:
             if pinball_hostname in self.pinball_hostnames_with_players:
-                self.games[pinball_hostname].animation_fill_carousel()
-                self.games[pinball_hostname].set_phase(phase_names.COMIENZA)
+                game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
+                self.games[game_name].add_to_queue("animation_fill_carousel", True) 
+                self.games[game_name].set_phase(phase_names.COMIENZA)
             else:
-                self.games[pinball_hostname].set_phase(phase_names.NOPLAYER)
+                self.games[game_name].set_phase(phase_names.NOPLAYER)
 
     # todo: how can this be made threadsafe?  It will be called by multiple games at once.
     def get_games_missing_other_fruit(self,other_fruit_name):
