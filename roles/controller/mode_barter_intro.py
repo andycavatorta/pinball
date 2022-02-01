@@ -173,6 +173,7 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_number(0)
             self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score(next(chime_sequence))
             self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("trueque")
+        """
         # off-beat
         time.sleep(animation_interval)
         for pinball_hostname in games_with_players:
@@ -208,7 +209,7 @@ class Mode_Barter_Intro(threading.Thread):
                     self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_score("f_mezzo")
                     self.hosts.hostnames[self.display_hostname_map[pinball_hostname]].request_phrase("trueque")
         time.sleep(animation_interval)
-
+        """
         self.set_current_mode(self.game_mode_names.BARTER_MODE)
         
     def end(self):
