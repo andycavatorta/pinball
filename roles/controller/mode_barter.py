@@ -1266,8 +1266,8 @@ class Mode_Barter(threading.Thread):
         self.mode_timer = 0
 
         for pinball_hostname in self.pinball_hostnames:
+            game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
             if pinball_hostname in self.pinball_hostnames_with_players:
-                game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
                 self.games[game_name].add_to_queue("animation_fill_carousel", True) 
                 self.games[game_name].set_phase(phase_names.COMIENZA)
             else:
