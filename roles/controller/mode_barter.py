@@ -982,20 +982,12 @@ class Game(threading.Thread):
         self.display_name = display_name
         self.parent_ref = parent_ref
         self.carousel_fruits = Carousel_Fruits(fruit_name,self.hosts.get_games_with_players())
-        self.phase_noplayer = Phase_NoPlayer(self)
-        self.phase_comienza = Phase_Comienza(self)
-        self.phase_pinball = Phase_Pinball(self)
-        self.phase_invitor = Phase_Invitor(self)
-        self.phase_invitee = Phase_Invitee(self)
-        self.phase_trade = Phase_Trade(self)
-        self.phase_fail = Phase_Fail(self)
         self.score = 0
         self.ball_in_trough = True
         self.trade_initated = False
         self.pie = Pie(self.game_name, hosts, self.pie_full_handler)
         self.successful_trades = 0
         self.get_trading_partner =  parent_ref.get_trading_partner
-        self.get_games_missing_other_fruit = parent_ref.get_games_missing_other_fruit
         if self.fruit_name == "coco":
             self.fruit_order = ["coco","naranja","mango","sandia","pina"]
         if self.fruit_name == "naranja":
@@ -1007,6 +999,13 @@ class Game(threading.Thread):
         if self.fruit_name == "pina":
             self.fruit_order = ["pina","coco","naranja","mango","sandia"]
         self.current_phase = None
+        self.phase_noplayer = Phase_NoPlayer(self)
+        self.phase_comienza = Phase_Comienza(self)
+        self.phase_pinball = Phase_Pinball(self)
+        self.phase_invitor = Phase_Invitor(self)
+        self.phase_invitee = Phase_Invitee(self)
+        self.phase_trade = Phase_Trade(self)
+        self.phase_fail = Phase_Fail(self)
         self.start()
 
     def get_trade_initiated(self):
