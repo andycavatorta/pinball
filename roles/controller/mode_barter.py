@@ -1259,13 +1259,13 @@ class Mode_Barter(threading.Thread):
         ]
         """
         self.carousel_sequence_cursor = 0
-        self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         self.start()
 
     def begin(self):
         self.active = True
         self.mode_timer = 0
 
+        self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname in self.pinball_hostnames:
             print("pinball_hostname",pinball_hostname)
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
