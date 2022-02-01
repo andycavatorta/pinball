@@ -1258,7 +1258,7 @@ class Mode_Barter(threading.Thread):
         self.mode_timer = 0
 
         for pinball_hostname in self.pinball_hostnames:
-            if pinball_hostname in pinball_hostnames_with_players:
+            if pinball_hostname in self.pinball_hostnames_with_players:
                 self.games[pinball_hostname].animation_fill_carousel()
                 self.games[pinball_hostname].set_phase(phase_names.COMIENZA)
             else:
