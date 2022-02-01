@@ -33,18 +33,18 @@ class Pie():
         print("target_hit",target_name)
         if self.pie_segments_triggered[target_name] == False:
             self.pie_segments_triggered[target_name] = True
-            self.hosts.hostnames[self.origin].cmd_respondfield_lights("pie_{}".format(target_name),"on")# light animation
-            self.hosts.hostnames[self.origin].cmd_respondfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_segments_triggered.items() if v == True])==8:
-                self.hosts.hostnames[self.origin].cmd_respondfield_lights("pie","energize")# light animation
+                self.hosts.hostnames[self.origin].cmd_playfield_lights("pie","energize")# light animation
                 time.sleep(.5)
                 self.reset_pie()
                 self.pie_full_handler()
 
     def reset_pie(self):
         for target_name in self.pie_segments_triggered:
-            self.hosts.hostnames[self.origin].cmd_respondfield_lights("pie_{}".format(target_name),"off")# light animation
-            self.hosts.hostnames[self.origin].cmd_respondfield_lights("trail_{}".format(target_name),"stroke_on")# light segment
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"off")# light animation
+            self.hosts.hostnames[self.origin].cmd_playfield_lights("trail_{}".format(target_name),"stroke_on")# light segment
         self.pie_segments_triggered = {
             "pop_left":False,
             "pop_middle":False,
@@ -147,7 +147,7 @@ class Phase_NoPlayer(threading.Thread):
         self.hosts.hostnames[self.game_name].set_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].set_button_light_active("derecho",False)
         self.hosts.hostnames[self.game_name].disable_gameplay()
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("all_radial", "off")
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial", "off")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all", "off")
 
     def respond(self, topic, message):
@@ -442,10 +442,10 @@ class Phase_Invitor(threading.Thread):
         #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
         #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
         #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_right", animation)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right", animation)
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")    
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("mango")
@@ -587,10 +587,10 @@ class Phase_Invitee(threading.Thread):
         #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
         #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
         #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_right", animation)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right", animation)
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")    
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("mango")
@@ -809,10 +809,10 @@ class Phase_Trade(threading.Thread):
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
         self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
         self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_left", "off")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_right", animation)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right", animation)
 
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
@@ -906,10 +906,10 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
         self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
         self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_left", "off")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_arrow_right", animation)
-        self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_left", "on")
-        #self.hosts.hostnames[self.game_name].cmd_respondfield_lights("sign_bottom_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
+        self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
+        #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right", animation)
 
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
