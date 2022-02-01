@@ -569,7 +569,7 @@ class Phase_Invitee(threading.Thread):
         self.set_trade_initiated(False)
         self.timeout_limit = 10
         self.trueque_button_pressed = False
-        self.add_to_queue("stop")
+        self.add_to_queue("stop", True)
         self.phase_name = phase_names.INVITEE
         self.start()
 
