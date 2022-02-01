@@ -1357,6 +1357,10 @@ class Mode_Barter(threading.Thread):
                 if isinstance(destination, bytes):
                     destination = codecs.decode(destination, 'UTF-8')
 
+                print("origin",origin)
+                print("self.pinball_to_game[origin]",self.pinball_to_game[origin])
+                print("self.games[self.pinball_to_game[origin]]",self.games[self.pinball_to_game[origin]])
+
                 self.games[self.pinball_to_game[origin]].add_to_queue(topic, message)
 
             except AttributeError:
