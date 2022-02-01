@@ -176,7 +176,7 @@ class Phase_Comienza(threading.Thread):
         self.set_phase = parent_ref.set_phase
         self.score = parent_ref.score
         self.decrement_score = parent_ref.decrement_score
-        self.pinball_hostnames_with_players = parent_ref.pinball_hostnames_with_players
+        self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         self.other_hostnames_with_players = []
         for pinball_hostname_with_player in self.pinball_hostnames_with_players:
             if pinball_hostname_with_player != self.game_name:
