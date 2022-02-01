@@ -1359,9 +1359,8 @@ class Mode_Barter(threading.Thread):
 
                 print("origin",origin)
                 print("self.pinball_to_game[origin]",self.pinball_to_game[origin])
-                print("self.games[self.pinball_to_game[origin]]",self.games[self.pinball_to_game[origin]])
 
-                self.games[self.pinball_to_game[origin]].add_to_queue(topic, message)
+                self.pinball_to_game[origin].add_to_queue(topic, message)
 
             except AttributeError:
                 pass
