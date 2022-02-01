@@ -1133,12 +1133,16 @@ class Game(threading.Thread):
         while True:
             try:
                 topic, message = self.queue.get(True)
+                print("Game.add_to_queue",topic, message)
                 #if topic == "set_phase":
                 #    self.set_phase(message)
                 if topic == "animation_fill_carousel":
+                    print("11111")
                     self.animation_fill_carousel()
                 else:
+                    print("22222")
                     if self.current_phase:
+                        print("33333")
                         self.current_phase.respond(topic, message)
 
             except queue.Empty:
@@ -1265,7 +1269,6 @@ class Mode_Barter(threading.Thread):
         self.active = True
         self.mode_timer = 0
 
-        self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname in self.pinball_hostnames:
             print("pinball_hostname",pinball_hostname)
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
