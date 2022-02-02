@@ -58,10 +58,10 @@ class Pie():
 
 class Carousel_Fruits():
     # does this class animate lights and sounds or just track the state?
-    def __init__(self, this_fruit_name, games_with_players):
+    def __init__(self, this_fruit_name, get_games_with_players):
         #self.this_fruit_name = this_fruit_name
         self.this_fruit_name = this_fruit_name
-        self.games_with_players = games_with_players
+        self.get_games_with_players = get_games_with_players
         self.fruit_presence={
             "coco":False,
             "naranja":False,
@@ -120,7 +120,7 @@ class Carousel_Fruits():
 
     def list_missing_other_fruits(self):
         self.fruits_with_players = []
-        for game_with_player in self.hosts.get_games_with_players():
+        for game_with_player in self.get_games_with_players():
             self.fruits_with_players.append(self.fruit_name_from_pinball_hostname[game_with_player])
         missing = []
         for fruit_with_player in self.fruits_with_players:
