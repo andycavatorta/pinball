@@ -235,11 +235,16 @@ class Phase_Comienza(threading.Thread):
 
 
     def setup(self):
+        print("--->",1)
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
+        print("--->",2, self.pinball_hostnames_with_players)
         for pinball_hostname_with_player in self.pinball_hostnames_with_players:
             if pinball_hostname_with_player != self.game_name:
                 self.other_hostnames_with_players.append(pinball_hostname_with_player)
+
+        print("--->",3, self.other_hostnames_with_players)
         self.trading_partner = None
+        print("--->",4, self.trading_partner)
         self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].set_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
@@ -247,19 +252,23 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].set_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].set_button_light_active("derecho",False)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
+        print("--->",5, other_fruits)
         if len(other_fruits) > 0:
             self.sacrificial_fruit = other_fruits[0]
+            print("--->",6, self.sacrificial_fruit)
         else: # if there are no otherfruits
             if self.score > 0:
                 point_loss = int(self.score * 0.1)
                 self.decrement_score(point_loss)
 
             games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
+            print("--->",7, games_missing_other_fruit)
             if len(games_missing_other_fruit) > 0:
                 other_pinball_hostname = random.choice(games_missing_other_fruit)
             else:
                 other_pinball_hostname = random.choice(self.other_hostnames_with_players)
             self.sacrificial_fruit = self.fruit_name_from_pinball_hostname[other_pinball_hostname]
+            print("--->",8, self.sacrificial_fruit)
 
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
@@ -271,6 +280,7 @@ class Phase_Comienza(threading.Thread):
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "med")
             time.sleep(0.15)
             self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+        print("--->",9)
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "high")
         time.sleep(0.15)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
@@ -283,6 +293,7 @@ class Phase_Comienza(threading.Thread):
         time.sleep(0.15)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",True)
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        print("--->",10)
 
 
     def respond(self, topic, message):
