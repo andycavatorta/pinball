@@ -219,25 +219,25 @@ class Phase_Comienza(threading.Thread):
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
             # animate gain of one fruit
-            self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "low")
             time.sleep(0.15)
-            self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "med")
             time.sleep(0.15)
-            self.hosts.hostnames[self.display_name].request_score("c_piano")
+            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "high")
         time.sleep(0.15)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.15)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",True)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         time.sleep(0.15)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",False)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.15)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",True)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
 
     def respond(self, topic, message):
         if topic == "event_button_comienza":
@@ -257,13 +257,13 @@ class Phase_Comienza(threading.Thread):
             try:
                 topic, message = self.queue.get(True)
                 if topic == "spend_fruit":
-                    self.hosts.hostnames[self.display_name].request_score("c_piano")
+                    self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                     self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(message,  "on")
                     time.sleep(0.15)
-                    self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                    self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                     self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(message,  "med")
                     time.sleep(0.15)
-                    self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                    self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                     self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(message,  "low")
 
             except AttributeError:
@@ -306,80 +306,80 @@ class Phase_Pinball(threading.Thread):
         if topic == "event_pop_left":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 self.pie.target_hit("pop_left")
         if topic == "event_pop_middle":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 self.pie.target_hit("pop_middle")
         if topic == "event_pop_right":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 self.pie.target_hit("pop_right")
         if topic == "event_roll_inner_left":
             if message:
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_roll_inner_right":
             if message:
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_roll_outer_left":
             if message:
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         if topic == "event_roll_outer_right":
             if message:
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_slingshot_left":
             if message:
                 self.increment_score()
                 self.pie.target_hit("sling_left")
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
 
         if topic == "event_slingshot_right":
             if message:
                 self.increment_score()
                 self.pie.target_hit("sling_right")
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 
         if topic == "event_spinner":
             if message:
                 self.increment_score()
                 self.pie.target_hit("spinner")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         if topic == "event_trough_sensor":
             if message:
                 self.end()
@@ -523,7 +523,7 @@ class Phase_Invitor(threading.Thread):
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.5)
-                        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.5)
@@ -539,14 +539,14 @@ class Phase_Invitor(threading.Thread):
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_piano")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.25)
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_piano")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.25)
@@ -611,80 +611,80 @@ class Phase_Invitee(threading.Thread):
         if topic == "event_pop_left":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 self.pie.target_hit("pop_left")
         if topic == "event_pop_middle":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 self.pie.target_hit("pop_middle")
         if topic == "event_pop_right":
             if message:
                 self.increment_score()
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
                 self.pie.target_hit("pop_right")
         if topic == "event_roll_inner_left":
             if message:
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_roll_inner_right":
             if message:
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_roll_outer_left":
             if message:
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         if topic == "event_roll_outer_right":
             if message:
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("g_piano")
+                self.hosts.hostnames[self.display_name].request_score("g_mezzo")
                 time.sleep(0.1)
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
 
         if topic == "event_slingshot_left":
             if message:
                 self.increment_score()
                 self.pie.target_hit("sling_left")
                 self.pie.target_hit("rollover_left")
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
 
         if topic == "event_slingshot_right":
             if message:
                 self.increment_score()
                 self.pie.target_hit("sling_right")
                 self.pie.target_hit("rollover_right")
-                self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
                 
         if topic == "event_spinner":
             if message:
                 self.increment_score()
                 self.pie.target_hit("spinner")
-                self.hosts.hostnames[self.display_name].request_score("c_piano")
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
 
         if topic == "event_trough_sensor":
             if message:
@@ -754,7 +754,7 @@ class Phase_Invitee(threading.Thread):
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.5)
-                        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.5)
@@ -770,14 +770,14 @@ class Phase_Invitee(threading.Thread):
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_piano")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.25)
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_piano")
+                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
                         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
                         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
                         time.sleep(0.25)
@@ -839,33 +839,33 @@ class Phase_Trade(threading.Thread):
         # 
 
 
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("f_piano")
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         point_loss = int(self.score * 0.1)
         self.decrement_score(point_loss)
         self.end()
@@ -924,33 +924,33 @@ class Phase_Fail(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("f_piano")
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         point_loss = int(self.score * 0.1)
         self.decrement_score(point_loss)
         self.end()
@@ -1017,7 +1017,7 @@ class Game(threading.Thread):
         self.trade_initated = b
 
     def set_phase(self, phase_name):
-        print("set_phase", phase_name)
+        print("set_phase", self.fruit_name,phase_name)
         if phase_name == phase_names.NOPLAYER:
             self.current_phase = self.phase_noplayer
             self.current_phase.setup()
@@ -1050,7 +1050,7 @@ class Game(threading.Thread):
             self.score += 1
             self.hosts.hostnames[self.display_name].request_number(self.score)
             if self.score % 10 == 0:
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
             time.sleep(0.05)
             self.hosts.hostnames[self.game_name].barter_mode_score = int(self.score)
             if self.score == 999:
@@ -1064,7 +1064,7 @@ class Game(threading.Thread):
                 self.score == 0
             self.hosts.hostnames[self.display_name].request_number(self.score)
             if self.score % 10 == 0:
-                self.hosts.hostnames[self.display_name].request_score("f_piano")
+                self.hosts.hostnames[self.display_name].request_score("f_mezzo")
             time.sleep(0.05)
             self.hosts.hostnames[self.game_name].barter_mode_score = int(self.score)
                 
@@ -1075,56 +1075,60 @@ class Game(threading.Thread):
 
 
     def animation_fill_carousel(self):
-
+        print("animation_fill_carousel",1)
         fname = self.fruit_order[1]
         self.carousel_fruits.add_fruit(fname)
-        self.hosts.hostnames[self.display_name].request_score("f_piano")
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        print("animation_fill_carousel",2)
 
         fname = self.fruit_order[2]
         self.carousel_fruits.add_fruit(fname)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        print("animation_fill_carousel",3)
 
         fname = self.fruit_order[3]
         self.carousel_fruits.add_fruit(fname)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        print("animation_fill_carousel",4)
 
         fname = self.fruit_order[4]
         self.carousel_fruits.add_fruit(fname)
-        self.hosts.hostnames[self.display_name].request_score("g_piano")
-        self.hosts.hostnames[self.display_name].request_score("asharp_piano")
+        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"med")
         time.sleep(0.2)
-        self.hosts.hostnames[self.display_name].request_score("f_piano")
-        self.hosts.hostnames[self.display_name].request_score("gsharp_piano")
-        self.hosts.hostnames[self.display_name].request_score("c_piano")
+        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        print("animation_fill_carousel",5)
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
