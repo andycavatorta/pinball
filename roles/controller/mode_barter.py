@@ -141,12 +141,12 @@ class Carousel_Fruits():
         path = [] # list of fruit names
         if clockwise_b:
             start_fruit_cursor = self.fruit_order_clockwise.index(start_fruit_name)
-            end_fruit_cursor = self.fruit_order_clockwise.index(,end_fruit_name, start_fruit_name)
+            end_fruit_cursor = self.fruit_order_clockwise.index(end_fruit_name, start_fruit_name)
             for cursor in range(start_fruit_cursor,end_fruit_cursor+1)
                 path.append(self.fruit_order_clockwise[cursor])
         else: # counterclockwise
             start_fruit_cursor = self.fruit_order_counterclockwise.index(start_fruit_name)
-            end_fruit_cursor = self.fruit_order_counterclockwise.index(,end_fruit_name, start_fruit_name)
+            end_fruit_cursor = self.fruit_order_counterclockwise.index(end_fruit_name, start_fruit_name)
             for cursor in range(start_fruit_cursor,end_fruit_cursor+1)
                 path.append(self.fruit_order_counterclockwise[cursor])
         return path
