@@ -38,7 +38,6 @@ class Multimorphic(threading.Thread):
         self.queue = queue.Queue()
         # switches
 
-
         self.p3.configure_switch_callback(self.switches["derecha"], self.derecha_handler)
         self.p3.configure_switch_callback(self.switches["izquierda"], self.izquierda_handler)
 

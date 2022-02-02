@@ -92,7 +92,11 @@ class Animation(threading.Thread):
 
         self.animation_frame_counter += 1
         if self.animation_frame_counter > self.animation_frame_counter_limit:
-            self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+            if len(self.hosts.get_games_with_players()) > 1:
+                self.set_current_mode(self.game_mode_names.BARTER_MODE_INTRO)
+            else:
+                self.set_current_mode(self.game_mode_names.ATTRACTION)
+
 
     def begin(self):
         for pinball_hostname in self.pinball_hostnames:

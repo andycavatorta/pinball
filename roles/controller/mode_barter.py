@@ -85,14 +85,14 @@ class Carousel_Fruits():
 
     def list_fruits_present(self):
         present = []
-        for fruit_name, presence in items(self.fruit_presence):
+        for fruit_name, presence in self.fruit_presence.items():
             if presence:
                present.append(fruit_name) 
         return present
 
     def list_other_fruits_present(self):
         present = []
-        for fruit_name, presence in items(self.fruit_presence):
+        for fruit_name, presence in self.fruit_presence.items():
             if presence and self.this_fruit_name != fruit_name:
                present.append(fruit_name) 
         return present
@@ -1173,8 +1173,6 @@ class Mode_Barter(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.games_with_players = self.hosts.get_games_with_players()
 
-
-
         self.games = {
             "coco":Game("coco",self.hosts,"pinball1game","carousel1","pinball1display",self),
             "naranja":Game("naranja",self.hosts,"pinball2game","carousel2","pinball2display",self),
@@ -1292,14 +1290,14 @@ class Mode_Barter(threading.Thread):
 
     def get_game_states(self):
         game_states = {}
-        for game_fruit_name, game_ref in items(self.games):
+        for game_fruit_name, game_ref in self.games.items():
             game_states[game_fruit_name] = game_ref.current_phase.phase_name
         return game_states
 
     def get_traders(self):
         traders = []
         states = self.get_game_states()
-        for game_fruit_name, state in items(states):
+        for game_fruit_name, state in states.items():
             if state in [game_states.INVITEE, game_states.INVITOR, game_states.TRADE, game_states.FAIL]:
                 traders.append(game_fruit_name)
         return traders
@@ -1324,7 +1322,7 @@ class Mode_Barter(threading.Thread):
             return phase_names.COMIENZA
         # loop through all games
         matching_invitees = []
-        for fruit_name, potential_intitee_game_ref in items(self.games):
+        for fruit_name, potential_intitee_game_ref in self.games.items():
             if fruit_name in potential_intitee_fruit_names:
                 # does potential_invitee have potential_invitee.this_fruit?
                 if not potential_intitee_game_ref.carousel_fruits.is_fruit_present(potential_intitee_game_ref.fruit_name):
