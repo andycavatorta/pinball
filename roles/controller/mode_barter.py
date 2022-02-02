@@ -154,7 +154,7 @@ class Carousel_Fruits():
     def get_shorter_radial_path(self, start_fruit_name, end_fruit_name):
         path_cw = self.get_radial_path(start_fruit_name, end_fruit_name, True)
         path_cc = self.get_radial_path(start_fruit_name, end_fruit_name, False)
-        return path_cc len(path_cw) > len(path_cc) else path_cw
+        return path_cc if len(path_cw) > len(path_cc) else path_cw
 
 
 ###################
