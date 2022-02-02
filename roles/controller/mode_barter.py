@@ -189,7 +189,7 @@ class Phase_NoPlayer(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial", "off")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all", "off")
@@ -235,6 +235,7 @@ class Phase_Comienza(threading.Thread):
 
 
     def setup(self):
+        self.other_hostnames_with_players = []
         print("--->",1)
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         print("--->",2, self.pinball_hostnames_with_players)
@@ -250,7 +251,7 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
         print("--->",5, other_fruits)
         if len(other_fruits) > 0:
@@ -355,7 +356,7 @@ class Phase_Pinball(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",True)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
         self.hosts.hostnames[self.game_name].enable_gameplay()
         #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
@@ -500,7 +501,7 @@ class Phase_Invitor(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         self.hosts.hostnames[self.game_name].disable_gameplay()
         #self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         #self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
@@ -719,7 +720,7 @@ class Phase_Invitee(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",True)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
         self.hosts.hostnames[self.game_name].enable_gameplay()
         #self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         #self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
@@ -832,7 +833,7 @@ class Phase_Invitee(threading.Thread):
                 self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
                 self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
                 self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-                self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+                self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
 
         if topic == "event_button_trueque":
             """
@@ -917,7 +918,7 @@ class Phase_Trade(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         #self.hosts.hostnames[self.game_name].enable_gameplay()
         self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
@@ -1010,7 +1011,7 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecho",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         #self.hosts.hostnames[self.game_name].enable_gameplay()
         self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
