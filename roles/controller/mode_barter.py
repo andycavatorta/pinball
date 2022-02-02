@@ -1257,6 +1257,7 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        self.carousel_fruits.add_fruit(self.fruit_order[0])
         self.update_carousel_lights_to_data()
 
     def add_to_queue(self, topic, message):
@@ -1295,7 +1296,7 @@ class Mode_Barter(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 120
+        self.mode_timer_limit = 300
         self.invitor = None
         self.invitee = None
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
