@@ -222,9 +222,6 @@ class Phase_Comienza(threading.Thread):
         self.decrement_score = parent_ref.decrement_score
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         self.other_hostnames_with_players = []
-        for pinball_hostname_with_player in self.pinball_hostnames_with_players:
-            if pinball_hostname_with_player != self.game_name:
-                self.other_hostnames_with_players.append(pinball_hostname_with_player)
         self.fruit_name_from_pinball_hostname = {
             "pinball1game":"coco",
             "pinball2game":"naranja",
@@ -238,6 +235,10 @@ class Phase_Comienza(threading.Thread):
 
 
     def setup(self):
+        self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
+        for pinball_hostname_with_player in self.pinball_hostnames_with_players:
+            if pinball_hostname_with_player != self.game_name:
+                self.other_hostnames_with_players.append(pinball_hostname_with_player)
         self.trading_partner = None
         self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].set_button_light_active("izquierda",False)
