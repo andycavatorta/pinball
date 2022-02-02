@@ -277,7 +277,7 @@ class Phase_Comienza(threading.Thread):
 
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
-            self.get_games_missing_other_fruit()
+            self.update_carousel_lights_to_data()
             # animate gain of one fruit
             self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "low")
@@ -309,7 +309,7 @@ class Phase_Comienza(threading.Thread):
 
     def end(self):
         self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
-        self.update_carousel_lights_to_data()
+        self.update_carousel_lights_to_data
         self.add_to_queue("spend_fruit", self.sacrificial_fruit)
         self.hosts.hostnames[self.game_name].cmd_kicker_launch() 
         self.set_phase(phase_names.PINBALL)
@@ -1268,7 +1268,7 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        self.get_games_missing_other_fruit()
+        self.update_carousel_lights_to_data()
         print("animation_fill_carousel",5)
 
     def add_to_queue(self, topic, message):
