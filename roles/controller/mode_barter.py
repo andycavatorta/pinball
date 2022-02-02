@@ -1257,7 +1257,7 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        self.carousel_fruits.add_fruit(self.fruit_order[0])B
+        self.carousel_fruits.add_fruit(self.fruit_order[0])
         self.update_carousel_lights_to_data()
 
     def add_to_queue(self, topic, message):
