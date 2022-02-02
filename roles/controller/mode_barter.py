@@ -1136,11 +1136,14 @@ class Game(threading.Thread):
             self.current_phase = self.phase_noplayer
             self.current_phase.setup()
         if phase_name == phase_names.COMIENZA:
+            print(">>>>>>",1)
             # workaround for first-time case
             if self.current_phase == None:
+                print(">>>>>>",2)
                 self.current_phase = self.phase_comienza
                 self.current_phase.end()
             else:
+                print(">>>>>>",3)
                 self.current_phase = self.phase_comienza
                 self.current_phase.setup()
         if phase_name == phase_names.PINBALL:
