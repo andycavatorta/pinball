@@ -239,16 +239,14 @@ class Phase_Comienza(threading.Thread):
 
     def setup(self):
         self.other_hostnames_with_players = []
-        print("--->",1)
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
-        print("--->",2, self.pinball_hostnames_with_players)
         for pinball_hostname_with_player in self.pinball_hostnames_with_players:
             if pinball_hostname_with_player != self.game_name:
                 self.other_hostnames_with_players.append(pinball_hostname_with_player)
 
-        print("--->",3, self.other_hostnames_with_players)
+        print("---> other_hostnames_with_players", self.other_hostnames_with_players, self.fruit_name)
         self.trading_partner = None
-        print("--->",4, self.trading_partner)
+        print("---> trading_partner",self.trading_partner, self.fruit_name)
         #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_gameplay()
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
@@ -257,23 +255,23 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
-        print("--->",5, other_fruits)
+        print("---> other_fruits", other_fruits, self.fruit_name)
         if len(other_fruits) > 0:
             self.sacrificial_fruit = other_fruits[0]
-            print("--->",6, self.sacrificial_fruit)
+            print("--->a self.sacrificial_fruit",self.sacrificial_fruit, self.fruit_name)
         else: # if there are no otherfruits
             if self.score > 0:
                 point_loss = int(self.score * 0.1)
                 self.decrement_score(point_loss)
 
             games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
-            print("--->",7, games_missing_other_fruit)
+            print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
             if len(games_missing_other_fruit) > 0:
                 other_pinball_hostname = random.choice(games_missing_other_fruit)
             else:
                 other_pinball_hostname = random.choice(self.other_hostnames_with_players)
             self.sacrificial_fruit = self.fruit_name_from_pinball_hostname[other_pinball_hostname]
-            print("--->",8, self.sacrificial_fruit)
+            print("--->b sacrificial_fruit", self.sacrificial_fruit, self.fruit_name)
 
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
@@ -286,7 +284,6 @@ class Phase_Comienza(threading.Thread):
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "med")
             time.sleep(0.15)
             self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-        print("--->",9, self.game_name)
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "high")
         time.sleep(0.2)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
@@ -299,7 +296,6 @@ class Phase_Comienza(threading.Thread):
         time.sleep(0.2)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        print("--->",10)
 
 
     def respond(self, topic, message):
@@ -1152,14 +1148,11 @@ class Game(threading.Thread):
             self.current_phase = self.phase_noplayer
             self.current_phase.setup()
         if phase_name == phase_names.COMIENZA:
-            print(">>>>>>",1)
             # workaround for first-time case
             if self.current_phase == None:
-                print(">>>>>>",2)
                 self.current_phase = self.phase_comienza
                 self.current_phase.end()
             else:
-                print(">>>>>>",3)
                 self.current_phase = self.phase_comienza
                 self.current_phase.setup()
         if phase_name == phase_names.PINBALL:
@@ -1214,7 +1207,6 @@ class Game(threading.Thread):
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fruit_name,level)
 
     def animation_fill_carousel(self):
-        print("animation_fill_carousel",1)
         fname = self.fruit_order[1]
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
@@ -1226,7 +1218,6 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        print("animation_fill_carousel",2)
 
         fname = self.fruit_order[2]
         self.carousel_fruits.add_fruit(fname)
@@ -1240,7 +1231,6 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        print("animation_fill_carousel",3)
 
         fname = self.fruit_order[3]
         self.carousel_fruits.add_fruit(fname)
@@ -1253,7 +1243,6 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
-        print("animation_fill_carousel",4)
 
         fname = self.fruit_order[4]
         self.carousel_fruits.add_fruit(fname)
@@ -1269,7 +1258,6 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
         self.update_carousel_lights_to_data()
-        print("animation_fill_carousel",5)
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
@@ -1410,15 +1398,11 @@ class Mode_Barter(threading.Thread):
         self.mode_timer = 0
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname in self.pinball_hostnames:
-            print("pinball_hostname",pinball_hostname)
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
-            print("game_name",game_name)
             if pinball_hostname in self.pinball_hostnames_with_players:
-                print("AAAA",game_name)
                 self.games[game_name].add_to_queue("animation_fill_carousel", True) 
                 self.games[game_name].set_phase(phase_names.COMIENZA)
             else:
-                print("BBBB",game_name)
                 self.games[game_name].set_phase(phase_names.NOPLAYER)
 
     # todo: how can this be made threadsafe?  It will be called by multiple games at once.
