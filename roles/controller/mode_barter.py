@@ -1298,7 +1298,7 @@ class Mode_Barter(threading.Thread):
         traders = []
         states = self.get_game_states()
         for game_fruit_name, state in states.items():
-            if state in [game_states.INVITEE, game_states.INVITOR, game_states.TRADE, game_states.FAIL]:
+            if state in [phase_names.INVITEE, phase_names.INVITOR, phase_names.TRADE, phase_names.FAIL]:
                 traders.append(game_fruit_name)
         return traders
 
