@@ -1137,12 +1137,9 @@ class Game(threading.Thread):
                 #if topic == "set_phase":
                 #    self.set_phase(message)
                 if topic == "animation_fill_carousel":
-                    print("11111")
                     self.animation_fill_carousel()
                 else:
-                    print("22222")
                     if self.current_phase:
-                        print("33333")
                         self.current_phase.respond(topic, message)
 
             except queue.Empty:
@@ -1352,7 +1349,7 @@ class Mode_Barter(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(True)
+                topic, message, origin, destination = self.queue.get(False)
                 #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
@@ -1372,3 +1369,9 @@ class Mode_Barter(threading.Thread):
                 pass
             except queue.Empty:
                 time.sleep(1)
+                if self.active:
+                    self.mode_timer += 1
+                    if self.mode_timer >= self.mode_timer_limit:
+                        self.active = False
+                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                        self.end()
