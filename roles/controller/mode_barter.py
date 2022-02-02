@@ -1353,7 +1353,7 @@ class Mode_Barter(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(False)
+                topic, message, origin, destination = self.queue.get(timeout=1)
                 #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
@@ -1372,10 +1372,15 @@ class Mode_Barter(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
-                time.sleep(1)
+                print("Mode_Barter except queue.Empty", 1)
                 if self.active:
+                    print("Mode_Barter except queue.Empty", 2)
                     self.mode_timer += 1
+                    print("Mode_Barter except queue.Empty", 3, self.mode_timer, self.mode_timer_limit)
                     if self.mode_timer >= self.mode_timer_limit:
+                        print("Mode_Barter except queue.Empty", 4, self.mode_timer, self.mode_timer_limit)
                         self.active = False
+                        print("Mode_Barter except queue.Empty", 5, self.mode_timer, self.mode_timer_limit)
                         self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                        print("Mode_Barter except queue.Empty", 6, self.mode_timer, self.mode_timer_limit)
                         self.end()
