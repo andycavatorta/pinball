@@ -69,6 +69,30 @@ class Carousel_Fruits():
             "sandia":False,
             "pina":False,
         }
+        self.fruit_order_clockwise = [
+            "coco",
+            "naranja",
+            "mango",
+            "sandia",
+            "pina",
+            "coco",
+            "naranja",
+            "mango",
+            "sandia",
+            "pina",
+        ]
+        self.fruit_order_counterclockwise = [
+            "pina",
+            "sandia",
+            "mango",
+            "naranja",
+            "coco",
+            "pina",
+            "sandia",
+            "mango",
+            "naranja",
+            "coco",
+        ]
         self.fruit_name_from_pinball_hostname = {
             "pinball1game":"coco",
             "pinball2game":"naranja",
@@ -112,6 +136,26 @@ class Carousel_Fruits():
 
     def remove_fruit(self, fruit_name=""):
         self.fruit_presence[fruit_name] = False
+
+    def get_radial_path(self, start_fruit_name, end_fruit_name, clockwise_b):
+        path = [] # list of fruit names
+        if clockwise_b:
+            start_fruit_cursor = self.fruit_order_clockwise.index(start_fruit_name)
+            end_fruit_cursor = self.fruit_order_clockwise.index(,end_fruit_name, start_fruit_name)
+            for cursor in range(start_fruit_cursor,end_fruit_cursor+1)
+                path.append(self.fruit_order_clockwise[cursor])
+        else: # counterclockwise
+            start_fruit_cursor = self.fruit_order_counterclockwise.index(start_fruit_name)
+            end_fruit_cursor = self.fruit_order_counterclockwise.index(,end_fruit_name, start_fruit_name)
+            for cursor in range(start_fruit_cursor,end_fruit_cursor+1)
+                path.append(self.fruit_order_counterclockwise[cursor])
+        return path
+
+    def get_shorter_radial_path(self, start_fruit_name, end_fruit_name):
+        path_cw = self.get_radial_path(start_fruit_name, end_fruit_name, True)
+        path_cc = self.get_radial_path(start_fruit_name, end_fruit_name, False)
+        return path_cc len(path_cw) > len(path_cc) else path_cw
+
 
 ###################
 ### P H A S E S ###
@@ -239,9 +283,11 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",True)
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
 
+
     def respond(self, topic, message):
         if topic == "event_button_comienza":
             self.end()
+
 
     def end(self):
         self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
@@ -249,8 +295,10 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].cmd_kicker_launch() 
         self.set_phase(phase_names.PINBALL)
 
+
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
+
 
     def run(self):
         while True:
@@ -288,6 +336,7 @@ class Phase_Pinball(threading.Thread):
         self.phase_name = phase_names.PINBALL
         self.start()
 
+
     def setup(self):
         self.trading_partner = None
         self.hosts.hostnames[self.game_name].set_button_light_active("izquierda",True)
@@ -302,6 +351,8 @@ class Phase_Pinball(threading.Thread):
         #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
         #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
         #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
+
+
     def respond(self, topic, message):
         if topic == "event_pop_left":
             if message:
@@ -417,6 +468,7 @@ class Phase_Invitor(threading.Thread):
         self.display_name = parent_ref.display_name
         self.fruit_name = parent_ref.fruit_name
         self.carousel_name = parent_ref.carousel_name
+        self.carousel_fruits = parent_ref.carousel_fruits
         self.set_phase = parent_ref.set_phase
         self.add_to_parent_queue = parent_ref.add_to_queue
         self.get_trading_partner = parent_ref.get_trading_partner
@@ -431,6 +483,7 @@ class Phase_Invitor(threading.Thread):
         self.start()
 
     def setup(self):
+        self.parent_ref.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
         self.hosts.hostnames[self.game_name].set_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",False)
@@ -459,6 +512,26 @@ class Phase_Invitor(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         self.trading_partner = self.get_trading_partner(self.fruit_name)
+
+        ### D R A W   P A T H ###
+        self.trading_partner.fruit_name
+        self.fruit_name
+
+        # invitor carousel
+        invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+        center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
+        invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+
+        # draw path
+        # dim lit fruits in local carousel
+        # light this_fruit
+        # plot path
+            # local_carousel this_fruit
+            # center carousel, clockwise from local fruit to trading partner fruit.
+            # trading partner carousel, counter-clockwise to trading partner self_fruit
+        # animate bright light along path
+
+
         self.add_to_queue("double")
 
     def respond(self, topic, message):
@@ -486,6 +559,65 @@ class Phase_Invitor(threading.Thread):
         """
         pass
 
+
+    def animation_carousel_path_blink(self, frame):
+        # invitor carousel
+        invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+        center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
+        invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+        if frame == 0:
+            for path_fruit_name in invitor_carousel_path:
+                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(path_fruit_name, "off")
+            for path_fruit_name in center_carousel_path:
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights(path_fruit_name, "off")
+            for path_fruit_name in invitee_carousel_path:
+                self.hosts.hostnames[self.trading_partner.carousel_name].cmd_carousel_lights(path_fruit_name, "off")
+        if frame == 1:
+            for path_fruit_name in invitor_carousel_path:
+                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(path_fruit_name, "on")
+            for path_fruit_name in center_carousel_path:
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights(path_fruit_name, "on")
+            for path_fruit_name in invitee_carousel_path:
+                self.hosts.hostnames[self.trading_partner.carousel_name].cmd_carousel_lights(path_fruit_name, "on")
+
+
+    def animation_double(self, frame):
+        if frame == 0:
+            self.animation_carousel_path_blinBk(1)
+            self.hosts.hostnames[self.display_name].request_score("g_mezzo")
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",True)
+        if frame == 1:
+            self.animation_carousel_path_blink(1)
+            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",False)
+
+
+    def animation_local_pushed(self, frame):
+        if frame == 0:
+            self.animation_carousel_path_blink(1)
+            self.hosts.hostnames[self.trading_partner.display_name].request_score("c_mezzo")
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",True)
+        if frame == 1:
+            self.animation_carousel_path_blink(0)
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",False)
+
+
+    def animation_other_pushed(self, frame):
+        if frame == 0:
+            self.animation_carousel_path_blink(1)
+            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",False)
+        if frame == 1:
+            self.animation_carousel_path_blink(0)
+            self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+            self.hosts.hostnames[self.trading_partner.game_name].set_button_light_active("trueque",False)
+
+
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
 
@@ -495,7 +627,7 @@ class Phase_Invitor(threading.Thread):
         timeout_counter = 0
         while True:
             try:
-                topic, message = self.queue.get(False)
+                topic, message = self.queue.get(timeout=1)
                 if topic == "stop":
                     do_animation = topic
                     timeout_counter = 0
@@ -520,35 +652,29 @@ class Phase_Invitor(threading.Thread):
                         # no need to sync. 
                         continue
                     if do_animation == "double":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+                        self.animation_double(0)
                         time.sleep(0.5)
-                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
+                        self.animation_double(1)
                         time.sleep(0.5)
 
                     if do_animation == "local_pushed":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        time.sleep(0.5)
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        time.sleep(0.5)
+                        self.animation_local_pushed(0)
+                        time.sleep(0.25)
+                        self.animation_local_pushed(1)
+                        time.sleep(0.25)
+                        self.animation_local_pushed(0)
+                        time.sleep(0.25)
+                        self.animation_local_pushed(1)
+                        time.sleep(0.25)
 
                     if do_animation == "other_pushed":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+                        self.animation_other_pushed(0)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
+                        self.animation_other_pushed(1)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
+                        self.animation_other_pushed(0)
                         time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
+                        self.animation_other_pushed(1)
                         time.sleep(0.25)
 
 class Phase_Invitee(threading.Thread):
@@ -570,12 +696,13 @@ class Phase_Invitee(threading.Thread):
         self.timeout_limit = 10
         self.trueque_button_pressed = False
         self.add_to_queue("stop", True)
-        self.phase_name = phase_names.INVITEE
+        self.phase_name = phase_names.INVITEE        
         self.start()
 
     def setup(self):
+        self.parent_ref.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
         self.trading_partner = self.get_trading_partner(self.game_name)
-        self.add_to_queue("double")
+        #self.add_to_queue("double")
         self.hosts.hostnames[self.game_name].set_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
         self.hosts.hostnames[self.game_name].set_button_light_active("comienza",False)
@@ -710,7 +837,7 @@ class Phase_Invitee(threading.Thread):
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
-                    self.add_to_queue("local_pushed")
+                    #self.add_to_queue("local_pushed")
 
     def end(self):
         """
@@ -727,7 +854,7 @@ class Phase_Invitee(threading.Thread):
         timeout_counter = 0
         while True:
             try:
-                topic, message = self.queue.get(False)
+                topic, message = self.queue.get(timeout=1)
                 if topic == "stop":
                     do_animation = topic
                     timeout_counter = 0
@@ -751,36 +878,13 @@ class Phase_Invitee(threading.Thread):
                         self.set_phase(phase_names.FAIL)
                         continue
                     if do_animation == "double":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
-                        time.sleep(0.5)
-                        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
-                        time.sleep(0.5)
+                        pass
 
                     if do_animation == "local_pushed":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        time.sleep(0.5)
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        time.sleep(0.5)
+                        pass
 
                     if do_animation == "other_pushed":
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
-                        time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
-                        time.sleep(0.25)
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "off")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",False)
-                        time.sleep(0.25)
-                        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-                        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.fruit_name, "on")
-                        self.hosts.hostnames[self.game_name].set_button_light_active("trueque",True)
-                        time.sleep(0.25)
+                        pass
 
 class Phase_Trade(threading.Thread):
     def __init__(self, parent_ref):
@@ -828,6 +932,30 @@ class Phase_Trade(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
 
+
+
+
+
+        """
+        if self.parent_ref.trade_role == phase_names.INVITOR:
+            invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+            center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
+            invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+            if frame == 0:
+                for path_fruit_name in invitor_carousel_path:
+                    self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(path_fruit_name, "off")
+                for path_fruit_name in center_carousel_path:
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights(path_fruit_name, "off")
+                for path_fruit_name in invitee_carousel_path:
+                    self.hosts.hostnames[self.trading_partner.carousel_name].cmd_carousel_lights(path_fruit_name, "off")
+            if frame == 1:
+                for path_fruit_name in invitor_carousel_path:
+                    self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(path_fruit_name, "on")
+                for path_fruit_name in center_carousel_path:
+                    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights(path_fruit_name, "on")
+                for path_fruit_name in invitee_carousel_path:
+                    self.hosts.hostnames[self.trading_partner.carousel_name].cmd_carousel_lights(path_fruit_name, "on")
+        """
         # draw path
         # dim lit fruits in local carousel
         # light this_fruit
@@ -838,40 +966,12 @@ class Phase_Trade(threading.Thread):
         # animate bright light along path
         # 
 
-
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("g_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-        time.sleep(0.25)
-        self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-        point_loss = int(self.score * 0.1)
-        self.decrement_score(point_loss)
+        self.increment_score(100)
         self.end()
     def respond(self, topic, message):
         pass
     def end(self):
+        self.parent_ref.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
@@ -957,6 +1057,7 @@ class Phase_Fail(threading.Thread):
     def respond(self, topic, message):
         pass
     def end(self):
+        self.parent_ref.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
@@ -990,6 +1091,7 @@ class Game(threading.Thread):
         self.successful_trades = 0
         self.get_trading_partner =  parent_ref.get_trading_partner
         self.get_trade_option = parent_ref.get_trade_option
+        self.trade_role = ""
         if self.fruit_name == "coco":
             self.fruit_order = ["coco","naranja","mango","sandia","pina"]
         if self.fruit_name == "naranja":
@@ -1364,23 +1466,14 @@ class Mode_Barter(threading.Thread):
                 if isinstance(destination, bytes):
                     destination = codecs.decode(destination, 'UTF-8')
 
-                print("origin",origin)
-                print("self.pinball_to_game[origin]",self.pinball_to_game[origin])
-
                 self.pinball_to_game[origin].add_to_queue(topic, message)
 
             except AttributeError:
                 pass
             except queue.Empty:
-                print("Mode_Barter except queue.Empty", 1)
                 if self.active:
-                    print("Mode_Barter except queue.Empty", 2)
                     self.mode_timer += 1
-                    print("Mode_Barter except queue.Empty", 3, self.mode_timer, self.mode_timer_limit)
                     if self.mode_timer >= self.mode_timer_limit:
-                        print("Mode_Barter except queue.Empty", 4, self.mode_timer, self.mode_timer_limit)
                         self.active = False
-                        print("Mode_Barter except queue.Empty", 5, self.mode_timer, self.mode_timer_limit)
                         self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
-                        print("Mode_Barter except queue.Empty", 6, self.mode_timer, self.mode_timer_limit)
                         self.end()
