@@ -156,6 +156,9 @@ class Carousel_Fruits():
         path_cc = self.get_radial_path(start_fruit_name, end_fruit_name, False)
         return path_cc if len(path_cw) > len(path_cc) else path_cw
 
+    def populate_this_fruit(self):
+        self.fruit_presence[self.this_fruit_name] = True
+
 
 ###################
 ### P H A S E S ###
@@ -213,6 +216,7 @@ class Phase_Comienza(threading.Thread):
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.fruit_name = parent_ref.fruit_name
         self.carousel_name = parent_ref.carousel_name
         self.carousel_fruits = parent_ref.carousel_fruits
@@ -233,7 +237,6 @@ class Phase_Comienza(threading.Thread):
         self.sacrificial_fruit = None
         self.start()
 
-
     def setup(self):
         self.other_hostnames_with_players = []
         print("--->",1)
@@ -246,7 +249,8 @@ class Phase_Comienza(threading.Thread):
         print("--->",3, self.other_hostnames_with_players)
         self.trading_partner = None
         print("--->",4, self.trading_partner)
-        self.hosts.hostnames[self.game_name].disable_gameplay()
+        #self.hosts.hostnames[self.game_name].disable_gameplay()
+        self.hosts.hostnames[self.game_name].enable_gameplay()
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
@@ -273,6 +277,7 @@ class Phase_Comienza(threading.Thread):
 
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
+            self.get_games_missing_other_fruit()
             # animate gain of one fruit
             self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "low")
@@ -304,6 +309,7 @@ class Phase_Comienza(threading.Thread):
 
     def end(self):
         self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
+        self.update_carousel_lights_to_data()
         self.add_to_queue("spend_fruit", self.sacrificial_fruit)
         self.hosts.hostnames[self.game_name].cmd_kicker_launch() 
         self.set_phase(phase_names.PINBALL)
@@ -328,7 +334,7 @@ class Phase_Comienza(threading.Thread):
                     self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(message,  "low")
                     time.sleep(0.15)
                     self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(message,  "off")
-                    
+
             except AttributeError:
                 pass
             except queue.Empty:
@@ -344,6 +350,7 @@ class Phase_Pinball(threading.Thread):
         self.fruit_name = parent_ref.fruit_name
         self.carousel_name = parent_ref.carousel_name
         self.set_phase = parent_ref.set_phase
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.increment_score = parent_ref.increment_score
         self.pie = parent_ref.pie
         self.get_trade_option = parent_ref.get_trade_option
@@ -485,6 +492,7 @@ class Phase_Invitor(threading.Thread):
         self.carousel_name = parent_ref.carousel_name
         self.carousel_fruits = parent_ref.carousel_fruits
         self.set_phase = parent_ref.set_phase
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.add_to_parent_queue = parent_ref.add_to_queue
         self.get_trading_partner = parent_ref.get_trading_partner
         self.get_trade_initiated = parent_ref.get_trade_initiated
@@ -504,7 +512,8 @@ class Phase_Invitor(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        self.hosts.hostnames[self.game_name].disable_gameplay()
+        self.hosts.hostnames[self.game_name].enable_gameplay()
+        #self.hosts.hostnames[self.game_name].disable_gameplay()
         #self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         #self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
         #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
@@ -706,6 +715,7 @@ class Phase_Invitee(threading.Thread):
         self.get_trading_partner = parent_ref.get_trading_partner
         self.get_trade_initiated = parent_ref.get_trade_initiated
         self.set_trade_initiated = parent_ref.set_trade_initiated
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.trading_partner = None
         self.set_trade_initiated(False)
         self.timeout_limit = 10
@@ -830,7 +840,8 @@ class Phase_Invitee(threading.Thread):
 
         if topic == "event_trough_sensor":
             if message:
-                self.hosts.hostnames[self.game_name].disable_gameplay()
+                self.hosts.hostnames[self.game_name].enable_gameplay()
+                #self.hosts.hostnames[self.game_name].disable_gameplay()
                 self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
                 self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
                 self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
@@ -913,6 +924,7 @@ class Phase_Trade(threading.Thread):
         self.carousel_name = parent_ref.carousel_name
         self.set_phase = parent_ref.set_phase
         self.increment_score = parent_ref.increment_score
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.phase_name = phase_names.TRADE
 
     def setup(self):
@@ -921,8 +933,8 @@ class Phase_Trade(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        #self.hosts.hostnames[self.game_name].enable_gameplay()
-        self.hosts.hostnames[self.game_name].disable_gameplay()
+        self.hosts.hostnames[self.game_name].enable_gameplay()
+        #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
@@ -1006,6 +1018,7 @@ class Phase_Fail(threading.Thread):
         self.carousel_name = parent_ref.carousel_name
         self.set_phase = parent_ref.set_phase
         self.decrement_score = parent_ref.decrement_score
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.phase_name = phase_names.FAIL
 
     def setup(self):
@@ -1014,8 +1027,8 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        #self.hosts.hostnames[self.game_name].enable_gameplay()
-        self.hosts.hostnames[self.game_name].disable_gameplay()
+        self.hosts.hostnames[self.game_name].enable_gameplay()
+        #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
@@ -1191,8 +1204,14 @@ class Game(threading.Thread):
     # todo: update function
     def pie_full_handler(self):
         self.increment_score(25)
+        self.carousel_fruits.populate_this_fruit()
+        self.update_carousel_lights_to_data()
         #self.increment_decrement_fruits(True)
 
+    def update_carousel_lights_to_data(self, _level_="on"):
+        for fruit_name in self.fruit_order:
+            level = _level_ if self.carousel_fruits.is_fruit_present(fruit_name) else "off"
+            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fruit_name,level)
 
     def animation_fill_carousel(self):
         print("animation_fill_carousel",1)
@@ -1211,6 +1230,7 @@ class Game(threading.Thread):
 
         fname = self.fruit_order[2]
         self.carousel_fruits.add_fruit(fname)
+
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
@@ -1248,6 +1268,7 @@ class Game(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"high")
         time.sleep(0.4)
+        self.get_games_missing_other_fruit()
         print("animation_fill_carousel",5)
 
     def add_to_queue(self, topic, message):
