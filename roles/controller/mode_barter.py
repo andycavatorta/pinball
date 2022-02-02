@@ -386,7 +386,7 @@ class Phase_Pinball(threading.Thread):
 
     def end(self):
         # does this game have a fruit to trade?
-        if self.is_fruit_present(self.fruit_name):
+        if self.carousel_fruits.is_fruit_present(self.fruit_name):
             self.set_phase(phase_names.COMIENZA)
         # is this game missing an active other_fruit?
         missing_other_fruits = self.carousel_fruits.list_missing_other_fruits()
