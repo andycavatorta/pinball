@@ -30,7 +30,7 @@ class Pie():
         self.reset_pie()
 
     def target_hit(self,target_name):
-        print("target_hit",target_name)
+        #print("target_hit",target_name)
         if self.pie_segments_triggered[target_name] == False:
             self.pie_segments_triggered[target_name] = True
             self.hosts.hostnames[self.origin].cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
@@ -100,9 +100,6 @@ class Carousel_Fruits():
             "pinball4game":"sandia",
             "pinball5game":"pina",
         }
-        self.fruits_with_players = []
-        for game_with_player in self.games_with_players:
-            self.fruits_with_players.append(self.fruit_name_from_pinball_hostname[game_with_player])
  
     def is_fruit_present(self, fruit_name):
         return self.fruit_presence[fruit_name]
@@ -122,6 +119,9 @@ class Carousel_Fruits():
         return present
 
     def list_missing_other_fruits(self):
+        self.fruits_with_players = []
+        for game_with_player in self.hosts.get_games_with_players():
+            self.fruits_with_players.append(self.fruit_name_from_pinball_hostname[game_with_player])
         missing = []
         for fruit_with_player in self.fruits_with_players:
             if self.fruit_presence[fruit_name] == False:
@@ -244,9 +244,8 @@ class Phase_Comienza(threading.Thread):
             if pinball_hostname_with_player != self.game_name:
                 self.other_hostnames_with_players.append(pinball_hostname_with_player)
 
-        print("---> other_hostnames_with_players", self.other_hostnames_with_players, self.fruit_name)
         self.trading_partner = None
-        print("---> trading_partner",self.trading_partner, self.fruit_name)
+        #print("---> trading_partner",self.trading_partner, self.fruit_name)
         #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].enable_gameplay()
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
@@ -255,23 +254,23 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
-        print("---> other_fruits", other_fruits, self.fruit_name)
+        #print("---> other_fruits", other_fruits, self.fruit_name)
         if len(other_fruits) > 0:
             self.sacrificial_fruit = other_fruits[0]
-            print("--->a self.sacrificial_fruit",self.sacrificial_fruit, self.fruit_name)
+            #print("--->a self.sacrificial_fruit",self.sacrificial_fruit, self.fruit_name)
         else: # if there are no otherfruits
             if self.score > 0:
                 point_loss = int(self.score * 0.1)
                 self.decrement_score(point_loss)
 
             games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
-            print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
+            #print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
             if len(games_missing_other_fruit) > 0:
                 other_pinball_hostname = random.choice(games_missing_other_fruit)
             else:
                 other_pinball_hostname = random.choice(self.other_hostnames_with_players)
             self.sacrificial_fruit = self.fruit_name_from_pinball_hostname[other_pinball_hostname]
-            print("--->b sacrificial_fruit", self.sacrificial_fruit, self.fruit_name)
+            #print("--->b sacrificial_fruit", self.sacrificial_fruit, self.fruit_name)
 
             # populate sacrificial_fruit
             self.carousel_fruits.add_fruit(self.sacrificial_fruit)
@@ -459,9 +458,11 @@ class Phase_Pinball(threading.Thread):
             self.set_phase(phase_names.COMIENZA)
         # is this game missing an active other_fruit?
         missing_other_fruits = self.carousel_fruits.list_missing_other_fruits()
+        print("missing_other_fruits",missing_other_fruits)
         if len(missing_other_fruits) == 0:
             self.set_phase(phase_names.COMIENZA)
         trade_option = self.get_trade_option(self, missing_other_fruits)
+        print("trade_option",trade_option)
         self.set_phase(trade_option)
 
 
