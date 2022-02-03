@@ -765,6 +765,8 @@ class Phase_Invitee(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("pina",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
+        self.add_to_queue("double", True)
+        print("===================== INVITEE END SETUP =====================", self.fruit_name)
 
     def respond(self, topic, message):
         """
@@ -906,6 +908,7 @@ class Phase_Invitee(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
+                print("Phase_Invitee run", self.fruit_name)
                 if do_animation == "stop":
                     time.sleep(0.1)
                 else:
