@@ -462,8 +462,8 @@ class Phase_Pinball(threading.Thread):
         if len(missing_other_fruits) == 0:
             self.set_phase(phase_names.COMIENZA)
         trade_option = self.get_trade_option(self, missing_other_fruits)
-        print("trade_option",trade_option)
-        self.set_phase(trade_option)
+        #print("trade_option",trade_option)
+        #self.set_phase(trade_option)
 
 
     def add_to_queue(self, topic, message):
@@ -1470,8 +1470,8 @@ class Mode_Barter(threading.Thread):
             invitee = random.choice(other_stations_with_fruit)
         self.invitor = potential_invitor 
         self.invitee = invitee
+        invitee.set_phase(phase_names.INVITOR)
         invitee.set_phase(phase_names.INVITEE)
-        return phase_names.INVITOR
 
     def end(self):
         self.active = False
