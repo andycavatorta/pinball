@@ -482,6 +482,7 @@ class Phase_Invitor(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+        self.parent_ref = parent_ref
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
@@ -541,7 +542,10 @@ class Phase_Invitor(threading.Thread):
         #self.fruit_name
 
 
+        print("Phase_Invitor self.parent_ref", self.parent_ref)
+        print("Phase_Invitor self.parent_ref.trading_partner", self.parent_ref.trading_partner)
         print("Phase_Invitor self.trading_partner", self.trading_partner)
+
         # invitor carousel
         invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
         center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
@@ -1505,6 +1509,8 @@ class Mode_Barter(threading.Thread):
         print("get_trade_option player_b_ref", player_b_ref, player_a_ref.fruit_name)
         invitor = player_a_ref 
         invitee = player_b_ref
+        print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
+        print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.trading_partner = invitee
         invitee.trading_partner = invitor
         print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
