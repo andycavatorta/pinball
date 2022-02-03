@@ -1128,6 +1128,7 @@ class Game(threading.Thread):
         self.get_trading_partner =  parent_ref.get_trading_partner
         self.get_trade_option = parent_ref.get_trade_option
         self.trade_role = ""
+        self.trading_partner = None
         if self.fruit_name == "coco":
             self.fruit_order = ["coco","naranja","mango","sandia","pina"]
         if self.fruit_name == "naranja":
