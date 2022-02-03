@@ -712,6 +712,7 @@ class Phase_Invitee(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.hosts = parent_ref.hosts
+        self.parent_ref = parent_ref.
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
         self.fruit_name = parent_ref.fruit_name
