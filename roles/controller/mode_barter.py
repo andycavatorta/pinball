@@ -504,6 +504,7 @@ class Phase_Invitor(threading.Thread):
         self.start()
 
     def setup(self):
+        print("===================== INVITOR =====================", self.fruit_name)
         self.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
@@ -724,6 +725,7 @@ class Phase_Invitee(threading.Thread):
         self.start()
 
     def setup(self):
+        print("===================== INVITEE =====================", self.fruit_name)
         self.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
         #self.trading_partner = self.get_trading_partner(self.game_name)
         #self.add_to_queue("double")
@@ -928,6 +930,7 @@ class Phase_Trade(threading.Thread):
         self.phase_name = phase_names.TRADE
 
     def setup(self):
+        print("===================== TRADE =====================", self.fruit_name)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
@@ -1022,6 +1025,7 @@ class Phase_Fail(threading.Thread):
         self.phase_name = phase_names.FAIL
 
     def setup(self):
+        print("===================== FAIL =====================", self.fruit_name)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
