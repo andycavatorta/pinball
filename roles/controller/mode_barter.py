@@ -562,7 +562,7 @@ class Phase_Invitor(threading.Thread):
         # animate bright light along path
 
 
-        self.add_to_queue("double")
+        self.add_to_queue("double", True)
 
     def respond(self, topic, message):
         """
@@ -576,12 +576,12 @@ class Phase_Invitor(threading.Thread):
                 #   draw sparkly path between carousels
                 if self.trading_partner.get_trade_initiated():
                     #trading
-                    self.add_to_queue("stop")
+                    self.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
-                    self.add_to_queue("local_pushed")
+                    self.add_to_queue("local_pushed", True)
 
     def end(self):
         """
@@ -867,7 +867,7 @@ class Phase_Invitee(threading.Thread):
                 # todo: animation to confirm button push
                 if self.trading_partner.get_trade_initiated():
                     #trading
-                    self.add_to_queue("stop")
+                    self.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
                 else:
                     #waiting
