@@ -337,6 +337,8 @@ class Phase_Pinball(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+
+        self.parent_ref = parent_ref
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
@@ -459,7 +461,7 @@ class Phase_Pinball(threading.Thread):
         #print("missing_other_fruits",missing_other_fruits,self.fruit_name)
         #if len(missing_other_fruits) == 0:
         #    self.set_phase(phase_names.COMIENZA)
-        trade_option = self.get_trade_option(self)
+        trade_option = self.get_trade_option(self.parent_ref)
         #print("trade_option",trade_option)
         #self.set_phase(trade_option)
 
@@ -538,6 +540,8 @@ class Phase_Invitor(threading.Thread):
         #self.trading_partner.fruit_name
         #self.fruit_name
 
+
+        print("Phase_Invitor self.trading_partner", self.trading_partner)
         # invitor carousel
         invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
         center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
