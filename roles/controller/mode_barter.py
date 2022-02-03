@@ -1107,7 +1107,7 @@ class Game(threading.Thread):
         self.carousel_name = carousel_name
         self.display_name = display_name
         self.parent_ref = parent_ref
-        self.carousel_fruits = Carousel_Fruits(fruit_name,self.hosts.get_games_with_players())
+        self.carousel_fruits = Carousel_Fruits(fruit_name,self.hosts.get_games_with_players)
         self.get_games_missing_other_fruit = parent_ref.get_games_missing_other_fruit
         self.score = 0
         self.ball_in_trough = True
