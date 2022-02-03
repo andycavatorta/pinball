@@ -872,6 +872,7 @@ class Phase_Invitee(threading.Thread):
                 if self.trading_partner.get_trade_initiated():
                     #trading
                     self.add_to_queue("stop", True)
+                    self.trading_partner.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
                 else:
                     #waiting
