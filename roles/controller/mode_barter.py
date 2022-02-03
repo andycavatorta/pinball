@@ -909,7 +909,7 @@ class Phase_Invitee(threading.Thread):
             except AttributeError:
                 pass
             except queue.Empty:
-                print("Phase_Invitee run", self.fruit_name)
+                #print("Phase_Invitee run", self.fruit_name)
                 if do_animation == "stop":
                     time.sleep(0.1)
                 else:
