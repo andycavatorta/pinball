@@ -569,6 +569,7 @@ class Phase_Invitor(threading.Thread):
         animations = #"stop"|"double"|"local_pushed"|"other_pushed"
         """
         if topic == "event_button_trueque":
+            print("Phase_Invitor event_button_trueque")
             if not self.get_trade_initiated(): #only run this once
                 self.set_trade_initiated(True)
                 self.hosts.hostnames[self.game_name].cmd_lefttube_launch()
@@ -711,25 +712,26 @@ class Phase_Invitee(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
-        self.hosts = parent_ref.hosts
-        self.parent_ref = parent_ref
-        self.game_name = parent_ref.game_name
+        self.add_to_parent_queue = parent_ref.add_to_queue
+        self.carousel_name = parent_ref.carousel_name
         self.display_name = parent_ref.display_name
         self.fruit_name = parent_ref.fruit_name
-        self.carousel_name = parent_ref.carousel_name
-        self.set_phase = parent_ref.set_phase
-        self.trade_role = parent_ref.trade_role
-        self.add_to_parent_queue = parent_ref.add_to_queue
-        self.get_trading_partner = parent_ref.get_trading_partner
+        self.game_name = parent_ref.game_name
         self.get_trade_initiated = parent_ref.get_trade_initiated
+        self.get_trading_partner = parent_ref.get_trading_partner
+        self.hosts = parent_ref.hosts
+        self.parent_ref = parent_ref
+        self.phase_name = phase_names.INVITEE  
+        self.pie = parent_ref.pie
+        self.set_phase = parent_ref.set_phase
         self.set_trade_initiated = parent_ref.set_trade_initiated
-        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
-        self.trading_partner = parent_ref.trading_partner
-        self.set_trade_initiated(False)
         self.timeout_limit = 10
+        self.trade_role = parent_ref.trade_role
+        self.trading_partner = parent_ref.trading_partner
         self.trueque_button_pressed = False
-        self.add_to_queue("stop", True)
-        self.phase_name = phase_names.INVITEE        
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
+        self.add_to_queue("stop", True) 
+        self.set_trade_initiated(False)     
         self.start()
 
     def setup(self):
@@ -864,6 +866,7 @@ class Phase_Invitee(threading.Thread):
             """
             animations = #"stop"|"double"|"local_pushed"|"other_pushed"
             """
+            print("Phase_Invitee event_button_trueque")
             if not self.get_trade_initiated(): #only run this once
                 self.set_trade_initiated(True)
                 self.hosts.hostnames[self.game_name].cmd_lefttube_launch()
@@ -1499,14 +1502,14 @@ class Mode_Barter(threading.Thread):
             return phase_names.COMIENZA
         
         player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
-        print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
+        #print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
         if len(player_a_missing_fruits) == 0:
             player_a_ref.set_phase(phase_names.COMIENZA)
         #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
 
 
         pinballhostnames_with_players = self.hosts.get_games_with_players()
-        print("get_trade_option pinballhostnames_with_players", pinballhostnames_with_players, player_a_ref.fruit_name)
+        #print("get_trade_option pinballhostnames_with_players", pinballhostnames_with_players, player_a_ref.fruit_name)
 
         player_b_refs = []
         for pinballhostname_with_player in pinballhostnames_with_players:
@@ -1516,20 +1519,20 @@ class Mode_Barter(threading.Thread):
                 # game_with_player needs player_a_ref.fruit_name
                 if not self.games[game_with_player].carousel_fruits.is_fruit_present(player_a_ref.fruit_name):
                     player_b_refs.append(self.games[game_with_player])
-        print("get_trade_option player_b_refs", player_b_refs, player_a_ref.fruit_name)
+        #print("get_trade_option player_b_refs", player_b_refs, player_a_ref.fruit_name)
         if len(player_b_refs)==0:
             player_a_ref.set_phase(phase_names.COMIENZA)
             return 
         player_b_ref = random.choice(player_b_refs)
-        print("get_trade_option player_b_ref", player_b_ref, player_a_ref.fruit_name)
+        #print("get_trade_option player_b_ref", player_b_ref, player_a_ref.fruit_name)
         invitor = player_a_ref 
         invitee = player_b_ref
-        print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
-        print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
+        #print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
+        #print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.trading_partner = invitee
         invitee.trading_partner = invitor
-        print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
-        print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
+        #print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
+        #print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.set_phase(phase_names.INVITOR)
         invitee.set_phase(phase_names.INVITEE)
 
