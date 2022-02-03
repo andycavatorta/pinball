@@ -489,6 +489,7 @@ class Phase_Invitor(threading.Thread):
         self.carousel_name = parent_ref.carousel_name
         self.carousel_fruits = parent_ref.carousel_fruits
         self.set_phase = parent_ref.set_phase
+        self.trade_role = parent_ref.trade_role
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.add_to_parent_queue = parent_ref.add_to_queue
         self.get_trading_partner = parent_ref.get_trading_partner
@@ -503,7 +504,7 @@ class Phase_Invitor(threading.Thread):
         self.start()
 
     def setup(self):
-        self.parent_ref.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
+        self.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
@@ -708,6 +709,7 @@ class Phase_Invitee(threading.Thread):
         self.fruit_name = parent_ref.fruit_name
         self.carousel_name = parent_ref.carousel_name
         self.set_phase = parent_ref.set_phase
+        self.trade_role = parent_ref.trade_role
         self.add_to_parent_queue = parent_ref.add_to_queue
         self.get_trading_partner = parent_ref.get_trading_partner
         self.get_trade_initiated = parent_ref.get_trade_initiated
@@ -722,7 +724,7 @@ class Phase_Invitee(threading.Thread):
         self.start()
 
     def setup(self):
-        self.parent_ref.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
+        self.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
         self.trading_partner = self.get_trading_partner(self.game_name)
         #self.add_to_queue("double")
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
@@ -920,6 +922,7 @@ class Phase_Trade(threading.Thread):
         self.fruit_name = parent_ref.fruit_name
         self.carousel_name = parent_ref.carousel_name
         self.set_phase = parent_ref.set_phase
+        self.trade_role = parent_ref.trade_role
         self.increment_score = parent_ref.increment_score
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.phase_name = phase_names.TRADE
@@ -995,7 +998,7 @@ class Phase_Trade(threading.Thread):
     def respond(self, topic, message):
         pass
     def end(self):
-        self.parent_ref.trade_role = "" # this is a hack to preserve role after this phase
+        self.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
@@ -1082,7 +1085,7 @@ class Phase_Fail(threading.Thread):
     def respond(self, topic, message):
         pass
     def end(self):
-        self.parent_ref.trade_role = "" # this is a hack to preserve role after this phase
+        self.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
