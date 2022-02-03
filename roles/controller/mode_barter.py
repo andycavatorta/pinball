@@ -1098,7 +1098,7 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-        point_loss = int(self.score * 0.1)
+        point_loss = int(self.parent_ref.score * 0.1)
         self.decrement_score(point_loss)
         self.end()
     def respond(self, topic, message):
