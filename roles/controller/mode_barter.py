@@ -1489,7 +1489,7 @@ class Mode_Barter(threading.Thread):
             if game_with_player != player_a_ref.fruit_name:
                 # game_with_player needs player_a_ref.fruit_name
                 if not self.games[game_with_player].carousel_fruits.is_fruit_present(player_a_ref.fruit_name):
-                    player_b_refs.append(self.games[game_with_player].carousel_fruits)
+                    player_b_refs.append(self.games[game_with_player])
         print("get_trade_option player_b_refs", player_b_refs, player_a_ref.fruit_name)
         if len(player_b_refs)==0:
             player_a_ref.set_phase(phase_names.COMIENZA)
