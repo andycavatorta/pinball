@@ -124,8 +124,8 @@ class Carousel_Fruits():
             self.fruits_with_players.append(self.fruit_name_from_pinball_hostname[game_with_player])
         missing = []
         for fruit_with_player in self.fruits_with_players:
-            if self.fruit_presence[fruit_name] == False:
-                missing.append(fruit_name)
+            if self.fruit_presence[fruit_with_player] == False:
+                missing.append(fruit_with_player)
         return missing
 
     #def get_next_empty_otherfruit(self):
