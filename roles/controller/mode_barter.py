@@ -122,7 +122,8 @@ class Carousel_Fruits():
         missing_other_fruits = []
         for fruit_name, presence in self.fruit_presence.items():
             if presence == False:
-                missing_other_fruits.append(fruit_name)
+                if fruit_name != self.this_fruit_name:
+                    missing_other_fruits.append(fruit_name)
         return missing_other_fruits
 
     #def get_next_empty_otherfruit(self):
@@ -458,7 +459,7 @@ class Phase_Pinball(threading.Thread):
         #print("missing_other_fruits",missing_other_fruits,self.fruit_name)
         #if len(missing_other_fruits) == 0:
         #    self.set_phase(phase_names.COMIENZA)
-        trade_option = self.get_trade_option(self, missing_other_fruits)
+        trade_option = self.get_trade_option(self)
         #print("trade_option",trade_option)
         #self.set_phase(trade_option)
 
