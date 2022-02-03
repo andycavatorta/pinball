@@ -1024,19 +1024,19 @@ class Phase_Trade(threading.Thread):
 class Phase_Fail(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
-        self.queue = queue.Queue()
-        self.parent_ref = parent_ref
-        #self.start()
-        self.hosts = parent_ref.hosts
-        self.game_name = parent_ref.game_name
+        self.carousel_name = parent_ref.carousel_name
+        self.decrement_score = parent_ref.decrement_score
         self.display_name = parent_ref.display_name
         self.fruit_name = parent_ref.fruit_name
-        self.carousel_name = parent_ref.carousel_name
-        self.set_phase = parent_ref.set_phase
-        self.decrement_score = parent_ref.decrement_score
-        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
+        self.game_name = parent_ref.game_name
+        self.hosts = parent_ref.hosts
+        self.parent_ref = parent_ref
         self.phase_name = phase_names.FAIL
+        self.queue = queue.Queue()
+        self.set_phase = parent_ref.set_phase
+        self.trade_role = parent_ref.trade_role
         self.trading_partner = parent_ref.trading_partner
+        self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
 
     def setup(self):
         print("===================== FAIL =====================", self.fruit_name)
@@ -1100,7 +1100,9 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         point_loss = int(self.parent_ref.score * 0.1)
         self.decrement_score(point_loss)
-        self.end()
+        self.trade_role = "" # this is a hack to preserve role after this phase
+        self.set_phase(phase_names.COMIENZA)
+        #self.end()
     def respond(self, topic, message):
         pass
     def end(self):
