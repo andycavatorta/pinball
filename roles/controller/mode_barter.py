@@ -1064,7 +1064,6 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
         #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_right", animation)
 
-        print("===================== FAIL 1 =====================", self.fruit_name)
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("mango")
@@ -1077,7 +1076,6 @@ class Phase_Fail(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("pina",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
-        print("===================== FAIL 2 =====================", self.fruit_name)
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
@@ -1106,15 +1104,10 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-        print("===================== FAIL 3 =====================", self.fruit_name)
         point_loss = int(self.parent_ref.score * 0.1)
-        print("===================== FAIL 4=====================", self.fruit_name)
         self.decrement_score(point_loss)
-        print("===================== FAIL 5=====================", self.fruit_name)
         self.trade_role = "" # this is a hack to preserve role after this phase
-        print("===================== FAIL =====================", self.fruit_name)
         self.set_phase(phase_names.COMIENZA)
-        print("===================== FAIL 6=====================", self.fruit_name)
         #self.end()
     def respond(self, topic, message):
         pass
