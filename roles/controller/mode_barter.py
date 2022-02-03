@@ -720,6 +720,7 @@ class Phase_Invitee(threading.Thread):
         self.get_trade_initiated = parent_ref.get_trade_initiated
         self.get_trading_partner = parent_ref.get_trading_partner
         self.hosts = parent_ref.hosts
+        self.increment_score = parent_ref.increment_score
         self.parent_ref = parent_ref
         self.phase_name = phase_names.INVITEE  
         self.pie = parent_ref.pie
