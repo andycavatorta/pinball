@@ -927,6 +927,7 @@ class Phase_Trade(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         #self.start()
+        self.parent_ref = parent_ref
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
         self.display_name = parent_ref.display_name
@@ -1024,6 +1025,7 @@ class Phase_Fail(threading.Thread):
     def __init__(self, parent_ref):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+        self.parent_ref = parent_ref
         #self.start()
         self.hosts = parent_ref.hosts
         self.game_name = parent_ref.game_name
