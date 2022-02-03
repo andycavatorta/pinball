@@ -1144,11 +1144,14 @@ class Game(threading.Thread):
         self.phase_fail = Phase_Fail(self)
         self.start()
 
+
     def get_trade_initiated(self):
         return self.trade_initated
 
+
     def set_trade_initiated(self, b):
         self.trade_initated = b
+
 
     def set_phase(self, phase_name):
         print("set_phase", self.fruit_name,phase_name)
@@ -1179,6 +1182,7 @@ class Game(threading.Thread):
             self.current_phase = self.phase_fail
             self.current_phase.setup()
 
+
     def increment_score(self, increment_value = 1):
         for iterator in range(increment_value):
             self.score += 1
@@ -1191,6 +1195,7 @@ class Game(threading.Thread):
                 self.parent_ref.end()
                 break
 
+
     def decrement_score(self, decrement_value = 1):
         for iterator in range(decrement_value):
             self.score -= 1
@@ -1201,7 +1206,8 @@ class Game(threading.Thread):
                 self.hosts.hostnames[self.display_name].request_score("f_mezzo")
             time.sleep(0.05)
             self.hosts.hostnames[self.game_name].barter_mode_score = int(self.score)
-                
+      
+
     # todo: update function
     def pie_full_handler(self):
         self.increment_score(25)
@@ -1209,10 +1215,12 @@ class Game(threading.Thread):
         self.update_carousel_lights_to_data()
         #self.increment_decrement_fruits(True)
 
+
     def update_carousel_lights_to_data(self, _level_="on"):
         for fruit_name in self.fruit_order:
             level = _level_ if self.carousel_fruits.is_fruit_present(fruit_name) else "off"
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fruit_name,level)
+
 
     def animation_fill_carousel(self):
         fname = self.fruit_order[1]
@@ -1268,8 +1276,10 @@ class Game(threading.Thread):
         self.carousel_fruits.add_fruit(self.fruit_order[0])
         self.update_carousel_lights_to_data()
 
+
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
+
 
     def run(self):
         while True:
@@ -1288,11 +1298,14 @@ class Game(threading.Thread):
                 pass
                 # animation goes here
 
+
 class Mode_Barter(threading.Thread):
     """
     This class watches for incoming messages
     Its only action will be to change the current mode
     """
+
+
     def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.active = False
@@ -1402,6 +1415,7 @@ class Mode_Barter(threading.Thread):
         self.carousel_sequence_cursor = 0
         self.start()
 
+
     def begin(self):
         self.active = True
         self.mode_timer = 0
@@ -1423,11 +1437,13 @@ class Mode_Barter(threading.Thread):
                 matching_game_names.append(game_ref.fruit_name)
         return matching_game_names
 
+
     def get_game_states(self):
         game_states = {}
         for game_fruit_name, game_ref in self.games.items():
             game_states[game_fruit_name] = game_ref.current_phase.phase_name
         return game_states
+
 
     def get_traders(self):
         traders = []
@@ -1436,6 +1452,7 @@ class Mode_Barter(threading.Thread):
             if state in [phase_names.INVITEE, phase_names.INVITOR, phase_names.TRADE, phase_names.FAIL]:
                 traders.append(game_fruit_name)
         return traders
+
 
     def get_trading_partner(self, known_partner):
         traders = self.get_traders()
@@ -1477,7 +1494,8 @@ class Mode_Barter(threading.Thread):
         self.invitee.trading_partner = self.invitor
         self.invitor.trading_partner = self.invitee
         invitee.set_phase(phase_names.INVITEE)
-        return phase_names.INVITOR
+        invitee.set_phase(phase_names.INVITOR)
+        #return phase_names.INVITOR
 
     def end(self):
         self.active = False
