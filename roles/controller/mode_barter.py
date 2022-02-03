@@ -1495,10 +1495,13 @@ class Mode_Barter(threading.Thread):
             player_a_ref.set_phase(phase_names.COMIENZA)
             return 
         player_b_ref = random.choice(player_b_refs)
+        print("get_trade_option player_b_ref", player_b_ref, player_a_ref.fruit_name)
         invitor = player_a_ref 
         invitee = player_b_ref
         invitor.trading_partner = invitee
         invitee.trading_partner = invitor
+        print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
+        print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.set_phase(phase_names.INVITOR)
         invitee.set_phase(phase_names.INVITEE)
 
