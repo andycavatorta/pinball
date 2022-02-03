@@ -613,7 +613,7 @@ class Phase_Invitor(threading.Thread):
 
     def animation_double(self, frame):
         if frame == 0:
-            self.animation_carousel_path_blinBk(1)
+            self.animation_carousel_path_blink(1)
             self.hosts.hostnames[self.display_name].request_score("g_mezzo")
             self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
             self.hosts.hostnames[self.trading_partner.game_name].request_button_light_active("trueque",True)
