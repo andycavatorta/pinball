@@ -1477,11 +1477,14 @@ class Mode_Barter(threading.Thread):
         if len(player_a_missing_fruits) == 0:
             player_a_ref.set_phase(phase_names.COMIENZA)
         #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
-        games_with_players = self.hosts.get_games_with_players()
-        print("get_trade_option games_with_players", games_with_players, player_a_ref.fruit_name)
+
+
+        pinballhostnames_with_players = self.hosts.get_games_with_players()
+        print("get_trade_option pinballhostnames_with_players", pinballhostnames_with_players, player_a_ref.fruit_name)
 
         player_b_refs = []
-        for game_with_player in games_with_players:
+        for pinballhostname_with_player in pinballhostnames_with_players:
+            game_with_player = self.fruit_name_from_pinball_hostname[pinballhostname_with_player]
             # if this isn't the same at player_a_ref
             if game_with_player != player_a_ref.fruit_name:
                 # game_with_player needs player_a_ref.fruit_name
