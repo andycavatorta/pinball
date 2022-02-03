@@ -1268,7 +1268,7 @@ class Game(threading.Thread):
         while True:
             try:
                 topic, message = self.queue.get(True)
-                print("Game.add_to_queue",topic, message)
+                #print("Game.add_to_queue",topic, message)
                 #if topic == "set_phase":
                 #    self.set_phase(message)
                 if topic == "animation_fill_carousel":
