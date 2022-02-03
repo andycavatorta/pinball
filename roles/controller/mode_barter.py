@@ -498,7 +498,7 @@ class Phase_Invitor(threading.Thread):
         self.set_trade_initiated = parent_ref.set_trade_initiated
         self.trading_partner = parent_ref.trading_partner
         self.set_trade_initiated(False)
-        self.timeout_limit = 6
+        self.timeout_limit = 10
         self.trueque_button_pressed = False
         self.add_to_queue("stop", True)
         self.phase_name = phase_names.INVITOR
@@ -866,6 +866,7 @@ class Phase_Invitee(threading.Thread):
                 self.set_trade_initiated(True)
                 self.hosts.hostnames[self.game_name].cmd_lefttube_launch()
                 # todo: animation to confirm button push
+                print("Phase_Invitee respond event_button_trueque self.trading_partner.get_trade_initiated()", self.trading_partner.get_trade_initiated(), self.fruit_name)
                 if self.trading_partner.get_trade_initiated():
                     #trading
                     self.add_to_queue("stop", True)
@@ -909,6 +910,7 @@ class Phase_Invitee(threading.Thread):
                     time.sleep(0.1)
                 else:
                     timeout_counter += 1
+                    print("Phase_Invitee run", timeout_counter, self.timeout_limit, self.fruit_name)
                     if timeout_counter >= self.timeout_limit:
                         do_animation = "stop"
                         self.set_phase(phase_names.FAIL)
