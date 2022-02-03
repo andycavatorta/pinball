@@ -119,14 +119,11 @@ class Carousel_Fruits():
         return present
 
     def list_missing_other_fruits(self):
-        self.fruits_with_players = []
-        for game_with_player in self.get_games_with_players():
-            self.fruits_with_players.append(self.fruit_name_from_pinball_hostname[game_with_player])
-        missing = []
-        for fruit_with_player in self.fruits_with_players:
-            if self.fruit_presence[fruit_with_player] == False:
-                missing.append(fruit_with_player)
-        return missing
+        missing_other_fruits = []
+        for fruit_name, presence in self.fruit_presence.items():
+            if presence == False:
+                missing_other_fruits.append(fruit_name)
+        return missing_other_fruits
 
     #def get_next_empty_otherfruit(self):
     #    for game_with_player in self.games_with_players:
@@ -457,10 +454,10 @@ class Phase_Pinball(threading.Thread):
         if self.carousel_fruits.is_fruit_present(self.fruit_name):
             self.set_phase(phase_names.COMIENZA)
         # is this game missing an active other_fruit?
-        missing_other_fruits = self.carousel_fruits.list_missing_other_fruits()
-        print("missing_other_fruits",missing_other_fruits)
-        if len(missing_other_fruits) == 0:
-            self.set_phase(phase_names.COMIENZA)
+        #missing_other_fruits = self.carousel_fruits.list_missing_other_fruits()
+        #print("missing_other_fruits",missing_other_fruits,self.fruit_name)
+        #if len(missing_other_fruits) == 0:
+        #    self.set_phase(phase_names.COMIENZA)
         trade_option = self.get_trade_option(self, missing_other_fruits)
         #print("trade_option",trade_option)
         #self.set_phase(trade_option)
@@ -1468,34 +1465,40 @@ class Mode_Barter(threading.Thread):
         else: 
             print("get_trading_partner reports nonsensical number of traders:", traders)
 
-    def get_trade_option(self, potential_invitor, potential_intitee_fruit_names):
+
+    def get_trade_option(self, player_a_ref):
         # are no trades currently happening?
         if len(self.get_traders()) > 0:
             return phase_names.COMIENZA
-        # loop through all games
-        matching_invitees = []
-        for fruit_name, potential_intitee_game_ref in self.games.items():
-            if fruit_name in potential_intitee_fruit_names:
-                # does potential_invitee have potential_invitee.this_fruit?
-                if not potential_intitee_game_ref.carousel_fruits.is_fruit_present(potential_intitee_game_ref.fruit_name):
-                    return phase_names.COMIENZA
-                # is potential_invitee missing potential_invitor.this_fruit?
-                if not potential_intitee_game_ref.carousel_fruits.is_fruit_present(potential_invitor.fruit_name):
-                    # this is a match
-                    matching_invitees.append(potential_intitee_game_ref)
-        if len(matching_invitees) == 0:
-            return phase_names.COMIENZA
-        if len(matching_invitees) == 1:
-            invitee = matching_invitees[0]
-        else:
-            invitee = random.choice(other_stations_with_fruit)
-        self.invitor = potential_invitor 
-        self.invitee = invitee
-        self.invitee.trading_partner = self.invitor
+        
+        player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
+        print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
+        if len(player_a_missing_fruits) == 0:
+            player_a_ref.set_phase(phase_names.COMIENZA)
+        #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
+        games_with_players = self.hosts.get_games_with_players()
+        print("get_trade_option games_with_players", games_with_players, player_a_ref.fruit_name)
+
+        player_b_refs = []
+        for game_with_player in games_with_players:
+            # if this isn't the same at player_a_ref
+            if game_with_player != player_a_ref.fruit_name:
+                # game_with_player needs player_a_ref.fruit_name
+                if not self.games[game_with_player].carousel_fruits.is_fruit_present(player_a_ref.fruit_name):
+                    player_b_refs.append(self.games[game_with_player].carousel_fruits)
+        print("get_trade_option player_b_refs", player_b_refs, player_a_ref.fruit_name)
+        if len(player_b_refs)==0:
+            player_a_ref.set_phase(phase_names.COMIENZA)
+            return 
+        player_b_ref = random.choice(player_b_refs)
+
+        self.invitor = player_a_ref 
+        self.invitee = player_b_ref
         self.invitor.trading_partner = self.invitee
-        invitee.set_phase(phase_names.INVITEE)
-        invitee.set_phase(phase_names.INVITOR)
-        #return phase_names.INVITOR
+        self.invitee.trading_partner = self.invitor
+        self.invitor.set_phase(phase_names.INVITOR)
+        self.invitee.set_phase(phase_names.INVITEE)
+
 
     def end(self):
         self.active = False
