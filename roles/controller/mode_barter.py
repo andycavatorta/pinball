@@ -495,7 +495,7 @@ class Phase_Invitor(threading.Thread):
         self.get_trading_partner = parent_ref.get_trading_partner
         self.get_trade_initiated = parent_ref.get_trade_initiated
         self.set_trade_initiated = parent_ref.set_trade_initiated
-        self.trading_partner = None
+        self.trading_partner = parent_ref.trading_partner
         self.set_trade_initiated(False)
         self.timeout_limit = 6
         self.trueque_button_pressed = False
@@ -718,7 +718,7 @@ class Phase_Invitee(threading.Thread):
         self.get_trade_initiated = parent_ref.get_trade_initiated
         self.set_trade_initiated = parent_ref.set_trade_initiated
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
-        self.trading_partner = None
+        self.trading_partner = parent_ref.trading_partner
         self.set_trade_initiated(False)
         self.timeout_limit = 10
         self.trueque_button_pressed = False
@@ -930,6 +930,7 @@ class Phase_Trade(threading.Thread):
         self.increment_score = parent_ref.increment_score
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.phase_name = phase_names.TRADE
+        self.trading_partner = parent_ref.trading_partner
 
     def setup(self):
         print("===================== TRADE =====================", self.fruit_name)
@@ -1025,6 +1026,7 @@ class Phase_Fail(threading.Thread):
         self.decrement_score = parent_ref.decrement_score
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
         self.phase_name = phase_names.FAIL
+        self.trading_partner = parent_ref.trading_partner
 
     def setup(self):
         print("===================== FAIL =====================", self.fruit_name)
