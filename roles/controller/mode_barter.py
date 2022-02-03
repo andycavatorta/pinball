@@ -1315,8 +1315,8 @@ class Mode_Barter(threading.Thread):
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
         self.mode_timer_limit = 300
-        self.invitor = None
-        self.invitee = None
+        #self.invitor = None
+        #self.invitee = None
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
         self.pinball_hostnames = ["pinball1game","pinball2game","pinball3game","pinball4game","pinball5game"]
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
@@ -1491,20 +1491,21 @@ class Mode_Barter(threading.Thread):
             player_a_ref.set_phase(phase_names.COMIENZA)
             return 
         player_b_ref = random.choice(player_b_refs)
-
-        self.invitor = player_a_ref 
-        self.invitee = player_b_ref
-        self.invitor.trading_partner = self.invitee
-        self.invitee.trading_partner = self.invitor
-        self.invitor.set_phase(phase_names.INVITOR)
-        self.invitee.set_phase(phase_names.INVITEE)
+        invitor = player_a_ref 
+        invitee = player_b_ref
+        invitor.trading_partner = invitee
+        invitee.trading_partner = invitor
+        invitor.set_phase(phase_names.INVITOR)
+        invitee.set_phase(phase_names.INVITEE)
 
 
     def end(self):
         self.active = False
 
+
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))
+
 
     def run(self):
         time.sleep(5)
