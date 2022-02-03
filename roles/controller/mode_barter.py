@@ -533,11 +533,11 @@ class Phase_Invitor(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("pina",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
-        self.trading_partner = self.get_trading_partner(self.fruit_name)
+        #self.trading_partner = self.get_trading_partner(self.fruit_name)
 
         ### D R A W   P A T H ###
-        self.trading_partner.fruit_name
-        self.fruit_name
+        #self.trading_partner.fruit_name
+        #self.fruit_name
 
         # invitor carousel
         invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
@@ -725,7 +725,7 @@ class Phase_Invitee(threading.Thread):
 
     def setup(self):
         self.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
-        self.trading_partner = self.get_trading_partner(self.game_name)
+        #self.trading_partner = self.get_trading_partner(self.game_name)
         #self.add_to_queue("double")
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",True)
@@ -1470,8 +1470,10 @@ class Mode_Barter(threading.Thread):
             invitee = random.choice(other_stations_with_fruit)
         self.invitor = potential_invitor 
         self.invitee = invitee
-        invitee.set_phase(phase_names.INVITOR)
+        self.invitee.trading_partner = self.invitor
+        self.invitor.trading_partner = self.invitee
         invitee.set_phase(phase_names.INVITEE)
+        return phase_names.INVITOR
 
     def end(self):
         self.active = False
