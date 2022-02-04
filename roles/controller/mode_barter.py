@@ -236,6 +236,7 @@ class Phase_Comienza(threading.Thread):
         self.start()
 
     def setup(self):
+        print(time.ctime(time.time()),"===================== COMIENZA =====================", self.fruit_name)
         self.other_hostnames_with_players = []
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname_with_player in self.pinball_hostnames_with_players:
@@ -355,6 +356,7 @@ class Phase_Pinball(threading.Thread):
 
 
     def setup(self):
+        print(time.ctime(time.time()),"===================== PINBALL =====================", self.fruit_name)
         self.trading_partner = None
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -505,7 +507,7 @@ class Phase_Invitor(threading.Thread):
         self.start()
 
     def setup(self):
-        print("===================== INVITOR =====================", self.fruit_name)
+        print(time.ctime(time.time()),"===================== INVITOR =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
@@ -736,7 +738,7 @@ class Phase_Invitee(threading.Thread):
         self.start()
 
     def setup(self):
-        print("===================== INVITEE =====================", self.fruit_name)
+        print(time.ctime(time.time()),"===================== INVITEE =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
         #self.trading_partner = self.get_trading_partner(self.game_name)
@@ -769,7 +771,7 @@ class Phase_Invitee(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         self.add_to_queue("double", True)
-        print("===================== INVITEE END SETUP =====================", self.fruit_name)
+        print(time.ctime(time.time()),"===================== INVITEE END SETUP =====================", self.fruit_name)
 
     def respond(self, topic, message):
         """
@@ -951,7 +953,7 @@ class Phase_Trade(threading.Thread):
         self.trading_partner = parent_ref.trading_partner
 
     def setup(self):
-        print("===================== TRADE =====================", self.fruit_name)
+        print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -1049,7 +1051,7 @@ class Phase_Fail(threading.Thread):
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
 
     def setup(self):
-        print("===================== FAIL =====================", self.fruit_name)
+        print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -1325,7 +1327,6 @@ class Game(threading.Thread):
             except queue.Empty:
                 pass
                 # animation goes here
-
 
 class Mode_Barter(threading.Thread):
     """

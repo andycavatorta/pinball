@@ -49,27 +49,39 @@ class Multimorphic(threading.Thread):
         self.p3.configure_switch_callback(self.switches["sling_left"], self.sling_left_handler)
         self.p3.configure_switch_callback(self.switches["sling_right"], self.sling_right_handler)
         self.p3.configure_switch_callback(self.switches["trueque"], self.trueque_handler)
+
+
         # configure autofire
-        self.p3.configure_pops_slings(self.switches["pop_left"], self.coils["pop_left"], 50)
-        self.p3.configure_pops_slings(self.switches["pop_middle"], self.coils["pop_middle"], 50)
-        self.p3.configure_pops_slings(self.switches["pop_right"], self.coils["pop_right"], 50)
-        self.p3.configure_pops_slings(self.switches["sling_left"], self.coils["sling_left"], 10)
-        self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 10)
+        self.p3.configure_pops_slings(self.switches["pop_left"], self.coils["pop_left"], 40)
+        self.p3.configure_pops_slings(self.switches["pop_middle"], self.coils["pop_middle"], 40)
+        self.p3.configure_pops_slings(self.switches["pop_right"], self.coils["pop_right"], 40)
+        self.p3.configure_pops_slings(self.switches["sling_left"], self.coils["sling_left"], 8)
+        self.p3.configure_pops_slings(self.switches["sling_right"], self.coils["sling_right"], 8)
         self.start()
 
     def _enable_gameplay(self):
-        self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 25)
-        self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
-        self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 25)
-        self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 20)
-        self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 20)
+        self.enable_trueque(True)
+        self.enable_dinero(True)
+        self.enable_kicker(True)
+        self.enable_izquierda(True)
+        self.enable_derecha(True)
+        #self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], 20)
+        #self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], 20)
+        #self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], 20)
+        #self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], 18)
+        #self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], 18)
 
     def _disable_gameplay(self):
-        self.p3.clear_rule(self.switches["trueque"])
-        self.p3.clear_rule(self.switches["dinero"])
-        self.p3.clear_rule(self.switches["kicker"])
-        self.p3.disable_coil(self.coils["izquierda_hold"])
-        self.p3.disable_coil(self.coils["derecha_hold"])
+        self.enable_trueque(False)
+        self.enable_dinero(False)
+        self.enable_kicker(False)
+        self.enable_izquierda(False)
+        self.enable_derecha(False)
+        #self.p3.clear_rule(self.switches["trueque"])
+        #self.p3.clear_rule(self.switches["dinero"])
+        #self.p3.clear_rule(self.switches["kicker"])
+        #self.p3.disable_coil(self.coils["izquierda_hold"])
+        #self.p3.disable_coil(self.coils["derecha_hold"])
 
     def _pulse_coil(self,coil_name, duration_ms):
         if duration_ms < 50: #safety limit

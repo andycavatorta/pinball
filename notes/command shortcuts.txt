@@ -26,7 +26,11 @@ role_module.main.hosts.pinball1display.request_phrase("como")
 role_module.main.multimorphic.p3.pulse_coil("A0-B0-1", 40)
 
 role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
-
+        #self.hosts.hostnames[self.carousel_name].request_eject_ball("coco")    
+        #self.hosts.hostnames[self.carousel_name].request_eject_ball("naranja")
+        #self.hosts.hostnames[self.carousel_name].request_eject_ball("mango")
+        #self.hosts.hostnames[self.carousel_name].request_eject_ball("sandia")
+        #self.hosts.hostnames[self.carousel_name].request_eject_ball("pina")
 
 role_module.main.hosts.hostnames["pinball1game"].cmd_lefttube_launch()
 role_module.main.hosts.hostnames["pinball1game"].cmd_righttube_launch()
@@ -43,7 +47,12 @@ role_module.main.hosts.hostnames["pinball5game"].cmd_righttube_launch()
 
 
 
-role_module.main.hosts.hostnames["pinball3game"].cmd_kicker_launch()
+role_module.main.hosts.hostnames["pinball5game"].cmd_kicker_launch()
+
+
+
+
+
 role_module.main.hosts.hostnames["pinball3game"].enable_kicker_coil(True)
 
 
