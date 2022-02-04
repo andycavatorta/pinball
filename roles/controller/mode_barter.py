@@ -550,9 +550,9 @@ class Phase_Invitor(threading.Thread):
         print("Phase_Invitor self.trading_partner", self.trading_partner)
 
         # invitor carousel
-        invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
-        center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
-        invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+        #invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
+        #center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
+        #invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
 
         # draw path
         # dim lit fruits in local carousel
@@ -986,6 +986,7 @@ class Phase_Trade(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
 
+        self.update_carousel_lights_to_data()
 
 
 
@@ -1111,6 +1112,9 @@ class Phase_Fail(threading.Thread):
         time.sleep(0.25)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         point_loss = int(self.parent_ref.score * 0.1)
+
+        self.update_carousel_lights_to_data()
+        self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
         self.decrement_score(point_loss)
         self.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
@@ -1246,7 +1250,7 @@ class Game(threading.Thread):
         #self.increment_decrement_fruits(True)
 
 
-    def update_carousel_lights_to_data(self, _level_="on"):
+    def update_carousel_lights_to_data(self, _level_="med"):
         for fruit_name in self.fruit_order:
             level = _level_ if self.carousel_fruits.is_fruit_present(fruit_name) else "off"
             self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fruit_name,level)

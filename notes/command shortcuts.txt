@@ -41,7 +41,7 @@ role_module.main.hosts.hostnames["pinball3game"].cmd_righttube_launch()
 role_module.main.hosts.hostnames["pinball4game"].cmd_lefttube_launch()
 role_module.main.hosts.hostnames["pinball4game"].cmd_righttube_launch()
 role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
-role_module.main.hosts.hostnames["pinball5game"].cmd_righttube_launch()
+    hosts.hostnames["pinball5game"].cmd_righttube_launch()
 
 
 
