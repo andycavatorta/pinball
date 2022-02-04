@@ -1591,8 +1591,7 @@ class Mode_Money(threading.Thread):
                     self.mode_timer += 1
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False
-                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                        self.set_current_mode(self.game_mode_names.RESET)
                         self.end()
-
 
 ###############################################################################################
