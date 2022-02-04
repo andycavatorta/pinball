@@ -186,12 +186,17 @@ class Phase_NoPlayer(threading.Thread):
 
     def setup(self):
         self.trading_partner = None
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        self.hosts.hostnames[self.game_name].disable_gameplay()
+        #self.hosts.hostnames[self.game_name].disable_gameplay()
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("all_radial", "off")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all", "off")
 
@@ -246,7 +251,13 @@ class Phase_Comienza(threading.Thread):
         self.trading_partner = None
         #print("---> trading_partner",self.trading_partner, self.fruit_name)
         #self.hosts.hostnames[self.game_name].disable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_gameplay()
+        #self.hosts.hostnames[self.game_name].enable_gameplay()
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(True)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
+
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
@@ -358,18 +369,16 @@ class Phase_Pinball(threading.Thread):
     def setup(self):
         print(time.ctime(time.time()),"===================== PINBALL =====================", self.fruit_name)
         self.trading_partner = None
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
-        self.hosts.hostnames[self.game_name].enable_gameplay()
-        #self.hosts.hostnames[self.game_name].disable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
-        #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
 
 
     def respond(self, topic, message):
@@ -510,18 +519,18 @@ class Phase_Invitor(threading.Thread):
         print(time.ctime(time.time()),"===================== INVITOR =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
+
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(True)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        self.hosts.hostnames[self.game_name].enable_gameplay()
-        #self.hosts.hostnames[self.game_name].disable_gameplay()
-        #self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
-        #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
+ 
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
         #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
@@ -743,17 +752,17 @@ class Phase_Invitee(threading.Thread):
         self.trade_role = phase_names.INVITEE # this is a hack to preserve role after this phase
         #self.trading_partner = self.get_trading_partner(self.game_name)
         #self.add_to_queue("double")
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(True)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
-        self.hosts.hostnames[self.game_name].enable_gameplay()
-        #self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
-        #self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
-        #self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
+
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
         #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
@@ -857,7 +866,7 @@ class Phase_Invitee(threading.Thread):
 
         if topic == "event_trough_sensor":
             if message:
-                self.hosts.hostnames[self.game_name].enable_gameplay()
+                #self.hosts.hostnames[self.game_name].enable_gameplay()
                 #self.hosts.hostnames[self.game_name].disable_gameplay()
                 self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
                 self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -955,18 +964,17 @@ class Phase_Trade(threading.Thread):
     def setup(self):
         print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        self.hosts.hostnames[self.game_name].enable_gameplay()
-        #self.hosts.hostnames[self.game_name].disable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
-        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
-        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
+
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
         #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
@@ -1050,18 +1058,17 @@ class Phase_Fail(threading.Thread):
     def setup(self):
         print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
+        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
+        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
-        self.hosts.hostnames[self.game_name].enable_gameplay()
-        #self.hosts.hostnames[self.game_name].disable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
-        self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
-        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
-        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
+
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_left", "off")
         #self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_arrow_right", animation)
         self.hosts.hostnames[self.game_name].cmd_playfield_lights("sign_bottom_left", "on")
