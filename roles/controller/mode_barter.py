@@ -313,7 +313,7 @@ class Phase_Comienza(threading.Thread):
 
     def end(self):
         self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
-        self.update_carousel_lights_to_data
+        self.update_carousel_lights_to_data()
         self.add_to_queue("spend_fruit", self.sacrificial_fruit)
         self.hosts.hostnames[self.game_name].cmd_kicker_launch() 
         self.set_phase(phase_names.PINBALL)
