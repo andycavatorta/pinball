@@ -265,36 +265,39 @@ class Phase_Comienza(threading.Thread):
         self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
         #print("---> other_fruits", other_fruits, self.fruit_name)
+        self.sacrificial_fruit = ""
         if len(other_fruits) > 0:
             self.sacrificial_fruit = other_fruits[0]
-            #print("--->a self.sacrificial_fruit",self.sacrificial_fruit, self.fruit_name)
-        else: # if there are no otherfruits
-            if self.score > 0:
-                point_loss = int(self.score * 0.1)
-                #self.decrement_score(point_loss)
 
-            games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
-            #print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
-            if len(games_missing_other_fruit) > 0:
-                other_pinball_hostname = random.choice(games_missing_other_fruit)
-            else:
-                other_pinball_hostname = random.choice(self.other_hostnames_with_players)
-            self.sacrificial_fruit = self.fruit_name_from_pinball_hostname[other_pinball_hostname]
-            #print("--->b sacrificial_fruit", self.sacrificial_fruit, self.fruit_name)
+            """
+            else: # if there are no otherfruits
+                if self.score > 0:
+                    point_loss = int(self.score * 0.1)
+                    #self.decrement_score(point_loss)
 
-            # populate sacrificial_fruit
-            self.carousel_fruits.add_fruit(self.sacrificial_fruit)
-            self.update_carousel_lights_to_data("med")
-            # animate gain of one fruit
-            self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
-            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "low")
-            time.sleep(0.15)
-            self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
-            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "med")
-            time.sleep(0.15)
-            self.hosts.hostnames[self.display_name].request_score("c_mezzo")
-        self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "high")
-        time.sleep(0.2)
+                games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
+                #print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
+                if len(games_missing_other_fruit) > 0:
+                    other_pinball_hostname = random.choice(games_missing_other_fruit)
+                else:
+                    other_pinball_hostname = random.choice(self.other_hostnames_with_players)
+                self.sacrificial_fruit = self.fruit_name_from_pinball_hostname[other_pinball_hostname]
+                #print("--->b sacrificial_fruit", self.sacrificial_fruit, self.fruit_name)
+
+                # populate sacrificial_fruit
+                self.carousel_fruits.add_fruit(self.sacrificial_fruit)
+                self.update_carousel_lights_to_data("med")
+                # animate gain of one fruit
+                self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
+                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "low")
+                time.sleep(0.15)
+                self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
+                self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "med")
+                time.sleep(0.15)
+                self.hosts.hostnames[self.display_name].request_score("c_mezzo")
+            """
+            self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(self.sacrificial_fruit,  "high")
+            time.sleep(0.2)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         time.sleep(0.2)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
@@ -313,9 +316,10 @@ class Phase_Comienza(threading.Thread):
 
 
     def end(self):
-        self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
-        self.update_carousel_lights_to_data("med")
-        self.add_to_queue("spend_fruit", self.sacrificial_fruit)
+        if self.sacrificial_fruit != "":
+            self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
+            self.update_carousel_lights_to_data("med")
+            self.add_to_queue("spend_fruit", self.sacrificial_fruit)
         self.hosts.hostnames[self.game_name].cmd_kicker_launch() 
         self.set_phase(phase_names.PINBALL)
 
