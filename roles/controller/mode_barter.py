@@ -260,7 +260,7 @@ class Phase_Comienza(threading.Thread):
         else: # if there are no otherfruits
             if self.score > 0:
                 point_loss = int(self.score * 0.1)
-                self.decrement_score(point_loss)
+                #self.decrement_score(point_loss)
 
             games_missing_other_fruit = self.get_games_missing_other_fruit(self.game_name)
             #print("---> games_missing_other_fruit", games_missing_other_fruit, self.fruit_name)
@@ -1115,7 +1115,7 @@ class Phase_Fail(threading.Thread):
 
         self.update_carousel_lights_to_data()
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
-        self.decrement_score(point_loss)
+        #self.decrement_score(point_loss)
         self.trade_role = "" # this is a hack to preserve role after this phase
         self.set_phase(phase_names.COMIENZA)
         #self.end()
@@ -1350,7 +1350,7 @@ class Mode_Barter(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 150
+        self.mode_timer_limit = 120
         #self.invitor = None
         #self.invitee = None
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
