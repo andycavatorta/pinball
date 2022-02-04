@@ -949,6 +949,7 @@ class Phase_Trade(threading.Thread):
         self.trade_role = parent_ref.trade_role
         self.increment_score = parent_ref.increment_score
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
+        self.set_trade_initiated = parent_ref.set_trade_initiated
         self.phase_name = phase_names.TRADE
         self.trading_partner = parent_ref.trading_partner
 
@@ -1050,6 +1051,7 @@ class Phase_Fail(threading.Thread):
         self.set_phase = parent_ref.set_phase
         self.trade_role = parent_ref.trade_role
         self.trading_partner = parent_ref.trading_partner
+        self.set_trade_initiated = parent_ref.set_trade_initiated
         self.update_carousel_lights_to_data = parent_ref.update_carousel_lights_to_data
 
     def setup(self):
