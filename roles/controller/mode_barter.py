@@ -500,7 +500,7 @@ class Phase_Invitor(threading.Thread):
         self.set_trade_initiated = parent_ref.set_trade_initiated
         self.trading_partner = parent_ref.trading_partner
         self.set_trade_initiated(False)
-        self.timeout_limit = 10
+        self.timeout_limit = 15
         self.trueque_button_pressed = False
         self.add_to_queue("stop", True)
         self.phase_name = phase_names.INVITOR
@@ -728,7 +728,7 @@ class Phase_Invitee(threading.Thread):
         self.pie = parent_ref.pie
         self.set_phase = parent_ref.set_phase
         self.set_trade_initiated = parent_ref.set_trade_initiated
-        self.timeout_limit = 10
+        self.timeout_limit = 15
         self.trade_role = parent_ref.trade_role
         self.trading_partner = parent_ref.trading_partner
         self.trueque_button_pressed = False
@@ -920,7 +920,7 @@ class Phase_Invitee(threading.Thread):
                     time.sleep(0.1)
                 else:
                     timeout_counter += 1
-                    print("Phase_Invitee run", timeout_counter, self.timeout_limit, self.fruit_name)
+                    print(time.ctime(time.time()),"Phase_Invitee run", timeout_counter, self.timeout_limit, self.fruit_name)
                     if timeout_counter >= self.timeout_limit:
                         do_animation = "stop"
                         self.set_phase(phase_names.FAIL)
@@ -954,6 +954,7 @@ class Phase_Trade(threading.Thread):
 
     def setup(self):
         print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
+        self.set_trade_initiated(False)
         self.trading_partner = self.parent_ref.trading_partner
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -1053,6 +1054,7 @@ class Phase_Fail(threading.Thread):
 
     def setup(self):
         print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
+        self.set_trade_initiated(False)
         self.trading_partner = self.parent_ref.trading_partner
         self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
@@ -1319,7 +1321,7 @@ class Game(threading.Thread):
         while True:
             try:
                 topic, message = self.queue.get(True)
-                #print("Game.add_to_queue",topic, message)
+                print(time.ctime(time.time()),time.ctime(time.time()),  "Game.add_to_queue",topic, message,self.fruit_name)
                 #if topic == "set_phase":
                 #    self.set_phase(message)
                 if topic == "animation_fill_carousel":
@@ -1556,7 +1558,7 @@ class Mode_Barter(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(timeout=1)
-                #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
+                print(time.ctime(time.time()),"mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):

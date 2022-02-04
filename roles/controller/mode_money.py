@@ -500,7 +500,7 @@ class Phase_Invitor(threading.Thread):
         self.set_trade_initiated = parent_ref.set_trade_initiated
         self.trading_partner = parent_ref.trading_partner
         self.set_trade_initiated(False)
-        self.timeout_limit = 10
+        self.timeout_limit = 15
         self.trueque_button_pressed = False
         self.add_to_queue("stop", True)
         self.phase_name = phase_names.INVITOR
@@ -728,7 +728,7 @@ class Phase_Invitee(threading.Thread):
         self.pie = parent_ref.pie
         self.set_phase = parent_ref.set_phase
         self.set_trade_initiated = parent_ref.set_trade_initiated
-        self.timeout_limit = 10
+        self.timeout_limit = 15
         self.trade_role = parent_ref.trade_role
         self.trading_partner = parent_ref.trading_partner
         self.trueque_button_pressed = False
