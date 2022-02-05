@@ -561,7 +561,6 @@ class Phase_Invitor(threading.Thread):
         #self.trading_partner.fruit_name
         #self.fruit_name
 
-
         print("Phase_Invitor self.parent_ref", self.parent_ref)
         print("Phase_Invitor self.parent_ref.trading_partner", self.parent_ref.trading_partner)
         print("Phase_Invitor self.trading_partner", self.trading_partner)
@@ -579,9 +578,8 @@ class Phase_Invitor(threading.Thread):
             # center carousel, clockwise from local fruit to trading partner fruit.
             # trading partner carousel, counter-clockwise to trading partner self_fruit
         # animate bright light along path
-
-
         self.add_to_queue("double", True)
+
 
     def respond(self, topic, message):
         """
@@ -597,11 +595,14 @@ class Phase_Invitor(threading.Thread):
                 if self.trading_partner.get_trade_initiated():
                     #trading
                     self.add_to_queue("stop", True)
+                    self.trading_partner("stop", True)
                     self.set_phase(phase_names.TRADE)
+                    self.trading_partner(phase_names.TRADE)
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
                     self.add_to_queue("local_pushed", True)
+
 
     def end(self):
         """
@@ -902,6 +903,7 @@ class Phase_Invitee(threading.Thread):
                     self.add_to_queue("stop", True)
                     self.trading_partner.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
+                    self.trading_partner(phase_names.TRADE)
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
@@ -1016,9 +1018,6 @@ class Phase_Trade(threading.Thread):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
 
         self.update_carousel_lights_to_data()
-
-
-
 
         """
         if self.parent_ref.trade_role == phase_names.INVITOR:

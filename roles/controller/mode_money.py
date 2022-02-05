@@ -590,14 +590,14 @@ class Phase_Invitor(threading.Thread):
                 self.hosts.hostnames[self.game_name].cmd_lefttube_launch()
                 # todo: animation to confirm button push
                 #   draw sparkly path between carousels
-                if self.trading_partner.get_trade_initiated():
+                #if self.trading_partner.get_trade_initiated():
                     #trading
-                    self.add_to_queue("stop", True)
-                    self.set_phase(phase_names.TRADE)
-                else:
-                    #waiting
-                    self.trading_partner.add_to_queue("other_pushed", True)
-                    self.add_to_queue("local_pushed", True)
+                self.add_to_queue("stop", True)
+                self.set_phase(phase_names.TRADE)
+                #else:
+                #    #waiting
+                #    self.trading_partner.add_to_queue("other_pushed", True)
+                #    self.add_to_queue("local_pushed", True)
 
     def end(self):
         """
