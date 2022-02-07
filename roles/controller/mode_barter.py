@@ -521,7 +521,6 @@ class Phase_Invitor(threading.Thread):
         print(time.ctime(time.time()),"===================== INVITOR =====================", self.fruit_name)
         self.trading_partner = self.parent_ref.trading_partner
         self.trade_role = phase_names.INVITOR # this is a hack to preserve role after this phase
-
         self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
         self.hosts.hostnames[self.game_name].enable_trueque_coil(True)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
@@ -556,20 +555,16 @@ class Phase_Invitor(threading.Thread):
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("peso",  animation)
         #self.hosts.hostnames[self.carousel_name].cmd_carousel_lights("all",  animation)
         #self.trading_partner = self.get_trading_partner(self.fruit_name)
-
         ### D R A W   P A T H ###
         #self.trading_partner.fruit_name
         #self.fruit_name
-
         print("Phase_Invitor self.parent_ref", self.parent_ref)
         print("Phase_Invitor self.parent_ref.trading_partner", self.parent_ref.trading_partner)
         print("Phase_Invitor self.trading_partner", self.trading_partner)
-
         # invitor carousel
         #invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
         #center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
         #invitee_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
-
         # draw path
         # dim lit fruits in local carousel
         # light this_fruit

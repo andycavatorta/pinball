@@ -543,23 +543,23 @@ class Pinball(Host):
         self.gameplay_enabled = False
         self.tb.publish(topic="disable_gameplay", message="",destination=self.hostname)
 
-    def enable_trueque_coil(self, enable_bool, miliseconds=20):
+    def enable_trueque_coil(self, enable_bool, miliseconds=16):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_trueque_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_dinero_coil(self, enable_bool, miliseconds=20):
+    def enable_dinero_coil(self, enable_bool, miliseconds=16):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_dinero_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_kicker_coil(self, enable_bool, miliseconds=20):
+    def enable_kicker_coil(self, enable_bool, miliseconds=16):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_kicker_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_izquierda_coil(self, enable_bool, miliseconds=20):
+    def enable_izquierda_coil(self, enable_bool, miliseconds=16):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_izquierda_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
-    def enable_derecha_coil(self, enable_bool, miliseconds=20):
+    def enable_derecha_coil(self, enable_bool, miliseconds=16):
         # no current need to store state locally
         self.tb.publish(topic="cmd_enable_derecha_coil", message=[enable_bool,miliseconds],destination=self.hostname)
 
@@ -890,7 +890,7 @@ class Hosts():
         channel_faults_list = []
         for channel_name in channel_faults:
             channel = channel_faults[channel_name]
-            if channel["temperature"] > 40:
+            if channel["temperature"] > 55:
                 channel_faults_list.append(["temperature",channel_name, channel["temperature"]])
                 non_nominal_states.append(["pinballmatrix",channel_name,"temperature", channel["temperature"]])
             if channel["closed_loop_error"] > 100:

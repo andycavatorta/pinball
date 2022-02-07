@@ -126,6 +126,20 @@ class Mode_System_Tests(threading.Thread):
     # device states
     def _check_all_device_states_(self):
         if self.phase == self.PHASE_DEVICE_STATES:
+            if len(self.hosts.get_all_non_nominal_states()) == 0:
+                print("")
+                print("===========PHASE_CHECK_CURRENT_LEAK============")
+                print("")
+                self.phase = self.PHASE_CHECK_CURRENT_LEAK
+                self.tb.publish("request_current_sensor_nominal",None)
+                self.timer = time.time()
+            else:
+                print("")
+                print("non-nominal states reported")
+                print(self.hosts.get_all_non_nominal_states())
+                print("")
+                self.set_mode(self.game_mode_names.ERROR)
+        """
             print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_5","on")
@@ -161,6 +175,9 @@ class Mode_System_Tests(threading.Thread):
                                             print(self.hosts.get_all_non_nominal_states())
                                             print("")
                                             self.set_mode(self.game_mode_names.ERROR)
+
+            """
+
 
     def response_current_sensor_nominal(self, message, origin, destination):
         # No need to pass params.  Hosts handles this.
