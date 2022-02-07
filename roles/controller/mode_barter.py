@@ -590,9 +590,9 @@ class Phase_Invitor(threading.Thread):
                 if self.trading_partner.get_trade_initiated():
                     #trading
                     self.add_to_queue("stop", True)
-                    self.trading_partner("stop", True)
+                    self.trading_partner.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
-                    self.trading_partner(phase_names.TRADE)
+                    self.trading_partner.set_phase(phase_names.TRADE)
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
@@ -898,7 +898,7 @@ class Phase_Invitee(threading.Thread):
                     self.add_to_queue("stop", True)
                     self.trading_partner.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
-                    self.trading_partner(phase_names.TRADE)
+                    self.trading_partner.set_phase(phase_names.TRADE)
                 else:
                     #waiting
                     self.trading_partner.add_to_queue("other_pushed", True)
