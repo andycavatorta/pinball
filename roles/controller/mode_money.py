@@ -872,7 +872,6 @@ class Game(threading.Thread):
         self.phase_comienza = Phase_Comienza(self)
         self.phase_pinball = Phase_Pinball(self)
         self.phase_invitor = Phase_Invitor(self)
-        self.phase_invitee = Phase_Invitee(self)
         self.phase_trade = Phase_Trade(self)
         self.phase_fail = Phase_Fail(self)
         self.start()
@@ -904,9 +903,6 @@ class Game(threading.Thread):
             self.current_phase.setup()
         if phase_name == phase_names.INVITOR:
             self.current_phase = self.phase_invitor
-            self.current_phase.setup()
-        if phase_name == phase_names.INVITEE:
-            self.current_phase = self.phase_invitee
             self.current_phase.setup()
         if phase_name == phase_names.TRADE:
             self.current_phase = self.phase_trade
