@@ -150,6 +150,17 @@ class Multimorphic(threading.Thread):
         self.add_to_queue("disable_gameplay")
     def pulse_coil(self,coil_name, duration_ms):
         self.add_to_queue("pulse_coil",[coil_name, duration_ms])
+    def enable_trueque_coil(self, _bool ):
+        self.add_to_queue("enable_trueque_coil", _bool)
+    def enable_dinero_coil(self, _bool):
+        self.add_to_queue("enable_dinero_coil", _bool)
+    def enable_kicker_coil(self, _bool):
+        self.add_to_queue("enable_kicker_coil", _bool)
+    def enable_izquierda_coil(self, _bool):
+        self.add_to_queue("enable_izquierda_coil", _bool)
+    def enable_derecha_coil(self, _bool):
+        self.add_to_queue("enable_derecha_coil", _bool)
+        
     def add_to_queue(self, command, params=[]):
         self.queue.put((command, params))
 

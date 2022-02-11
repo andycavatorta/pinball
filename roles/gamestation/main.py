@@ -369,23 +369,23 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_enable_derecha_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_derecha(message[0],message[1])
+                        self.multimorphic.enable_derecha_coil(message)
 
                 if topic == 'cmd_enable_dinero_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_dinero(message[0],message[1])
+                        self.multimorphic.enable_dinero_coil(message)
 
                 if topic == 'cmd_enable_izquierda_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_izquierda(message[0],message[1])
+                        self.multimorphic.enable_izquierda_coil(message)
 
                 if topic == 'cmd_enable_kicker_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_kicker(message[0],message[1])
+                        self.multimorphic.enable_kicker_coil(message)
 
                 if topic == 'cmd_enable_trueque_coil':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.enable_trueque(message[0],message[1])
+                        self.multimorphic.enable_trueque_coil(message)
 
                 if topic == 'cmd_kicker_launch':
                     if destination == self.tb.get_hostname():
