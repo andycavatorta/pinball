@@ -27,10 +27,13 @@ role_module.main.multimorphic.p3.pulse_coil("A0-B1-1", 20)
 
 role_module.main.multimorphic.p3.pulse_coil("A0-B1-2", 20)
 
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["dinero"], 18)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["trueque"], 18)
+
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["kicker"], 18)
 
 
-coils["dinero"]
-coils["trueque"]
+role_module.main.multimorphic.coils["trueque"]
 
 
 
@@ -76,6 +79,10 @@ role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
 
 
 
+role_module.main.hosts.hostnames["pinball1game"].cmd_kicker_launch()
+role_module.main.hosts.hostnames["pinball2game"].cmd_kicker_launch()
+role_module.main.hosts.hostnames["pinball3game"].cmd_kicker_launch()
+role_module.main.hosts.hostnames["pinball4game"].cmd_kicker_launch()
 role_module.main.hosts.hostnames["pinball5game"].cmd_kicker_launch()
 
 
