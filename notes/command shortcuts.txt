@@ -52,7 +52,7 @@ role_module.main.multimorphic.coils["trueque"]
 
 
 
-role_module.main.tb.publish(topic="event_button_trueque",message=True)
+role_module.main.tb.publish(topic="event_button_comienza",message=True)
 
 
 "A0-B1-0"
