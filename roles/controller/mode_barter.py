@@ -558,9 +558,9 @@ class Phase_Invitor(threading.Thread):
         ### D R A W   P A T H ###
         #self.trading_partner.fruit_name
         #self.fruit_name
-        print("Phase_Invitor self.parent_ref", self.parent_ref)
-        print("Phase_Invitor self.parent_ref.trading_partner", self.parent_ref.trading_partner)
-        print("Phase_Invitor self.trading_partner", self.trading_partner)
+        #print("Phase_Invitor self.parent_ref", self.parent_ref)
+        #print("Phase_Invitor self.parent_ref.trading_partner", self.parent_ref.trading_partner)
+        #print("Phase_Invitor self.trading_partner", self.trading_partner)
         # invitor carousel
         #invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_partner.fruit_name,self.fruit_name)
         #center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_partner.fruit_name)
@@ -1349,7 +1349,7 @@ class Game(threading.Thread):
         while True:
             try:
                 topic, message = self.queue.get(True)
-                print(time.ctime(time.time()),time.ctime(time.time()),  "Game.add_to_queue",topic, message,self.fruit_name)
+                #print(time.ctime(time.time()),time.ctime(time.time()),  "Game.add_to_queue",topic, message,self.fruit_name)
                 #if topic == "set_phase":
                 #    self.set_phase(message)
                 if topic == "animation_fill_carousel":
@@ -1586,7 +1586,7 @@ class Mode_Barter(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(timeout=1)
-                print(time.ctime(time.time()),"mode_barter.py Mode_Barter.run",topic, message, origin, destination)
+                #print(time.ctime(time.time()),"mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
                 if isinstance(message, bytes):
