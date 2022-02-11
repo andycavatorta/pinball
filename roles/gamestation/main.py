@@ -356,7 +356,8 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                print(">> received >>", topic, message, origin, destination)
+                if topic != b'cmd_playfield_lights':
+                    print(">> received >>", topic, message, origin, destination)
 
                 try: 
                     topic = topic.decode('UTF-8')
