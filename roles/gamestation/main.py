@@ -356,9 +356,9 @@ class Main(threading.Thread):
         while True:
             try:
                 topic, message, origin, destination = self.queue.get(True)
-                if topic != b'cmd_playfield_lights':
-                    if destination == self.tb.get_hostname():
-                        print(">> received >>", topic, message, origin, destination)
+                #if topic != b'cmd_playfield_lights':
+                #    if destination == self.tb.get_hostname():
+                #        print(">> received >>", topic, message, origin, destination)
 
                 try: 
                     topic = topic.decode('UTF-8')
@@ -370,6 +370,7 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_enable_derecha_coil':
                     if destination == self.tb.get_hostname():
+                        print("main.py run cmd_enable_derecha_coil", message)
                         self.multimorphic.enable_derecha_coil(message)
 
                 if topic == 'cmd_enable_dinero_coil':
@@ -378,6 +379,7 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_enable_izquierda_coil':
                     if destination == self.tb.get_hostname():
+                        print("main.py run cmd_enable_izquierda_coil", message)
                         self.multimorphic.enable_izquierda_coil(message)
 
                 if topic == 'cmd_enable_kicker_coil':

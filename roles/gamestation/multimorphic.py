@@ -103,14 +103,20 @@ class Multimorphic(threading.Thread):
         else:
             self.p3.clear_rule(self.switches["kicker"])
     def enable_izquierda(self, enable_bool, miliseconds=16):
+        print("multimorphic.py enable_izquierda 1", enable_bool, miliseconds)
         if enable_bool:
+            print("multimorphic.py enable_izquierda 2", enable_bool, miliseconds)
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], miliseconds)
         else:
+            print("multimorphic.py enable_izquierda 3", enable_bool, miliseconds)
             self.p3.clear_rule(self.switches["izquierda"])
     def enable_derecha(self, enable_bool, miliseconds=16):
+        print("multimorphic.py enable_derecha 1", enable_bool, miliseconds)
         if enable_bool:
+            print("multimorphic.py enable_derecha 2", enable_bool, miliseconds)
             self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], miliseconds)
         else:
+            print("multimorphic.py enable_derecha 3", enable_bool, miliseconds)
             self.p3.clear_rule(self.switches["derecha"])
 
     def izquierda_handler(self,event_state):
@@ -157,10 +163,12 @@ class Multimorphic(threading.Thread):
     def enable_kicker_coil(self, _bool):
         self.add_to_queue("enable_kicker_coil", _bool)
     def enable_izquierda_coil(self, _bool):
+        print("multimorphic.py enable_izquierda_coil", _bool)
         self.add_to_queue("enable_izquierda_coil", _bool)
     def enable_derecha_coil(self, _bool):
+        print("multimorphic.py enable_derecha_coil", _bool)
         self.add_to_queue("enable_derecha_coil", _bool)
-        
+
     def add_to_queue(self, command, params=[]):
         self.queue.put((command, params))
 
@@ -168,7 +176,7 @@ class Multimorphic(threading.Thread):
         while True:
             try:
                 command, params = self.queue.get(True,0.01)
-                print("multimorphic.py", command, params)
+                print("multimorphic.py run", command, params)
                 if command == "enable_gameplay":
                     self._enable_gameplay()
                 if command == "disable_gameplay":
