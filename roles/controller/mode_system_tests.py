@@ -155,7 +155,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
 
-        """
+            """
             if len(self.hosts.get_all_non_nominal_states()) == 0:
                 print("")
                 print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -170,7 +170,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
 
-        """
+            """
             print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_5","on")
