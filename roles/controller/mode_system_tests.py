@@ -139,6 +139,22 @@ class Mode_System_Tests(threading.Thread):
                 print(self.hosts.get_all_non_nominal_states())
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
+
+
+            if len(self.hosts.get_all_non_nominal_states()) == 0:
+                print("")
+                print("===========PHASE_CHECK_CURRENT_LEAK============")
+                print("")
+                self.phase = self.PHASE_CHECK_CURRENT_LEAK
+                self.tb.publish("request_current_sensor_nominal",None)
+                self.timer = time.time()
+            else:
+                print("")
+                print("non-nominal states reported")
+                print(self.hosts.get_all_non_nominal_states())
+                print("")
+                self.set_mode(self.game_mode_names.ERROR)
+
         """
             print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
