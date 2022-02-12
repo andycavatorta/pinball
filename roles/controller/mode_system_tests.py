@@ -91,8 +91,11 @@ class Mode_System_Tests(threading.Thread):
                 self.timer = time.time()
     # presence
     def _check_presence_(self):
+        print("_check_presence_ 1")
         if self.phase == self.PHASE_DEVICE_PRESENCE:
+            print("_check_presence_ 2")
             if self.hosts.get_all_current_sensor_present() == True:
+                print("_check_presence_ 3")
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_4","on")
                 print("")
                 print("===========PHASE_DEVICE_STATES============")
@@ -140,7 +143,9 @@ class Mode_System_Tests(threading.Thread):
 
     # device states
     def _check_all_device_states_(self):
+        print("_check_all_device_states_ 1")
         if self.phase == self.PHASE_DEVICE_STATES:
+            print("_check_all_device_states_ 2")
             if len(self.hosts.get_all_non_nominal_states()) == 0:
                 print("")
                 print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -155,7 +160,6 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
 
-            """
             if len(self.hosts.get_all_non_nominal_states()) == 0:
                 print("")
                 print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -170,7 +174,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
 
-            """
+        """
             print("_check_all_device_states_",0)
             if self.hosts.pinballmatrix.get_amt203_absolute_position_populated() == True:
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_5","on")
@@ -207,6 +211,7 @@ class Mode_System_Tests(threading.Thread):
                                             print("")
                                             self.set_mode(self.game_mode_names.ERROR)
 
+            """
 
 
     def response_current_sensor_nominal(self, message, origin, destination):
