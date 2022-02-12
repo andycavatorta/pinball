@@ -878,53 +878,6 @@ class Hosts():
 
     def get_all_non_nominal_states(self):
         non_nominal_states = []
-        """
-        closed_loop_error = self.pinballmatrix.get_sdc2160_closed_loop_error()
-        closed_loop_error_list = []
-        for channel_value in enumerate(closed_loop_error):
-            channel, value = channel_value
-            if value > 100:
-                closed_loop_error_list.append([channel, value])
-                non_nominal_states.append(["pinballmatrix","sdc2160_closed_loop_error",channel, value])
-        # sdc: check channel faults
-        channel_faults = self.pinballmatrix.get_sdc2160_channel_faults()
-        channel_faults_list = []
-        for channel_name in channel_faults:
-            channel = channel_faults[channel_name]
-            if channel["temperature"] > 55:
-                channel_faults_list.append(["temperature",channel_name, channel["temperature"]])
-                non_nominal_states.append(["pinballmatrix",channel_name,"temperature", channel["temperature"]])
-            if channel["closed_loop_error"] > 100:
-                channel_faults_list.append("closed_loop_error", channel_name,channel["closed_loop_error"])
-                non_nominal_states.append(["pinballmatrix",channel_name,"closed_loop_error", channel["closed_loop_error"]])
-            if channel["stall_detection"] != False:
-                msg = ["stall_detection", channel_name,channel["stall_detection"]]
-                channel_faults_list.append(msg)
-                non_nominal_states.append(["pinballmatrix",channel_name,"stall_detection", channel["stall_detection"]])
-            if channel["motor_amps"] > 6:
-                channel_faults_list.append(["motor_amps",channel_name, channel["motor_amps"]])
-                non_nominal_states.append(["pinballmatrix",channel_name,"motor_amps", channel["motor_amps"]])
-
-            runtime_status_flags = channel["runtime_status_flags"]
-            for flag_name in runtime_status_flags:
-                if runtime_status_flags[flag_name] != 0:
-                    channel_faults_list.append(flag_name, channel_name,runtime_status_flags[flag_name])
-                    non_nominal_states.append(["pinballmatrix",channel_name,flag_name, runtime_status_flags[flag_name]])
-        # sdc: check controller faults
-        controller_errors_list = []
-        controller_faults_list = self.pinballmatrix.get_sdc2160_controller_faults()
-        controller_faults = {
-            "carousel1and2":controller_faults_list[0],
-            "carousel3and4":controller_faults_list[1],
-            "carousel5and6":controller_faults_list[2],
-        }
-        for controller_name in controller_faults:
-            controller = controller_faults[controller_name]
-            for fault_name in controller:
-                if controller[fault_name] != 0:
-                    controller_errors_list.append([fault_name, controller_name,controller[fault_name]])
-                    non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
-        """
         computer_details_errors = []
         for hostname in self.hostnames:
             deets = self.hostnames[hostname].get_computer_details()
