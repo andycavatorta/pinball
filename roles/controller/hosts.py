@@ -565,7 +565,7 @@ class Pinball(Host):
 
     def cmd_pulse_coil(self, coil_name, ms):
         # no current need to store state locally
-        self.tb.publish(topic="cmd_enable_derecha_coil", message=[coil_name, ms],destination=self.hostname)
+        self.tb.publish(topic="cmd_pulse_coil", message=[coil_name, ms],destination=self.hostname)
 
 
     ### LEFT TUBE ###

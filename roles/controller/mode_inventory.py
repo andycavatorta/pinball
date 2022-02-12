@@ -253,17 +253,17 @@ class Mode_Inventory(threading.Thread):
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
 
         coil_names = [
-            "pop_left"
-            "pop_middle"
-            "pop_right"
-            "sling_left"
-            "sling_right"
-            "derecha_main"
-            "derecha_hold"
-            "izquierda_main"
-            "izquierda_hold"
-            "trueque"
-            "dinero"
+            "pop_left",
+            "pop_middle",
+            "pop_right",
+            "sling_left",
+            "sling_right",
+            "derecha_main",
+            "derecha_hold",
+            "izquierda_main",
+            "izquierda_hold",
+            "trueque",
+            "dinero",
             "kicker"
         ]
 

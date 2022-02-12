@@ -276,6 +276,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("cmd_kicker_launch") # to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_lefttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("cmd_playfield_lights")
+        self.tb.subscribe_to_topic("cmd_pulse_coil")
+        
         self.tb.subscribe_to_topic("cmd_set_mode")
         self.tb.subscribe_to_topic("cmd_righttube_launch")# to do: finish code -  might not be used
         self.tb.subscribe_to_topic("connected")

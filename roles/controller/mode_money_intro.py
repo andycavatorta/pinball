@@ -99,12 +99,12 @@ class Mode_Money_Intro(threading.Thread):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
-                self.hosts.hostnames[display_hostname].request_phrase("")
+                self.hosts.hostnames[display_hostname].request_phrase("fue")
             time.sleep(0.5)
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
-                self.hosts.hostnames[display_hostname].request_phrase("trueque")
+                self.hosts.hostnames[display_hostname].request_phrase("fue")
             time.sleep(0.5)
 
         for display_hostname in self.display_hostnames:
