@@ -135,7 +135,7 @@ class Mode_System_Tests(threading.Thread):
     def response_sdc2160_present(self, message, origin, destination):
         self._check_presence_()
 
-    def current_sensor_present(self, message, origin, destination):
+    def response_current_sensor_present(self, message, origin, destination):
         self._check_presence_()
 
     # device states
@@ -155,7 +155,7 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.set_mode(self.game_mode_names.ERROR)
 
-
+        """
             if len(self.hosts.get_all_non_nominal_states()) == 0:
                 print("")
                 print("===========PHASE_CHECK_CURRENT_LEAK============")
@@ -207,7 +207,6 @@ class Mode_System_Tests(threading.Thread):
                                             print("")
                                             self.set_mode(self.game_mode_names.ERROR)
 
-            """
 
 
     def response_current_sensor_nominal(self, message, origin, destination):
