@@ -84,7 +84,7 @@ class Multimorphic(threading.Thread):
         #self.p3.disable_coil(self.coils["derecha_hold"])
 
     def _pulse_coil(self,coil_name, duration_ms):
-        if duration_ms < 50: #safety limit
+        if duration_ms < 25: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
     def enable_trueque(self, enable_bool, miliseconds=14):

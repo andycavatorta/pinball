@@ -368,6 +368,12 @@ class Main(threading.Thread):
                 #if topic == 'cmd_all_off':
                 #        self.multimorphic.disable_gameplay()
 
+
+                if topic == 'cmd_pulse_coil':
+                    if destination == self.tb.get_hostname():
+                        print("main.py run cmd_pulse_coil", message)
+                        self.multimorphic.pulse_coil(message[0],message[1])
+
                 if topic == 'cmd_enable_derecha_coil':
                     if destination == self.tb.get_hostname():
                         print("main.py run cmd_enable_derecha_coil", message)
