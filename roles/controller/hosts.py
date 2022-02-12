@@ -878,6 +878,7 @@ class Hosts():
 
     def get_all_non_nominal_states(self):
         non_nominal_states = []
+        """
         closed_loop_error = self.pinballmatrix.get_sdc2160_closed_loop_error()
         closed_loop_error_list = []
         for channel_value in enumerate(closed_loop_error):
@@ -923,6 +924,7 @@ class Hosts():
                 if controller[fault_name] != 0:
                     controller_errors_list.append([fault_name, controller_name,controller[fault_name]])
                     non_nominal_states.append(["pinballmatrix",controller_name,fault_name, controller[fault_name]])
+        """
         computer_details_errors = []
         for hostname in self.hostnames:
             deets = self.hostnames[hostname].get_computer_details()
