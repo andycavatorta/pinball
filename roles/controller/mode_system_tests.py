@@ -85,12 +85,25 @@ class Mode_System_Tests(threading.Thread):
                 print("")
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_1","on")
                 self.phase = self.PHASE_DEVICE_PRESENCE
-                self.tb.publish("request_amt203_present",None)
-                self.tb.publish("request_sdc2160_present",None)
+                #self.tb.publish("request_amt203_present",None)
+                #self.tb.publish("request_sdc2160_present",None)
                 self.tb.publish("request_current_sensor_present",None)
                 self.timer = time.time()
     # presence
     def _check_presence_(self):
+        if self.phase == self.PHASE_DEVICE_PRESENCE:
+            if self.hosts.get_all_current_sensor_present() == True:
+                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_4","on")
+                print("")
+                print("===========PHASE_DEVICE_STATES============")
+                print("")
+                self.phase = self.PHASE_DEVICE_STATES
+                self.tb.publish("request_current_sensor_value",None)
+                self.tb.publish("request_current_sensor_nominal",None)
+                self.tb.publish("request_current_sensor_present",None)
+                time.sleep(10)
+                self.timer = time.time()
+        """
         if self.phase == self.PHASE_DEVICE_PRESENCE:
             if self.hosts.pinballmatrix.get_amt203_present() == True:
                 self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("spoke_2","on")
@@ -113,6 +126,8 @@ class Mode_System_Tests(threading.Thread):
                         self.tb.publish("request_amt203_zeroed",None)
                         time.sleep(10)
                         self.timer = time.time()
+        """
+
 
     def response_amt203_present(self, message, origin, destination):
         self._check_presence_()
@@ -120,7 +135,7 @@ class Mode_System_Tests(threading.Thread):
     def response_sdc2160_present(self, message, origin, destination):
         self._check_presence_()
 
-    def response_current_sensor_present(self, message, origin, destination):
+    def current_sensor_present(self, message, origin, destination):
         self._check_presence_()
 
     # device states
