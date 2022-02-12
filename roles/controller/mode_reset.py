@@ -131,6 +131,19 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","off")
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","off")
             time.sleep(1)
+
+
+        for i in range(3):
+            for display_hostname in self.display_hostnames:
+                self.hosts.hostnames[display_hostname].request_score("f_piano")
+                self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
+                self.hosts.hostnames[display_hostname].request_phrase("como")
+            time.sleep(0.5)
+            for display_hostname in self.display_hostnames:
+                self.hosts.hostnames[display_hostname].request_score("f_piano")
+                self.hosts.hostnames[display_hostname].request_score("g_piano")
+                self.hosts.hostnames[display_hostname].request_phrase("como")
+            time.sleep(0.5)
         time.sleep(5)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
         

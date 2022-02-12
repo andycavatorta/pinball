@@ -140,7 +140,7 @@ class Mode_Inventory(threading.Thread):
         self.carousel_hostnames = ["carousel1","carousel2","carousel3","carousel4","carousel5","carouselcenter",]
         self.game_mode_names = settings.Game_Modes
         self.timer = time.time()
-        self.timeout_duration = 120 #seconds
+        self.timeout_duration = 300 #seconds
         self.phase = self.PHASE_ZERO
         self.start()
         # self.hosts["pinballmatrix"].request_amt203_zeroed()
