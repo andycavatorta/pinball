@@ -103,25 +103,19 @@ class Multimorphic(threading.Thread):
         else:
             self.p3.clear_rule(self.switches["kicker"])
     def enable_izquierda(self, enable_bool, miliseconds=16):
-        print("multimorphic.py enable_izquierda 1", enable_bool, miliseconds)
         if enable_bool:
-            print("multimorphic.py enable_izquierda 2", enable_bool, miliseconds)
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], miliseconds)
         else:
-            print("multimorphic.py enable_izquierda 3", enable_bool, miliseconds)
             self.p3.clear_rule(self.switches["izquierda"])
     def enable_derecha(self, enable_bool, miliseconds=16):
-        print("multimorphic.py enable_derecha 1", enable_bool, miliseconds)
         if enable_bool:
-            print("multimorphic.py enable_derecha 2", enable_bool, miliseconds)
             self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], miliseconds)
         else:
-            print("multimorphic.py enable_derecha 3", enable_bool, miliseconds)
             self.p3.clear_rule(self.switches["derecha"])
 
     def izquierda_handler(self,event_state):
         print("izquierda button=",event_state)
-        #self.callback("event_button_izquierda",event_state, "multimorphic", None)
+        self.callback("event_button_izquierda",event_state, "multimorphic", None)
     def trueque_handler(self,event_state):
         print("trueque button=",event_state)
         self.callback("event_button_trueque",event_state, "multimorphic", None)
