@@ -145,15 +145,19 @@ class P3Jab:
 
     def poll(self):
         """Poll for changes."""
-        events = self.proc.get_events()
-        self.proc.watchdog_tickle()
-        self.proc.flush()
-        for event in events:
-            event_type = event['type']
-            event_value = event['value']
-            if event_type == pinproc.EventTypeSwitchClosedDebounced:
-                if event_value in self.callbacks:
-                    self.callbacks[event_value]("closed")
-            elif event_type == pinproc.EventTypeSwitchOpenDebounced:
-                if event_value in self.callbacks:
-                    self.callbacks[event_value]("open")
+        try:
+            events = self.proc.get_events()
+            self.proc.watchdog_tickle()
+            self.proc.flush()
+            for event in events:
+                event_type = event['type']
+                event_value = event['value']
+                if event_type == pinproc.EventTypeSwitchClosedDebounced:
+                    if event_value in self.callbacks:
+                        self.callbacks[event_value]("closed")
+                elif event_type == pinproc.EventTypeSwitchOpenDebounced:
+                    if event_value in self.callbacks:
+                        self.callbacks[event_value]("open")
+        except OSError as e:
+            print("error in p3_roc.py poll().",e)
+            time.sleep(0.1)

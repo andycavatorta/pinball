@@ -27,6 +27,9 @@ svg {
 #mode_title{
   transform: translate(50px, 50px);
 }
+#mode_value{
+  transform: translate(50px, 50px);
+}
 #high_power_title{
   transform: translate(2650px,50px);
 }
@@ -127,5 +130,7 @@ svg {
   transform: translate(5px, 30px);
   alignment-baseline: hanging;
 }
+
+
 
 

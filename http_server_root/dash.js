@@ -313,6 +313,10 @@ function websocket_message_handler(evt) {
         break;
       case "response_current_sensor_value":
         break;
+      case "response_current_mode":
+        break;
+
+
       case "respond_host_connected":
         if (message){
           hostmap[origin].rpi.background_rectangle.setAttribute("class","theme_present");
@@ -608,6 +612,53 @@ class Amps_Block{
 }
 
 
+
+class Title_Block{
+  constructor(dom_parent, coordinates, title, value_str=0){
+    this.dom_parent = dom_parent;
+    this.title = title;
+    this.value_str = value_str;
+    this.container = create_group(
+      this.dom_parent,
+      {
+        class:"status_block",
+        transform:`matrix(1,0,0,1,${coordinates[0]},${coordinates[1]})`,
+        height: `30px`,
+      }
+    );
+    this.background_rectangle = create_rectangle(
+      this.container,
+      {
+        class:"status_block",
+        height:`60px`,
+        width:`120px`,
+      }
+    );
+    this.title = create_text(
+      this.container, 
+      this.title, 
+      {
+        class:"title_text",
+      }
+    );
+    this._value_ = create_text(
+      this.container, 
+      this.value_str, 
+      {
+        class:"title_text",
+      }
+    );
+    this.set_value(value_str);
+
+  }
+  set_value(value_str){
+    this.value_str = value_str
+    let textnode = document.createTextNode(`${this.value_str}`);
+    this.value_str_display.replaceChild(textnode, this._value_.childNodes[0]);
+  }
+}
+
+create_text(canvas, "MODE: WAITING_FOR_CONNECTIONS", {class:"title_text",id:"mode_title"})
 
 
 
