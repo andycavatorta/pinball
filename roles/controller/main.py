@@ -156,11 +156,8 @@ class Main(threading.Thread):
         # INDUCTIVE SENSORS
         self.tb.subscribe_to_topic("event_carousel_ball_detected")
         self.tb.subscribe_to_topic("response_carousel_ball_detected")
-
         self.choreography = Choreography(self.tb, self.hosts)
-
         self.email_message_data = []
-        
         self.modes = {
             "error":Mode_Error(self.tb, self.hosts, self.set_current_mode, self.safety_enable.set_active),
             "waiting_for_connections":Mode_Waiting_For_Connections(self.tb, self.hosts, self.set_current_mode),
@@ -180,18 +177,28 @@ class Main(threading.Thread):
         self.current_mode = self.modes["waiting_for_connections"]
         self.current_mode.begin()
         self.start()
+
+        
     ##### THIRTYBIRDS CALLBACKS #####
     def network_message_handler(self, topic, message, origin, destination):
         self.add_to_queue(topic, message, origin, destination)
+
+
     def exception_handler(self, exception):
         print("exception_handler",exception)
+
+
     def network_status_change_handler(self, status, hostname):
         self.add_to_queue(b"respond_host_connected",status,hostname, False)
         # update self.hosts[hostname].set_connected() 
         # self.add_to_queue(topic, message, origin, destination)
+
+
     def add_to_queue(self, topic, message, origin, destination):
         # if topic=system_tests, update self.hosts[hostname].set_connected() 
         self.queue.put((topic, message, origin, destination))
+
+
     ##### MODE MANAGEMENT #####
     def set_current_mode(self,mode_name):
         print("current_mode",self.current_mode,"new mode",mode_name)
@@ -246,13 +253,18 @@ class Main(threading.Thread):
             self.current_mode.end()
             self.current_mode = self.modes["reset"]
             self.current_mode.begin()
+
+
     def get_current_mode(self):
         return self.current_mode
     ##### SAFETY ENABLE #####
+
+
     def safety_enable_handler(self, state_bool):
         # when all computers are present
         # when power turns on or off
         self.add_to_queue(b"event_safety_enable", state_bool, "", "")
+
 
     def run(self):
         while True:
