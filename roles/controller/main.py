@@ -131,6 +131,8 @@ class Main(threading.Thread):
         self.tb.subscribe_to_topic("event_roll_outer_left")
         self.tb.subscribe_to_topic("event_roll_outer_right")
         self.tb.subscribe_to_topic("event_trough_sensor")
+        self.tb.subscribe_to_topic("event_tube_sensor_left")
+        self.tb.subscribe_to_topic("event_tube_sensor_right")
         self.tb.subscribe_to_topic("event_spinner")
 
         # ENCODERS & MOTORS
