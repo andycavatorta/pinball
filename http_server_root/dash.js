@@ -63,7 +63,7 @@ function websocket_connect() {
     console.log("connecting to wesockets")
     try {
         //console.log("readyState=",websocket.readyState)
-        url = "ws://" + location.hostname + ":8001/"
+        url = "ws://" + location.hostname + ":2281/"
         websocket = new WebSocket(url);
         websocket.onopen = function (evt) { websocket_open(evt) };
         websocket.onclose = function () { websocket_close() };
