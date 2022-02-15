@@ -1398,7 +1398,7 @@ class Mode_Timer(threading.Thread):
                     if self.timer >= self.timer_limit:
                         self.timer = -1
                         self.end()
-                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+                        self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
 
 class Mode_Barter(threading.Thread):
     """
