@@ -1248,6 +1248,8 @@ class Mode_Money(threading.Thread):
         print("get_trade_option 1",player_a_ref)
         if len(self.get_traders()) > 0:
             return phase_names.COMIENZA
+        if random.choice([True,False]):
+            return phase_names.COMIENZA
         print("get_trade_option 2",player_a_ref)    
         player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
         print("get_trade_option 3",player_a_missing_fruits)
@@ -1259,7 +1261,8 @@ class Mode_Money(threading.Thread):
         else:
             print("get_trade_option 5",player_a_missing_fruits)
             # if self.peso is present
-            if player_a_ref.carousel_fruits.is_peso_present():
+            #if player_a_ref.carousel_fruits.is_peso_present():
+            if True: # todo: add peso logic later
                 print("get_trade_option 6",player_a_missing_fruits)
                 # if and player_a_missing_fruits are present in carousel
                 player_a_missing_fruits_shuffled = player_a_missing_fruits.shuffle()
