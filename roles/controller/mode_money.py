@@ -484,7 +484,7 @@ class Phase_Pinball(threading.Thread):
         #if len(missing_other_fruits) == 0:
         #    self.set_phase(phase_names.COMIENZA)
         trade_option = self.get_trade_option(self.parent_ref)
-        #print("trade_option",trade_option)
+        print("trade_option",trade_option)
         self.set_phase(trade_option)
 
 
@@ -1263,6 +1263,7 @@ class Mode_Money(threading.Thread):
             except queue.Empty:
                 if self.active:
                     self.mode_timer += 1
+                    print("self.mode_timer=",self.mode_timer)
                     if self.mode_timer >= self.mode_timer_limit:
                         self.active = False
                         self.set_current_mode(self.game_mode_names.RESET)
