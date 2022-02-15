@@ -252,16 +252,16 @@ class Phase_Comienza(threading.Thread):
         #print("---> trading_partner",self.trading_partner, self.fruit_name)
         #self.hosts.hostnames[self.game_name].disable_gameplay()
         #self.hosts.hostnames[self.game_name].enable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(True)
         self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
+        self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
         #print("---> other_fruits", other_fruits, self.fruit_name)
         if len(other_fruits) > 0:
@@ -581,20 +581,24 @@ class Phase_Invitor(threading.Thread):
         animations = #"stop"|"double"|"local_pushed"|"other_pushed"
         """
         if topic == "event_button_trueque":
+            # this happens whenever the trueque button is pushed
             print("Phase_Invitor event_button_trueque")
             if not self.get_trade_initiated(): #only run this once
+                # this is run only once in this phase
                 self.set_trade_initiated(True)
                 self.hosts.hostnames[self.game_name].cmd_lefttube_launch()
-                # todo: animation to confirm button push
-                #   draw sparkly path between carousels
                 if self.trading_partner.get_trade_initiated():
+                    # if trading parter pushed trueque first
                     #trading
                     self.add_to_queue("stop", True)
                     self.trading_partner.add_to_queue("stop", True)
                     self.set_phase(phase_names.TRADE)
                     self.trading_partner.set_phase(phase_names.TRADE)
                 else:
+                    # if this player pushed trueque first
                     #waiting
+                    # todo: animation to confirm button push
+                    #   draw sparkly path between carousels
                     self.trading_partner.add_to_queue("other_pushed", True)
                     self.add_to_queue("local_pushed", True)
 
@@ -1362,13 +1366,43 @@ class Game(threading.Thread):
                 pass
                 # animation goes here
 
+
+class Mode_Timer(threading.Thread)
+    def __init__(self, set_current_mode, end):
+        self.set_current_mode = set_current_mode
+        self.end = end
+        self.mode_timer = -1
+        self.mode_timer_limit = 90
+        self.queue = queue.Queue()
+        self.start()
+
+
+    def add_to_queue(self, action):
+        self.queue.put(action)
+
+
+    def run(self):
+        while True:
+            try:
+                action = self.queue.get(timeout=1)
+                if action == "begin":
+                    self.mode_timer = 0
+                if action == "end":
+                    self.mode_timer = -1
+
+            except queue.Empty:
+                self.mode_timer == -1:
+                    self.mode_timer += 1
+                    if self.mode_timer >= self.mode_timer_limit:
+                        self.mode_timer = -1
+                        self.end()
+                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
+
 class Mode_Barter(threading.Thread):
     """
     This class watches for incoming messages
     Its only action will be to change the current mode
     """
-
-
     def __init__(self, tb, hosts, set_current_mode, choreography):
         threading.Thread.__init__(self)
         self.active = False
@@ -1456,6 +1490,7 @@ class Mode_Barter(threading.Thread):
             ["carouselcenter","serpentine_center_pina","serpentine_center"],
             ["carousel5","serpentine_edge_pina","serpentine_edge"]
         ]
+        self.mode_timer = Mode_Timer(self.set_current_mode, self.end)
         """
         self.routeable_events = [
             "event_button_derecha",
@@ -1488,6 +1523,7 @@ class Mode_Barter(threading.Thread):
             if pinball_hostname in self.pinball_hostnames_with_players:
                 self.games[game_name].add_to_queue("animation_fill_carousel", True) 
                 self.games[game_name].set_phase(phase_names.COMIENZA)
+                self.mode_timer.add_to_queue("begin")
             else:
                 self.games[game_name].set_phase(phase_names.NOPLAYER)
 
@@ -1585,7 +1621,7 @@ class Mode_Barter(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(timeout=1)
+                topic, message, origin, destination = self.queue.get()
                 #print(time.ctime(time.time()),"mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')

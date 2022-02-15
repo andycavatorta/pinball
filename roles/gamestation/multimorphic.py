@@ -87,12 +87,12 @@ class Multimorphic(threading.Thread):
         if duration_ms < 25: #safety limit
             self.p3.pulse_coil(self.coils[coil_name], duration_ms)
 
-    def enable_trueque(self, enable_bool, miliseconds=14):
+    def enable_trueque(self, enable_bool, miliseconds=15):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], miliseconds)
         else:
             self.p3.clear_rule(self.switches["trueque"])
-    def enable_dinero(self, enable_bool, miliseconds=14):
+    def enable_dinero(self, enable_bool, miliseconds=15):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], miliseconds)
         else:

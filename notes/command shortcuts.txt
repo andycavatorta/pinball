@@ -50,6 +50,23 @@ role_module.main.multimorphic.coils["trueque"]
 "sling_right":"A0-B1-4",
 "trueque":"A0-B0-5",
 
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["derecha_hold"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["derecha_main"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["dinero"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["izquierda_hold"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["izquierda_main"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["kicker"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["pop_left"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["pop_middle"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["pop_right"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["sling_left"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["sling_right"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["trueque"], 15)
+
+
+
+
+
 
 
 role_module.main.tb.publish(topic="event_button_comienza",message=True)
