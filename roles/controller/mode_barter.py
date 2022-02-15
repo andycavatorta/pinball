@@ -1392,7 +1392,7 @@ class Mode_Timer(threading.Thread):
                     self.timer = -1
 
             except queue.Empty:
-                if self.timer == -1:
+                if self.timer > -1:
                     self.timer += 1
                     print("Mode_Timer run self.timer=",self.timer)
                     if self.timer >= self.timer_limit:
@@ -1521,9 +1521,9 @@ class Mode_Barter(threading.Thread):
         for pinball_hostname in self.pinball_hostnames:
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
             if pinball_hostname in self.pinball_hostnames_with_players:
+                self.mode_timer.add_to_queue("begin")
                 self.games[game_name].add_to_queue("animation_fill_carousel", True) 
                 self.games[game_name].set_phase(phase_names.COMIENZA)
-                self.mode_timer.add_to_queue("begin")
             else:
                 self.games[game_name].set_phase(phase_names.NOPLAYER)
 
