@@ -1084,7 +1084,7 @@ class Mode_Timer(threading.Thread):
                     if self.timer >= self.timer_limit:
                         self.timer = -1
                         self.end()
-                        self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
+                        self.set_current_mode(settings.Game_Modes.RESET)
 
 
 class Mode_Money(threading.Thread):
