@@ -1371,8 +1371,8 @@ class Mode_Timer(threading.Thread)
     def __init__(self, set_current_mode, end):
         self.set_current_mode = set_current_mode
         self.end = end
-        self.mode_timer = -1
-        self.mode_timer_limit = 90
+        self.timer = -1
+        self.timer_limit = 90
         self.queue = queue.Queue()
         self.start()
 
@@ -1386,15 +1386,16 @@ class Mode_Timer(threading.Thread)
             try:
                 action = self.queue.get(timeout=1)
                 if action == "begin":
-                    self.mode_timer = 0
+                    self.timer = 0
                 if action == "end":
-                    self.mode_timer = -1
+                    self.timer = -1
 
             except queue.Empty:
-                self.mode_timer == -1:
-                    self.mode_timer += 1
-                    if self.mode_timer >= self.mode_timer_limit:
-                        self.mode_timer = -1
+                self.timer == -1:
+                    self.timer += 1
+                    print("Mode_Timer run self.timer=",self.timer)
+                    if self.timer >= self.timer_limit:
+                        self.timer = -1
                         self.end()
                         self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
 
@@ -1414,7 +1415,6 @@ class Mode_Barter(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 90
         #self.invitor = None
         #self.invitee = None
         self.display_hostnames = ["pinball1display","pinball2display","pinball3display","pinball4display","pinball5display",]
@@ -1516,7 +1516,6 @@ class Mode_Barter(threading.Thread):
 
     def begin(self):
         self.active = True
-        self.mode_timer = 0
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname in self.pinball_hostnames:
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
@@ -1636,10 +1635,3 @@ class Mode_Barter(threading.Thread):
 
             except AttributeError:
                 pass
-            except queue.Empty:
-                if self.active:
-                    self.mode_timer += 1
-                    if self.mode_timer >= self.mode_timer_limit:
-                        self.active = False
-                        self.set_current_mode(self.game_mode_names.MONEY_MODE_INTRO)
-                        self.end()
