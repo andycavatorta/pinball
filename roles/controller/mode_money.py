@@ -953,6 +953,7 @@ class Game(threading.Thread):
             if not self.parent_ref.carousel_fruits.is_fruit_present(self.fruit_name):
                 # move self.this_fruit to center.this_fruit
                 self.carousel_fruits.remove_fruit(self.fruit_name)
+                print("+++calling add fruit 1",self.fruit_name)
                 self.parent_ref.carousel_fruits.add_fruit(self.fruit_name)
                 time.sleep(0.25)
                 self.update_carousel_lights_to_data("med")
@@ -979,6 +980,7 @@ class Game(threading.Thread):
 
     def animation_fill_carousel(self):
         fname = self.fruit_order[1]
+        print("+++calling add fruit 2",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
@@ -991,8 +993,8 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[2]
+        print("+++calling add fruit 3",fname)
         self.carousel_fruits.add_fruit(fname)
-
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
         time.sleep(0.2)
@@ -1004,6 +1006,7 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[3]
+        print("+++calling add fruit 4",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
@@ -1016,6 +1019,7 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[4]
+        print("+++calling add fruit 5",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
