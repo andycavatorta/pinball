@@ -1145,7 +1145,6 @@ class Phase_Fail(threading.Thread):
         self.hosts.hostnames[self.display_name].request_score("c_mezzo")
         time.sleep(0.25)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
-        point_loss = int(self.parent_ref.score * 0.1)
 
         self.update_carousel_lights_to_data()
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all",  "off")
@@ -1572,7 +1571,8 @@ class Mode_Barter(threading.Thread):
         # are no trades currently happening?
         if len(self.get_traders()) > 0:
             return phase_names.COMIENZA
-        
+        if random.choice([True,False]):
+            return phase_names.COMIENZA
         player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
         #print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
         if len(player_a_missing_fruits) == 0:

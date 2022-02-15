@@ -1053,6 +1053,39 @@ class Game(threading.Thread):
                 pass
                 # animation goes here
 
+class Mode_Timer(threading.Thread):
+    def __init__(self, set_current_mode, end):
+        threading.Thread.__init__(self)
+        self.set_current_mode = set_current_mode
+        self.end = end
+        self.timer = -1
+        self.timer_limit = 90
+        self.queue = queue.Queue()
+        self.start()
+
+
+    def add_to_queue(self, action):
+        self.queue.put(action)
+
+
+    def run(self):
+        while True:
+            try:
+                action = self.queue.get(timeout=1)
+                if action == "begin":
+                    self.timer = 0
+                if action == "end":
+                    self.timer = -1
+
+            except queue.Empty:
+                if self.timer > -1:
+                    self.timer += 1
+                    print("money mode Mode_Timer run self.timer=",self.timer)
+                    if self.timer >= self.timer_limit:
+                        self.timer = -1
+                        self.end()
+                        self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
+
 
 class Mode_Money(threading.Thread):
     """
@@ -1070,7 +1103,7 @@ class Mode_Money(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 90
+        #self.mode_timer_limit = 90
         self.carousel_fruits = Carousel_Fruits("",self.hosts.get_games_with_players)
         #self.invitor = None
         #self.invitee = None
@@ -1147,6 +1180,7 @@ class Mode_Money(threading.Thread):
             ["carouselcenter","serpentine_center_pina","serpentine_center"],
             ["carousel5","serpentine_edge_pina","serpentine_edge"]
         ]
+        self.mode_timer = Mode_Timer(self.set_current_mode, self.end)
         """
         self.routeable_events = [
             "event_button_derecha",
@@ -1172,11 +1206,12 @@ class Mode_Money(threading.Thread):
 
     def begin(self):
         self.active = True
-        self.mode_timer = 0
+        #self.mode_timer = 0
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         for pinball_hostname in self.pinball_hostnames:
             game_name = self.fruit_name_from_pinball_hostname[pinball_hostname]
             if pinball_hostname in self.pinball_hostnames_with_players:
+                self.mode_timer.add_to_queue("begin")
                 self.games[game_name].add_to_queue("animation_fill_carousel", True) 
                 self.games[game_name].set_phase(phase_names.COMIENZA)
             else:
@@ -1245,7 +1280,7 @@ class Mode_Money(threading.Thread):
         time.sleep(5)
         while True:
             try:
-                topic, message, origin, destination = self.queue.get(timeout=1)
+                topic, message, origin, destination = self.queue.get()
                 #print("mode_barter.py Mode_Barter.run",topic, message, origin, destination)
                 if isinstance(topic, bytes):
                     topic = codecs.decode(topic, 'UTF-8')
@@ -1260,13 +1295,3 @@ class Mode_Money(threading.Thread):
 
             except AttributeError:
                 pass
-            except queue.Empty:
-                if self.active:
-                    self.mode_timer += 1
-                    print("self.mode_timer=",self.mode_timer)
-                    if self.mode_timer >= self.mode_timer_limit:
-                        print("self.mode_timer reached",self.mode_timer)
-                        self.active = False
-                        self.set_current_mode(self.game_mode_names.RESET)
-                        self.end()
-
