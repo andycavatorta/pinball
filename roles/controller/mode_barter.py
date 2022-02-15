@@ -1369,6 +1369,7 @@ class Game(threading.Thread):
 
 class Mode_Timer(threading.Thread):
     def __init__(self, set_current_mode, end):
+        threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.end = end
         self.timer = -1
