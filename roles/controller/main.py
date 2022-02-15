@@ -207,63 +207,63 @@ class Main(threading.Thread):
         if mode_name == self.mode_names.ERROR:
             self.current_mode.end()
             self.current_mode = self.modes["error"]
-            aself.dashboard("response_current_mode", "error", "controller", "")
+            #self.dashboard("response_current_mode", "error", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.WAITING_FOR_CONNECTIONS:
             self.current_mode.end()
             self.current_mode = self.modes["waiting_for_connections"]
-            aself.dashboard("response_current_mode", "waiting_for_connections", "controller", "")
+            #self.dashboard("response_current_mode", "waiting_for_connections", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.SYSTEM_TESTS:
             self.current_mode.end()
             self.current_mode = self.modes["system_tests"]
-            aself.dashboard("response_current_mode", "system_tests", "controller", "")
+            #self.dashboard("response_current_mode", "system_tests", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.INVENTORY:
             self.current_mode.end()
             self.current_mode = self.modes["inventory"]
-            aself.dashboard("response_current_mode", "inventory", "controller", "")
+            #self.dashboard("response_current_mode", "inventory", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.RESET:
             self.current_mode.end()
             self.current_mode = self.modes["reset"]
-            aself.dashboard("response_current_mode", "reset", "controller", "")
+            #self.dashboard("response_current_mode", "reset", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.ATTRACTION:
             self.current_mode.end()
             self.current_mode = self.modes["attraction"]
-            aself.dashboard("response_current_mode", "attraction", "controller", "")
+            #self.dashboard("response_current_mode", "attraction", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.COUNTDOWN:
             self.current_mode.end()
             self.current_mode = self.modes["countdown"]
-            aself.dashboard("response_current_mode", "countdown", "controller", "")
+            #self.dashboard("response_current_mode", "countdown", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE_INTRO:
             self.current_mode.end()
             self.current_mode = self.modes["barter_intro"]
-            aself.dashboard("response_current_mode", "barter_intro", "controller", "")
+            #self.dashboard("response_current_mode", "barter_intro", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.BARTER_MODE:
             self.current_mode.end()
             time.sleep(2)
             self.current_mode = self.modes["barter"]
-            aself.dashboard("response_current_mode", "barter", "controller", "")
+            #self.dashboard("response_current_mode", "barter", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE_INTRO:
             self.current_mode.end()
             self.current_mode = self.modes["money_intro"]
-            aself.dashboard("response_current_mode", "money_intro", "controller", "")
+            #self.dashboard("response_current_mode", "money_intro", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.MONEY_MODE:
             self.current_mode.end()
             self.current_mode = self.modes["money"]
-            aself.dashboard("response_current_mode", "money", "controller", "")
+            #self.dashboard("response_current_mode", "money", "controller", "")
             self.current_mode.begin()
         if mode_name == self.mode_names.RESET:
             self.current_mode.end()
             self.current_mode = self.modes["reset"]
-            aself.dashboard("response_current_mode", "reset", "controller", "")
+            #self.dashboard("response_current_mode", "reset", "controller", "")
             self.current_mode.begin()
 
 
