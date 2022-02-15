@@ -65,12 +65,13 @@ role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils[
 
 
 
-
+settings.Game_Modes
 
 
 
 role_module.main.tb.publish(topic="event_button_comienza",message=True)
 role_module.main.tb.publish(topic="event_button_trueque",message=True)
+role_module.main.tb.publish(topic="event_button_dinero",message=True)
 
 
 "A0-B1-0"

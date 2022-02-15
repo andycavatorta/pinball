@@ -1265,8 +1265,8 @@ class Mode_Money(threading.Thread):
             if True: # todo: add peso logic later
                 print("get_trade_option 6",player_a_missing_fruits)
                 # if and player_a_missing_fruits are present in carousel
-                player_a_missing_fruits_shuffled = player_a_missing_fruits.shuffle()
-                for missing_fruit in player_a_missing_fruits_shuffled:
+                random.shuffle(player_a_missing_fruits)
+                for missing_fruit in player_a_missing_fruits:
                     print("get_trade_option 7",missing_fruit)
                     if self.carousel_fruits.is_fruit_present(missing_fruit):
                         print("get_trade_option 8",self.carousel_fruits)
