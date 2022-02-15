@@ -1070,7 +1070,7 @@ class Mode_Money(threading.Thread):
         #self.countdown = Countdown(hosts, set_current_mode)
         self.queue = queue.Queue()
         self.game_mode_names = settings.Game_Modes
-        self.mode_timer_limit = 120
+        self.mode_timer_limit = 90
         self.carousel_fruits = Carousel_Fruits("",self.hosts.get_games_with_players)
         #self.invitor = None
         #self.invitee = None
