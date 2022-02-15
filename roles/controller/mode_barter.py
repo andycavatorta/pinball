@@ -1367,7 +1367,7 @@ class Game(threading.Thread):
                 # animation goes here
 
 
-class Mode_Timer(threading.Thread)
+class Mode_Timer(threading.Thread):
     def __init__(self, set_current_mode, end):
         self.set_current_mode = set_current_mode
         self.end = end
