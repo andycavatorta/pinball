@@ -1245,25 +1245,34 @@ class Mode_Money(threading.Thread):
 
     def get_trade_option(self, player_a_ref):
         # are no trades currently happening?
+        print("get_trade_option 1",player_a_ref)
         if len(self.get_traders()) > 0:
             return phase_names.COMIENZA
-        
+        print("get_trade_option 2",player_a_ref)    
         player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
+        print("get_trade_option 3",player_a_missing_fruits)
         #print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
         if len(player_a_missing_fruits) == 0:
             return phase_names.COMIENZA
-        #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
+            print("get_trade_option 4")
+            #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
         else:
+            print("get_trade_option 5",player_a_missing_fruits)
             # if self.peso is present
             if player_a_ref.carousel_fruits.is_peso_present():
+                print("get_trade_option 6",player_a_missing_fruits)
                 # if and player_a_missing_fruits are present in carousel
                 player_a_missing_fruits_shuffled = player_a_missing_fruits.shuffle()
                 for missing_fruit in player_a_missing_fruits_shuffled:
+                    print("get_trade_option 7",missing_fruit)
                     if self.carousel_fruits.is_fruit_present(missing_fruit):
+                        print("get_trade_option 8",self.carousel_fruits)
                         player_a_ref.trading_fruit_name = missing_fruit
                         return phase_names.INVITOR
+                print("get_trade_option 9")
                 return phase_names.COMIENZA
             else:
+                print("get_trade_option 10")
                 return phase_names.COMIENZA
 
 
