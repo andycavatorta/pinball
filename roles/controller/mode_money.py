@@ -258,17 +258,17 @@ class Phase_Comienza(threading.Thread):
 
         #self.hosts.hostnames[self.game_name].disable_gameplay()
         #self.hosts.hostnames[self.game_name].enable_gameplay()
-        self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
+        self.hosts.hostnames[self.game_name].enable_izquierda_coil(True)
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(True)
         self.hosts.hostnames[self.game_name].enable_dinero_coil(False)
-        self.hosts.hostnames[self.game_name].enable_derecha_coil(False)
+        self.hosts.hostnames[self.game_name].enable_derecha_coil(True)
 
-        self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("izquierda",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("trueque",False)
         self.hosts.hostnames[self.game_name].request_button_light_active("comienza",True)
         self.hosts.hostnames[self.game_name].request_button_light_active("dinero",False)
-        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",False)
+        self.hosts.hostnames[self.game_name].request_button_light_active("derecha",True)
         other_fruits = self.carousel_fruits.list_other_fruits_present()
         #print("---> other_fruits", other_fruits, self.fruit_name)
         self.sacrificial_fruit = ""
