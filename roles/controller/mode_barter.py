@@ -1393,7 +1393,6 @@ class Mode_Timer(threading.Thread):
             except queue.Empty:
                 if self.timer > -1:
                     self.timer += 1
-                    print("Mode_Timer run self.timer=",self.timer)
                     if self.timer >= self.timer_limit:
                         self.timer = -1
                         self.end()

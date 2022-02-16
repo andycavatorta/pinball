@@ -578,15 +578,20 @@ class Phase_Invitor(threading.Thread):
         animations = #"stop"|"waiting"|"local_pushed"|"other_pushed"
         """
         if topic == "event_button_dinero":
-            print("Phase_Invitor event_button_dinero")
+            print("Phase_Invitor event_button_dinero 1",self.get_trade_initiated())
             if not self.get_trade_initiated(): #only run this once
+                print("Phase_Invitor event_button_dinero 2")
                 self.set_trade_initiated(True)
+                print("Phase_Invitor event_button_dinero 3")
                 self.hosts.hostnames[self.game_name].cmd_righttube_launch()
+                print("Phase_Invitor event_button_dinero 4")
                 # todo: animation to confirm button push
                 #   draw sparkly path between carousels
                     #trading
                 self.add_to_queue("stop", True)
+                print("Phase_Invitor event_button_dinero 5")
                 self.set_phase(phase_names.TRADE)
+                print("Phase_Invitor event_button_dinero 6")
                 #else:
                 #    #waiting
                 #    self.add_to_queue("local_pushed", True)
@@ -1078,7 +1083,6 @@ class Mode_Timer(threading.Thread):
             except queue.Empty:
                 if self.timer > -1:
                     self.timer += 1
-                    print("money mode Mode_Timer run self.timer=",self.timer)
                     if self.timer >= self.timer_limit:
                         self.timer = -1
                         self.end()
