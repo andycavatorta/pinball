@@ -143,8 +143,8 @@ class Carousel_Fruits():
         self.fruit_presence[fruit_name] = True
         print("add_fruit 2", self.fruit_presence)
 
-    def remove_fruit(self, fruit_name=""):
-        print("remove_fruit 1", self.fruit_presence)
+    def remove_fruit(self, fruit_name):
+        print("remove_fruit 1", self.fruit_presence, fruit_name)
         self.fruit_presence[fruit_name] = False
         print("remove_fruit 2", self.fruit_presence)
 
@@ -328,7 +328,7 @@ class Phase_Comienza(threading.Thread):
 
 
     def end(self):
-        if self.sacrificial_fruit != "":
+        if self.sacrificial_fruit not in ["", None] :
             self.carousel_fruits.remove_fruit(self.sacrificial_fruit)
             self.update_carousel_lights_to_data("med")
             self.add_to_queue("spend_fruit", self.sacrificial_fruit)
