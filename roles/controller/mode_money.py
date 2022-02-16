@@ -129,10 +129,13 @@ class Carousel_Fruits():
 
     def list_missing_other_fruits(self):
         missing_other_fruits = []
+        print("list_missing_other_fruits 1",self.fruit_presence)
         for fruit_name, presence in self.fruit_presence.items():
             if presence == False:
                 if fruit_name != self.this_fruit_name:
+                    print("list_missing_other_fruits 2",fruit_name)
                     missing_other_fruits.append(fruit_name)
+        print("list_missing_other_fruits 3",missing_other_fruits)
         return missing_other_fruits
 
     #def get_next_empty_otherfruit(self):
@@ -1281,7 +1284,6 @@ class Mode_Money(threading.Thread):
             else:
                 print("get_trade_option 10")
                 return phase_names.COMIENZA
-
 
 
     def end(self):
