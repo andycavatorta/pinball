@@ -527,6 +527,7 @@ class Phase_Invitor(threading.Thread):
     def setup(self):
         print(time.ctime(time.time()),"===================== INVITOR =====================", self.fruit_name)
 
+        self.set_trade_initiated(False)
         self.hosts.hostnames[self.game_name].enable_izquierda_coil(False)
         self.hosts.hostnames[self.game_name].enable_trueque_coil(False)
         self.hosts.hostnames[self.game_name].enable_kicker_coil(False)
