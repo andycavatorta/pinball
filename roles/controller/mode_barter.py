@@ -1574,14 +1574,10 @@ class Mode_Barter(threading.Thread):
         if random.choice([True,False]):
             return phase_names.COMIENZA
         player_a_missing_fruits = player_a_ref.carousel_fruits.list_missing_other_fruits()
-        #print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
         if len(player_a_missing_fruits) == 0:
             player_a_ref.set_phase(phase_names.COMIENZA)
-        #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
-
 
         pinballhostnames_with_players = self.hosts.get_games_with_players()
-        #print("get_trade_option pinballhostnames_with_players", pinballhostnames_with_players, player_a_ref.fruit_name)
 
         player_b_refs = []
         for pinballhostname_with_player in pinballhostnames_with_players:
@@ -1591,20 +1587,14 @@ class Mode_Barter(threading.Thread):
                 # game_with_player needs player_a_ref.fruit_name
                 if not self.games[game_with_player].carousel_fruits.is_fruit_present(player_a_ref.fruit_name):
                     player_b_refs.append(self.games[game_with_player])
-        #print("get_trade_option player_b_refs", player_b_refs, player_a_ref.fruit_name)
         if len(player_b_refs)==0:
             player_a_ref.set_phase(phase_names.COMIENZA)
             return 
         player_b_ref = random.choice(player_b_refs)
-        #print("get_trade_option player_b_ref", player_b_ref, player_a_ref.fruit_name)
         invitor = player_a_ref 
         invitee = player_b_ref
-        #print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
-        #print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.trading_partner = invitee
         invitee.trading_partner = invitor
-        #print("get_trade_option invitor.trading_partner", invitor.trading_partner, player_a_ref.fruit_name)
-        #print("get_trade_option invitee.trading_partner", invitee.trading_partner, player_a_ref.fruit_name)
         invitor.set_phase(phase_names.INVITOR)
         invitee.set_phase(phase_names.INVITEE)
 

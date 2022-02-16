@@ -484,7 +484,7 @@ class Phase_Pinball(threading.Thread):
         #if len(missing_other_fruits) == 0:
         #    self.set_phase(phase_names.COMIENZA)
         trade_option = self.get_trade_option(self.parent_ref)
-        print("trade_option",trade_option)
+        print("trade_option",trade_option, self.parent_ref.trading_fruit_name)
         self.set_phase(trade_option)
 
 
@@ -600,9 +600,8 @@ class Phase_Invitor(threading.Thread):
 
     def animation_carousel_path_blink(self, frame):
         # invitor carousel
-        # 
-        invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.trading_fruit_name,self.fruit_name)
-        center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.trading_fruit_name)
+        invitor_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.parent_ref.trading_fruit_name,self.fruit_name)
+        center_carousel_path = self.carousel_fruits.get_shorter_radial_path(self.fruit_name,self.parent_ref.trading_fruit_name)
         if frame == 0:
             for path_fruit_name in invitor_carousel_path:
                 self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(path_fruit_name, "off")
@@ -1243,6 +1242,15 @@ class Mode_Money(threading.Thread):
 
 
     def get_trade_option(self, player_a_ref):
+        # are no trades currently happening?
+
+        # is the coin-toss True?
+
+        # is player_a_ref missing any fruits?
+
+        # are any of the missing fruits found in the center carousel?
+
+
         # are no trades currently happening?
         print("get_trade_option 0",player_a_ref)
         if len(self.get_traders()) > 0:
