@@ -68,7 +68,7 @@ class Carousel_Fruits():
             "naranja":False,
             "mango":False,
             "sandia":False,
-            "pina":False,
+            "pina":False
         }
         self.fruit_order_clockwise = [
             "coco",
@@ -129,23 +129,24 @@ class Carousel_Fruits():
 
     def list_missing_other_fruits(self):
         missing_other_fruits = []
-        print("list_missing_other_fruits 1",self.fruit_presence)
         for fruit_name, presence in self.fruit_presence.items():
             if presence == False:
                 if fruit_name != self.this_fruit_name:
-                    print("list_missing_other_fruits 2",fruit_name)
                     missing_other_fruits.append(fruit_name)
-        print("list_missing_other_fruits 3",missing_other_fruits)
         return missing_other_fruits
 
     #def get_next_empty_otherfruit(self):
     #    for game_with_player in self.games_with_players:
 
     def add_fruit(self, fruit_name):
+        print("add_fruit 1", self.fruit_presence)
         self.fruit_presence[fruit_name] = True
+        print("add_fruit 2", self.fruit_presence)
 
     def remove_fruit(self, fruit_name=""):
+        print("remove_fruit 1", self.fruit_presence)
         self.fruit_presence[fruit_name] = False
+        print("remove_fruit 2", self.fruit_presence)
 
     def get_radial_path(self, start_fruit_name, end_fruit_name, clockwise_b):
         path = [] # list of fruit names
@@ -167,7 +168,9 @@ class Carousel_Fruits():
         return path_cc if len(path_cw) > len(path_cc) else path_cw
 
     def populate_this_fruit(self):
+        print("populate_this_fruit 1", self.fruit_presence)
         self.fruit_presence[self.this_fruit_name] = True
+        print("populate_this_fruit 2", self.fruit_presence)
 
 
 ###################
