@@ -1255,8 +1255,8 @@ class Mode_Money(threading.Thread):
         print("get_trade_option 3",player_a_missing_fruits)
         #print("get_trade_option player_a_missing_fruits", player_a_missing_fruits, player_a_ref.fruit_name)
         if len(player_a_missing_fruits) == 0:
-            return phase_names.COMIENZA
             print("get_trade_option 4")
+            return phase_names.COMIENZA
             #find players in player_a_missing_fruits that are missing player_a_ref.fruit_name
         else:
             print("get_trade_option 5",player_a_missing_fruits)
@@ -1268,7 +1268,9 @@ class Mode_Money(threading.Thread):
                 random.shuffle(player_a_missing_fruits)
                 for missing_fruit in player_a_missing_fruits:
                     print("get_trade_option 7",missing_fruit)
-                    if self.carousel_fruits.is_fruit_present(missing_fruit):
+                    # todo: rewrite from scratch
+                    #if self.carousel_fruits.is_fruit_present(missing_fruit):
+                    if random.choice([True,False]):
                         print("get_trade_option 8",self.carousel_fruits)
                         player_a_ref.trading_fruit_name = missing_fruit
                         return phase_names.INVITOR
