@@ -139,14 +139,10 @@ class Carousel_Fruits():
     #    for game_with_player in self.games_with_players:
 
     def add_fruit(self, fruit_name):
-        print("add_fruit 1", self.fruit_presence)
         self.fruit_presence[fruit_name] = True
-        print("add_fruit 2", self.fruit_presence)
 
     def remove_fruit(self, fruit_name):
-        print("remove_fruit 1", self.fruit_presence, fruit_name)
         self.fruit_presence[fruit_name] = False
-        print("remove_fruit 2", self.fruit_presence)
 
     def get_radial_path(self, start_fruit_name, end_fruit_name, clockwise_b):
         path = [] # list of fruit names
@@ -168,9 +164,7 @@ class Carousel_Fruits():
         return path_cc if len(path_cw) > len(path_cc) else path_cw
 
     def populate_this_fruit(self):
-        print("populate_this_fruit 1", self.fruit_presence)
         self.fruit_presence[self.this_fruit_name] = True
-        print("populate_this_fruit 2", self.fruit_presence)
 
 
 ###################
@@ -959,7 +953,6 @@ class Game(threading.Thread):
             if not self.parent_ref.carousel_fruits.is_fruit_present(self.fruit_name):
                 # move self.this_fruit to center.this_fruit
                 self.carousel_fruits.remove_fruit(self.fruit_name)
-                print("+++calling add fruit 1",self.fruit_name)
                 self.parent_ref.carousel_fruits.add_fruit(self.fruit_name)
                 time.sleep(0.25)
                 self.update_carousel_lights_to_data("med")
@@ -986,7 +979,6 @@ class Game(threading.Thread):
 
     def animation_fill_carousel(self):
         fname = self.fruit_order[1]
-        print("+++calling add fruit 2",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("f_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
@@ -999,7 +991,6 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[2]
-        print("+++calling add fruit 3",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
@@ -1012,7 +1003,6 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[3]
-        print("+++calling add fruit 4",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("gsharp_mezzo")
         self.hosts.hostnames[self.carousel_name].cmd_carousel_lights(fname,"low")
@@ -1025,7 +1015,6 @@ class Game(threading.Thread):
         time.sleep(0.4)
 
         fname = self.fruit_order[4]
-        print("+++calling add fruit 5",fname)
         self.carousel_fruits.add_fruit(fname)
         self.hosts.hostnames[self.display_name].request_score("g_mezzo")
         self.hosts.hostnames[self.display_name].request_score("asharp_mezzo")
@@ -1255,9 +1244,10 @@ class Mode_Money(threading.Thread):
 
     def get_trade_option(self, player_a_ref):
         # are no trades currently happening?
-        print("get_trade_option 1",player_a_ref)
+        print("get_trade_option 0",player_a_ref)
         if len(self.get_traders()) > 0:
             return phase_names.COMIENZA
+        print("get_trade_option 1",player_a_ref)
         if random.choice([True,False]):
             return phase_names.COMIENZA
         print("get_trade_option 2",player_a_ref)    
