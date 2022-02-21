@@ -55,7 +55,6 @@ class Animation(threading.Thread):
         self.queue.put(animation_command)
 
     def run(self):
-        print("mode_attraction Animation.run 0")
         while True:
             try:
                 animation_command = self.queue.get(True,self.animaition_interval)
