@@ -63,7 +63,7 @@ role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils[
 role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["sling_right"], 15)
 role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["trueque"], 15)
 
-
+role_module.main.multimorphic.pulse_coil("kicker",16)
 
 settings.Game_Modes
 
