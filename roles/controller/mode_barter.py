@@ -762,8 +762,8 @@ class Matrix_Animations(threading.Thread):
             request_score = self.hosts.hostnames['pinball5display'].request_score
 
         class station_to_host_center:
-            request_eject_ball = self.hosts.hostnames['carousel_center'].request_eject_ball
-            cmd_carousel_lights = self.hosts.hostnames['carousel_center'].cmd_carousel_lights
+            request_eject_ball = self.hosts.hostnames['carouselcenter'].request_eject_ball
+            cmd_carousel_lights = self.hosts.hostnames['carouselcenter'].cmd_carousel_lights
 
         self.carousels = {
             "coco":station_to_host_coco,
