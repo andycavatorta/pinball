@@ -1446,14 +1446,6 @@ class Mode_Barter(threading.Thread):
             request_phrase = self.hosts.hostnames['pinball5display'].request_phrase
             request_score = self.hosts.hostnames['pinball5display'].request_score
             set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
-
-        self.PINBALL_TO_STATION = {
-            "pinball1game":self.stations["coco"],
-            "pinball2game":self.stations["naranja"],
-            "pinball3game":self.stations["mango"],
-            "pinball4game":self.stations["sandia"],
-            "pinball5game":self.stations["pina"],
-        }
         self.stations = {
             "coco":Station("coco",station_to_host_coco),
             "naranja":Station("naranja",station_to_host_naranja),
@@ -1462,6 +1454,14 @@ class Mode_Barter(threading.Thread):
             "pina":Station("pina",station_to_host_pina),
         }
 
+
+        self.PINBALL_TO_STATION = {
+            "pinball1game":self.stations["coco"],
+            "pinball2game":self.stations["naranja"],
+            "pinball3game":self.stations["mango"],
+            "pinball4game":self.stations["sandia"],
+            "pinball5game":self.stations["pina"],
+        }
         self.invitor_invitee = []
 
         self.start()
