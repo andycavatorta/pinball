@@ -175,11 +175,8 @@ class Main(threading.Thread):
         self.dashboard = dashboard.init()
         self.current_mode_name = self.mode_names.WAITING_FOR_CONNECTIONS
         self.current_mode = self.modes["waiting_for_connections"]
-        print("/main.py 1")
         self.current_mode.begin()
-        print("/main.py 2")
         self.start()
-        print("/main.py 3")
 
 
     ##### THIRTYBIRDS CALLBACKS #####
