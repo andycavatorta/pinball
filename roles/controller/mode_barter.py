@@ -10,13 +10,6 @@ import threading
 import time
 
 
-PINBALL_TO_STATION = {
-    "pinball1game":self.stations["coco"],
-    "pinball2game":self.stations["naranja"],
-    "pinball3game":self.stations["mango"],
-    "pinball4game":self.stations["sandia"],
-    "pinball5game":self.stations["pina"],
-}
 
 
 CAROUSEL_FRUIT_ORDER = {
@@ -1295,11 +1288,6 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].request_score("c_mezzo")
 
 
-    def trade_ended(self, station_a_name, station_b_name):
-        #todo: set carousel lights back to data in comienza
-        pass
-
-
     def add_to_queue(self, animation, station_a_name, station_b_name):
         self.queue.put((animation, station_a_name, station_b_name))
 
@@ -1315,8 +1303,6 @@ class Matrix_Animations(threading.Thread):
                 self.trade_succeeded(station_a_name, station_b_name)
             if animation == "trade_failed":
                 self.trade_failed(station_a_name, station_b_name)
-            if animation == "trade_ended":
-                self.trade_ended(station_a_name, station_b_name)
 
 
 class Mode_Barter(threading.Thread):
@@ -1461,6 +1447,13 @@ class Mode_Barter(threading.Thread):
             request_score = self.hosts.hostnames['pinball5display'].request_score
             set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
 
+        self.PINBALL_TO_STATION = {
+            "pinball1game":self.stations["coco"],
+            "pinball2game":self.stations["naranja"],
+            "pinball3game":self.stations["mango"],
+            "pinball4game":self.stations["sandia"],
+            "pinball5game":self.stations["pina"],
+        }
         self.stations = {
             "coco":Station("coco",station_to_host_coco),
             "naranja":Station("naranja",station_to_host_naranja),
@@ -1546,7 +1539,7 @@ class Mode_Barter(threading.Thread):
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         # set all stations to phase comienza or noplayer
         self.mode_timer.add_to_queue("begin")
-        for pinball_hostname, station_ref in PINBALL_TO_STATION.items():
+        for pinball_hostname, station_ref in self.PINBALL_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
@@ -1578,7 +1571,7 @@ class Mode_Barter(threading.Thread):
                 if topic == "handle_station_phase_change":
                     self.handle_station_phase_change(message, origin, destination)
                 else:
-                    PINBALL_TO_STATION[origin].add_to_queue(topic, message)
+                    self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
 
             except AttributeError:
                 pass
