@@ -151,7 +151,7 @@ class Mode_Inventory(threading.Thread):
         #self.timer = time.time()
         self.active = True
         #skipping zeroing, inventory, and set_balls_for_game
-        #self.visual_test_cycle()
+        self.visual_test_cycle()
         self.set_current_mode(self.game_mode_names.ATTRACTION)
         #for pinball_hostname in self.pinball_hostnames:
         #    self.hosts.hostnames[pinball_hostname].disable_gameplay()
