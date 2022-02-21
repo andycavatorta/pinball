@@ -707,9 +707,9 @@ class Matrix_Animations(threading.Thread):
     
     todo: change animation methods to generators to make them easy to interrupt 
     """
-    def __init__(self, host):
+    def __init__(self, hosts):
         threading.Thread.__init__(self)
-        self.host = host
+        self.hosts = hosts
         self.queue = queue.Queue()
         class station_to_host_coco():
             request_eject_ball = self.hosts.hostnames['carousel1'].request_eject_ball
@@ -1321,7 +1321,7 @@ class Mode_Barter(threading.Thread):
         self.set_current_mode = set_current_mode
         self.pinball_hostnames_with_players = [] # updated in begin()
         self.mode_timer = Mode_Timer(self.set_current_mode, self.end)
-        self.matrix_animations = Matrix_Animations()
+        self.matrix_animations = Matrix_Animations(self.hosts)
         class station_to_host_coco():
             barter_mode_score = self.hosts.hostnames['pinball1game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball1display'].cmd_all_off
