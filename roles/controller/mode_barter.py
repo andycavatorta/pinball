@@ -1446,12 +1446,13 @@ class Mode_Barter(threading.Thread):
             request_phrase = self.hosts.hostnames['pinball5display'].request_phrase
             request_score = self.hosts.hostnames['pinball5display'].request_score
             set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
+
         self.stations = {
-            "coco":Station("coco",station_to_host_coco),
-            "naranja":Station("naranja",station_to_host_naranja),
-            "mango":Station("mango",station_to_host_mango),
-            "sandia":Station("sandia",station_to_host_sandia),
-            "pina":Station("pina",station_to_host_pina),
+            "coco":Station("coco",station_to_host_coco, self),
+            "naranja":Station("naranja",station_to_host_naranja, self),
+            "mango":Station("mango",station_to_host_mango, self),
+            "sandia":Station("sandia",station_to_host_sandia, self),
+            "pina":Station("pina",station_to_host_pina, self),
         }
 
 
