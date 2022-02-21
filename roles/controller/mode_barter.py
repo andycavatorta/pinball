@@ -200,9 +200,9 @@ class Station(threading.Thread):
         self.fruit_name = fruit_name
         self.commands = commands
         self.parent_ref = parent_ref
-        self.animation_pinball_game = Animation_Pinball_Game()
-        self.animation_transactions = Animation_Transactions()
-        self.animation_score = Animation_Score()
+        self.animation_pinball_game = Animation_Pinball_Game(commands)
+        self.animation_transactions = Animation_Transactions(commands)
+        self.animation_score = Animation_Score(commands)
         self.fruit_to_spend = ""
         self.pie_data_segments = {
             "pop_left":False,
