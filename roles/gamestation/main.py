@@ -213,19 +213,31 @@ class GPIO_Input():
         return [self.name, GPIO.input(self.pin)]
 
 class Playfield_Sensors(threading.Thread):
-    def __init__(self, callback):
+    def __init__(self, callback, hostname):
         threading.Thread.__init__(self)
         self.callback = callback
-        self.sensors = [ # name, gpio, last_state
-            GPIO_Input("rollover_inner_left", 16, callback),
-            GPIO_Input("rollover_inner_right", 20, callback),
-            GPIO_Input("rollover_outer_left", 12, callback),
-            GPIO_Input("rollover_outer_right", 21, callback),
-            GPIO_Input("spinner", 1, callback),
-            GPIO_Input("trough_sensor", 25, callback),
-            GPIO_Input("tube_sensor_left", 17, callback),
-            GPIO_Input("tube_sensor_right", 27, callback),
-        ]
+        if hostname == "pinball4game":
+            self.sensors = [ # name, gpio, last_state
+                GPIO_Input("rollover_inner_left", 16, callback),# good
+                GPIO_Input("rollover_inner_right", 20, callback), # good
+                GPIO_Input("rollover_outer_left", 14, callback),#damage?
+                GPIO_Input("rollover_outer_right", 15, callback),#damage?
+                GPIO_Input("spinner", 1, callback),# good
+                GPIO_Input("trough_sensor", 18, callback),#damage?
+                GPIO_Input("tube_sensor_left", 17, callback),
+                GPIO_Input("tube_sensor_right", 27, callback),
+            ]
+        else:
+            self.sensors = [ # name, gpio, last_state
+                GPIO_Input("rollover_inner_left", 16, callback),
+                GPIO_Input("rollover_inner_right", 20, callback), 
+                GPIO_Input("rollover_outer_left", 12, callback),
+                GPIO_Input("rollover_outer_right", 21, callback),
+                GPIO_Input("spinner", 1, callback),
+                GPIO_Input("trough_sensor", 25, callback),
+                GPIO_Input("tube_sensor_left", 17, callback),
+                GPIO_Input("tube_sensor_right", 27, callback),
+            ]
         self.queue = queue.Queue()
         self.start()
 
@@ -265,7 +277,7 @@ class Main(threading.Thread):
         self.gamestation_lights = lighting.Lights()
         self.button_lights = Button_Lights()
         self.multimorphic = multimorphic.Multimorphic(self.add_to_queue)
-        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue)
+        self.playfiels_sensors = Playfield_Sensors(self.add_to_queue,self.tb.get_hostname())
         self.queue = queue.Queue()
         self.tb.subscribe_to_topic("cmd_all_off") # to do: finish code
         self.tb.subscribe_to_topic("cmd_enable_derecha_coil")
