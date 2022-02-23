@@ -1494,21 +1494,26 @@ class Mode_Barter(threading.Thread):
         # todo: how does this vary with different numbers of players?
         # todo: self.invitor_invitee is not threadsafe between get_trade_option and handle_station_phase_change
         # what are the conditions for trading?
+        print("Mode_Barter get_trade_option(%s)" % fruit_name )
         self.lock.acquire()
         # if no other trade is happening
         if self.invitor_invitee != ["",""]:
+            print("Mode_Barter get_trade_option() 2")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a has fruit_a to trade
         if not self.stations[fruit_name].carousel_get_fruit_presence(fruit_name):
+            print("Mode_Barter get_trade_option() 3")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a is missing fruit_b
         station_a_missing_fruits = self.stations[fruit_name].carousel_get_fruits_missing(True)
         if len(station_a_missing_fruits) == 0:
+            print("Mode_Barter get_trade_option() 4")
             self.lock.release()
             return phase_names.COMIENZA
         potential_trading_partners = []
+        print("Mode_Barter get_trade_option() 5", station_a_missing_fruits)
         # if station_b has fruit_b to trade
         for station_a_missing_fruit in station_a_missing_fruits:
             # todo: thread safety for carousel_data_segments
@@ -1516,10 +1521,13 @@ class Mode_Barter(threading.Thread):
                 # if station_b is missing fruit_a
                 if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
                     potential_trading_partners.append(station_a_missing_fruit)
+
+        print("Mode_Barter get_trade_option() 6", potential_trading_partners)
         if len(potential_trading_partners) == 0:
             self.lock.release()
             return phase_names.COMIENZA
         invitee_fruit_name = random.choice(potential_trading_partners)
+        print("Mode_Barter get_trade_option() 7", invitee_fruit_name)
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
         self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
         self.lock.release()
