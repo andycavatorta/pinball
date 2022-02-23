@@ -67,7 +67,7 @@ class Animation_Transactions(threading.Thread):
         self.start()
 
 
-    def animation_fill_carousel(self, carousel_fruit_order):
+    def animation_fill_carousel(self, fruit_order):
         fruit_name = fruit_order[1]
         self.commands.request_score("f_piano")
         self.commands.cmd_carousel_lights(fruit_name,"low")
