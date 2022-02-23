@@ -298,12 +298,12 @@ class Station(threading.Thread):
 
     def increment_score(self, points=1):
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score+points])
-        self.barter_mode_score += points
+        self.commands.barter_mode_score += points
 
 
     def decrement_score(self, points=-1):
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score-points])
-        self.barter_mode_score -= points
+        self.commands.barter_mode_score -= points
 
 
     def setup(self):
