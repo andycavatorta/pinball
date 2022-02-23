@@ -221,7 +221,7 @@ class Station(threading.Thread):
             "peso":False,
         }
         self.carousel_fruit_order = CAROUSEL_FRUIT_ORDER[self.fruit_name]
-
+        self.start()
 
     def pie_target_hit(self, target_name):
         if self.pie_data_segments[target_name] == False:
