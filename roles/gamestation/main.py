@@ -372,7 +372,8 @@ class Main(threading.Thread):
                 topic, message, origin, destination = self.queue.get(True)
                 if topic != b'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
-                        print(">> received >>", topic, message, origin, destination)
+                        if topic == b'request_button_light_active':
+                            print(">> received >>", topic, message, origin, destination)
 
                 try: 
                     topic = topic.decode('UTF-8')
