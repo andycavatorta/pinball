@@ -202,6 +202,7 @@ class Station(threading.Thread):
         self.animation_transactions = Animation_Transactions(commands)
         self.animation_score = Animation_Score(commands)
         self.fruit_to_spend = ""
+        self.current_phase = phase_names.NOPLAYER
         self.pie_data_segments = {
             "pop_left":False,
             "pop_middle":False,
