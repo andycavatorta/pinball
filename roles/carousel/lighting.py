@@ -386,6 +386,30 @@ class Lights(threading.Thread):
             3, 0, 11, 8, 15, 12, 16, 19, 20, 23,
             2, 1, 10, 9, 14, 13, 17, 18, 21, 22
         ]
+        CHANNEL_0 = [0]
+        CHANNEL_1 = [1]
+        CHANNEL_2 = [2]
+        CHANNEL_3 = [3]
+        CHANNEL_4 = [4]
+        CHANNEL_5 = [5]
+        CHANNEL_6 = [6]
+        CHANNEL_7 = [7]
+        CHANNEL_8 = [8]
+        CHANNEL_9 = [9]
+        CHANNEL_10 = [10]
+        CHANNEL_11 = [11]
+        CHANNEL_12 = [12]
+        CHANNEL_13 = [13]
+        CHANNEL_14 = [14]
+        CHANNEL_15 = [15]
+        CHANNEL_16 = [16]
+        CHANNEL_17 = [17]
+        CHANNEL_18 = [18]
+        CHANNEL_19 = [19]
+        CHANNEL_20 = [20]
+        CHANNEL_21 = [21]
+        CHANNEL_22 = [22]
+        CHANNEL_23 = [23]
 
 
     def __init__(self):
@@ -452,6 +476,32 @@ class Lights(threading.Thread):
         self.serpentine_center_mango = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_MANGO, self.queue)
         self.serpentine_center_sandia = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_SANDIA, self.queue)
         self.serpentine_center_pina = Lights_Pattern(self.pattern_channels.SERPENTINE_CENTER_PINA, self.queue)
+
+        self.channel_0 = Lights_Pattern(self.pattern_channels.CHANNEL_0, self.queue)
+        self.channel_1 = Lights_Pattern(self.pattern_channels.CHANNEL_1, self.queue)
+        self.channel_2 = Lights_Pattern(self.pattern_channels.CHANNEL_2, self.queue)
+        self.channel_3 = Lights_Pattern(self.pattern_channels.CHANNEL_3, self.queue)
+        self.channel_4 = Lights_Pattern(self.pattern_channels.CHANNEL_4, self.queue)
+        self.channel_5 = Lights_Pattern(self.pattern_channels.CHANNEL_5, self.queue)
+        self.channel_6 = Lights_Pattern(self.pattern_channels.CHANNEL_6, self.queue)
+        self.channel_7 = Lights_Pattern(self.pattern_channels.CHANNEL_7, self.queue)
+        self.channel_8 = Lights_Pattern(self.pattern_channels.CHANNEL_8, self.queue)
+        self.channel_9 = Lights_Pattern(self.pattern_channels.CHANNEL_9, self.queue)
+        self.channel_10 = Lights_Pattern(self.pattern_channels.CHANNEL_10, self.queue)
+        self.channel_11 = Lights_Pattern(self.pattern_channels.CHANNEL_11, self.queue)
+        self.channel_12 = Lights_Pattern(self.pattern_channels.CHANNEL_12, self.queue)
+        self.channel_13 = Lights_Pattern(self.pattern_channels.CHANNEL_13, self.queue)
+        self.channel_14 = Lights_Pattern(self.pattern_channels.CHANNEL_14, self.queue)
+        self.channel_15 = Lights_Pattern(self.pattern_channels.CHANNEL_15, self.queue)
+        self.channel_16 = Lights_Pattern(self.pattern_channels.CHANNEL_16, self.queue)
+        self.channel_17 = Lights_Pattern(self.pattern_channels.CHANNEL_17, self.queue)
+        self.channel_18 = Lights_Pattern(self.pattern_channels.CHANNEL_18, self.queue)
+        self.channel_19 = Lights_Pattern(self.pattern_channels.CHANNEL_19, self.queue)
+        self.channel_20 = Lights_Pattern(self.pattern_channels.CHANNEL_20, self.queue)
+        self.channel_21 = Lights_Pattern(self.pattern_channels.CHANNEL_21, self.queue)
+        self.channel_22 = Lights_Pattern(self.pattern_channels.CHANNEL_22, self.queue)
+        self.channel_23 = Lights_Pattern(self.pattern_channels.CHANNEL_23, self.queue)
+
 
         self.start()
 
