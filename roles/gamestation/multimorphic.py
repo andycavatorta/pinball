@@ -170,7 +170,7 @@ class Multimorphic(threading.Thread):
         while True:
             try:
                 command, params = self.queue.get(True,0.01)
-                print("multimorphic.py run", command, params)
+                #print("multimorphic.py run", command, params)
                 if command == "enable_gameplay":
                     self._enable_gameplay()
                 if command == "disable_gameplay":
