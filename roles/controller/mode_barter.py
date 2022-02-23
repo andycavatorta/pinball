@@ -346,7 +346,7 @@ class Station(threading.Thread):
                 self.decrement_score(lower_score)
                 self.animation_score.add_to_queue("flipboard",[self.commands.barter_mode_score,lower_score])
                 self.commands.barter_mode_score = lower_score
-            self.commands.cmd_carousel_lights(self.sacrificial_fruit,  "high")
+            self.commands.cmd_carousel_lights(self.fruit_to_spend,  "high")
             time.sleep(0.2)
             self.commands.request_score("g_mezzo")
             time.sleep(0.2)
