@@ -291,7 +291,7 @@ class Station(threading.Thread):
         return missing
 
 
-    def carousel_display_fruit_presences(self, fruit_name, level = "on"):
+    def carousel_display_fruit_presences(self, level = "on"):
         for fruit_name, presence in self.carousel_data_segments.items():
             self.commands.cmd_carousel_lights(fruit_name, level if presence else "off")
 
