@@ -1,5 +1,4 @@
 # todo: in attraction mode , check presence of balls
-# todo: add this_fruit every x points or x seconds
 
 import codecs
 import os
@@ -234,8 +233,7 @@ class Station(threading.Thread):
                 self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score+25])
                 self.carousel_add_fruit(self.fruit_name)
                 self.carousel_display_fruit_presences()
-                #todo: use queue to adjust barter_mode_score
-                self.increment_score(25)
+                self.add_to_queue("increment_score",25)
                 self.pie_data_reset()
 
 
@@ -298,10 +296,24 @@ class Station(threading.Thread):
 
     def increment_score(self, points=1):
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score+points])
-        self.commands.barter_mode_score += points
+        old_score = int(self.commands.barter_mode_score)
+        new_score = self.commands.barter_mode_score + points
+        # end mode if player scores over 900 points
+        if new_score > 900:
+            self.parent_ref.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
+        # if the score passes a threshold number
+        if not self.carousel_get_fruit_presence(self.fruit_name):
+            comparator = new_score - (new_score % 20)
+            if comparator > old_score:
+                self.carousel_add_fruit(self.fruit_name)
+                self.commands.cmd_carousel_lights(self.fruit_name, "energize")
+        self.commands.barter_mode_score = new_score
 
 
     def decrement_score(self, points=-1):
+        """
+        negative scores must be prevented elsewhere
+        """
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score-points])
         self.commands.barter_mode_score -= points
 
@@ -324,7 +336,6 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.COMIENZA:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
-            #todo first time run issue
             print(time.ctime(time.time()),"===================== COMIENZA =====================", self.fruit_name)
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
@@ -442,24 +453,23 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
-            #todo: first time run issue
             if topic == "event_button_comienza":
                 self.end()
 
         if self.current_phase == phase_names.PINBALL:
             if topic == "event_pop_left":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
@@ -484,21 +494,21 @@ class Station(threading.Thread):
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
                     
             if topic == "event_spinner":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
@@ -534,17 +544,17 @@ class Station(threading.Thread):
 
             if topic == "event_pop_left":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
@@ -569,21 +579,21 @@ class Station(threading.Thread):
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
                     
             if topic == "event_spinner":
                 if message:
-                    self.increment_score()
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
@@ -610,8 +620,6 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
-            #todo:  first time run should go to end()
-            #    or kicker can fire during begin()
             # if there is a fruit to spend
             if self.fruit_to_spend != "":
                 #remove the fruit data
@@ -622,16 +630,17 @@ class Station(threading.Thread):
             self.set_phase(phase_names.PINBALL)
 
         if self.current_phase == phase_names.PINBALL:
-            # todo: add necessary parameters to call to get_trade_option after writing get_trade_option
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
 
         if self.current_phase == phase_names.INVITOR:
             pass
             #todo: go to phase_names.TRADE or phase_names.FAIL
+            # self.set_phase(phase_names.PINBALL)
 
         if self.current_phase == phase_names.INVITEE:
             pass
             #todo: go to phase_names.TRADE or phase_names.FAIL
+            # self.set_phase(phase_names.PINBALL)
 
         if self.current_phase == phase_names.TRADE:
             station_ref.add_to_queue("set_phase", phase_names.COMIENZA)
@@ -664,6 +673,16 @@ class Station(threading.Thread):
                 self.carousel_add_fruit(self.carousel_fruit_order[4])
             if topic == "cmd_kicker_launch":
                 self.commands.cmd_kicker_launch()
+            if topic == "increment_score":
+                if isinstance(message, int):
+                    self.increment_score(message)
+                else:
+                    self.increment_score()
+            if topic == "decrement_score":
+                if isinstance(message, int):
+                    self.decrement_score(message)
+                else:
+                    self.decrement_score()
             self.event_handler(topic,message)
 
 
@@ -690,11 +709,11 @@ class Mode_Timer(threading.Thread):
                     self.timer = 0
                 if action == "end":
                     self.timer = -1
-
             except queue.Empty:
                 if self.timer > -1:
                     self.timer += 1
-                    print("Mode_Timer run self.timer=",self.timer)
+                    if self.timer %10 == 0:
+                        print("Mode_Timer run self.timer=",self.timer)
                     if self.timer >= self.timer_limit:
                         self.timer = -1
                         self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
@@ -702,7 +721,6 @@ class Mode_Timer(threading.Thread):
 
 class Matrix_Animations(threading.Thread):
     """
-    
     todo: change animation methods to generators to make them easy to interrupt 
     """
     def __init__(self, hosts):
@@ -1486,6 +1504,7 @@ class Mode_Barter(threading.Thread):
             "pinball5game":self.stations["pina"],
         }
         self.invitor_invitee = ["",""]
+        self.initiator_ordinal = 0
         self.start()
 
     # todo: reset self.invitor_invitee after trade or fail
@@ -1521,7 +1540,6 @@ class Mode_Barter(threading.Thread):
                 # if station_b is missing fruit_a
                 if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
                     potential_trading_partners.append(station_a_missing_fruit)
-
         print("Mode_Barter get_trade_option() 6", potential_trading_partners)
         if len(potential_trading_partners) == 0:
             self.lock.release()
@@ -1539,27 +1557,65 @@ class Mode_Barter(threading.Thread):
         there should be a better, thread-safe system for this.  
         but this will have to do for now.
         """
+
         if phase_name == phase_names.NOPLAYER:
             pass
         if phase_name == phase_names.COMIENZA:
             if station_fruit_name in self.invitor_invitee:
+                self.matrix_animations.add_to_queue("pause_animations", invitor_invitee[0], invitor_invitee[1])
                 self.invitor_invitee = ["",""]
+
 
         if phase_name == phase_names.PINBALL:
             if station_fruit_name in self.invitor_invitee:
+                self.matrix_animations.add_to_queue("pause_animations", invitor_invitee[0], invitor_invitee[1])
                 self.invitor_invitee = ["",""]
+
 
         if phase_name == phase_names.INVITOR:
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
+            if self.invitor_invitee[1] != "":
+                if initiator_hint == "":
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].self.invitor_invitee[1])
+                else:
+                    if initiator_hint == self.invitor_invitee[0]:
+                        initiator_ordinal = 0
+                    else 
+                        initiator_ordinal = 1
+                    if initiator_ordinal == 0:
+                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].self.invitor_invitee[1])
+                    else:
+                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1].self.invitor_invitee[0])
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
                 self.invitor_invitee[1] = station_fruit_name
+            if self.invitor_invitee[1] != "":
+                    if initiator_hint == self.invitor_invitee[0]:
+                        initiator_ordinal = 0
+                    else 
+                        initiator_ordinal = 1
+                    if initiator_ordinal == 0:
+                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].self.invitor_invitee[1])
+                    else:
+                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1].self.invitor_invitee[0])
 
         if phase_name == phase_names.TRADE:
+            if initiator_ordinal == 0:
+                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].self.invitor_invitee[1])
+            else:
+                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1].self.invitor_invitee[0])
+            self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[1].self.invitor_invitee[0])
             self.invitor_invitee = ["",""]
+
+
         if phase_name == phase_names.FAIL:
+            if initiator_ordinal == 0:
+                self.matrix_animations.add_to_queue("trade_failed", self.invitor_invitee[0].self.invitor_invitee[1])
+            else:
+                self.matrix_animations.add_to_queue("trade_failed", self.invitor_invitee[1].self.invitor_invitee[0])
+            self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[1].self.invitor_invitee[0])
             self.invitor_invitee = ["",""]
 
 
@@ -1610,7 +1666,7 @@ class Mode_Barter(threading.Thread):
 
                 if topic == "handle_station_phase_change":
                     self.handle_station_phase_change(message, origin, destination)
-                else:
+                else:           
                     self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
 
             except AttributeError:
