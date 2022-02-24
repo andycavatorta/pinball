@@ -460,6 +460,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_button_comienza":
+                print(">>>>>>>>>>>>>>>> event_button_comienza", self.current_phase)
                 self.end()
 
         if self.current_phase == phase_names.PINBALL:
