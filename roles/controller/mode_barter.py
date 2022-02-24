@@ -623,6 +623,8 @@ class Station(threading.Thread):
             pass
 
     def end(self):
+
+        print(">>>>>>>>>>>>>>>> end", self.current_phase)
         if self.current_phase == phase_names.NOPLAYER:
             #todo?
             pass
@@ -636,26 +638,32 @@ class Station(threading.Thread):
                 self.carousel_display_fruit_presences()
             self.commands.cmd_kicker_launch() 
             self.set_phase(phase_names.PINBALL)
+            return
 
         if self.current_phase == phase_names.PINBALL:
             print("Station end()",phase_names.PINBALL)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
+            return
 
         if self.current_phase == phase_names.INVITOR:
             pass
             #todo: go to phase_names.TRADE or phase_names.FAIL
             # self.set_phase(phase_names.PINBALL)
+            return
 
         if self.current_phase == phase_names.INVITEE:
             pass
             #todo: go to phase_names.TRADE or phase_names.FAIL
             # self.set_phase(phase_names.PINBALL)
+            return
 
         if self.current_phase == phase_names.TRADE:
             station_ref.add_to_queue("set_phase", phase_names.COMIENZA)
+            return
 
         if self.current_phase == phase_names.FAIL:
             station_ref.add_to_queue("set_phase", phase_names.COMIENZA)
+            return
 
 
     def set_phase(self, phase_name):
