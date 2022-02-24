@@ -638,6 +638,7 @@ class Station(threading.Thread):
             self.set_phase(phase_names.PINBALL)
 
         if self.current_phase == phase_names.PINBALL:
+            print("Station end()",phase_names.PINBALL)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
 
         if self.current_phase == phase_names.INVITOR:
