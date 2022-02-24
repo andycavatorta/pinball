@@ -454,6 +454,7 @@ class Station(threading.Thread):
             self.commands.cmd_playfield_lights("sign_bottom_left", "on")
 
     def event_handler(self, topic, message):
+        print("event_handler",topic, message,self.current_phase)
         if self.current_phase == phase_names.NOPLAYER:
             pass
 
