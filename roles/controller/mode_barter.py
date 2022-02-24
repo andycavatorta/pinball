@@ -1594,7 +1594,7 @@ class Mode_Barter(threading.Thread):
             if self.invitor_invitee[1] != "":
                     if initiator_hint == self.invitor_invitee[0]:
                         initiator_ordinal = 0
-                    else 
+                    else:
                         initiator_ordinal = 1
                     if initiator_ordinal == 0:
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].self.invitor_invitee[1])
