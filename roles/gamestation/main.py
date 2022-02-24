@@ -223,7 +223,7 @@ class Playfield_Sensors(threading.Thread):
                 GPIO_Input("rollover_outer_left", 14, callback),#damage?
                 GPIO_Input("rollover_outer_right", 15, callback),#damage?
                 GPIO_Input("spinner", 1, callback),# good
-                GPIO_Input("trough_sensor", 18, callback),#damage?
+                GPIO_Input("event_trough_sensor", 18, callback),#damage?
                 GPIO_Input("tube_sensor_left", 17, callback),
                 GPIO_Input("tube_sensor_right", 27, callback),
             ]
@@ -234,7 +234,7 @@ class Playfield_Sensors(threading.Thread):
                 GPIO_Input("rollover_outer_left", 12, callback),
                 GPIO_Input("rollover_outer_right", 21, callback),
                 GPIO_Input("spinner", 1, callback),
-                GPIO_Input("trough_sensor", 25, callback),
+                GPIO_Input("event_trough_sensor", 25, callback),
                 GPIO_Input("tube_sensor_left", 17, callback),
                 GPIO_Input("tube_sensor_right", 27, callback),
             ]
