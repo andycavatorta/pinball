@@ -1675,7 +1675,8 @@ class Mode_Barter(threading.Thread):
 
                 if topic == "handle_station_phase_change":
                     self.handle_station_phase_change(message, origin, destination)
-                self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
+                else:
+                    self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
 
             except AttributeError:
                 pass
