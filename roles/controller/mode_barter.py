@@ -670,6 +670,7 @@ class Station(threading.Thread):
     def run(self):
         while True:
             topic,message = self.queue.get()
+            print("Station run", self.fruit_name, topic,message)
             if topic == "set_phase":
                 self.set_phase(message)
             if topic == "animation_fill_carousel":
@@ -690,6 +691,7 @@ class Station(threading.Thread):
                     self.decrement_score(message)
                 else:
                     self.decrement_score()
+
             self.event_handler(topic,message)
 
 
@@ -1673,8 +1675,7 @@ class Mode_Barter(threading.Thread):
 
                 if topic == "handle_station_phase_change":
                     self.handle_station_phase_change(message, origin, destination)
-                else:           
-                    self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
+                self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
 
             except AttributeError:
                 pass
