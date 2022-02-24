@@ -518,6 +518,7 @@ class Station(threading.Thread):
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
+                print(">>>>>>>>>>>>>>>> event_trough_sensor", message)
                 if message:
                     self.end()
 
