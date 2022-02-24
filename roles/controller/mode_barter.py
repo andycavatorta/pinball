@@ -303,11 +303,15 @@ class Station(threading.Thread):
             self.parent_ref.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
+            print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
             comparator = new_score - (new_score % 20)
+            print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
                 self.commands.cmd_carousel_lights(self.fruit_name, "energize")
+                print("increment_score 2",comparator, new_score)
         self.commands.barter_mode_score = new_score
+        print("increment_score 3",self.commands.barter_mode_score)
 
 
     def decrement_score(self, points=-1):
@@ -316,6 +320,7 @@ class Station(threading.Thread):
         """
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score-points])
         self.commands.barter_mode_score -= points
+        print("decrement_score",self.commands.barter_mode_score)
 
 
     def setup(self):
