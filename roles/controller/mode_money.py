@@ -108,7 +108,7 @@ class Animation_Transactions(threading.Thread):
         self.commands.cmd_carousel_lights(fruit_name,"high")
         time.sleep(0.4)
         self.commands.request_score("c_piano")
-        self.commands.cmd_carousel_lights("peso,"high")
+        self.commands.cmd_carousel_lights("peso","high")
 
 
     def add_to_queue(self, name, data=[]):
