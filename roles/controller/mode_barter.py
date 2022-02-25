@@ -285,6 +285,8 @@ class Station(threading.Thread):
             if exclude_this_fruit:
                 if name == self.fruit_name:
                     continue
+                if name == "peso": # todo: this should be fixed somewhere upstream
+                    continue
             if not val:
                 missing.append(name)
         return missing
