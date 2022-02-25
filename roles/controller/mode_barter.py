@@ -390,7 +390,7 @@ class Station(threading.Thread):
             self.commands.enable_dinero_coil(False)
 
         if self.current_phase == phase_names.INVITOR:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== INVITOR =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(False)
@@ -407,7 +407,7 @@ class Station(threading.Thread):
             self.commands.cmd_playfield_lights("sign_bottom_left", "on")
 
         if self.current_phase == phase_names.INVITEE:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== INVITEE =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(True)
@@ -425,7 +425,7 @@ class Station(threading.Thread):
 
 
         if self.current_phase == phase_names.TRADE:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(False)
@@ -443,7 +443,7 @@ class Station(threading.Thread):
 
 
         if self.current_phase == phase_names.FAIL:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(False)
@@ -533,7 +533,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.INVITOR:
             if topic == "event_button_trueque":
-                self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "event_button_trueque")
+                self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, True)
 
                 # todo: all of the following in top thread
                 """
@@ -620,7 +620,7 @@ class Station(threading.Thread):
                     self.commands.request_button_light_active("dinero",False)
                     self.commands.request_button_light_active("derecha",False)
             if topic == "event_button_trueque":
-                self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "event_button_trueque")
+                self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, True)
 
         if self.current_phase == phase_names.TRADE:
             #todo?
@@ -1531,7 +1531,7 @@ class Mode_Barter(threading.Thread):
             "pinball5game":self.stations["pina"],
         }
         self.invitor_invitee = ["",""]
-        self.initiator_ordinal = 0
+        self.initiator_initiatee = ["",""]
         self.start()
 
     # todo: reset self.invitor_invitee after trade or fail
@@ -1602,37 +1602,36 @@ class Mode_Barter(threading.Thread):
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
             if self.invitor_invitee[1] != "":
-                if initiator_hint == "":
-                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-                else:
-                    if initiator_hint == self.invitor_invitee[0]:
-                        initiator_ordinal = 0
-                    else:
-                        initiator_ordinal = 1
-                    if initiator_ordinal == 0:
+                if initiator_hint:
+                    # trueque button has been hit
+                    # is INVITOR the first or second to hit the trueque button?
+                    if self.initiator_initiatee[0] == "":
+                        # INVITOR is the first to hit the trueque button
+                        self.initiator_initiatee[0] = self.invitor_invitee[0]
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
-                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
-                # todo : handle case when invitee is still playing - ball sensor?
-                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)    
-                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+                        # INVITOR is the second to hit the trueque button
+                        self.initiator_initiatee[1] = self.invitor_invitee[0]
+                        self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
+                        self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
 
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
                 self.invitor_invitee[1] = station_fruit_name
-            if self.invitor_invitee[1] != "":
-                if initiator_hint == self.invitor_invitee[0]:
-                    initiator_ordinal = 0
-                else:
-                    initiator_ordinal = 1
-                if initiator_ordinal == 0:
-                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-                else:
-                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
-                # todo : handle case when invitee is still playing - ball sensor?
-                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)    
-                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+            if self.invitor_invitee[0] != "":
+                if initiator_hint:
+                    # trueque button has been hit
+                    # is INVITEE the first or second to hit the trueque button?
+                    if self.initiator_initiatee[0] == "":
+                        # INVITEE is the first to hit the trueque button
+                        self.initiator_initiatee[0] = self.invitor_invitee[1]
+                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
+                    else:
+                        # INVITOR is the second to hit the trueque button
+                        self.initiator_initiatee[1] = self.invitor_invitee[1]
+                        self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
+                        self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
 
 
         if phase_name == phase_names.TRADE:
