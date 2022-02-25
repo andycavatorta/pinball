@@ -1229,7 +1229,7 @@ class Matrix_Animations(threading.Thread):
         self.carousels["center"].cmd_carousel_lights("all","off")
         self.carousels[path_a[0][0]].cmd_carousel_lights("all","off")
         self.carousels[path_b[0][0]].cmd_carousel_lights("all","off")
-        time.sleep(0.05)
+        time.sleep(0.1)
         # todo: add button blink and chimes
         self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
         self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
@@ -1237,14 +1237,14 @@ class Matrix_Animations(threading.Thread):
 
         for ordinal in range(len(path_a)):
             self.draw_pong_fade(path_a, ordinal)
-            time.sleep(0.05)
+            time.sleep(0.1)
 
         self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
         self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
         self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
-            time.sleep(0.05)
+            time.sleep(0.1)
 
 
     def trade_initiated_setup(self, initiator, invitee):
@@ -1261,7 +1261,7 @@ class Matrix_Animations(threading.Thread):
             self.draw_pong_fade(path_a, ordinal)
             if ordinal%2==0:
                 self.carousels[path_a[0][0]].request_eject_ball(path_a[0][3])
-            time.sleep(0.05)
+            time.sleep(0.1)
         self.set_pair_to_level(path_b[0][0], path_b[0][1], path_b[0][2], "on")
         self.set_pair_to_level(path_b[0][0], path_b[0][1], path_b[0][2], "on")
         self.carousels[path_b[0][0]].request_score("f_mezzo")
@@ -1278,7 +1278,7 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
-            time.sleep(0.05)
+            time.sleep(0.1)
         self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
         time.sleep(0.2)
 
@@ -1296,7 +1296,7 @@ class Matrix_Animations(threading.Thread):
             self.draw_pong_fade(path_a, ordinal)
             if ordinal%2==0:
                 self.carousels[path_a[0][0]].request_eject_ball(path_a[0][3])
-            time.sleep(0.05)
+            time.sleep(0.1)
         self.set_pair_to_level(path_a[-1][0], path_a[-1][1], path_a[-1][2], "on")
         self.set_pair_to_level(path_a[-2][0], path_a[-2][1], path_a[-2][2], "on")
         self.carousels[path_b[0][0]].request_score("f_mezzo")
@@ -1313,7 +1313,7 @@ class Matrix_Animations(threading.Thread):
         path_a_reversed.reverse()
         for ordinal in range(len(path_a_reversed)):
             self.draw_pong_fade(path_a_reversed, ordinal)
-            time.sleep(0.05)
+            time.sleep(0.1)
         self.carousels[path_b[0][0]].request_score("f_mezzo")
         self.carousels[path_b[0][0]].request_score("g_mezzo")
         self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
