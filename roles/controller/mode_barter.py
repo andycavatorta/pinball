@@ -408,6 +408,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.INVITEE:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            print(time.ctime(time.time()),"===================== INVITEE =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(True)
@@ -425,6 +426,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.TRADE:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
@@ -442,6 +444,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.FAIL:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
@@ -671,11 +674,14 @@ class Station(threading.Thread):
 
 
     def set_phase(self, phase_name):
-        print("set_phase", self.fruit_name, phase_name)
+        print("set_phase 1", self.fruit_name, self.current_phase, phase_name)
         if self.current_phase != phase_name:
             #self.end()
+            print("set_phase 2", self.fruit_name, self.current_phase, phase_name)
             self.current_phase = phase_name
+            print("set_phase 3", self.fruit_name, self.current_phase, phase_name)
             self.setup()
+            print("set_phase 3", self.fruit_name, self.current_phase, phase_name)
 
 
     def add_to_queue(self, topic, message):
