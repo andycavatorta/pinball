@@ -1636,18 +1636,18 @@ class Mode_Barter(threading.Thread):
 
         if phase_name == phase_names.TRADE:
             if self.initiator_initiatee[0] == self.invitor_invitee[0]:
-                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
+                self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             else:
-                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
-            self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[1],self.invitor_invitee[0])
+                self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.invitor_invitee = ["",""]
 
         if phase_name == phase_names.FAIL:
             if self.initiator_initiatee[0] == self.invitor_invitee[0]:
-                self.matrix_animations.add_to_queue("trade_failed", self.invitor_invitee[0],self.invitor_invitee[1])
+                self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             else:
-                self.matrix_animations.add_to_queue("trade_failed", self.invitor_invitee[1],self.invitor_invitee[0])
-            self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[1],self.invitor_invitee[0])
+                self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.invitor_invitee = ["",""]
 
 
