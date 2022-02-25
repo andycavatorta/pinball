@@ -1161,7 +1161,8 @@ class Matrix_Animations(threading.Thread):
                     ["sandia",21,20,"pina"],
                 ],
             },
-        } 
+        }
+    self.start()
 
 
 
