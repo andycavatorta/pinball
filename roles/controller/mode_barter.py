@@ -1622,14 +1622,14 @@ class Mode_Barter(threading.Thread):
             if self.invitor_invitee[1] == "":
                 self.invitor_invitee[1] = station_fruit_name
             if self.invitor_invitee[1] != "":
-                    if initiator_hint == self.invitor_invitee[0]:
-                        initiator_ordinal = 0
-                    else:
-                        initiator_ordinal = 1
-                    if initiator_ordinal == 0:
-                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-                    else:
-                        self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
+                if initiator_hint == self.invitor_invitee[0]:
+                    initiator_ordinal = 0
+                else:
+                    initiator_ordinal = 1
+                if initiator_ordinal == 0:
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
+                else:
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
                 # todo : handle case when invitee is still playing - ball sensor?
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)    
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
