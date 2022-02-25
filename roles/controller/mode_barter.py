@@ -810,7 +810,7 @@ class Matrix_Animations(threading.Thread):
             "pina":station_to_host_pina,
             "center":station_to_host_center,
         }
-        calculated_paths = {
+        self.calculated_paths = {
             "coco":{
                 "naranja":[# 13
                     ["coco",18,17,"coco"],
