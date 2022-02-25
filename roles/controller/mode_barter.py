@@ -1614,7 +1614,7 @@ class Mode_Barter(threading.Thread):
                         self.initiator_initiatee[1] = self.invitor_invitee[0]
                         self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                         self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
-
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
@@ -1632,9 +1632,12 @@ class Mode_Barter(threading.Thread):
                         self.initiator_initiatee[1] = self.invitor_invitee[1]
                         self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                         self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
 
         if phase_name == phase_names.TRADE:
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+
             if self.initiator_initiatee[0] == self.invitor_invitee[0]:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             else:
@@ -1643,6 +1646,8 @@ class Mode_Barter(threading.Thread):
             self.invitor_invitee = ["",""]
 
         if phase_name == phase_names.FAIL:
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+
             if self.initiator_initiatee[0] == self.invitor_invitee[0]:
                 self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             else:
