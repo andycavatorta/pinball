@@ -133,35 +133,35 @@ class Animation_Pinball_Game(threading.Thread):
     def pie_full(self):
         self.commands.cmd_playfield_lights("pie","energize")# light animation
         self.commands.request_score("f_mezzo")
-        self.commands.cmd_playfield_lights("pie_pop_left".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_pop_left".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_pop_left","off")# light animation
+        self.commands.cmd_playfield_lights("trail_pop_left","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("c_mezzo")
-        self.commands.cmd_playfield_lights("pie_pop_middle".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_pop_middle".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_pop_middle","off")# light animation
+        self.commands.cmd_playfield_lights("trail_pop_middle","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("g_mezzo")
-        self.commands.cmd_playfield_lights("pie_pop_right".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_pop_right".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_pop_right","off")# light animation
+        self.commands.cmd_playfield_lights("trail_pop_right","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("c_mezzo")
-        self.commands.cmd_playfield_lights("pie_spinner".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_spinner".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_spinner","off")# light animation
+        self.commands.cmd_playfield_lights("trail_spinner","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("gsharp_mezzo")
-        self.commands.cmd_playfield_lights("pie_sling_right".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_sling_right".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_sling_right","off")# light animation
+        self.commands.cmd_playfield_lights("trail_sling_right","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("c_mezzo")
-        self.commands.cmd_playfield_lights("pie_rollover_right".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_rollover_right".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_rollover_right","off")# light animation
+        self.commands.cmd_playfield_lights("trail_rollover_right","stroke_on")# light segment
         time.sleep(.15)
         self.commands.request_score("asharp_mezzo")
-        self.commands.cmd_playfield_lights("pie_rollover_left".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_rollover_left".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_rollover_left","off")# light animation
+        self.commands.cmd_playfield_lights("trail_rollover_left","stroke_on")# light segment
         time.sleep(.15)
-        self.commands.cmd_playfield_lights("pie_sling_left".format(postfix),"off")# light animation
-        self.commands.cmd_playfield_lights("trail_sling_left".format(postfix),"stroke_on")# light segment
+        self.commands.cmd_playfield_lights("pie_sling_left","off")# light animation
+        self.commands.cmd_playfield_lights("trail_sling_left","stroke_on")# light segment
         self.commands.request_score("c_mezzo")
         time.sleep(.15)
         self.commands.request_score("f_mezzo")
