@@ -1170,7 +1170,6 @@ class Matrix_Animations(threading.Thread):
         # todo, clear tail when end is reached
         if ordinal+1 > -1 and ordinal+1 < len(path):
             self.set_pair_to_level(
-                self, 
                 path[ordinal+1][0], 
                 path[ordinal+1][1], 
                 path[ordinal+1][2], 
@@ -1178,7 +1177,6 @@ class Matrix_Animations(threading.Thread):
             )
         if ordinal > -1 and ordinal < len(path):
             self.set_pair_to_level(
-                self, 
                 path[ordinal][0], 
                 path[ordinal][1], 
                 path[ordinal][2], 
@@ -1186,7 +1184,6 @@ class Matrix_Animations(threading.Thread):
             )
         if ordinal-1 > -1 and ordinal-1 < len(path):
             self.set_pair_to_level(
-                self, 
                 path[ordinal-1][0], 
                 path[ordinal-1][1], 
                 path[ordinal-1][2], 
@@ -1194,7 +1191,6 @@ class Matrix_Animations(threading.Thread):
             )
         if ordinal-2 > -1 and ordinal-2 < len(path):
             self.set_pair_to_level(
-                self, 
                 path[ordinal-2][0], 
                 path[ordinal-2][1], 
                 path[ordinal-2][2], 
@@ -1202,7 +1198,6 @@ class Matrix_Animations(threading.Thread):
             )
         if ordinal-2 > -1 and ordinal-2 < len(path):
             self.set_pair_to_level(
-                self, 
                 path[ordinal-2][0], 
                 path[ordinal-2][1], 
                 path[ordinal-2][2], 
