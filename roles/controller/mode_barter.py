@@ -1583,13 +1583,13 @@ class Mode_Barter(threading.Thread):
             pass
         if phase_name == phase_names.COMIENZA:
             if station_fruit_name in self.invitor_invitee:
-                self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], invitor_invitee[1])
+                self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
 
 
         if phase_name == phase_names.PINBALL:
             if station_fruit_name in self.invitor_invitee:
-                self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], invitor_invitee[1])
+                self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
 
 
@@ -1598,7 +1598,7 @@ class Mode_Barter(threading.Thread):
                 self.invitor_invitee[0] = station_fruit_name
             if self.invitor_invitee[1] != "":
                 if initiator_hint == "":
-                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0].,elf.invitor_invitee[1])
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                 else:
                     if initiator_hint == self.invitor_invitee[0]:
                         initiator_ordinal = 0
