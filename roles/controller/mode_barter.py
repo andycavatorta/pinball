@@ -17,7 +17,6 @@ CAROUSEL_FRUIT_ORDER = {
     "pina":["pina","coco","naranja","mango","sandia"]
 }
 
-
 class phase_names():
     NOPLAYER="noplayer"
     COMIENZA="comienza"
@@ -674,14 +673,10 @@ class Station(threading.Thread):
 
 
     def set_phase(self, phase_name):
-        print("set_phase 1", self.fruit_name, self.current_phase, phase_name)
         if self.current_phase != phase_name:
             #self.end()
-            print("set_phase 2", self.fruit_name, self.current_phase, phase_name)
             self.current_phase = phase_name
-            print("set_phase 3", self.fruit_name, self.current_phase, phase_name)
             self.setup()
-            print("set_phase 3", self.fruit_name, self.current_phase, phase_name)
 
 
     def add_to_queue(self, topic, message):
@@ -716,12 +711,42 @@ class Station(threading.Thread):
             self.event_handler(topic,message)
 
 
+class Trade_Fail_Timer(threading.Thread):
+    def __init__(self, parent_ref_add_to_queue):
+        threading.Thread.__init__(self)
+        self.parent_ref_add_to_queue = parent_ref_add_to_queue
+        self.timer = -1
+        self.timer_limit = 15
+        self.queue = queue.Queue()
+        self.start()
+
+
+    def add_to_queue(self, action):
+        self.queue.put(action)
+
+
+    def run(self):
+        while True:
+            try:
+                action = self.queue.get(timeout=1)
+                if action == "begin":
+                    self.timer = 0
+                if action == "end":
+                    self.timer = -1
+            except queue.Empty:
+                if self.timer > -1:
+                    self.timer += 1
+                    if self.timer >= self.timer_limit:
+                        self.timer = -1
+                        self.parent_ref_add_to_queue("handle_station_phase_change", "", phase_names.FAIL, False)
+
+
 class Mode_Timer(threading.Thread):
     def __init__(self, set_current_mode):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 900
+        self.timer_limit = 300
         self.queue = queue.Queue()
         self.start()
 
@@ -756,6 +781,7 @@ class Matrix_Animations(threading.Thread):
         threading.Thread.__init__(self)
         self.hosts = hosts
         self.queue = queue.Queue()
+        self.trade_fail_timer = Trade_Fail_Timer(self.add_to_queue)
         class station_to_host_coco():
             request_eject_ball = self.hosts.hostnames['carousel1'].request_eject_ball
             cmd_carousel_lights = self.hosts.hostnames['carousel1'].cmd_carousel_lights
@@ -1609,11 +1635,12 @@ class Mode_Barter(threading.Thread):
                     # is INVITOR the first or second to hit the trueque button?
                     if self.initiator_initiatee[0] == "":
                         # INVITOR is the first to hit the trueque button
-                        self.initiator_initiatee[0] = self.invitor_invitee[0]
+                        self.trade_fail_timer.add_to_queue("begin")
+                        self.initiator_initiatee[0] = station_fruit_name
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         # INVITOR is the second to hit the trueque button
-                        self.initiator_initiatee[1] = self.invitor_invitee[0]
+                        self.initiator_initiatee[1] = station_fruit_name
                         self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                         self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
@@ -1627,41 +1654,36 @@ class Mode_Barter(threading.Thread):
                     # is INVITEE the first or second to hit the trueque button?
                     if self.initiator_initiatee[0] == "":
                         # INVITEE is the first to hit the trueque button
-                        self.initiator_initiatee[0] = self.invitor_invitee[1]
+                        self.initiator_initiatee[0] = station_fruit_name
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         # INVITOR is the second to hit the trueque button
-                        self.initiator_initiatee[1] = self.invitor_invitee[1]
+                        self.initiator_initiatee[1] = station_fruit_name
                         self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                         self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)    
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
-
         if phase_name == phase_names.TRADE:
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-            if self.initiator_initiatee[0] == self.invitor_invitee[0]:
+            if self.initiator_initiatee[0] == station_fruit_name:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
-            else:
-                self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+                self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+                self.invitor_invitee = ["",""]
+                self.initiator_initiatee = ["",""]
+                self.trade_fail_timer.add_to_queue("end")
             self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
-            #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
-            # todo: where does self.invitor_invitee get cleared? 
-            # this is called by both stations and it can be cleared after the second station calls
-            #self.invitor_invitee = ["",""]
 
         if phase_name == phase_names.FAIL:
+            # this is called only once, by the timer
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-
-            if self.initiator_initiatee[0] == self.invitor_invitee[0]:
-                self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
-            else:
-                self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+            # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
+            self.trade_fail_timer.add_to_queue("end")
+            self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
-            # todo: where does self.invitor_invitee get cleared? 
-            # this is called by both stations and it can be cleared after the second station calls
-            #self.invitor_invitee = ["",""]
+            self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.invitor_invitee = ["",""]
+            self.initiator_initiatee = ["",""]
 
 
     def begin(self):
