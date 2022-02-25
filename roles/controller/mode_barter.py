@@ -1309,7 +1309,7 @@ class Matrix_Animations(threading.Thread):
         path_b = self.calculated_paths[invitee][initiator]
         # animate path_a backward with fail sound
         # light all of path b, then fade
-        path_a_reversed = reverse(list[path_a])
+        path_a_reversed = list[path_a].reverse()
         for ordinal in range(len(path_a_reversed)):
             self.draw_pong_fade(path_a_reversed, ordinal)
             time.sleep(0.05)

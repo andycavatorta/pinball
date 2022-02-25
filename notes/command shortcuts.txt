@@ -67,9 +67,11 @@ role_module.main.multimorphic.pulse_coil("kicker",16)
 
 settings.Game_Modes
 
-
-
 role_module.main.tb.publish(topic="event_button_comienza",message=True)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["derecha_main"], 15)
+role_module.main.multimorphic.p3.pulse_coil(role_module.main.multimorphic.coils["izquierda_main"], 15)
+
+
 role_module.main.tb.publish(topic="event_button_trueque",message=True)
 role_module.main.tb.publish(topic="event_button_dinero",message=True)
 
@@ -95,7 +97,7 @@ role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
     hosts.hostnames["pinball5game"].cmd_righttube_launch()
 
 
-
+role_module.main.lighting.all.off()
 
 
 role_module.main.hosts.hostnames["pinball1game"].cmd_kicker_launch()
