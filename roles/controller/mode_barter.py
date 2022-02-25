@@ -1292,6 +1292,8 @@ class Matrix_Animations(threading.Thread):
 
 
     def trade_succeeded_setup(self, initiator, invitee):
+        return
+        # todo : find source of error
         path_a = self.calculated_paths[initiator][invitee]
         path_b = self.calculated_paths[invitee][initiator]
 
