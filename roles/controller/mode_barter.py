@@ -1162,7 +1162,7 @@ class Matrix_Animations(threading.Thread):
                 ],
             },
         }
-    self.start()
+        self.start()
 
 
 
