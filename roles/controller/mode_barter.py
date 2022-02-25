@@ -1292,7 +1292,7 @@ class Matrix_Animations(threading.Thread):
 
 
     def trade_succeeded_setup(self, initiator, invitee):
-        return
+        #return
         # todo : find source of error
         path_a = self.calculated_paths[initiator][invitee]
         path_b = self.calculated_paths[invitee][initiator]
@@ -1639,13 +1639,16 @@ class Mode_Barter(threading.Thread):
 
         if phase_name == phase_names.TRADE:
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-
             if self.initiator_initiatee[0] == self.invitor_invitee[0]:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             else:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.invitor_invitee = ["",""]
+            self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+            # todo: where does self.invitor_invitee get cleared? 
+            # this is called by both stations and it can be cleared after the second station calls
+            #self.invitor_invitee = ["",""]
 
         if phase_name == phase_names.FAIL:
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
@@ -1655,7 +1658,11 @@ class Mode_Barter(threading.Thread):
             else:
                 self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.invitor_invitee = ["",""]
+            self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+            # todo: where does self.invitor_invitee get cleared? 
+            # this is called by both stations and it can be cleared after the second station calls
+            #self.invitor_invitee = ["",""]
 
 
     def begin(self):
