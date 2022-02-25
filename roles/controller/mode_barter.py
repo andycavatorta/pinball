@@ -665,11 +665,11 @@ class Station(threading.Thread):
             return
 
         if self.current_phase == phase_names.TRADE:
-            station_ref.add_to_queue("set_phase", phase_names.COMIENZA)
+            self.add_to_queue("set_phase", phase_names.COMIENZA)
             return
 
         if self.current_phase == phase_names.FAIL:
-            station_ref.add_to_queue("set_phase", phase_names.COMIENZA)
+            self.add_to_queue("set_phase", phase_names.COMIENZA)
             return
 
 
@@ -686,6 +686,7 @@ class Station(threading.Thread):
 
     def add_to_queue(self, topic, message):
         self.queue.put((topic, message))
+
 
     def run(self):
         while True:
@@ -713,7 +714,6 @@ class Station(threading.Thread):
                     self.decrement_score()
 
             self.event_handler(topic,message)
-
 
 
 class Mode_Timer(threading.Thread):
@@ -1584,6 +1584,7 @@ class Mode_Barter(threading.Thread):
         there should be a better, thread-safe system for this.  
         but this will have to do for now.
         """
+        print("Mode_Barter.handle_station_phase_change",station_fruit_name, phase_name, initiator_hint)
 
         if phase_name == phase_names.NOPLAYER:
             pass
@@ -1592,12 +1593,10 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
 
-
         if phase_name == phase_names.PINBALL:
             if station_fruit_name in self.invitor_invitee:
                 self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
-
 
         if phase_name == phase_names.INVITOR:
             if self.invitor_invitee[0] == "":
@@ -1614,6 +1613,10 @@ class Mode_Barter(threading.Thread):
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
+                # todo : handle case when invitee is still playing - ball sensor?
+                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)    
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
@@ -1627,6 +1630,10 @@ class Mode_Barter(threading.Thread):
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
+                # todo : handle case when invitee is still playing - ball sensor?
+                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)    
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)    
+
 
         if phase_name == phase_names.TRADE:
             if initiator_ordinal == 0:
@@ -1635,7 +1642,6 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[1],self.invitor_invitee[0])
             self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[1],self.invitor_invitee[0])
             self.invitor_invitee = ["",""]
-
 
         if phase_name == phase_names.FAIL:
             if initiator_ordinal == 0:
@@ -1668,6 +1674,7 @@ class Mode_Barter(threading.Thread):
             if phase_name == phase_names.COMIENZA:
                 station_ref.add_to_queue("cmd_kicker_launch", "")
                 print("Mode_Barter, begin() 3",station_ref )
+
 
     def end(self):
         self.active = False
