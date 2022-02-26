@@ -432,6 +432,7 @@ class Station(threading.Thread):
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
             # todo start animation in matrix
+            self.carousel_remove_fruit(self.fruit_name)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -450,6 +451,7 @@ class Station(threading.Thread):
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
             # todo start animation in matrix
+            self.carousel_remove_fruit(self.fruit_name)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
