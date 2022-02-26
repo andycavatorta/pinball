@@ -1,5 +1,7 @@
 # todo: in attraction mode , check presence of balls
 # todo: detect runaway pinball assemblies by counting event frequency
+# todo: increment score on trade
+# todo: add fruit every x points?
 
 import codecs
 import os
@@ -708,7 +710,7 @@ class Station(threading.Thread):
                 self.commands.cmd_kicker_launch()
             if topic == "increment_score":
                 if isinstance(message, int):
-                    self.increment_score(message)
+                    self.increment_score(int(message))
                 else:
                     self.increment_score()
             if topic == "decrement_score":
@@ -1632,6 +1634,7 @@ class Mode_Barter(threading.Thread):
             print(">>>>>>>> phase_names.INVITOR 0",self.invitor_invitee,self.initiator_initiatee)
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
+                self.trade_fail_timer.add_to_queue("begin")
             if self.invitor_invitee[1] != "":
                 if initiator_hint:
                     print(">>>>>>>> phase_names.INVITOR 1",self.invitor_invitee,self.initiator_initiatee)
@@ -1640,7 +1643,6 @@ class Mode_Barter(threading.Thread):
                     if self.initiator_initiatee[0] == "":
                         print(">>>>>>>> phase_names.INVITOR 2",self.invitor_invitee,self.initiator_initiatee)
                         # INVITOR is the first to hit the trueque button
-                        self.trade_fail_timer.add_to_queue("begin")
                         self.initiator_initiatee[0] = station_fruit_name
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
@@ -1687,7 +1689,10 @@ class Mode_Barter(threading.Thread):
                 self.invitor_invitee = ["",""]
                 self.initiator_initiatee = ["",""]
                 self.trade_fail_timer.add_to_queue("end")
-            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.invitor_invitee = ["",""]
+                self.initiator_initiatee = ["",""]
 
         if phase_name == phase_names.FAIL:
             # this is called only once, by the timer
