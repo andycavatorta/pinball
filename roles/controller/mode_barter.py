@@ -366,7 +366,7 @@ class Station(threading.Thread):
             else:
                 self.fruit_to_spend = ""
                 lower_score = self.commands.barter_mode_score-5 if self.commands.barter_mode_score >5 else 1
-                self.decrement_score(lower_score)
+                #self.decrement_score(lower_score)
                 #self.animation_score.add_to_queue("flipboard",[self.commands.barter_mode_score,lower_score])
                 self.commands.barter_mode_score = lower_score
             self.commands.cmd_carousel_lights(self.fruit_to_spend,  "high")
