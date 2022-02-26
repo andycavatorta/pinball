@@ -1634,7 +1634,7 @@ class Mode_Barter(threading.Thread):
             print(">>>>>>>> phase_names.INVITOR 0",self.invitor_invitee,self.initiator_initiatee)
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
-                self.trade_fail_timer.add_to_queue("begin")
+                #self.trade_fail_timer.add_to_queue("begin")
             if self.invitor_invitee[1] != "":
                 if initiator_hint:
                     print(">>>>>>>> phase_names.INVITOR 1",self.invitor_invitee,self.initiator_initiatee)
@@ -1694,7 +1694,7 @@ class Mode_Barter(threading.Thread):
                 print("************* 3")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
                 print("************* 4")
-                self.trade_fail_timer.add_to_queue("end")
+                #self.trade_fail_timer.add_to_queue("end")
                 print("************* 5")
                 self.invitor_invitee = ["",""]
                 print("************* 6")
@@ -1705,7 +1705,7 @@ class Mode_Barter(threading.Thread):
             # this is called only once, by the timer
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
-            self.trade_fail_timer.add_to_queue("end")
+            #self.trade_fail_timer.add_to_queue("end")
             self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
