@@ -1683,16 +1683,23 @@ class Mode_Barter(threading.Thread):
 
         if phase_name == phase_names.TRADE:
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-            print("-------------", self.initiator_initiatee, station_fruit_name, self.initiator_initiatee == station_fruit_name)
+            print("-------------", self.initiator_initiatee, station_fruit_name, self.initiator_initiatee[0] == station_fruit_name)
             if self.initiator_initiatee[0] == station_fruit_name:
-                print("*************")
+                print("************* 0")
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
+                print("************* 1")
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-                self.trade_fail_timer.add_to_queue("end")
-                self.invitor_invitee = ["",""]
-                self.initiator_initiatee = ["",""]
+                print("************* 2")
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+                print("************* 3")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+                print("************* 4")
+                self.trade_fail_timer.add_to_queue("end")
+                print("************* 5")
+                self.invitor_invitee = ["",""]
+                print("************* 6")
+                self.initiator_initiatee = ["",""]
+                print("************* 7")
 
         if phase_name == phase_names.FAIL:
             # this is called only once, by the timer
