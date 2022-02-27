@@ -294,6 +294,57 @@ class Main(threading.Thread):
                         if group_name == "serpentine_center_pina":
                             group = self.lighting.serpentine_center_pina
 
+                        if group_name == "channel_0":
+                            group = self.lighting.channel_0
+                        if group_name == "channel_1":
+                            group = self.lighting.channel_1
+                        if group_name == "channel_2":
+                            group = self.lighting.channel_2
+                        if group_name == "channel_3":
+                            group = self.lighting.channel_3
+                        if group_name == "channel_4":
+                            group = self.lighting.channel_4
+                        if group_name == "channel_5":
+                            group = self.lighting.channel_5
+                        if group_name == "channel_6":
+                            group = self.lighting.channel_6
+                        if group_name == "channel_7":
+                            group = self.lighting.channel_7
+                        if group_name == "channel_8":
+                            group = self.lighting.channel_8
+                        if group_name == "channel_9":
+                            group = self.lighting.channel_9
+                        if group_name == "channel_10":
+                            group = self.lighting.channel_10
+                        if group_name == "channel_11":
+                            group = self.lighting.channel_11
+                        if group_name == "channel_12":
+                            group = self.lighting.channel_12
+                        if group_name == "channel_13":
+                            group = self.lighting.channel_13
+                        if group_name == "channel_14":
+                            group = self.lighting.channel_14
+                        if group_name == "channel_15":
+                            group = self.lighting.channel_15
+                        if group_name == "channel_16":
+                            group = self.lighting.channel_16
+                        if group_name == "channel_17":
+                            group = self.lighting.channel_17
+                        if group_name == "channel_18":
+                            group = self.lighting.channel_18
+                        if group_name == "channel_19":
+                            group = self.lighting.channel_19
+                        if group_name == "channel_20":
+                            group = self.lighting.channel_20
+                        if group_name == "channel_21":
+                            group = self.lighting.channel_21
+                        if group_name == "channel_22":
+                            group = self.lighting.channel_22
+                        if group_name == "channel_23":
+                            group = self.lighting.channel_23
+
+
+
                         if animation_name == "off":
                             group.off()
                         if animation_name == "on":
@@ -332,6 +383,7 @@ class Main(threading.Thread):
                             group.serpentine_edge()
                         if animation_name == "serpentine_center":
                             group.serpentine_center()
+
 
                 if topic == b'request_carousel_detect_ball':
                     self.tb.publish(
