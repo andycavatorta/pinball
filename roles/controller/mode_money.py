@@ -866,12 +866,12 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[# 13
                     ["coco",18,17,"coco"],
                     ["coco",19,16,"coco"],
-                    ["center",19,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",17,16,"coco"],
-                    ["center",14,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",12,15,"naranja"],
+                    ["center",15,12,"naranja"],
+                    ["center",14,12,"naranja"],
+                    ["center",13,12,"naranja"],
+                    ["center",10,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",8,11,"mango"],
                     ["naranja",12,15,"naranja"],
                     ["naranja",13,15,"naranja"],
                     ["naranja",14,15,"naranja"],
@@ -881,14 +881,14 @@ class Matrix_Animations(threading.Thread):
                 "mango":[# 17
                     ["coco",18,17,"coco"],
                     ["coco",19,16,"coco"],
-                    ["center",19,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",17,16,"coco"],
-                    ["center",14,15,"naranja"],
+                    ["center",15,12,"naranja"],
+                    ["center",14,12,"naranja"],
                     ["center",13,12,"naranja"],
                     ["center",10,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",8,11,"mango"],
+                    ["center",9,8,"mango"],
+                    ["center",2,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",0,3,"sandia"],
                     ["mango",8,11,"mango"],
                     ["mango",9,11,"mango"],
                     ["mango",10,11,"mango"],
@@ -900,14 +900,14 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 17
                     ["coco",17,18,"coco"],
                     ["coco",16,19,"coco"],
-                    ["center",16,19,"coco"],
-                    ["center",17,19,"coco"],
+                    ["center",12,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",14,15,"naranja"],
+                    ["center",17,16,"coco"],
                     ["center",18,19,"coco"],
                     ["center",21,20,"pina"],
-                    ["center",22,23,"pina"],
-                    ["center",1,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",3,0,"sandia"],
+                    ["center",22,20,"pina"],
+                    ["center",23,20,"pina"],
                     ["sandia",3,0,"sandia"],
                     ["sandia",2,0,"sandia"],
                     ["sandia",1,0,"sandia"],
@@ -919,12 +919,12 @@ class Matrix_Animations(threading.Thread):
                 "pina":[# 13
                     ["coco",17,18,"coco"],
                     ["coco",16,19,"coco"],
-                    ["center",16,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",18,19,"coco"],
-                    ["center",21,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",23,20,"pina"],
+                    ["center",12,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",14,15,"naranja"],
+                    ["center",17,16,"coco"],
+                    ["center",18,16,"coco"],
+                    ["center",19,16,"coco"],
                     ["pina",23,20,"pina"],
                     ["pina",22,20,"pina"],
                     ["pina",21,20,"pina"],
@@ -936,12 +936,12 @@ class Matrix_Animations(threading.Thread):
                 "coco":[# 13
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",12,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",14,15,"naranja"],
-                    ["center",17,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",19,16,"coco"],
+                    ["center",8,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",10,11,"mango"],
+                    ["center",13,12,"naranja"],
+                    ["center",14,12,"naranja"],
+                    ["center",15,12,"naranja"],
                     ["coco",19,16,"coco"],
                     ["coco",18,16,"coco"],
                     ["coco",17,16,"coco"],
@@ -951,12 +951,12 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 13
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",15,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",13,12,"naranja"],
-                    ["center",10,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",8,11,"mango"],
+                    ["center",11,8,"mango"],
+                    ["center",10,8,"mango"],
+                    ["center",9,8,"mango"],
+                    ["center",2,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",0,3,"sandia"],
                     ["mango",8,11,"mango"],
                     ["mango",9,11,"mango"],
                     ["mango",10,11,"mango"],
@@ -966,14 +966,14 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 17
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",15,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",13,12,"naranja"],
-                    ["center",10,11,"mango"],
+                    ["center",11,8,"mango"],
+                    ["center",10,8,"mango"],
                     ["center",9,8,"mango"],
                     ["center",2,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",0,3,"sandia"],
+                    ["center",1,0,"sandia"],
+                    ["center",22,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",20,23,"pina"],
                     ["sandia",0,3,"sandia"],
                     ["sandia",1,3,"sandia"],
                     ["sandia",2,3,"sandia"],
@@ -985,14 +985,14 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 17
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",12,15,"naranja"],
-                    ["center",13,15,"naranja"],
+                    ["center",8,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",10,11,"mango"],
+                    ["center",13,12,"naranja"],
                     ["center",14,15,"naranja"],
                     ["center",17,16,"coco"],
-                    ["center",18,19,"coco"],
-                    ["center",21,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",23,20,"pina"],
+                    ["center",18,16,"coco"],
+                    ["center",19,16,"coco"],
                     ["pina",23,20,"pina"],
                     ["pina",22,20,"pina"],
                     ["pina",21,20,"pina"],
@@ -1006,14 +1006,14 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 17
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",8,11,"mango"],
-                    ["center",9,11,"mango"],
+                    ["center",0,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",2,3,"sandia"],
+                    ["center",9,8,"mango"],
                     ["center",10,11,"mango"],
                     ["center",13,12,"naranja"],
-                    ["center",14,15,"naranja"],
-                    ["center",17,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",19,16,"coco"],
+                    ["center",14,12,"naranja"],
+                    ["center",15,12,"naranja"],
                     ["coco",19,16,"coco"],
                     ["coco",18,16,"coco"],
                     ["coco",17,16,"coco"],
@@ -1025,12 +1025,12 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[# 13
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",8,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",10,11,"mango"],
-                    ["center",13,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",15,12,"naranja"],
+                    ["center",0,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",2,3,"sandia"],
+                    ["center",9,8,"mango"],
+                    ["center",10,8,"mango"],
+                    ["center",11,8,"mango"],
                     ["naranja",15,12,"naranja"],
                     ["naranja",14,12,"naranja"],
                     ["naranja",13,12,"naranja"],
@@ -1040,12 +1040,12 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 13
                     ["mango",10,9,"mango"],
                     ["mango",11,8,"mango"],
-                    ["center",11,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",9,8,"mango"],
-                    ["center",2,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",0,3,"sandia"],
+                    ["center",3,0,"sandia"],
+                    ["center",2,0,"sandia"],
+                    ["center",1,0,"sandia"],
+                    ["center",22,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",20,23,"pina"],
                     ["sandia",0,3,"sandia"],
                     ["sandia",1,3,"sandia"],
                     ["sandia",2,3,"sandia"],
@@ -1055,14 +1055,14 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 17
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",11,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",9,8,"mango"],
-                    ["center",2,3,"sandia"],
+                    ["center",3,0,"sandia"],
+                    ["center",2,0,"sandia"],
                     ["center",1,0,"sandia"],
                     ["center",22,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",20,23,"pina"],
+                    ["center",21,20,"pina"],
+                    ["center",18,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",16,19,"coco"],
                     ["pina",20,23,"pina"],
                     ["pina",21,23,"pina"],
                     ["pina",22,23,"pina"],
@@ -1076,14 +1076,14 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 17
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",3,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",1,0,"sandia"],
-                    ["center",22,23,"pina"],
+                    ["center",23,20,"pina"],
+                    ["center",22,20,"pina"],
                     ["center",21,20,"pina"],
                     ["center",18,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",16,19,"coco"],
+                    ["center",17,16,"coco"],
+                    ["center",14,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",12,15,"naranja"],
                     ["coco",16,19,"coco"],
                     ["coco",17,19,"coco"],
                     ["coco",18,19,"coco"],
@@ -1095,14 +1095,14 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[ # 17
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",0,3,"sandia"],
-                    ["center",1,3,"sandia"],
+                    ["center",20,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",22,23,"pina"],
+                    ["center",1,0,"sandia"],
                     ["center",2,3,"sandia"],
                     ["center",9,8,"mango"],
-                    ["center",10,11,"mango"],
-                    ["center",13,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",15,12,"naranja"],
+                    ["center",10,8,"mango"],
+                    ["center",11,8,"mango"],
                     ["naranja",15,12,"naranja"],
                     ["naranja",14,12,"naranja"],
                     ["naranja",13,12,"naranja"],
@@ -1114,12 +1114,12 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 13
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",0,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",2,3,"sandia"],
-                    ["center",9,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",11,8,"mango"],
+                    ["center",20,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",22,23,"pina"],
+                    ["center",1,0,"sandia"],
+                    ["center",2,0,"sandia"],
+                    ["center",3,0,"sandia"],
                     ["mango",11,8,"mango"],
                     ["mango",10,8,"mango"],
                     ["mango",9,8,"mango"],
@@ -1129,12 +1129,12 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 13
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",3,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",1,0,"sandia"],
-                    ["center",22,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",20,23,"pina"],
+                    ["center",23,20,"pina"],
+                    ["center",22,20,"pina"],
+                    ["center",21,20,"pina"],
+                    ["center",18,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",16,19,"coco"],
                     ["pina",20,23,"pina"],
                     ["pina",21,23,"pina"],
                     ["pina",22,23,"pina"],
@@ -1146,12 +1146,12 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 13
                     ["pina",22,21,"pina"],
                     ["pina",23,20,"pina"],
-                    ["center",23,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",21,20,"pina"],
-                    ["center",18,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",16,19,"coco"],
+                    ["center",19,16,"coco"],
+                    ["center",18,16,"coco"],
+                    ["center",17,16,"coco"],
+                    ["center",14,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",12,15,"naranja"],
                     ["coco",16,19,"coco"],
                     ["coco",17,19,"coco"],
                     ["coco",18,19,"coco"],
@@ -1161,14 +1161,14 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[  # 17
                     ["pina",22,21,"pina"],
                     ["pina",23,20,"pina"],
-                    ["center",23,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",21,20,"pina"],
-                    ["center",18,19,"coco"],
+                    ["center",19,16,"coco"],
+                    ["center",18,16,"coco"],
                     ["center",17,16,"coco"],
                     ["center",14,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",12,15,"naranja"],
+                    ["center",13,12,"naranja"],
+                    ["center",10,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",8,11,"mango"],
                     ["naranja",12,15,"naranja"],
                     ["naranja",13,15,"naranja"],
                     ["naranja",14,15,"naranja"],
@@ -1180,14 +1180,14 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 17
                     ["pina",21,22,"pina"],
                     ["pina",20,23,"pina"],
-                    ["center",20,23,"pina"],
-                    ["center",21,23,"pina"],
+                    ["center",16,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",18,19,"coco"],
+                    ["center",21,20,"pina"],
                     ["center",22,23,"pina"],
                     ["center",1,0,"sandia"],
-                    ["center",2,3,"sandia"],
-                    ["center",9,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",11,8,"mango"],
+                    ["center",2,0,"sandia"],
+                    ["center",3,0,"sandia"],
                     ["mango",11,8,"mango"],
                     ["mango",10,8,"mango"],
                     ["mango",9,8,"mango"],
@@ -1199,12 +1199,12 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 13
                     ["pina",21,22,"pina"],
                     ["pina",20,23,"pina"],
-                    ["center",20,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",22,23,"pina"],
-                    ["center",1,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",3,0,"sandia"],
+                    ["center",16,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",18,19,"coco"],
+                    ["center",21,20,"pina"],
+                    ["center",22,20,"pina"],
+                    ["center",23,20,"pina"],
                     ["sandia",3,0,"sandia"],
                     ["sandia",2,0,"sandia"],
                     ["sandia",1,0,"sandia"],
@@ -1412,7 +1412,7 @@ class Matrix_Animations(threading.Thread):
                 time.sleep(0.1)
 
 
-class Mode_Barter(threading.Thread):
+class Mode_Money(threading.Thread):
     """
     This class watches for incoming messages
     Its only action will be to change the current mode
@@ -1580,26 +1580,26 @@ class Mode_Barter(threading.Thread):
         # todo: how does this vary with different numbers of players?
         # todo: self.invitor_invitee is not threadsafe between get_trade_option and handle_station_phase_change
         # what are the conditions for trading?
-        print("Mode_Barter get_trade_option(%s)" % fruit_name )
+        print("Mode_Money get_trade_option(%s)" % fruit_name )
         self.lock.acquire()
         # if no other trade is happening
         if self.invitor_invitee != ["",""]:
-            print("Mode_Barter get_trade_option() 2")
+            print("Mode_Money get_trade_option() 2")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a has fruit_a to trade
         if not self.stations[fruit_name].carousel_get_fruit_presence(fruit_name):
-            print("Mode_Barter get_trade_option() 3")
+            print("Mode_Money get_trade_option() 3")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a is missing fruit_b
         station_a_missing_fruits = self.stations[fruit_name].carousel_get_fruits_missing(True)
         if len(station_a_missing_fruits) == 0:
-            print("Mode_Barter get_trade_option() 4")
+            print("Mode_Money get_trade_option() 4")
             self.lock.release()
             return phase_names.COMIENZA
         potential_trading_partners = []
-        print("Mode_Barter get_trade_option() 5", station_a_missing_fruits)
+        print("Mode_Money get_trade_option() 5", station_a_missing_fruits)
         # if station_b has fruit_b to trade
         for station_a_missing_fruit in station_a_missing_fruits:
             # todo: thread safety for carousel_data_segments
@@ -1607,12 +1607,12 @@ class Mode_Barter(threading.Thread):
                 # if station_b is missing fruit_a
                 if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
                     potential_trading_partners.append(station_a_missing_fruit)
-        print("Mode_Barter get_trade_option() 6", potential_trading_partners)
+        print("Mode_Money get_trade_option() 6", potential_trading_partners)
         if len(potential_trading_partners) == 0:
             self.lock.release()
             return phase_names.COMIENZA
         invitee_fruit_name = random.choice(potential_trading_partners)
-        print("Mode_Barter get_trade_option() 7", invitee_fruit_name)
+        print("Mode_Money get_trade_option() 7", invitee_fruit_name)
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
         self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
         self.lock.release()
@@ -1667,26 +1667,26 @@ class Mode_Barter(threading.Thread):
 
 
     def begin(self):
-        #print("Mode_Barter, begin() 1")
+        #print("Mode_Money, begin() 1")
         self.active = True
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         # set all stations to phase comienza or noplayer
         self.mode_timer.add_to_queue("begin")
-        #print("Mode_Barter, begin() 2", self.pinball_hostnames_with_players)
+        #print("Mode_Money, begin() 2", self.pinball_hostnames_with_players)
         for pinball_hostname, station_ref in self.PINBALL_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
                 station_ref.add_to_queue("animation_fill_carousel", True) 
-                #print("Mode_Barter, begin() 3",station_ref )
+                #print("Mode_Money, begin() 3",station_ref )
         time.sleep(3.5) # wait for animation_fill_carousel to run
-        #print("Mode_Barter, begin() 4")
+        #print("Mode_Money, begin() 4")
         for pinball_hostname, station_ref in self.PINBALL_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
                 station_ref.add_to_queue("cmd_kicker_launch", "")
-                #print("Mode_Barter, begin() 3",station_ref )
+                #print("Mode_Money, begin() 3",station_ref )
 
 
     def end(self):

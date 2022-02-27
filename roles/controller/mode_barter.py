@@ -1,11 +1,98 @@
-# todo: in attraction mode , check presence of balls
-# todo: detect runaway pinball assemblies by counting event frequency
-# todo: add fruit every x points?
+"""
+todo:
+
+questions:
+
+
+1st level:
+    does the game play well mechanically?
+    does the trade frequency need to be adjusted?
+    does the length of the game need to be adjusted?
+
+2nd level:
+    does the game communicate well enough for tomorrow?
+        the center carousel is a problem
+
+    center carousel
+        coco [ should use naranja] 
+        naranja [ should use mango ] 8 9 11 10
+        mango [ should use sandia] 
+        sandia [ should use pina] 
+        pina [ should use coco] 
+
+        coco -> naranja
+            naranja -> mango
+        coco -> mango
+            naranja -> sandia
+        coco -> sandia
+            naranja -> pina
+        coco -> pina
+            naranja -> coco
+
+        naranja -> coco
+            mango -> naranja
+        naranja -> mango
+            mango -> sandia
+        naranja -> sandia
+            mango -> pina
+        naranja -> pina
+            mango -> coco
+
+        mango -> coco
+            sandia -> naranja
+        mango -> naranja
+            sandia -> mango
+        mango -> sandia
+            sandia -> pina
+        mango -> pina
+            sandia -> coco
+
+        sandia -> coco
+            pina -> naranja
+        sandia -> naranja
+            pina -> mango
+        sandia -> mango
+            pina -> sandia
+        sandia -> pina
+            pina -> coco
+
+        pina -> coco
+            coco -> naranja
+        pina -> naranja
+            coco -> mango
+        pina -> mango
+            coco -> sandia
+        pina -> sandia
+            coco -> pina
+
+
+known issues:
+    the pie doesn't start filling during the first ball of the game.
+    the animations aren't perfect in the current version but are they good enough?
+    
+
+trade frequency:
+    players can trade when they have one of their own fruits or a peso to trade
+    we add a new fruit to trade every 20 points and when pie fills
+game length:
+    trueque and dinero rounds are 120 seconds.  
+
+
+send email when restarting controller
+add current sensors
+in attraction mode, check presence of balls
+detect runaway pinball assemblies by counting event frequency
+
+
+
+"""
+
+
 # todo: why does trueque happen infrequently?  why does potential trading parners fail later?   
-# todo: dinero mode
 # todo: make repeat matrix animations repeat.
+
+
 # todo: why does pie not light sometimes? 
-# Todo: arrow buttons and bottom lights
 
 
 import codecs
@@ -861,17 +948,18 @@ class Matrix_Animations(threading.Thread):
             "pina":station_to_host_pina,
             "center":station_to_host_center,
         }
+
         self.calculated_paths = {
             "coco":{
                 "naranja":[# 13
                     ["coco",18,17,"coco"],
                     ["coco",19,16,"coco"],
-                    ["center",19,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",17,16,"coco"],
-                    ["center",14,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",12,15,"naranja"],
+                    ["center",15,12,"naranja"],
+                    ["center",14,12,"naranja"],
+                    ["center",13,12,"naranja"],
+                    ["center",10,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",8,11,"mango"],
                     ["naranja",12,15,"naranja"],
                     ["naranja",13,15,"naranja"],
                     ["naranja",14,15,"naranja"],
@@ -881,14 +969,14 @@ class Matrix_Animations(threading.Thread):
                 "mango":[# 17
                     ["coco",18,17,"coco"],
                     ["coco",19,16,"coco"],
-                    ["center",19,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",17,16,"coco"],
-                    ["center",14,15,"naranja"],
+                    ["center",15,12,"naranja"],
+                    ["center",14,12,"naranja"],
                     ["center",13,12,"naranja"],
                     ["center",10,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",8,11,"mango"],
+                    ["center",9,8,"mango"],
+                    ["center",2,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",0,3,"sandia"],
                     ["mango",8,11,"mango"],
                     ["mango",9,11,"mango"],
                     ["mango",10,11,"mango"],
@@ -900,14 +988,14 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 17
                     ["coco",17,18,"coco"],
                     ["coco",16,19,"coco"],
-                    ["center",16,19,"coco"],
-                    ["center",17,19,"coco"],
+                    ["center",12,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",14,15,"naranja"],
+                    ["center",17,16,"coco"],
                     ["center",18,19,"coco"],
                     ["center",21,20,"pina"],
-                    ["center",22,23,"pina"],
-                    ["center",1,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",3,0,"sandia"],
+                    ["center",22,20,"pina"],
+                    ["center",23,20,"pina"],
                     ["sandia",3,0,"sandia"],
                     ["sandia",2,0,"sandia"],
                     ["sandia",1,0,"sandia"],
@@ -919,12 +1007,12 @@ class Matrix_Animations(threading.Thread):
                 "pina":[# 13
                     ["coco",17,18,"coco"],
                     ["coco",16,19,"coco"],
-                    ["center",16,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",18,19,"coco"],
-                    ["center",21,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",23,20,"pina"],
+                    ["center",12,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",14,15,"naranja"],
+                    ["center",17,16,"coco"],
+                    ["center",18,16,"coco"],
+                    ["center",19,16,"coco"],
                     ["pina",23,20,"pina"],
                     ["pina",22,20,"pina"],
                     ["pina",21,20,"pina"],
@@ -936,12 +1024,12 @@ class Matrix_Animations(threading.Thread):
                 "coco":[# 13
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",12,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",14,15,"naranja"],
-                    ["center",17,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",19,16,"coco"],
+                    ["center",8,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",10,11,"mango"],
+                    ["center",13,12,"naranja"],
+                    ["center",14,12,"naranja"],
+                    ["center",15,12,"naranja"],
                     ["coco",19,16,"coco"],
                     ["coco",18,16,"coco"],
                     ["coco",17,16,"coco"],
@@ -951,12 +1039,12 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 13
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",15,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",13,12,"naranja"],
-                    ["center",10,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",8,11,"mango"],
+                    ["center",11,8,"mango"],
+                    ["center",10,8,"mango"],
+                    ["center",9,8,"mango"],
+                    ["center",2,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",0,3,"sandia"],
                     ["mango",8,11,"mango"],
                     ["mango",9,11,"mango"],
                     ["mango",10,11,"mango"],
@@ -966,14 +1054,14 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 17
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",15,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",13,12,"naranja"],
-                    ["center",10,11,"mango"],
+                    ["center",11,8,"mango"],
+                    ["center",10,8,"mango"],
                     ["center",9,8,"mango"],
                     ["center",2,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",0,3,"sandia"],
+                    ["center",1,0,"sandia"],
+                    ["center",22,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",20,23,"pina"],
                     ["sandia",0,3,"sandia"],
                     ["sandia",1,3,"sandia"],
                     ["sandia",2,3,"sandia"],
@@ -985,14 +1073,14 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 17
                     ["naranja",14,13,"naranja"],
                     ["naranja",15,12,"naranja"],
-                    ["center",12,15,"naranja"],
-                    ["center",13,15,"naranja"],
+                    ["center",8,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",10,11,"mango"],
+                    ["center",13,12,"naranja"],
                     ["center",14,15,"naranja"],
                     ["center",17,16,"coco"],
-                    ["center",18,19,"coco"],
-                    ["center",21,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",23,20,"pina"],
+                    ["center",18,16,"coco"],
+                    ["center",19,16,"coco"],
                     ["pina",23,20,"pina"],
                     ["pina",22,20,"pina"],
                     ["pina",21,20,"pina"],
@@ -1006,14 +1094,14 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 17
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",8,11,"mango"],
-                    ["center",9,11,"mango"],
+                    ["center",0,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",2,3,"sandia"],
+                    ["center",9,8,"mango"],
                     ["center",10,11,"mango"],
                     ["center",13,12,"naranja"],
-                    ["center",14,15,"naranja"],
-                    ["center",17,16,"coco"],
-                    ["center",18,16,"coco"],
-                    ["center",19,16,"coco"],
+                    ["center",14,12,"naranja"],
+                    ["center",15,12,"naranja"],
                     ["coco",19,16,"coco"],
                     ["coco",18,16,"coco"],
                     ["coco",17,16,"coco"],
@@ -1025,12 +1113,12 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[# 13
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",8,11,"mango"],
-                    ["center",9,11,"mango"],
-                    ["center",10,11,"mango"],
-                    ["center",13,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",15,12,"naranja"],
+                    ["center",0,3,"sandia"],
+                    ["center",1,3,"sandia"],
+                    ["center",2,3,"sandia"],
+                    ["center",9,8,"mango"],
+                    ["center",10,8,"mango"],
+                    ["center",11,8,"mango"],
                     ["naranja",15,12,"naranja"],
                     ["naranja",14,12,"naranja"],
                     ["naranja",13,12,"naranja"],
@@ -1040,12 +1128,12 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 13
                     ["mango",10,9,"mango"],
                     ["mango",11,8,"mango"],
-                    ["center",11,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",9,8,"mango"],
-                    ["center",2,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",0,3,"sandia"],
+                    ["center",3,0,"sandia"],
+                    ["center",2,0,"sandia"],
+                    ["center",1,0,"sandia"],
+                    ["center",22,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",20,23,"pina"],
                     ["sandia",0,3,"sandia"],
                     ["sandia",1,3,"sandia"],
                     ["sandia",2,3,"sandia"],
@@ -1055,14 +1143,14 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 17
                     ["mango",9,10,"mango"],
                     ["mango",8,11,"mango"],
-                    ["center",11,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",9,8,"mango"],
-                    ["center",2,3,"sandia"],
+                    ["center",3,0,"sandia"],
+                    ["center",2,0,"sandia"],
                     ["center",1,0,"sandia"],
                     ["center",22,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",20,23,"pina"],
+                    ["center",21,20,"pina"],
+                    ["center",18,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",16,19,"coco"],
                     ["pina",20,23,"pina"],
                     ["pina",21,23,"pina"],
                     ["pina",22,23,"pina"],
@@ -1076,14 +1164,14 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 17
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",3,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",1,0,"sandia"],
-                    ["center",22,23,"pina"],
+                    ["center",23,20,"pina"],
+                    ["center",22,20,"pina"],
                     ["center",21,20,"pina"],
                     ["center",18,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",16,19,"coco"],
+                    ["center",17,16,"coco"],
+                    ["center",14,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",12,15,"naranja"],
                     ["coco",16,19,"coco"],
                     ["coco",17,19,"coco"],
                     ["coco",18,19,"coco"],
@@ -1095,14 +1183,14 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[ # 17
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",0,3,"sandia"],
-                    ["center",1,3,"sandia"],
+                    ["center",20,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",22,23,"pina"],
+                    ["center",1,0,"sandia"],
                     ["center",2,3,"sandia"],
                     ["center",9,8,"mango"],
-                    ["center",10,11,"mango"],
-                    ["center",13,12,"naranja"],
-                    ["center",14,12,"naranja"],
-                    ["center",15,12,"naranja"],
+                    ["center",10,8,"mango"],
+                    ["center",11,8,"mango"],
                     ["naranja",15,12,"naranja"],
                     ["naranja",14,12,"naranja"],
                     ["naranja",13,12,"naranja"],
@@ -1114,12 +1202,12 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 13
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",0,3,"sandia"],
-                    ["center",1,3,"sandia"],
-                    ["center",2,3,"sandia"],
-                    ["center",9,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",11,8,"mango"],
+                    ["center",20,23,"pina"],
+                    ["center",21,23,"pina"],
+                    ["center",22,23,"pina"],
+                    ["center",1,0,"sandia"],
+                    ["center",2,0,"sandia"],
+                    ["center",3,0,"sandia"],
                     ["mango",11,8,"mango"],
                     ["mango",10,8,"mango"],
                     ["mango",9,8,"mango"],
@@ -1129,12 +1217,12 @@ class Matrix_Animations(threading.Thread):
                 "pina":[ # 13
                     ["sandia",2,1,"sandia"],
                     ["sandia",3,0,"sandia"],
-                    ["center",3,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",1,0,"sandia"],
-                    ["center",22,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",20,23,"pina"],
+                    ["center",23,20,"pina"],
+                    ["center",22,20,"pina"],
+                    ["center",21,20,"pina"],
+                    ["center",18,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",16,19,"coco"],
                     ["pina",20,23,"pina"],
                     ["pina",21,23,"pina"],
                     ["pina",22,23,"pina"],
@@ -1146,12 +1234,12 @@ class Matrix_Animations(threading.Thread):
                 "coco":[ # 13
                     ["pina",22,21,"pina"],
                     ["pina",23,20,"pina"],
-                    ["center",23,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",21,20,"pina"],
-                    ["center",18,19,"coco"],
-                    ["center",17,19,"coco"],
-                    ["center",16,19,"coco"],
+                    ["center",19,16,"coco"],
+                    ["center",18,16,"coco"],
+                    ["center",17,16,"coco"],
+                    ["center",14,15,"naranja"],
+                    ["center",13,15,"naranja"],
+                    ["center",12,15,"naranja"],
                     ["coco",16,19,"coco"],
                     ["coco",17,19,"coco"],
                     ["coco",18,19,"coco"],
@@ -1161,14 +1249,14 @@ class Matrix_Animations(threading.Thread):
                 "naranja":[  # 17
                     ["pina",22,21,"pina"],
                     ["pina",23,20,"pina"],
-                    ["center",23,20,"pina"],
-                    ["center",22,20,"pina"],
-                    ["center",21,20,"pina"],
-                    ["center",18,19,"coco"],
+                    ["center",19,16,"coco"],
+                    ["center",18,16,"coco"],
                     ["center",17,16,"coco"],
                     ["center",14,15,"naranja"],
-                    ["center",13,15,"naranja"],
-                    ["center",12,15,"naranja"],
+                    ["center",13,12,"naranja"],
+                    ["center",10,11,"mango"],
+                    ["center",9,11,"mango"],
+                    ["center",8,11,"mango"],
                     ["naranja",12,15,"naranja"],
                     ["naranja",13,15,"naranja"],
                     ["naranja",14,15,"naranja"],
@@ -1180,14 +1268,14 @@ class Matrix_Animations(threading.Thread):
                 "mango":[ # 17
                     ["pina",21,22,"pina"],
                     ["pina",20,23,"pina"],
-                    ["center",20,23,"pina"],
-                    ["center",21,23,"pina"],
+                    ["center",16,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",18,19,"coco"],
+                    ["center",21,20,"pina"],
                     ["center",22,23,"pina"],
                     ["center",1,0,"sandia"],
-                    ["center",2,3,"sandia"],
-                    ["center",9,8,"mango"],
-                    ["center",10,8,"mango"],
-                    ["center",11,8,"mango"],
+                    ["center",2,0,"sandia"],
+                    ["center",3,0,"sandia"],
                     ["mango",11,8,"mango"],
                     ["mango",10,8,"mango"],
                     ["mango",9,8,"mango"],
@@ -1199,12 +1287,12 @@ class Matrix_Animations(threading.Thread):
                 "sandia":[ # 13
                     ["pina",21,22,"pina"],
                     ["pina",20,23,"pina"],
-                    ["center",20,23,"pina"],
-                    ["center",21,23,"pina"],
-                    ["center",22,23,"pina"],
-                    ["center",1,0,"sandia"],
-                    ["center",2,0,"sandia"],
-                    ["center",3,0,"sandia"],
+                    ["center",16,19,"coco"],
+                    ["center",17,19,"coco"],
+                    ["center",18,19,"coco"],
+                    ["center",21,20,"pina"],
+                    ["center",22,20,"pina"],
+                    ["center",23,20,"pina"],
                     ["sandia",3,0,"sandia"],
                     ["sandia",2,0,"sandia"],
                     ["sandia",1,0,"sandia"],
@@ -1213,6 +1301,7 @@ class Matrix_Animations(threading.Thread):
                 ],
             },
         }
+        
         self.start()
 
 
@@ -1383,7 +1472,7 @@ class Matrix_Animations(threading.Thread):
     def run(self):
         animation = "pause_animations"
         while True:
-            animation, station_a_name, station_b_name = self.queue.get(True)
+            animation, station_a_name, station_b_name = self.queue.get(False)
             if animation == "trade_invited":
                 self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
                 animation = "trade_invited_repeat"
