@@ -1644,9 +1644,9 @@ class Mode_Barter(threading.Thread):
             # this is called at the setup() of a station's INVITOR phase
             print(">>>>>>>> phase_names.INVITOR 0",self.invitor_invitee,self.initiator_initiatee)
             # is this the a new trade session?
+            self.trade_fail_timer.add_to_queue("begin")
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
-                self.trade_fail_timer.add_to_queue("begin")
             # is an invitee already selected?
             # ^ is there ever a case when only one is selected?
             # they are assigned together in get_trade_option
