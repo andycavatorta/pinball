@@ -737,27 +737,21 @@ class Trade_Fail_Timer(threading.Thread):
 
 
     def add_to_queue(self, action):
-        print("Trade_Fail_Timer, add_to_queue", action)
         self.queue.put(action)
 
 
     def run(self):
         while True:
             try:
-                print("Trade_Fail_Timer, run 0")
                 action = self.queue.get(timeout=1)
                 if action == "begin":
-                    print("Trade_Fail_Timer, run 1", action)
                     self.timer = 0
-                    print("Trade_Fail_Timer, run 2", action)
                 if action == "end":
                     self.timer = -1
             except queue.Empty:
                 if self.timer > -1:
-                    print("Trade_Fail_Timer, run 3", self.timer)
                     self.timer += 1
                     if self.timer >= self.timer_limit:
-                        print("Trade_Fail_Timer, run 4", self.timer)
                         self.timer = -1
                         self.parent_ref_add_to_queue("handle_station_phase_change", "", phase_names.FAIL, False)
 
