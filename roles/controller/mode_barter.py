@@ -767,6 +767,7 @@ class Mode_Timer(threading.Thread):
 
 
     def add_to_queue(self, action):
+        print("Mode_Timer, add_to_queue", action)
         self.queue.put(action)
 
 
@@ -774,12 +775,14 @@ class Mode_Timer(threading.Thread):
         while True:
             try:
                 action = self.queue.get(timeout=1)
+                print("Mode_Timer, run 0", action)
                 if action == "begin":
                     self.timer = 0
                 if action == "end":
                     self.timer = -1
             except queue.Empty:
                 if self.timer > -1:
+                    print("Mode_Timer, run 2", self.timer)
                     self.timer += 1
                     #if self.timer %10 == 0:
                     #    print("Mode_Timer run self.timer=",self.timer)
