@@ -1,9 +1,11 @@
 # todo: in attraction mode , check presence of balls
 # todo: detect runaway pinball assemblies by counting event frequency
-# todo: increment score on trade
 # todo: add fruit every x points?
 # todo: why does trueque happen infrequently?  why does potential trading parners fail later?   
-# todo: move animations to carousels
+# todo: dinero mode
+# todo: make repeat matrix animations repeat.
+# todo: why does pie not light sometimes? 
+# Todo: arrow buttons and bottom lights
 
 
 import codecs
@@ -761,7 +763,7 @@ class Mode_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 900
+        self.timer_limit = 120
         self.queue = queue.Queue()
         self.start()
 
@@ -796,7 +798,7 @@ class Matrix_Animations(threading.Thread):
         threading.Thread.__init__(self)
         self.hosts = hosts
         self.queue = queue.Queue()
-        self.animation_frame_period = 0.15
+        self.animation_frame_period = 0.25
         class station_to_host_coco():
             request_eject_ball = self.hosts.hostnames['carousel1'].request_eject_ball
             cmd_carousel_lights = self.hosts.hostnames['carousel1'].cmd_carousel_lights

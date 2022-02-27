@@ -150,6 +150,9 @@ role_module.main.acrylic_display.set_number(000)
 
 
 
+
+
+
 motor 1: no feedback?
 motor 2: no feedback?
 motor 3: good?
