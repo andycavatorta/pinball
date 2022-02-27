@@ -1257,6 +1257,7 @@ class Matrix_Animations(threading.Thread):
     def set_pair_to_level(self, carousel_name, led_1, led_2, level):
         led_1_str = "channel_%s" % led_1
         led_2_str = "channel_%s" % led_2
+        print("set_pair_to_level",led_1_str,led_2_str)
         self.carousels[carousel_name].cmd_carousel_lights(str(led_1_str),level)
         self.carousels[carousel_name].cmd_carousel_lights(str(led_2_str),level)
 
