@@ -1613,7 +1613,7 @@ class Mode_Money(threading.Thread):
         for station_a_missing_fruit in station_a_missing_fruits:
             # todo: thread safety for carousel_data_segments
             # if this fruit corresponds to a game with a player
-            if station_a_missing_fruit in self.pinball_hostnames_with_players:
+            if self.FRUIT_NAME_TO_PINBALL_HOSTNAME[station_a_missing_fruit] in self.pinball_hostnames_with_players:
                 if self.stations[station_a_missing_fruit].carousel_get_fruit_presence(station_a_missing_fruit):
                     # if station_b is missing fruit_a
                     if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):

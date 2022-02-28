@@ -1667,6 +1667,13 @@ class Mode_Barter(threading.Thread):
             "pinball4game":self.stations["sandia"],
             "pinball5game":self.stations["pina"],
         }
+        self.FRUIT_NAME_TO_PINBALL_HOSTNAME = {
+            "coco":"pinball1game",
+            "naranja":"pinball2game",
+            "mango":"pinball3game",
+            "sandia":"pinball4game",
+            "pina":"pinball5game",
+        }
         self.invitor_invitee = ["",""]
         self.initiator_initiatee = ["",""]
         self.start()
@@ -1702,7 +1709,7 @@ class Mode_Barter(threading.Thread):
             print("Mode_Barter get_trade_option() 5.1", station_a_missing_fruit, self.pinball_hostnames_with_players)
             # todo: thread safety for carousel_data_segments
             # if this fruit corresponds to a game with a player
-            if station_a_missing_fruit in self.pinball_hostnames_with_players:
+            if FRUIT_NAME_TO_PINBALL_HOSTNAME[station_a_missing_fruit] in self.pinball_hostnames_with_players:
                 if self.stations[station_a_missing_fruit].carousel_get_fruit_presence(station_a_missing_fruit):
                     # if station_b is missing fruit_a
                     if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
