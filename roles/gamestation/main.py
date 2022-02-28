@@ -629,7 +629,7 @@ class Main(threading.Thread):
                 if topic == 'event_trough_sensor':
                     self.tb.publish(
                         topic="event_trough_sensor",
-                        message=True
+                        message=message
                     )
                 if topic == 'event_tube_sensor_left':
                     self.tb.publish(
