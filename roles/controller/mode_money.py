@@ -1654,6 +1654,19 @@ class Mode_Money(threading.Thread):
             self.invitor_invitee = ["",""]
             self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
 
+
+        if phase_name == phase_names.TRADE:
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            print("-------------", self.initiator_initiatee, station_fruit_name, self.initiator_initiatee[0] == station_fruit_name)
+            self.matrix_animations.add_to_queue("trade_succeeded", str(station_fruit_name),str(self.invitor_invitee[1]))
+            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[station_fruit_name].add_to_queue("increment_score", 50)
+            self.trade_fail_timer.add_to_queue("end")
+            self.invitor_invitee = ["",""]
+            self.initiator_initiatee = ["",""]
+
+
+
         if phase_name == phase_names.FAIL:
             # this is called only once, by the timer
             print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)

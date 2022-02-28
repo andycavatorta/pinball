@@ -406,7 +406,7 @@ class Station(threading.Thread):
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
             print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 20)
+            comparator = new_score - (new_score % 50)
             print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
@@ -1795,10 +1795,10 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
                 print("************* 2")
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
-                self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 100)
+                self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 50)
                 print("************* 3")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
-                self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 100)
+                self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 50)
                 print("************* 4")
                 self.trade_fail_timer.add_to_queue("end")
                 print("************* 5")
