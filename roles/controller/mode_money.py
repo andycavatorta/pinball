@@ -1579,6 +1579,13 @@ class Mode_Money(threading.Thread):
             "pinball4game":self.stations["sandia"],
             "pinball5game":self.stations["pina"],
         }
+        self.FRUIT_NAME_TO_PINBALL_HOSTNAME = {
+            "coco":"pinball1game",
+            "naranja":"pinball2game",
+            "mango":"pinball3game",
+            "sandia":"pinball4game",
+            "pina":"pinball5game",
+        }
         self.invitor_invitee = ["",""]
         self.initiator_initiatee = ["",""]
         self.start()
