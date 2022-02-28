@@ -95,7 +95,7 @@ class Mode_Money_Intro(threading.Thread):
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.pinball_hostname_map[display_hostname]].barter_mode_score)
 
-        for i in range(8):
+        for i in range(30):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("gsharp_piano")
@@ -109,7 +109,7 @@ class Mode_Money_Intro(threading.Thread):
 
         for display_hostname in self.display_hostnames:
             self.hosts.hostnames[display_hostname].request_number(0)
-        for i in range(6):
+        for i in range(30):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
                 self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
