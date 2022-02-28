@@ -270,10 +270,14 @@ class Station(threading.Thread):
 
     def carousel_add_fruit(self, fruit_name):
         self.carousel_data_segments[fruit_name] = True
+        if fruit_name == self.fruit_name:
+            self.carousel_data_segments["peso"] = True
 
 
     def carousel_remove_fruit(self, fruit_name):
         self.carousel_data_segments[fruit_name] = False
+        if fruit_name == self.fruit_name:
+            self.carousel_data_segments["peso"] = False
 
 
     def carousel_get_fruit_presence(self, fruit_name):
