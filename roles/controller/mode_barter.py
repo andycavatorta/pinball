@@ -125,15 +125,17 @@ class phase_names():
 
 
 class Animation_Score(threading.Thread):
-    def __init__(self, commands):
+    def __init__(self, commands, fruit_name):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.commands = commands
+        self.fruit_name = fruit_name
         self.start()
 
 
     def flipboard(self, start_number, end_number):
-        print("Animation_Score 0", start_number, end_number)
+
+        print("Animation_Score 0", start_number, end_number, self.fruit_name)
         if start_number < end_number:
             for display_score in range(start_number, end_number+1):
                 self.commands.request_number(display_score)
@@ -298,7 +300,7 @@ class Station(threading.Thread):
         self.parent_ref = parent_ref
         self.animation_pinball_game = Animation_Pinball_Game(commands)
         self.animation_transactions = Animation_Transactions(commands)
-        self.animation_score = Animation_Score(commands)
+        self.animation_score = Animation_Score(commands, fruit_name)
         self.fruit_to_spend = ""
         self.current_phase = phase_names.NOPLAYER
         self.pie_data_segments = {
@@ -425,7 +427,7 @@ class Station(threading.Thread):
         self.commands.barter_mode_score -= points
         self.commands.set_barter_points(self.commands.barter_mode_score)
         print("decrement_score",self.commands.barter_mode_score)
-        
+
 
 
     def setup(self):
