@@ -1385,33 +1385,36 @@ class Matrix_Animations(threading.Thread):
     def run(self):
         animation = "pause_animations"
         while True:
-            animation, station_a_name, station_b_name = self.queue.get(True)
-            if animation == "trade_invited":
-                self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
-                animation = "trade_invited_repeat"
-                continue
+            try:
+                animation, station_a_name, station_b_name = self.queue.get(True)
+                if animation == "trade_invited":
+                    self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
+                    animation = "trade_invited_repeat"
+                    continue
 
-            if animation == "trade_invited_repeat":
-                self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
-            
-            if animation == "trade_initiated":
-                self.trade_initiated_setup(station_a_name, station_b_name)
-                animation = "trade_initiated_repeat"
-                continue
-            
-            if animation == "trade_initiated_repeat":
-                self.trade_initiated_repeat(station_a_name, station_b_name)
-            
-            if animation == "trade_succeeded":
-                self.trade_succeeded_setup(station_a_name, station_b_name)
-                animation = "pause_animations"
-            
-            if animation == "trade_failed":
-                self.trade_failed_setup(station_a_name, station_b_name)
-                animation = "pause_animations"
-            
-            if animation == "pause_animations":
-                time.sleep(0.1)
+                if animation == "trade_invited_repeat":
+                    self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
+                
+                if animation == "trade_initiated":
+                    self.trade_initiated_setup(station_a_name, station_b_name)
+                    animation = "trade_initiated_repeat"
+                    continue
+                
+                if animation == "trade_initiated_repeat":
+                    self.trade_initiated_repeat(station_a_name, station_b_name)
+                
+                if animation == "trade_succeeded":
+                    self.trade_succeeded_setup(station_a_name, station_b_name)
+                    animation = "pause_animations"
+                
+                if animation == "trade_failed":
+                    self.trade_failed_setup(station_a_name, station_b_name)
+                    animation = "pause_animations"
+                
+                if animation == "pause_animations":
+                    time.sleep(0.1)
+            except queue.Empty:
+                time.sleep(0.05)
 
 
 class Mode_Money(threading.Thread):
