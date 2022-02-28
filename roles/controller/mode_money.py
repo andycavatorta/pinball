@@ -1612,10 +1612,12 @@ class Mode_Money(threading.Thread):
         # if station_b has fruit_b to trade
         for station_a_missing_fruit in station_a_missing_fruits:
             # todo: thread safety for carousel_data_segments
-            if self.stations[station_a_missing_fruit].carousel_get_fruit_presence(station_a_missing_fruit):
-                # if station_b is missing fruit_a
-                if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
-                    potential_trading_partners.append(station_a_missing_fruit)
+            # if this fruit corresponds to a game with a player
+            if station_a_missing_fruit in self.pinball_hostnames_with_players:
+                if self.stations[station_a_missing_fruit].carousel_get_fruit_presence(station_a_missing_fruit):
+                    # if station_b is missing fruit_a
+                    if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
+                        potential_trading_partners.append(station_a_missing_fruit)
         print("Mode_Money get_trade_option() 6", potential_trading_partners)
         if len(potential_trading_partners) == 0:
             self.lock.release()
