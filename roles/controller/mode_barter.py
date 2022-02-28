@@ -134,17 +134,16 @@ class Animation_Score(threading.Thread):
 
 
     def flipboard(self, start_number, end_number):
-
-        print("Animation_Score 0", start_number, end_number, self.fruit_name)
+        #print("Animation_Score 0", start_number, end_number, self.fruit_name)
         if start_number < end_number:
             for display_score in range(start_number, end_number+1):
                 self.commands.request_number(display_score)
-                print("Animation_Score 1", display_score)
+                #print("Animation_Score 1", display_score)
                 time.sleep(0.05)
         if start_number > end_number:
             for display_score in range(end_number, start_number, -1):
                 self.commands.request_number(display_score)
-                print("Animation_Score 2", display_score)
+                #print("Animation_Score 2", display_score)
                 time.sleep(0.05)
 
 
@@ -1682,24 +1681,25 @@ class Mode_Barter(threading.Thread):
         self.lock.acquire()
         # if no other trade is happening
         if self.invitor_invitee != ["",""]:
-            print("Mode_Barter get_trade_option() 2")
+            #print("Mode_Barter get_trade_option() 2")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a has fruit_a to trade
         if not self.stations[fruit_name].carousel_get_fruit_presence(fruit_name):
-            print("Mode_Barter get_trade_option() 3")
+            #print("Mode_Barter get_trade_option() 3")
             self.lock.release()
             return phase_names.COMIENZA
         # if station_a is missing fruit_b
         station_a_missing_fruits = self.stations[fruit_name].carousel_get_fruits_missing(True)
         if len(station_a_missing_fruits) == 0:
-            print("Mode_Barter get_trade_option() 4")
+            #print("Mode_Barter get_trade_option() 4")
             self.lock.release()
             return phase_names.COMIENZA
         potential_trading_partners = []
         print("Mode_Barter get_trade_option() 5", station_a_missing_fruits)
         # if station_b has fruit_b to trade
         for station_a_missing_fruit in station_a_missing_fruits:
+            print("Mode_Barter get_trade_option() 5.1", station_a_missing_fruit, self.pinball_hostnames_with_players)
             # todo: thread safety for carousel_data_segments
             # if this fruit corresponds to a game with a player
             if station_a_missing_fruit in self.pinball_hostnames_with_players:
@@ -1707,7 +1707,7 @@ class Mode_Barter(threading.Thread):
                     # if station_b is missing fruit_a
                     if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
                         potential_trading_partners.append(station_a_missing_fruit)
-        print("Mode_Barter get_trade_option() 6", potential_trading_partners)
+        #print("Mode_Barter get_trade_option() 6", potential_trading_partners)
         if len(potential_trading_partners) == 0:
             self.lock.release()
             return phase_names.COMIENZA
