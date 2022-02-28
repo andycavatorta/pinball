@@ -326,6 +326,7 @@ class Station(threading.Thread):
                 self.commands.cmd_carousel_lights(self.fruit_name, "energize")
                 print("increment_score 2",comparator, new_score)
         self.commands.money_mode_score = new_score
+        self.commands.set_money_points(new_score)
         print("increment_score 3",self.commands.money_mode_score)
 
 
@@ -335,6 +336,7 @@ class Station(threading.Thread):
         """
         self.animation_score.add_to_queue("flipboard",[int(self.commands.money_mode_score),self.commands.money_mode_score-points])
         self.commands.money_mode_score -= points
+        self.commands.set_money_points(self.commands.money_mode_score)
         print("decrement_score",self.commands.money_mode_score)
 
 
@@ -1639,12 +1641,17 @@ class Mode_Money(threading.Thread):
 
         if phase_name == phase_names.INVITOR:
             print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)
-            self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
-            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.stations[station_fruit_name].commands.cmd_righttube_launch()
-            self.invitor_invitee = ["",""]
-            self.trade_fail_timer.add_to_queue("end")
-            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.trade_fail_timer.add_to_queue("begin")
+            if initiator_hint:
+                self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
+                self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+                #self.stations[station_fruit_name].commands.cmd_righttube_launch()
+                self.invitor_invitee = ["",""]
+                self.trade_fail_timer.add_to_queue("end")
+                self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
+            else:
+                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
+
 
         if phase_name == phase_names.TRADE:
             print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)

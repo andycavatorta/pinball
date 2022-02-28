@@ -406,13 +406,14 @@ class Station(threading.Thread):
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
             print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 50)
+            comparator = new_score - (new_score % 35)
             print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
                 self.commands.cmd_carousel_lights(self.fruit_name, "energize")
                 print("increment_score 2",comparator, new_score)
         self.commands.barter_mode_score = new_score
+        self.commands.set_barter_points(new_score)
         print("increment_score 3",self.commands.barter_mode_score)
 
 
@@ -422,7 +423,9 @@ class Station(threading.Thread):
         """
         self.animation_score.add_to_queue("flipboard",[int(self.commands.barter_mode_score),self.commands.barter_mode_score-points])
         self.commands.barter_mode_score -= points
+        self.commands.set_barter_points(self.commands.barter_mode_score)
         print("decrement_score",self.commands.barter_mode_score)
+        
 
 
     def setup(self):
@@ -1536,7 +1539,7 @@ class Mode_Barter(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball1game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball1game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball1game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball1game'].get_barter_points
+            set_barter_points = self.hosts.hostnames['pinball1game'].set_barter_points
             money_mode_score = self.hosts.hostnames['pinball1game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball1game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball1display'].request_number
@@ -1561,7 +1564,7 @@ class Mode_Barter(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball2game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball2game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball2game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball2game'].get_barter_points
+            set_barter_points = self.hosts.hostnames['pinball2game'].set_barter_points
             money_mode_score = self.hosts.hostnames['pinball2game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball2game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball2display'].request_number
@@ -1586,7 +1589,7 @@ class Mode_Barter(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball3game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball3game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball3game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball3game'].get_barter_points
+            set_barter_points = self.hosts.hostnames['pinball3game'].set_barter_points
             money_mode_score = self.hosts.hostnames['pinball3game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball3game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball3display'].request_number
@@ -1611,7 +1614,7 @@ class Mode_Barter(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball4game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball4game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball4game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball4game'].get_barter_points
+            set_barter_points = self.hosts.hostnames['pinball4game'].set_barter_points
             money_mode_score = self.hosts.hostnames['pinball4game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball4game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball4display'].request_number
@@ -1636,7 +1639,7 @@ class Mode_Barter(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball5game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball5game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball5game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball5game'].get_barter_points
+            set_barter_points = self.hosts.hostnames['pinball5game'].set_barter_points
             money_mode_score = self.hosts.hostnames['pinball5game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball5game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball5display'].request_number
