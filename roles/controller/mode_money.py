@@ -1408,7 +1408,7 @@ class Matrix_Animations(threading.Thread):
                     continue
                 
                 if animation == "trade_initiated_repeat":
-                    print("Matrix_Animations run animation==",animation)`
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_repeat(station_a_name, station_b_name)
                 
                 if animation == "trade_succeeded":
