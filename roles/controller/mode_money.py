@@ -1390,28 +1390,34 @@ class Matrix_Animations(threading.Thread):
         animation = "pause_animations"
         while True:
             try:
-                animation, station_a_name, station_b_name = self.queue.get(True)
+                animation, station_a_name, station_b_name = self.queue.get(False)
                 if animation == "trade_invited":
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
                     animation = "trade_invited_repeat"
                     continue
 
                 if animation == "trade_invited_repeat":
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
                 
                 if animation == "trade_initiated":
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_setup(station_a_name, station_b_name)
                     animation = "trade_initiated_repeat"
                     continue
                 
                 if animation == "trade_initiated_repeat":
+                    print("Matrix_Animations run animation==",animation)`
                     self.trade_initiated_repeat(station_a_name, station_b_name)
                 
                 if animation == "trade_succeeded":
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_succeeded_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
                 
                 if animation == "trade_failed":
+                    print("Matrix_Animations run animation==",animation)
                     self.trade_failed_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
                 
