@@ -44,7 +44,7 @@ class Animation_Score(threading.Thread):
 
 
     def flipboard(self, start_number, end_number):
-        print("Animation_Score 0", start_number, end_number)
+        #print("Animation_Score 0", start_number, end_number)
         if start_number < end_number:
             for display_score in range(start_number, end_number+1):
                 self.commands.request_number(display_score)
