@@ -573,12 +573,12 @@ class Station(threading.Thread):
             if topic == "event_button_comienza":
                 print("Station.event_handler COMIENZA", topic, self.fruit_name, message, message==True)
                 self.end()
-
+            """
             if topic == "event_trough_sensor":
                 if message==False:
                     print("Station.event_handler COMIENZA",topic, self.fruit_name, message, message==True)
                     self.set_phase(phase_names.PINBALL)
-
+            """
 
 
         if self.current_phase == phase_names.PINBALL:
