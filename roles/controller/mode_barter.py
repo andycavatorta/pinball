@@ -633,7 +633,7 @@ class Station(threading.Thread):
                     self.add_to_queue("increment_score",6)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
-                    
+
             if topic == "event_button_comienza":
                 print("Station.event_handler COMIENZA", topic, self.fruit_name, message, message==True)
                 self.end()
@@ -931,7 +931,7 @@ class Mode_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 600
+        self.timer_limit = 120
         self.queue = queue.Queue()
         self.start()
 
