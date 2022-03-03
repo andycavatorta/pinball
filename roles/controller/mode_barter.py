@@ -901,7 +901,7 @@ class Trade_Fail_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.parent_ref_add_to_queue = parent_ref_add_to_queue
         self.timer = -1
-        self.timer_limit = 15
+        self.timer_limit = 25
         self.queue = queue.Queue()
         self.start()
 
