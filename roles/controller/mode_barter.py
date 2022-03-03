@@ -571,7 +571,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_button_comienza":
-                print("Station.event_handler COMIENZA", message, message==True)
+                print("Station.event_handler COMIENZA", self.fruit_name,, message, message==True)
                 self.end()
 
 
@@ -636,7 +636,7 @@ class Station(threading.Thread):
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
                 if message:
-                    print("Station.event_handler PINBALL", message, message==True)
+                    print("Station.event_handler PINBALL", self.fruit_name,, message, message==True)
                     self.end()
 
         if self.current_phase == phase_names.INVITOR:
@@ -722,7 +722,7 @@ class Station(threading.Thread):
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
-                print("Station.event_handler INVITEE", message, message==True)
+                print("Station.event_handler INVITEE", self.fruit_name,, message, message==True)
                 if message:
                     self.commands.request_button_light_active("izquierda",False)
                     self.commands.request_button_light_active("trueque",True)
@@ -748,7 +748,7 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
-            print("Station.end COMIENZA")
+            print("Station.end COMIENZA", self.fruit_name,)
             # if there is a fruit to spend
             if self.fruit_to_spend != "":
                 #remove the fruit data
@@ -760,7 +760,7 @@ class Station(threading.Thread):
             return
 
         if self.current_phase == phase_names.PINBALL:
-            print("Station.end PINBALL")
+            print("Station.end PINBALL", self.fruit_name,)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
             return
 
@@ -785,8 +785,9 @@ class Station(threading.Thread):
             return
 
 
+
     def set_phase(self, phase_name):
-        print("Station.set_phase",self.current_phase, phase_name)
+        print("Station.set_phase", self.fruit_name, self.current_phase, phase_name)
         if self.current_phase != phase_name:
             #self.end()
             self.current_phase = phase_name
@@ -1358,7 +1359,7 @@ class Matrix_Animations(threading.Thread):
     def set_pair_to_level(self, carousel_name, led_1, led_2, level):
         led_1_str = "channel_%s" % led_1
         led_2_str = "channel_%s" % led_2
-        print("set_pair_to_level",led_1_str,led_2_str)
+        #print("set_pair_to_level",led_1_str,led_2_str)
         self.carousels[carousel_name].cmd_carousel_lights(str(led_1_str),level)
         self.carousels[carousel_name].cmd_carousel_lights(str(led_2_str),level)
 
