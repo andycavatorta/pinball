@@ -636,7 +636,7 @@ class Station(threading.Thread):
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
                 if message:
-                    print("Station.event_handler PINBALL", self.fruit_name,, message, message==True)
+                    print("Station.event_handler PINBALL", self.fruit_name, message, message==True)
                     self.end()
 
         if self.current_phase == phase_names.INVITOR:
@@ -722,7 +722,7 @@ class Station(threading.Thread):
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
-                print("Station.event_handler INVITEE", self.fruit_name,, message, message==True)
+                print("Station.event_handler INVITEE", self.fruit_name, message, message==True)
                 if message:
                     self.commands.request_button_light_active("izquierda",False)
                     self.commands.request_button_light_active("trueque",True)
