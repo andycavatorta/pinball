@@ -436,7 +436,7 @@ class Station(threading.Thread):
             self.commands.request_button_light_active("izquierda",True)
             self.commands.request_button_light_active("trueque",False)
             self.commands.request_button_light_active("comienza",False)
-            self.commands.request_button_light_active("dinero",True)
+            self.commands.request_button_light_active("dinero",False)
             self.commands.request_button_light_active("derecha",True)
             self.commands.cmd_playfield_lights("sign_arrow_right", "on")
             self.commands.cmd_playfield_lights("sign_bottom_right", "on")

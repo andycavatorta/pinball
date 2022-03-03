@@ -571,7 +571,9 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_button_comienza":
+                print("Station.event_handler COMIENZA", message, message==True)
                 self.end()
+
 
         if self.current_phase == phase_names.PINBALL:
             if topic == "event_pop_left":
@@ -634,6 +636,7 @@ class Station(threading.Thread):
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
                 if message:
+                    print("Station.event_handler PINBALL", message, message==True)
                     self.end()
 
         if self.current_phase == phase_names.INVITOR:
@@ -719,6 +722,7 @@ class Station(threading.Thread):
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
+                print("Station.event_handler INVITEE", message, message==True)
                 if message:
                     self.commands.request_button_light_active("izquierda",False)
                     self.commands.request_button_light_active("trueque",True)
@@ -744,6 +748,7 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
+            print("Station.end COMIENZA")
             # if there is a fruit to spend
             if self.fruit_to_spend != "":
                 #remove the fruit data
@@ -755,7 +760,7 @@ class Station(threading.Thread):
             return
 
         if self.current_phase == phase_names.PINBALL:
-            #print("Station end()",phase_names.PINBALL)
+            print("Station.end PINBALL")
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
             return
 
@@ -781,6 +786,7 @@ class Station(threading.Thread):
 
 
     def set_phase(self, phase_name):
+        print("Station.set_phase",self.current_phase, phase_name)
         if self.current_phase != phase_name:
             #self.end()
             self.current_phase = phase_name
