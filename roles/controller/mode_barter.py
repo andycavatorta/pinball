@@ -571,7 +571,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_button_comienza":
-                print("Station.event_handler COMIENZA", self.fruit_name,, message, message==True)
+                print("Station.event_handler COMIENZA", self.fruit_name, message, message==True)
                 self.end()
 
 
