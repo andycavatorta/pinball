@@ -484,6 +484,11 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.PINBALL:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
             print(time.ctime(time.time()),"===================== PINBALL =====================", self.fruit_name)
+            self.commands.request_button_light_active("izquierda",True)
+            self.commands.request_button_light_active("trueque",False)
+            self.commands.request_button_light_active("comienza",True)
+            self.commands.request_button_light_active("dinero",False)
+            self.commands.request_button_light_active("derecha",True)
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -570,6 +575,65 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
+            if topic == "event_pop_left":
+                if message:
+                    self.add_to_queue("increment_score",3)
+                    self.commands.request_score("gsharp_mezzo")
+                    self.pie_target_hit("pop_left")
+            if topic == "event_pop_middle":
+                if message:
+                    self.add_to_queue("increment_score",3)
+                    self.commands.request_score("g_mezzo")
+                    self.pie_target_hit("pop_middle")
+            if topic == "event_pop_right":
+                if message:
+                    self.add_to_queue("increment_score",3)
+                    self.commands.request_score("f_mezzo")
+                    self.pie_target_hit("pop_right")
+            if topic == "event_roll_inner_left":
+                if message:
+                    self.pie_target_hit("rollover_left")
+                    self.add_to_queue("increment_score",5)
+                    self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
+
+            if topic == "event_roll_inner_right":
+                if message:
+                    self.pie_target_hit("rollover_right")
+                    self.add_to_queue("increment_score",5)
+                    self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
+
+            if topic == "event_roll_outer_left":
+                if message:
+                    self.pie_target_hit("rollover_left")
+                    self.add_to_queue("increment_score",5)
+                    self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
+
+            if topic == "event_roll_outer_right":
+                if message:
+                    self.pie_target_hit("rollover_right")
+                    self.add_to_queue("increment_score",5)
+                    self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
+
+            if topic == "event_slingshot_left":
+                if message:
+                    self.add_to_queue("increment_score",4)
+                    self.pie_target_hit("sling_left")
+                    self.pie_target_hit("rollover_left")
+                    self.commands.request_score("asharp_mezzo")
+
+            if topic == "event_slingshot_right":
+                if message:
+                    self.add_to_queue("increment_score",4)
+                    self.pie_target_hit("sling_right")
+                    self.pie_target_hit("rollover_right")
+                    self.commands.request_score("asharp_mezzo")
+                    
+            if topic == "event_spinner":
+                if message:
+                    self.add_to_queue("increment_score",6)
+                    self.pie_target_hit("spinner")
+                    self.commands.request_score("c_mezzo")
+                    
             if topic == "event_button_comienza":
                 print("Station.event_handler COMIENZA", topic, self.fruit_name, message, message==True)
                 self.end()
