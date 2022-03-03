@@ -867,7 +867,7 @@ class Mode_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 120
+        self.timer_limit = 600
         self.queue = queue.Queue()
         self.start()
 
