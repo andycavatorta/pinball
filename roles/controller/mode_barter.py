@@ -370,7 +370,7 @@ class Station(threading.Thread):
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
             #print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 35)
+            comparator = new_score - (new_score % 50)
             #print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
