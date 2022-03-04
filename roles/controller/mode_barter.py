@@ -1,6 +1,16 @@
 """
 todo:
 
+problems with trading:
+    game repeats trading mode
+        is fruit added after trade?
+
+    animation unclear?
+
+
+points increase too quickly.
+
+
 questions:
 
 
@@ -12,58 +22,6 @@ questions:
 2nd level:
     does the game communicate well enough for tomorrow?
         the center carousel is a problem
-
-    center carousel
-        coco [ should use naranja] 
-        naranja [ should use mango ] 8 9 11 10
-        mango [ should use sandia] 
-        sandia [ should use pina] 
-        pina [ should use coco] 
-
-        coco -> naranja
-            naranja -> mango
-        coco -> mango
-            naranja -> sandia
-        coco -> sandia
-            naranja -> pina
-        coco -> pina
-            naranja -> coco
-
-        naranja -> coco
-            mango -> naranja
-        naranja -> mango
-            mango -> sandia
-        naranja -> sandia
-            mango -> pina
-        naranja -> pina
-            mango -> coco
-
-        mango -> coco
-            sandia -> naranja
-        mango -> naranja
-            sandia -> mango
-        mango -> sandia
-            sandia -> pina
-        mango -> pina
-            sandia -> coco
-
-        sandia -> coco
-            pina -> naranja
-        sandia -> naranja
-            pina -> mango
-        sandia -> mango
-            pina -> sandia
-        sandia -> pina
-            pina -> coco
-
-        pina -> coco
-            coco -> naranja
-        pina -> naranja
-            coco -> mango
-        pina -> mango
-            coco -> sandia
-        pina -> sandia
-            coco -> pina
 
 
 known issues:
@@ -577,60 +535,60 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_pop_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",2)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",2)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",2)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",5)
+                    self.add_to_queue("increment_score",2)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_inner_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",5)
+                    self.add_to_queue("increment_score",2)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",5)
+                    self.add_to_queue("increment_score",2)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",5)
+                    self.add_to_queue("increment_score",2)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.add_to_queue("increment_score",4)
+                    self.add_to_queue("increment_score",2)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.add_to_queue("increment_score",4)
+                    self.add_to_queue("increment_score",2)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
                     
             if topic == "event_spinner":
                 if message:
-                    self.add_to_queue("increment_score",6)
+                    self.add_to_queue("increment_score",2)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
 
@@ -1896,9 +1854,14 @@ class Mode_Barter(threading.Thread):
                 print("************* 2")
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 25)
+                self.stations[self.invitor_invitee[0]].carousel_add_fruit(self.stations[self.invitor_invitee[1]].fruit_name)
+                self.stations[self.invitor_invitee[0]].carousel_display_fruit_presences()
+
                 print("************* 3")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 25)
+                self.stations[self.invitor_invitee[1]].carousel_add_fruit(self.stations[self.invitor_invitee[0]].fruit_name)
+                self.stations[self.invitor_invitee[1]].carousel_display_fruit_presences()
                 print("************* 4")
                 self.trade_fail_timer.add_to_queue("end")
                 print("************* 5")
