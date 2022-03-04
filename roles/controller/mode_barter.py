@@ -370,7 +370,7 @@ class Station(threading.Thread):
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
             #print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 25)
+            comparator = new_score - (new_score % 50)
             #print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
@@ -898,7 +898,7 @@ class Mode_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 3600
+        self.timer_limit = 120
         self.queue = queue.Queue()
         self.start()
 
@@ -1541,9 +1541,9 @@ class Matrix_Animations(threading.Thread):
                     print("Matrix_Animations run animation==",animation)
                     self.trade_failed_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
-                
                 if animation == "pause_animations":
-                    time.sleep(0.1)
+                    animation = "pause_animations"
+
             except queue.Empty:
                 if animation == "trade_invited_repeat":
                     print("Matrix_Animations run animation==",animation)

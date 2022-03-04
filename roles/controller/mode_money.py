@@ -323,7 +323,7 @@ class Station(threading.Thread):
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
             print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 20)
+            comparator = new_score - (new_score % 50)
             print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
@@ -1463,35 +1463,27 @@ class Matrix_Animations(threading.Thread):
                     print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
                     animation = "trade_invited_repeat"
-                    continue
-
-                if animation == "trade_invited_repeat":
-                    print("Matrix_Animations run animation==",animation)
-                    self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
-                
                 if animation == "trade_initiated":
                     print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_setup(station_a_name, station_b_name)
                     animation = "trade_initiated_repeat"
-                    continue
-                
-                if animation == "trade_initiated_repeat":
-                    print("Matrix_Animations run animation==",animation)
-                    self.trade_initiated_repeat(station_a_name, station_b_name)
-                
                 if animation == "trade_succeeded":
                     print("Matrix_Animations run animation==",animation)
                     self.trade_succeeded_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
-                
                 if animation == "trade_failed":
                     print("Matrix_Animations run animation==",animation)
                     self.trade_failed_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
-                
                 if animation == "pause_animations":
-                    time.sleep(0.1)
+                    animation = "pause_animations"
             except queue.Empty:
+                if animation == "trade_invited_repeat":
+                    print("Matrix_Animations run animation==",animation)
+                    self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
+                if animation == "trade_initiated_repeat":
+                    print("Matrix_Animations run animation==",animation)
+                    self.trade_initiated_repeat(station_a_name, station_b_name)
                 time.sleep(0.05)
 
 
