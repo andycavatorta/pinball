@@ -623,6 +623,9 @@ class Pinball(Host):
         return self.right_stack_inventory
     def set_money_points(self,money_points):
         self.money_points = money_points
+    def get_money_points(self):
+        return self.money_points
+
 
     def request_troughsensor_value(self):
         self.tb.publish(topic="request_troughsensor_value", message="",destination=self.hostname)
