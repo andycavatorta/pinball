@@ -113,7 +113,7 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
                 self.hosts.hostnames[display_hostname].request_phrase("dinero")
-                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].money_mode_score)
+                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].get_money_points())
 
             for carousel_hostname in self.carousel_hostnames:
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","off")
@@ -125,7 +125,7 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("trueque")
-                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].barter_mode_score)
+                self.hosts.hostnames[display_hostname].request_number(self.hosts.hostnames[self.display_hostname_map[display_hostname]].get_barter_points())
             for carousel_hostname in self.carousel_hostnames:
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","on")
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","off")
@@ -144,6 +144,12 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("como")
             time.sleep(0.5)
+
+        for display_hostname in self.display_hostnames:
+            self.hosts.hostnames[self.display_hostname_map[display_hostname]].set_money_points(0)
+            self.hosts.hostnames[self.display_hostname_map[display_hostname]].set_barter_points(0)
+
+
         time.sleep(5)
         self.set_current_mode(self.game_mode_names.ATTRACTION)
         
