@@ -1480,7 +1480,7 @@ class Matrix_Animations(threading.Thread):
 
         # todo: launch trueque tube
         # self.carousels[path_a[0][0]].cmd_lefttube_launch()
-        self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
+        self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
 
         # animate path of initiator fruit to destination lights, chimes, solenoids
         for ordinal in range(len(path_a)):
