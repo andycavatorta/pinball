@@ -1,23 +1,19 @@
 """
 todo:
 
-increase power to launch button
+trueque mode animation
 
 
+dinero mode animation:
+    make it clear that we are doing business with the center carousel
+    make it clear that add_Fruit trades fruit with center for peso
+    make is clear that pesos are exchanged with center for fruit
+    different music
+    
 
-
-problems with trading:
-    game repeats trading mode
-        is fruit added after trade?
-
-    animation unclear?
-
-
-points increase too quickly.
 
 
 questions:
-
 
 1st level:
     does the game play well mechanically?
@@ -607,7 +603,6 @@ class Station(threading.Thread):
                     self.set_phase(phase_names.PINBALL)
             """
 
-
         if self.current_phase == phase_names.PINBALL:
             if topic == "event_pop_left":
                 if message:
@@ -820,7 +815,6 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.FAIL:
             self.add_to_queue("set_phase", phase_names.COMIENZA)
             return
-
 
 
     def set_phase(self, phase_name):
@@ -1350,6 +1344,44 @@ class Matrix_Animations(threading.Thread):
             },
         }
 
+        self.fail_theme_chimes_18 = [
+            "c_mezzo",
+            "asharp_mezzo",
+            "c_mezzo",
+            "c_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "f_mezzo",
+        ]
+
+        self.fail_theme_chimes_14 = [
+            "c_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "f_mezzo",
+        ]
+
         self.start()
 
 
@@ -1420,17 +1452,22 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].cmd_carousel_lights("all","off")
         time.sleep(self.animation_frame_period)
         # todo: add button blink and chimes
-        self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
-        self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
-        self.carousels[path_a[0][0]].request_score("g_mezzo")
+        #self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
+        #self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
+        #self.carousels[path_a[0][0]].request_score("g_mezzo")
 
         for ordinal in range(len(path_a)):
             self.draw_pong_fade(path_a, ordinal)
+            if ordinal % 2 == 0: # if even
+                self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
+                self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
+                self.carousels[path_a[0][0]].request_score("g_mezzo")
+            else:
+                self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
+                self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
+                self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
             time.sleep(self.animation_frame_period)
 
-        self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
-        self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
             time.sleep(self.animation_frame_period)
@@ -1463,12 +1500,14 @@ class Matrix_Animations(threading.Thread):
         path_b = self.calculated_paths[invitee][initiator]
 
         # todo: test
-        self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
+            if ordinal%2==0:
+                self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
+                self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
+            else:
+                self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
             time.sleep(self.animation_frame_period)
-        self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
         time.sleep(0.2)
 
 
@@ -1502,14 +1541,14 @@ class Matrix_Animations(threading.Thread):
         # light all of path b, then fade
         path_a_reversed = list(path_a)
         path_a_reversed.reverse()
+
+        chime_theme_l = self.fail_theme_chimes_18 if len(path_a) == 17 else self.fail_theme_chimes_14
+
         for ordinal in range(len(path_a_reversed)):
             self.draw_pong_fade(path_a_reversed, ordinal)
-            time.sleep(self.animation_frame_period)
-        self.carousels[path_b[0][0]].request_score("f_mezzo")
-        self.carousels[path_b[0][0]].request_score("g_mezzo")
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("asharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("c_mezzo")
+            self.carousels[path_b[0][0]].request_score(chime_theme_l[ordinal])
+            time.sleep(self.animation_frame_period )
+        self.carousels[path_b[0][0]].request_score(chime_theme_l[-1])
 
 
     def add_to_queue(self, animation, station_a_name, station_b_name):
