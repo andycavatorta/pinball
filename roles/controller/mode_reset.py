@@ -142,9 +142,9 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("g_piano")
                 self.hosts.hostnames[display_hostname].request_phrase("como")
-            time.sleep(0.5)
 
         for pinball_hostname in self.pinball_hostnames:
+            print("Mode_Reset pinball_hostname=", pinball_hostname)
             self.hosts.hostnames[pinball_hostname].set_money_points(0)
             self.hosts.hostnames[pinball_hostname].set_barter_points(0)
 

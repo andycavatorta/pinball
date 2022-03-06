@@ -590,6 +590,7 @@ class Pinball(Host):
     def get_left_stack_inventory(self):
         return self.left_stack_inventory
     def set_barter_points(self,barter_points):
+        #print("hosts set_barter_points hostname="self.hostname,barter_points)
         self.barter_points = barter_points
     def get_barter_points(self):
         return self.barter_points

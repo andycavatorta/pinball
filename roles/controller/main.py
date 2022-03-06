@@ -287,7 +287,7 @@ class Main(threading.Thread):
                     continue
                 #print("main-", topic, message, origin)
                 #print("self.current_mode",self.current_mode)
-                #print(">> received >>", topic, message, origin, destination)
+                print(">> received >>", topic, message, origin, destination)
 
                 if topic == b'event_destination_timeout':
                     #motor_name, state, position, error = message

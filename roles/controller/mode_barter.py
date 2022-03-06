@@ -1562,7 +1562,7 @@ class Matrix_Animations(threading.Thread):
         station_b_name = ""
         while True:
             try:
-                print("Matrix_Animations run 1 animation==",animation, station_a_name, station_b_name)
+                #print("Matrix_Animations run 1 animation==",animation, station_a_name, station_b_name)
                 animation, station_a_name, station_b_name = self.queue.get(False)
                 print("Matrix_Animations run 2 animation==",animation, station_a_name, station_b_name)
                 if animation == "trade_invited":
