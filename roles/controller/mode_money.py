@@ -243,7 +243,7 @@ class Station(threading.Thread):
             self.commands.cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_data_segments.items() if v == True])==8:
                 self.animation_pinball_game.add_to_queue("pie_full")
-                self.animation_score.add_to_queue("flipboard",[int(self.commands.money_mode_score),self.commands.money_mode_score+25])
+                self.animation_score.add_to_queue("flipboard",[self.commands.get_money_points(),self.commands.get_money_points()+25])
                 self.carousel_add_fruit(self.fruit_name)
                 self.carousel_display_fruit_presences()
                 self.add_to_queue("increment_score",25)
@@ -314,9 +314,9 @@ class Station(threading.Thread):
 
 
     def increment_score(self, points=1):
-        self.animation_score.add_to_queue("flipboard",[int(self.commands.money_mode_score),self.commands.money_mode_score+points])
-        old_score = int(self.commands.money_mode_score)
-        new_score = self.commands.money_mode_score + points
+        old_score = self.commands.get_money_points()
+        new_score = self.commands.get_money_points() + points
+        self.animation_score.add_to_queue("flipboard",[old_score,new_score])
         # end mode if player scores over 900 points
         if new_score > 900:
             self.parent_ref.set_current_mode(settings.Game_Modes.RESET)
@@ -329,19 +329,15 @@ class Station(threading.Thread):
                 self.carousel_add_fruit(self.fruit_name)
                 self.commands.cmd_carousel_lights(self.fruit_name, "energize")
                 print("increment_score 2",comparator, new_score)
-        self.commands.money_mode_score = new_score
         self.commands.set_money_points(new_score)
-        print("increment_score 3",self.commands.money_mode_score)
 
 
     def decrement_score(self, points=-1):
         """
         negative scores must be prevented elsewhere
         """
-        self.animation_score.add_to_queue("flipboard",[int(self.commands.money_mode_score),self.commands.money_mode_score-points])
-        self.commands.money_mode_score -= points
-        self.commands.set_money_points(self.commands.money_mode_score)
-        print("decrement_score",self.commands.money_mode_score)
+        self.animation_score.add_to_queue("flipboard",[self.commands.get_money_points(),self.commands.get_money_points()-points])
+        self.commands.set_money_points(self.commands.get_money_points()-1)
 
 
     def setup(self):
@@ -379,10 +375,9 @@ class Station(threading.Thread):
                 self.fruit_to_spend = random.choice(other_fruits_present)
             else:
                 self.fruit_to_spend = ""
-                lower_score = self.commands.money_mode_score-5 if self.commands.money_mode_score >5 else 1
+                lower_score = self.commands.get_money_points()-5 if self.commands.get_money_points() >5 else 1
                 #self.decrement_score(lower_score)
-                #self.animation_score.add_to_queue("flipboard",[self.commands.money_mode_score,lower_score])
-                self.commands.money_mode_score = lower_score
+                self.commands.set_money_points(lower_score)
             self.commands.cmd_carousel_lights(self.fruit_to_spend,  "high")
             time.sleep(0.2)
             self.commands.request_score("g_mezzo")
@@ -1505,8 +1500,9 @@ class Mode_Money(threading.Thread):
         self.mode_timer = Mode_Timer(self.set_current_mode)
         self.matrix_animations = Matrix_Animations(self.hosts)
         self.trade_fail_timer = Trade_Fail_Timer(self.add_to_queue)
+
+
         class station_to_host_coco():
-            barter_mode_score = self.hosts.hostnames['pinball1game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball1display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel1'].cmd_carousel_all_off
             cmd_carousel_lights = self.hosts.hostnames['carousel1'].cmd_carousel_lights
@@ -1523,15 +1519,15 @@ class Mode_Money(threading.Thread):
             enable_kicker_coil = self.hosts.hostnames['pinball1game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball1game'].enable_trueque_coil
             get_barter_points = self.hosts.hostnames['pinball1game'].get_barter_points
-            money_mode_score = self.hosts.hostnames['pinball1game'].money_mode_score
+            get_money_points = self.hosts.hostnames['pinball1game'].get_money_points
             request_button_light_active = self.hosts.hostnames['pinball1game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball1display'].request_number
             request_phrase = self.hosts.hostnames['pinball1display'].request_phrase
             request_score = self.hosts.hostnames['pinball1display'].request_score
+            set_barter_points = self.hosts.hostnames['pinball1game'].set_barter_points
             set_money_points = self.hosts.hostnames['pinball1game'].set_money_points
 
         class station_to_host_naranja:
-            barter_mode_score = self.hosts.hostnames['pinball2game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball2display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel2'].cmd_carousel_all_off
             cmd_carousel_lights = self.hosts.hostnames['carousel2'].cmd_carousel_lights
@@ -1548,15 +1544,15 @@ class Mode_Money(threading.Thread):
             enable_kicker_coil = self.hosts.hostnames['pinball2game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball2game'].enable_trueque_coil
             get_barter_points = self.hosts.hostnames['pinball2game'].get_barter_points
-            money_mode_score = self.hosts.hostnames['pinball2game'].money_mode_score
+            get_money_points = self.hosts.hostnames['pinball2game'].get_money_points
             request_button_light_active = self.hosts.hostnames['pinball2game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball2display'].request_number
             request_phrase = self.hosts.hostnames['pinball2display'].request_phrase
             request_score = self.hosts.hostnames['pinball2display'].request_score
+            set_barter_points = self.hosts.hostnames['pinball2game'].set_barter_points
             set_money_points = self.hosts.hostnames['pinball2game'].set_money_points
 
         class station_to_host_mango:
-            barter_mode_score = self.hosts.hostnames['pinball3game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball3display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel3'].cmd_carousel_all_off
             cmd_carousel_lights = self.hosts.hostnames['carousel3'].cmd_carousel_lights
@@ -1573,15 +1569,15 @@ class Mode_Money(threading.Thread):
             enable_kicker_coil = self.hosts.hostnames['pinball3game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball3game'].enable_trueque_coil
             get_barter_points = self.hosts.hostnames['pinball3game'].get_barter_points
-            money_mode_score = self.hosts.hostnames['pinball3game'].money_mode_score
+            get_money_points = self.hosts.hostnames['pinball3game'].get_money_points
             request_button_light_active = self.hosts.hostnames['pinball3game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball3display'].request_number
             request_phrase = self.hosts.hostnames['pinball3display'].request_phrase
             request_score = self.hosts.hostnames['pinball3display'].request_score
+            set_barter_points = self.hosts.hostnames['pinball3game'].set_barter_points
             set_money_points = self.hosts.hostnames['pinball3game'].set_money_points
 
         class station_to_host_sandia:
-            barter_mode_score = self.hosts.hostnames['pinball4game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball4display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel4'].cmd_carousel_all_off
             cmd_carousel_lights = self.hosts.hostnames['carousel4'].cmd_carousel_lights
@@ -1598,15 +1594,15 @@ class Mode_Money(threading.Thread):
             enable_kicker_coil = self.hosts.hostnames['pinball4game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball4game'].enable_trueque_coil
             get_barter_points = self.hosts.hostnames['pinball4game'].get_barter_points
-            money_mode_score = self.hosts.hostnames['pinball4game'].money_mode_score
+            get_money_points = self.hosts.hostnames['pinball4game'].get_money_points
             request_button_light_active = self.hosts.hostnames['pinball4game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball4display'].request_number
             request_phrase = self.hosts.hostnames['pinball4display'].request_phrase
             request_score = self.hosts.hostnames['pinball4display'].request_score
+            set_barter_points = self.hosts.hostnames['pinball4game'].set_barter_points
             set_money_points = self.hosts.hostnames['pinball4game'].set_money_points
 
         class station_to_host_pina:
-            barter_mode_score = self.hosts.hostnames['pinball5game'].barter_mode_score
             cmd_all_off = self.hosts.hostnames['pinball5display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel5'].cmd_carousel_all_off
             cmd_carousel_lights = self.hosts.hostnames['carousel5'].cmd_carousel_lights
@@ -1623,11 +1619,12 @@ class Mode_Money(threading.Thread):
             enable_kicker_coil = self.hosts.hostnames['pinball5game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball5game'].enable_trueque_coil
             get_barter_points = self.hosts.hostnames['pinball5game'].get_barter_points
-            money_mode_score = self.hosts.hostnames['pinball5game'].money_mode_score
+            get_money_points = self.hosts.hostnames['pinball5game'].get_money_points
             request_button_light_active = self.hosts.hostnames['pinball5game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball5display'].request_number
             request_phrase = self.hosts.hostnames['pinball5display'].request_phrase
             request_score = self.hosts.hostnames['pinball5display'].request_score
+            set_barter_points = self.hosts.hostnames['pinball5game'].set_barter_points
             set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
 
         self.stations = {
