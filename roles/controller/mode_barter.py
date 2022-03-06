@@ -1541,9 +1541,7 @@ class Matrix_Animations(threading.Thread):
         # light all of path b, then fade
         path_a_reversed = list(path_a)
         path_a_reversed.reverse()
-
         chime_theme_l = self.fail_theme_chimes_18 if len(path_a) == 17 else self.fail_theme_chimes_14
-
         for ordinal in range(len(path_a_reversed)):
             self.draw_pong_fade(path_a_reversed, ordinal)
             self.carousels[path_b[0][0]].request_score(chime_theme_l[ordinal])
@@ -1558,11 +1556,13 @@ class Matrix_Animations(threading.Thread):
 
     def run(self):
         animation = "pause_animations"
+        station_a_name = ""
+        station_b_name = ""
         while True:
             try:
-                print("Matrix_Animations run 1 animation==",animation)
+                print("Matrix_Animations run 1 animation==",animation, station_a_name, station_b_name)
                 animation, station_a_name, station_b_name = self.queue.get(False)
-                print("Matrix_Animations run 2 animation==",animation)
+                print("Matrix_Animations run 2 animation==",animation, station_a_name, station_b_name)
                 if animation == "trade_invited":
                     #print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
@@ -1592,7 +1592,7 @@ class Matrix_Animations(threading.Thread):
                 if animation == "trade_initiated_repeat":
                     #print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_repeat(station_a_name, station_b_name)
-                time.sleep(0.05)
+                time.sleep(0.1)
 
 
 class Mode_Barter(threading.Thread):
@@ -1832,7 +1832,7 @@ class Mode_Barter(threading.Thread):
 
         if phase_name == phase_names.INVITOR:
             # this is called at the setup() of a station's INVITOR phase
-            print(">>>>>>>> phase_names.INVITOR 0",self.invitor_invitee,self.initiator_initiatee)
+            #print(">>>>>>>> phase_names.INVITOR 0",self.invitor_invitee,self.initiator_initiatee)
             # is this the a new trade session?
             self.trade_fail_timer.add_to_queue("begin")
             if self.invitor_invitee[0] == "":
@@ -1843,24 +1843,24 @@ class Mode_Barter(threading.Thread):
             if self.invitor_invitee[1] != "":
                 # if trueque button has been pressed
                 if initiator_hint:
-                    print(">>>>>>>> phase_names.INVITOR 1",self.invitor_invitee,self.initiator_initiatee)
+                    #print(">>>>>>>> phase_names.INVITOR 1",self.invitor_invitee,self.initiator_initiatee)
                     # trueque button has been hit
                     # if this is the first trueque button pushed
                     if self.initiator_initiatee[0] == "":
-                        print(">>>>>>>> phase_names.INVITOR 2",self.invitor_invitee,self.initiator_initiatee)
+                        #print(">>>>>>>> phase_names.INVITOR 2",self.invitor_invitee,self.initiator_initiatee)
                         # INVITOR is the first to hit the trueque button
                         self.initiator_initiatee[0] = station_fruit_name
                         self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                         self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
-                        print(">>>>>>>> phase_names.INVITOR 3",self.invitor_invitee,self.initiator_initiatee)
+                        #print(">>>>>>>> phase_names.INVITOR 3",self.invitor_invitee,self.initiator_initiatee)
                         if self.initiator_initiatee[0] != station_fruit_name:
-                            print(">>>>>>>> phase_names.INVITOR 4",self.invitor_invitee,self.initiator_initiatee)
+                            #print(">>>>>>>> phase_names.INVITOR 4",self.invitor_invitee,self.initiator_initiatee)
                             # INVITOR is the second to hit the trueque button
                             self.initiator_initiatee[1] = station_fruit_name
                             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
-                            print(">>>>>>>> phase_names.INVITOR 5",self.invitor_invitee,self.initiator_initiatee)    
+                            #print(">>>>>>>> phase_names.INVITOR 5",self.invitor_invitee,self.initiator_initiatee)    
             #print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
