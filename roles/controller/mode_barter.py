@@ -1853,7 +1853,7 @@ class Mode_Barter(threading.Thread):
                         # INVITOR is the first to hit the trueque button
                         self.initiator_initiatee[0] = station_fruit_name
                         self.stations[station_fruit_name].commands.cmd_lefttube_launch()
-                        self.matrix_animations.add_to_queue("trade_initiated", self.initiator_initiatee[0],self.initiator_initiatee[1])
+                        self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         #print(">>>>>>>> phase_names.INVITOR 3",self.invitor_invitee,self.initiator_initiatee)
                         if self.initiator_initiatee[0] != station_fruit_name:
@@ -1864,7 +1864,7 @@ class Mode_Barter(threading.Thread):
                             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
                             #print(">>>>>>>> phase_names.INVITOR 5",self.invitor_invitee,self.initiator_initiatee)    
                 else:
-                    self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
             #print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
@@ -1881,7 +1881,7 @@ class Mode_Barter(threading.Thread):
                         # INVITEE is the first to hit the trueque button
                         self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                         self.initiator_initiatee[0] = station_fruit_name
-                        self.matrix_animations.add_to_queue("trade_initiated", self.initiator_initiatee[0],self.initiator_initiatee[1])
+                        self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         #print(">>>>>>>> phase_names.INVITEE 3",self.invitor_invitee,self.initiator_initiatee)
                         if self.initiator_initiatee[0] != station_fruit_name:
