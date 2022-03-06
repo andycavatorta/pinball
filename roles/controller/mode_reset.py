@@ -132,7 +132,6 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","off")
             time.sleep(1)
 
-
         for i in range(3):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
@@ -145,10 +144,9 @@ class Mode_Reset(threading.Thread):
                 self.hosts.hostnames[display_hostname].request_phrase("como")
             time.sleep(0.5)
 
-        for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[self.display_hostname_map[display_hostname]].set_money_points(0)
-            self.hosts.hostnames[self.display_hostname_map[display_hostname]].set_barter_points(0)
-
+        for pinball_hostname in self.pinball_hostnames:
+            self.hosts.hostnames[pinball_hostname].set_money_points(0)
+            self.hosts.hostnames[pinball_hostname].set_barter_points(0)
 
         time.sleep(5)
         self.set_current_mode(self.game_mode_names.ATTRACTION)

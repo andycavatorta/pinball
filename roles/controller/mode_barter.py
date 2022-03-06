@@ -1560,8 +1560,9 @@ class Matrix_Animations(threading.Thread):
         animation = "pause_animations"
         while True:
             try:
+                print("Matrix_Animations run 1 animation==",animation)
                 animation, station_a_name, station_b_name = self.queue.get(False)
-                print("Matrix_Animations run animation==",animation)
+                print("Matrix_Animations run 2 animation==",animation)
                 if animation == "trade_invited":
                     #print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
