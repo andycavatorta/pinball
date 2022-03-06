@@ -1441,7 +1441,7 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_a[-1][0]].cmd_carousel_lights("all","off")
 
     def trade_invited_repeat(self, invitor, invitee):
-        print("trade_invited_repeat",initiator, invitee)
+        print("trade_invited_repeat",invitor, invitee)
         # alternating pong trail animations
         path_a = self.calculated_paths[invitor][invitee]
         path_b = self.calculated_paths[invitee][invitor]
@@ -1474,10 +1474,10 @@ class Matrix_Animations(threading.Thread):
             time.sleep(self.animation_frame_period)
 
 
-    def trade_initiated_setup(self, initiator, invitee):
+    def trade_initiated_setup(self, initiator, initiatee):
         # alternating pong trail animations
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
+        path_a = self.calculated_paths[initiator][initiatee]
+        path_b = self.calculated_paths[initiatee][initiator]
 
         # todo: launch trueque tube
         # self.carousels[path_a[0][0]].cmd_lefttube_launch()
@@ -1496,10 +1496,10 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].request_score("c_mezzo")
 
 
-    def trade_initiated_repeat(self, initiator, invitee):
-        print("trade_initiated_repeat",initiator, invitee)
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
+    def trade_initiated_repeat(self, initiator, initiatee):
+        print("trade_initiated_repeat",initiator, initiatee)
+        path_a = self.calculated_paths[initiator][initiatee]
+        path_b = self.calculated_paths[initiatee][initiator]
 
         # todo: test
         for ordinal in range(len(path_b)):
