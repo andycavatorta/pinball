@@ -1,10 +1,58 @@
-# todo: in attraction mode , check presence of balls
-# todo: detect runaway pinball assemblies by counting event frequency
-# todo: add fruit every x points?
-# todo: why does dinero happen infrequently?  why does potential trading parners fail later?   
-# todo: dinero mode
+"""
+todo:
+
+trueque mode animation
+
+
+dinero mode animation:
+    make it clear that we are doing business with the center carousel
+    make it clear that add_Fruit trades fruit with center for peso
+    make is clear that pesos are exchanged with center for fruit
+    different music
+    
+
+
+
+questions:
+
+1st level:
+    does the game play well mechanically?
+    does the trade frequency need to be adjusted?
+    does the length of the game need to be adjusted?
+
+2nd level:
+    does the game communicate well enough for tomorrow?
+        the center carousel is a problem
+
+
+known issues:
+    the pie doesn't start filling during the first ball of the game.
+    the animations aren't perfect in the current version but are they good enough?
+    
+
+trade frequency:
+    players can trade when they have one of their own fruits or a peso to trade
+    we add a new fruit to trade every 20 points and when pie fills
+game length:
+    trueque and dinero rounds are 120 seconds.  
+
+
+send email when restarting controller
+add current sensors
+in attraction mode, check presence of balls
+detect runaway pinball assemblies by counting event frequency
+
+
+
+"""
+
+
+# todo: why does trueque happen infrequently?  why does potential trading parners fail later?   
 # todo: make repeat matrix animations repeat.
+
+
 # todo: why does pie not light sometimes? 
+
 
 import codecs
 import os
@@ -36,15 +84,16 @@ class phase_names():
 
 
 class Animation_Score(threading.Thread):
-    def __init__(self, commands):
+    def __init__(self, commands, fruit_name):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
         self.commands = commands
+        self.fruit_name = fruit_name
         self.start()
 
 
     def flipboard(self, start_number, end_number):
-        #print("Animation_Score 0", start_number, end_number)
+        #print("Animation_Score 0", start_number, end_number, self.fruit_name)
         if start_number < end_number:
             for display_score in range(start_number, end_number+1):
                 self.commands.request_number(display_score)
@@ -119,8 +168,6 @@ class Animation_Transactions(threading.Thread):
         self.commands.request_score("c_piano")
         self.commands.cmd_carousel_lights(fruit_name,"high")
         time.sleep(0.4)
-        self.commands.request_score("c_piano")
-        self.commands.cmd_carousel_lights("peso","high")
 
 
     def add_to_queue(self, name, data=[]):
@@ -211,9 +258,10 @@ class Station(threading.Thread):
         self.parent_ref = parent_ref
         self.animation_pinball_game = Animation_Pinball_Game(commands)
         self.animation_transactions = Animation_Transactions(commands)
-        self.animation_score = Animation_Score(commands)
+        self.animation_score = Animation_Score(commands, fruit_name)
         self.fruit_to_spend = ""
         self.current_phase = phase_names.NOPLAYER
+        self.last_trade_time = time.time() # initiated on first boot. hereafter set only by MODE_BARTER for thread safety
         self.pie_data_segments = {
             "pop_left":False,
             "pop_middle":False,
@@ -322,13 +370,13 @@ class Station(threading.Thread):
             self.parent_ref.set_current_mode(settings.Game_Modes.RESET)
         # if the score passes a threshold number
         if not self.carousel_get_fruit_presence(self.fruit_name):
-            print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
+            #print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
             comparator = new_score - (new_score % 50)
-            print("increment_score 1",comparator, new_score)
+            #print("increment_score 1",comparator, new_score)
             if comparator > old_score:
                 self.carousel_add_fruit(self.fruit_name)
                 self.commands.cmd_carousel_lights(self.fruit_name, "energize")
-                print("increment_score 2",comparator, new_score)
+                #print("increment_score 2",comparator, new_score)
         self.commands.set_money_points(new_score)
 
 
@@ -342,7 +390,7 @@ class Station(threading.Thread):
 
     def setup(self):
         if self.current_phase == phase_names.NOPLAYER:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -357,7 +405,7 @@ class Station(threading.Thread):
             self.commands.cmd_carousel_lights("all", "off")
 
         if self.current_phase == phase_names.COMIENZA:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== COMIENZA =====================", self.fruit_name)
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
@@ -392,8 +440,13 @@ class Station(threading.Thread):
             self.commands.request_score("gsharp_mezzo")
 
         if self.current_phase == phase_names.PINBALL:
-            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, "")
+            self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== PINBALL =====================", self.fruit_name)
+            self.commands.request_button_light_active("izquierda",True)
+            self.commands.request_button_light_active("trueque",False)
+            self.commands.request_button_light_active("comienza",True)
+            self.commands.request_button_light_active("dinero",False)
+            self.commands.request_button_light_active("derecha",True)
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -480,9 +533,6 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
-
-
-
             if topic == "event_pop_left":
                 if message:
                     self.add_to_queue("increment_score",3)
@@ -538,13 +588,12 @@ class Station(threading.Thread):
                     
             if topic == "event_spinner":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
 
-
-
             if topic == "event_button_comienza":
+                print("Station.event_handler COMIENZA", topic, self.fruit_name, message, message==True)
                 self.end()
 
         if self.current_phase == phase_names.PINBALL:
@@ -603,11 +652,12 @@ class Station(threading.Thread):
                     
             if topic == "event_spinner":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
                 if message:
+                    print("Station.event_handler PINBALL", self.fruit_name, message, message==True)
                     self.end()
 
         if self.current_phase == phase_names.INVITOR:
@@ -697,6 +747,7 @@ class Station(threading.Thread):
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
             if topic == "event_trough_sensor":
+                print("Station.event_handler INVITEE", self.fruit_name, message, message==True)
                 if message:
                     self.commands.request_button_light_active("izquierda",False)
                     self.commands.request_button_light_active("trueque",False)
@@ -722,6 +773,7 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
+            print("Station.end COMIENZA", self.fruit_name,)
             # if there is a fruit to spend
             if self.fruit_to_spend != "":
                 #remove the fruit data
@@ -733,7 +785,7 @@ class Station(threading.Thread):
             return
 
         if self.current_phase == phase_names.PINBALL:
-            #print("Station end()",phase_names.PINBALL)
+            print("Station.end PINBALL", self.fruit_name,)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
             return
 
@@ -759,6 +811,7 @@ class Station(threading.Thread):
 
 
     def set_phase(self, phase_name):
+        print("Station.set_phase", self.fruit_name, self.current_phase, phase_name)
         if self.current_phase != phase_name:
             #self.end()
             self.current_phase = phase_name
@@ -832,7 +885,7 @@ class Mode_Timer(threading.Thread):
         threading.Thread.__init__(self)
         self.set_current_mode = set_current_mode
         self.timer = -1
-        self.timer_limit = 180
+        self.timer_limit = 120
         self.queue = queue.Queue()
         self.start()
 
@@ -867,7 +920,7 @@ class Matrix_Animations(threading.Thread):
         threading.Thread.__init__(self)
         self.hosts = hosts
         self.queue = queue.Queue()
-        self.animation_frame_period = 0.15
+        self.animation_frame_period = 0.25
         class station_to_host_coco():
             request_eject_ball = self.hosts.hostnames['carousel1'].request_eject_ball
             cmd_carousel_lights = self.hosts.hostnames['carousel1'].cmd_carousel_lights
@@ -930,6 +983,7 @@ class Matrix_Animations(threading.Thread):
             "pina":station_to_host_pina,
             "center":station_to_host_center,
         }
+
         self.calculated_paths = {
             "coco":{
                 "naranja":[# 13
@@ -1282,6 +1336,45 @@ class Matrix_Animations(threading.Thread):
                 ],
             },
         }
+
+        self.fail_theme_chimes_18 = [
+            "c_mezzo",
+            "asharp_mezzo",
+            "c_mezzo",
+            "c_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "f_mezzo",
+        ]
+
+        self.fail_theme_chimes_14 = [
+            "c_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "asharp_mezzo",
+            "asharp_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "gsharp_mezzo",
+            "g_mezzo",
+            "f_mezzo",
+        ]
+
         self.start()
 
 
@@ -1341,6 +1434,7 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_a[-1][0]].cmd_carousel_lights("all","off")
 
     def trade_invited_repeat(self, invitor, invitee):
+        print("trade_invited_repeat",invitor, invitee)
         # alternating pong trail animations
         path_a = self.calculated_paths[invitor][invitee]
         path_b = self.calculated_paths[invitee][invitor]
@@ -1352,30 +1446,35 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].cmd_carousel_lights("all","off")
         time.sleep(self.animation_frame_period)
         # todo: add button blink and chimes
-        self.carousels[path_a[0][0]].request_button_light_active("dinero", True)
-        self.carousels[path_b[0][0]].request_button_light_active("dinero", False)
-        self.carousels[path_a[0][0]].request_score("g_mezzo")
+        #self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
+        #self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
+        #self.carousels[path_a[0][0]].request_score("g_mezzo")
 
         for ordinal in range(len(path_a)):
             self.draw_pong_fade(path_a, ordinal)
+            if ordinal % 2 == 0: # if even
+                self.carousels[path_a[0][0]].request_button_light_active("dinero", True)
+                #self.carousels[path_b[0][0]].request_button_light_active("dinero", False)
+                self.carousels[path_a[0][0]].request_score("g_mezzo")
+            else:
+                self.carousels[path_a[0][0]].request_button_light_active("dinero", False)
+                #self.carousels[path_b[0][0]].request_button_light_active("dinero", True)
+                #self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
             time.sleep(self.animation_frame_period)
 
-        self.carousels[path_a[0][0]].request_button_light_active("dinero", False)
-        self.carousels[path_b[0][0]].request_button_light_active("dinero", True)
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
             time.sleep(self.animation_frame_period)
 
 
-    def trade_initiated_setup(self, initiator, invitee):
+    def trade_initiated_setup(self, initiator, initiatee):
         # alternating pong trail animations
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
+        path_a = self.calculated_paths[initiator][initiatee]
+        path_b = self.calculated_paths[initiatee][initiator]
 
-        # todo: launch dinero tube
+        # todo: launch trueque tube
         # self.carousels[path_a[0][0]].cmd_lefttube_launch()
-        self.carousels[path_a[0][0]].request_button_light_active("dinero", True)
+        self.carousels[path_a[0][0]].request_button_light_active("dinero", False)
 
         # animate path of initiator fruit to destination lights, chimes, solenoids
         for ordinal in range(len(path_a)):
@@ -1390,17 +1489,20 @@ class Matrix_Animations(threading.Thread):
         self.carousels[path_b[0][0]].request_score("c_mezzo")
 
 
-    def trade_initiated_repeat(self, initiator, invitee):
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
+    def trade_initiated_repeat(self, initiator, initiatee):
+        print("trade_initiated_repeat",initiator, initiatee)
+        path_a = self.calculated_paths[initiator][initiatee]
+        path_b = self.calculated_paths[initiatee][initiator]
 
         # todo: test
-        self.carousels[path_b[0][0]].request_button_light_active("dinero", True)
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
         for ordinal in range(len(path_b)):
             self.draw_pong_fade(path_b, ordinal)
+            if ordinal%2==0:
+                self.carousels[path_b[0][0]].request_button_light_active("dinero", True)
+                self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
+            else:
+                self.carousels[path_b[0][0]].request_button_light_active("dinero", False)
             time.sleep(self.animation_frame_period)
-        self.carousels[path_b[0][0]].request_button_light_active("dinero", False)
         time.sleep(0.2)
 
 
@@ -1434,14 +1536,12 @@ class Matrix_Animations(threading.Thread):
         # light all of path b, then fade
         path_a_reversed = list(path_a)
         path_a_reversed.reverse()
+        chime_theme_l = self.fail_theme_chimes_18 if len(path_a) == 17 else self.fail_theme_chimes_14
         for ordinal in range(len(path_a_reversed)):
             self.draw_pong_fade(path_a_reversed, ordinal)
-            time.sleep(self.animation_frame_period)
-        self.carousels[path_b[0][0]].request_score("f_mezzo")
-        self.carousels[path_b[0][0]].request_score("g_mezzo")
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("asharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("c_mezzo")
+            self.carousels[path_b[0][0]].request_score(chime_theme_l[ordinal])
+            time.sleep(self.animation_frame_period )
+        self.carousels[path_b[0][0]].request_score(chime_theme_l[-1])
 
 
     def add_to_queue(self, animation, station_a_name, station_b_name):
@@ -1451,35 +1551,43 @@ class Matrix_Animations(threading.Thread):
 
     def run(self):
         animation = "pause_animations"
+        station_a_name = ""
+        station_b_name = ""
         while True:
             try:
+                #print("Matrix_Animations run 1 animation==",animation, station_a_name, station_b_name)
                 animation, station_a_name, station_b_name = self.queue.get(False)
+                print("Matrix_Animations run 2 animation==",animation, station_a_name, station_b_name)
                 if animation == "trade_invited":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
                     animation = "trade_invited_repeat"
+
                 if animation == "trade_initiated":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_setup(station_a_name, station_b_name)
                     animation = "trade_initiated_repeat"
+                
                 if animation == "trade_succeeded":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_succeeded_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
+                
                 if animation == "trade_failed":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_failed_setup(station_a_name, station_b_name)
                     animation = "pause_animations"
-                if animation == "pause_animations":
-                    animation = "pause_animations"
+                #if animation == "pause_animations":
+                #    animation = "pause_animations"
+
             except queue.Empty:
                 if animation == "trade_invited_repeat":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_invited_repeat(station_a_name, station_b_name) #invitor, invitee
                 if animation == "trade_initiated_repeat":
-                    print("Matrix_Animations run animation==",animation)
+                    #print("Matrix_Animations run animation==",animation)
                     self.trade_initiated_repeat(station_a_name, station_b_name)
-                time.sleep(0.05)
+                time.sleep(0.1)
 
 
 class Mode_Money(threading.Thread):
@@ -1500,8 +1608,7 @@ class Mode_Money(threading.Thread):
         self.mode_timer = Mode_Timer(self.set_current_mode)
         self.matrix_animations = Matrix_Animations(self.hosts)
         self.trade_fail_timer = Trade_Fail_Timer(self.add_to_queue)
-
-
+        self.trade_time_threshold = 15
         class station_to_host_coco():
             cmd_all_off = self.hosts.hostnames['pinball1display'].cmd_all_off
             cmd_carousel_all_off = self.hosts.hostnames['carousel1'].cmd_carousel_all_off
@@ -1518,13 +1625,14 @@ class Mode_Money(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball1game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball1game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball1game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball1game'].get_barter_points
             get_money_points = self.hosts.hostnames['pinball1game'].get_money_points
+            get_money_points = self.hosts.hostnames['pinball1game'].get_money_points
+            money_mode_score = self.hosts.hostnames['pinball1game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball1game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball1display'].request_number
             request_phrase = self.hosts.hostnames['pinball1display'].request_phrase
             request_score = self.hosts.hostnames['pinball1display'].request_score
-            set_barter_points = self.hosts.hostnames['pinball1game'].set_barter_points
+            set_money_points = self.hosts.hostnames['pinball1game'].set_money_points
             set_money_points = self.hosts.hostnames['pinball1game'].set_money_points
 
         class station_to_host_naranja:
@@ -1543,13 +1651,14 @@ class Mode_Money(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball2game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball2game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball2game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball2game'].get_barter_points
             get_money_points = self.hosts.hostnames['pinball2game'].get_money_points
+            get_money_points = self.hosts.hostnames['pinball2game'].get_money_points
+            money_mode_score = self.hosts.hostnames['pinball2game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball2game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball2display'].request_number
             request_phrase = self.hosts.hostnames['pinball2display'].request_phrase
             request_score = self.hosts.hostnames['pinball2display'].request_score
-            set_barter_points = self.hosts.hostnames['pinball2game'].set_barter_points
+            set_money_points = self.hosts.hostnames['pinball2game'].set_money_points
             set_money_points = self.hosts.hostnames['pinball2game'].set_money_points
 
         class station_to_host_mango:
@@ -1568,13 +1677,14 @@ class Mode_Money(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball3game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball3game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball3game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball3game'].get_barter_points
             get_money_points = self.hosts.hostnames['pinball3game'].get_money_points
+            get_money_points = self.hosts.hostnames['pinball3game'].get_money_points
+            money_mode_score = self.hosts.hostnames['pinball3game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball3game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball3display'].request_number
             request_phrase = self.hosts.hostnames['pinball3display'].request_phrase
             request_score = self.hosts.hostnames['pinball3display'].request_score
-            set_barter_points = self.hosts.hostnames['pinball3game'].set_barter_points
+            set_money_points = self.hosts.hostnames['pinball3game'].set_money_points
             set_money_points = self.hosts.hostnames['pinball3game'].set_money_points
 
         class station_to_host_sandia:
@@ -1593,13 +1703,14 @@ class Mode_Money(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball4game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball4game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball4game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball4game'].get_barter_points
             get_money_points = self.hosts.hostnames['pinball4game'].get_money_points
+            get_money_points = self.hosts.hostnames['pinball4game'].get_money_points
+            money_mode_score = self.hosts.hostnames['pinball4game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball4game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball4display'].request_number
             request_phrase = self.hosts.hostnames['pinball4display'].request_phrase
             request_score = self.hosts.hostnames['pinball4display'].request_score
-            set_barter_points = self.hosts.hostnames['pinball4game'].set_barter_points
+            set_money_points = self.hosts.hostnames['pinball4game'].set_money_points
             set_money_points = self.hosts.hostnames['pinball4game'].set_money_points
 
         class station_to_host_pina:
@@ -1618,13 +1729,14 @@ class Mode_Money(threading.Thread):
             enable_izquierda_coil = self.hosts.hostnames['pinball5game'].enable_izquierda_coil
             enable_kicker_coil = self.hosts.hostnames['pinball5game'].enable_kicker_coil
             enable_trueque_coil = self.hosts.hostnames['pinball5game'].enable_trueque_coil
-            get_barter_points = self.hosts.hostnames['pinball5game'].get_barter_points
             get_money_points = self.hosts.hostnames['pinball5game'].get_money_points
+            get_money_points = self.hosts.hostnames['pinball5game'].get_money_points
+            money_mode_score = self.hosts.hostnames['pinball5game'].money_mode_score
             request_button_light_active = self.hosts.hostnames['pinball5game'].request_button_light_active
             request_number = self.hosts.hostnames['pinball5display'].request_number
             request_phrase = self.hosts.hostnames['pinball5display'].request_phrase
             request_score = self.hosts.hostnames['pinball5display'].request_score
-            set_barter_points = self.hosts.hostnames['pinball5game'].set_barter_points
+            set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
             set_money_points = self.hosts.hostnames['pinball5game'].set_money_points
 
         self.stations = {
@@ -1635,7 +1747,7 @@ class Mode_Money(threading.Thread):
             "pina":Station("pina",station_to_host_pina, self),
         }
 
-        self.PINBALL_TO_STATION = {
+        self.PINBALL_HOSTNAME_TO_STATION = {
             "pinball1game":self.stations["coco"],
             "pinball2game":self.stations["naranja"],
             "pinball3game":self.stations["mango"],
@@ -1652,60 +1764,45 @@ class Mode_Money(threading.Thread):
         self.invitor_invitee = ["",""]
         self.initiator_initiatee = ["",""]
         self.start()
-
     # todo: reset self.invitor_invitee after trade or fail
 
     def get_trade_option(self, fruit_name):
-        # todo: how does this vary with different numbers of players?
-        # todo: self.invitor_invitee is not threadsafe between get_trade_option and handle_station_phase_change
-        # what are the conditions for trading?
-        print("Mode_Money get_trade_option(%s)" % fruit_name )
         self.lock.acquire()
         # if no other trade is happening
         if self.invitor_invitee != ["",""]:
-            print("Mode_Money get_trade_option() 2")
+            #print("Mode_Money get_trade_option() 2")
             self.lock.release()
             return phase_names.COMIENZA
-        # if station_a has fruit_a to trade
-        if not self.stations[fruit_name].carousel_get_fruit_presence(fruit_name):
-            print("Mode_Money get_trade_option() 3")
+        # return if too soon 
+        if self.stations[fruit_name].last_trade_time > time.time() - self.trade_time_threshold:
             self.lock.release()
             return phase_names.COMIENZA
-        # if station_a is missing fruit_b
-        station_a_missing_fruits = self.stations[fruit_name].carousel_get_fruits_missing(True)
-        if len(station_a_missing_fruits) == 0:
-            print("Mode_Money get_trade_option() 4")
+        least_recent_station = False
+        for pinball_hostname_with_player in self.pinball_hostnames_with_players:
+            #skip this fruit name
+            if pinball_hostname_with_player == self.FRUIT_NAME_TO_PINBALL_HOSTNAME[fruit_name]:
+                continue
+            #set first value
+            if least_recent_station == False:
+                least_recent_station = self.PINBALL_HOSTNAME_TO_STATION[pinball_hostname_with_player]
+            else: 
+                if least_recent_station.last_trade_time > self.PINBALL_HOSTNAME_TO_STATION[pinball_hostname_with_player].last_trade_time:
+                    least_recent_station = self.PINBALL_HOSTNAME_TO_STATION[pinball_hostname_with_player]
+        # return if too soon for least_recent_station
+        if least_recent_station.last_trade_time  > time.time() - self.trade_time_threshold:
             self.lock.release()
             return phase_names.COMIENZA
-        potential_trading_partners = []
-        print("Mode_Money get_trade_option() 5", station_a_missing_fruits)
-        # if station_b has fruit_b to trade
-        for station_a_missing_fruit in station_a_missing_fruits:
-            # todo: thread safety for carousel_data_segments
-            # if this fruit corresponds to a game with a player
-            if self.FRUIT_NAME_TO_PINBALL_HOSTNAME[station_a_missing_fruit] in self.pinball_hostnames_with_players:
-                if self.stations[station_a_missing_fruit].carousel_get_fruit_presence(station_a_missing_fruit):
-                    # if station_b is missing fruit_a
-                    if not self.stations[station_a_missing_fruit].carousel_get_fruit_presence(fruit_name):
-                        potential_trading_partners.append(station_a_missing_fruit)
-        print("Mode_Money get_trade_option() 6", potential_trading_partners)
-        if len(potential_trading_partners) == 0:
-            self.lock.release()
-            return phase_names.COMIENZA
-        invitee_fruit_name = random.choice(potential_trading_partners)
-        print("Mode_Money get_trade_option() 7", invitee_fruit_name)
+        # start trade
+        least_recent_station.last_trade_time = time.time()
+        self.stations[fruit_name].last_trade_time.last_trade_time = time.time()
+        invitee_fruit_name = least_recent_station.fruit_name
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
-        self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
+        #self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
         self.lock.release()
         return phase_names.INVITOR
 
-    def handle_station_phase_change(self, station_fruit_name, phase_name, initiator_hint):
-        """
-        Handle state change of self.invitor_invitee
-        there should be a better, thread-safe system for this.  
-        but this will have to do for now.
-        """
 
+    def handle_station_phase_change(self, station_fruit_name, phase_name, initiator_hint):
         if phase_name == phase_names.NOPLAYER:
             pass
         if phase_name == phase_names.COMIENZA:
@@ -1718,49 +1815,86 @@ class Mode_Money(threading.Thread):
                 self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
 
+
         if phase_name == phase_names.INVITOR:
-            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)
-            self.trade_fail_timer.add_to_queue("begin")
-            if initiator_hint:
+            # this is called first by the setup() of a station's INVITOR phase
+            # this is called second by the pressing of Trueque
+            # if not called by button
+            if not initiator_hint:
+                self.trade_fail_timer.add_to_queue("begin")
+
+            # is this the a new trade session?
+            if self.invitor_invitee[0] == "":
+                self.invitor_invitee[0] = station_fruit_name
+            # is an invitee already selected?
+            # ^ is there ever a case when only one is selected?
+            # they are assigned together in get_trade_option
+
+            # avoiding a possible race condition in the threads between get_trade_option and this function
+            if self.invitor_invitee[1] != "":
+                # if dinero button has been pressed
+                if initiator_hint:
+                    # dinero button has been hit
+                    # if this is the first dinero button pushed
+                    self.stations[station_fruit_name].commands.cmd_righttube_launch()
+                    self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
+                    self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
+                    self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
+                else:
+                    # dinero button has not been hit by invitor
+                    self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
+            #print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+
+        if phase_name == phase_names.INVITEE:
+            if self.invitor_invitee[1] == "":
+                self.invitor_invitee[1] = station_fruit_name
+            if self.invitor_invitee[0] != "":
+                if initiator_hint:
+                    # dinero button has been hit
+                    # is INVITEE the first or second to hit the dinero button?
+                    if self.initiator_initiatee[0] == "":
+                        # INVITEE is the first to hit the dinero button
+                        self.stations[station_fruit_name].commands.cmd_righttube_launch()
+                        self.initiator_initiatee[0] = station_fruit_name
+                        self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
+                    else:
+                        if self.initiator_initiatee[0] != station_fruit_name:
+                            # INVITOR is the second to hit the dinero button
+                            self.initiator_initiatee[1] = station_fruit_name
+                            self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
+                            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
+
+            #print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+
+        if phase_name == phase_names.TRADE:
+            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            if self.initiator_initiatee[0] == station_fruit_name:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-                #self.stations[station_fruit_name].commands.cmd_righttube_launch()
-                self.invitor_invitee = ["",""]
+                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 25)
+                #self.stations[self.invitor_invitee[0]].carousel_add_fruit(self.stations[self.invitor_invitee[1]].fruit_name)
+                #self.stations[self.invitor_invitee[0]].carousel_display_fruit_presences()
+
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 25)
+                #self.stations[self.invitor_invitee[1]].carousel_add_fruit(self.stations[self.invitor_invitee[0]].fruit_name)
+                #self.stations[self.invitor_invitee[1]].carousel_display_fruit_presences()
                 self.trade_fail_timer.add_to_queue("end")
-                self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
-            else:
-                self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-
-
-        if phase_name == phase_names.TRADE:
-            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)
-            self.trade_fail_timer.add_to_queue("end")
-            self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
-            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-            self.invitor_invitee = ["",""]
-            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
-
-
-        if phase_name == phase_names.TRADE:
-            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-            print("-------------", self.initiator_initiatee, station_fruit_name, self.initiator_initiatee[0] == station_fruit_name)
-            self.matrix_animations.add_to_queue("trade_succeeded", str(station_fruit_name),str(self.invitor_invitee[1]))
-            self.stations[station_fruit_name].add_to_queue("set_phase", phase_names.COMIENZA)
-            self.stations[station_fruit_name].add_to_queue("increment_score", 25)
-            self.trade_fail_timer.add_to_queue("end")
-            self.invitor_invitee = ["",""]
-            self.initiator_initiatee = ["",""]
-
+                self.invitor_invitee = ["",""]
+                self.initiator_initiatee = ["",""]
 
         if phase_name == phase_names.FAIL:
             # this is called only once, by the timer
-            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee)
+            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
             self.trade_fail_timer.add_to_queue("end")
             self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.invitor_invitee = ["",""]
+            self.initiator_initiatee = ["",""]
 
 
     def begin(self):
@@ -1770,7 +1904,7 @@ class Mode_Money(threading.Thread):
         # set all stations to phase comienza or noplayer
         self.mode_timer.add_to_queue("begin")
         #print("Mode_Money, begin() 2", self.pinball_hostnames_with_players)
-        for pinball_hostname, station_ref in self.PINBALL_TO_STATION.items():
+        for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
@@ -1778,7 +1912,7 @@ class Mode_Money(threading.Thread):
                 #print("Mode_Money, begin() 3",station_ref )
         time.sleep(3.5) # wait for animation_fill_carousel to run
         #print("Mode_Money, begin() 4")
-        for pinball_hostname, station_ref in self.PINBALL_TO_STATION.items():
+        for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
@@ -1787,6 +1921,10 @@ class Mode_Money(threading.Thread):
 
 
     def end(self):
+        # stop all timers
+        self.trade_fail_timer.add_to_queue("end")
+        # stop all animations
+        self.matrix_animations.add_to_queue("pause_animations", "","")
         self.active = False
 
 
@@ -1810,7 +1948,7 @@ class Mode_Money(threading.Thread):
                 if topic == "handle_station_phase_change":
                     self.handle_station_phase_change(message, origin, destination)
                 else:
-                    self.PINBALL_TO_STATION[origin].add_to_queue(topic, message)
+                    self.PINBALL_HOSTNAME_TO_STATION[origin].add_to_queue(topic, message)
 
             except AttributeError as e:
                 print(traceback.format_exc())

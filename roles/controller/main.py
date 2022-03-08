@@ -44,16 +44,11 @@ sys.path.append(os.path.split(app_path)[0])
 import settings
 from thirtybirds3 import thirtybirds
 from thirtybirds3.adapters.sensors import ina260_current_sensor
-
 import roles.controller.tests as tests
-
 import roles.controller.safety_enable as Safety_Enable
 import roles.controller.hosts as Hosts
-
 from http_server_root import dashboard
-
 from roles.controller.choreography import Choreography
-
 from roles.controller.mode_error import Mode_Error
 from roles.controller.mode_waiting_for_connections import Mode_Waiting_For_Connections
 from roles.controller.mode_system_tests import Mode_System_Tests
@@ -64,9 +59,7 @@ from roles.controller.mode_barter_intro import Mode_Barter_Intro
 from roles.controller.mode_barter import Mode_Barter
 from roles.controller.mode_money_intro import Mode_Money_Intro
 from roles.controller.mode_money import Mode_Money
-#from roles.controller.mode_dinero import Mode_Dinero
 from roles.controller.mode_reset import Mode_Reset
-#from roles.controller.mode_ending import Mode_Ending
 
 class Main(threading.Thread):
     class mode_names:

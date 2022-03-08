@@ -156,13 +156,15 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
             self.hosts.hostnames[pinball_hostname].disable_gameplay()
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
+            self.hosts.hostnames[pinball_hostname].set_barter_points(0)
+            self.hosts.hostnames[pinball_hostname].set_money_points(0)
 
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
             #self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","energize")
             #self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","energize")
         for display_hostname in self.display_hostnames:
-            self.hosts.hostnames[display_hostname].request_number(-1)
+            self.hosts.hostnames[display_hostname].request_number(0)
             self.hosts.hostnames[display_hostname].request_phrase("")
         ### A N I M A T I O N ###
         chime_sequence = self.chime_sequence_spooler(["f_mezzo","c_mezzo","g_mezzo","c_mezzo","gsharp_mezzo","c_mezzo","g_mezzo","c_mezzo","gsharp_mezzo","c_mezzo","g_mezzo","c_mezzo"])
