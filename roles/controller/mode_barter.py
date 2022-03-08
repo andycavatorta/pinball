@@ -1822,8 +1822,6 @@ class Mode_Barter(threading.Thread):
             # this is called first by the setup() of a station's INVITOR phase
             # this is called second by the pressing of Trueque
             # if not called by button
-            if not initiator_hint:
-                self.trade_fail_timer.add_to_queue("begin")
 
             # is this the a new trade session?
             if self.invitor_invitee[0] == "":
@@ -1835,6 +1833,9 @@ class Mode_Barter(threading.Thread):
             # avoiding a possible race condition in the threads between get_trade_option and this function
             if self.invitor_invitee[1] != "":
                 # if trueque button has been pressed
+                if not initiator_hint:
+                    self.trade_fail_timer.add_to_queue("begin")
+
                 if initiator_hint:
                     # trueque button has been hit
                     # if this is the first trueque button pushed
@@ -1852,7 +1853,7 @@ class Mode_Barter(threading.Thread):
                 else:
                     # trueque button has not been hit by invitor
                     self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-            #print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
@@ -1873,7 +1874,7 @@ class Mode_Barter(threading.Thread):
                             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
 
-            #print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.TRADE:
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
