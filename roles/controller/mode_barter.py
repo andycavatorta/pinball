@@ -1749,7 +1749,6 @@ class Mode_Barter(threading.Thread):
             "pina":Station("pina",station_to_host_pina, self),
         }
 
-        self.
         self.PINBALL_HOSTNAME_TO_STATION = {
             "pinball1game":self.stations["coco"],
             "pinball2game":self.stations["naranja"],
