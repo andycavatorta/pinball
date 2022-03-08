@@ -1796,7 +1796,7 @@ class Mode_Barter(threading.Thread):
             return phase_names.COMIENZA
         # start trade
         least_recent_station.last_trade_time = time.time()
-        self.stations[fruit_name].last_trade_time.last_trade_time = time.time()
+        self.stations[fruit_name].last_trade_time = time.time()
         invitee_fruit_name = least_recent_station.fruit_name
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
         self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
