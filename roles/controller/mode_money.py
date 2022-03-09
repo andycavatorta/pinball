@@ -522,17 +522,17 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_pop_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",5)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",5)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",5)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
@@ -575,7 +575,7 @@ class Station(threading.Thread):
                     
             if topic == "event_spinner":
                 if message:
-                    self.add_to_queue("increment_score",1)
+                    self.add_to_queue("increment_score",3)
                     self.pie_target_hit("spinner")
                     self.commands.request_score("c_mezzo")
 
