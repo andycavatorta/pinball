@@ -1816,16 +1816,21 @@ class Mode_Barter(threading.Thread):
     # todo: reset self.invitor_invitee after trade or fail
 
     def get_trade_option(self, fruit_name):
+        print("get_trade_option 1", fruit_name)
         self.lock.acquire()
         # if no other trade is happening
         if self.invitor_invitee != ["",""]:
             #print("Mode_Barter get_trade_option() 2")
             self.lock.release()
             return phase_names.COMIENZA
+
+        print("get_trade_option 2", fruit_name)
         # return if too soon 
         if self.stations[fruit_name].last_trade_time > time.time() - self.trade_time_threshold:
             self.lock.release()
             return phase_names.COMIENZA
+
+        print("get_trade_option 3", fruit_name)
         least_recent_station = False
         for pinball_hostname_with_player in self.pinball_hostnames_with_players:
             #skip this fruit name
@@ -1838,16 +1843,20 @@ class Mode_Barter(threading.Thread):
                 if least_recent_station.last_trade_time > self.PINBALL_HOSTNAME_TO_STATION[pinball_hostname_with_player].last_trade_time:
                     least_recent_station = self.PINBALL_HOSTNAME_TO_STATION[pinball_hostname_with_player]
         # return if too soon for least_recent_station
+
+        print("get_trade_option 4", fruit_name,least_recent_station)
         if least_recent_station.last_trade_time  > time.time() - self.trade_time_threshold:
             self.lock.release()
             return phase_names.COMIENZA
         # start trade
+        print("get_trade_option 5", fruit_name)
         least_recent_station.last_trade_time = time.time()
         self.stations[fruit_name].last_trade_time = time.time()
         invitee_fruit_name = least_recent_station.fruit_name
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
         self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
         self.lock.release()
+        print("get_trade_option 6", fruit_name)
         return phase_names.INVITOR
 
 
@@ -1866,6 +1875,7 @@ class Mode_Barter(threading.Thread):
 
 
         if phase_name == phase_names.INVITOR:
+            print("Mode_Barter.handle_station_phase_change 0",phase_name, self.invitor_invitee, self.initiator_initiatee)
             # this is called first by the setup() of a station's INVITOR phase
             # this is called second by the pressing of Trueque
             # if not called by button
@@ -1876,6 +1886,7 @@ class Mode_Barter(threading.Thread):
             # is an invitee already selected?
             # ^ is there ever a case when only one is selected?
             # they are assigned together in get_trade_option
+            print("Mode_Barter.handle_station_phase_change 1",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
             # avoiding a possible race condition in the threads between get_trade_option and this function
             if self.invitor_invitee[1] != "":
@@ -1883,6 +1894,7 @@ class Mode_Barter(threading.Thread):
                 if not initiator_hint:
                     self.trade_fail_timer.add_to_queue("begin")
 
+                print("Mode_Barter.handle_station_phase_change 2",phase_name, self.invitor_invitee, self.initiator_initiatee)
                 if initiator_hint:
                     # trueque button has been hit
                     # if this is the first trueque button pushed
@@ -1900,7 +1912,7 @@ class Mode_Barter(threading.Thread):
                 else:
                     # trueque button has not been hit by invitor
                     self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
-            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+            print("Mode_Barter.handle_station_phase_change 4",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
             if self.invitor_invitee[1] == "":
