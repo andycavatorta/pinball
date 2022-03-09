@@ -412,7 +412,7 @@ class Station(threading.Thread):
                 lower_score = self.commands.get_barter_points()-5 if self.commands.get_barter_points() >5 else 1
                 #self.decrement_score(lower_score)
                 self.commands.set_barter_points(lower_score)
-            self.commands.cmd_carousel_lights(self.fruit_to_spend,  "high")
+            #self.commands.cmd_carousel_lights(self.fruit_to_spend,  "high")
             time.sleep(0.2)
             self.commands.request_score("g_mezzo")
             time.sleep(0.2)
@@ -1946,6 +1946,10 @@ class Mode_Barter(threading.Thread):
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             self.trade_fail_timer.add_to_queue("end")
             if self.initiator_initiatee[0] == station_fruit_name:
+
+                self.stations[self.invitor_invitee[0]].cmd_playfield_lights("sign_arrow_left", "off")
+                self.stations[self.invitor_invitee[1]].cmd_playfield_lights("sign_arrow_left", "off")
+
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
                 print("----------------------------------------> 5",self.invitor_invitee[0])
@@ -1959,6 +1963,8 @@ class Mode_Barter(threading.Thread):
                 self.initiator_initiatee = ["",""]
 
         if phase_name == phase_names.FAIL:
+            self.stations[self.invitor_invitee[0]].cmd_playfield_lights("sign_arrow_left", "off")
+            self.stations[self.invitor_invitee[1]].cmd_playfield_lights("sign_arrow_left", "off")
             # this is called only once, by the timer
             print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
