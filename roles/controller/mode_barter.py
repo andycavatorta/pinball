@@ -851,7 +851,7 @@ class Trade_Fail_Timer(threading.Thread):
 
     def run(self):
         while True:
-            print("Trade_Fail_Timer", self.timer)
+            #print("Trade_Fail_Timer", self.timer)
             try:
                 action = self.queue.get(timeout=1)
                 if action == "begin":
