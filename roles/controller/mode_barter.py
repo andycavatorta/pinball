@@ -770,6 +770,7 @@ class Station(threading.Thread):
 
         if self.current_phase == phase_names.PINBALL:
             print("Station.end PINBALL", self.fruit_name,)
+            print("----------------------------------------> 1", self.fruit_name)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
             return
 
@@ -786,10 +787,12 @@ class Station(threading.Thread):
             return
 
         if self.current_phase == phase_names.TRADE:
+            print("----------------------------------------> 2", self.fruit_name)
             self.add_to_queue("set_phase", phase_names.COMIENZA)
             return
 
         if self.current_phase == phase_names.FAIL:
+            print("----------------------------------------> 3", self.fruit_name)
             self.add_to_queue("set_phase", phase_names.COMIENZA)
             return
 
@@ -811,6 +814,7 @@ class Station(threading.Thread):
             topic,message = self.queue.get()
             #print("Station run", self.fruit_name, topic,message)
             if topic == "set_phase":
+                print("----------------------------------------> 4",message)
                 self.set_phase(message)
             if topic == "animation_fill_carousel":
                 self.animation_transactions.add_to_queue("animation_fill_carousel", self.carousel_fruit_order)
@@ -1940,9 +1944,11 @@ class Mode_Barter(threading.Thread):
             if self.initiator_initiatee[0] == station_fruit_name:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+                print("----------------------------------------> 5",self.invitor_invitee[0])
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 25)
 
+                print("----------------------------------------> 6", self.invitor_invitee[0])
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 25)
                 self.trade_fail_timer.add_to_queue("end")
@@ -1956,6 +1962,8 @@ class Mode_Barter(threading.Thread):
             self.trade_fail_timer.add_to_queue("end")
             self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+
+            print("----------------------------------------> 7", self.invitor_invitee[0])
             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.invitor_invitee = ["",""]
@@ -2125,6 +2133,8 @@ class Mode_Barter(threading.Thread):
         #print("Mode_Barter, begin() 2", self.pinball_hostnames_with_players)
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
+            print("----------------------------------------> 7", pinball_hostname)
+
             station_ref.add_to_queue("set_phase", phase_name)
             #if phase_name == phase_names.COMIENZA:
                 #station_ref.add_to_queue("animation_fill_carousel", True) 
@@ -2133,6 +2143,7 @@ class Mode_Barter(threading.Thread):
         #print("Mode_Barter, begin() 4")
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
+            print("----------------------------------------> 7", pinball_hostname)
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
                 station_ref.add_to_queue("cmd_kicker_launch", "")
