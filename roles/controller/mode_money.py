@@ -1746,7 +1746,7 @@ class Mode_Money(threading.Thread):
         self.stations[fruit_name].last_trade_time = time.time()
         invitee_fruit_name = least_recent_station.fruit_name
         self.invitor_invitee = [fruit_name,invitee_fruit_name]
-        #self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
+        self.stations[invitee_fruit_name].add_to_queue("set_phase", phase_names.INVITEE)
         self.lock.release()
         return phase_names.INVITOR
 
@@ -1836,7 +1836,7 @@ class Mode_Money(threading.Thread):
             self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
-            #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.invitor_invitee = ["",""]
             self.initiator_initiatee = ["",""]
 
