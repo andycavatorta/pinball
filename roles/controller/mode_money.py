@@ -1454,7 +1454,7 @@ class Matrix_Animations(threading.Thread):
         self.carousels[invitor].cmd_carousel_lights("all","off")
 
 
-    def trade_failed_setup(self, initiator, invitee):
+    def trade_failed_setup(self, invitor, invitee):
         print("trade_succeeded_setup",invitor, invitee)
         self.carousels[invitor].cmd_carousel_lights("inner_circle","high")
         self.carousels[invitor].cmd_carousel_lights("outer_circle","high")
