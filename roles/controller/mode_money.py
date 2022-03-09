@@ -1787,7 +1787,7 @@ class Mode_Money(threading.Thread):
                 # dinero button has been hit
                 # if this is the first dinero button pushed
                 self.stations[station_fruit_name].commands.cmd_righttube_launch()
-                self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
+                #self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
             else:
@@ -1806,7 +1806,7 @@ class Mode_Money(threading.Thread):
                         # INVITEE is the first to hit the dinero button
                         self.stations[station_fruit_name].commands.cmd_righttube_launch()
                         self.initiator_initiatee[0] = station_fruit_name
-                        self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
+                        #self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         if self.initiator_initiatee[0] != station_fruit_name:
                             # INVITOR is the second to hit the dinero button
