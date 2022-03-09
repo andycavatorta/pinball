@@ -292,8 +292,6 @@ class Station(threading.Thread):
             if len([True for k,v in self.pie_data_segments.items() if v == True])==8:
                 self.animation_pinball_game.add_to_queue("pie_full")
                 self.animation_score.add_to_queue("flipboard",[self.commands.get_barter_points(),self.commands.get_barter_points()+25])
-                self.carousel_add_fruit(self.fruit_name)
-                self.carousel_display_fruit_presences()
                 self.add_to_queue("increment_score",25)
                 self.pie_data_reset()
 
@@ -364,15 +362,6 @@ class Station(threading.Thread):
         # end mode if player scores over 900 points
         if new_score > 900:
             self.parent_ref.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
-        # if the score passes a threshold number
-        if not self.carousel_get_fruit_presence(self.fruit_name):
-            #print("increment_score 0",self.carousel_get_fruit_presence(self.fruit_name))
-            comparator = new_score - (new_score % 50)
-            #print("increment_score 1",comparator, new_score)
-            if comparator > old_score:
-                self.carousel_add_fruit(self.fruit_name)
-                self.commands.cmd_carousel_lights(self.fruit_name, "energize")
-                #print("increment_score 2",comparator, new_score)
         self.commands.set_barter_points(new_score)
 
 
@@ -490,7 +479,6 @@ class Station(threading.Thread):
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== TRADE =====================", self.fruit_name)
             # todo start animation in matrix
-            self.carousel_remove_fruit(self.fruit_name)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -509,7 +497,6 @@ class Station(threading.Thread):
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             print(time.ctime(time.time()),"===================== FAIL =====================", self.fruit_name)
             # todo start animation in matrix
-            self.carousel_remove_fruit(self.fruit_name)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
@@ -777,11 +764,6 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.COMIENZA:
             print("Station.end COMIENZA", self.fruit_name,)
             # if there is a fruit to spend
-            if self.fruit_to_spend != "":
-                #remove the fruit data
-                self.carousel_remove_fruit(self.fruit_to_spend)
-                #update the led state
-                self.carousel_display_fruit_presences()
             self.commands.cmd_kicker_launch() 
             self.set_phase(phase_names.PINBALL)
             return
@@ -832,10 +814,6 @@ class Station(threading.Thread):
                 self.set_phase(message)
             if topic == "animation_fill_carousel":
                 self.animation_transactions.add_to_queue("animation_fill_carousel", self.carousel_fruit_order)
-                self.carousel_add_fruit(self.carousel_fruit_order[1])
-                self.carousel_add_fruit(self.carousel_fruit_order[2])
-                self.carousel_add_fruit(self.carousel_fruit_order[3])
-                self.carousel_add_fruit(self.carousel_fruit_order[4])
             if topic == "cmd_kicker_launch":
                 self.commands.cmd_kicker_launch()
             if topic == "increment_score":
@@ -1429,121 +1407,190 @@ class Matrix_Animations(threading.Thread):
 
 
     def trade_invited_setup(self, invitor, invitee):
+        print("trade_invited_setup",invitor, invitee)
         # alternating pong trail animations
-        path_a = self.calculated_paths[invitor][invitee]
+        # path_a = self.calculated_paths[invitor][invitee]
         self.carousels["center"].cmd_carousel_lights("all","off")
-        self.carousels[path_a[0][0]].cmd_carousel_lights("all","off")
-        self.carousels[path_a[-1][0]].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("all","off")
+        self.carousels[invitee].cmd_carousel_lights("all","off")
+
 
     def trade_invited_repeat(self, invitor, invitee):
         print("trade_invited_repeat",invitor, invitee)
-        # alternating pong trail animations
-        path_a = self.calculated_paths[invitor][invitee]
-        path_b = self.calculated_paths[invitee][invitor]
-
-        # cycle 0
-        # dim all fruits in invitor carousel, invitee carousel, center carousel
-        self.carousels["center"].cmd_carousel_lights("all","off")
-        self.carousels[path_a[0][0]].cmd_carousel_lights("all","off")
-        self.carousels[path_b[0][0]].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitor].request_score("g_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", True)
+        self.carousels[invitee].request_button_light_active("trueque", True)
         time.sleep(self.animation_frame_period)
-        # todo: add button blink and chimes
-        #self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
-        #self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
-        #self.carousels[path_a[0][0]].request_score("g_mezzo")
-
-        for ordinal in range(len(path_a)):
-            self.draw_pong_fade(path_a, ordinal)
-            if ordinal % 2 == 0: # if even
-                self.carousels[path_a[0][0]].request_button_light_active("trueque", True)
-                self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
-                self.carousels[path_a[0][0]].request_score("g_mezzo")
-            else:
-                self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
-                self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
-                self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-            time.sleep(self.animation_frame_period)
-
-        for ordinal in range(len(path_b)):
-            self.draw_pong_fade(path_b, ordinal)
-            time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].request_score("gsharp_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", False)
+        self.carousels[invitee].request_button_light_active("trueque", False)
+        time.sleep(self.animation_frame_period)
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitee].request_score("g_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", True)
+        self.carousels[invitee].request_button_light_active("trueque", True)
+        time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("all","off")
+        self.carousels[invitee].cmd_carousel_lights("all","off")
+        self.carousels[invitor].request_button_light_active("trueque", False)
+        self.carousels[invitee].request_button_light_active("trueque", False)
+        time.sleep(self.animation_frame_period)
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitee].request_score("g_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", True)
+        self.carousels[invitee].request_button_light_active("trueque", True)
+        time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].request_score("gsharp_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", False)
+        self.carousels[invitee].request_button_light_active("trueque", False)
+        time.sleep(self.animation_frame_period)
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitor].request_score("g_mezzo")
+        self.carousels[invitor].request_button_light_active("trueque", True)
+        self.carousels[invitee].request_button_light_active("trueque", True)
+        time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("all","off")
+        self.carousels[invitee].cmd_carousel_lights("all","off")
+        self.carousels[invitor].request_button_light_active("trueque", False)
+        self.carousels[invitee].request_button_light_active("trueque", False)
+        time.sleep(self.animation_frame_period)
 
 
     def trade_initiated_setup(self, initiator, initiatee):
-        # alternating pong trail animations
-        path_a = self.calculated_paths[initiator][initiatee]
-        path_b = self.calculated_paths[initiatee][initiator]
-
-        # todo: launch trueque tube
-        # self.carousels[path_a[0][0]].cmd_lefttube_launch()
-        self.carousels[path_a[0][0]].request_button_light_active("trueque", False)
-
-        # animate path of initiator fruit to destination lights, chimes, solenoids
-        for ordinal in range(len(path_a)):
-            self.draw_pong_fade(path_a, ordinal)
-            if ordinal%2==0:
-                self.carousels[path_a[0][0]].request_eject_ball(path_a[0][3])
-            time.sleep(self.animation_frame_period)
-        self.set_pair_to_level(path_b[0][0], path_b[0][1], path_b[0][2], "on")
-        self.set_pair_to_level(path_b[0][0], path_b[0][1], path_b[0][2], "on")
-        self.carousels[path_b[0][0]].request_score("f_mezzo")
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("c_mezzo")
+        print("trade_initiated_setup",initiator, initiatee)
+        #self.carousels[initiator].cmd_lefttube_launch()
+        self.carousels[initiator].request_button_light_active("trueque", False)
+        self.carousels[initiator].request_score("f_mezzo")
+        self.carousels[initiator].request_score("gsharp_mezzo")
+        self.carousels[initiator].request_score("c_mezzo")
 
 
     def trade_initiated_repeat(self, initiator, initiatee):
         print("trade_initiated_repeat",initiator, initiatee)
-        path_a = self.calculated_paths[initiator][initiatee]
-        path_b = self.calculated_paths[initiatee][initiator]
+        self.carousels[initiator].request_button_light_active("trueque", False)
+        self.carousels[initiatee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[initiatee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[initiatee].request_score("asharp_mezzo")
+        time.sleep(self.animation_frame_period)
+        self.carousels[initiatee].request_button_light_active("trueque", True)
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].request_score("gsharp_mezzo")
+        time.sleep(self.animation_frame_period)
+        self.carousels[initiatee].request_button_light_active("trueque", False)
+        self.carousels[initiator].cmd_carousel_lights("inner_circle","on")
+        self.carousels[initiator].cmd_carousel_lights("outer_circle","on")
+        self.carousels[initiator].request_score("asharp_mezzo")
+        time.sleep(self.animation_frame_period)
+        self.carousels[initiatee].request_button_light_active("trueque", True)
+        self.carousels["center"].cmd_carousel_lights("all","off")
+        self.carousels[initiator].cmd_carousel_lights("all","off")
+        self.carousels[initiator].cmd_carousel_lights("all","off")
+        self.carousels[initiatee].request_button_light_active("trueque", False)
+        time.sleep(self.animation_frame_period)
 
-        # todo: test
-        for ordinal in range(len(path_b)):
-            self.draw_pong_fade(path_b, ordinal)
-            if ordinal%2==0:
-                self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
-                self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-            else:
-                self.carousels[path_b[0][0]].request_button_light_active("trueque", False)
-            time.sleep(self.animation_frame_period)
-        time.sleep(0.2)
 
-
-    def trade_succeeded_setup(self, initiator, invitee):
-        #return
-        # todo : find source of error
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
-
-        # todo: launch trueque tube
-        #self.carousels[path_b[0][0]].cmd_lefttube_launch()
-        self.carousels[path_b[0][0]].request_button_light_active("trueque", True)
-
-        # animate path of initiator fruit to destination lights, chimes, solenoids
-        for ordinal in range(len(path_a)):
-            self.draw_pong_fade(path_a, ordinal)
-            if ordinal%2==0:
-                self.carousels[path_a[0][0]].request_eject_ball(path_a[0][3])
-            time.sleep(self.animation_frame_period)
-        self.set_pair_to_level(path_a[-1][0], path_a[-1][1], path_a[-1][2], "on")
-        self.set_pair_to_level(path_a[-2][0], path_a[-2][1], path_a[-2][2], "on")
-        self.carousels[path_b[0][0]].request_score("f_mezzo")
-        self.carousels[path_b[0][0]].request_score("gsharp_mezzo")
-        self.carousels[path_b[0][0]].request_score("c_mezzo")
+    def trade_succeeded_setup(self, invitor, invitee):
+        print("trade_succeeded_setup",invitor, invitee)
+        self.carousels[invitor].request_button_light_active("trueque", False)
+        self.carousels[invitee].request_button_light_active("trueque", False)
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitor].request_score("f_mezzo")
+        self.carousels[invitor].request_score("gsharp_mezzo")
+        self.carousels[invitor].request_score("c_mezzo")
+        self.carousels[invitee].request_score("f_mezzo")
+        self.carousels[invitee].request_score("gsharp_mezzo")
+        self.carousels[invitee].request_score("c_mezzo")
+        time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("all","off")
+        self.carousels[invitee].cmd_carousel_lights("all","off")
+        time.sleep(self.animation_frame_period)
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitor].request_score("f_mezzo")
+        self.carousels[invitor].request_score("gsharp_mezzo")
+        self.carousels[invitor].request_score("c_mezzo")
+        self.carousels[invitee].request_score("f_mezzo")
+        self.carousels[invitee].request_score("gsharp_mezzo")
+        self.carousels[invitee].request_score("c_mezzo")
+        time.sleep(self.animation_frame_period)
+        self.carousels["center"].cmd_carousel_lights("all","off")
+        self.carousels[invitor].cmd_carousel_lights("all","off")
+        self.carousels[invitee].cmd_carousel_lights("all","off")
 
 
     def trade_failed_setup(self, initiator, invitee):
-        path_a = self.calculated_paths[initiator][invitee]
-        path_b = self.calculated_paths[invitee][initiator]
-        # animate path_a backward with fail sound
-        # light all of path b, then fade
-        path_a_reversed = list(path_a)
-        path_a_reversed.reverse()
-        chime_theme_l = self.fail_theme_chimes_18 if len(path_a) == 17 else self.fail_theme_chimes_14
-        for ordinal in range(len(path_a_reversed)):
-            self.draw_pong_fade(path_a_reversed, ordinal)
-            self.carousels[path_b[0][0]].request_score(chime_theme_l[ordinal])
-            time.sleep(self.animation_frame_period )
-        self.carousels[path_b[0][0]].request_score(chime_theme_l[-1])
+        print("trade_succeeded_setup",invitor, invitee)
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","high")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","high")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","high")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","high")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","high")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","high")
+        self.carousels[invitor].request_score("c_mezzo")
+        self.carousels[invitee].request_score("c_mezzo")
+        time.sleep(self.animation_frame_period)
+
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","on")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","on")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","on")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","on")
+        self.carousels[invitor].request_score("asharp_mezzo")
+        self.carousels[invitee].request_score("asharp_mezzo")
+        time.sleep(self.animation_frame_period)
+
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","med")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","med")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","med")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","med")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","med")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","med")
+        self.carousels[invitor].request_score("gsharp_mezzo")
+        self.carousels[invitee].request_score("gsharp_mezzo")
+        time.sleep(self.animation_frame_period)
+
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","low")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","low")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","low")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","low")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","low")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","low")
+        self.carousels[invitor].request_score("g_mezzo")
+        self.carousels[invitee].request_score("g_mezzo")
+        time.sleep(self.animation_frame_period)
+
+        self.carousels[invitor].cmd_carousel_lights("inner_circle","off")
+        self.carousels[invitor].cmd_carousel_lights("outer_circle","off")
+        self.carousels["center"].cmd_carousel_lights("inner_circle","off")
+        self.carousels["center"].cmd_carousel_lights("outer_circle","off")
+        self.carousels[invitee].cmd_carousel_lights("inner_circle","off")
+        self.carousels[invitee].cmd_carousel_lights("outer_circle","off")
+        self.carousels[invitor].request_score("f_mezzo")
+        self.carousels[invitee].request_score("f_mezzo")
+        time.sleep(self.animation_frame_period)
 
 
     def add_to_queue(self, animation, station_a_name, station_b_name):
@@ -1864,8 +1911,8 @@ class Mode_Barter(threading.Thread):
                     # is INVITEE the first or second to hit the trueque button?
                     if self.initiator_initiatee[0] == "":
                         # INVITEE is the first to hit the trueque button
-                        self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                         self.initiator_initiatee[0] = station_fruit_name
+                        self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                         self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                     else:
                         if self.initiator_initiatee[0] != station_fruit_name:
@@ -1883,13 +1930,9 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 25)
-                #self.stations[self.invitor_invitee[0]].carousel_add_fruit(self.stations[self.invitor_invitee[1]].fruit_name)
-                #self.stations[self.invitor_invitee[0]].carousel_display_fruit_presences()
 
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 25)
-                #self.stations[self.invitor_invitee[1]].carousel_add_fruit(self.stations[self.invitor_invitee[0]].fruit_name)
-                #self.stations[self.invitor_invitee[1]].carousel_display_fruit_presences()
                 self.trade_fail_timer.add_to_queue("end")
                 self.invitor_invitee = ["",""]
                 self.initiator_initiatee = ["",""]
@@ -2071,8 +2114,8 @@ class Mode_Barter(threading.Thread):
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
-            if phase_name == phase_names.COMIENZA:
-                station_ref.add_to_queue("animation_fill_carousel", True) 
+            #if phase_name == phase_names.COMIENZA:
+                #station_ref.add_to_queue("animation_fill_carousel", True) 
                 #print("Mode_Barter, begin() 3",station_ref )
         time.sleep(3.5) # wait for animation_fill_carousel to run
         #print("Mode_Barter, begin() 4")
