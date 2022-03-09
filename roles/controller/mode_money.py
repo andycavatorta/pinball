@@ -1817,6 +1817,8 @@ class Mode_Money(threading.Thread):
 
         if phase_name == phase_names.TRADE:
             print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+
+            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             if self.initiator_initiatee[0] == station_fruit_name:
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
