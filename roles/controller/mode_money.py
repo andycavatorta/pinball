@@ -1852,13 +1852,11 @@ class Mode_Money(threading.Thread):
         # set all stations to phase comienza or noplayer
         self.mode_timer.add_to_queue("begin")
         #print("Mode_Money, begin() 2", self.pinball_hostnames_with_players)
+        """
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             station_ref.add_to_queue("set_phase", phase_name)
-            if phase_name == phase_names.COMIENZA:
-                station_ref.add_to_queue("animation_fill_carousel", True) 
-                #print("Mode_Money, begin() 3",station_ref )
-        time.sleep(3.5) # wait for animation_fill_carousel to run
+        """
         #print("Mode_Money, begin() 4")
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
