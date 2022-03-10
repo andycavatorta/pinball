@@ -13,7 +13,7 @@ c_mezzo={
     "beats":[ # beats
         [#beat
             [#notes in beat
-                {"pitch":0,"period":0.008},
+                {"pitch":0,"period":0.009},
             ]
         ],
     ]
@@ -44,7 +44,7 @@ asharp_mezzo={
     "beats":[ # beats
         [#beat
             [#notes in beat
-                {"pitch":1,"period":0.008},
+                {"pitch":1,"period":0.009},
             ]
         ],
     ]
@@ -75,7 +75,7 @@ gsharp_mezzo={
     "beats":[ # beats
         [#beat
             [#notes in beat
-                {"pitch":2,"period":0.008},
+                {"pitch":2,"period":0.009},
             ]
         ],
     ]
@@ -106,7 +106,7 @@ g_mezzo={
     "beats":[ # beats
         [#beat
             [#notes in beat
-                {"pitch":3,"period":0.008},
+                {"pitch":3,"period":0.009},
             ]
         ],
     ]
@@ -137,7 +137,7 @@ f_mezzo={
     "beats":[ # beats
         [#beat
             [#notes in beat
-                {"pitch":4,"period":0.008},
+                {"pitch":4,"period":0.009},
             ]
         ],
     ]
