@@ -1916,6 +1916,7 @@ class Mode_Barter(threading.Thread):
                     else:
                         if self.initiator_initiatee[0] != station_fruit_name:
                             # INVITOR is the second to hit the trueque button
+                            self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                             self.initiator_initiatee[1] = station_fruit_name
                             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
@@ -1939,6 +1940,7 @@ class Mode_Barter(threading.Thread):
                     else:
                         if self.initiator_initiatee[0] != station_fruit_name:
                             # INVITOR is the second to hit the trueque button
+                            self.stations[station_fruit_name].commands.cmd_lefttube_launch()
                             self.initiator_initiatee[1] = station_fruit_name
                             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
                             self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
