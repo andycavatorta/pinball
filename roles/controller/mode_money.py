@@ -1791,7 +1791,7 @@ class Mode_Money(threading.Thread):
                 self.stations[station_fruit_name].commands.cmd_righttube_launch()
                 #self.matrix_animations.add_to_queue("trade_initiated", self.invitor_invitee[0],self.invitor_invitee[1])
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
-                #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
             else:
                 # dinero button has not been hit by invitor
                 self.matrix_animations.add_to_queue("trade_invited", self.invitor_invitee[0],self.invitor_invitee[1])
@@ -1814,7 +1814,7 @@ class Mode_Money(threading.Thread):
                             # INVITOR is the second to hit the dinero button
                             self.initiator_initiatee[1] = station_fruit_name
                             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.TRADE)
-                            #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
+                            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.TRADE)
             #print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.TRADE:
@@ -1841,7 +1841,7 @@ class Mode_Money(threading.Thread):
             self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
-            #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
             self.invitor_invitee = ["",""]
             self.initiator_initiatee = ["",""]
 
