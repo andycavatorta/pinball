@@ -361,7 +361,7 @@ class Station(threading.Thread):
         self.animation_score.add_to_queue("flipboard",[old_score,new_score])
         # end mode if player scores over 900 points
         if new_score > 900:
-            self.parent_ref.set_current_mode(settings.Game_Modes.RESET)
+            #self.parent_ref.set_current_mode(settings.Game_Modes.RESET)
             self.parent_ref.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
         self.commands.set_barter_points(new_score)
 
@@ -389,6 +389,9 @@ class Station(threading.Thread):
             self.commands.request_button_light_active("derecha",False)
             self.commands.cmd_playfield_lights("all_radial", "off")
             self.commands.cmd_carousel_lights("all", "off")
+            self.commands.request_number(-1)
+            self.commands.request_phrase("")
+
 
         if self.current_phase == phase_names.COMIENZA:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
@@ -895,8 +898,8 @@ class Mode_Timer(threading.Thread):
                     #    print("Mode_Timer run self.timer=",self.timer)
                     if self.timer >= self.timer_limit:
                         self.timer = -1
-                        self.set_current_mode(settings.Game_Modes.RESET)
-                        #self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
+                        #self.set_current_mode(settings.Game_Modes.RESET)
+                        self.set_current_mode(settings.Game_Modes.MONEY_MODE_INTRO)
 
 
 class Matrix_Animations(threading.Thread):

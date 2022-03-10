@@ -751,7 +751,7 @@ class Display(Host):
         }
     def request_score(self, score_name):
         self.current_score_name = score_name
-        self.tb.publish(topic="cmd_play_score",message=score_name,destination=self.hostname)
+        #self.tb.publish(topic="cmd_play_score",message=score_name,destination=self.hostname)
         
     def request_phrase(self, phrase_key):
         self.current_phrase_key = phrase_key

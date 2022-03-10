@@ -392,6 +392,8 @@ class Station(threading.Thread):
             self.commands.request_button_light_active("derecha",False)
             self.commands.cmd_playfield_lights("all_radial", "off")
             self.commands.cmd_carousel_lights("all", "off")
+            self.commands.request_number(-1)
+            self.commands.request_phrase("")
 
         if self.current_phase == phase_names.COMIENZA:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
@@ -1418,7 +1420,7 @@ class Matrix_Animations(threading.Thread):
         print("trade_invited_repeat",invitor, invitee)
         self.carousels[invitor].cmd_carousel_lights("peso","on")
         self.carousels["center"].cmd_carousel_lights("peso","off")
-        self.carousels[invitor].request_score("g_mezzo")
+        self.carousels[invitor].request_score("g_mzeruezo")
         self.carousels[invitor].request_button_light_active("dinero", True)
         time.sleep(self.animation_frame_period)
         self.carousels[invitor].cmd_carousel_lights("peso","off")
