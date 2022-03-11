@@ -1968,18 +1968,23 @@ class Mode_Barter(threading.Thread):
                 self.initiator_initiatee = ["",""]
 
         if phase_name == phase_names.FAIL:
-            self.stations[self.invitor_invitee[0]].commands.cmd_playfield_lights("sign_arrow_left", "off")
-            self.stations[self.invitor_invitee[1]].commands.cmd_playfield_lights("sign_arrow_left", "off")
-            # this is called only once, by the timer
-            print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
-            # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
-            self.trade_fail_timer.add_to_queue("end")
-            self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
-            self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
-
-            print("----------------------------------------> 7", self.invitor_invitee[0])
-            self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
-            self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+            try:
+                self.stations[self.invitor_invitee[0]].commands.cmd_playfield_lights("sign_arrow_left", "off")
+                self.stations[self.invitor_invitee[1]].commands.cmd_playfield_lights("sign_arrow_left", "off")
+                # this is called only once, by the timer
+                print("Mode_Barter.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
+                # todoL switch to initiator_initiatee below, after confirming that they get assigned correctly
+                self.trade_fail_timer.add_to_queue("end")
+                self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
+                self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
+                print("----------------------------------------> 7", self.invitor_invitee[0])
+            except Exception as e:
+                print("exception in phase_names.FAIL 1", self.invitor_invitee, e)
+            try:
+                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
+                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
+            except Exception as e:
+                print("exception in phase_names.FAIL 2", self.invitor_invitee, e)
             self.invitor_invitee = ["",""]
             self.initiator_initiatee = ["",""]
 
