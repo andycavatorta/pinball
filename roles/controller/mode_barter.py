@@ -1890,6 +1890,9 @@ class Mode_Barter(threading.Thread):
             # this is called second by the pressing of Trueque
             # if not called by button
 
+
+            
+
             # is this the a new trade session?
             if self.invitor_invitee[0] == "":
                 self.invitor_invitee[0] = station_fruit_name
@@ -1900,6 +1903,7 @@ class Mode_Barter(threading.Thread):
 
             # avoiding a possible race condition in the threads between get_trade_option and this function
             if self.invitor_invitee[1] != "":
+                self.stations[self.invitor_invitee[1]].commands.request_button_light_active("trueque",True) # this is a hack.  this should be happening elsewhere
                 # if trueque button has been pressed
                 if not initiator_hint:
                     self.trade_fail_timer.add_to_queue("begin")
@@ -1973,11 +1977,11 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("trade_failed", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
             self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
             if self.invitor_invitee[0] != "" :
-                self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.FAIL)
+                #self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.FAIL)
                 self.stations[self.invitor_invitee[0]].commands.cmd_playfield_lights("sign_arrow_left", "off")
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
             if self.invitor_invitee[1] != "" :
-                self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.FAIL)
+                #self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.FAIL)
                 self.stations[self.invitor_invitee[1]].commands.cmd_playfield_lights("sign_arrow_left", "off")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
             if self.invitor_invitee[0] != "" and self.invitor_invitee[1] != "":
