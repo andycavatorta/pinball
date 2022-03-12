@@ -88,6 +88,8 @@ class Mode_Money_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
             self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_right", "on")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left", "off")
         for carousel_hostname in self.carousel_hostnames:
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("peso","energize")
