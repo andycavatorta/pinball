@@ -455,6 +455,8 @@ class Main(threading.Thread):
                             group = self.gamestation_lights.pie_pop_middle
                         if group_name == "pie_spinner":
                             group = self.gamestation_lights.pie_spinner
+                        if group_name == "sign_arrow_right":
+                            group = self.gamestation_lights.sign_arrow_right
                         if group_name == "sign_arrow_left":
                             group = self.gamestation_lights.sign_arrow_left
                         if group_name == "sign_bottom_right":
