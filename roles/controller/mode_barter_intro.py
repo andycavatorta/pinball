@@ -158,6 +158,8 @@ class Mode_Barter_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_right", "off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left", "on")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_arrow_left", "off")
+            self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_arrow_right", "off")
             self.hosts.hostnames[pinball_hostname].set_barter_points(0)
             self.hosts.hostnames[pinball_hostname].set_money_points(0)
 
