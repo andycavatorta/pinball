@@ -1480,7 +1480,8 @@ class Matrix_Animations(threading.Thread):
     def trade_initiated_setup(self, initiator, initiatee):
         print("trade_initiated_setup",initiator, initiatee)
         #self.carousels[initiator].cmd_lefttube_launch()
-        self.carousels[initiator].request_button_light_active("trueque", False)
+        self.carousels[initiatee].request_button_light_active("trueque", True)
+        self.carousels[initiator].request_button_light_active("trueque", True)
         self.carousels[initiator].request_score("f_mezzo")
         self.carousels[initiator].request_score("gsharp_mezzo")
         self.carousels[initiator].request_score("c_mezzo")
@@ -1962,12 +1963,12 @@ class Mode_Barter(threading.Thread):
                 self.matrix_animations.add_to_queue("trade_succeeded", str(self.invitor_invitee[0]),str(self.invitor_invitee[1]))
                 self.matrix_animations.add_to_queue("pause_animations", str(self.invitor_invitee[1]),str(self.invitor_invitee[0]))
 
-            if self.initiator_initiatee[0] == station_fruit_name:
+            if self.initiator_initiatee[0] != "":
                 self.stations[self.invitor_invitee[0]].commands.cmd_playfield_lights("sign_arrow_left", "off")
                 self.stations[self.invitor_invitee[0]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[0]].add_to_queue("increment_score", 25)
 
-            if self.initiator_initiatee[1] == station_fruit_name:
+            if self.initiator_initiatee[1] != "":
                 self.stations[self.invitor_invitee[1]].commands.cmd_playfield_lights("sign_arrow_left", "off")
                 self.stations[self.invitor_invitee[1]].add_to_queue("set_phase", phase_names.COMIENZA)
                 self.stations[self.invitor_invitee[1]].add_to_queue("increment_score", 25)
