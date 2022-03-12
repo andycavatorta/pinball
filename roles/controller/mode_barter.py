@@ -1489,25 +1489,28 @@ class Matrix_Animations(threading.Thread):
     def trade_initiated_repeat(self, initiator, initiatee):
         print("trade_initiated_repeat",initiator, initiatee)
         self.carousels[initiator].request_button_light_active("trueque", False)
+        self.carousels[initiatee].request_button_light_active("trueque", True)
         self.carousels[initiatee].cmd_carousel_lights("inner_circle","on")
         self.carousels[initiatee].cmd_carousel_lights("outer_circle","on")
         self.carousels[initiatee].request_score("asharp_mezzo")
         time.sleep(self.animation_frame_period)
-        self.carousels[initiatee].request_button_light_active("trueque", True)
+        self.carousels[initiator].request_button_light_active("trueque", True)
+        self.carousels[initiatee].request_button_light_active("trueque", False)
         self.carousels["center"].cmd_carousel_lights("inner_circle","on")
         self.carousels["center"].cmd_carousel_lights("outer_circle","on")
         self.carousels[initiatee].request_score("gsharp_mezzo")
         time.sleep(self.animation_frame_period)
-        self.carousels[initiatee].request_button_light_active("trueque", False)
+        self.carousels[initiator].request_button_light_active("trueque", False)
+        self.carousels[initiatee].request_button_light_active("trueque", True)
         self.carousels[initiator].cmd_carousel_lights("inner_circle","on")
         self.carousels[initiator].cmd_carousel_lights("outer_circle","on")
         self.carousels[initiator].request_score("asharp_mezzo")
         time.sleep(self.animation_frame_period)
+        self.carousels[initiator].request_button_light_active("trueque", False)
         self.carousels[initiatee].request_button_light_active("trueque", True)
         self.carousels["center"].cmd_carousel_lights("all","off")
         self.carousels[initiator].cmd_carousel_lights("all","off")
         self.carousels[initiator].cmd_carousel_lights("all","off")
-        self.carousels[initiatee].request_button_light_active("trueque", False)
         time.sleep(self.animation_frame_period)
 
 
@@ -1903,7 +1906,7 @@ class Mode_Barter(threading.Thread):
 
             # avoiding a possible race condition in the threads between get_trade_option and this function
             if self.invitor_invitee[1] != "":
-                self.stations[self.invitor_invitee[1]].commands.request_button_light_active("trueque",True) # this is a hack.  this should be happening elsewhere
+                
                 # if trueque button has been pressed
                 if not initiator_hint:
                     self.trade_fail_timer.add_to_queue("begin")
