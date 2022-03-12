@@ -108,7 +108,7 @@ class Mode_Reset(threading.Thread):
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("all","off")
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("inner_circle","energize")
             self.hosts.hostnames[carousel_hostname].cmd_carousel_lights("outer_circle","energize")
-        for i in range(6):
+        for i in range(10):
             for display_hostname in self.display_hostnames:
                 self.hosts.hostnames[display_hostname].request_score("f_piano")
                 self.hosts.hostnames[display_hostname].request_score("asharp_mezzo")
