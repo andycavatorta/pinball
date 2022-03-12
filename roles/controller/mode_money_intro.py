@@ -82,11 +82,11 @@ class Mode_Money_Intro(threading.Thread):
             self.hosts.hostnames[pinball_hostname].request_button_light_active("comienza", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("dinero", False) 
             self.hosts.hostnames[pinball_hostname].request_button_light_active("derecha", False) 
-            self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
-            self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
-            self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
+            #self.hosts.hostnames[pinball_hostname].enable_izquierda_coil(False)
+            #self.hosts.hostnames[pinball_hostname].enable_trueque_coil(False) # also initiate trade
+            #self.hosts.hostnames[pinball_hostname].enable_kicker_coil(False)
+            #self.hosts.hostnames[pinball_hostname].enable_dinero_coil(False)
+            #self.hosts.hostnames[pinball_hostname].enable_derecha_coil(False)
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("all_radial","off")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_right", "on")
             self.hosts.hostnames[pinball_hostname].cmd_playfield_lights("sign_bottom_left", "off")
