@@ -85,16 +85,28 @@ role_module.main.controllers.motors["carousel_3"].set_operating_mode(3)
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("sandia")
         #self.hosts.hostnames[self.carousel_name].request_eject_ball("pina")
 
-role_module.main.hosts.hostnames["pinball1game"].cmd_lefttube_launch()
-role_module.main.hosts.hostnames["pinball1game"].cmd_righttube_launch()
-role_module.main.hosts.hostnames["pinball2game"].cmd_lefttube_launch()
-role_module.main.hosts.hostnames["pinball2game"].cmd_righttube_launch()
-role_module.main.hosts.hostnames["pinball3game"].cmd_lefttube_launch()
-role_module.main.hosts.hostnames["pinball3game"].cmd_righttube_launch()
-role_module.main.hosts.hostnames["pinball4game"].cmd_lefttube_launch()
-role_module.main.hosts.hostnames["pinball4game"].cmd_righttube_launch()
-role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
-    hosts.hostnames["pinball5game"].cmd_righttube_launch()
+import time
+while True:
+    role_module.main.hosts.hostnames["pinball1game"].cmd_lefttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball1game"].cmd_righttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball2game"].cmd_lefttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball2game"].cmd_righttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball3game"].cmd_lefttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball3game"].cmd_righttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball4game"].cmd_lefttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball4game"].cmd_righttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball5game"].cmd_righttube_launch()
+    time.sleep(1)
 
 
 role_module.main.lighting.all.off()
@@ -131,6 +143,9 @@ while True:
 
 
 
+
+role_module.main.hosts.hostnames["pinball1game"].cmd_playfield_lights("sign_bottom_right", "on")
+role_module.main.hosts.hostnames["pinball1game"].cmd_playfield_lights("sign_bottom_right", "off")
 
 role_module.main.hosts.hostnames["pinball3game"].enable_kicker_coil(True)
 

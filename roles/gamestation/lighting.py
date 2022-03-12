@@ -250,8 +250,8 @@ class Lights(threading.Thread):
 
         SIGN_ARROW_LEFT = [5,4,3]
         SIGN_ARROW_RIGHT = [6,7,8]
-        SIGN_BOTTOM_LEFT = [17]
-        SIGN_BOTTOM_RIGHT = [18]
+        SIGN_BOTTOM_LEFT = [18]
+        SIGN_BOTTOM_RIGHT = [17]
         SIGN_TOP = [70,71]
         ALL_RADIAL = [
             0,1,2,9,
