@@ -440,11 +440,9 @@ class Station(threading.Thread):
             self.commands.request_button_light_active("derecha",True)
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
-            self.commands.enable_kicker_coil(False)
+            self.commands.enable_kicker_coil(True)
             self.commands.enable_dinero_coil(False)
             self.commands.enable_derecha_coil(True)
-            self.commands.enable_trueque_coil(False)
-            self.commands.enable_dinero_coil(False)
 
         if self.current_phase == phase_names.INVITOR:
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
@@ -453,7 +451,7 @@ class Station(threading.Thread):
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
             self.commands.enable_kicker_coil(False)
-            self.commands.enable_dinero_coil(False)
+            self.commands.enable_dinero_coil(True)
             self.commands.enable_derecha_coil(False)
             self.commands.request_button_light_active("izquierda",False)
             self.commands.request_button_light_active("trueque",False)
@@ -469,7 +467,7 @@ class Station(threading.Thread):
             # todo start animation in matrix
             self.commands.enable_izquierda_coil(True)
             self.commands.enable_trueque_coil(False)
-            self.commands.enable_kicker_coil(False)
+            #self.commands.enable_kicker_coil(False)
             self.commands.enable_dinero_coil(False)
             self.commands.enable_derecha_coil(True)
             self.commands.request_button_light_active("izquierda",True)
