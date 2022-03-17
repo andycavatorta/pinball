@@ -2163,7 +2163,7 @@ class Mode_Barter(threading.Thread):
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
             print("----------------------------------------> 7", pinball_hostname)
-
+            station_ref.pie_data_reset()
             station_ref.add_to_queue("set_phase", phase_name)
             #if phase_name == phase_names.COMIENZA:
                 #station_ref.add_to_queue("animation_fill_carousel", True) 

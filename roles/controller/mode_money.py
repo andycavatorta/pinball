@@ -285,11 +285,14 @@ class Station(threading.Thread):
 
 
     def pie_target_hit(self, target_name):
+        print("pie_target_hit 1", self.fruit_name, target_name)
         if self.pie_data_segments[target_name] == False:
+            print("pie_target_hit 2", self.fruit_name, target_name)
             self.pie_data_segments[target_name] = True
             self.commands.cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.commands.cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_data_segments.items() if v == True])==8:
+                print("pie_target_hit 3", self.fruit_name, target_name)
                 self.animation_pinball_game.add_to_queue("pie_full")
                 self.animation_score.add_to_queue("flipboard",[self.commands.get_money_points(),self.commands.get_money_points()+25])
                 self.add_to_queue("increment_score",35)
@@ -1857,6 +1860,7 @@ class Mode_Money(threading.Thread):
         #print("Mode_Money, begin() 4")
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
+            station_ref.pie_data_reset()
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
                 station_ref.add_to_queue("cmd_kicker_launch", "")
