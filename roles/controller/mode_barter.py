@@ -513,60 +513,60 @@ class Station(threading.Thread):
             self.commands.cmd_playfield_lights("sign_bottom_left", "on")
 
     def event_handler(self, topic, message):
-        #print("event_handler",topic, message,self.current_phase)
+        print("event_handler",topic, message,self.current_phase)
         if self.current_phase == phase_names.NOPLAYER:
             pass
 
         if self.current_phase == phase_names.COMIENZA:
             if topic == "event_pop_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_inner_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
@@ -590,53 +590,53 @@ class Station(threading.Thread):
         if self.current_phase == phase_names.PINBALL:
             if topic == "event_pop_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_inner_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_left":
                 if message:
                     self.pie_target_hit("rollover_left")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_right":
                 if message:
                     self.pie_target_hit("rollover_right")
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
@@ -681,53 +681,53 @@ class Station(threading.Thread):
 
             if topic == "event_pop_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("gsharp_mezzo")
                     self.pie_target_hit("pop_left")
             if topic == "event_pop_middle":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("g_mezzo")
                     self.pie_target_hit("pop_middle")
             if topic == "event_pop_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.commands.request_score("f_mezzo")
                     self.pie_target_hit("pop_right")
             if topic == "event_roll_inner_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("rollover_left")
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_inner_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("rollover_right")
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("rollover_left")
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_roll_outer_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("rollover_right")
                     self.animation_pinball_game.add_to_queue("chime_sequence",[["c_mezzo","asharp_mezzo","gsharp_mezzo","g_mezzo","f_mezzo"], 0.1])
 
             if topic == "event_slingshot_left":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_left")
                     self.pie_target_hit("rollover_left")
                     self.commands.request_score("asharp_mezzo")
 
             if topic == "event_slingshot_right":
                 if message:
-                    self.add_to_queue("increment_score",3)
+                    self.add_to_queue("increment_score",1)
                     self.pie_target_hit("sling_right")
                     self.pie_target_hit("rollover_right")
                     self.commands.request_score("asharp_mezzo")
