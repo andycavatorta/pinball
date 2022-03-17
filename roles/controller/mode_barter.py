@@ -285,7 +285,7 @@ class Station(threading.Thread):
 
 
     def pie_target_hit(self, target_name):
-        print("pie_target_hit 1", self.fruit_name, target_name)
+        print("pie_target_hit 1", self.fruit_name, target_name, self.pie_data_segments)
         if self.pie_data_segments[target_name] == False:
             print("pie_target_hit 2", self.fruit_name, target_name)
             self.pie_data_segments[target_name] = True
