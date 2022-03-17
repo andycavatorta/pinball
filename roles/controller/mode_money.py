@@ -1860,6 +1860,15 @@ class Mode_Money(threading.Thread):
         #print("Mode_Money, begin() 4")
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
+
+            station_ref.commands.cmd_playfield_lights("trail_pop_left","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_pop_middle","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_pop_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_spinner","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_sling_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_rollover_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_rollover_left","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_sling_left","stroke_on")
             station_ref.pie_data_reset()
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:

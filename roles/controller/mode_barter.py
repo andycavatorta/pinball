@@ -2165,6 +2165,17 @@ class Mode_Barter(threading.Thread):
             print("----------------------------------------> 7", pinball_hostname)
             station_ref.pie_data_reset()
             station_ref.add_to_queue("set_phase", phase_name)
+            station_ref.commands.cmd_playfield_lights("trail_pop_left","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_pop_middle","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_pop_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_spinner","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_sling_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_rollover_right","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_rollover_left","stroke_on")
+            station_ref.commands.cmd_playfield_lights("trail_sling_left","stroke_on")
+
+            
+
             #if phase_name == phase_names.COMIENZA:
                 #station_ref.add_to_queue("animation_fill_carousel", True) 
                 #print("Mode_Barter, begin() 3",station_ref )
