@@ -285,11 +285,14 @@ class Station(threading.Thread):
 
 
     def pie_target_hit(self, target_name):
+        print("pie_target_hit 1", self.fruit_name, target_name)
         if self.pie_data_segments[target_name] == False:
+            print("pie_target_hit 2", self.fruit_name, target_name)
             self.pie_data_segments[target_name] = True
             self.commands.cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.commands.cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_data_segments.items() if v == True])==8:
+                print("pie_target_hit 3", self.fruit_name, target_name)
                 self.animation_pinball_game.add_to_queue("pie_full")
                 self.animation_score.add_to_queue("flipboard",[self.commands.get_barter_points(),self.commands.get_barter_points()+25])
                 self.add_to_queue("increment_score",25)
