@@ -89,26 +89,38 @@ class Multimorphic(threading.Thread):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["trueque"], self.coils["trueque"], miliseconds)
         else:
+
+            self.p3.disable_coil(self.coils["trueque"])
             self.p3.clear_rule(self.switches["trueque"])
     def enable_dinero(self, enable_bool, miliseconds=21):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["dinero"], self.coils["dinero"], miliseconds)
         else:
+
+            self.p3.disable_coil(self.coils["dinero"])
             self.p3.clear_rule(self.switches["dinero"])
     def enable_kicker(self, enable_bool, miliseconds=18):
         if enable_bool:
             self.p3.configure_pops_slings(self.switches["kicker"], self.coils["kicker"], miliseconds)
         else:
+
+            self.p3.disable_coil(self.coils["kicker"])
             self.p3.clear_rule(self.switches["kicker"])
     def enable_izquierda(self, enable_bool, miliseconds=18):
         if enable_bool:
             self.p3.configure_flipper(self.switches["izquierda"], self.coils["izquierda_main"], self.coils["izquierda_hold"], miliseconds)
         else:
+
+            self.p3.disable_coil(self.coils["izquierda_main"])
+            self.p3.disable_coil(self.coils["izquierda_hold"])
             self.p3.clear_rule(self.switches["izquierda"])
     def enable_derecha(self, enable_bool, miliseconds=18):
         if enable_bool:
             self.p3.configure_flipper(self.switches["derecha"], self.coils["derecha_main"], self.coils["derecha_hold"], miliseconds)
         else:
+
+            self.p3.disable_coil(self.coils["derecha_main"])
+            self.p3.disable_coil(self.coils["derecha_hold"])
             self.p3.clear_rule(self.switches["derecha"])
 
     def izquierda_handler(self,event_state):

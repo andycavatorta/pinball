@@ -119,6 +119,7 @@ class Animation(threading.Thread):
         self.active = True
 
     def end(self):
+        self.animation_frame_counter = int(self.animation_frame_counter_limit-10)
         self.active = False
 
     def add_to_queue(self, animation_command,data): # ["begin"|"end"]
@@ -182,9 +183,7 @@ class Mode_Countdown(threading.Thread):
 
     def begin(self):
         print("mode_countdown Mode_Countdown.begin 1")
-
         self.animation.add_to_queue("set_comienza_buttons",self.hosts.get_games_with_players())
-
         print("mode_countdown Mode_Countdown.begin 2")
         self.animation.add_to_queue("begin",None)
         print("mode_countdown Mode_Countdown.begin 3")
@@ -202,11 +201,7 @@ class Mode_Countdown(threading.Thread):
     
     def event_button_comienza(self, message, origin, destination): 
         self.hosts.set_games_with_players(origin)
-
-
-
         self.animation.add_to_queue("set_comienza_buttons",self.hosts.get_games_with_players())
-
 
     def add_to_queue(self, topic, message, origin, destination):
         self.queue.put((topic, message, origin, destination))

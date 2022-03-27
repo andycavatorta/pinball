@@ -21,11 +21,11 @@ for display_hostname in display_hostnames:
 
 import time
 pinball_display_names = [
-    pinball1display,
-    pinball2display,
-    pinball3display,
-    pinball4display,
-    pinball5display,
+    "pinball1display",
+    "pinball2display",
+    "pinball3display",
+    "pinball4display",
+    "pinball5display",
 ]
 phrase_names = [
     "juega",
@@ -34,10 +34,11 @@ phrase_names = [
     "fue",
     "como",
 ]
-for phrase_name in phrase_names:
-    for pinball_display_name in pinball_display_names:
-        role_module.main.hosts.hostnames[pinball_display_name].request_phrase(phrase_name)
-    time.sleep(1)
+while True:
+    for phrase_name in phrase_names:
+        for pinball_display_name in pinball_display_names:
+            role_module.main.hosts.hostnames[pinball_display_name].request_phrase(phrase_name)
+        time.sleep(1)
 
 
 
