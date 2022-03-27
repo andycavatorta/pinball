@@ -40,7 +40,6 @@ class Multimorphic(threading.Thread):
 
         self.p3.configure_switch_callback(self.switches["derecha"], self.derecha_handler)
         self.p3.configure_switch_callback(self.switches["izquierda"], self.izquierda_handler)
-
         self.p3.configure_switch_callback(self.switches["dinero"], self.dinero_handler)
         self.p3.configure_switch_callback(self.switches["kicker"], self.kicker_handler)
         self.p3.configure_switch_callback(self.switches["pop_left"], self.pop_left_handler)
@@ -49,7 +48,6 @@ class Multimorphic(threading.Thread):
         self.p3.configure_switch_callback(self.switches["sling_left"], self.sling_left_handler)
         self.p3.configure_switch_callback(self.switches["sling_right"], self.sling_right_handler)
         self.p3.configure_switch_callback(self.switches["trueque"], self.trueque_handler)
-
 
         # configure autofire
         self.p3.configure_pops_slings(self.switches["pop_left"], self.coils["pop_left"], 40)

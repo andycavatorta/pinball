@@ -2156,6 +2156,17 @@ class Mode_Barter(threading.Thread):
     def begin(self):
         #print("Mode_Barter, begin() 1")
         self.active = True
+
+        pinball_display_names = [
+            "pinball1display",
+            "pinball2display",
+            "pinball3display",
+            "pinball4display",
+            "pinball5display",
+        ]
+        if pinball_display_name in pinball_display_names:
+            self.hosts.hostnames[pinball_display_name].request_number(0)
+
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
         # set all stations to phase comienza or noplayer
         self.mode_timer.add_to_queue("begin")
@@ -2173,9 +2184,6 @@ class Mode_Barter(threading.Thread):
             station_ref.commands.cmd_playfield_lights("trail_rollover_right","stroke_on")
             station_ref.commands.cmd_playfield_lights("trail_rollover_left","stroke_on")
             station_ref.commands.cmd_playfield_lights("trail_sling_left","stroke_on")
-
-            
-
             #if phase_name == phase_names.COMIENZA:
                 #station_ref.add_to_queue("animation_fill_carousel", True) 
                 #print("Mode_Barter, begin() 3",station_ref )

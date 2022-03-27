@@ -17,11 +17,37 @@ for display_hostname in display_hostnames:
         time.sleep(1)
 
 
+
+
+import time
+pinball_display_names = [
+    pinball1display,
+    pinball2display,
+    pinball3display,
+    pinball4display,
+    pinball5display,
+]
+phrase_names = [
+    "juega",
+    "dinero",
+    "trueque",
+    "fue",
+    "como",
+]
+for phrase_name in phrase_names:
+    for pinball_display_name in pinball_display_names:
+        role_module.main.hosts.hostnames[pinball_display_name].request_phrase(phrase_name)
+    time.sleep(1)
+
+
+
 role_module.main.hosts.pinball1display.request_phrase("juega")
 role_module.main.hosts.pinball1display.request_phrase("dinero")
 role_module.main.hosts.pinball1display.request_phrase("trueque")
 role_module.main.hosts.pinball1display.request_phrase("fue")
 role_module.main.hosts.pinball1display.request_phrase("como")
+
+
 
 role_module.main.multimorphic.p3.pulse_coil("A0-B1-1", 20)
 
@@ -130,6 +156,36 @@ role_module.main.hosts.hostnames["pinball5game"].request_button_light_active("di
 
 import time
 while True:
+    role_module.main.hosts.hostnames["pinball1display"].request_score("f_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball1display"].request_score("g_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball1display"].request_score("gsharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball1display"].request_score("asharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball1display"].request_score("c_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball2display"].request_score("f_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball2display"].request_score("g_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball2display"].request_score("gsharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball2display"].request_score("asharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball2display"].request_score("c_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball3display"].request_score("f_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball3display"].request_score("g_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball3display"].request_score("gsharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball3display"].request_score("asharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball3display"].request_score("c_mezzo")
+    time.sleep(0.5)
     role_module.main.hosts.hostnames["pinball4display"].request_score("f_mezzo")
     time.sleep(0.5)
     role_module.main.hosts.hostnames["pinball4display"].request_score("g_mezzo")
@@ -139,6 +195,16 @@ while True:
     role_module.main.hosts.hostnames["pinball4display"].request_score("asharp_mezzo")
     time.sleep(0.5)
     role_module.main.hosts.hostnames["pinball4display"].request_score("c_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball5display"].request_score("f_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball5display"].request_score("g_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball5display"].request_score("gsharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball5display"].request_score("asharp_mezzo")
+    time.sleep(0.5)
+    role_module.main.hosts.hostnames["pinball5display"].request_score("c_mezzo")
     time.sleep(0.5)
 
 
