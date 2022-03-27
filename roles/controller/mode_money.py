@@ -285,14 +285,14 @@ class Station(threading.Thread):
 
 
     def pie_target_hit(self, target_name):
-        print("pie_target_hit 1", self.fruit_name, target_name)
+        #print("pie_target_hit 1", self.fruit_name, target_name)
         if self.pie_data_segments[target_name] == False:
-            print("pie_target_hit 2", self.fruit_name, target_name)
+            #print("pie_target_hit 2", self.fruit_name, target_name)
             self.pie_data_segments[target_name] = True
             self.commands.cmd_playfield_lights("pie_{}".format(target_name),"on")# light animation
             self.commands.cmd_playfield_lights("trail_{}".format(target_name),"back_stroke_off")# light segment
             if len([True for k,v in self.pie_data_segments.items() if v == True])==8:
-                print("pie_target_hit 3", self.fruit_name, target_name)
+                #print("pie_target_hit 3", self.fruit_name, target_name)
                 self.animation_pinball_game.add_to_queue("pie_full")
                 self.animation_score.add_to_queue("flipboard",[self.commands.get_money_points(),self.commands.get_money_points()+25])
                 self.add_to_queue("increment_score",35)
@@ -382,6 +382,7 @@ class Station(threading.Thread):
 
     def setup(self):
         if self.current_phase == phase_names.NOPLAYER:
+            print(time.ctime(time.time()),"===================== NOPLAYER =====================", self.fruit_name)
             self.parent_ref.add_to_queue("handle_station_phase_change",self.fruit_name, self.current_phase, False)
             self.commands.enable_izquierda_coil(False)
             self.commands.enable_trueque_coil(False)
@@ -518,7 +519,7 @@ class Station(threading.Thread):
             self.commands.cmd_playfield_lights("sign_bottom_right", "on")
 
     def event_handler(self, topic, message):
-        print("event_handler",topic, message,self.current_phase)
+        #print("event_handler",topic, message,self.current_phase)
         if self.current_phase == phase_names.NOPLAYER:
             pass
 
@@ -763,14 +764,14 @@ class Station(threading.Thread):
             pass
 
         if self.current_phase == phase_names.COMIENZA:
-            print("Station.end COMIENZA", self.fruit_name)
+            #print("Station.end COMIENZA", self.fruit_name)
 
             self.commands.cmd_kicker_launch() 
             self.set_phase(phase_names.PINBALL)
             return
 
         if self.current_phase == phase_names.PINBALL:
-            print("Station.end PINBALL", self.fruit_name,)
+            #print("Station.end PINBALL", self.fruit_name,)
             self.set_phase(self.parent_ref.get_trade_option(self.fruit_name))
             return
 
@@ -1458,7 +1459,7 @@ class Matrix_Animations(threading.Thread):
 
 
     def trade_failed_setup(self, invitor, invitee):
-        print("trade_succeeded_setup",invitor, invitee)
+        print("trade_failed_setup",invitor, invitee)
         self.carousels[invitor].cmd_carousel_lights("inner_circle","high")
         self.carousels[invitor].cmd_carousel_lights("outer_circle","high")
         self.carousels["center"].cmd_carousel_lights("inner_circle","high")
@@ -1509,7 +1510,7 @@ class Matrix_Animations(threading.Thread):
             try:
                 #print("Matrix_Animations run 1 animation==",animation, station_a_name, station_b_name)
                 animation, station_a_name, station_b_name = self.queue.get(False)
-                print("Matrix_Animations run 2 animation==",animation, station_a_name, station_b_name)
+                #print("Matrix_Animations run 2 animation==",animation, station_a_name, station_b_name)
                 if animation == "trade_invited":
                     #print("Matrix_Animations run animation==",animation)
                     self.trade_invited_setup(station_a_name, station_b_name) #invitor, invitee
@@ -1758,11 +1759,13 @@ class Mode_Money(threading.Thread):
         if phase_name == phase_names.NOPLAYER:
             pass
         if phase_name == phase_names.COMIENZA:
+            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             if station_fruit_name in self.invitor_invitee:
                 self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
 
         if phase_name == phase_names.PINBALL:
+            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             if station_fruit_name in self.invitor_invitee:
                 self.matrix_animations.add_to_queue("pause_animations", self.invitor_invitee[0], self.invitor_invitee[1])
                 self.invitor_invitee = ["",""]
@@ -1799,6 +1802,7 @@ class Mode_Money(threading.Thread):
             print("Mode_Money.handle_station_phase_change 2",phase_name, self.invitor_invitee, self.initiator_initiatee)
 
         if phase_name == phase_names.INVITEE:
+            print("Mode_Money.handle_station_phase_change",phase_name, self.invitor_invitee, self.initiator_initiatee)
             if self.invitor_invitee[1] == "":
                 self.invitor_invitee[1] = station_fruit_name
             if self.invitor_invitee[0] != "":
