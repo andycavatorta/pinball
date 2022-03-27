@@ -2186,6 +2186,7 @@ class Mode_Barter(threading.Thread):
             print("----------------------------------------> 7", pinball_hostname)
             station_ref.add_to_queue("set_phase", phase_name)
             if phase_name == phase_names.COMIENZA:
+                station_ref.add_to_queue("increment_score", 1)
                 station_ref.add_to_queue("cmd_kicker_launch", "")
                 #print("Mode_Barter, begin() 3",station_ref )
 
