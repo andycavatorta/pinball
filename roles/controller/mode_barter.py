@@ -2164,7 +2164,7 @@ class Mode_Barter(threading.Thread):
             "pinball4display",
             "pinball5display",
         ]
-        if pinball_display_name in pinball_display_names:
+        for pinball_display_name in pinball_display_names:
             self.hosts.hostnames[pinball_display_name].request_number(0)
 
         self.pinball_hostnames_with_players = self.hosts.get_games_with_players()
