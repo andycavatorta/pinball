@@ -1862,9 +1862,14 @@ class Mode_Money(threading.Thread):
             station_ref.add_to_queue("set_phase", phase_name)
         """
         #print("Mode_Money, begin() 4")
+
+        # this is a workaround that might solve the dark-buttons problem
+        for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
+            station_ref.add_to_queue("set_phase", phase_names.NOPLAYER)
+
+
         for pinball_hostname, station_ref in self.PINBALL_HOSTNAME_TO_STATION.items():
             phase_name = phase_names.COMIENZA if pinball_hostname in self.pinball_hostnames_with_players else phase_names.NOPLAYER
-
             station_ref.commands.cmd_playfield_lights("trail_pop_left","stroke_on")
             station_ref.commands.cmd_playfield_lights("trail_pop_middle","stroke_on")
             station_ref.commands.cmd_playfield_lights("trail_pop_right","stroke_on")
