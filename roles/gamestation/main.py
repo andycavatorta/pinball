@@ -413,10 +413,10 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_kicker_launch':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.pulse_coil("kicker",19)
+                        self.multimorphic.pulse_coil("kicker",18)
                 if topic == 'cmd_lefttube_launch':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.pulse_coil("trueque",19)
+                        self.multimorphic.pulse_coil("trueque",18)
                 if topic == 'cmd_playfield_lights':
                     if destination == self.tb.get_hostname():
                         group_name, animation_name = message
@@ -544,7 +544,7 @@ class Main(threading.Thread):
                     pass
                 if topic == 'cmd_righttube_launch':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.pulse_coil("dinero",19)
+                        self.multimorphic.pulse_coil("dinero",18)
                 if topic == 'connected':
                     pass
                 #if topic == 'disable_gameplay':
