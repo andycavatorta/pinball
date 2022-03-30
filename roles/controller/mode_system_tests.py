@@ -53,7 +53,7 @@ class Mode_System_Tests(threading.Thread):
         self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("all","off")
 
         self.phase = self.PHASE_COMPUTER_DETAILS
-        self.hosts.pinballmatrix.response_high_power_enabled()
+        #self.hosts.pinballmatrix.response_high_power_enabled()
         time.sleep(10)
         self.hosts.request_all_computer_details()
 

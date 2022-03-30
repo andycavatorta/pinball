@@ -42,7 +42,7 @@ class Mode_Waiting_For_Connections(threading.Thread):
             "pinball3display",
             "pinball4display",
             "pinball5display",
-            "pinballmatrix",
+            #"pinballmatrix",
             "carousel1",
             "carousel2",
             "carousel3",
@@ -95,8 +95,8 @@ class Mode_Waiting_For_Connections(threading.Thread):
                 self.hosts.hostnames["carousel4"].cmd_carousel_lights("inner_circle","on")
             if pinball_hostname == "pinball5display":
                 self.hosts.hostnames["carousel5"].cmd_carousel_lights("inner_circle","on")
-            if pinball_hostname == "pinballmatrix":
-                self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","on")
+            #if pinball_hostname == "pinballmatrix":
+            #    self.hosts.hostnames["carouselcenter"].cmd_carousel_lights("outer_circle","on")
             if pinball_hostname == "carousel1":
                 self.hosts.hostnames["carousel1"].cmd_carousel_lights("peso","on")
             if pinball_hostname == "carousel2":

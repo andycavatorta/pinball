@@ -48,6 +48,7 @@ class Deadman():
     DURATION = 1.1
     GPIO = 5
 
+#"pinballmatrix":"pinballmatrix",
 class Roles():
     hosts={
         "controller":"controller",
@@ -61,7 +62,6 @@ class Roles():
         "pinball3display":"display",
         "pinball4display":"display",
         "pinball5display":"display",
-        "pinballmatrix":"pinballmatrix",
         "carousel1":"carousel",
         "carousel2":"carousel",
         "carousel3":"carousel",

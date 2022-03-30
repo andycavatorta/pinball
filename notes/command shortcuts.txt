@@ -130,10 +130,23 @@ while True:
     time.sleep(1)
     role_module.main.hosts.hostnames["pinball4game"].cmd_righttube_launch()
     time.sleep(1)
-    role_module.main.hosts.hostnames["pinball5game"].cmd_lefttube_launch()
+    role_module.main.hosts.hostnames["pinball4game"].cmd_kicker_launch()
     time.sleep(1)
-    role_module.main.hosts.hostnames["pinball5game"].cmd_righttube_launch()
+
+
+
+import time
+while True:
+    role_module.main.hosts.hostnames["pinball4game"].cmd_lefttube_launch()
     time.sleep(1)
+    role_module.main.hosts.hostnames["pinball4game"].cmd_righttube_launch()
+    time.sleep(1)
+    role_module.main.hosts.hostnames["pinball4game"].cmd_kicker_launch()
+    time.sleep(1)
+
+
+
+
 
 
 role_module.main.lighting.all.off()

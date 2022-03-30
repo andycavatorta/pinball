@@ -806,7 +806,7 @@ class Hosts():
         self.pinball3game = Pinball("pinball3game", tb)
         self.pinball4game = Pinball("pinball4game", tb)
         self.pinball5game = Pinball("pinball5game", tb)
-        self.pinballmatrix = Matrix("pinballmatrix", tb)
+        #self.pinballmatrix = Matrix("pinballmatrix", tb)
         self.hostnames = {
             'controller':self.controller,
             'carousel1':self.carousel1,
@@ -825,7 +825,7 @@ class Hosts():
             'pinball3game':self.pinball3game,
             'pinball4game':self.pinball4game,
             'pinball5game':self.pinball5game,
-            'pinballmatrix':self.pinballmatrix,
+            #'pinballmatrix':self.pinballmatrix,
         }
         self.dispatch(b"response_computer_details", self.controller.get_computer_details(), "controller", "controller")
         self.games_with_players = []
