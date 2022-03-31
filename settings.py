@@ -48,7 +48,6 @@ class Deadman():
     DURATION = 1.1
     GPIO = 5
 
-#"pinballmatrix":"pinballmatrix",
 class Roles():
     hosts={
         "controller":"controller",
