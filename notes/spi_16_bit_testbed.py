@@ -52,10 +52,12 @@ class CLI(threading.Thread):
         self.square_wave_generator.start()
         self.spi_16_bit = SPI_16_Bit()
         self.spi_16_bit.start()
-        self.start()
 
     def run(self):
         while True:
             input_str = raw_input("please enter gain as a number between 0-100")
             input_float = float(input_str)
             self.spi_16_bit.add_to_queue(input_float)
+
+cli = CLI()
+cli.start()
