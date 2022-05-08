@@ -41,7 +41,7 @@ class SPI_16_Bit(threading.Thread):
     def run(self):
         while True:
             gain_int = self.queue.get(True)
-            gain_16_bits 65536.0 * float(gain_int) /100.0
+            gain_16_bits = 65536.0 * float(gain_int) /100.0
             print(gain_16_bits)
             #self.spi.writebytes( values )
 
