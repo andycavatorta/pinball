@@ -26,14 +26,13 @@ class SPI_16_Bit(threading.Thread):
         GPIO.setup(19, GPIO.OUT)
         GPIO.output(19, GPIO.HIGH )
 
-        """
         self.spi = spidev.SpiDev()
-        self.spi.open(self.bus, self.deviceId)
+        self.spi.open(0, 0)
         self.open = True
         self.spi.mode = 0b00
-        self.spi.no_cs = True
-        self.spi.max_speed_hz = speed_hz
-        """
+        self.spi.bits_per_word = 16
+        #self.spi.no_cs = True
+        self.spi.max_speed_hz = 500000
 
     def add_to_queue(self, gain_int):
         self.queue.put(gain_int)
@@ -41,10 +40,10 @@ class SPI_16_Bit(threading.Thread):
     def run(self):
         while True:
             gain_int = self.queue.get(True)
-            gain_16_bits = 65536.0 * float(gain_int) /100.0
+            gain_16_bits = int(65536.0 * float(gain_int) /100.0)
             print("")
             print(gain_16_bits)
-            #self.spi.writebytes( values )
+            self.spi.writebytes(gain_16_bits)
 
 class CLI(threading.Thread):
     def __init__(self, ):
