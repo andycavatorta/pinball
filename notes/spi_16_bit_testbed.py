@@ -50,9 +50,13 @@ class SPI_16_Bit(threading.Thread):
             print("")
             print(gain_16_bits, high_byte, low_byte)
             GPIO.output(self.cs_gpio, GPIO.LOW)
-            self.spi.writebytes(high_byte)
-            self.spi.writebytes(low_byte)
+            print(1)
+            self.spi.writebytes(chr(high_byte))
+            print(2)
+            self.spi.writebytes(chr(low_byte))
+            print(3)
             GPIO.output(self.cs_gpio, GPIO.HIGH)
+            print(4)
 
 class CLI(threading.Thread):
     def __init__(self, ):
