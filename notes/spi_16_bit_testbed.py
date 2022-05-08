@@ -52,6 +52,7 @@ class CLI(threading.Thread):
         self.square_wave_generator.start()
         self.spi_16_bit = SPI_16_Bit()
         self.spi_16_bit.start()
+        self.start()
 
     def run(self):
         while True:
