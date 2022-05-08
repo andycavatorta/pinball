@@ -23,6 +23,9 @@ class SPI_16_Bit(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.queue = queue.Queue()
+        GPIO.setup(19, GPIO.OUT)
+        GPIO.output(19, GPIO.HIGH )
+
         """
         self.spi = spidev.SpiDev()
         self.spi.open(self.bus, self.deviceId)
