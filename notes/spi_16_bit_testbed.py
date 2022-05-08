@@ -55,7 +55,7 @@ class CLI(threading.Thread):
 
     def run(self):
         while True:
-            input_str = raw_input("please enter gain as a number between 0-100")
+            input_str = input("please enter gain as a number between 0-100")
             input_float = float(input_str)
             self.spi_16_bit.add_to_queue(input_float)
 
