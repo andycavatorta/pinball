@@ -27,7 +27,7 @@ class SPI_16_Bit(threading.Thread):
         GPIO.output(19, GPIO.HIGH )
 
         self.spi = spidev.SpiDev()
-        self.spi.open(0, 0)
+        self.spi.open(1, 0)
         self.open = True
         self.spi.mode = 0b00
         self.spi.bits_per_word = 16
