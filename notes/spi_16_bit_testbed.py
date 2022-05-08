@@ -28,7 +28,7 @@ class SPI_16_Bit(threading.Thread):
         GPIO.setup(self.zcen_gpio, GPIO.OUT)
         GPIO.output(self.zcen_gpio, GPIO.HIGH )
         GPIO.setup(self.cs_gpio, GPIO.OUT)
-        GPIO.setup(self.cs_gpio, GPIO.HIGH)
+        GPIO.output(self.cs_gpio, GPIO.HIGH)
 
         self.spi = spidev.SpiDev()
         self.spi.open(0, 0)
@@ -49,10 +49,10 @@ class SPI_16_Bit(threading.Thread):
             low_byte = gain_16_bits & 0x00FF
             print("")
             print(gain_16_bits, high_byte, low_byte)
-            GPIO.setup(self.cs_gpio, GPIO.LOW)
+            GPIO.output(self.cs_gpio, GPIO.LOW)
             self.spi.writebytes(high_byte)
             self.spi.writebytes(low_byte)
-            GPIO.setup(self.cs_gpio, GPIO.HIGH)
+            GPIO.output(self.cs_gpio, GPIO.HIGH)
 
 class CLI(threading.Thread):
     def __init__(self, ):
