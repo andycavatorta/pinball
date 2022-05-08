@@ -42,6 +42,7 @@ class SPI_16_Bit(threading.Thread):
         while True:
             gain_int = self.queue.get(True)
             gain_16_bits = 65536.0 * float(gain_int) /100.0
+            print("")
             print(gain_16_bits)
             #self.spi.writebytes( values )
 
@@ -55,8 +56,7 @@ class CLI(threading.Thread):
 
     def run(self):
         while True:
-            input_str = input("please enter gain as a number between 0-100")
-            print("")
+            input_str = input("please enter gain as a number between 0-100: ")
             input_float = float(input_str)
             self.spi_16_bit.add_to_queue(input_float)
 
