@@ -57,7 +57,7 @@ class SPI_16_Bit(threading.Thread):
             print(gain_16_bits, high_byte, low_byte)
             GPIO.output(self.cs_gpio, GPIO.LOW)
             print(1)
-            self.wpi.wiringPiSPIDataRW(0, chr(128) + chr(128)) # set volume to zero as test of comms
+            self.wpi.wiringPiSPIDataRW(0, chr(128) + chr(128), 16) # set volume to zero as test of comms
             #self.spi.writebytes([65536])
             print(2)
             GPIO.output(self.cs_gpio, GPIO.HIGH)
