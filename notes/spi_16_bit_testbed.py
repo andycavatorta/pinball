@@ -1,9 +1,9 @@
 import queue
-#import spidev 
+import spidev 
 import threading
 import time
 import RPi.GPIO as GPIO
-import wiringpi as wpi
+#import wiringpi as wpi
 GPIO.setmode(GPIO.BCM)
 
 class Square_Wave_Generator(threading.Thread):
