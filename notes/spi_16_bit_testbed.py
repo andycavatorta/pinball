@@ -32,6 +32,7 @@ class SPI_16_Bit(threading.Thread):
         GPIO.output(self.cs_gpio, GPIO.HIGH)
 
 
+        """
         wpi.wiringPiSetup()
         wpi.wiringPiSPISetup(0, 500000)
         """
@@ -42,7 +43,6 @@ class SPI_16_Bit(threading.Thread):
         #self.spi.bits_per_word = 16
         self.spi.no_cs = True
         self.spi.max_speed_hz = 500000
-        """
 
     def add_to_queue(self, gain_int):
         self.queue.put(gain_int)
@@ -57,8 +57,8 @@ class SPI_16_Bit(threading.Thread):
             print(gain_16_bits, high_byte, low_byte)
             GPIO.output(self.cs_gpio, GPIO.LOW)
             print(1)
-            wpi.wiringPiSPIDataRW(0, chr(128) + chr(128)) # set volume to zero as test of comms
-            #self.spi.writebytes([65536])
+            #wpi.wiringPiSPIDataRW(0, chr(128) + chr(128)) # set volume to zero as test of comms
+            self.spi.writebytes([65536])
             print(2)
             GPIO.output(self.cs_gpio, GPIO.HIGH)
             print(3)
