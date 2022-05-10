@@ -51,14 +51,15 @@ class SPI_16_Bit(threading.Thread):
         while True:
             gain_int = self.queue.get(True)
             gain_16_bits = int(65536.0 * float(gain_int) /100.0)
+            gain_8_bits = int(255.0 * float(gain_int) /100.0)
             high_byte = gain_16_bits >> 8
             low_byte = gain_16_bits & 0x00FF
             print("")
-            print(gain_16_bits, high_byte, low_byte)
+            print(gain_16_bits, high_byte, low_byte,gain_8_bits)
             GPIO.output(self.cs_gpio, GPIO.LOW)
             print(1)
             #wpi.wiringPiSPIDataRW(0, chr(128) + chr(128)) # set volume to zero as test of comms
-            self.spi.writebytes([255,255])
+            self.spi.writebytes([gain_8_bits,gain_8_bits])
             print(2)
             GPIO.output(self.cs_gpio, GPIO.HIGH)
             print(3)
