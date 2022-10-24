@@ -413,7 +413,7 @@ class Main(threading.Thread):
 
                 if topic == 'cmd_kicker_launch':
                     if destination == self.tb.get_hostname():
-                        self.multimorphic.pulse_coil("kicker",18)
+                        self.multimorphic.pulse_coil("kicker",16)
                 if topic == 'cmd_lefttube_launch':
                     if destination == self.tb.get_hostname():
                         self.multimorphic.pulse_coil("trueque",18)
